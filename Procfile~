@@ -1,1 +1,1 @@
-web: gunicorn ca_portal.wsgi
+web: gunicorn technexUser.wsgi
