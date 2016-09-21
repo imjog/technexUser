@@ -24,6 +24,9 @@ SECRET_KEY = 'a+lgm+6_g1ln9xl*=!u9galr&#&zaurt2%a*3ss)qt#xf0ck-9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if 'DEBUG' in os.environ:
+    if os.environ['DEBUG'] == 'FALSE':
+        DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -131,3 +134,5 @@ MEDIA_URL = '/media/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
