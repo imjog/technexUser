@@ -99,7 +99,7 @@ def LogoutView(request):
 @csrf_exempt
 def eventApi(request):
     response = {}
-    if True:
+    try:
         parentEvents = ParentEvent.objects.all()
         response['data'] = []
         for parentEvent in parentEvents:
@@ -125,7 +125,7 @@ def eventApi(request):
                 pEventData['events'].append(eventData)
             response['data'].append(pEventData)
         return JsonResponse(response)
-    else:
+    except:
         response['error'] = True
         response['errorCode'] = 'Error in finding events'
         return JsonResponse(response)
