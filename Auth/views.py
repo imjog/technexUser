@@ -123,6 +123,7 @@ def eventApi(request):
                     eventOptionData = {}
                     eventOptionData['optionName'] = eventOption.optionName
                     eventOptionData['optionDescription'] = eventOption.optionDescription
+                    eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
                     eventData['eventOptions'].append(eventOptionData)
                 pEventData['events'].append(eventData)
             response['data'].append(pEventData)
@@ -163,6 +164,7 @@ def eventData(request):
                 eventOptionData = {}
                 eventOptionData['optionName'] = eventOption.optionName
                 eventOptionData['optionDescription'] = eventOption.optionDescription
+                eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
                 eventData['eventOptions'].append(eventOptionData)
             response['events'].append(eventData)
         

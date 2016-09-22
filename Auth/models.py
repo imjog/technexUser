@@ -67,6 +67,7 @@ class Team(models.Model):
         return self.teamName
 
 class EventOption(models.Model):
-	optionName = models.CharField(max_length = 50, null = True)
-	optionDescription = RichTextField()
-	event = models.ForeignKey(Event)
+    optionName = models.CharField(max_length = 50, null = True)
+    optionDescription = RichTextField()
+    eventOptionOrder = models.SmallIntegerField(null = True, blank = True)
+    event = models.ForeignKey(Event)
