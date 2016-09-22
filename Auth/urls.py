@@ -13,7 +13,10 @@ urlpatterns = [
 	#JsonResponse
 	url(r'^api/register/$', ApiRegisterView, name='api_register'),
 	url(r'^api/eventApi/$', eventApi, name='eventApi'),
-	url(r'^api/logout/$', LogoutView, name='logoutApi'),
+	url(r'^api/logout/$', logout, name='logoutApi'),
+	url(r'^api/eventData/$',eventData, name='eventData'),
+	url(r'^api/parentEvents/$',parentEvents, name='parentEvents'),
+	
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
 
 	#url(r'^$', IndexView, name= 'index'),

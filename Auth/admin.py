@@ -10,9 +10,12 @@ class eventOptionInline(admin.TabularInline):
 @admin.register(Event)	
 class EventAdmin(admin.ModelAdmin):
 	inlines = [eventOptionInline]
+class parentEventAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'nameSlug': ('categoryName',)}
+    
 admin.site.register(TechProfile)
 admin.site.register(College)
 #admin.site.register(Event,EventAdmin)
-admin.site.register(ParentEvent)
+admin.site.register(ParentEvent, parentEventAdmin)
 admin.site.register(Team)
 admin.site.register(EventOption)

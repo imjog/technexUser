@@ -2,7 +2,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import URLValidator
-
+from ckeditor.fields import RichTextField
+from django.template.defaultfilters import slugify
 year_choices = [
         (1, 'First'),
         (2, 'Second'),
@@ -35,21 +36,25 @@ class TechProfile(models.Model):
 class ParentEvent(models.Model):
     parentEventId = models.AutoField(primary_key = True)
     categoryName = models.CharField(max_length = 50)
-    description = models.TextField(null = True,blank = True)
+    description = RichTextField(null = True,blank = True)
+    order = models.SmallIntegerField(null = True, blank = True)
+    nameSlug = models.SlugField(null = True)
     def __unicode__(self):
         return self.categoryName
-
+    
 class Event(models.Model):
     eventId = models.AutoField(primary_key = True)
+    eventOrder = models.SmallIntegerField(null = True, blank = True)
     eventName = models.CharField(max_length = 50)
     parentEvent = models.ForeignKey(ParentEvent)
-    description = models.TextField(null = True,blank = True)
+    description = RichTextField(null = True,blank = True)
     deadLine = models.DateTimeField(null = True,blank = True)
     prizeMoney = models.IntegerField(null=True, blank=True)
     maxMembers = models.IntegerField(null=True,blank=True)
 
     def __unicode__(self):
         return self.eventName
+
 
 class Team(models.Model):
     teamName = models.CharField(max_length=50, null=True, blank=True)
@@ -63,5 +68,5 @@ class Team(models.Model):
 
 class EventOption(models.Model):
 	optionName = models.CharField(max_length = 50, null = True)
-	optionDescription = models.TextField()
+	optionDescription = RichTextField()
 	event = models.ForeignKey(Event)
