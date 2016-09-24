@@ -64,26 +64,26 @@ Json Response :{<br>
 					
 					"data":[
 					{
-					"name":parentEventName,
-					"description":parentEventDescription,
-					"events":[
-					{
-					"eventName":eventName,
-					"eventDescription":eventDescription,
-					"deadLine":deadLineOfEvent,
-					"prizeMoney":prizeMoney,
-					"maxMembers":maxmimNumberOfMembersAllowedInTeam,
-					"eventOptions":[
-					{
-					"optionName":optionName,
-					"optionDescription":optionDescription,
-					}
-					]
-					}
-					]
+						"name":parentEventName,
+						"description":parentEventDescription,
+						"events":[
+								{
+									"eventName":eventName,
+									"eventDescription":eventDescription,
+									"deadLine":deadLineOfEvent,
+									"prizeMoney":prizeMoney,
+									"maxMembers":maxmimNumberOfMembersAllowedInTeam,
+									"eventOptions":[
+											{
+												"optionName":optionName,
+												"optionDescription":optionDescription,
+											}
+											]
+								}
+							]
 					}
 			
 			
-			]
-			}
+						]
+		}
 
