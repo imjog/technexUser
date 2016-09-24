@@ -62,25 +62,25 @@ Method: GET/POST
 <br>
 Json Response :{<br>
 					
-					"data":[<br>
-					{<br>
-					"name":parentEventName,<br>
-					"description":parentEventDescription,<br>
-					"events":[<br>
-					{<br>
-					"eventName":eventName,<br>
-					"eventDescription":eventDescription,<br>
-					"deadLine":deadLineOfEvent,<br>
-					"prizeMoney":prizeMoney,<br>
-					"maxMembers":maxmimNumberOfMembersAllowedInTeam,<br>
-					"eventOptions":[<br>
-					{<br>
-					"optionName":optionName,<br>
-					"optionDescription":optionDescription,<br>
-					}<br>
-					]<br>
-					<br>}
-					]<br>
+					"data":[
+					{
+					"name":parentEventName,
+					"description":parentEventDescription,
+					"events":[
+					{
+					"eventName":eventName,
+					"eventDescription":eventDescription,
+					"deadLine":deadLineOfEvent,
+					"prizeMoney":prizeMoney,
+					"maxMembers":maxmimNumberOfMembersAllowedInTeam,
+					"eventOptions":[
+					{
+					"optionName":optionName,
+					"optionDescription":optionDescription,
+					}
+					]
+					}
+					]
 					}
 			
 			
