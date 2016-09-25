@@ -141,6 +141,7 @@ def eventApi(request):
                     eventData['eventOptions'].append(eventOptionData)
                 pEventData['events'].append(eventData)
             response['data'].append(pEventData)
+            response['status'] = 1
         return JsonResponse(response)
     except:
         response['error'] = True
