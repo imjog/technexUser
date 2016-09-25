@@ -73,8 +73,8 @@ def ApiRegisterView(request):
 def ApiLoginView(request):
     response_data = {}
     if request.user.is_authenticated():
-        response['status'] = 3
-        return JsonResponse(response)
+        response_data['status'] = 3
+        return JsonResponse(response_data)
     try:
         data = json.loads(request.body)
         #form = LoginForm(data)
