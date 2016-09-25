@@ -56,7 +56,10 @@ def ApiRegisterView(request):
 
         newUser = authenticate(username=email, password=password)
         login(request, newUser)
-
+        response['name'] = newUser.first_name
+        response['mobileNumber'] = newUser.mobileNumber
+        response['year'] = newUser.year
+        response['college'] = newUser.college
         response['status'] = 1
         return JsonResponse(response)
     except:
@@ -76,6 +79,10 @@ def ApiLoginView(request):
             if user is not None:
                 login(request, user)
                 response_data['status'] = 1
+                response_data['name'] = user.first_name
+                response_data['mobileNumber'] = user.mobileNumber
+                response_data['year'] = user.year
+                response_data['college'] = user.college
                 return JsonResponse(response_data)
             else:
                 response_data['status'] = 0 #Invalid credentials
