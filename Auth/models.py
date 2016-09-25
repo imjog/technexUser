@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.validators import URLValidator
 from ckeditor.fields import RichTextField
 from django.template.defaultfilters import slugify
+from django.core.validators import URLValidator
 year_choices = [
         (1, 'First'),
         (2, 'Second'),
@@ -21,13 +22,17 @@ class College(models.Model):
     collegeName = models.CharField(max_length=250)
     def __unicode__(self):
         return self.collegeName
-
+class FbConnect(models.Model):
+    uid = models.CharField(max_length = 200, null = True)
+    accessToken = models.CharField(max_length = 250, null = True)
+    profileImage = models.TextField(validators=[URLValidator()],blank=True,null = True)
 
 class TechProfile(models.Model):
     user = models.OneToOneField(User)
     year = models.IntegerField(choices=year_choices)
     mobileNumber = models.BigIntegerField()
     college = models.ForeignKey(College,null = True)
+    fb = models.OneToOneField(FbConnect,null = True, blank = True)
     #profile_photo = models.TextField(validators=[URLValidator()],blank=True)
 
     def __unicode__(self):
@@ -71,3 +76,7 @@ class EventOption(models.Model):
     optionDescription = RichTextField()
     eventOptionOrder = models.SmallIntegerField(null = True, blank = True)
     event = models.ForeignKey(Event)
+    def __unicode__(self):
+        return '%s %s'%(self.optionName,self.event)
+
+

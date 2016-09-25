@@ -1,0 +1,105 @@
+body{
+    background-image: url("maxresdefault.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    color: #00364B;
+}
+.content{
+    margin-top: 100px;
+}
+.dial{
+    display: none;
+    color: white;
+    font-size: large;
+}
+#glyfbc{display: none}#glyfbl{display: none}#glydd{display: none}#glysbd{display: none}
+.tech{
+    height: 150%;
+    width: 200px;
+}
+.tech img{
+    max-height: inherit;
+}
+.seeall{
+    float: right;
+    cursor: hand;
+}
+#banner img{
+    background-image: url("dashboard_files/technex_init_banner.jpg");
+    max-height: 250px;
+}
+.progress {background: rgba(255, 5, 5, 1); border: 0px solid rgba(230, 230, 230, 0); border-radius: 11px; height: 10px;}
+.progress-bar-custom {background: rgba(65, 201, 83, 1);}
+.progress-striped .progress-bar-custom {background-color: rgba(65, 201, 83, 1); background-image: -webkit-gradient(linear,0 100%,100% 0,color-stop(0.25,rgba(255, 255, 255, 0.15),color-stop(0.25,transparent),color-stop(0.5,transparent),color-stop(0.5,rgba(255, 255, 255, 0.15)),color-stop(0.75,rgba(255, 255, 255, 0.15)),color-stop(0.75,transparent),to(transparent))); background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent); background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent); background-size: 28px 28px;}
+
+
+/*jsjkdskkjsdkjdskjdskjsdjkdskjjdkkjskjsdkjdskj*/
+.modal-footer, .modal-header
+{
+ background:#00364b;
+}
+
+
+.close
+{
+    color:#ffffff;
+}
+.modal-title
+{
+    color: #ffffff;
+}
+.notify-all
+{
+    color: #d4e9f1;
+   /* text-decoration: none;*/
+}
+a.notify-all:hover, a.notify-all:focus
+{
+    text-decoration: none;
+    color:#d4e9f1;
+}
+#notification-all-modal
+{
+   padding-top: 15px;
+
+
+}
+#notify-all-modal-body{
+    position: relative;
+    padding: 15px;
+    max-height: 750px;
+    min-height: 200px;
+    overflow: auto;
+}
+.blurring
+{
+    opacity: 0.1;
+}
+.modal-close-btn
+{
+    float:left;
+}
+.startup-tip
+{
+    padding-top: 200px;
+    min-height:
+}
+.noblur
+{
+     color: white;
+    opacity: 0;
+}
+div.startup-tip h4
+{
+    text-align: center;
+}
+.startup-tip .modal-body
+{
+    min-height: 150px;
+    max-height: 150px;
+}
+.navbartip
+{
+    color: red;
+    font-size: 0px;
+}

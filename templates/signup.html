@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>
+Sign Up
+</title>
+</head>
+<body>
+<form method='post'>
+{% csrf_token %}
+{% if messages %}
+                          {% for msg in messages %}
+                              {{msg.message}}
+                            {% endfor %}
+                          {% endif %}
+<input type='text' name='email' value='{% if email %}{{email}}{% else %}email{% endif %}' />_
+<input type='text' name='name' value='{% if name %}{{name}}{% else %}name{% endif %}' /> 
+<input type='text' name='college' value='college' />_
+<input type='number' name='mobileNumber' value='91' />_
+<input type='number' name='year' value='1' />
+<input type='password' name='password' />_
+<input type='submit' value='signup' />  
+</body>
+</html>

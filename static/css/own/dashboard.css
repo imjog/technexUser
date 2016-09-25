@@ -1,0 +1,37 @@
+.content{
+  margin-top:70px;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+html, body {
+  height:100%;
+  margin:0;
+  padding:0;
+  }
+
+  html{
+  height: 100%;
+  }
+
+  body {
+  height: 120%;
+  width: 100%;
+  }
+
+  #canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .jumbotron {
+   background: rgb(200, 54, 54) !important; /* This is for ie8 and below */
+   background: rgba(200, 54, 54, 0.3) !important;
+  }

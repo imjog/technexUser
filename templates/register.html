@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Technex'17  </title>
+        <link rel="shortcut icon" href="/static/css/images/favicon.ico">
+         <link rel='stylesheet prefetch' href='/static/login2_files/kla.css'>
+        <link rel="stylesheet" href="/static/login2_files/css.css">
+        <link rel="stylesheet" href="/static/login2_files/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/login2_files/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/login2_files/form-elements.css">
+        <link rel="stylesheet" href="/static/login2_files/assets/css/style.css">
+        <link rel="stylesheet" href="/static/css/jquery-ui.css" type="text/css" media="all" />
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+            </head>
+
+    <body>
+        <div class="top-content">
+
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1> WELCOME TO TECHNEX CA PORTAL</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                            {% if messages %}
+                          {% for msg in messages %}
+                              <div class="alert alert-danger">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                          {{msg.message}}
+                            </div>
+                          {% endfor %}
+                          {% endif %}
+
+
+                          <form role="form" action="" method="post" class="registration-form">
+                            {%csrf_token%}
+
+
+
+                            <fieldset style="display: block;">
+                              <div class="form-top">
+                                <div class="form-top-left">
+                                  <h3><b>Step 1 / 3</b></h3>
+                                    <p>Tell us who you are:</p>
+                                </div>
+                                <div class="form-top-right">
+                                  <i class="fa fa-user"></i>
+                                </div>
+                                </div>
+                                <div class="form-bottom">
+                              <div class="form-group">
+                                <label class="sr-only" for="form-first-name">First name</label>
+                                  <input type="text" name="form-first-name" placeholder="NAME..." class="form-first-name form-control" id="form-first-name">
+
+                                </div>
+                               <div class="form-group">
+                                  <label class="sr-only" for="form-college">College</label>
+                                  <input type="text" name="form-college" placeholder="COLLEGE NAME..." class="form-last-name form-control" id="college">
+                                </div>
+                                         <div class="form-group">
+                                  <label class="sr-only" for="form-email">Email</label>
+                                  <input name="form-email" placeholder="Email..." class="form-email form-control" id="laluram" type="text">
+
+                                  <div class="alert-message alert-email" style="display: none">
+                                          <button type="button" id="close-email" class="close-btn">
+                                             <span aria-hidden="true">&times;</span>
+                                           </button>
+Email entered is incorrect.
+</div>
+
+                                  <span class="m-field-error" id="mail-error"></span>
+
+                                </div>
+                                <div class="form-group">
+                                <label class="sr-only" for="form-password">Password</label>
+                                  <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="password">
+                                </div>
+                                <div class="form-group">
+                                  <label class="sr-only" for="form-repeat-password">Repeat password</label>
+                                  <input type="password" name="form-repeat-password" placeholder="Repeat password..." class="form-repeat-password form-control" id="confirm_password">
+                                   <div class="alert-message alert-confirm-password" style="display: none">
+                                   <button type="button" id="close-confirm-password" class="close-btn">
+    <span aria-hidden="true">&times;</span>
+  </button>
+Password didn't match.
+</div>
+
+                                </div>
+                                         <button type="button" id="btn-next" class="btn btn-next pure-button pure-button-primary">NEXT</button>
+                            </div>
+                          </fieldset>
+                          <fieldset>
+
+
+                              <div class="form-top">
+                                <div class="form-top-left">
+                                  <h3>Step 2 / 3</h3>
+                                    <p>Set up your account:</p>
+                                </div>
+                                <div class="form-top-right">
+                                  <i class="fa fa-user"></i>
+                                </div>
+                                </div>
+                                <div class="form-bottom">
+
+                                     <div class="form-group">
+                                     <label class="sr-only" for="form-college">YEAR</label>
+                                        <select class="selectpicker show-menu-arrow form-control" id="id_year" name="year">
+                                        <option selected="selected" value="-1">--SELECT YOUR YEAR--</option>
+                          <option value="1">First</option>
+                  <option value="2">Second</option>
+                        <option value="3">Third</option>
+                    <option value="4">Fourth</option>
+                        <option value="5">Fifth</option>
+                            </select>
+                            </div>
+                               <div class="form-group">
+                                  <label class="sr-only" for="form-mobilenumber">MOBILE NUMBER</label>
+                                  <input type="text" name="form-mobilenumber" placeholder="MOBILE NO.. in 10 digits" class="form-mobile-number form-control" id="form-mobile">
+                                  <div class="alert-message alert-mobile">
+  <button type="button" id="close-mobile" class="close-btn">
+    <span aria-hidden="true">&times;</span>
+  </button>
+Incorrect Mobile number
+</div>
+
+                                </div>
+                                          <script type="text/javascript">
+
+
+
+                                        </script>
+
+
+                                        <p class="copy">
+                                        <input type="checkbox" name="Whatsapptoo" class="mob-watsapp" id="mybox"> Check this box if Whatsapp number and Contact Number are the same<p>
+                                         
+
+
+
+                                         <div class="form-group">
+                                  <label class="sr-only" for="form-whatsapp">Whatsapp</label>
+                                  <input type="text" name="form-whatsapp" placeholder="WhatsApp no.." class="form-whatsapp form-control" id="form-whatsapp">
+                                  <div class="alert-message alert-whatsapp">
+  <button type="button" id="close-whatsapp" class="close-btn">
+    <span aria-hidden="true">&times;</span>
+  </button>
+ Incorrect Whatsapp number
+</div>
+
+                                </div>
+                                <div class="form-group">
+                                <label class="sr-only" for="form-address">Current Postal Address</label>
+                                  <textarea type="text" name="form-address" placeholder="Postal Address..." class="form-address form-control" id="form-address" rows="3" cols="40"></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <label class="sr-only" for="form-pincode">Pincode</label>
+                                  <input type="text" name="form-pincode" placeholder="Pincode..." class="form-pincode form-control" id="form-pincode">
+                                  <div class="alert-message alert-pincode">
+  <button type="button" id="close-pincode" class="close-btn">
+    <span aria-hidden="true">&times;</span>
+  </button>
+   Invalid Pincode
+</div>
+
+
+
+                            </div>
+
+                          <button type="button" class="btn btn-previous">PREVIOUS</button>
+
+                           <button type="button" id="btn-next-page" class="btn btn-next page-2">NEXT</button>
+
+                            </div>
+
+
+                        </fieldset>
+                        <fieldset>
+                        <div class="form-top">
+                                <div class="form-top-left">
+                                  <h3><b>Step 3 / 3</b></h3>
+                                    <p>Tell us who you are:</p>
+                                </div>
+                                <div class="form-top-right">
+                                  <i class="fa fa-user"></i>
+                                </div>
+                                </div>
+                                <div class="form-bottom">
+
+                          <div class="form-group">
+                                <label class="sr-only" for="form-choose">WHY TO CHOOSE YOU?</label>
+                                  <textarea type="text" name="form-choose" placeholder="Why should we choose you?" class="form-choose form-control" id="form-choose" rows="6" cols="40"></textarea>
+                                </div>
+                                <div class="form-group">
+                                <label class="sr-only" for="form-experiences">PAST EXPERIENCES</label>
+                                  <textarea type="text" name="form-experiences" placeholder="Your past experiences as Campus Ambassdor and organizing events in about 150 words." class="form-experience form-control" id="form-experience" rows="6" cols="40"></textarea>
+                                </div>
+                                <button type="button" class="btn btn-previous">PREVIOUS</button>
+                                 <button type="submit" id="sign-up-btn" class="btn btn-next page-2">SIGN UP</button>
+                                </div>
+
+                        </fieldset>
+                        </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+
+ <script src='/static/login2_files/jquery.min.js'></script>
+        <script src="/static/login2_files/bootstrap.min.js"></script>
+        <script src="/static/login2_files/jquery.backstretch.min.js"></script>
+        <script src="/static/login2_files/retina-1.1.0.min.js"></script>
+        <script src="/static/login2_files/scripts.js"></script>
+ <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 1000px; width: 1903px; z-index: -999999; position: fixed;"><img src="/static/login2_files/1.png" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1903px; height: 1268.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -191.333px;"></div></body></html>
+
+  <script src="/static/js/1.12.0jquery-ui.min.js"></script>
+
+
+
+ <script>
+
+   $( function() {
+     var availableTags = [
+       {% for clg in all_colleges %}
+           "{{clg}}",
+       {%endfor%}
+     ];
+     $("#college").autocomplete({
+       source: availableTags
+     });
+   });
+   // over write the default autocomplete function to match the option starting with term
+   $.ui.autocomplete.filter = function (array, term) {
+     var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
+     return $.grep(array, function (value) {
+       return matcher.test(value.label || value.value || value);
+     });
+   };
+ </script>

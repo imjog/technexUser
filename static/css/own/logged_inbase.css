@@ -1,0 +1,63 @@
+.badge-own{
+  margin-left: -3.5px;
+  margin-top: -10px;
+  background-color: #8282c9;
+}
+.fa{
+   font-size: 1.3em !important;
+  /*color: #8282c9;*/
+
+}
+.dropdown-menu {
+  min-width: 300px;
+  margin-left: -20px;
+
+ }
+ .navbar{
+    background-color: :#fff;
+    border-color: #030033;
+    box-shadow: 0 8px 6px -6px #999;
+}
+
+.menu{
+ display: inline-block !important;
+  }
+
+
+  html, body {
+    height:100%;
+    margin:0;
+    padding:0;
+    }
+
+    html{
+    height: 100%;
+    }
+
+    body {
+    height: 120%;
+    width: 100%;
+    }
+
+    #canvas {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .jumbotron {
+     background: rgb(200, 54, 54) !important; /* This is for ie8 and below */
+     background: rgba(200, 54, 54, 0.3) !important;
+    }
+    .navbar {
+        -webkit-transition: all 0.6s ease-out;
+        -moz-transition: all 0.6s ease-out;
+        -o-transition: all 0.6s ease-out;
+        -ms-transition: all 0.6s ease-out;
+        transition: all 0.6s ease-out;
+    }
+
+    .navbar.scrolled {
+        background: rgba(0, 0, 0, 0.1)!important; //NON-IE
+    }

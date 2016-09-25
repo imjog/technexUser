@@ -1,0 +1,7 @@
+{% if messages %}
+                          {% for msg in messages %}
+                              {{msg.message}}
+                            {% endfor %}
+                          {% endif %}
+
+                   Hello {{user.email}}
