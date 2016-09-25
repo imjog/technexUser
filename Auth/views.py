@@ -25,6 +25,9 @@ def contextCall(request):
 @csrf_exempt
 def ApiRegisterView(request):
     response = {}
+    if request.user.is_authenticated():
+        response['status'] = 3
+        return JsonResponse(response)
     try:
         data =json.loads(request.body)
         #form = RegisterForm(data)
@@ -57,9 +60,9 @@ def ApiRegisterView(request):
         newUser = authenticate(username=email, password=password)
         login(request, newUser)
         response['name'] = newUser.first_name
-        response['mobileNumber'] = newUser.mobileNumber
-        response['year'] = newUser.year
-        response['college'] = newUser.college
+        response['mobileNumber'] = newUser.techprofile.mobileNumber
+        response['year'] = newUser.techprofile.year
+        response['college'] = newUser.techprofile.college
         response['status'] = 1
         return JsonResponse(response)
     except:
@@ -69,8 +72,11 @@ def ApiRegisterView(request):
 @csrf_exempt
 def ApiLoginView(request):
     response_data = {}
-    data = json.loads(request.body)
+    if request.user.is_authenticated():
+        response['status'] = 3
+        return JsonResponse(response)
     try:
+        data = json.loads(request.body)
         #form = LoginForm(data)
         if True:
             email = data.get('email',None)
@@ -80,9 +86,10 @@ def ApiLoginView(request):
                 login(request, user)
                 response_data['status'] = 1
                 response_data['name'] = user.first_name
-                response_data['mobileNumber'] = user.mobileNumber
-                response_data['year'] = user.year
-                response_data['college'] = user.college
+                response_data['email'] = user.email
+                response_data['mobileNumber'] = user.techprofile.mobileNumber
+                response_data['year'] = user.techprofile.year
+                response_data['college'] = user.techprofile.college
                 return JsonResponse(response_data)
             else:
                 response_data['status'] = 0 #Invalid credentials
