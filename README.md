@@ -38,6 +38,10 @@ Json Response for Invalid Request(requests other than post):<br>
 									
 									"status" : 0
 								}
+Json Response if user already registered:<br>
+					{<br>
+					 	"status":2
+					}
 <br><br>
 
 ## Login Api
@@ -108,5 +112,6 @@ Json Response :{<br>
 			
 			
 						]
+					"status":1
 		}
 
