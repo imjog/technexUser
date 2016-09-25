@@ -14,7 +14,7 @@ Json object Expected : 			//(all fields required)<br>
 									"password" : password,<br>
 									"college" : collegeName,<br>
 									"year" : year(1,2,3,4,5)<br>
-									"mobile_number" : mobileNumber<br>
+									"mobileNumber" : mobileNumber<br>
 								 }<br><br>
 
 Json Response for Successful registration:<br>
