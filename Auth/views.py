@@ -60,14 +60,14 @@ def ApiRegisterView(request):
         newUser = authenticate(username=email, password=password)
         login(request, newUser)
         response['name'] = newUser.first_name
-        response['mobileNumber'] = newUser.techprofile.mobileNumber
-        response['year'] = newUser.techprofile.year
-        response['college'] = newUser.techprofile.college
+        response['mobileNumber'] = techprofile.mobileNumber
+        response['year'] = techprofile.year
+        response['college'] = techprofile.college
         response['status'] = 1
         return JsonResponse(response)
     except:
         response['status'] = 0 #For unknown error
-        return JsonResponse(data)
+        return JsonResponse(response)
 
 @csrf_exempt
 def ApiLoginView(request):
@@ -87,6 +87,7 @@ def ApiLoginView(request):
                 response_data['status'] = 1
                 response_data['name'] = user.first_name
                 response_data['email'] = user.email
+                user = User.objects.get(email = email)
                 response_data['mobileNumber'] = user.techprofile.mobileNumber
                 response_data['year'] = user.techprofile.year
                 response_data['college'] = user.techprofile.college
