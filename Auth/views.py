@@ -61,7 +61,7 @@ def ApiRegisterView(request):
         return JsonResponse(response)
     except:
         response['status'] = 0 #For unknown error
-        return JsonResponse(response_data)
+        return JsonResponse(data)
 
 @csrf_exempt
 def ApiLoginView(request):
