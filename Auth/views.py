@@ -25,8 +25,8 @@ def contextCall(request):
 @csrf_exempt
 def ApiRegisterView(request):
     response = {}
-    data =json.loads(request.body)
     try:
+        data =json.loads(request.body)
         #form = RegisterForm(data)
         email = data.get('email',None)
         try:
@@ -78,10 +78,10 @@ def ApiLoginView(request):
                 response_data['status'] = 1
                 return JsonResponse(response_data)
             else:
-                response_data['status'] = 2 #Invalid credentials
+                response_data['status'] = 0 #Invalid credentials
                 return JsonResponse(response_data)
     except:
-        response_data['status'] = 0 #email field not filled correctly
+        response_data['status'] = 2 #email field not filled correctly
         return JsonResponse(response_data)
 
 @csrf_exempt
