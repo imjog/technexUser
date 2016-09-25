@@ -28,7 +28,7 @@ def ApiRegisterView(request):
     if request.user.is_authenticated():
         response['status'] = 3
         return JsonResponse(response)
-    try:
+    if True:
         data =json.loads(request.body)
         #form = RegisterForm(data)
         email = data.get('email',None)
@@ -62,10 +62,11 @@ def ApiRegisterView(request):
         response['name'] = newUser.first_name
         response['mobileNumber'] = techprofile.mobileNumber
         response['year'] = techprofile.year
-        response['college'] = techprofile.college
+        response['college'] = techprofile.college.collegeName
+        response['email'] = newUser.email
         response['status'] = 1
         return JsonResponse(response)
-    except:
+    else:
         response['status'] = 0 #For unknown error
         return JsonResponse(response)
 
@@ -90,7 +91,7 @@ def ApiLoginView(request):
                 user = User.objects.get(email = email)
                 response_data['mobileNumber'] = user.techprofile.mobileNumber
                 response_data['year'] = user.techprofile.year
-                response_data['college'] = user.techprofile.college
+                response_data['college'] = user.techprofile.college.collegeName
                 return JsonResponse(response_data)
             else:
                 response_data['status'] = 0 #Invalid credentials
