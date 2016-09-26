@@ -89,7 +89,7 @@ def ApiLoginView(request):
                 response_data['name'] = user.first_name
                 response_data['email'] = user.email
                 techprofile = TechProfile.objects.get(user = user)
-                response_data['mobileNumber'] = techprofile.mobileNumber
+                #response_data['mobileNumber'] = techprofile.mobileNumber
                 response_data['year'] = techprofile.year
                 response_data['college'] = techprofile.college.collegeName
                 return JsonResponse(response_data)
