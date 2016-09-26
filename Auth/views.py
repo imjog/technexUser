@@ -88,10 +88,10 @@ def ApiLoginView(request):
                 response_data['status'] = 1
                 response_data['name'] = user.first_name
                 response_data['email'] = user.email
-                user = User.objects.get(email = email)
-                response_data['mobileNumber'] = user.techprofile.mobileNumber
-                response_data['year'] = user.techprofile.year
-                response_data['college'] = user.techprofile.college.collegeName
+                techprofile = TechProfile.objects.get(user = user)
+                response_data['mobileNumber'] = techprofile.mobileNumber
+                response_data['year'] = techprofile.year
+                response_data['college'] = techprofile.college.collegeName
                 return JsonResponse(response_data)
             else:
                 response_data['status'] = 0 #Invalid credentials
