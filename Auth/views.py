@@ -25,10 +25,7 @@ def contextCall(request):
 @csrf_exempt
 def ApiRegisterView(request):
     response = {}
-    if request.user.is_authenticated():
-        response['status'] = 3
-        return JsonResponse(response)
-    if True:
+    try:
         data =json.loads(request.body)
         #form = RegisterForm(data)
         email = data.get('email',None)
@@ -66,36 +63,33 @@ def ApiRegisterView(request):
         response['email'] = newUser.email
         response['status'] = 1
         return JsonResponse(response)
-    else:
+    except:
         response['status'] = 0 #For unknown error
         return JsonResponse(response)
 
 @csrf_exempt
 def ApiLoginView(request):
     response_data = {}
-    if request.user.is_authenticated():
-        response_data['status'] = 3
-        return JsonResponse(response_data)
     try:
         data = json.loads(request.body)
         #form = LoginForm(data)
-        if True:
-            email = data.get('email',None)
-            password = data.get('password',None)
-            user = authenticate(username=email, email=email, password=password)
-            if user is not None:
-                login(request, user)
-                response_data['status'] = 1
-                response_data['name'] = user.first_name
-                response_data['email'] = user.email
-                techprofile = TechProfile.objects.get(user = user)
-                response_data['mobileNumber'] = techprofile.mobileNumber
-                response_data['year'] = techprofile.year
-                response_data['college'] = techprofile.college.collegeName
-                return JsonResponse(response_data)
-            else:
-                response_data['status'] = 0 #Invalid credentials
-                return JsonResponse(response_data)
+        
+        email = data.get('email',None)
+        password = data.get('password',None)
+        user = authenticate(username=email, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            response_data['status'] = 1
+            response_data['name'] = user.first_name
+            response_data['email'] = user.email
+            techprofile = TechProfile.objects.get(user = user)
+            response_data['mobileNumber'] = techprofile.mobileNumber
+            response_data['year'] = techprofile.year
+            response_data['college'] = techprofile.college.collegeName
+            return JsonResponse(response_data)
+        else:
+            response_data['status'] = 0 #Invalid credentials
+            return JsonResponse(response_data)
     except:
         response_data['status'] = 2 #email field not filled correctly
         return JsonResponse(response_data)

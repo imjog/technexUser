@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'Auth',
     'ckeditor',
+    'authApi',
 ]
 
 MIDDLEWARE_CLASSES = [

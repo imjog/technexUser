@@ -22,16 +22,17 @@ def contextCall(request):
     except:
         pass
     return response
+
 @csrf_exempt
 def ApiRegisterView(request):
     response = {}
-    data =json.loads(request.body)
-    if True:
+    try:
+        data =json.loads(request.body)
         #form = RegisterForm(data)
         email = data.get('email',None)
         try:
             user = User.objects.get(email = email)
-            response['status'] = "Already Registered !!"
+            response['status'] = 2 #for already registered
             return JsonResponse(response)
         except:
         	user = User.objects.create_user(username=email, email=email)
@@ -56,44 +57,42 @@ def ApiRegisterView(request):
 
         newUser = authenticate(username=email, password=password)
         login(request, newUser)
-
-        response['status'] = "Profile created successfully"
+        response['name'] = newUser.first_name
+        response['mobileNumber'] = techprofile.mobileNumber
+        response['year'] = techprofile.year
+        response['college'] = techprofile.college.collegeName
+        response['email'] = newUser.email
+        response['status'] = 1
         return JsonResponse(response)
-    '''
-    else:
-        form = RegisterForm(data)
-        for field in form:
-            if field.errors:
-                response_data[field.html_name] = field.errors.as_text()
-                response_data['status'] = 'Error in registration'
-        return JsonResponse(response_data)
-    
-	else:
-        response_data['error'] = True
-        response_data['status'] = 'invalid request,Post request Please!'
-        return JsonResponse(response_data)
-'''
+    except:
+        response['status'] = 0 #For unknown error
+        return JsonResponse(response)
+
 @csrf_exempt
 def ApiLoginView(request):
     response_data = {}
-    data = json.loads(request.body)
     try:
+        data = json.loads(request.body)
         #form = LoginForm(data)
-        if True:
-            email = data.get('email',None)
-            password = data.get('password',None)
-            user = authenticate(username=email, email=email, password=password)
-            if user is not None:
-                login(request, user)
-                response_data['status'] = 'logged in'
-                return JsonResponse(response_data)
-            else:
-                response_data['error'] = True
-                response_data['status'] = 'Invalid Credentials!'
-                return JsonResponse(response_data)
+        
+        email = data.get('email',None)
+        password = data.get('password',None)
+        user = authenticate(username=email, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            response_data['status'] = 1
+            response_data['name'] = user.first_name
+            response_data['email'] = user.email
+            techprofile = TechProfile.objects.get(user = user)
+            response_data['mobileNumber'] = techprofile.mobileNumber
+            response_data['year'] = techprofile.year
+            response_data['college'] = techprofile.college.collegeName
+            return JsonResponse(response_data)
+        else:
+            response_data['status'] = 0 #Invalid credentials
+            return JsonResponse(response_data)
     except:
-        response_data['error'] = True
-        response_data['status'] = "Please Fill the form correctly!"
+        response_data['status'] = 2 #email field not filled correctly
         return JsonResponse(response_data)
 
 @csrf_exempt
@@ -103,3 +102,100 @@ def logoutApi(request):
     response = {}
     response['status'] = "logged Out"
     return JsonResponse(response)
+
+@csrf_exempt
+def eventApi(request):
+    response = {}
+    try:
+        parentEvents = ParentEvent.objects.all()
+        response['data'] = []
+        for parentEvent in parentEvents:
+            pEventData = {}
+            pEventData['name'] = parentEvent.categoryName
+            pEventData['description'] = parentEvent.description
+            pEventData['order'] = parentEvent.order
+            pEventData['events'] = []
+            events = Event.objects.filter(parentEvent = parentEvent)
+            for event in events:
+                eventData = {}
+                eventData['eventName'] = event.eventName
+                eventData['description'] = event.description
+                eventData['deadLine'] = event.deadLine
+                eventData['prizeMoney'] = event.prizeMoney
+                eventData['maxMembers'] = event.maxMembers
+                eventData['eventOrder'] = event.eventOrder
+                eventData['eventOptions'] = []
+                eventOptions = EventOption.objects.filter(event = event)
+                for eventOption in eventOptions:
+                    eventOptionData = {}
+                    eventOptionData['optionName'] = eventOption.optionName
+                    eventOptionData['optionDescription'] = eventOption.optionDescription
+                    eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
+                    eventData['eventOptions'].append(eventOptionData)
+                pEventData['events'].append(eventData)
+            response['data'].append(pEventData)
+            response['status'] = 1
+        return JsonResponse(response)
+    except:
+        response['error'] = True
+        response['status'] = 'Error in finding events'
+        return JsonResponse(response)
+
+@csrf_exempt
+def eventData(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        slug = data['parentEvent']
+        try:
+            parentEvent = ParentEvent.objects.get(nameSlug = slug)
+        except:
+            response['error'] = True
+            response['status'] = 'Invalid Slug for Parent Event'
+            return JsonResponse(response)
+        response['name'] = parentEvent.categoryName
+        response['description'] = parentEvent.description
+        response['order'] = parentEvent.order
+        response['events'] = []
+        events = Event.objects.filter(parentEvent = parentEvent)
+        for event in events:
+            eventData = {}
+            eventData['eventName'] = event.eventName
+            eventData['description'] = event.description
+            eventData['deadLine'] = event.deadLine
+            eventData['prizeMoney'] = event.prizeMoney
+            eventData['maxMembers'] = event.maxMembers
+            eventData['eventOrder'] = event.eventOrder
+            eventData['eventOptions'] = []
+            eventOptions = EventOption.objects.filter(event = event)
+            for eventOption in eventOptions:
+                eventOptionData = {}
+                eventOptionData['optionName'] = eventOption.optionName
+                eventOptionData['optionDescription'] = eventOption.optionDescription
+                eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
+                eventData['eventOptions'].append(eventOptionData)
+            response['events'].append(eventData)
+        
+        return JsonResponse(response)
+    else:
+        response['error'] = True
+        response['status'] = 'Invalid Request'
+        return JsonResponse(response)
+
+@csrf_exempt
+def parentEvents(request):
+    response = {}
+    if True:
+        parentEvents = ParentEvent.objects.all()
+        response['data'] = []
+        for parentEvent in parentEvents:
+            pEventData = {}
+            pEventData['name'] = parentEvent.categoryName
+            pEventData['description'] = parentEvent.description
+            pEventData['order'] = parentEvent.order
+            response['data'].append(pEventData)
+        return JsonResponse(response)
+    else:
+        response['error'] = True
+        response['status'] = 'Error getting Data!'
+        return JsonResponse(response)
