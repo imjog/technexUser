@@ -28,10 +28,6 @@ Json Response for Successful registration:<br>
 								}<br><br>
 
 
-Json Response if user already logged In:<br>
-						{<br>
-						"status":3
-						}<br><br>
 						
 Json Response for Invalid Request(requests other than post):<br>
 								{<br>
@@ -73,10 +69,6 @@ Json Response for Error in processing:<br>
 						{
 						"status":2
 						}
-Json Response if user already logged In:<br>
-						{<br>
-						"status":3
-						}<br><br>
 
 
 ## Event Api
