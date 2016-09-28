@@ -20,14 +20,24 @@ Json object Expected : 			//(all fields required)<br>
 Json Response for Successful registration:<br>
 								{<br>
 								 	"status" : 1<br>
+									"email" : emailOfUser,<br>
+									"name" : firstName,<br>
+									"college" : collegeName,<br>
+									"year" : year(1,2,3,4,5)<br>
+									"mobileNumber" : mobileNumber<br>
 								}<br><br>
 
 
+						
 Json Response for Invalid Request(requests other than post):<br>
 								{<br>
 									
 									"status" : 0
 								}
+Json Response if user already registered:<br>
+					{<br>
+					 	"status":2
+					}
 <br><br>
 
 ## Login Api
@@ -44,13 +54,18 @@ Json object Expected:<br>			{<br>
 Json Response for successful Login: <br>
 								{<br>
 									"status" : 1<br>
+									"email" : emailOfUser,<br>
+									"name" : firstName,<br>
+									"college" : collegeName,<br>
+									"year" : year(1,2,3,4,5)<br>
+									"mobileNumber" : mobileNumber<br>
 								}<br><br>
 
 Json Response for wrong Username/password:<br>
 								{<br>
 									"status" : 0<br>
 								}<br>
-Json Response for Unknown Error:<br>
+Json Response for Error in processing:<br>
 						{
 						"status":2
 						}
@@ -89,5 +104,6 @@ Json Response :{<br>
 			
 			
 						]
+					"status":1
 		}
 
