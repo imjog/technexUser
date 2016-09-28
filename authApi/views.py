@@ -10,6 +10,7 @@ import json
 import os
 import facebook
 from Auth.models import *
+server = "http://locahost:8000/"
 #from Auth.forms import *
 # Create your views here.
 def contextCall(request):
@@ -199,3 +200,79 @@ def parentEvents(request):
         response['error'] = True
         response['status'] = 'Error getting Data!'
         return JsonResponse(response)
+
+def send_email(recipient, subject, body):
+    
+    return requests.post(
+        "https://api.mailgun.net/v3/mg.technex.in/messages",
+        auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),
+        data={"from": "No-reply <mailgun@mg.technex.in>",
+              "to": recipient,
+              "subject": subject,
+              "text": body})
+
+@csrf_exempt
+def forgotPassword(request):
+    response = {}
+    if request.method == 'POST':
+        post = json.loads(request.body)
+        email = post.get("email")
+        subject = "Reset Password"
+        key = 'Technex'+email+"caportal"
+        key = str(hash(key))
+        try:
+            user = User.objects.get(email = email)
+
+        except:
+            response['status'] = 0 # invalid email 
+            return JsonResponse(response)
+        try:
+            forgotPass = ForgotPass.objects.get(user = user)
+            forgotPass.key = key
+            forgotPass.save()
+        except:
+            forgotPass = ForgotPass(user = user,key = key)
+            forgotPass.save()
+        body = "Please Cick on the following link to reset your Password.\n\n"
+        body += server+"resetPass/"+key
+        if send_email(email,subject,body):
+            response['status'] = 1 # reset pass mail sent to email
+            return JsonResponse(response)
+        else:
+            response['status'] = 2 # try again, network error
+            return JsonResponse(response)
+
+@csrf_exempt
+def resetPass(request,key):
+    if request.method == 'GET':
+
+        try:
+            forgotPass = ForgotPass.objects.get(key = int(key))
+            
+            return render(request,"reset.html")
+        except:
+            messages.warning(request,'Invalid Url !')
+            return redirect('/login')
+
+    elif request.method == "POST":
+        post = request.POST
+        try:
+            forgotPass = ForgotPass.objects.get(key=key)
+            user = forgotPass.user
+            password1 = post.get('form-password')
+            password2 = post.get('form-repeat-password')
+            if password1 == password2:
+                forgotPass.delete()
+                user.set_password(password1)
+                user.save()
+                messages.success(request,'password set successfully!',fail_silently=True)
+                return redirect('/login')
+            else:
+                messages.warning(request,"passwords didn't match!")
+                url = server+"/resetPass/"+key
+                return redirect(request,url)
+        except:
+            raise Http404('Not allowed')
+
+
+        return redirect('/resetPass/'+key)

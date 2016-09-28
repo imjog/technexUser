@@ -79,4 +79,8 @@ class EventOption(models.Model):
     def __unicode__(self):
         return '%s %s'%(self.optionName,self.event)
 
-
+class ForgotPass(models.Model):
+    user = models.OneToOneField(User)
+    key = models.CharField(max_length = 250)
+    def __unicode__(self):
+        return self.key
