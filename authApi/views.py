@@ -10,7 +10,7 @@ import json
 import os
 import facebook
 from Auth.models import *
-server = "http://locahost:8000/"
+server = "https://technexuser.herokuapp.com/"
 #from Auth.forms import *
 # Create your views here.
 def contextCall(request):
@@ -242,37 +242,3 @@ def forgotPassword(request):
             response['status'] = 2 # try again, network error
             return JsonResponse(response)
 
-@csrf_exempt
-def resetPass(request,key):
-    if request.method == 'GET':
-
-        try:
-            forgotPass = ForgotPass.objects.get(key = int(key))
-            
-            return render(request,"reset.html")
-        except:
-            messages.warning(request,'Invalid Url !')
-            return redirect('/login')
-
-    elif request.method == "POST":
-        post = request.POST
-        try:
-            forgotPass = ForgotPass.objects.get(key=key)
-            user = forgotPass.user
-            password1 = post.get('form-password')
-            password2 = post.get('form-repeat-password')
-            if password1 == password2:
-                forgotPass.delete()
-                user.set_password(password1)
-                user.save()
-                messages.success(request,'password set successfully!',fail_silently=True)
-                return redirect('/login')
-            else:
-                messages.warning(request,"passwords didn't match!")
-                url = server+"/resetPass/"+key
-                return redirect(request,url)
-        except:
-            raise Http404('Not allowed')
-
-
-        return redirect('/resetPass/'+key)
