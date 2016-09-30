@@ -107,3 +107,29 @@ Json Response :{<br>
 					"status":1
 		}
 
+
+## Forgot Password Api
+(UI not build till now although,it is totally functional)
+<br><br>
+Url: https://technexuser.herokuapp.com/api/forgotPass/
+<br>
+Method: POST
+<br>
+Json expected: <br>
+			{<br>
+			"email":email Of Registered User<br>
+			}<br>
+Json response if reset mail sent to your mail: <br>
+			{<br>
+			"status": 1 <br>
+			}<br>
+
+Json response if email given is not registered: <br>
+			{<br>
+			"status": 0 <br>
+			}<br>
+			
+Json response for network error(try again in this case, althoug not likely to come): <br>
+			{<br>
+			"status": 2 <br>
+			}<br>
