@@ -242,3 +242,79 @@ def forgotPassword(request):
             response['status'] = 2 # try again, network error
             return JsonResponse(response)
 
+@csrf_exempt
+def guestLectures(request):
+    response = {}
+    try:
+        lectures = GuestLecture.objects.all()
+        response['status'] = 1
+        response['lectures'] = []
+        for lecture in lectures:
+            lectureData = {}
+            lectureData['title'] = lecture.title
+            lectureData['description'] = lecture.description
+            lectureData['lecturerName'] = lecture.lecturerName
+            lectureData['lecturerBio'] = lecture.lecturerBio
+            lectureData['designation'] = lecture.designation
+            lectureData['lectureType'] = lecture.lectureType
+            response['lectures'].append(lectureData)
+    except:
+        response['status'] = 0
+    return JsonResponse(response)
+
+@csrf_exempt
+def eventRegistration(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        event = Event.objects.get(nameSlug = data['event'])
+        if 'teamLeaderTechnexId' in data:
+            teamLeader = TechProfile.objects.get(technexId = data['teamLeaderTechnexId'])
+        else:
+            teamLeader = TechProfile.objects.get(user__email = data['teamLeaderEmail'])
+        users = []
+        for member in data['members']:
+            if 'memberEmail' in member:
+                user = TechProfile.objects.get(user__email = member['memberEmail'])
+                users.append(user)
+            elif 'memberTechnexId' in member:
+                user = TechProfile.objects.get(technexId = member['memberTechnexId'])
+                users.append(user)
+        users = list(set(users))
+        try:
+            team = Team.objects.get(teamLeader = teamLeader)
+        except:
+            team = Team(teamLeader = teamLeader,event = event, teamName = data['teamName'])
+            team.save()
+        for user in users:
+            team.members.add(user)
+        response['status'] = 1
+        return JsonResponse(response)
+
+@csrf_exempt
+def workshopApi(request):
+    response = {}
+    try:
+        workshops = Workshops.objects.all()
+        response['status'] = 1
+        response['workshops'] = []
+        for workshop in workshops:
+            workshopData = {}
+            workshopData['title'] = workshop.title
+            workshopData['description'] = workshop.description
+            workshopData['dateTime'] = workshop.dateTime
+            workshopData['workshopFees'] = workshop.workshopFees
+            workshopData['order'] = workshop.order
+            workshopData['workshopOptions'] = []
+            workshopOptions = WorkshopOptions.objects.filter(workshop = workshop)
+            for workshopOption in workshopOptions:
+                workshopOptionData = {}
+                workshopOptionData['optionName'] = workshopOption.optionName
+                workshopOptionData['optionDescription'] = workshopOption.optionDescription
+                workshopOptionData['optionOrder'] = workshopOption.optionOrder
+                workshopData['workshopOptions'].append(workshopOptionData)
+            response['workshop'].append(workshopData)
+    except:
+        response['status'] = 0
+    return JsonResponse(response)
+

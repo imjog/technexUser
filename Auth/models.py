@@ -29,6 +29,7 @@ class FbConnect(models.Model):
 
 class TechProfile(models.Model):
     user = models.OneToOneField(User)
+    technexId = models.CharField(max_length = 30, unique = True, null = True)
     year = models.IntegerField(choices=year_choices)
     mobileNumber = models.BigIntegerField()
     college = models.ForeignKey(College,null = True)
@@ -55,8 +56,8 @@ class Event(models.Model):
     description = RichTextField(null = True,blank = True)
     deadLine = models.DateTimeField(null = True,blank = True)
     prizeMoney = models.IntegerField(null=True, blank=True)
-    maxMembers = models.IntegerField(null=True,blank=True)
-
+    maxMembers = models.SmallIntegerField(null=True,blank=True)
+    nameSlug = models.SlugField(null = True)
     def __unicode__(self):
         return self.eventName
 
@@ -66,7 +67,7 @@ class Team(models.Model):
     teamId = models.AutoField(primary_key = True)
     event = models.ForeignKey(Event)
     teamLeader = models.ForeignKey(TechProfile,related_name = 'teamLeader')
-    members = models.ManyToManyField(TechProfile,related_name = 'members')
+    members = models.ManyToManyField(TechProfile,related_name = 'members',null = True)
 
     def __unicode__(self):
         return self.teamName
@@ -84,3 +85,42 @@ class ForgotPass(models.Model):
     key = models.CharField(max_length = 250)
     def __unicode__(self):
         return self.key
+
+class GuestLecture(models.Model):
+    title = models.CharField(max_length = 100)
+    description = RichTextField()
+    lecturerName = models.CharField(max_length = 100)
+    designation = models.CharField(max_length = 100)
+    lecturerBio = RichTextField()
+    lectureType = models.CharField(max_length = 100)
+    def __unicode__(self):
+        return '%s %s'%(self.title,self.lecturerName)
+
+class Workshops(models.Model):
+    workshopId = models.AutoField(primary_key = True)
+    order  = models.SmallIntegerField(null = True)
+    title = models.CharField(max_length = 100)
+    description = RichTextField()
+    dateTime = models.DateTimeField(null = True)
+    workshopFees = models.IntegerField(null = True)
+    maxMembers = models.SmallIntegerField(null = True)
+    def __unicode__(self):
+        return '%s %s'%(self.title,self.workshopFees)
+
+class WorkshopOptions(models.Model):
+    optionName = models.CharField(max_length = 50, null = True)
+    optionDescription = RichTextField()
+    optionOrder = models.SmallIntegerField(null = True, blank = True)
+    workshop = models.ForeignKey(Workshops)
+    def __unicode__(self):
+        return '%s %s'%(self.optionName, self.workshop)
+
+class WorkshopTeam(models.Model):
+    teamName = models.CharField(max_length=50, null=True, blank=True)
+    teamId = models.AutoField(primary_key = True)
+    workshop = models.ForeignKey(Workshops)
+    teamLeader = models.ForeignKey(TechProfile,related_name = 'teamLeaderForWorkshop')
+    members = models.ManyToManyField(TechProfile,related_name = 'members_for_workshop')
+
+    def __unicode__(self):
+        return self.teamName

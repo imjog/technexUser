@@ -16,4 +16,7 @@ urlpatterns = [
 	url(r'^parentEvents/$', parentEvents, name='parentEvents'),
 	url(r'^eventApi/$', eventApi, name='eventApi'),
 	url(r'^logout/$', logoutApi, name='logoutApi'),
+	url(r'^guestLecture/$', guestLectures, name='guestLectures'),
+	url(r'^eventRegistration/$', eventRegistration, name='eventRegistration'),
+	url(r'^workshop/$', workshopApi, name='workshop'),
 ]

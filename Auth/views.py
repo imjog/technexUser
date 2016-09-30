@@ -199,3 +199,42 @@ def resetPass(request,key):
 
 
         return redirect('/resetPass/'+key)
+
+
+@csrf_exempt
+def eventApi(request):
+    response = {}
+    try:
+        parentEvents = ParentEvent.objects.all()
+        response['data'] = []
+        for parentEvent in parentEvents:
+            pEventData = {}
+            pEventData['name'] = parentEvent.categoryName
+            pEventData['description'] = parentEvent.description
+            pEventData['order'] = parentEvent.order
+            pEventData['events'] = []
+            events = Event.objects.filter(parentEvent = parentEvent)
+            for event in events:
+                eventData = {}
+                eventData['eventName'] = event.eventName
+                eventData['description'] = event.description
+                eventData['deadLine'] = event.deadLine
+                eventData['prizeMoney'] = event.prizeMoney
+                eventData['maxMembers'] = event.maxMembers
+                eventData['eventOrder'] = event.eventOrder
+                eventData['eventOptions'] = []
+                eventOptions = EventOption.objects.filter(event = event)
+                for eventOption in eventOptions:
+                    eventOptionData = {}
+                    eventOptionData['optionName'] = eventOption.optionName
+                    eventOptionData['optionDescription'] = eventOption.optionDescription
+                    eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
+                    eventData['eventOptions'].append(eventOptionData)
+                pEventData['events'].append(eventData)
+            response['data'].append(pEventData)
+            response['status'] = 1
+        return JsonResponse(response)
+    except:
+        response['error'] = True
+        response['status'] = 'Error in finding events'
+        return JsonResponse(response)
