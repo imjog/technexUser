@@ -242,3 +242,43 @@ def eventApi(request):
 @csrf_exempt
 def events(request):
     return render(request,'index2.html')
+
+def event(request, key):
+    response = {}
+    if request.method == 'GET':
+        
+        
+        try:
+            parentEvent = ParentEvent.objects.get(nameSlug = key)
+        except:
+            response['error'] = True
+            response['status'] = 'Invalid Slug for Parent Event'
+            return JsonResponse(response)
+        response['name'] = parentEvent.categoryName
+        response['description'] = parentEvent.description
+        response['order'] = parentEvent.order
+        response['events'] = []
+        events = Event.objects.filter(parentEvent = parentEvent)
+        for event in events:
+            eventData = {}
+            eventData['eventName'] = event.eventName
+            eventData['description'] = event.description
+            eventData['deadLine'] = event.deadLine
+            eventData['prizeMoney'] = event.prizeMoney
+            eventData['maxMembers'] = event.maxMembers
+            eventData['eventOrder'] = event.eventOrder
+            eventData['eventOptions'] = []
+            eventOptions = EventOption.objects.filter(event = event)
+            for eventOption in eventOptions:
+                eventOptionData = {}
+                eventOptionData['optionName'] = eventOption.optionName
+                eventOptionData['optionDescription'] = eventOption.optionDescription
+                eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
+                eventData['eventOptions'].append(eventOptionData)
+            response['events'].append(eventData)
+        
+        return render(request,'index3.html',response)
+    else:
+        response['error'] = True
+        response['status'] = 'Invalid Request'
+        return JsonResponse(response)    
