@@ -38,14 +38,15 @@
 					<header class="top-bar">
 						
 					</header>
+					{% for event in parentEvent.events %}
 					<a class="grid__item" href="#">
-						<h2 class="title title--preview">EVENT 1</h2>
+						<h2 class="title title--preview">{{event.eventName}}</h2>
 						<div class="loader"></div>
-						<span class="category">Life &amp; Death</span>
+						<span class="category">{{parentEvent.name}}</span>
 						<div class="meta meta--preview"> 
 						</div>
 					</a>
-					
+					{% endfor %}
 				</section>
 				<section class="content">
 					<div class="scroll-wrap">
