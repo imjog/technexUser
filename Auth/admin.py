@@ -13,6 +13,8 @@ class EventAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'nameSlug':('eventName',)}
 class parentEventAdmin(admin.ModelAdmin):
     prepopulated_fields = {'nameSlug': ('categoryName',)}
+
+
     
 admin.site.register(TechProfile)
 admin.site.register(College)
