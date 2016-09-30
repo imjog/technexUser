@@ -277,7 +277,7 @@ def event(request, key):
                 eventData['eventOptions'].append(eventOptionData)
             response['events'].append(eventData)
         
-        return render(request,'index3.html',response)
+        return render(request,'index3.html',{'parentEvent':response})
     else:
         response['error'] = True
         response['status'] = 'Invalid Request'

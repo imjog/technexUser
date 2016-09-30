@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>{{response.name}}</title>
+		<title>{{response|get_value_from_dict:name}}</title>
 		<link rel="stylesheet" type="text/css" href="/static/css/normalize3.css" />
 		<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/style2-3.css" />
