@@ -19,4 +19,5 @@ urlpatterns = [
 	url(r'^guestLecture/$', guestLectures, name='guestLectures'),
 	url(r'^eventRegistration/$', eventRegistration, name='eventRegistration'),
 	url(r'^workshop/$', workshopApi, name='workshop'),
+	
 ]

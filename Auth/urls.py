@@ -18,6 +18,7 @@ urlpatterns = [
 	#url(r'^api/parentEvents/$', parentEvents, name='parentEvents'),
 	url(r'^register/$', register, name='register'),
 	url(r'^login/$', loginView, name='login'),
+	url(r'^events/$', events, name='event'),
 	url(r'^dashboard/$', dashboardView,name='dashboard'),
 	url(r'^logout/$', logoutView,name='logout'),
 	url(r'^fbConnect/$', fbConnect,name='fbConnect'),

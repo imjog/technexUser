@@ -238,3 +238,7 @@ def eventApi(request):
         response['error'] = True
         response['status'] = 'Error in finding events'
         return JsonResponse(response)
+
+@csrf_exempt
+def events(request):
+    return render(request,'index2.html')
