@@ -24,7 +24,7 @@ urlpatterns = [
 	url(r'^logout/$', logoutView,name='logout'),
 	url(r'^fbConnect/$', fbConnect,name='fbConnect'),
 	url(r'^resetPass/(?P<key>[\w\-]+)/$', resetPass, name='resetPass'),
-	url(r'^guestLectures/', guestLecture, name='guestLecture'),
+	url(r'^talks/', guestLecture, name='guestLecture'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
 
