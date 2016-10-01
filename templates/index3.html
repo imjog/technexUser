@@ -22,15 +22,15 @@
                 <a href="/events"><h1 class="category-name" style="color:white;letter-spacing:5px;">Events</h1></a>
 				<div class="related">
                     <a href="/events/robonex"><h2>Robonex</h2></a>
+					<a href="/events/ascension"><h2>Ascension</h2></a>
 					<a href="/events/extreme-engineering"><h2>Extreme Engineering</h2></a>
+					<a href="/events/modex"><h2>Modex</h2></a>
 					<a href="/events/byte-the-bits"><h2>Byte the Bits</h2></a>
 					<a href="/events/riqueza"><h2>Riqueza</h2></a>
 					<a href="/events/creatrix"><h2>Creatrix</h2></a>
-                    <a href="/events/clutch"><h2>Clutch</h2></a>
-                    <a href="/events/superNova"><h2>SuperNova</h2></a>
+                 			<a href="/events/supernova"><h2>Supernova</h2></a>
 					<a href="/events/pahal"><h2>Pahal</h2></a>
-					<a href="/events/modex"><h2>Modex</h2></a>	
-					<a href="/events/ascension"><h2>Ascension</h2></a>
+					<a href="/events/clutch"><h2>Clutch</h2></a>
 				</div>
 			</div>
 			<div id="theGrid" class="main">
@@ -55,19 +55,19 @@
 					{% for event in parentEvent.events %}
 						<article class="content__item" id="">
 							<h2 class="title title--full">{{ event.eventName }}</h2>
-                            <span class="category category--full">{{ event.description }}</span><br><br>
+                            <span class="category category--full center">{{ event.description }}</span><br><br>
 							<div class="meta meta--full">
-								<img class="meta__avatar" src="/static/img/authors/4.png" alt="author04" />
-								<h1 style="text-align:center">{{ parentEvent.name }}</h1>
+								<img class="meta__avatar" src="/static/img/fwdicons/{{ parentEvent.slug }}.png" alt="{{parentEvent.name}}" />
+								<h1 class="center text-upper">{{ parentEvent.name }}</h1>
                                 <div class="events-name">
                                     {% for parent_event in parentEvent.events %}
                                     <a href="#"><h2>{{ parent_event.eventName }}</h2></a>
                                     {% endfor %}
                                     </div>
-								<nav class="article-nav">
+								<!--<nav class="article-nav">
 									<button><i class="fa fa-angle-left"></i> <span>Previous</span></button>
 									<button><span>Next</span> <i class="fa fa-angle-right"></i></button>
-								</nav>
+								</nav>-->
 							</div>
                             <div>
                         <nav class="navbar navbar-default">

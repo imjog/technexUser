@@ -1193,3 +1193,12 @@ body {
     display: none;
   }
 }
+
+.center{
+text-align:center;
+}
+
+.text-upper{
+text-transform:uppercase;
+}
+
