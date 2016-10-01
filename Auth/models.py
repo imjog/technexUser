@@ -43,14 +43,14 @@ class ParentEvent(models.Model):
     parentEventId = models.AutoField(primary_key = True)
     categoryName = models.CharField(max_length = 50)
     description = RichTextField(null = True,blank = True)
-    order = models.SmallIntegerField(null = True, blank = True)
+    order = models.SmallIntegerField(default = 0)
     nameSlug = models.SlugField(null = True)
     def __unicode__(self):
         return self.categoryName
     
 class Event(models.Model):
     eventId = models.AutoField(primary_key = True)
-    eventOrder = models.SmallIntegerField(null = True, blank = True)
+    eventOrder = models.SmallIntegerField(default = 0)
     eventName = models.CharField(max_length = 50)
     parentEvent = models.ForeignKey(ParentEvent)
     description = RichTextField(null = True,blank = True)
@@ -75,7 +75,7 @@ class Team(models.Model):
 class EventOption(models.Model):
     optionName = models.CharField(max_length = 50, null = True)
     optionDescription = RichTextField()
-    eventOptionOrder = models.SmallIntegerField(null = True, blank = True)
+    eventOptionOrder = models.SmallIntegerField(default = 0)
     event = models.ForeignKey(Event)
     def __unicode__(self):
         return '%s %s'%(self.optionName,self.event)

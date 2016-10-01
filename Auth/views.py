@@ -275,8 +275,9 @@ def event(request, key):
                 eventOptionData['optionDescription'] = eventOption.optionDescription
                 eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
                 eventData['eventOptions'].append(eventOptionData)
+            eventData['eventOptions'].sort(key=lambda x: x.eventOptionOrder)
             response['events'].append(eventData)
-        
+        response['events'].sort(key=lambda x: x.eventOrder)  
         return render(request,'index3.html',{'parentEvent':response})
     else:
         response['error'] = True
