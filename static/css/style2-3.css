@@ -131,14 +131,13 @@ button:focus {
 
 
 .related {
-  font-size: 0.85em;
+    font-size: 0.85em;
     letter-spacing: 5px;
-  padding-bottom: 1em;
-    margin-top: 55px;
+    padding-bottom: 1em;
     margin-left: 15px;
     margin-right: 15px;
     height: 43px;
-    line-height: 43px;
+    line-height: 30px;
 }
 
 .related h3 {
@@ -1032,8 +1031,8 @@ button:focus {
     list-style: none;
     border: 1px solid white;
     margin: 3px;
-    height: 30px;
-    width: 80px;
+    height: auto;
+    width: auto;
     line-height: 30px;
     text-align: center;
 }
@@ -1063,7 +1062,6 @@ body {
 }
 
 .content__item p:first-of-type {
-  margin-top: 3em;
   font-size: 1.15em;
   font-weight: bold;
 }
