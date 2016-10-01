@@ -48,7 +48,7 @@ ul li {
     border: 1px solid white;
     margin: 3px;
     height: 50px;
-    width: 150px;
+    width: auto;
     line-height: 50px;
     text-align: center;
 }
@@ -396,7 +396,6 @@ button:focus {
     letter-spacing: 0.03em;
     line-height: 1.7em;
     font-weight: 600;
-  font-style: italic;
   font-family: "Open Sans", serif;
   text-align: center;
   display: block;
@@ -652,7 +651,6 @@ button:focus {
 .content__item p {
   max-width: 1200px;
   margin: 1em auto;
-  text-align: justify;
 }
 .content__item p:first-of-type {
   font-size: 1.35em;
@@ -673,7 +671,7 @@ button:focus {
     font-weight: 600;
   margin-bottom: 20px;
   color: white;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
 }
 
 .title--full {
