@@ -1,3 +1,8 @@
+@font-face{
+  font-family: "CODE Bold";
+  src:url("/static/fonts/CODE Bold.otf");
+}
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -17,7 +22,7 @@ body {
   color: white;
   font-weight: 400;
   font-size: 16px;
-  font-family: "Martel Sans", Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
@@ -276,7 +281,7 @@ button:focus {
     text-transform: uppercase;
     letter-spacing: 5px;
     font-weight: bold;
-  font-family: "Playfair Display", serif;
+  font-family: "CODE Bold", serif;
   text-align: center;
 }
 
@@ -331,7 +336,7 @@ button:focus {
     line-height: 1.7em;
     font-weight: 600;
   font-style: italic;
-  font-family: "Playfair Display", serif;
+  font-family: "Open Sans", serif;
   text-align: center;
   display: block;
 }
