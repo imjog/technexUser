@@ -284,3 +284,7 @@ def event(request, key):
         response['error'] = True
         response['status'] = 'Invalid Request'
         return JsonResponse(response)    
+
+def guestLecture(request):
+    guestLectures = GuestLecture.objects.all()
+    return render(request, 'guestLecture.html', {'lectures':guestLectures})

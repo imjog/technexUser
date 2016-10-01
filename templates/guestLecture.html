@@ -10,55 +10,29 @@
 	<link rel="stylesheet" href="/static/css/style1.css"> <!-- Resource style -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
   	
-	<title>3D Folding Panel</title>
+	<title>Guest Lectures | Technex'17</title>
 </head>
 <body>
 	<main class="cd-main">
 		<header>
-			<h1>3D Folding Panel</h1>
+			<h1>Guest Lectures | Technex'17</h1>
 		</header>
 
 		<ul class="cd-gallery">
+		{% for lecture in lectures %}
 			<li class="cd-item">
 				<a href="item-1.html">
 					<div>
-						<h2>Title 1</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<h2>{{ lecture.lecturerName }}</h2>
+						<p>{{ lecture.designation }}</p>
 						<b>View More</b>
 					</div>
 				</a>
 			</li>
-
-			<li class="cd-item">
-				<a href="item-2.html">
-					<div>
-						<h2>Title 2</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a class="dark-text" href="item-3.html">
-					<div>
-						<h2>Title 3</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a href="item-4.html">
-					<div>
-						<h2>Title 4</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
+		{% endfor %}
+			
 		</ul> <!-- .cd-gallery -->
+		
 	</main> <!-- .cd-main -->
 
 	<div class="cd-folding-panel">
