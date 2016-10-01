@@ -1202,3 +1202,7 @@ text-align:center;
 text-transform:uppercase;
 }
 
+.solid-border{
+    border: 1px solid white;
+}
+
