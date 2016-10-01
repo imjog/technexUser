@@ -257,6 +257,7 @@ def event(request, key):
         response['name'] = parentEvent.categoryName
         response['description'] = parentEvent.description
         response['order'] = parentEvent.order
+        response['slug'] = parentEvent.nameSlug
         response['events'] = []
         events = Event.objects.filter(parentEvent = parentEvent)
         for event in events:
