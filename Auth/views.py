@@ -288,3 +288,9 @@ def event(request, key):
 def guestLecture(request):
     guestLectures = GuestLecture.objects.all()
     return render(request, 'guestLecture.html', {'lectures':guestLectures})
+
+def error404(request):
+    return render(request, '404.html')
+
+def error500(request):
+    return render(request, '500.html')

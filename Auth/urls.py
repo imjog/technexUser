@@ -31,5 +31,5 @@ urlpatterns = [
 	#url(r'^$', IndexView, name= 'index'),
 
 	#url(r'^logout/$', LogoutView, name='logout'),
-
+	
 ]

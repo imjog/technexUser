@@ -21,3 +21,6 @@ urlpatterns = [
     url(r'^',include('Auth.urls')),
     url(r'^api/',include('authApi.urls')),
 ]
+
+handler404 = 'Auth.views.error404'
+handler500 = 'Auth.views.error500'
