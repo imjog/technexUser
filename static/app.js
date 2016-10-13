@@ -269,7 +269,7 @@
         t.exports = function() {
             this.obj = new n.Object3D, this.faceMaterial = new n.PointsMaterial({
                 size: .05,
-                map: n.ImageUtils.loadTexture("/assets/images/face.jpg"),
+                map: n.ImageUtils.loadTexture("/static/assets/images/face.jpg"),
                 blending: n.AdditiveBlending,
                 vertexColors: !0,
                 transparent: !0,
@@ -395,13 +395,13 @@
                 height: .05,
                 color: t
             }], this.glowMaterial = new n.SpriteMaterial({
-                map: n.ImageUtils.loadTexture("assets/images/flare.png"),
+                map: n.ImageUtils.loadTexture("/static/assets/images/flare.png"),
                 blending: n.AdditiveBlending,
                 transparent: !0,
                 opacity: 0
             }), this.starsMaterial = new n.PointsMaterial({
                 size: this.starSize / 10,
-                map: n.ImageUtils.loadTexture("assets/images/star.png"),
+                map: n.ImageUtils.loadTexture("/static/assets/images/star.png"),
                 blending: n.AdditiveBlending,
                 vertexColors: !0,
                 transparent: !0,
@@ -409,7 +409,7 @@
                 opacity: 0
             }), this.hazeMaterial = new n.PointsMaterial({
                 size: .5,
-                map: n.ImageUtils.loadTexture("assets/images/haze.png"),
+                map: n.ImageUtils.loadTexture("/static/assets/images/haze.png"),
                 blending: n.AdditiveBlending,
                 opacity: .0,
                 vertexColors: !0,
@@ -417,7 +417,7 @@
                 depthTest: !1
             }), this.largeStarMaterial = new n.PointsMaterial({
                 size: this.starSize / 4,
-                map: n.ImageUtils.loadTexture("assets/images/star.png"),
+                map: n.ImageUtils.loadTexture("/static/assets/images/star.png"),
                 blending: n.AdditiveBlending,
                 vertexColors: !0,
                 transparent: !0,
@@ -810,7 +810,7 @@
             };
             var t = new n.PointsMaterial({
                 size: .04,
-                map: n.ImageUtils.loadTexture("assets/images/orb.png"),
+                map: n.ImageUtils.loadTexture("/static/assets/images/orb.png"),
                 blending: n.AdditiveBlending,
                 vertexColors: !0,
                 transparent: !0,
@@ -868,7 +868,7 @@
             };
             for (var t = 0; t < this.worldCount; t++) this.worldOptions.end[t].applyAxisAngle(new n.Vector3(1, 0, 0), .4);
             var r = new n.SpriteMaterial({
-                map: n.ImageUtils.loadTexture("assets/images/world.png"),
+                map: n.ImageUtils.loadTexture("/static/assets/images/world.png"),
                 blending: n.AdditiveBlending,
                 transparent: !0,
                 opacity: 1
