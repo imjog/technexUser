@@ -1,3 +1,8 @@
+@font-face{
+  font-family: "CODE Bold";
+  src:url("/static/fonts/CODE Bold.otf");
+}
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -17,7 +22,7 @@ body {
   color: white;
   font-weight: 400;
   font-size: 16px;
-  font-family: "Martel Sans", Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
@@ -43,7 +48,7 @@ ul li {
     border: 1px solid white;
     margin: 3px;
     height: 50px;
-    width: 150px;
+    width: auto;
     line-height: 50px;
     text-align: center;
 }
@@ -113,7 +118,7 @@ button:focus {
   margin: 0.75em 0 0;
   font-size: 2em;
   line-height:1;
-  font-family: "Playfair Display", serif;
+  font-family: "CODE Bold",serif;
     text-transform: uppercase;
     color: black;
     text-align: center;
@@ -131,14 +136,13 @@ button:focus {
 
 
 .related {
-  font-size: 0.85em;
+    font-size: 0.85em;
     letter-spacing: 5px;
-  padding-bottom: 1em;
-    margin-top: 55px;
+    padding-bottom: 1em;
     margin-left: 15px;
     margin-right: 15px;
     height: 43px;
-    line-height: 43px;
+    line-height: 30px;
 }
 
 .related h3 {
@@ -338,7 +342,7 @@ button:focus {
     text-transform: uppercase;
     letter-spacing: 5px;
     font-weight: bold;
-  font-family: "Playfair Display", serif;
+  font-family: "CODE Bold", serif;
   text-align: center;
 }
 
@@ -392,8 +396,7 @@ button:focus {
     letter-spacing: 0.03em;
     line-height: 1.7em;
     font-weight: 600;
-  font-style: italic;
-  font-family: "Playfair Display", serif;
+  font-family: "Open Sans", serif;
   text-align: center;
   display: block;
 }
@@ -648,7 +651,6 @@ button:focus {
 .content__item p {
   max-width: 1200px;
   margin: 1em auto;
-  text-align: justify;
 }
 .content__item p:first-of-type {
   font-size: 1.35em;
@@ -669,7 +671,7 @@ button:focus {
     font-weight: 600;
   margin-bottom: 20px;
   color: white;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
 }
 
 .title--full {
@@ -695,7 +697,7 @@ button:focus {
   font-style: italic;
   float: left;
   margin: 0 5px;
-  font-family: "Playfair Display", serif;
+  font-family: "Open Sans", serif;
 }
 .meta--full .meta__category::before {
   content: "in ";
@@ -1032,8 +1034,8 @@ button:focus {
     list-style: none;
     border: 1px solid white;
     margin: 3px;
-    height: 30px;
-    width: 80px;
+    height: auto;
+    width: auto;
     line-height: 30px;
     text-align: center;
 }
@@ -1063,7 +1065,6 @@ body {
 }
 
 .content__item p:first-of-type {
-  margin-top: 3em;
   font-size: 1.15em;
   font-weight: bold;
 }
