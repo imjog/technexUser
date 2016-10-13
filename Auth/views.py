@@ -12,6 +12,9 @@ import facebook
 from Auth.models import *
 #from Auth.forms import *
 # Create your views here.
+def IndexView(request):
+    return render(request,"index.html")
+
 def contextCall(request):
     response = {}
     try:

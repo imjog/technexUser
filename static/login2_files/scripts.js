@@ -209,14 +209,14 @@ function validatePassword(){
             $('.form-whatsapp').val('');
          }
     });                                       
-    $.backstretch("assets/img/backgrounds/1.jpg");
+    // $.backstretch("assets/img/backgrounds/1.jpg");
     
-    $('#top-navbar-1').on('shown.bs.collapse', function(){
-        $.backstretch("resize");
-    });
-    $('#top-navbar-1').on('hidden.bs.collapse', function(){
-        $.backstretch("resize");
-    });
+    // $('#top-navbar-1').on('shown.bs.collapse', function(){
+    //     $.backstretch("resize");
+    // });
+    // $('#top-navbar-1').on('hidden.bs.collapse', function(){
+    //     $.backstretch("resize");
+    // });
     
     /*
         Form
@@ -401,45 +401,38 @@ $('#form-pincode').keyup(function(e){
    //  });
 
 
-   $("#btn-next-page").on("click",function(){
+$('.registration-form').on('submit', function(e) {
 
-    var parent_fieldset = $(this).parents('fieldset');
+    // var parent_fieldset = $(this).parents('fieldset');
         var next_step = true;
         if($('#id_year option:selected').text() == "--SELECT YOUR YEAR--")
             {
               $("#id_year").addClass('input-error');
-              next =false;
+              next_step =false;
             }
             else
                 {
                     $("#id_year").removeClass('input-error');
                 }   
         
-        parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
+        $(this).find('input[type="text"], input[type="password"], textarea').each(function() {
             if( $(this).val() == "" ) {
                 $(this).addClass('input-error');
-                console.log('jslkjldlj')
+                console.log('jslkjldlj');
                 //$(this).setCustomValidity("Field cannot be empty");
                 next_step = false;
             }});
              if(next_step)
              {
                 var mb=phnvalidation();
-                var wp=wpvalidation();
+                // var wp=wpvalidation();
                 var pi=pinvalidation();
-                next_step = ((mb && wp) && pi);
+                next_step = (mb  && pi);
                } 
 
          if( next_step ) {
+                       e.preventDefault();
 
-            parent_fieldset.fadeOut(400, function() {
-                $(this).next().fadeIn();
-                $($(this).next()).find('input[type="text"], input[type="password"], textarea').each(function()
-                {
-                $(this).removeClass('input-error');   
-               });
-
-            });
             //document.getElementById("form-mobile").setCustomValidity("iNPUT A VALID PHN NO");
         }
         
@@ -470,41 +463,41 @@ $('#form-pincode').keyup(function(e){
 
 
 
-       $('.registration-form').on('submit', function(e) {
+       // $('.registration-form').on('submit', function(e) {
 
         // if($('.form-first-name').value.length==0)
         // {
         //     $('#form-first-name').setCustomValidity("Field Cannot be left Empty");
         //     e.preventDefault();
         // }var next = true;        
-            console.log("ancd");
-            $(this).find('input[type="text"], input[type="password"], textarea').each(function() {
-                if( $(this).val() == "") {
-                    e.preventDefault();
-                    // if($(this).text() == "--SELECT YOUR YEAR--")
-                    // {
-                    //   console.log("select box wpvalidation")
-                    // }
-                    $(this).addClass('input-error');
-                    next =false;
-                }
-                 else
-                {
-                    $(this).removeClass('input-error');
-                };
+//             console.log("ancd");
+//             $(this).find('input[type="text"], input[type="password"], textarea').each(function() {
+//                 if( $(this).val() == "") {
+//                     e.preventDefault();
+//                     // if($(this).text() == "--SELECT YOUR YEAR--")
+//                     // {
+//                     //   console.log("select box wpvalidation")
+//                     // }
+//                     $(this).addClass('input-error');
+//                     next =false;
+//                 }
+//                  else
+//                 {
+//                     $(this).removeClass('input-error');
+//                 };
 
-                console.log("add");
-            });
+//                 console.log("add");
+//             });
 
-                                                if(next)
-                                                {
-                                                   e.preventDefault();
-                                                }
+//                                                 if(next)
+//                                                 {
+//                                                    e.preventDefault();
+//                                                 }
 
 
 
-//}
-});
+// //}
+// });
 
 
 
@@ -573,3 +566,4 @@ $('#form-pincode').keyup(function(e){
 
 
 });
+

@@ -1,0 +1,132 @@
+@import 'https://fonts.googleapis.com/css?family=Lato';
+
+HTML, BODY {
+  /*height: 100%;*/
+}
+
+/*BODY {
+  background: #082330;
+  color: #aaa;
+  background-size: .12em 100%;
+*/  /*font: 16rem/1 "Lato";*/
+/*}*/
+
+/*#celebrating{
+  margin-top: -5%;
+  font-style: italic;
+  font-weight: bold;
+}
+*/
+/*#presents{
+  margin-bottom: -5%;
+}
+*/
+/*.wrapper_logo{
+  max-width: 50px;
+  height: auto;
+}
+*/
+/*.text--line {
+  font-size: .5em;
+}
+*/
+svg {
+  width: 100%;
+  font-size: 21em;
+}
+
+@media screen and (min-width: 768px) {
+  svg {
+    width: 100%;
+    font-size: 12em;
+    margin-top: 30px;
+  } 
+}
+
+section{
+  height: 100vh;
+  overflow: hidden;
+}
+
+.text-copy {
+  fill: none;
+  stroke: white;
+  stroke-dasharray: 7% 28%;
+  stroke-width: 3px;
+  -webkit-animation: stroke-offset 3s linear;
+          animation: stroke-offset 3s linear;
+}
+.text-copy:nth-child(1) {
+  stroke: white;
+  stroke-dashoffset: 7%;
+}
+.text-copy:nth-child(2) {
+  stroke: white;
+  stroke-dashoffset: 14%;
+}
+.text-copy:nth-child(3) {
+  stroke: white;
+  stroke-dashoffset: 21%;
+}
+.text-copy:nth-child(4) {
+  stroke: white;
+  stroke-dashoffset: 28%;
+}
+.text-copy:nth-child(5) {
+  stroke: white;
+  stroke-dashoffset: 35%;
+}
+
+@-webkit-keyframes stroke-offset {
+  0% {
+    stroke-dashoffset: 35%;
+    stroke-dasharray: 0 87.5%;
+  }
+}
+
+@keyframes stroke-offset {
+  0% {
+    stroke-dashoffset: 35%;
+    stroke-dasharray: 0 87.5%;
+  }
+}
+.logo{
+/*  background-color: red;*/
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 10%; 
+}
+.iit{
+/*  background-color: green;*/
+  width: 25%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.lnt{
+/*  background-color: yellow;*/
+  width: 25%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.yo{
+  width: 10%;
+   height: auto;
+  display: flex;
+  justify-content: center;
+/*  background-color: pink;*/
+  font-size: 6em;
+  margin-top: 100px;
+}
+.text{
+  width: 100%;
+  height: 10%;
+/*  background-color: green;*/
+  line-height: 300%;
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+}

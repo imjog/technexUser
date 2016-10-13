@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- saved from url=(0100)file:///C:/Users/ISHANT/AppData/Local/Temp/Rar$EXa0.049/bootstrap-multi-step-registration/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap Multi Step Registration Form Template</title>
+
+        <!-- CSS -->
+        <link rel='stylesheet prefetch' href='./login2_files/kla.css'>
+        <link rel="stylesheet" href="./login2_files/css.css">
+        <link rel="stylesheet" href="./login2_files/bootstrap.min.css">
+        <link rel="stylesheet" href="./login2_files/font-awesome.min.css">
+		<link rel="stylesheet" href="./login2_files/form-elements.css">
+        <link rel="stylesheet" href="./login2_files/assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="http://www.technex.in/static/css/images/favicon.ico">
+       <!--  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="file:///C:/Users/ISHANT/Desktop/login2_files/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="file:///C:/Users/ISHANT/Desktop/login2_files/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="file:///C:/Users/ISHANT/Desktop/login2_files/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="file:///C:/Users/ISHANT/Desktop/login2_files/assets/ico/apple-touch-icon-57-precomposed.png">
+        -->  <!-- <link rel="stylesheet" href="file:///C:/Users/ISHANT/Desktop/login2_files/css/style.css"> -->
+    </head>
+
+    <body>
+
+		<!-- Top menu -->
+    <!-- <canvas id="c"></canvas>
+    <script src='./login2_files/js/kzymdn.js'></script>
+    <script src="./login2_files/js/index.js"></script>
+ -->
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1> WELCOME TO TECHNEX CA PORTAL</h1>
+                            <!-- <div class="description">
+                            	<p>
+	                            	This is a free responsive multi-step registration form made with Bootstrap. 
+	                            	Download it on <a href="http://azmind.com/"><strong>AZMIND</strong></a>, customize and use it as you like!
+                            	</p>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	
+                        	<form role="form" action="" method="get" class="registration-form">
+                        		
+
+
+
+                        		<fieldset style="display: block;">
+		                        	<div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3><b>Step 1 / 3</b></h3>
+		                            		<p>Tell us who you are:</p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-user"></i>
+		                        		</div>
+		                            </div>
+		                            <div class="form-bottom">
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="form-first-name">First name</label>
+				                        	<input type="text" name="form-first-name" placeholder="NAME..." class="form-first-name form-control" id="form-first-name">
+
+				                        </div>
+				                       <div class="form-group">
+				                        	<label class="sr-only" for="form-college">College</label>
+				                        	<input type="text" name="form-college" placeholder="COLLEGE NAME..." class="form-last-name form-control" id="form-college">
+				                        </div>
+                                         <div class="form-group">`
+				                        	<label class="sr-only" for="form-email">Email</label>
+				                        	<input name="form-email" placeholder="Email..." class="form-email form-control" id="laluram" type="text">
+<!-- my changes -->
+				                        	<div class="alert-message alert-email">
+                                          <button type="button" id="close-email" class="close-btn">
+                                             <span aria-hidden="true">&times;</span>
+                                           </button>
+  <!-- <strong>Sorry!</strong> -->Email entered is incorrect.
+</div>
+<!-- my changes -->
+				                        	<span class="m-field-error" id="mail-error"></span>
+				                        	<!-- <p id="email-error" class="error-message"></p> -->
+				                        </div>
+				                        <div class="form-group">
+				                    		<label class="sr-only" for="form-password">Password</label>
+				                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="password">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-repeat-password">Repeat password</label>
+				                        	<input type="password" name="form-repeat-password" placeholder="Repeat password..." class="form-repeat-password form-control" id="confirm_password">
+				                        	 <div class="alert-message alert-confirm-password">
+				                        	 <button type="button" id="close-confirm-password" class="close-btn">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <!-- <strong></strong>  -->Password didn't match.
+</div>
+				                            <!-- <p id="confirm-password-error" class="error-message"></p> -->
+				                        </div>
+                                         <button type="button" id="btn-next" class="btn btn-next pure-button pure-button-primary">NEXT</button>
+				                    </div>
+			                    </fieldset>
+			                    <fieldset>
+			                    
+			                    
+		                        	<div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3>Step 2 / 3</h3>
+		                            		<p>Set up your account:</p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-user"></i>
+		                        		</div>
+		                            </div>
+		                            <div class="form-bottom">
+
+		                                 <div class="form-group">
+		                                 <label class="sr-only" for="form-college">YEAR</label>
+                                        <select class="selectpicker show-menu-arrow form-control" id="id_year" name="year">
+                                        <option selected="selected" value="-1">--SELECT YOUR YEAR--</option>
+             							<option value="1">First</option>
+									<option value="2">Second</option>
+												<option value="3">Third</option>
+										<option value="4">Fourth</option>
+						            <option value="5">Fifth</option>
+								            </select> 
+								            </div>
+				                       <div class="form-group">
+				                        	<label class="sr-only" for="form-mobilenumber">MOBILE NUMBER</label>
+				                        	<input type="text" name="form-mobilenumber" placeholder="MOBILE NO.." class="form-mobile-number form-control" id="form-mobile">
+				                        	<div class="alert-message alert-mobile">
+  <button type="button" id="close-mobile" class="close-btn">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <!-- <strong>Oye!</strong> -->Incorrect Mobile number
+</div>
+				                        	<!-- <p id="mobile-error" class="error-message"></p> -->
+				                        </div>
+                                          <script type="text/javascript">
+                                        	
+ 											
+
+                                        </script> 	 
+
+				                        
+                                        <p class="copy">
+                                        <input type="checkbox" name="Whatsapptoo" class="mob-watsapp" id="mybox"> Check this box if Whatsapp number and Contact Number are the same<p>
+                                         
+
+												
+
+                                         <div class="form-group">
+				                        	<label class="sr-only" for="form-whatsapp">Whatsapp</label>
+				                        	<input type="text" name="form-whatsapp" placeholder="WhatsApp no.." class="form-whatsapp form-control" id="form-whatsapp">
+				                        	<div class="alert-message alert-whatsapp">
+  <button type="button" id="close-whatsapp" class="close-btn">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <!-- <strong>Oye chutiye!</strong> --> Incorrect Whatsapp number
+</div>
+				                        	<!-- <p id="whatsapp-error" class="error-message"></p> -->
+				                        </div>
+				                        <div class="form-group">
+				                    		<label class="sr-only" for="form-address">Postal Address</label>
+				                        	<textarea type="text" name="form-address" placeholder="Postal Address..." class="form-address form-control" id="form-address" rows="3" cols="40"></textarea>
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-pincode">Pincode</label>
+				                        	<input type="text" name="form-pincode" placeholder="Pincode..." class="form-pincode form-control" id="form-pincode">
+				                        	<div class="alert-message alert-pincode">
+  <button type="button" id="close-pincode" class="close-btn">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <!-- <strong>Oye bc!</strong> --> Invalid Pincode
+</div>
+                                     <!-- <p id="pincode-error" class="error-message"></p> -->
+                                            
+				                       
+				                    </div>
+			                    
+			                    <button type="button" class="btn btn-previous">PREVIOUS</button>
+
+			                     <button type="button" id="btn-next-page" class="btn btn-next page-2">NEXT</button>
+				                        
+				                    </div>
+			                    
+			                    
+		                    </fieldset>
+		                    <fieldset>
+		                    <div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3><b>Step 3 / 3</b></h3>
+		                            		<p>Tell us who you are:</p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-user"></i>
+		                        		</div>
+		                            </div>
+		                            <div class="form-bottom">
+				                    
+		                    	<div class="form-group">
+				                    		<label class="sr-only" for="form-choose">WHY TO CHOOSE YOU?</label>
+				                        	<textarea type="text" name="form-choose" placeholder="Why should we choose you?" class="form-choose form-control" id="form-choose" rows="6" cols="40"></textarea>
+				                        </div>
+				                        <div class="form-group">
+				                    		<label class="sr-only" for="form-experiences">PAST EXPERIENCES</label>
+				                        	<textarea type="text" name="form-experiences" placeholder="Explain your past experiences in about 200 words." class="form-experience form-control" id="form-experience" rows="6" cols="40"></textarea>
+				                        </div>
+				                        <button type="button" class="btn btn-previous">PREVIOUS</button>
+				                         <button type="submit" id="sign-up-btn" class="btn btn-next page-2">SIGN UP</button>
+				                        </div>
+
+		                    </fieldset>
+		                  <!--   <fieldset>
+		                    	<button type="submit" class="btn" id="submit-btn">Sign me up!</button>
+		                    </fieldset> -->
+		                    </form>
+		                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- Javascript -->
+
+        <!-- <script src="./login2_files/jquery-1.11.1.min.js"></script> -->
+        
+        
+
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    
+ <script src='./jquery.min.js'></script>
+        <script src="./login2_files/bootstrap.min.js"></script>
+        <script src="./login2_files/jquery.backstretch.min.js"></script>
+        <script src="./login2_files/retina-1.1.0.min.js"></script>
+        <script src="./login2_files/scripts.js"></script>
+       
+ <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 1000px; width: 1903px; z-index: -999999; position: fixed;"><img src="./login2_files/1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1903px; height: 1268.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -191.333px;"></div></body></html> 

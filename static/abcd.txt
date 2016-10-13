@@ -1,0 +1,68 @@
+
+{
+  "order": null,
+  "events": [
+    {
+      "eventOrder": 1,
+      "eventOptions": [
+        {
+          "optionDescription": "<p>&ldquo;Once you have tasted flight, you will forever walk the earth with your eyes turned skyward, for there you have been, and there you will always long to return.&rdquo; &nbsp;-Leonardo Da Vinci</p>\r\n\r\n<p>So, do you think aviation has plateaued after the development of airplanes, or, maybe that indicated just the starting of our breach of the boundaries between land and air? Great minds never cease to innovate and neither do we at TECHNEX stop to explore. So, If you believe that flying a self-built multi-copter is an aero-modelling sensation, one not to be left inexperienced, then this event is just for you!</p>\r\n\r\n<p>Technex&#39;17 brings you DroneTech , with an opportunity to show your prowess in thinking out of the box, and to design and fabricate a multi-copter that has high manoeuvrability, stability, speed and thrust. Come along, IIT (BHU) awaits your presence in this technical extravaganza basking under 78 years of glory.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;GET, SET, DRONETECH!</p>",
+          "eventOptionOrder": null,
+          "optionName": "Introduction"
+        }
+      ],
+      "eventName": "Drone-Tech",
+      "prizeMoney": null,
+      "maxMembers": null,
+      "description": "<p>The task is to design&nbsp;and&nbsp;fabricate a multi-copter that has high manoeuvrability, stability, speed and thrust.</p>",
+      "deadLine": null
+    },
+    {
+      "eventOrder": 2,
+      "eventOptions": [
+        {
+          "optionDescription": "<p>Humans have been exploring both land and water since time immemorial, but the means to do so have always been woefully limited to their respective domains. A tremendous amount of effort has been put in from the human race, but we have never been at par. Amidst the plethora of devices put in use, Hovercrafts stand a class apart.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>If you too feel the enticement try your hands on building and manoeuvring one of such miraculous devices which at times has proven to be a messiah in mayhem situations, TECHNEX&#39;17 brings before you one of the most challenging and innovative events ensuing immense gratification to your tingling senses; D&rsquo;Aeroglisseur!</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>So buckle up and get your propellers ready to thrust against the rough terrains and turbulent waters in one of India&rsquo;s largest techno-management fest.</p>",
+          "eventOptionOrder": null,
+          "optionName": "Introduction"
+        }
+      ],
+      "eventName": "D'Aeroglisseur",
+      "prizeMoney": null,
+      "maxMembers": null,
+      "description": "<p>The task is to design&nbsp;and fabricate &nbsp;a remote-controlled, wireless hovercraft which can&nbsp;move on any track consisting of plains, grassy land, water, slope ups and slope downs.</p>",
+      "deadLine": null
+    },
+    {
+      "eventOrder": 3,
+      "eventOptions": [
+        {
+          "optionDescription": "<p>Ever wondered what technology goes behind those well-stabilized beasts balanced amidst mid-air. Technex IIT (BHU) provides you with a once in a lifetime opportunity to tame the beast with your spells of knowledge about aeromodelling and emerge as the only ruler of the sky.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>The competition acts as a platform to compete with some of the best flyers in the country through a series of divergent rounds performing different manoeuvres and showing their talent in flying dead stick flight, spot landing and of course, mid-air control!</p>",
+          "eventOptionOrder": null,
+          "optionName": "Introduction"
+        }
+      ],
+      "eventName": "La-trajectoire",
+      "prizeMoney": null,
+      "maxMembers": null,
+      "description": "<p>The task is to build a wireless remote controlled aircraft.</p>",
+      "deadLine": null
+    },
+    {
+      "eventOrder": 4,
+      "eventOptions": [
+        {
+          "optionDescription": "<p><strong>&nbsp;</strong></p>\r\n\r\n<p><strong>Have you ever imagined a half filled water bottle flying over a range of 150 meters or more? Have you ever felt confused about that enthusiastic pressure, curious thrust and inquisitive range of flight of that simple water bottle? If you did, then this is the accurate place to launch your bottle of thought and innovation.</strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>This is MOMENTUM--That momentum which took the man to the moon, which made curiosity touch Mars and which makes a simple reusable bottle travel so far. A one-of-a-kind recreational event, it welcomes you to participate and witness the festival of flight.</strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>May the thrust be with you!</strong></p>\r\n\r\n<p><strong>Go For It @ TECHNEX&#39;17</strong></p>",
+          "eventOptionOrder": null,
+          "optionName": "Introduction"
+        }
+      ],
+      "eventName": "Momentum",
+      "prizeMoney": null,
+      "maxMembers": null,
+      "description": "<p>This is a water rocket event, where a water rocket (electrical components allowed) along with the launcher is designed.</p>",
+      "deadLine": null
+    }
+  ],
+  "description": "",
+  "name": "Ascension"
+}

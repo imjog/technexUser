@@ -1,0 +1,26 @@
+.navbar-toggle.navbar-left {
+  float: left;
+  margin-left: 10px;
+}
+
+.mobile{
+	display: block;
+}
+
+.desktop{
+	display: none;
+}
+
+
+@media(min-width: 768px)
+{
+	.mobile{
+		display:none;
+	        }
+
+	.desktop{
+		display: block;
+	        }
+} 
+
+

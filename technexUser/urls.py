@@ -23,4 +23,4 @@ urlpatterns = [
 ]
 
 handler404 = 'Auth.views.error404'
-handler500 = 'Auth.views.error500'
+#handler500 = 'Auth.views.error500'

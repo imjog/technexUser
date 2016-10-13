@@ -25,6 +25,7 @@ urlpatterns = [
 	url(r'^fbConnect/$', fbConnect,name='fbConnect'),
 	url(r'^resetPass/(?P<key>[\w\-]+)/$', resetPass, name='resetPass'),
 	url(r'^guestLectures/', guestLecture, name='guestLecture'),
+	url(r'^home/',IndexView,name='home page'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
 
