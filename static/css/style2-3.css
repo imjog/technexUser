@@ -40,6 +40,24 @@ body {
 ul{
  
 }
+
+.abcd
+{
+      outline: none;
+    color: white;
+    text-decoration: none;
+}
+.abcd h2
+{
+      text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid rgba(255,255,255,.5);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    background: black;
+    color: rgba(255,255,255,.8);
+}
 ul li {
     float: left;
     padding-left: 2%;
@@ -70,8 +88,8 @@ ul li:hover{
     border: 1px solid rgba(255,255,255,.2);
     letter-spacing: 5px;
     font-weight: bold;
-    width: 250px;
-    height: 80px;
+    width: 22.5vw;
+    height: 6.5vh;
 }
 .event-nav:hover{
     background: black;
@@ -81,7 +99,14 @@ ul li:hover{
     border-width: 3px;
     font-weight: bold;
 }
-
+.event-nav-active{
+   background: black;
+    border-bottom-style: none;
+    color: white;
+    border-color: white;
+    border-width: 3px;
+    font-weight: bold;
+}
 a {
   outline: none;
   color: white;
@@ -627,7 +652,7 @@ button:focus {
 /* scroll helper wrap */
 .scroll-wrap {
   position: absolute;
-  width: 100%;
+  width: 102%;
   height: 100%;
   left: 0;
   top: 0;
@@ -706,7 +731,7 @@ button:focus {
   margin: 1em auto;
 }
 
-.events-name h2{
+/*.events-name h2{
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -715,7 +740,7 @@ button:focus {
     letter-spacing: 5px;
     background:black;
     color: rgba(255,255,255,.8);
-}
+}*/
 .events-name h2:hover{
     background: black;
     border: 1px solid rgba(255,255,255,1);

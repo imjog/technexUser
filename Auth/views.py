@@ -246,6 +246,10 @@ def eventApi(request):
 def events(request):
     return render(request,'index2.html')
 
+def event2api(request):
+    return JsonResponse(response)
+
+
 def event(request, key):
     response = {}
     if request.method == 'GET':
@@ -267,7 +271,7 @@ def event(request, key):
             eventData = {}
             eventData['eventName'] = event.eventName
             eventData['description'] = event.description
-            eventData['deadLine'] = event.deadLine
+            # eventData['deadLine'] = event.deadLine
             eventData['prizeMoney'] = event.prizeMoney
             eventData['maxMembers'] = event.maxMembers
             eventData['eventOrder'] = event.eventOrder
@@ -282,7 +286,7 @@ def event(request, key):
             eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
             response['events'].append(eventData)
         response['events'].sort(key= lambda x: x['eventOrder'])  
-        return render(request,'index3.html',{'parentEvent':response})
+        return render(request,'index3.html',{'parentEvent':json.dumps(response)})
     else:
         response['error'] = True
         response['status'] = 'Invalid Request'

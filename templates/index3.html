@@ -13,8 +13,9 @@
 
 		<script src="/static/js/modernizr.custom.js"></script>
 		<script src="/static/js/jquery1.12.4.js"></script>
-		<script src="/static/js/kall.js"></script>
-	
+		<!-- <script src="/static/js/kall.js"></script> -->
+		<script src="/static/js/classie.js"></script>
+
 	</head>
 	<body>
 		<div class="container">
@@ -23,7 +24,7 @@
 				<button class="close-button fa fa-fw fa-close"></button>
                 <a href="/events"><h1 class="category-name" style="color:white;letter-spacing:5px;">Events</h1></a>
                 <div class="loader"></div> 
-				<div class="related">
+				<div class="related" id="menu-bar">
                     			<a  href="/events/robonex"><h2 class="solid-border">Robonex</h2></a>
 					<a href="/events/ascension"><h2>Ascension</h2></a>
 					<a href="/events/extreme-engineering"><h2>Extreme Engineering</h2></a>
@@ -35,73 +36,431 @@
 					<a href="/events/pahal"><h2>Pahal</h2></a>
 					<a href="/events/clutch"><h2>Clutch</h2></a>
 				</div>
+							<div class="events-name" id="internal-menu-bar" style="display:none;">
+					</div>
 			</div>
 			<div id="theGrid" class="main">
-				<section class="grid">
-					<header class="top-bar">
-						
-					</header>
-					{% autoescape off %}
-					{% for event in parentEvent.events %}
-					<a class="grid__item" href="#">
-						<h2 class="title title--preview">{{event.eventName}}</h2>
-						<div class="loader"></div>
-						<span class="category">{{parentEvent.name}}</span>
-						<div class="meta meta--preview"> 
-						</div>
-					</a>
-					{% endfor %}
+				<section class="grid" id="event-grid">
 				</section>
-				
 				<section class="content">
-					<div class="scroll-wrap">
-					{% for event in parentEvent.events %}
-						<article class="content__item" id="">
-							<h2 class="title title--full">{{ event.eventName }}</h2>
-                            <span class="category category--full center">{{ event.description }}</span><br><br>
-							<div class="meta meta--full">
-								<img class="meta__avatar" src="/static/img/fwdicons/{{ parentEvent.slug }}.png" alt="{{parentEvent.name}}" />
-								<h1 class="center text-upper">{{ parentEvent.name }}</h1>
-                                <div class="events-name">
-                                    {% for parent_event in parentEvent.events %}
-                                    <a href="#"><h2>{{ parent_event.eventName }}</h2></a>
-                                    {% endfor %}
-                                    </div>
-								<!--<nav class="article-nav">
-									<button><i class="fa fa-angle-left"></i> <span>Previous</span></button>
-									<button><span>Next</span> <i class="fa fa-angle-right"></i></button>
-								</nav>-->
-							</div>
-                            <div>
-                        <nav class="navbar navbar-default">
-                          <div class="container-fluid">
-                            <ul class="nav navbar-nav">
-                              {% for eventOption in event.eventOptions %}
-                              <li><a href="#">{{ eventOption.optionName }}</a></li>
-                              {% endfor %}
-                            </ul>
-                          </div>
-                        </nav><br><br><br>
-                                <div><br><br>
-                            {% for eventOption in event.eventOptions %}    
-							<div id="description"><p>
-							{{ eventOption.optionDescription }}
-							</p></div>
-							{% endfor %}
-							
-							
-						</article>
-						{% endfor %}
-						{% endautoescape %}
-									</div>
+					<div class="scroll-wrap" id="event-descrip">
+						
+
+					</div>
 					<button class="close-button"><i class="fa fa-close"></i><span>Close</span></button>
 				</section>
 			</div>
 		</div><!-- /container -->
-		<script src='/static/js/data.js'></script>	
-		<script src="/static/js/classie.js"></script>
-		<script src="/static/js/main.js"></script>
-		<!-- <script type=""></script> -->
+<!-- 		<script src='js/data.js'></script>	 -->
 		
 	</body>
+<script type="text/javascript">
+		var data= {{ parentEvent|safe}}
+	myfunction(data);
+	myfunc(data);
+	function myfunc(data){
+	var i,j;
+	var out="";
+	// console.log(data.events.length);
+
+	for(i=0;i<data.events.length;i++)
+	{
+		out+='<article class="content__item"><h2 class="title title--full">'+data.events[i].eventName+'</h2><br><br><div class="meta meta--full"><h1 style="text-align:center">'+data.name+'</h1>\
+		<div class="events-name">';
+		// for(j=0;j<data.events.length;j++)
+		// {
+		// 	out+="<a><h2>"+data.events[j].eventName+"</h2></a>";
+		// }
+		out+='</div><nav class="article-nav">\
+						<button><i class="fa fa-angle-left"></i> <span>Previous</span></button>\
+									<button><span>Next</span> <i class="fa fa-angle-right"></i></button>\
+								</nav></div>\
+                            <div><div class="event-info">';
+                            for(j=0;j<data.events[i].eventOptions.length;j++)
+                            {
+                              if(j==0)
+                            	out+='<div class="event-nav event-nav-active">'+data.events[i].eventOptions[j].optionName+"</div>";
+                              else
+                                out+='<div class="event-nav">'+data.events[i].eventOptions[j].optionName+"</div>";
+                            }
+                            out+='<br><br><br><br><br><div class="description" id="option-'+i+'">';
+                            for(j=0;j<data.events[i].eventOptions.length;j++)
+                            {
+                              if(j==0)
+                            	out+='<div class="description-data">'+data.events[i].eventOptions[j].optionDescription+"</div>";
+                            else
+                              out+='<div class="description-data" style="display:none">'+data.events[i].eventOptions[j].optionDescription+"</div>";
+                            }
+                            out+='</div></div></article>';
+
+	}
+	document.getElementById("event-descrip").innerHTML = out;
+	// console.log(out); 
+  out="";
+  for(i=0;i<data.events.length;i++)
+  {
+    out+='<div class="abcd"><h2>'+data.events[i].eventName+'</h2></div>';
+  }
+  document.getElementById("internal-menu-bar").innerHTML= out;
+	}
+
+	function myfunction(data){
+	var i;
+	var out='';
+	
+	for(i=0;i<data.events.length;i++)
+	{
+		out +='<a class="grid__item" href="#"><h2 class="title title--preview">' + data.events[i].eventName + '</h2><div class="loader"></div></a>';
+		document.getElementById("event-grid").innerHTML = out;
+
+	}
+
+	}
+	$(document).ready(function(){
+  // console.log("ready");
+ $("a.grid__item").on("click",function(){
+  $("#menu-bar").hide();
+  $("#internal-menu-bar").show();
+        });
+	$(".close-button").on("click",function(){
+  $("#menu-bar").show();
+  $("#internal-menu-bar").hide();
+	});
+
+	$("#internal-menu-bar div").on("click",function(){
+  console.log("ajaj");
+  console.log($(this).index());
+	});
+  var bodyEl = document.body,
+    docElem = window.document.documentElement,
+    support = { transitions: Modernizr.csstransitions },
+    // transition end event name
+    transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
+    transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+    onEndTransition = function( el, callback ) {
+      var onEndCallbackFn = function( ev ) {
+        if( support.transitions ) {
+          if( ev.target != this ) return;
+          this.removeEventListener( transEndEventName, onEndCallbackFn );
+        }
+        if( callback && typeof callback === 'function' ) { callback.call(this); }
+      };
+      if( support.transitions ) {
+        el.addEventListener( transEndEventName, onEndCallbackFn );
+      }
+      else {
+        onEndCallbackFn();
+      }
+    },
+    gridEl = document.getElementById('theGrid'),
+    sidebarEl = document.getElementById('theSidebar'),
+    innermenubar = document.getElementById('internal-menu-bar'),
+    innermenubaritems = innermenubar.querySelectorAll('.abcd'),
+    gridItemsContainer = gridEl.querySelector('section.grid'),
+    contentItemsContainer = gridEl.querySelector('section.content'),
+    gridItems = gridItemsContainer.querySelectorAll('.grid__item'),
+    contentItems = contentItemsContainer.querySelectorAll('.content__item'),
+    closeCtrl = contentItemsContainer.querySelector('.close-button'),
+    e1 = document.getElementById('event-descrip'),
+    e2 = e1.querySelectorAll('.event-info'),
+  
+
+      
+    current = -1,
+    lockScroll = false, xscroll, yscroll,
+    isAnimating = false,
+    menuCtrl = document.getElementById('menu-toggle'),
+    menuCloseCtrl = sidebarEl.querySelector('.close-button');
+    var ji;
+    
+    // console.log(e2.length);
+    var e3=[];
+    var e4=[];
+
+    for(ji=0;ji<e2.length;ji++)
+    {
+      // console.log(e2[ji]);
+       e3[ji] = e2[ji].querySelectorAll('.event-nav');
+       e4[ji] = e2[ji].querySelectorAll('.description-data');
+        // console.log(e3[ji]);
+    }
+    // console.log(e3[0][1]);
+    // console.log(e3.length);
+    //  for(ji=0;ji<e3.length;ji++)
+    // {
+    //     // var jih;
+    //     // for(jih=0;jih<e3[ji].length;jih++)
+    //      // {
+    //       console.log(e3[ji]);
+    //      // }
+        
+    // }
+
+
+       // console.log(e3[1]);
+         // console.log(gridItems)
+         // console.log(innermenubaritems)
+  /**
+   * gets the viewport width and height
+   * based on http://responsejs.com/labs/dimensions/
+   */
+  function getViewport( axis ) {
+    var client, inner;
+    if( axis === 'x' ) {
+      client = docElem['clientWidth'];
+      inner = window['innerWidth'];
+    }
+    else if( axis === 'y' ) {
+      client = docElem['clientHeight'];
+      inner = window['innerHeight'];
+    }
+    
+    return client < inner ? inner : client;
+  }
+  function scrollX() { return window.pageXOffset || docElem.scrollLeft; }
+  function scrollY() { return window.pageYOffset || docElem.scrollTop; }
+
+  function init() {
+    initEvents();
+  }
+
+  function initEvents() {
+
+    console.log("jsjkdkjdjkd");
+     [].slice.call(e3).forEach(function(item,pos){
+         [].slice.call(item).forEach(function(itemwa,position){
+          // console.log(itemwa);
+          // console.log(position);
+          itemwa.addEventListener('click', function()
+          {
+            console.log(itemwa);
+            var k;
+            for(k=0;k<item.length;k++)
+            {
+              if(k!=position)
+              {
+              e4[pos][k].style.display='none';
+             classie.remove(e3[pos][k],'event-nav-active'); 
+            }
+              // else
+              // e4[pos][k].style.dispaly=''; 
+             }
+             e4[pos][position].style.display='';
+             classie.add(e3[pos][position],'event-nav-active');
+                
+          });
+                                               
+         });
+            // }
+     });
+
+
+
+    [].slice.call(innermenubaritems).forEach(function(item, pos) {
+      // grid item click event
+      item.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        current = pos;
+       console.log($(this));
+      var i;
+          for(i=0;i<contentItems.length;i++)
+          { 
+            contentItem = contentItems[i];
+            console.log(contentItems[i]);
+          classie.remove(contentItem, 'content__item--show');
+          } 
+           loadcontentwa(gridItems[pos]);
+      });
+    });
+    
+
+    // l,flfv,lg,lg,lth,lgh
+    [].slice.call(gridItems).forEach(function(item, pos) {
+      // console.log(item);
+      // console.log(pos);
+      // grid item click event
+
+      item.addEventListener('click', function(ev) {
+      console.log("abcd"),
+        ev.preventDefault();
+        if(isAnimating || current === pos) {
+          return false;
+        }
+        isAnimating = true;
+        // index of current item
+        current = pos;
+        console.log(pos);
+        // simulate loading time..
+        classie.add(item, 'grid__item--loading');
+        setTimeout(function() {
+          classie.add(item, 'grid__item--animate');
+          // reveal/load content after the last element animates out (todo: wait for the last transition to finish)
+          setTimeout(function() {
+          console.log(item); loadContent(item); }, 500);
+        }, 1000);
+      });
+    });
+
+    closeCtrl.addEventListener('click', function() {
+      // hide content
+      console.log("abcd");
+      hideContent();
+    });
+
+    // keyboard esc - hide content
+    document.addEventListener('keydown', function(ev) {
+      if(!isAnimating && current !== -1) {
+        var keyCode = ev.keyCode || ev.which;
+        if( keyCode === 27 ) {
+          ev.preventDefault();
+          if ("activeElement" in document)
+              document.activeElement.blur();
+          hideContent();
+        }
+      }
+    } );
+
+    // hamburger menu button (mobile) and close cross
+    menuCtrl.addEventListener('click', function() {
+      if( !classie.has(sidebarEl, 'sidebar--open') ) {
+        classie.add(sidebarEl, 'sidebar--open');  
+      }
+    });
+
+    menuCloseCtrl.addEventListener('click', function() {
+      if( classie.has(sidebarEl, 'sidebar--open') ) {
+        classie.remove(sidebarEl, 'sidebar--open');
+      }
+    });
+  }
+   function loadcontentwa(item)
+   {
+
+
+      contentItemsContainer.style.top = scrollY() + 'px';
+     classie.add(contentItemsContainer, 'content--show');
+      // show content item:
+      classie.add(contentItems[current], 'content__item--show');
+      // show close control
+      classie.add(closeCtrl, 'close-button--show');
+
+      // sets overflow hidden to the body and allows the switch to the content scroll
+      classie.addClass(bodyEl, 'noscroll');
+
+      isAnimating = false;
+   }
+  function loadContent(item) {
+    // add expanding element/placeholder 
+    var dummy = document.createElement('div');
+    dummy.className = 'placeholder';
+
+    // set the width/heigth and position
+    dummy.style.WebkitTransform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth/gridItemsContainer.offsetWidth + ',' + item.offsetHeight/getViewport('y') + ',1)';
+    dummy.style.transform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth/gridItemsContainer.offsetWidth + ',' + item.offsetHeight/getViewport('y') + ',1)';
+
+    // add transition class 
+    classie.add(dummy, 'placeholder--trans-in');
+
+    // insert it after all the grid items
+    gridItemsContainer.appendChild(dummy);
+    
+    // body overlay
+    // classie.add(bodyEl, 'view-single');
+
+    setTimeout(function() {
+      // expands the placeholder
+      dummy.style.WebkitTransform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
+      dummy.style.transform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
+      // disallow scroll
+      window.addEventListener('scroll', noscroll);
+    }, 25);
+
+    onEndTransition(dummy, function() {
+      // add transition class 
+      classie.remove(dummy, 'placeholder--trans-in');
+      classie.add(dummy, 'placeholder--trans-out');
+      // position the content container
+      contentItemsContainer.style.top = scrollY() + 'px';
+      // show the main content container
+      classie.add(contentItemsContainer, 'content--show');
+      // show content item:
+      classie.add(contentItems[current], 'content__item--show');
+      // show close control
+      classie.add(closeCtrl, 'close-button--show');
+      // sets overflow hidden to the body and allows the switch to the content scroll
+      classie.addClass(bodyEl, 'noscroll');
+
+      isAnimating = false;
+    });
+  }
+
+  function hideContent() {
+    var gridItem = gridItems[current], contentItem = contentItems[current];
+  console.log("1");
+    classie.remove(contentItem, 'content__item--show');
+    classie.remove(contentItemsContainer, 'content--show');
+    classie.remove(closeCtrl, 'close-button--show');
+
+    // classie.remove(bodyEl, 'view-single');
+
+    setTimeout(function() {
+      var dummy = gridItemsContainer.querySelector('.placeholder');
+       console.log("2");
+      classie.removeClass(bodyEl, 'noscroll');
+      console.log("3")
+      dummy.style.WebkitTransform = 'translate3d(' + gridItem.offsetLeft + 'px, ' + gridItem.offsetTop + 'px, 0px) scale3d(' + gridItem.offsetWidth/gridItemsContainer.offsetWidth + ',' + gridItem.offsetHeight/getViewport('y') + ',1)';
+      dummy.style.transform = 'translate3d(' + gridItem.offsetLeft + 'px, ' + gridItem.offsetTop + 'px, 0px) scale3d(' + gridItem.offsetWidth/gridItemsContainer.offsetWidth + ',' + gridItem.offsetHeight/getViewport('y') + ',1)';
+        console.log("5");
+         var i;
+        for(i=0;i<gridItems.length;i++)
+        {
+           gridItem = gridItems[i];
+        classie.remove(gridItem, 'grid__item--loading');
+        console.log(gridItem);
+        console.log("7");
+        classie.remove(gridItem, 'grid__item--animate');
+        console.log("8");
+        }
+        // console.log(dummy);
+      onEndTransition(dummy, function() {
+        // reset content scroll.. crollTop = 0;
+        // console.log(gridItemsContainer);
+        gridItemsContainer.removeChild(dummy);
+        console.log("6");
+        // console.log(gridItemsContainer);
+        var i;
+        for(i=0;i<gridItems.length;i++)
+        {
+           gridItem = gridItems[i];
+        classie.remove(gridItem, 'grid__item--loading');
+        console.log(gridItem);
+        console.log("7");
+        classie.remove(gridItem, 'grid__item--animate');
+        console.log("8");
+        }
+
+        lockScroll = false;
+        window.removeEventListener( 'scroll', noscroll );
+      });
+      
+      // reset current
+      current = -1;
+    }, 25);
+  }
+
+  function noscroll() {
+    if(!lockScroll) {
+      lockScroll = true;
+      xscroll = scrollX();
+      yscroll = scrollY();
+    }
+    window.scrollTo(xscroll, yscroll);
+  }
+
+  init();
+
+
+	});
+</script>
+	
 </html>
