@@ -88,8 +88,8 @@ ul li:hover{
     border: 1px solid rgba(255,255,255,.2);
     letter-spacing: 5px;
     font-weight: bold;
-    width: 22.5vw;
-    height: 6.5vh;
+    width: auto;
+    height: auto;
 }
 .event-nav:hover{
     background: black;
