@@ -286,6 +286,7 @@ def event(request, key):
             eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
             response['events'].append(eventData)
         response['events'].sort(key= lambda x: x['eventOrder'])  
+        print json.dumps(response)
         return render(request,'index3.html',{'parentEvent':json.dumps(response)})
     else:
         response['error'] = True
@@ -293,8 +294,24 @@ def event(request, key):
         return JsonResponse(response)    
 
 def guestLecture(request):
-    guestLectures = GuestLecture.objects.all()
-    return render(request, 'guestLecture.html', {'lectures':guestLectures})
+    response = {}
+    resp = {}
+    try:
+        lectures = GuestLecture.objects.all()
+        response['status'] = 1
+        response['lectures'] = []
+        for lecture in lectures:
+            lectureData = {}
+            lectureData['title'] = lecture.title
+            lectureData['description'] = lecture.description
+            lectureData['lecturerName'] = lecture.lecturerName
+            lectureData['lecturerBio'] = lecture.lecturerBio
+            lectureData['designation'] = lecture.designation
+            lectureData['lectureType'] = lecture.lectureType
+            response['lectures'].append(lectureData)
+    except:
+        response['status'] = 0  
+    return render(request, 'guest.html', {'lectures':json.dumps(response)})
 
 def error404(request):
     return render(request, '404.html')
