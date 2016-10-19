@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=Vollkorn|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/static/css/guest_css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="/static/css/guest_css/style.css"> <!-- Resource style -->
+	<script src="/static/js/guest_js/modernizr.js"></script> <!-- Modernizr -->
+	<title>Guest Lectures | Technex'17</title>
+</head>
+<body>
+	<main class="cd-main">
+<!-------------------------NAVBAR -------------------->
+        <div class="jnavbar">
+		<ul class="topnav" id="myTopnav">
+  <li><img src="/static/logo-technex.png" height="40px" style="padding-left:8px;"></li>
+  <li><a class="active" href="">EVENTS</a></li>
+  <li><a href="">THINK TALK</a></li>
+  <li><a href="">STARTUP FAIR</a></li>
+  <li><a href="">WORKSHOPS</a></li>
+  <li><a href="">PRONIGHTS</a></li>
+  <li><a href="">CAMPUS AMBASSADOR</a></li>
+  <li><a href="">SPONSERS</a></li>
+  <li><a href="">EXHIBITION</a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+  </li>
+</ul></div>
+<!--------------------/NAVBAR-------------------------->
+		<ul class="cd-gallery">
+			<li class="cd-item">
+				<a>
+					<div>
+						<h2>Guest Lecture1</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+
+			<li class="cd-item">
+				<a>
+					<div>
+						<h2>Guest Lecture2</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+
+			<li class="cd-item">
+				<a class="dark-text">
+					<div>
+						<h2>Guest Lecture3</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+
+			<li class="cd-item">
+				<a>
+					<div>
+						<h2>Guest Lecture4</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+            <li class="cd-item">
+				<a class="dark-text">
+					<div>
+						<h2>Guest Lecture5</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+
+			<li class="cd-item">
+				<a>
+					<div>
+						<h2>Guest Lecture6</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+            <li class="cd-item">
+				<a class="dark-text">
+					<div>
+						<h2>Guest Lecture7</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+
+			<li class="cd-item">
+				<a>
+					<div>
+						<h2>Guest Lecture8</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+		</ul> <!-- .cd-gallery -->
+	</main> <!-- .cd-main -->
+
+	<div class="cd-folding-panel">
+		
+		<div class="fold-left"></div> <!-- this is the left fold -->
+		
+		<div class="fold-right"></div> <!-- this is the right fold -->
+		
+		<div class="cd-fold-content" style="color:black" id="guest-content">
+			HELLO
+		</div>
+
+		<a class="cd-close" href="#0"></a>
+	</div> <!-- .cd-folding-panel -->
+<script src="/static/js/guest_js/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+    var data={{ lectures|safe}}
+    
+    $('.cd-gallery li').on('click', function() {
+        var k=$(this).index();
+        console.log(k);
+        out="";
+        out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><em>"+data.lectures[k].designation+"</em><p>"+data.lectures[k].designation+"</p>";
+        console.log(out);
+        document.getElementById('guest-content').innerHTML=out;
+        
+});
+</script>
+    <script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+<script src="/static/js/guest_js/main.js"></script> <!-- Resource jQuery -->
+</body>
+</html>
