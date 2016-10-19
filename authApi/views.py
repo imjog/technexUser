@@ -259,8 +259,7 @@ def guestLectures(request):
             lectureData['lectureType'] = lecture.lectureType
             response['lectures'].append(lectureData)
     except:
-        response['status'] = 0
-    print response    
+        response['status'] = 0 
     return JsonResponse(response)
 
 @csrf_exempt
