@@ -82,30 +82,36 @@ ul li:hover{
     padding: 10px;
     padding-left: 15px;
     padding-right: 15px;
+    margin: 2px;
+    margin-bottom: 1px;
     text-align: center;
     font-size: 16px;
     text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,.2);
-    letter-spacing: 5px;
+    border: 1px solid rgba(255,255,255,.3);
+    letter-spacing: 3px;
     font-weight: bold;
     width: auto;
     height: auto;
 }
+
+.event-nav-active{
+   background: black;
+    color: white;
+    border-color: rgba(255,255,255,1);
+    border-width: 1px;
+    border-bottom-style:none;
+    font-weight: bold;
+    margin: 2px;
+}
+/*
 .event-nav:hover{
     background: black;
     border-bottom-style: none;
     color: white;
-    border-color: white;
-    border-width: 3px;
+    border-color: rgba(255,255,255,.6);
+    border-width: 1px;
     font-weight: bold;
-}
-.event-nav-active{
-   background: black;
-    border-bottom-style: none;
-    color: white;
-    border-color: white;
-    border-width: 3px;
-    font-weight: bold;
+*/
 }
 a {
   outline: none;
