@@ -1,1 +1,8 @@
+<<<<<<< HEAD
+venv
+*.pyc
+staticfiles
+db.sqlite3
+=======
 .DS_Store
+>>>>>>> 11aee576935e73974b35212aab07cb1a9913bf6b

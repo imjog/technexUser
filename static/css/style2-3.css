@@ -110,8 +110,10 @@ ul li:hover{
     color: white;
     border-color: rgba(255,255,255,.6);
     border-width: 1px;
-    font-weight: bold;
+font-weight: bold;}
 */
+.upper{
+    color: white;
 }
 a {
   outline: none;
