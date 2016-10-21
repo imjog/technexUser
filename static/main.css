@@ -184,6 +184,8 @@ th {
     font-weight: 600;
     font-style: normal
 }
+
+
 @font-face {
     font-family: Avenir;
     src: url(/static/assets/fonts/avenir/avenir-heavy.eot);
