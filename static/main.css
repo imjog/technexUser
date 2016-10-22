@@ -1320,6 +1320,7 @@ body {
     z-index: 5;
     text-align: center
 }
+
 #css3d-container .worldLabel .world-image,
 #css3d-container .worldLabel span {
     opacity: 0;
@@ -1386,6 +1387,7 @@ body {
     -webkit-animation: i 2s steps(5) infinite;
     animation: i 2s steps(5) infinite
 }
+
 @-webkit-keyframes i {
     to {
         background-position: -1500px
@@ -1419,6 +1421,11 @@ body {
 #css3d-container .worldLabel.is-visible:after {
     margin-top: 0;
     height: 23%
+}
+.papa
+{
+    transform: scale(2,3);
+   
 }
 #webgl-container {
     position: absolute;
@@ -2285,8 +2292,7 @@ p.signup-open:hover {
         background-color: rgba(0,0,0,0.5);
         padding: auto;
     }
-.world-image:hover,
-.store-button:hover,
+
 .glyphicon-phone:hover,
 .glyphicon-envelope:hover
  {

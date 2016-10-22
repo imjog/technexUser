@@ -470,7 +470,8 @@
           
                         
                         var u = new o.CSS3DSprite(s);
-                        u.position.copy(N.worlds[a].position), u.scale.set(.005, .005, .005), A.add(u)
+                        u.position.copy(N.worlds[a].position), u.scale.s
+                        et(.005, .005, .005), A.add(u)
                     }
 
                     e.append(S.domElement), t.append(C.domElement), f(n), h(), r && r()
@@ -479,6 +480,7 @@
                 function f() {
                     if (requestAnimationFrame(f), T.position.x += .05 * (.6 * b.x - T.position.x), T.position.y += .05 * (.6 * b.y - T.position.y), n(".worldLabel").each(function() {
                             n(this).removeClass("is-visible")
+                            n(this).removeClass("papa")
                             document.getElementById("mama-head").innerHTML="";
                         }), 2 == k) {
                         x.setFromCamera(b, T);
@@ -514,6 +516,7 @@
                                 document.getElementById("mama-head").innerHTML="";
 
                                 n("#worldLabel" + r).addClass("is-visible")
+                                n("#worldLabel" + r).addClass("papa")
                             }
 
                               var ux=75;
