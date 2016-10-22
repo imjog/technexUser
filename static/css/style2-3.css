@@ -217,6 +217,7 @@ button:focus {
 /* Grid container */
 .grid {
   position: relative;
+  z-index: 100;
 }
 
 /* Overlay */

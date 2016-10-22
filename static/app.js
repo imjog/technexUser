@@ -188,16 +188,17 @@
             document.addEventListener(T, function(e) {
                 document[M] ? n.Howler.mute() : v || n.Howler.unmute()
             }), o.init($("#webgl-container"), $("#css3d-container"), function() {
-                $("#loader-container").addClass("is-hidden"), i.delay(function() {
-                    $("#sections-container").addClass("is-visible"), i.delay(function() {
-                        $("#loader-container").css({
+                i.delay(function(){
+                 $("#loader-container").css({
                             display: "none"
                         }), $(h[0]).fadeIn(function() {
                             $(this).addClass("is-visible")
 
-                        }), $("#webgl-container").addClass("is-visible")
-                    }, 300)
-                }, 200)
+                        }), $("#webgl-container").addClass("is-visible");
+                        $("#sections-container").addClass("is-visible");
+                },8500);
+                
+               
             }), $(".button-next").on("click", r), $(".button-prev").on("click", a), $(".philosophy-open").on("click", s), $(".philosophy-close").on("click", u), $(".signup-open").on("click", c), $(".signup-close").on("click", l);
             var _ = i.debounce(function() {
                 b.play();
@@ -230,29 +231,6 @@
                         return
                 }
             })
-            //,
-            //  $("#signup-send").on("click", function() {
-            //     function e() {
-            //         var e = $("#email-input").val(),
-            //             t = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-            //         return null != e && "" != e && t.test(e) ? ($("#signup").removeClass("is-error"), !0) : ($("#signup").addClass("is-error"), !1)
-            //     }
-            //     if (e()) {
-            //         var t = {
-            //             email: $("#email-input").val()
-            //         };
-            //          $.ajax({
-            //             type: "POST",
-            //             dataType: "json",
-            //             url: "https://buo2sak59i.execute-api.us-east-1.amazonaws.com/v1/subscribe/email",
-            //             data: JSON.stringify(t)
-            //         }).done(function(e) {
-            //             console.log("done!"), $("#signup-form").html("<p>Thanks! We'll let you know.</p>"), i.delay(l, 2e3)
-            //         }).fail(function(e) {
-            //             console.log("fail!")
-            //         })
-            //     }
-            // })
         }
     }, {
         "./scene": 5,
@@ -294,28 +272,14 @@
                     var u = new n.Geometry,
                         c = 750,
                         l = new Image;
-                        // var url = "";
-                        // console.log(l);
                         l.src="/static/assets/images/face.jpg"
                         l.class="abcd"
                         console.log(l);
-                        // l.style="height:100px";
-                         // l.style="width:10px";
-                        // l.style="border-radius:100%";
-                        // l.height=100px;
-                        // l.width=100px;
-                        // console.log(l);
-
-                        // l.setAttribute("crossOrigin","");
                      l.onload = function() {
-                        // l.crossOrigin = "";
                         var l = document.createElement("canvas");
-
                         l.width = c, l.height = c;
                         var h = l.getContext("2d");
-                        // console.log(h);
                         h.drawImage(this, 0, 0, c, c);
-                        
                         for (var p, d, f, m = h.getImageData(0, 0, c, c).data, g = 0, v = m.length; v > g; g += 4)
                             if (p = m[g], d = m[g + 1], f = m[g + 2], p + d + f != 0) {
                                 var y = new n.Vector3,
@@ -520,7 +484,7 @@
                         x.setFromCamera(b, T);
                         for (var e = x.intersectObjects(N.obj.children), t = 0; t < e.length; t++)
                             if (e[t].distance < .2) {
-                                O = 0;
+                               O = parseInt(Math.random()*1125);
                                 var r = e[t].object.name.substring(5);
                         if(r == 0)
                         {

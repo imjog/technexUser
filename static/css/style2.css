@@ -242,7 +242,7 @@ button:focus {
   padding: 45px 55px 30px;
   position: relative;
   color: rgba(255,255,255,.7);
-  background: black;
+  background: rgba(0,0,0,0.1);
   min-height: 300px;
   cursor: pointer;
   text-align: center;
@@ -1010,7 +1010,7 @@ body {
   .grid {
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
-      background: black;
+      background: rgba(0,0,0,0);
   }
 
   .view-single .sidebar,
