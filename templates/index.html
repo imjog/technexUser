@@ -1,4 +1,4 @@
-x{% load staticfiles %}<!-- <!DOCTYPE html> -->
+{% load staticfiles %}<!-- <!DOCTYPE html> -->
 <html lang="en">
 <head>
   <title>Technex '17 | The Annual Techno-Management Fest of IIT (BHU)</title>
@@ -259,11 +259,7 @@ x{% load staticfiles %}<!-- <!DOCTYPE html> -->
    
         </p>
       </div>
-      <div class="navigation navigation-initial">
-        <button class="button-prev">PREV</button>
-        <div class="seperator"></div>
-        <button class="button-next">NEXT</button>
-      </div>
+
     </section>
 
     <section>
@@ -409,7 +405,13 @@ x{% load staticfiles %}<!-- <!DOCTYPE html> -->
     </div>
   </div>
 
-  <div id="css3d-container"></div>
+  <div id="css3d-container">
+          <div class="navigation navigation-initial">
+        <button class="button-prev">PREV</button>
+        <div class="seperator"></div>
+        <button class="button-next">NEXT</button>
+      </div>
+  </div>
   <div id="webgl-container"></div>
    <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-md">
@@ -606,6 +608,7 @@ x{% load staticfiles %}<!-- <!DOCTYPE html> -->
         <script src="/static/login2_files/scripts.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
+      $("#css3d-container .navigation").hide();
   $("#search-btn").on("click",function(){
     console.log("click hua");
     $("#search-wala").show("fast");
@@ -622,7 +625,11 @@ x{% load staticfiles %}<!-- <!DOCTYPE html> -->
     $("#search-close-btn").hide();
     $("#search-btn").show();
      });
-});
+  $("#css3d-container .worldLabel a").on("hover",function(){
+    $("#css3d-container .worldLabel span").css("margin-bottom","89px");
+    
+  });
+  });
   </script>
   <!-- <script src="/static/main.js"></script> -->
 
