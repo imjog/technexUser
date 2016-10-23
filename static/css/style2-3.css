@@ -686,9 +686,13 @@ button:focus {
   max-width: 1200px;
   margin: 1em auto;
 }
-.content__item p:first-of-type {
-  font-size: 1.35em;
+@media screen and (max-width: 599px){
+    .content__item p {
+  max-width: 1200px;
+  margin: 13em auto;
 }
+}
+
 
 .content__item.content__item--show {
   height: auto;
@@ -1306,6 +1310,12 @@ ul.topnav li.icon {display: none;}
     text-align: center;
     z-index: 980; 
     right: -8%;
+    display: none;
+}
+@media screen and (min-width:768px){
+    .event-dis{
+        display: block; 
+    }
 }
 @media screen and (max-width:1024px){
     .event-dis{
@@ -1347,4 +1357,39 @@ hr{
     border: 1px solid rgba(255,255,255,.3);
     position: relative;
     z-index: 980;
+}
+
+
+/*------------EVENTS OPTION CONTROL-----------*/
+.mob-event-content{
+    display: block;
+}
+.event-info{
+    display: none;
+}
+@media screen and (min-width:768px){
+    .mob-event-content{
+    display: none;
+}
+.event-info{
+    display: block;
+}
+}
+
+.mob-event-content{
+    margin-top: 40%;
+    margin-left: -8%;
+    
+}
+.content-ul{
+    
+}
+.content-li{
+    text-align: left;
+    float: inherit;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,.2);   
+}
+.content-li h3 {
+    text-transform: uppercase;
 }
