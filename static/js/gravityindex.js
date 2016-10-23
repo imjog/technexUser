@@ -1,6 +1,3 @@
-/**
- * requestAnimationFrame
- */
 window.requestAnimationFrame = (function(){
     return  window.requestAnimationFrame       ||
             window.webkitRequestAnimationFrame ||
@@ -11,11 +8,6 @@ window.requestAnimationFrame = (function(){
                 window.setTimeout(callback, 1000 / 60);
             };
 })();
-
-
-/**
- * Vector
- */
 function Vector(x, y) {
     this.x = x || 0;
     this.y = y || 0;
@@ -123,10 +115,6 @@ Vector.prototype = {
     }
 };
 
-
-/**
- * GravityPoint
- */
 function GravityPoint(x, y, radius, targets) {
     Vector.call(this, x, y);
     this.radius = radius;
@@ -266,10 +254,6 @@ GravityPoint.prototype = (function(o) {
     }
 });
 
-
-/**
- * Particle
- */
 function Particle(x, y, radius) {
     Vector.call(this, x, y);
     this.radius = radius;
@@ -293,35 +277,12 @@ Particle.prototype = (function(o) {
         this._latest.set(this);
         this.add(this._speed);
     }
-
-    // render: function(ctx) {
-    //     if (this._speed.length() > 12) this._speed.normalize().scale(12);
-
-    //     this._latest.set(this);
-    //     this.add(this._speed);
-
-    //     ctx.save();
-    //     ctx.fillStyle = ctx.strokeStyle = '#fff';
-    //     ctx.lineCap = ctx.lineJoin = 'round';
-    //     ctx.lineWidth = this.radius * 2;
-    //     ctx.beginPath();
-    //     ctx.moveTo(this.x, this.y);
-    //     ctx.lineTo(this._latest.x, this._latest.y);
-    //     ctx.stroke();
-    //     ctx.beginPath();
-    //     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    //     ctx.fill();
-    //     ctx.restore();
-    // }
 });
 
 
-
-// Initialize
-
 (function() {
 
-    // Configs
+
 
     var BACKGROUND_COLOR      = 'rgba(0,0,0,0)',
         PARTICLE_RADIUS       = 1,
@@ -329,7 +290,6 @@ Particle.prototype = (function(o) {
         G_POINT_RADIUS_LIMITS = 65;
 
 
-    // Vars
 
     var canvas, context,
         bufferCvs, bufferCtx,
@@ -341,23 +301,16 @@ Particle.prototype = (function(o) {
         gui, control;
 
 
-    // Event Listeners
 
     function resize(e) {
         screenWidth  = canvas.width  = document.getElementById("abcd").offsetWidth;
         screenHeight = canvas.height = document.getElementById("abcd").offsetHeight;
-        console.log(window.innerWidth);
-        console.log(window.innerHeight);
-        console.log(document.getElementById("abcd").offsetWidth);
-
         bufferCvs.width  = screenWidth;
         bufferCvs.height = screenHeight;
         context   = canvas.getContext('2d');
         bufferCtx = bufferCvs.getContext('2d');
-
         var cx = canvas.width * 0.5,
             cy = canvas.height * 0.5;
-
         grad = context.createRadialGradient(cx, cy, 0, cx, cy, Math.sqrt(cx * cx + cy * cy));
         grad.addColorStop(0, 'rgba(0, 0, 0, 0)');
         grad.addColorStop(1, 'rgba(0, 0, 0, 0.35)');
@@ -424,20 +377,11 @@ Particle.prototype = (function(o) {
             particles.push(p);
         }
     }
-
-    function removeParticle(num) {
-        if (particles.length < num) num = particles.length;
-        for (var i = 0; i < num; i++) {
-            particles.pop();
-        }
-    }
-
     control = {
         particleNum: 80
     };
 
 
-    // Init
 
     canvas  = document.getElementById('c');
     bufferCvs = document.createElement('canvas');
@@ -451,24 +395,6 @@ Particle.prototype = (function(o) {
     window.addEventListener('mousedown', mouseDown, false);
     window.addEventListener('mouseup', mouseUp, false);
     window.addEventListener('dblclick', doubleClick, false);
-
-
-    // GUI
-
-    gui = new dat.GUI();
-    gui.add(control, 'particleNum', 0, 300).step(1).name('Particle Num').onChange(function() {
-        var n = (control.particleNum | 0) - particles.length;
-        if (n > 0)
-            addParticle(n);
-        else if (n < 0)
-            removeParticle(-n);
-    });
-    gui.add(GravityPoint, 'interferenceToPoint').name('Interference Between Point');
-    gui.close();
-
-
-    // Start Update
-
     var loop = function() {
         var i, len, g, p;
 
