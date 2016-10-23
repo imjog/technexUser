@@ -258,6 +258,11 @@ button:focus {
   -webkit-justify-content: center;
   justify-content: center;
 }
+.grid__item:nth-child(1),
+.grid__item:nth-child(2),
+.grid__item:nth-child(3){
+    color: white;
+}
 
 /* Grid item "border" */
 .grid__item::before {
@@ -841,7 +846,16 @@ button:focus {
   .grid__item:focus::before {
     border: 1px solid white;
   }
-
+    
+.grid__item:hover:nth-child(2)::before,
+  .grid__item:focus:nth-child(2)::before,
+    .grid__item:hover:nth-child(1)::before,
+  .grid__item:focus:nth-child(1)::before,
+    .grid__item:hover:nth-child(3)::before,
+  .grid__item:focus:nth-child(3)::before {
+     border: 1px solid rgba(255,255,255,.5);
+      color: 
+  }
   .grid__item--loading.grid__item::before {
     opacity: 0;
   }
