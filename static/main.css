@@ -23,20 +23,10 @@ section,
 summary {
     display: block
 }
-audio,
-canvas,
-progress,
-video {
+canvas
+ {
     display: inline-block;
     vertical-align: baseline
-}
-audio:not([controls]) {
-    display: none;
-    height: 0
-}
-[hidden],
-template {
-    display: none
 }
 a {
     background-color: transparent
@@ -870,6 +860,12 @@ body {
     padding: 10px 15px;
     margin: 11px 10px;
 }
+#css3d-container button {
+    background-color: transparent;
+    border: 2px solid hsla(0, 0%, 100%, .8);
+    padding: 10px 15px;
+    margin: 11px 10px;
+}
 
 #sections-container .big-button {
     display: block;
@@ -1009,12 +1005,14 @@ body {
 {
     bottom:0;
 }
+#css3d-container .navigation,
 #sections-container .navigation {
     position: absolute;
     /*bottom: 0;*/
     width: 100%;
     text-align: center
 }
+#css3d-container .navigation .seperator,
 #sections-container .navigation .seperator {
     display: inline-block;
     margin-bottom: -15px;
@@ -1025,6 +1023,8 @@ body {
     background-color: #fff;
     opacity: .3
 }
+#css3d-container .navigation .button-next,
+#css3d-container .navigation .button-prev,
 #sections-container .navigation .button-next,
 #sections-container .navigation .button-prev {
     color: transparent;
@@ -1040,10 +1040,14 @@ body {
 {
     bottom: 0px;
 }
+#css3d-container .navigation .button-next.is-disabled,
+#css3d-container .navigation .button-prev.is-disabled,
 #sections-container .navigation .button-next.is-disabled,
 #sections-container .navigation .button-prev.is-disabled {
     display: none
 }
+#css3d-container .navigation .button-next:after,
+#css3d-container .navigation .button-prev:after,
 #sections-container .navigation .button-next:after,
 #sections-container .navigation .button-prev:after {
     content: " ";
@@ -1059,18 +1063,22 @@ body {
     border-style: solid;
     border-color: #fff
 }
+#css3d-container .navigation .button-prev,
 #sections-container .navigation .button-prev {
     display: inline-block;
     margin: 0 10px 30px
 }
+#css3d-container .navigation .button-prev:after,
 #sections-container .navigation .button-prev:after {
     border-width: 1px 0 0 1px;
     left: 10px
 }
+#css3d-container .navigation .button-next,
 #sections-container .navigation .button-next {
     display: inline-block;
     margin: 15px 10px
 }
+#css3d-container .navigation .button-next:after,
 #sections-container .navigation .button-next:after {
     border-width: 0 1px 1px 0;
     right: 10px
@@ -1104,206 +1112,7 @@ body {
         margin-top: 160px
     }
 }
-#philosophy-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-    z-index: 4;
-    opacity: 0;
-    display: none
-}
-#philosophy-container h1 {
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 16px;
-    text-align: center;
-    margin: 80px 0;
-    letter-spacing: 10px
-}
-#philosophy-container .close-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 32px;
-    height: 32px;
-    border: 1px solid #fff;
-    background-color: transparent;
-    font-size: 26px;
-    line-height: 29px;
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
-    z-index: 3
-}
-#philosophy-container .gallery-container {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    position: relative;
-    height: 100%;
-    padding: 0 100px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden
-}
-#philosophy-container .gallery-item {
-    padding: 0;
-    box-sizing: border-box;
-    display: block;
-    float: left;
-    position: relative;
-    overflow: visible;
-    opacity: 0
-}
-#philosophy-container .gallery-item:before {
-    display: block;
-    content: " ";
-    width: 100%
-}
-#philosophy-container .gallery-item.landscape:before {
-    padding-top: 80%
-}
-#philosophy-container .gallery-item.square:before {
-    padding-top: 100%
-}
-#philosophy-container .gallery-item.portrait:before {
-    padding-top: 130%
-}
-#philosophy-container .gallery-item .item-source {
-    opacity: 0;
-    position: absolute;
-    top: 5px;
-    right: 30px;
-    font-size: 14px;
-    color: #fff;
-    -webkit-transition: opacity .3s ease;
-    transition: opacity .3s ease;
-    text-shadow: 0 0 15px #000
-}
-#philosophy-container .gallery-item .item-source:hover {
-    text-decoration: none
-}
-#philosophy-container .gallery-item:hover .item-source {
-    opacity: 1
-}
-#philosophy-container .gallery-item .text-item {
-    position: absolute;
-    top: 55%;
-    left: 0;
-    text-align: center;
-    width: 100%;
-    text-transform: uppercase;
-    line-height: 1.8em;
-    letter-spacing: .1em;
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%)
-}
-#philosophy-container .gallery-item .text-item span {
-    font-size: 20px
-}
-#philosophy-container .gallery-item iframe,
-#philosophy-container .gallery-item img {
-    width: calc(100% - 40px);
-    position: absolute;
-    top: 0;
-    left: 20px
-}
-#philosophy-container .gallery-item iframe {
-    height: 90%
-}
-#philosophy-container .gallery-item.small {
-    width: 33.333%
-}
-#philosophy-container .gallery-item.medium {
-    width: 66.666%
-}
-#philosophy-container .gallery-item.medium:before {
-    padding-top: 50%
-}
-#philosophy-container .gallery-item.video {
-    width: 100%
-}
-#philosophy-container .gallery-item.video:before {
-    padding-top: 50%
-}
-@media (max-width: 800px) {
-    #philosophy-container:after {
-        content: " ";
-        bottom: 0
-    }
-    #philosophy-container h1 {
-        line-height: 60px;
-        font-size: 18px;
-        letter-spacing: 6px;
-        left: 0
-    }
-    #philosophy-container h1:after {
-        content: " ";
-        display: inline-block;
-        width: 20px
-    }
-    #philosophy-container:after,
-    #philosophy-container h1 {
-        width: 100%;
-        margin: 0;
-        height: 55px;
-        z-index: 2;
-        display: block;
-        position: fixed;
-        font-size: 14px;
-        letter-spacing: 2px;
-        background: -webkit-linear-gradient(#151416, rgba(21, 20, 22, 0));
-        background: linear-gradient(#151416, rgba(21, 20, 22, 0))
-    }
-    #philosophy-container:after {
-        background: -webkit-linear-gradient(rgba(21, 20, 22, 0), #151416);
-        background: linear-gradient(rgba(21, 20, 22, 0), #151416)
-    }
-    #philosophy-container .close-button {
-        top: 15px;
-        left: 15px;
-        width: 25px;
-        height: 25px;
-        line-height: 25px
-    }
-    #philosophy-container .gallery-container {
-        padding: 0;
-        position: static
-    }
-    #philosophy-container .gallery-item {
-        -webkit-transform: none!important;
-        transform: none!important
-    }
-    #philosophy-container .gallery-item:first-of-type {
-        margin-top: 60px
-    }
-    #philosophy-container .gallery-item .item-source {
-        opacity: 1;
-        display: block
-    }
-    #philosophy-container .gallery-item .text-item {
-        position: relative;
-        -webkit-transform: translateY(0);
-        transform: translateY(0)
-    }
-    #philosophy-container .gallery-item.medium:before,
-    #philosophy-container .gallery-item.small:before {
-        display: none
-    }
-    #philosophy-container .gallery-item img {
-        position: relative
-    }
-    #philosophy-container .gallery-item iframe {
-        height: 100%
-    }
-    #philosophy-container .gallery-item.large,
-    #philosophy-container .gallery-item.medium,
-    #philosophy-container .gallery-item.small,
-    #philosophy-container .gallery-item.video {
-        width: 100%;
-        margin: 15px 0
-    }
-}
+
 #css3d-container {
     position: absolute;
     width: 100%;
@@ -1321,11 +1130,18 @@ body {
     text-align: center
 }
 
+
 #css3d-container .worldLabel .world-image,
 #css3d-container .worldLabel span {
     opacity: 0;
     -webkit-transition: opacity .3s ease;
     transition: opacity .3s ease
+}
+#css3d-container .worldLabel a:hover {
+   text-decoration: none;
+   border: none;
+   transform: scale(1.4);
+
 }
 #css3d-container .worldLabel .world-image {
     width: 150px;
@@ -1400,8 +1216,8 @@ body {
 }
 #css3d-container .worldLabel:after {
     content: " ";
-    width: 1px;
-    height: 0;
+    width: 0.2px;
+    height: 10px;
     background-color: #fff;
     position: absolute;
     left: 50%;
@@ -1420,12 +1236,7 @@ body {
 }
 #css3d-container .worldLabel.is-visible:after {
     margin-top: 0;
-    height: 23%
-}
-.papa
-{
-    transform: scale(2,3);
-   
+    height: 73%
 }
 #webgl-container {
     position: absolute;

@@ -188,7 +188,7 @@
             document.addEventListener(T, function(e) {
                 document[M] ? n.Howler.mute() : v || n.Howler.unmute()
             }), o.init($("#webgl-container"), $("#css3d-container"), function() {
-                i.delay(function(){
+               
                  $("#loader-container").css({
                             display: "none"
                         }), $(h[0]).fadeIn(function() {
@@ -196,7 +196,6 @@
 
                         }), $("#webgl-container").addClass("is-visible");
                         $("#sections-container").addClass("is-visible");
-                },8500);
                 
                
             }), $(".button-next").on("click", r), $(".button-prev").on("click", a), $(".philosophy-open").on("click", s), $(".philosophy-close").on("click", u), $(".signup-open").on("click", c), $(".signup-close").on("click", l);
@@ -466,12 +465,11 @@
                         var s = document.createElement("div");
                         // console.log(a);
 
-                        s.className = "worldLabel", s.id = "worldLabel" + a, s.innerHTML = "<span>" + n[a] + "</span>", s.innerHTML += '<div class="world-image world-' + n[a].split(" ")[0].toLowerCase() + '"></div>';
+                        s.className = "worldLabel", s.id = "worldLabel" + a, s.innerHTML = '<span>' + n[a] + '</span>', s.innerHTML += '<a href="#" class="world-image world-' + n[a].split(" ")[0].toLowerCase() + '"></a>';
           
-                        
+                    
                         var u = new o.CSS3DSprite(s);
-                        u.position.copy(N.worlds[a].position), u.scale.s
-                        et(.005, .005, .005), A.add(u)
+                        u.position.copy(N.worlds[a].position), u.scale.set(.005, .005, .005), A.add(u)
                     }
 
                     e.append(S.domElement), t.append(C.domElement), f(n), h(), r && r()
@@ -639,6 +637,8 @@
                     if (D = k, k = e, k > D) switch (k) {
                         case 1:
                         console.log("1-2");
+                        $("#css3d-container").css("z-index","2");
+                        $("#css3d-container .navigation").hide();
                             E.starsPosition.to({
                                 y: P
                             }, R).start(), E.facePosition.to({
@@ -647,6 +647,9 @@
                             break;
                         case 2:
                             console.log("2-3");
+                            $("#css3d-container").css("z-index","6");
+                            $("#css3d-container .navigation").css("z-index","6");
+                            $("#css3d-container .navigation").show();
                             E.faceBlast.to({
                                 blastTween: 1
                             }, R).easing(i.Easing.Quadratic.InOut).onUpdate(function() {
@@ -659,6 +662,8 @@
                             break;
                         case 3:
                         console.log("3-4");
+                        $("#css3d-container").css("z-index","2");
+                         $("#css3d-container .navigation").hide();
                             E.faceScale.to({
                                 x: .01,
                                 y: .01,
@@ -686,7 +691,9 @@
                              //    y: P,}).onComplete().start()
                             break;
                         case 4:
+                        $("#css3d-container").css("z-index","2");
                         console.log("4-5");
+                        $("#css3d-container .navigation").hide();
                             E.starsPosition.to({
                                 y: 2 * P
                             }, R).start(), E.worldsPosition.to({
@@ -697,6 +704,7 @@
                     } else switch (k) {
                         case 0:
                         console.log("case0");
+                        $("#css3d-container .navigation").hide();
                             E.starsPosition.to({
                                 y: 0
                             }, R).start(), E.facePosition.to({
@@ -705,6 +713,8 @@
                             break;
                         case 1:
                           console.log("case1");
+                          $("#css3d-container").css("z-index","2");
+                          $("#css3d-container .navigation").hide();
                             E.faceBlast.to({
                                 blastTween: 0
                             }, R).delay(0).easing(i.Easing.Quadratic.InOut).onUpdate(function() {
@@ -719,6 +729,9 @@
                             break;
                         case 2:
                         console.log("case2");
+                        $("#css3d-container .navigation").css("z-index","6");
+                        $("#css3d-container").css("z-index","6");
+                        $("#css3d-container .navigation").show();
                         E.worldsScale.to({
                                 x: 1,
                                 y: 1,
@@ -743,6 +756,8 @@
                             break;
                         case 3:
                         console.log("case3");
+                        $("#css3d-container").css("z-index","2");
+                        $("#css3d-container .navigation").hide();
                             E.starsPosition.to({
                                 y: P
                             }, R).start(), E.worldsPosition.to({
