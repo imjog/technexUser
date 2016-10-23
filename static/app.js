@@ -84,7 +84,7 @@
     2: [function(e, t, r) {
         "use strict";
         window.$ = window.jQuery = e("jquery"), e("jquery-mousewheel")($), e("velocity-animate"), e("magnific-popup");
-        var n = e("howler"),
+           var n = e("howler"),
             i = e("./utils"),
             o = e("./scene");
         window.onload = function() {
@@ -106,7 +106,6 @@
             }
 
             function r() {
-                console.log("aaya1");
                 t(d + 1)
             }
 
@@ -271,14 +270,12 @@
             this.init = function(a) {
                 var s = this,
                     u = new n.TextureLoader(a);
-                    console.log(u);
                 u.load("/static/assets/images/face.jpg", function(a) {
                     var u = new n.Geometry,
                         c = 750,
                         l = new Image;
                         l.src="/static/assets/images/face.jpg"
                         l.class="abcd"
-                        console.log(l);
                      l.onload = function() {
                         var l = document.createElement("canvas");
                         l.width = c, l.height = c;
@@ -641,7 +638,6 @@
                 B.init(L), n(window).on("resize", h), n(document).on("mousemove", p), this.setSection = function(e, t) {
                     if (D = k, k = e, k > D) switch (k) {
                         case 1:
-                        console.log("1-2");
                         $("#css3d-container").css("z-index","2");
                         $("#css3d-container .navigation").hide();
                             E.starsPosition.to({
@@ -651,7 +647,6 @@
                             }, R).onComplete(t).start();
                             break;
                         case 2:
-                            console.log("2-3");
                             $("#css3d-container").css("z-index","6");
                             $("#css3d-container .navigation").css("z-index","6");
                             $("#css3d-container .navigation").show();
@@ -666,7 +661,6 @@
                             }, R).delay(0).easing(i.Easing.Quartic.InOut).onComplete(t).start();
                             break;
                         case 3:
-                        console.log("3-4");
                         $("#css3d-container").css("z-index","2");
                          $("#css3d-container .navigation").hide();
                             E.faceScale.to({
@@ -692,12 +686,9 @@
                                 y: .01,
                                 z: .01
                             }).start();
-                             // E.worldsPosition.to({
-                             //    y: P,}).onComplete().start()
                             break;
                         case 4:
                         $("#css3d-container").css("z-index","2");
-                        console.log("4-5");
                         $("#css3d-container .navigation").hide();
                             E.starsPosition.to({
                                 y: 2 * P
@@ -717,7 +708,6 @@
                             }, R).onComplete(t).start(); 
                             break;
                         case 1:
-                          console.log("case1");
                           $("#css3d-container").css("z-index","2");
                           $("#css3d-container .navigation").hide();
                             E.faceBlast.to({
@@ -733,7 +723,6 @@
                             }).start();
                             break;
                         case 2:
-                        console.log("case2");
                         $("#css3d-container .navigation").css("z-index","6");
                         $("#css3d-container").css("z-index","6");
                         $("#css3d-container .navigation").show();
@@ -760,7 +749,6 @@
                             }).start();
                             break;
                         case 3:
-                        console.log("case3");
                         $("#css3d-container").css("z-index","2");
                         $("#css3d-container .navigation").hide();
                             E.starsPosition.to({
@@ -5527,9 +5515,9 @@
                 return 3 === arguments.length ? this.fromArray(arguments) : this.set(e)
             }, i.Color.prototype = {
                 constructor: i.Color,
-                r: 255,
-                g: 255,
-                b: 255,
+                r: 1,
+                g: 1,
+                b: 1,
                 set: function(e) {
                     return e instanceof i.Color ? this.copy(e) : "number" == typeof e ? this.setHex(e) : "string" == typeof e && this.setStyle(e), this
                 },
@@ -10934,13 +10922,11 @@
                     })
                 },
                 get wrapAround() {
-                    console.warn("THREE." + this.type + ": .wrapAround has been removed.")
                 },
                 set wrapAround(e) {
-                    console.warn("THREE." + this.type + ": .wrapAround has been removed.")
                 },
                 get wrapRGB() {
-                    return console.warn("THREE." + this.type + ": .wrapRGB has been removed."), new i.Color
+                    new i.Color
                 }
             }, i.EventDispatcher.prototype.apply(i.Material.prototype), i.MaterialIdCount = 0, i.LineBasicMaterial = function(e) {
                 i.Material.call(this), this.type = "LineBasicMaterial", this.color = new i.Color(16777215), this.linewidth = 1, this.linecap = "round", this.linejoin = "round", this.vertexColors = i.NoColors, this.fog = !0, this.setValues(e)
@@ -10996,11 +10982,11 @@
             }, i.PointsMaterial.prototype = Object.create(i.Material.prototype), i.PointsMaterial.prototype.constructor = i.PointsMaterial, i.PointsMaterial.prototype.copy = function(e) {
                 return i.Material.prototype.copy.call(this, e), this.color.copy(e.color), this.map = e.map, this.size = e.size, this.sizeAttenuation = e.sizeAttenuation, this.vertexColors = e.vertexColors, this.fog = e.fog, this
             }, i.PointCloudMaterial = function(e) {
-                return console.warn("THREE.PointCloudMaterial has been renamed to THREE.PointsMaterial."), new i.PointsMaterial(e)
+                return new i.PointsMaterial(e)
             }, i.ParticleBasicMaterial = function(e) {
-                return console.warn("THREE.ParticleBasicMaterial has been renamed to THREE.PointsMaterial."), new i.PointsMaterial(e)
+                return new i.PointsMaterial(e)
             }, i.ParticleSystemMaterial = function(e) {
-                return console.warn("THREE.ParticleSystemMaterial has been renamed to THREE.PointsMaterial."), new i.PointsMaterial(e)
+                return new i.PointsMaterial(e)
             }, i.ShaderMaterial = function(e) {
                 i.Material.call(this), this.type = "ShaderMaterial", this.defines = {}, this.uniforms = {}, this.vertexShader = "void main() {\n	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}", this.fragmentShader = "void main() {\n	gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );\n}", this.shading = i.SmoothShading, this.linewidth = 1, this.wireframe = !1, this.wireframeLinewidth = 1, this.fog = !1, this.lights = !1, this.vertexColors = i.NoColors, this.skinning = !1, this.morphTargets = !1, this.morphNormals = !1, this.derivatives = !1, this.defaultAttributeValues = {
                     color: [1, 1, 1],
@@ -12592,7 +12578,7 @@
                     }
                     return 0
                 }
-                console.log("THREE.WebGLRenderer", i.REVISION), e = e || {};
+                e = e || {};
                 var Q = void 0 !== e.canvas ? e.canvas : document.createElement("canvas"),
                     Z = void 0 !== e.context ? e.context : null,
                     J = Q.width,
@@ -13837,34 +13823,29 @@
                 }
             }, i.GeometryUtils = {
                 merge: function(e, t, r) {
-                    console.warn("THREE.GeometryUtils: .merge() has been moved to Geometry. Use geometry.merge( geometry2, matrix, materialIndexOffset ) instead.");
                     var n;
                     t instanceof i.Mesh && (t.matrixAutoUpdate && t.updateMatrix(), n = t.matrix, t = t.geometry), e.merge(t, n, r)
                 },
                 center: function(e) {
-                    return console.warn("THREE.GeometryUtils: .center() has been moved to Geometry. Use geometry.center() instead."), e.center()
+                    return e.center()
                 }
             }, i.ImageUtils = {
                 crossOrigin: void 0,
                 loadTexture: function(e, t, r, n) {
-                    console.warn("THREE.ImageUtils.loadTexture is being deprecated. Use THREE.TextureLoader() instead.");
                     var o = new i.TextureLoader;
                     o.setCrossOrigin(this.crossOrigin);
                     var a = o.load(e, r, void 0, n);
                     return t && (a.mapping = t), a
                 },
                 loadTextureCube: function(e, t, r, n) {
-                    console.warn("THREE.ImageUtils.loadTextureCube is being deprecated. Use THREE.CubeTextureLoader() instead.");
                     var o = new i.CubeTextureLoader;
                     o.setCrossOrigin(this.crossOrigin);
                     var a = o.load(e, r, void 0, n);
                     return t && (a.mapping = t), a
                 },
                 loadCompressedTexture: function() {
-                    console.error("THREE.ImageUtils.loadCompressedTexture has been removed. Use THREE.DDSLoader instead.")
                 },
                 loadCompressedTextureCube: function() {
-                    console.error("THREE.ImageUtils.loadCompressedTextureCube has been removed. Use THREE.DDSLoader instead.")
                 }
             }, i.SceneUtils = {
                 createMultiMaterialObject: function(e, t) {
@@ -13905,7 +13886,7 @@
                         var h = n,
                             p = 2 * h;
                         for (a = h - 1; h > 2;) {
-                            if (p-- <= 0) return console.warn("THREE.ShapeUtils: Unable to triangulate polygon! in triangulate()"), r ? l : u;
+                            if (p-- <= 0) return r ? l : u;
                             if (o = a, o >= h && (o = 0), a = o + 1, a >= h && (a = 0), s = a + 1, s >= h && (s = 0), e(t, o, a, s, h, c)) {
                                 var d, f, m, g, v;
                                 for (d = c[o], f = c[a], m = c[s], u.push([t[d], t[f], t[m]]), l.push([c[o], c[a], c[s]]), g = a, v = a + 1; h > v; g++, v++) c[g] = c[v];
