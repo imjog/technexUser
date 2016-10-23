@@ -470,8 +470,7 @@
           
                         
                         var u = new o.CSS3DSprite(s);
-                        u.position.copy(N.worlds[a].position), u.scale.s
-                        et(.005, .005, .005), A.add(u)
+                        u.position.copy(N.worlds[a].position), u.scale.set(.005, .005, .005), A.add(u)
                     }
 
                     e.append(S.domElement), t.append(C.domElement), f(n), h(), r && r()
