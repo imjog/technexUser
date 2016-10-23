@@ -66,9 +66,9 @@ def register(request):
                         }
             if 'email' in get:
                 context['email'] = get['email']
-            return render(request,'signup.html',context)
+            return render(request,'signUp.html',context)
         except:
-            return render(request,'signup.html')
+            return render(request,'signUp.html')
 
 def loginView(request):
     if request.user.is_authenticated():
@@ -286,7 +286,7 @@ def event(request, key):
             eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
             response['events'].append(eventData)
         response['events'].sort(key= lambda x: x['eventOrder'])  
-        print json.dumps(response)
+        #print json.dumps(response)
         return render(request,'index3.html',{'parentEvent':json.dumps(response)})
     else:
         response['error'] = True
