@@ -188,7 +188,7 @@
             document.addEventListener(T, function(e) {
                 document[M] ? n.Howler.mute() : v || n.Howler.unmute()
             }), o.init($("#webgl-container"), $("#css3d-container"), function() {
-                i.delay(function(){
+               
                  $("#loader-container").css({
                             display: "none"
                         }), $(h[0]).fadeIn(function() {
@@ -196,7 +196,6 @@
 
                         }), $("#webgl-container").addClass("is-visible");
                         $("#sections-container").addClass("is-visible");
-                },8500);
                 
                
             }), $(".button-next").on("click", r), $(".button-prev").on("click", a), $(".philosophy-open").on("click", s), $(".philosophy-close").on("click", u), $(".signup-open").on("click", c), $(".signup-close").on("click", l);
