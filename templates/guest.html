@@ -31,83 +31,18 @@
 </ul></div>
 <!--------------------/NAVBAR-------------------------->
 		<ul class="cd-gallery">
+		{% for lecture in lectures %}
 			<li class="cd-item">
 				<a>
 					<div>
-						<h2>Guest Lecture1</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<h2>{{lecture.lecturerName}}</h2>
+						<p>{{lecture.designation}}</p>
 						<b>View More</b>
 					</div>
 				</a>
 			</li>
-
-			<li class="cd-item">
-				<a>
-					<div>
-						<h2>Guest Lecture2</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a class="dark-text">
-					<div>
-						<h2>Guest Lecture3</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a>
-					<div>
-						<h2>Guest Lecture4</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-            <li class="cd-item">
-				<a class="dark-text">
-					<div>
-						<h2>Guest Lecture5</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a>
-					<div>
-						<h2>Guest Lecture6</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-            <li class="cd-item">
-				<a class="dark-text">
-					<div>
-						<h2>Guest Lecture7</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a>
-					<div>
-						<h2>Guest Lecture8</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
+{% endfor %}
+		
 		</ul> <!-- .cd-gallery -->
 	</main> <!-- .cd-main -->
 
