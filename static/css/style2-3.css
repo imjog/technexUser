@@ -1299,3 +1299,52 @@ ul.topnav li.icon {display: none;}
   }
 }
 /*-------------------/NAVBAR-------------------*/
+
+.event-dis{
+    color: rgba(255,255,255,.9);
+    position: relative;
+    text-align: center;
+    z-index: 980; 
+    right: -8%;
+}
+@media screen and (max-width:1024px){
+    .event-dis{
+        right:-16%; 
+    }
+}
+@media screen and (min-width:1024px) and (max-width:1200px){
+    .event-dis{
+        right:-12%; 
+    }
+}
+@media screen and (min-width:1500px){
+     .event-dis{
+        right:-8%; 
+    }
+}
+.event-dis h3{
+     padding-left: 21%;
+    padding-right: 17%;
+    text-align: left;
+}
+.event-dis h1{
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+@media screen and (max-width:768px){
+    .event-dis h3{
+     padding-left: 0%;
+    padding-right: 10%;
+}
+}
+@media screen and (max-width:768px){
+    .event-dis{
+        right:-8%;
+    }
+}
+
+hr{
+    border: 1px solid rgba(255,255,255,.3);
+    position: relative;
+    z-index: 980;
+}

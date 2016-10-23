@@ -2319,3 +2319,11 @@ p.signup-open:hover {
     transform: translate3d(4px, 0, 0);
   }
 }
+
+.testi-heading{
+    color: rgba(255,255,255,.9);
+    position: relative;
+    top: 20%;
+    left: 36%;
+    letter-spacing: 5px;
+}
