@@ -20,9 +20,11 @@
     }
     for (var o = "function" == typeof require && require, a = 0; a < n.length; a++) i(n[a]);
     return i
-}({
+}
+({
     1: [function(e, t, r) {
-        t.exports = function(e) {
+        t.exports = function(e) 
+        {
             e.CSS3DObject = function(t) {
                 e.Object3D.call(this), this.element = t, this.element.style.position = "absolute", this.addEventListener("removed", function(e) {
                     null !== this.element.parentNode && this.element.parentNode.removeChild(this.element)
@@ -78,7 +80,7 @@
                 }
             }
         }
-    }, {}],
+    },{}],
     2: [function(e, t, r) {
         "use strict";
         window.$ = window.jQuery = e("jquery"), e("jquery-mousewheel")($), e("velocity-animate"), e("magnific-popup");
@@ -104,10 +106,12 @@
             }
 
             function r() {
+                console.log("aaya1");
                 t(d + 1)
             }
 
             function a() {
+                console.log("aaya2");
                 t(d - 1)
             }
 
@@ -217,7 +221,7 @@
                     E = 0, A = !1
                 }, 100);
             $(document).on("mousewheel", function(e) {
-                m || A || (E += e.deltaY, E > C && (a(), A = !0), -C > E && (r(), A = !0)), L()
+                m || A || (E += e.originalEvent.deltaY,console.log(E),E > C && (r(), A = !0), -C > E && (a(),A = !0)), L()
             }), $(document).keydown(function(e) {
                 if (!m) switch (e.which) {
                     case 38:
@@ -231,7 +235,8 @@
                 }
             })
         }
-    }, {
+    },
+     {
         "./scene": 5,
         "./utils": 7,
         howler: 9,
@@ -5522,9 +5527,9 @@
                 return 3 === arguments.length ? this.fromArray(arguments) : this.set(e)
             }, i.Color.prototype = {
                 constructor: i.Color,
-                r: 1,
-                g: 1,
-                b: 1,
+                r: 255,
+                g: 255,
+                b: 255,
                 set: function(e) {
                     return e instanceof i.Color ? this.copy(e) : "number" == typeof e ? this.setHex(e) : "string" == typeof e && this.setStyle(e), this
                 },

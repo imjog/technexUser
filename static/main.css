@@ -1,5 +1,3 @@
-/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
-
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -214,113 +212,6 @@ body {
 @media (max-width: 800px) {
     .mobile-hidden {
         display: none!important
-    }
-}
-#loader-container.is-hidden .load-text-container {
-    opacity: 0
-}
-.distort-all {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: #151416;
-   /* -webkit-animation: h 5s linear infinite;
-    animation: h 5s linear infinite;*/
-    color: #fff
-}
-.load-text-container {
-    -webkit-transition: opacity .3s ease;
-    transition: opacity .3s ease
-}
-.load-text {
-    position: absolute;
-    top: 50%;
-    margin: auto;
-    left: calc(50% - 50px);
-    text-align: center;
-    font-family: Raleway, sans-serif;
-    font-size: 14px;
-    letter-spacing: .4em;
-    -webkit-animation: f .5s linear infinite, g 2s linear infinite;
-    animation: f .5s linear infinite, g 2s linear infinite
-}
-.load-text:after {
-    top: -2px;
-    font-size: 15px;
-    color: red;
-    left: calc(50% - 53px);
-    text-shadow: -2px 0 red;
-    -webkit-animation: a 1s infinite linear alternate-reverse;
-    animation: a 1s infinite linear alternate-reverse
-}
-.load-text:after,
-.load-text:before {
-    text-align: center;
-    content: 'LOADING';
-    position: absolute;
-    margin: auto;
-    overflow: hidden;
-    clip: rect(0, 900px, 0, 0)
-}
-.load-text:before {
-    text-shadow: 2px 0 blue;
-    left: calc(50% - 51px);
-    color: skyblue;
-    -webkit-animation: b 1s infinite linear alternate-reverse;
-    animation: b 1s infinite linear alternate-reverse
-}
-.load-logo {
-    background: url(/static/assets/images/logo.png) no-repeat center center/cover;
-    width: 100px;
-    height: 100px;
-    margin: 80px auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    -webkit-animation: noise2 .7s linear infinite;
-    animation: noise2 .7s linear infinite;
-    overflow: default
-}
-.load-logo img {
-    width: 100%;
-    -webkit-animation: e .4s linear infinite;
-    animation: e .4s linear infinite
-}
-.load-logo:after {
-    content: '';
-    background: url(/static/assets/images/logo-purple.png) no-repeat center center/cover;
-    width: 130px;
-    height: 130px;
-    left: -10px;
-    -webkit-animation: c .4s linear infinite;
-    animation: c .4s linear infinite
-}
-.load-logo:after,
-.load-logo:before {
-    margin: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0
-}
-.load-logo:before {
-    content: "";
-    background: url(/static/assets/images/logo-green.png) no-repeat center center/cover;
-    width: 110px;
-    height: 110px;
-    left: -20px;
-    color: red;
-    -webkit-animation: d .1s linear infinite;
-    animation: d .1s linear infinite
-}
-@media (max-width: 800px) {
-    .load-logo {
-        margin-top: 50px;
-        -webkit-transform: scale(.8);
-        transform: scale(.8)
     }
 }
 @-webkit-keyframes a {
@@ -860,13 +751,6 @@ body {
     right: 0;
     overflow: hidden
 }
-/*#search-btn
-{
-	background-color: transparent;
-    border: 2px solid hsla(0, 0%, 100%, .8);
-    padding: 10px 15px;
-    margin: 25px 10px
-}*/
 #sections-container button {
     background-color: transparent;
     border: 2px solid hsla(0, 0%, 100%, .8);
@@ -996,17 +880,11 @@ body {
     width: 40px;
     height: 40px;
     display: block;
-    /*filter: grayscale(100%);*/
-    /*opacity: .6;*/
     -webkit-transition: opacity .3s ease;
     transition: opacity .3s ease
 }
 #sections-container .store-button:hover img {
     opacity: 1
-}
-#sections-container .store-button.coming-soon {
-    width: 115px;
-    margin-bottom: 13px
 }
 #sections-container .bottom-container {
     position: absolute;
@@ -1113,12 +991,6 @@ body {
     #sections-container .store-button {
         width: 100px;
         margin: 10px;
-        padding: 0
-    }
-    #sections-container .store-button.coming-soon {
-        width: 110px;
-        margin: 14px;
-        margin-left: 25px;
         padding: 0
     }
     #sections-container .technex-logo-text {
