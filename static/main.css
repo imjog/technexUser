@@ -23,6 +23,19 @@ section,
 summary {
     display: block
 }
+.technex-dates{
+    color: white;
+    margin-right: 21%;
+    margin-top: -7%;
+    font-size: 30px;
+    float: right;
+}
+@media (min-width:1400px){
+    .technex-dates{
+        margin-right: 24%;
+    }
+}
+
 canvas
  {
     display: inline-block;
