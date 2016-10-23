@@ -25,12 +25,15 @@ summary {
     color: white;
     margin-right: 21%;
     margin-top: -7%;
-    font-size: 30px;
+    font-size: 27px;
     float: right;
+    letter-spacing: 2px;
+    font-weight: 500;
 }
 @media (min-width:1400px){
     .technex-dates{
-        margin-right: 24%;
+        margin-right: 22%;
+        font-size: 30px;
     }
 }
 
