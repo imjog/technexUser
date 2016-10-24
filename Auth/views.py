@@ -298,20 +298,19 @@ def guestLecture(request):
     resp = {}
     try:
         lectures = GuestLecture.objects.all()
-        response['status'] = 1
         response['lectures'] = []
         for lecture in lectures:
             lectureData = {}
-            lectureData['title'] = lecture.title
-            lectureData['description'] = lecture.description
-            lectureData['lecturerName'] = lecture.lecturerName
-            lectureData['lecturerBio'] = lecture.lecturerBio
-            lectureData['designation'] = lecture.designation
-            lectureData['lectureType'] = lecture.lectureType
+            lectureData['title'] = lecture.title.encode('ascii','ignore')
+            lectureData['description'] = lecture.description.encode('ascii','ignore')
+            lectureData['lecturerName'] = lecture.lecturerName.encode('ascii','ignore')
+            lectureData['lecturerBio'] = lecture.lecturerBio.encode('ascii','ignore')
+            lectureData['designation'] = lecture.designation.encode('ascii','ignore')
+            lectureData['lectureType'] = lecture.lectureType.encode('ascii','ignore')
             response['lectures'].append(lectureData)
     except:
         response['status'] = 0  
-    return render(request, 'guest.html', {'lectures':json.dumps(response)})
+    return render(request, 'guest.html', {'lectures':response})
 
 def error404(request):
     return render(request, '404.html')

@@ -1974,6 +1974,9 @@ p.signup-open:hover {
 }
 /*
 @media (max-width:1200px)
+=======
+/*@media (max-width:1200px)
+>>>>>>> 5743562e273549581f424ea74a129f0227a50a5a
 {
     body
     {
@@ -1981,6 +1984,8 @@ p.signup-open:hover {
     }
 }
 */
+}*/
+
 #mama
 {
     position: relative;

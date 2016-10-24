@@ -1,45 +1,4 @@
    
-
-
-
-
-
-/*              function checkform(pform)
-{
-
-    
-   next_step = true;
-   $(this).find('input[type="text"], input[type="password"], textarea').each(function() {
-    console.log("l,sl,s,l");
-                if( $(this).val() == "" ) {
-                    
-                    console.log("klkaklakl");
-                    $(this).addClass('input-error');
-                      next_step =false;
-
-                }
-                else
-                {
-                    $(this).removeClass('input-error');
-                };
-                return next_step;
-              });
-              if(next_step)
-              {
-                next_step = emailvalidation();
-              }
-              if(next_step)
-              {
-                next_step = validatePassword();
-              }
-              if(next_step)
-              {
-                next_step = phnvalidation();
-              }
-              return next_step;
-            };
-*/
-
 jQuery(document).ready(function() {
     
     $(".alert-email").hide();
@@ -62,25 +21,6 @@ jQuery(document).ready(function() {
       $('#close-pincode').on('click',function(){
       $('.alert-pincode').hide();
     });
-   // $('#submit-btn').trigger('click');
-
-    /*
-        Fullscreen background
-    */
-   /* var FillWhatsapp  = function(f){
-                                          $('.form-whatsapp').val($('.form-mobile-number').val()) ;
-                                        
-                                              
-                                                }
-    */ 
-    //var password = document.getElementById("password")
-      //, confirm_password = document.getElementById("confirm_password");
-
-    
-    //password.onchange= validatePassword;
-    //confirm_password.onkeyup= validatePassword;
-
-
 function phnvalidation()
     {
         var num = $('.form-mobile-number').val();
@@ -89,15 +29,11 @@ function phnvalidation()
         if((num.length!==10) || (isNaN(parseInt(num))) || (parseInt(num).toString().length  != num.length))
            { 
             $('.alert-mobile').show();
-           // document.getElementById("form-mobile").setCustomValidity("Invalid Phone no");
-            // console.log("here");
-            //$("#mobile-error").html("Invalid Mobile No");
             return false;
         }
         else
         {
            $('.alert-mobile').hide();
-            //$("#mobile-error").html("");
             return true;
         }
     }
@@ -118,10 +54,8 @@ function phnvalidation()
         console.log(num.length);
         if((num.length!==6) || (isNaN(parseInt(num))) || (parseInt(num).toString().length != num.length))
            { 
-            //document.getElementById("form-mobile").setCustomValidity("Invalid Phone no");
             console.log("here");
             $('.alert-pincode').show();
-            //$("#pincode-error").html("Invalid Pin No");
             return false;
         }
         else
@@ -268,6 +202,23 @@ function validatePassword(){
 
             });
             //document.getElementById("form-mobile").setCustomValidity("iNPUT A VALID PHN NO");
+        }
+        
+    });
+        $('#btn-next-page-email').on('click', function() {
+      // k=1;
+        var parent_fieldset = $(this).parents('fieldset');
+        var next_step = true;        
+        if( next_step ) {
+
+            parent_fieldset.fadeOut(400, function() {
+                $(this).next().fadeIn();
+                $($(this).next()).find('input[type="text"], input[type="password"], textarea').each(function()
+                {
+                $(this).removeClass('input-error');   
+               });
+
+            });
         }
         
     });
