@@ -31,12 +31,12 @@
 </ul></div>
 <!--------------------/NAVBAR-------------------------->
 		<ul class="cd-gallery">
-		{% for lecture in lectures %}
+		{% for lecture in lectures.lectures %}
 			<li class="cd-item">
 				<a>
 					<div>
-						<h2>{{lecture.lecturerName}}</h2>
-						<p>{{lecture.designation}}</p>
+						<h2>{{ lecture.lecturerName }}</h2>
+						<p>{{ lecture.designation }}</p>
 						<b>View More</b>
 					</div>
 				</a>
@@ -53,14 +53,14 @@
 		<div class="fold-right"></div> <!-- this is the right fold -->
 		
 		<div class="cd-fold-content" style="color:black" id="guest-content">
-			HELLO
+			
 		</div>
 
 		<a class="cd-close" href="#0"></a>
 	</div> <!-- .cd-folding-panel -->
 <script src="/static/js/guest_js/jquery-2.1.1.js"></script>
 <script type="text/javascript">
-    var data={{ lectures|safe}}
+    var data={{ lectures|safe }};
     
     $('.cd-gallery li').on('click', function() {
         var k=$(this).index();
