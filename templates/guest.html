@@ -31,83 +31,18 @@
 </ul></div>
 <!--------------------/NAVBAR-------------------------->
 		<ul class="cd-gallery">
+		{% for lecture in lectures.lectures %}
 			<li class="cd-item">
 				<a>
 					<div>
-						<h2>Guest Lecture1</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
+						<h2>{{ lecture.lecturerName }}</h2>
+						<p>{{ lecture.designation }}</p>
 						<b>View More</b>
 					</div>
 				</a>
 			</li>
-
-			<li class="cd-item">
-				<a>
-					<div>
-						<h2>Guest Lecture2</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a class="dark-text">
-					<div>
-						<h2>Guest Lecture3</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a>
-					<div>
-						<h2>Guest Lecture4</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-            <li class="cd-item">
-				<a class="dark-text">
-					<div>
-						<h2>Guest Lecture5</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a>
-					<div>
-						<h2>Guest Lecture6</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-            <li class="cd-item">
-				<a class="dark-text">
-					<div>
-						<h2>Guest Lecture7</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
-
-			<li class="cd-item">
-				<a>
-					<div>
-						<h2>Guest Lecture8</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur.</p>
-						<b>View More</b>
-					</div>
-				</a>
-			</li>
+{% endfor %}
+		
 		</ul> <!-- .cd-gallery -->
 	</main> <!-- .cd-main -->
 
@@ -118,20 +53,20 @@
 		<div class="fold-right"></div> <!-- this is the right fold -->
 		
 		<div class="cd-fold-content" style="color:black" id="guest-content">
-			HELLO
+			
 		</div>
 
 		<a class="cd-close" href="#0"></a>
 	</div> <!-- .cd-folding-panel -->
 <script src="/static/js/guest_js/jquery-2.1.1.js"></script>
 <script type="text/javascript">
-    var data={{ lectures|safe}}
+    var data={{ lectures|safe }};
     
     $('.cd-gallery li').on('click', function() {
         var k=$(this).index();
         console.log(k);
         out="";
-        out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><em>"+data.lectures[k].designation+"</em><p>"+data.lectures[k].designation+"</p>";
+        out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em>"+data.lectures[k].lecturerBio+"</em>";
         console.log(out);
         document.getElementById('guest-content').innerHTML=out;
         
