@@ -66,7 +66,7 @@
         var k=$(this).index();
         console.log(k);
         out="";
-        out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><em>"+data.lectures[k].lecturerBio+"</em><p>"+data.lectures[k].designation+"</p>";
+        out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em>"+data.lectures[k].lecturerBio+"</em>";
         console.log(out);
         document.getElementById('guest-content').innerHTML=out;
         
