@@ -14,7 +14,7 @@ from Auth.models import *
 # Create your views here.
 def team(request):
     return render(request,"team.html")
-    
+
 def IndexView(request):
     return render(request,"index.html")
 
@@ -57,7 +57,28 @@ def register(request):
         techprofile.year = data.get('year')
         techprofile.save()
         #print "codeBaes 2"
+        subject = "Confirmation of Registration for Technex 2017"
+        body = "Dear "+ data.get('name',None) +''',
+        
+ You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
 
+An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+
+       Our team will be at the task of updating you from time to time, the  information regarding the festival. Please keep visiting the website and the facebook page of Technex '17 to stay up-to-date with the latest happenings at Technex '17.
+
+
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
+              
+
+Looking forward to seeing you soon at Technex 2016.
+
+All the best!
+
+
+Regards
+
+Team Technex.'''
+        send_email(email,subject,body)
         newUser = authenticate(username=email, password=password)
         login(request, newUser)
         return redirect('/dashboard')
@@ -99,7 +120,7 @@ def loginView(request):
 @login_required(login_url='/login')
 def dashboardView(request):
     context = contextCall(request)
-    return render(request,'dashboard.html',context)
+    return render(request,'thankyou.html',context)
 
 @csrf_exempt
 @login_required(login_url='/login') #not /login/
@@ -292,8 +313,9 @@ def event(request, key):
             eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
             response['events'].append(eventData)
         response['events'].sort(key= lambda x: x['eventOrder'])  
+        metaTags = MetaTags.objects.filter(event = parentEvent)
         #print json.dumps(response)
-        return render(request,'index3.html',{'parentEvent':json.dumps(response)})
+        return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags})
     else:
         response['error'] = True
         response['status'] = 'Invalid Request'
@@ -323,3 +345,13 @@ def error404(request):
 
 def error500(request):
     return render(request, '500.html')
+
+def send_email(recipient, subject, body):
+    
+    return requests.post(
+        "https://api.mailgun.net/v3/mg.technex.in/messages",
+        auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),
+        data={"from": "No-reply <mailgun@mg.technex.in>",
+              "to": recipient,
+              "subject": subject,
+              "text": body})
