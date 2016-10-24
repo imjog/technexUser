@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="/static/login2_files2/font-awesome.min.css">
 		<link rel="stylesheet" href="/static/login2_files2/form-elements.css">
         <link rel="stylesheet" href="/static/login2_files2/assets/css/style.css">
+        <link rel="stylesheet" href="/static/css/jquery-ui.css" type="text/css" media="all" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -220,11 +221,13 @@
         <script src="/static/login2_files2/jquery.backstretch.min.js"></script>
         <script src="/static/login2_files2/retina-1.1.0.min.js"></script>
         <script src="/static/login2_files2/scripts.js"></script>
+          <script src="/static/js/1.12.0jquery-ui.min.js"></script>
+
        <script type="text/javascript">
 $(document).ready(function(){var token = {{status}};
 if(token) $("#btn-next-page-email").trigger( "click" );
 });
-var csrfmiddlewaretoken = '{{ csrf_token }}'
+var csrfmiddlewaretoken = '{{ csrf_token }}';
 
   function theAjax(uri,data){
  return $.ajax({
@@ -233,7 +236,7 @@ var csrfmiddlewaretoken = '{{ csrf_token }}'
     url: uri,
     data : data
  });
-}
+};
 
 
 window.fbAsyncInit = function () {
@@ -292,5 +295,24 @@ function fb_login() {
         scope: 'public_profile'
     });
 }
+
+$(function(){
+  var availableTags = [
+       {% for clg in all_colleges %}
+           "{{clg}}",
+       {%endfor%}
+     ];
+
+$("#form-college").autocomplete({
+       source: availableTags
+     });
+   });
+   // over write the default autocomplete function to match the option starting with term
+   $.ui.autocomplete.filter = function (array, term) {
+     var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
+     return $.grep(array, function (value) {
+       return matcher.test(value.label || value.value || value);
+     });
+   };
 </script>
 </body></html> 
