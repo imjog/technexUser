@@ -191,7 +191,7 @@
             document.addEventListener(T, function(e) {
                 document[M] ? n.Howler.mute() : v || n.Howler.unmute()
             }), o.init($("#webgl-container"), $("#css3d-container"), function() {
-               
+                  $(".technex-dates").hide();
                  $("#loader-container").css({
                             display: "none"
                         }), $(h[0]).fadeIn(function() {
@@ -199,6 +199,12 @@
 
                         }), $("#webgl-container").addClass("is-visible");
                         $("#sections-container").addClass("is-visible");
+                        i.delay(function(){
+                            $(".technex-dates").fadeIn(function(){
+                              $(".technex-dates").show();
+                         });
+                        },5000);
+                         
                 
                
             }), $(".button-next").on("click", r), $(".button-prev").on("click", a), $(".philosophy-open").on("click", s), $(".philosophy-close").on("click", u), $(".signup-open").on("click", c), $(".signup-close").on("click", l);
@@ -220,7 +226,7 @@
                     E = 0, A = !1
                 }, 100);
             $(document).on("mousewheel", function(e) {
-                m || A || (E += e.originalEvent.deltaY,console.log(E),E > C && (r(), A = !0), -C > E && (a(),A = !0)), L()
+                m || A || (E += e.originalEvent.deltaY,E > C && (r(), A = !0), -C > E && (a(),A = !0)), L()
             }), $(document).keydown(function(e) {
                 if (!m) switch (e.which) {
                     case 38:
@@ -321,7 +327,6 @@
             }, this.updateBlast = function() {
                 var e = this.obj.getObjectByName("facePoints"),
                     r = this.obj.getObjectByName("facePlane");
-                    // console.log(e);
                 e.material.opacity = Math.min(50 * this.blastTween, .9), r.material.opacity = Math.max(1 - 5 * this.blastTween, 0), 0 == r.material.opacity ? r.visible = !1 : r.visible = !0;
                 for (var n = this.blastTween < .9 ? this.blastTween : .9, i = 0; t > i; i++) e.geometry.vertices[i].lerpVectors(this.faceGeometry.vertices[i], this.blastGeometry.vertices[i], n);
                 e.geometry.verticesNeedUpdate = !0, e.geometry.colorsNeedUpdate = !0
@@ -360,13 +365,13 @@
                 height: .05,
                 color: t
             }], this.glowMaterial = new n.SpriteMaterial({
-                map: n.ImageUtils.loadTexture("/static/assets/images/flare.png"),
+                // map: n.ImageUtils.loadTexture("/static/assets/images/flare.png"),
                 blending: n.AdditiveBlending,
                 transparent: !0,
                 opacity: 0
             }), this.starsMaterial = new n.PointsMaterial({
                 size: this.starSize / 10,
-                map: n.ImageUtils.loadTexture("/static/assets/images/star.png"),
+                // map: n.ImageUtils.loadTexture("/static/assets/images/star.png"),
                 blending: n.AdditiveBlending,
                 vertexColors: !0,
                 transparent: !0,
@@ -374,7 +379,7 @@
                 opacity: 0
             }), this.hazeMaterial = new n.PointsMaterial({
                 size: .5,
-                map: n.ImageUtils.loadTexture("/static/assets/images/haze.png"),
+                // map: n.ImageUtils.loadTexture("/static/assets/images/haze.png"),
                 blending: n.AdditiveBlending,
                 opacity: .0,
                 vertexColors: !0,
@@ -382,7 +387,7 @@
                 depthTest: !1
             }), this.largeStarMaterial = new n.PointsMaterial({
                 size: this.starSize / 4,
-                map: n.ImageUtils.loadTexture("/static/assets/images/star.png"),
+                // map: n.ImageUtils.loadTexture("/static/assets/images/star.png"),
                 blending: n.AdditiveBlending,
                 vertexColors: !0,
                 transparent: !0,
@@ -465,7 +470,6 @@
                     }, F.draw(), F.obj.visible = !1, F.obj.rotation.x = .4, M.add(F.obj), V.size.height = 6 * P, M.add(V.draw()), B.obj.position.y = -P, M.add(B.obj), N.obj.visible = !1, N.obj.scale.set(.01, .01, .01), M.add(N.draw());
                     for (var n = ["Startup Fair", "Workshops", "Guest Lectures", "sponsors", "Exhibitions", "Initiatives", "Pronites", "Events", "Intellecx"], a = 0; a < N.worlds.length; a++) {
                         var s = document.createElement("div");
-                        // console.log(a);
 
                         s.className = "worldLabel", s.id = "worldLabel" + a, s.innerHTML = '<span>' + n[a] + '</span>', s.innerHTML += '<a href="#" class="world-image world-' + n[a].split(" ")[0].toLowerCase() + '"></a>';
           
@@ -491,12 +495,10 @@
                         if(r == 0)
                         {
                             document.getElementById("mama-head").innerHTML="";
-                            // console.log("Smith");
                         }
                         if(r == 1)
                         {
                             document.getElementById("mama-head").innerHTML="";
-                            // console.log("Smith");
                         }
                         if(r == 2)
                                document.getElementById("mama-head").innerHTML=""; 
@@ -699,7 +701,6 @@
                             }, R).onComplete(t).start()
                     } else switch (k) {
                         case 0:
-                        console.log("case0");
                         $("#css3d-container .navigation").hide();
                             E.starsPosition.to({
                                 y: 0
@@ -3904,7 +3905,6 @@
             }), J.fn.extend({
                 hover: function(e, t) {
                     return this.mouseenter(e).mouseleave(t || e)
-                    // console.log(t);
                 },
                 bind: function(e, t, r) {
                     return this.on(e, null, t, r)
