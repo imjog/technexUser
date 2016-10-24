@@ -1378,7 +1378,7 @@ body {
     max-width: 654px;
     /* top: 50%; */
     margin-left: 34.5vw;
-    margin-bottom: 37.5vh;
+    margin-bottom: 31.5vh;
 }
 .definition.left {
     -webkit-transform: translateX(-120px);
@@ -1996,6 +1996,7 @@ p.signup-open:hover {
 #mama-head
 {
     text-transform: uppercase;
+    font-size: 20px;
 }
 
 #footer{
