@@ -222,6 +222,7 @@
         <script src="/static/login2_files2/scripts.js"></script>
        <script type="text/javascript">
 var token = {{status}};
+if(token) $("#btn-next-page-email").trigger( "click" );
 var csrfmiddlewaretoken = '{{ csrf_token }}'
 
   function theAjax(uri,data){
