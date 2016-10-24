@@ -780,7 +780,7 @@ body {
     text-transform: uppercase;
     padding: 18px 20px 15px;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
@@ -873,6 +873,10 @@ body {
     display: inline-block;
     margin: 10px;
     margin-right: 0
+}
+#sections-container a.store-button:hover {
+    border-bottom: 4px solid rgba(255,255,255,.8);
+    border-radius: 17px;
 }
 #sections-container .technex-logo-text {
     display: block;
@@ -996,7 +1000,7 @@ body {
         margin: 10px;
         padding: 0
     }
-    #sections-container .technex-logo-text {
+    #sections-container .technex--text {
         margin-top: 160px
     }
 }
@@ -1023,7 +1027,9 @@ body {
 #css3d-container .worldLabel span {
     opacity: 0;
     -webkit-transition: opacity .3s ease;
-    transition: opacity .3s ease
+    transition: opacity .3s ease;
+    font-size: 24px;
+    text-transform: uppercase;
 }
 #css3d-container .worldLabel a:hover {
    text-decoration: none;
@@ -1382,13 +1388,14 @@ body {
     text-transform: uppercase;
     letter-spacing: 5px;
     margin: 10px auto;
-    font-size: 24px
+    font-size: 36px
 }
 .definition .pronunciation {
     display: block;
     letter-spacing: 2px;
     margin: 8px 0;
-    font-family: helvetica
+    font-family: helvetica;
+    font-size: 20px;
 }
 .definition .type {
     display: block;
@@ -1965,6 +1972,7 @@ p.signup-open:hover {
     width: 31%;
     border-radius: 115px;
 }
+/*
 @media (max-width:1200px)
 {
     body
@@ -1972,6 +1980,7 @@ p.signup-open:hover {
         display:none;
     }
 }
+*/
 #mama
 {
     position: relative;
@@ -2025,4 +2034,16 @@ p.signup-open:hover {
     top: 20%;
     left: 36%;
     letter-spacing: 5px;
+}
+@media screen and (min-width: 1300px) and (max-width:1399px){
+    .testi-heading{
+    top: 20%;
+    left: 39%;
+    }
+}
+@media screen and (min-width: 1900px) and (max-width:2200px){
+    .testi-heading{
+    top: 20%;
+    left: 42%;
+    }
 }
