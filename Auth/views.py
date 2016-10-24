@@ -59,17 +59,19 @@ def register(request):
         login(request, newUser)
         return redirect('/dashboard')
     else:
+        context= {}
+        context['all_colleges'] = College.objects.all()
         try:
             get = request.GET
-            context = {
-                        "name":get['name'],
-                        }
+            context['name'] = get['name']
+                        
             if 'email' in get:
                 context['email'] = get['email']
             context['status'] = 1;
             return render(request,'signUp.html',context)
         except:
-            return render(request,'signUp.html',{'status':0})
+            context['status'] = 0;
+            return render(request,'signUp.html',context)
 
 def loginView(request):
     if request.user.is_authenticated():
