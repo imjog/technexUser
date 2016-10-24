@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -227,7 +228,7 @@
 $(document).ready(function(){var token = {{status}};
 if(token) $("#btn-next-page-email").trigger( "click" );
 });
-var csrfmiddlewaretoken = '{{ csrf_token }}';
+//var csrfmiddlewaretoken = '{{ csrf_token }}';
 
   function theAjax(uri,data){
  return $.ajax({
@@ -272,7 +273,7 @@ function fb_login() {
             data = {}
             data['accessToken'] = response.authResponse.accessToken;
     data['uid'] = response.authResponse.userID;
-    data['csrfmiddlewaretoken']= csrfmiddlewaretoken;
+    //data['csrfmiddlewaretoken']= csrfmiddlewaretoken;
     theAjax('/fbConnect/',data).done(function(response){
       console.log(response);
       if (response['status'] == 1)
