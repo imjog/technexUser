@@ -1,3 +1,6 @@
+var abt=["Startup Fair", "Workshops", "Guest Lectures", "Sponsors", "Exhibitions", "Initiatives", "Pronites", "Events", "Krackat"];
+var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations and <br>potential to big corporates and possible mentors</p>","Professional, certified workshops on upcoming technologies like IOT, Augmented Reality, Social Media Analysis, etc","Lectures & interactive sessions with various stalwarts and inspirational personalities from around the world","Support and association with corporates and local businesses to the fest and it's major events.","Attend exhibitions hosted by various NGOs, govt. Institutes like DRDO, international robotic companies and more!","Campaigns on social and environmental issues under the patronage of UNEP and Government of India","Witness live performances of musicians & renowned artists, concerts etc in fun filled pronites.","Over 50 events in 9 diverse categories to participate!","The competitive exam “Krackat” is all set to provide you a real mirror  and check where you stand in the queue entering IIMs"]
+
 ! function e(t, r, n) {
     function i(a, s) {
         if (!r[a]) {
@@ -468,7 +471,7 @@
                         worldsPosition: new i.Tween(N.obj.position).easing(i.Easing.Quadratic.InOut),
                         worldsBlast: new i.Tween(N)
                     }, F.draw(), F.obj.visible = !1, F.obj.rotation.x = .4, M.add(F.obj), V.size.height = 6 * P, M.add(V.draw()), B.obj.position.y = -P, M.add(B.obj), N.obj.visible = !1, N.obj.scale.set(.01, .01, .01), M.add(N.draw());
-                    for (var n = ["Startup Fair", "Workshops", "Guest Lectures", "sponsors", "Exhibitions", "Initiatives", "Pronites", "Events", "Intellecx"], a = 0; a < N.worlds.length; a++) {
+                    for (var n = ["Startup Fair", "Workshops", "Guest Lectures", "sponsors", "Exhibitions", "Initiatives", "Pronites", "Events", "Krackat"], a = 0; a < N.worlds.length; a++) {
                         var s = document.createElement("div");
 
                         s.className = "worldLabel", s.id = "worldLabel" + a, s.innerHTML = '<span>' + n[a] + '</span>', s.innerHTML += '<a href="#" class="world-image world-' + n[a].split(" ")[0].toLowerCase() + '"></a>';
@@ -485,38 +488,57 @@
                     if (requestAnimationFrame(f), T.position.x += .05 * (.6 * b.x - T.position.x), T.position.y += .05 * (.6 * b.y - T.position.y), n(".worldLabel").each(function() {
                             n(this).removeClass("is-visible")
                             n(this).removeClass("papa")
+
                             document.getElementById("mama-head").innerHTML="";
+                            document.getElementById("mama-para").innerHTML="";
                         }), 2 == k) {
                         x.setFromCamera(b, T);
                         for (var e = x.intersectObjects(N.obj.children), t = 0; t < e.length; t++)
                             if (e[t].distance < .2) {
-                               O = parseInt(Math.random()*1125);
+                               O = 0;
                                 var r = e[t].object.name.substring(5);
                         if(r == 0)
                         {
-                            document.getElementById("mama-head").innerHTML="";
+                            document.getElementById("mama-head").innerHTML=abt[0];
+                            document.getElementById("mama-para").innerHTML=abtdes[0];
                         }
                         if(r == 1)
                         {
-                            document.getElementById("mama-head").innerHTML="";
+                            document.getElementById("mama-head").innerHTML=abt[1];
+                            document.getElementById("mama-para").innerHTML=abtdes[1];
                         }
                         if(r == 2)
-                               document.getElementById("mama-head").innerHTML=""; 
+                             {  document.getElementById("mama-head").innerHTML=abt[2];
+                         document.getElementById("mama-para").innerHTML=abtdes[2];
+                             } 
                          if(r==3)
-                                 document.getElementById("mama-head").innerHTML="";
+                                 {document.getElementById("mama-head").innerHTML=abt[3];
+                             document.getElementById("mama-para").innerHTML=abtdes[3];
+                         }
                         if(r==4)
-                                 document.getElementById("mama-head").innerHTML="";
+                              {   document.getElementById("mama-head").innerHTML=abt[4];
+                          document.getElementById("mama-para").innerHTML=abtdes[4];
+                      }
                         if(r==5)
-                                document.getElementById("mama-head").innerHTML="";
+                        {
+                                document.getElementById("mama-head").innerHTML=abt[5];
+                                document.getElementById("mama-para").innerHTML=abtdes[5];
+                        }
                         if(r==6)
-                                 document.getElementById("mama-head").innerHTML="";
+                        {
+                                 document.getElementById("mama-head").innerHTML=abt[6];
+                                 document.getElementById("mama-para").innerHTML=abtdes[6];
+                          }       
                         if(r==7)
-                                 document.getElementById("mama-head").innerHTML="";
+                        {
+                                 document.getElementById("mama-head").innerHTML=abt[7];
+                                 document.getElementById("mama-para").innerHTML=abtdes[7];
+                             }
                         if(r==8)
-                                 document.getElementById("mama-head").innerHTML="";
-                        if(r==9)
-                                document.getElementById("mama-head").innerHTML="";
-
+                        {
+                                 document.getElementById("mama-head").innerHTML=abt[8];
+                                 document.getElementById("mama-para").innerHTML=abtdes[8];
+                          }
                                 n("#worldLabel" + r).addClass("is-visible")
                                 n("#worldLabel" + r).addClass("papa")
                             }
@@ -525,57 +547,66 @@
                             if(O > ux && 2*ux > O )
                             {
                                 n("#worldLabel0").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                                   document.getElementById("mama-head").innerHTML=abt[0];
+                            document.getElementById("mama-para").innerHTML=abtdes[0];
                                 O++;
                             }
                             else if( O > 2.5*ux && 3.5*ux > O )
                             {
                                 n("#worldLabel1").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                                   document.getElementById("mama-head").innerHTML=abt[1];
+                            document.getElementById("mama-para").innerHTML=abtdes[1];
                                 O++;
                             }
                             else if( O > 4*ux && O < 5*ux)
                             {
                                     O++;
                                     n("#worldLabel2").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                                   document.getElementById("mama-head").innerHTML=abt[2];
+                            document.getElementById("mama-para").innerHTML=abtdes[2];
                                 
                             }
                             else if(O > 5.5*ux && O < 6.5*ux)
                             {
                                 O++;
                                  n("#worldLabel3").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                                   document.getElementById("mama-head").innerHTML=abt[3];
+                            document.getElementById("mama-para").innerHTML=abtdes[3];
                             }
                              else if(O > 7.0*ux && O< 8.0*ux )
                             {
                                  O++;
                                  n("#worldLabel4").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                                   document.getElementById("mama-head").innerHTML=abt[4];
+                            document.getElementById("mama-para").innerHTML=abtdes[4];
                             }
                              else if(O > 8.5*ux && O< 9.5*ux)
                             {
                                  O++;
                                  n("#worldLabel5").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                               document.getElementById("mama-head").innerHTML=abt[5];
+                            document.getElementById("mama-para").innerHTML=abtdes[5];
                             }
                              else if(O > 10*ux && O < 11*ux)
                             {
                                  O++;
                                  n("#worldLabel6").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                               document.getElementById("mama-head").innerHTML=abt[6];
+                            document.getElementById("mama-para").innerHTML=abtdes[6];
                             }
                              else if(O > 11.5*ux && O < 12.5*ux)
                             {
                                  O++;
                                  n("#worldLabel7").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                                   document.getElementById("mama-head").innerHTML=abt[7];
+                            document.getElementById("mama-para").innerHTML=abtdes[7];
                             }
                              else if(O > 14*ux && O< 15*ux)
                             {
                                  O++;
-                                 n("#worldLabel8").addClass("is-visible") ;
-                                document.getElementById("mama-head").innerHTML="";
+                                 n("#worldLabel8").addClass("is-visible");
+                                   document.getElementById("mama-head").innerHTML=abt[8];
+                            document.getElementById("mama-para").innerHTML=abtdes[8];
                             }
                             else
                             {

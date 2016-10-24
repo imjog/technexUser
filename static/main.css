@@ -1085,7 +1085,7 @@ body {
     -webkit-animation: i 2s steps(5) infinite;
     animation: i 2s steps(5) infinite
 }
-#css3d-container .worldLabel .world-intellecx {
+#css3d-container .worldLabel .world-krackat {
     background: url(/static/assets/images/worlds/intellecx.png) left center;
     background-size: cover;
     -webkit-animation: i 2s steps(5) infinite;
@@ -1983,6 +1983,10 @@ p.signup-open:hover {
     /* bottom: 0%; */
 }
 
+#mama-head
+{
+    text-transform: uppercase;
+}
 
 #footer{
         display: block;

@@ -35,7 +35,7 @@
 					<a href="/events/creatrix"><h2>Creatrix</h2></a>
                  			<a href="/events/supernova"><h2>Supernova</h2></a>
 					<a href="/events/pahal"><h2>Pahal</h2></a>
-					<a href="/events/clutch"><h2>Clutch</h2></a>
+					<a href="/events/clutch"><h2>Game Dungeon</h2></a>
 				</div>
 							<div class="events-name" id="internal-menu-bar" style="display:none;">
 					</div>
@@ -54,13 +54,13 @@
 						
 
 					</div>
-                    <div class="mob-event-content">
+ <!--                    <div class="mob-event-content">
                         <ul class="content-ul">
                             <li class="content-li"><h3>Description</h3><h4>lorem ipsum doner sit amet consecteture</h4></li>
                             <li class="content-li"><h3>Prize money</h3><h4>$5 million</h4></li>
                             <li class="content-li"><h3>Judging Criteria</h3><h4>lorem ipsum doner sit amet consecteture</h4></li>
                         </ul>
-                    </div>
+                    </div> -->
 					<button class="close-button"><i class="fa fa-close"></i><span>Close</span></button>
 				</section>
 			</div>
@@ -127,7 +127,13 @@ $("nav a").each(function() {
                             else
                               out+='<div class="description-data" style="display:none">'+data.events[i].eventOptions[j].optionDescription+"</div>";
                             }
-                            out+='</div></div></article>';
+                            out+='</div></div><div class="mob-event-content"><ul class="content-ul">';
+                            for(j=0;j<data.events[i].eventOptions.length;j++)
+                            {
+                              out+='<li class="content-li"><h3>'+data.events[i].eventOptions[j].optionName+'</h3><h4>'+data.events[i].eventOptions[j].optionDescription+'</h4></li>'
+                            }
+                            out+="</ul></div></article>"
+
 
 	}
 	document.getElementById("event-descrip").innerHTML = out;
