@@ -12,6 +12,9 @@ import facebook
 from Auth.models import *
 #from Auth.forms import *
 # Create your views here.
+def team(request):
+    return render(request,"team.html")
+    
 def IndexView(request):
     return render(request,"index.html")
 
@@ -59,16 +62,19 @@ def register(request):
         login(request, newUser)
         return redirect('/dashboard')
     else:
+        context= {}
+        context['all_colleges'] = College.objects.all()
         try:
             get = request.GET
-            context = {
-                        "name":get['name'],
-                        }
+            context['name'] = get['name']
+                        
             if 'email' in get:
                 context['email'] = get['email']
+            context['status'] = 1;
             return render(request,'signUp.html',context)
         except:
-            return render(request,'signUp.html')
+            context['status'] = 0;
+            return render(request,'signUp.html',context)
 
 def loginView(request):
     if request.user.is_authenticated():
