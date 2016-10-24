@@ -113,7 +113,6 @@ var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations
             }
 
             function a() {
-                console.log("aaya2");
                 t(d - 1)
             }
 
