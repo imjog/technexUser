@@ -26,6 +26,7 @@ urlpatterns = [
 	url(r'^resetPass/(?P<key>[\w\-]+)/$', resetPass, name='resetPass'),
 	url(r'^$',IndexView,name='home'),
 	url(r'^talks/', guestLecture, name='guestLecture'),
+	url(r'^contacts/',team,name='teamPage'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
 
