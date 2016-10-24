@@ -1028,7 +1028,7 @@ body {
     opacity: 0;
     -webkit-transition: opacity .3s ease;
     transition: opacity .3s ease;
-    font-size: 24px;
+    font-size: 16px;
     text-transform: uppercase;
 }
 #css3d-container .worldLabel a:hover {
@@ -1214,7 +1214,7 @@ body {
         opacity: 0
     }
 }
-.social-share {
+/*.social-share {
     right: 0
 }
 .social-share a {
@@ -1232,8 +1232,8 @@ body {
 }
 .social-icon:hover {
     opacity: 1
-}
-@media (max-width: 800px) {
+}*/
+/*@media (max-width: 800px) {
     .social-icon {
         padding: 2px
     }
@@ -1299,7 +1299,7 @@ body {
     animation-name: m;
     -webkit-animation-delay: .9s;
     animation-delay: .9s
-}
+}*/
 @-webkit-keyframes j {
     0% {
         height: 2px
@@ -1555,7 +1555,7 @@ body {
         bottom: 3px
     }
 }
-.signup-open {
+/*.signup-open {
     cursor: pointer
 }
 p.signup-open {
@@ -1937,9 +1937,8 @@ p.signup-open:hover {
     padding: 0 10px;
     font-size: 15px;
     line-height: 1.6em
-}
-.item{
-    /*background-color: pink;*/
+}*/
+/*.item{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -1951,14 +1950,12 @@ p.signup-open:hover {
     margin: 30px;
     align-items: center;
     padding-left: 41%;
-    /*background-color: green;*/
 }
 .kaka1{
     width: 100%;
     height: 36%;
     margin: 30px;
     padding: 50px;
-  /*  background-color: green;*/
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -1971,7 +1968,7 @@ p.signup-open:hover {
         height: 100%;
     width: 31%;
     border-radius: 115px;
-}
+}*/
 /*
 @media (max-width:1200px)
 =======
@@ -1984,7 +1981,6 @@ p.signup-open:hover {
     }
 }
 */
-}*/
 
 #mama
 {
