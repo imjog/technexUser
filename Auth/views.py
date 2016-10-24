@@ -14,7 +14,7 @@ from Auth.models import *
 # Create your views here.
 def team(request):
     return render(request,"team.html")
-    
+
 def IndexView(request):
     return render(request,"index.html")
 
@@ -292,8 +292,9 @@ def event(request, key):
             eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
             response['events'].append(eventData)
         response['events'].sort(key= lambda x: x['eventOrder'])  
+        metaTags = MetaTags.objects.filter(event = parentEvent)
         #print json.dumps(response)
-        return render(request,'index3.html',{'parentEvent':json.dumps(response)})
+        return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags})
     else:
         response['error'] = True
         response['status'] = 'Invalid Request'
