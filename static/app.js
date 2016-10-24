@@ -113,7 +113,6 @@ var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations
             }
 
             function a() {
-                console.log("aaya2");
                 t(d - 1)
             }
 
@@ -191,16 +190,17 @@ var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations
             var S = e(),
                 M = S ? S + "Hidden" : "hidden",
                 T = S ? S + "visibilitychange" : "visibilitychange";
-            document.addEventListener(T, function(e) {
-                document[M] ? n.Howler.mute() : v || n.Howler.unmute()
-            }), o.init($("#webgl-container"), $("#css3d-container"), function() {
+             o.init($("#webgl-container"), $("#css3d-container"), function() {
+
                   $(".technex-dates").hide();
-                 $("#loader-container").css({
-                            display: "none"
-                        }), $(h[0]).fadeIn(function() {
+
+               document.getElementById("loader-container").style.display="none",
+                  console.log("hi")  
+                         $(h[0]).fadeIn(function() {
                             $(this).addClass("is-visible")
 
-                        }), $("#webgl-container").addClass("is-visible");
+                        }),   
+                          $("#webgl-container").addClass("is-visible");
                         $("#sections-container").addClass("is-visible");
                         i.delay(function(){
                             $(".technex-dates").fadeIn(function(){
@@ -368,13 +368,11 @@ var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations
                 height: .05,
                 color: t
             }], this.glowMaterial = new n.SpriteMaterial({
-                // map: n.ImageUtils.loadTexture("/static/assets/images/flare.png"),
                 blending: n.AdditiveBlending,
                 transparent: !0,
                 opacity: 0
             }), this.starsMaterial = new n.PointsMaterial({
                 size: this.starSize / 10,
-                // map: n.ImageUtils.loadTexture("/static/assets/images/star.png"),
                 blending: n.AdditiveBlending,
                 vertexColors: !0,
                 transparent: !0,
@@ -382,7 +380,6 @@ var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations
                 opacity: 0
             }), this.hazeMaterial = new n.PointsMaterial({
                 size: .5,
-                // map: n.ImageUtils.loadTexture("/static/assets/images/haze.png"),
                 blending: n.AdditiveBlending,
                 opacity: .0,
                 vertexColors: !0,
@@ -390,7 +387,6 @@ var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations
                 depthTest: !1
             }), this.largeStarMaterial = new n.PointsMaterial({
                 size: this.starSize / 4,
-                // map: n.ImageUtils.loadTexture("/static/assets/images/star.png"),
                 blending: n.AdditiveBlending,
                 vertexColors: !0,
                 transparent: !0,
