@@ -1345,6 +1345,7 @@ ul.topnav li.icon {display: none;}
     .event-dis h3{
      padding-left: 0%;
     padding-right: 10%;
+        display: none;
 }
 }
 @media screen and (max-width:768px){

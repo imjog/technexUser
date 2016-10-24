@@ -66,6 +66,72 @@ section{
   justify-content: center;
   margin-top: 16%; 
 }
+
+.logo img{
+    height: 14%;
+    width: 50%;
+}
+
+@media screen and (max-width: 768px){
+    .logo img{
+    height: 14%;
+    width: 50%;
+    }
+}
+@media screen and (min-width: 769px) and (max-width:1023px){
+        .logo img{
+    height: 14%;
+    width: 50%;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width:1200px){
+        .logo img{
+    height: 14%;
+    width: 50%;
+    }
+}
+@media screen and (min-width: 1201px) and (max-width:1399px){
+        .logo img{
+    height: 14%;
+    width: 50%;
+    }
+}
+@media screen and (min-width: 1400px) and (max-width:1499px){
+        .logo img{
+    height: 15%;
+    width: 50%;
+    }
+}
+@media screen and (min-width: 1500px) and (max-width:1599px){
+        .logo img{
+    height: 16%;
+    width: 50%;
+    }
+}
+@media screen and (min-width: 1600px) and (max-width:1699px){
+        .logo img{
+    height: 17%;
+    width: 48%;
+    }
+}
+@media screen and (min-width: 1700px) and (max-width:1799px){
+        .logo img{
+    height: 17%;
+    width: 62%;
+    }
+}
+@media screen and (min-width: 1800px) and (max-width:1899px){
+        .logo img{
+    height: 18%;
+    width: 62%;
+    }
+}
+@media screen and (min-width: 1900px) and (max-width:2200px){
+        .logo img{
+    height: 18%;
+    width: 62%;
+    }
+}
 .iit{
 /*  background-color: green;*/
   width: 25%;
