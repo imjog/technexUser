@@ -66,9 +66,10 @@ def register(request):
                         }
             if 'email' in get:
                 context['email'] = get['email']
+            context['status'] = 1;
             return render(request,'signUp.html',context)
         except:
-            return render(request,'signUp.html')
+            return render(request,'signUp.html',{'status':0})
 
 def loginView(request):
     if request.user.is_authenticated():
