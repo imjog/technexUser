@@ -23,17 +23,18 @@ ga('send', 'pageview');
 <!----------NAVBAR-------->
 <div class="jnavbar">
 		<ul class="topnav" id="myTopnav">
-  <li class="topnav-li"><img src="/static/img/logo-technex.png" height="40px" style="padding-left:8px;"></li>
-  <li class="topnav-li"><a class="active" href="">EVENTS</a></li>
-  <li class="topnav-li"><a href="">THINK TALK</a></li>
-  <li class="topnav-li"><a href="">STARTUP FAIR</a></li>
-  <li class="topnav-li"><a href="">WORKSHOPS</a></li>
-  <li class="topnav-li"><a href="">PRONIGHTS</a></li>
-  <li class="topnav-li"><a href="">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li"><a href="">SPONSERS</a></li>
-  <li class="topnav-li"><a href="">EXHIBITION</a></li>
+  <li class="topnav-li"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></li>
+  <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+  <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
+  <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li>
+  <li class="topnav-li"><a href="#">EXHIBITIONS</a></li>
+  <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
+  <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER</a></li>
   <li class="icon">
-    <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+    <a href="javascript:void(0);" style="font-size:15px;padding:14px;" onclick="navFunction()">☰</a>
   </li>
 </ul></div>
 <!----------/NAVBAR-------->
@@ -105,7 +106,7 @@ ga('send', 'pageview');
 <script src="/static/js/main.js"></script> <!-- Resource jQuery -->
     <!----------NAVBAR-------->
 <script>
-function myFunction() {
+function navFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";
