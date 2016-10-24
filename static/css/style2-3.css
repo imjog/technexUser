@@ -833,6 +833,14 @@ button:focus {
   opacity: 1;
   -webkit-transition: opacity 0.5s 0.25s;
   transition: opacity 0.5s 0.25s;
+    margin-top: -156px;
+    text-align: center;
+}
+
+@media screen and (min-width:768px){
+    .content__item--show.content__item p{
+        margin-top: 0;
+    }
 }
 
 /* close button (for content and sidebar) */
@@ -1105,6 +1113,12 @@ body {
 .content__item p:first-of-type {
   font-size: 1.15em;
   font-weight: bold;
+    margin-top: -158px;
+}
+@media screen and (min-width:768px){
+    .content__item p:first-of-type {
+    margin-top:0px;
+    }
 }
 
 .fa-heart {
@@ -1393,4 +1407,11 @@ hr{
 }
 .content-li h3 {
     text-transform: uppercase;
+}
+.events-hr{
+    border: 1px solid rgba(255,255,255,.4);
+    position: relative;
+    z-index: 980;
+    width: 60%;
+    top: 0px;
 }
