@@ -126,7 +126,7 @@ class WorkshopTeam(models.Model):
         return self.teamName
 
 class MetaTags(models.Model):
-    name = models.CharField(max_length = 50)
+    name = models.TextField()
     content = models.TextField()
     event = models.ForeignKey(ParentEvent)
     def __unicode__(self):
