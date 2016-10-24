@@ -1965,13 +1965,13 @@ p.signup-open:hover {
     width: 31%;
     border-radius: 115px;
 }
-@media (max-width:1200px)
+/*@media (max-width:1200px)
 {
     body
     {
         display:none;
     }
-}
+}*/
 #mama
 {
     position: relative;
