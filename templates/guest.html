@@ -8,6 +8,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Vollkorn|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/static/css/guest_css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="/static/css/guest_css/style.css"> <!-- Resource style -->
+	<link rel="shortcut icon" href="/static/images/favicon.ico">
 	<script src="/static/js/guest_js/modernizr.js"></script> <!-- Modernizr -->
 	<title>Think Talks | Technex '17</title>
 </head>
@@ -75,8 +76,15 @@
         var k=$(this).index();
         console.log(k);
         out="";
-        out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em>"+data.lectures[k].lecturerBio+"</em>";
-        console.log(out);
+        if (k == 0)
+        {
+        	out += '<h2 style="color:black">'+'THINK TALKS 2016<br>'+'</h2><p></p><em>Heyy</em>'; 
+        }
+        else
+        {
+        	out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em>"+data.lectures[k].lecturerBio+"</em>";
+        }
+        
         document.getElementById('guest-content').innerHTML=out;
         
 });

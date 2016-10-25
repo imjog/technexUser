@@ -4,6 +4,7 @@ jQuery(document).ready(function($){
 		mainContent = $('.cd-main');
 	/* open folding content */
 	gallery.on('click', 'a', function(event){
+		console.log($(this));
 		event.preventDefault();
 		openItemInfo($(this).attr('href'));
 	});
