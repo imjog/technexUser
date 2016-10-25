@@ -30,7 +30,7 @@ if 'DEBUG' in os.environ:
 
 ALLOWED_HOSTS = ['*']
 
-
+import django_mobile
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'Auth',
     'ckeditor',
     'authApi',
+    'django_mobile',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -57,7 +58,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
-
+    'django_mobile.middleware.MobileDetectionMiddleware',
+    'django_mobile.middleware.SetFlavourMiddleware',
 ]
 
 ROOT_URLCONF = 'technexUser.urls'
@@ -73,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_mobile.context_processors.flavour',
             ],
         },
     },

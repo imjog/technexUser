@@ -7,13 +7,6 @@ function theAjax(uri,data){
  });
 };
 
-function emailUnique(){
-  var email = $("#laluram").val();
-  theAjax('/checkEmail/',{"email":email}).done(function(response){
-    if(response == '1') return true;
-    else return false;
-  })
-};
 
 jQuery(document).ready(function() {
     
@@ -233,7 +226,9 @@ $('#btn-next-page').on('click', function(e) {
 
                 theAjax('/register/',data).done(function(response){
                   if( response == '1') {
-
+          $(".fb-send-to-messenger").attr(
+            "data-ref",$("#laluram").val());
+          $("#personal").html('THANK YOU '+ '$("#form-first-name") '+'FOR REGISTERING');
            parent_fieldset.fadeOut(400, function() {
                 $(this).next().fadeIn();
             });

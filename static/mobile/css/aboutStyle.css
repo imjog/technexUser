@@ -1,0 +1,82 @@
+html, body { 
+/*    height:100%;*/
+}
+
+body {
+} 
+.ticket {
+    backface-visibility: hidden;
+/*    transform: rotate(16deg) translateY(25%) translateZ(0);*/
+    transform-origin: 50% 50%;
+    top: 26%;
+    left: 55%;
+    margin-top: -20px;
+    margin-left: -144px;
+    position: absolute;
+    display: inline-block;
+    padding: 15px 25px;
+    background-image:
+        radial-gradient( ellipse closest-side at 50%  50%, hsla(0, 0%, 100%, 0.10), transparent 90%),
+        radial-gradient( circle at 0    100%, transparent 14px, rgba(0,0,255,.3) 15px),
+        radial-gradient( circle at 100% 100%, transparent 14px, rgba(0,0,255,.3) 15px),
+        radial-gradient( circle at 100% 0, transparent 14px, rgba(0,0,255,.3) 15px),
+        radial-gradient( circle at 0    0, transparent 14px, rgba(0,0,255,.3) 15px);
+    background-position: center center, bottom left, bottom right, top right, top left;
+    background-size: cover, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+    background-repeat: no-repeat;
+    border-width: 0 4px;
+    border-color: transparent;
+    border-style: solid;
+    border-image: radial-gradient(cover circle, #fa616d 0%, #fa616d 50%, transparent 51%) 0 39% / 15px 4px repeat;
+    -webkit-filter: drop-shadow(hsla(0, 0%, 0%, 0.55) 1px 1px 2px);
+    color:white;
+}
+
+.ticket + .ticket {
+/*    transform: rotate(-7deg) translateY(-25%) translateX(10px) translateZ(0);*/
+    z-index: 1;
+}
+
+.ticket > div {
+    width: 200px;
+    height: 80px;
+    box-sizing: border-box;
+    position:relative;
+    border-color: yellow;
+    border-style: solid;
+    border-width: 2px;
+    border-radius:5px;
+  	text-align:center;
+  	font-size:130%;
+  	text-transform:uppercase;
+  	padding:15px;
+  	font-stretch: extra-expanded; 	
+}
+
+/*
+.ticket > div:before,
+.ticket > div:after {
+	  content: attr(data-number);
+  	font: .625em/1 'Courier New';
+  	position: absolute;
+  	width: 66px;
+  	line-height: 18px;
+  	transform: rotate(90deg) translateZ(0) ;
+  	transform-origin: 0% 0%;
+  	text-align:center;
+  	display: block; 	
+  	top: 0;
+  	border-color: #ea4a56;
+  	border-style: solid;
+  	border-width: 2px 0 0;
+}
+.ticket > div:before {
+	left: 28px;
+}
+
+.ticket > div:after {
+	transform-origin: 100% 0%;
+	right: 28px;
+	transform: rotate(-90deg) translateZ(0);
+}
+*/

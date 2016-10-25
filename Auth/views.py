@@ -10,15 +10,18 @@ import json
 import os
 import facebook
 from Auth.models import *
+from django_mobile import get_flavour
 #from Auth.forms import *
 # Create your views here.
 def team(request):
     return render(request,"teamPage.html")
 
 def IndexView(request):
-
-    return render(request,"index.html")
-
+    
+    if(get_flavour(request) == 'full'):
+        return render(request,"index.html")
+    else:
+        return render(request,"mobile.html")
 def contextCall(request):
     response = {}
     try:
@@ -93,7 +96,7 @@ All the best!
 Regards
 
 Team Technex.'''
-        send_email(email,subject,body)
+        #send_email(email,subject,body)
         newUser = authenticate(username=email, password=password)
         print 'code base 3'
         login(request, newUser)
