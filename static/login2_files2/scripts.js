@@ -125,6 +125,7 @@ function validatePassword(){
         }
         
     });
+
     
     $('.registration-form .btn-previous').on('click', function() {
         $(this).parents('fieldset').fadeOut(400, function() {
@@ -198,7 +199,7 @@ $('#btn-next-page').on('click', function(e) {
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
                 console.log(data);
-                
+
                 //theAjax('/register',data);
                };
          if( next_step ) {

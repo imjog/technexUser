@@ -30,6 +30,18 @@ def contextCall(request):
     return response
 
 @csrf_exempt
+def emailUnique(request):
+    response = {}
+    post = json.loads(request.body)
+    try:
+        user = User.objects.get(email = post['email'])
+        response['status'] = 0
+    except:
+        response['status'] = 1
+    return JsonResponse(response)
+
+
+@csrf_exempt
 def register(request):
     if request.user.is_authenticated():
         return redirect('/dashboard')
@@ -38,8 +50,8 @@ def register(request):
         email = data.get('email',None)
         try:
             user = User.objects.get(email = email)
-            messages.warning(request,"Email Already Registered !")
-            #return redirect('/register')
+            #messages.warning(request,"Email Already Registered !")
+            return HttpResponse("Email Already Registered!") #redirect('/register')
         except:
             user = User.objects.create_user(username=email, email=email)
         user.first_name = data.get('name',None)
