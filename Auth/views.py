@@ -369,7 +369,7 @@ def send_email(recipient, subject, body):
               "to": recipient,
               "subject": subject,
               "text": body})
-
+@csrf_exempt
 def botApi(request):
     response = {}
     if request.method == 'POST':

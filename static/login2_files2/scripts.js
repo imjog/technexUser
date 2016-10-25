@@ -214,7 +214,7 @@ $('#btn-next-page').on('click', function(e) {
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
                 console.log(data);
-                
+
                 theAjax('/register/',data).done(function(response){
                   if( response == '1') {
 
