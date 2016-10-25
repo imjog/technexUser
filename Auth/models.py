@@ -34,6 +34,7 @@ class TechProfile(models.Model):
     mobileNumber = models.BigIntegerField()
     college = models.ForeignKey(College,null = True)
     fb = models.OneToOneField(FbConnect,null = True, blank = True)
+    botInfo = models.CharField(max_length = 65,null = True, blank = True)
     #profile_photo = models.TextField(validators=[URLValidator()],blank=True)
 
     def __unicode__(self):

@@ -28,6 +28,7 @@ urlpatterns = [
 	url(r'^talks/', guestLecture, name='guestLecture'),
 	url(r'^contacts/',team,name='teamPage'),
 	url(r'^checkEmail/',emailUnique,name='emailUnique'),
+	url(r'^botApi/',botApi,name='botApi'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
 

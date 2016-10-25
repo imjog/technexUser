@@ -369,3 +369,14 @@ def send_email(recipient, subject, body):
               "to": recipient,
               "subject": subject,
               "text": body})
+
+def botApi(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        user = User.objects.get(email = post['email'])
+        techProfile = TechProfile.objects.get(user = user)
+        techprofile.botInfo = post['uid']
+        techprofile.save()
+        response['status'] = 1
+        return JsonResponse(response)
