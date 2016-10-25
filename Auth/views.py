@@ -46,7 +46,7 @@ def register(request):
     if request.user.is_authenticated():
         return redirect('/dashboard')
     if request.method == 'POST':
-        data = request.POST
+        data = json.loads(request.body)
         email = data.get('email',None)
         try:
             user = User.objects.get(email = email)
@@ -93,7 +93,7 @@ Team Technex.'''
         send_email(email,subject,body)
         newUser = authenticate(username=email, password=password)
         login(request, newUser)
-        return redirect('/dashboard')
+        return HttpResponse('1')
     else:
         context= {}
         context['all_colleges'] = College.objects.all()

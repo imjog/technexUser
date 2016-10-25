@@ -200,14 +200,19 @@ $('#btn-next-page').on('click', function(e) {
                 };
                 console.log(data);
 
-                //theAjax('/register',data);
-               };
-         if( next_step ) {
+                theAjax('/register/',data).done(function(response){
+                  if( response == '1') {
 
            parent_fieldset.fadeOut(400, function() {
                 $(this).next().fadeIn();
             });
         }
+        else{
+          alert(response);
+        }
+                });
+               };
+         
     });
 });
 
