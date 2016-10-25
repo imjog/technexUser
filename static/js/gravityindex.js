@@ -304,7 +304,7 @@ Particle.prototype = (function(o) {
 
     function resize(e) {
         screenWidth  = canvas.width  = document.getElementById("abcd").offsetWidth;
-        screenHeight = canvas.height = document.getElementById("abcd").offsetHeight;
+        screenHeight = canvas.height = document.getElementById("abcd").offsetHeight+document.getElementById("abcde").offsetHeight;
         bufferCvs.width  = screenWidth;
         bufferCvs.height = screenHeight;
         context   = canvas.getContext('2d');
