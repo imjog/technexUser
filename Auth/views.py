@@ -39,7 +39,7 @@ def register(request):
         try:
             user = User.objects.get(email = email)
             messages.warning(request,"Email Already Registered !")
-            return redirect('/register')
+            #return redirect('/register')
         except:
             user = User.objects.create_user(username=email, email=email)
         user.first_name = data.get('name',None)
