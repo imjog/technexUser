@@ -16,6 +16,7 @@ def team(request):
     return render(request,"teamPage.html")
 
 def IndexView(request):
+
     return render(request,"index.html")
 
 def contextCall(request):
@@ -92,7 +93,7 @@ All the best!
 Regards
 
 Team Technex.'''
-        #send_email(email,subject,body)
+        send_email(email,subject,body)
         newUser = authenticate(username=email, password=password)
         print 'code base 3'
         login(request, newUser)
@@ -373,8 +374,8 @@ def send_email(recipient, subject, body):
 @csrf_exempt
 def botApi(request):
     response = {}
-    if request.method == 'POST':
-        post = request.POST
+    post = request.POST
+    if post['passkey'] == 'Xs6vvZdLhsYHAEK':
         user = User.objects.get(email = post['email'])
         techProfile = TechProfile.objects.get(user = user)
         techprofile.botInfo = post['uid']
