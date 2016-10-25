@@ -17,3 +17,4 @@ sendgrid==2.2.1
 sendgrid-django==2.0.0
 smtpapi==0.3.1
 whitenoise==3.2
+django_mobile
