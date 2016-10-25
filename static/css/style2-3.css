@@ -1084,7 +1084,7 @@ button:focus {
     margin: 3px;
     height: auto;
     width: auto;
-    line-height: 30px;
+    line-height: 70px;
     text-align: center;
 }
 ul li:hover{
@@ -1405,7 +1405,8 @@ hr{
     text-align: left;
     float: inherit;
     border: none;
-    border-bottom: 1px solid rgba(255,255,255,.2);   
+    border-bottom: 1px solid rgba(255,255,255,.2);
+    padding-bottom: 0px;
 }
 .content-li:hover{
     border: none;
@@ -1422,7 +1423,7 @@ hr{
     }
 }
 .content-li h4{
-    padding-top: 143px;
+    padding-top: 0px;
     text-align: left;
 }
 @media screen and (min-width:768px){
