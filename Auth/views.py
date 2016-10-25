@@ -13,7 +13,7 @@ from Auth.models import *
 #from Auth.forms import *
 # Create your views here.
 def team(request):
-    return render(request,"team.html")
+    return render(request,"teamPage.html")
 
 def IndexView(request):
     return render(request,"index.html")
@@ -59,7 +59,7 @@ def register(request):
         password = data.get('password',None)
         user.set_password(password)
         user.save()
-        print 'code base 0'
+        print 'code base 1'
         try:
             college = College.objects.get(collegeName = data.get('college'))
         except:
@@ -94,6 +94,7 @@ Regards
 Team Technex.'''
         #send_email(email,subject,body)
         newUser = authenticate(username=email, password=password)
+        print 'code base 2'
         login(request, newUser)
         return HttpResponse('1')
     else:
