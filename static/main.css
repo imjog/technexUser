@@ -2062,7 +2062,7 @@ ul.topnav {
   padding-top: 2px;
   padding-bottom: 2px;
   overflow: hidden;
-  background-color: black;
+  background-color: white;
     position: relative;
     z-index: 366434437;
 }
@@ -2071,7 +2071,7 @@ ul.topnav li {float: left;}
 
 ul.topnav li a {
   display: inline-block;
-  color: white;
+  color: black;
   text-align: center;
   padding: 14px 8px;
   text-decoration: none;

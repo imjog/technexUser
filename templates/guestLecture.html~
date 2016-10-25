@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=Vollkorn|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/static/images/favicon.ico">
+
+	<link rel="stylesheet" href="/static/css/reset1.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="/static/css/style1.css"> <!-- Resource style -->
+	<script src="/static/js/modernizr.js"></script> <!-- Modernizr -->
+  	
+	<title>Guest Lectures | Technex 17</title>
+</head>
+<body>
+	<main class="cd-main">
+
+		<ul class="cd-gallery">
+			<li class="cd-item">
+				<a onclick="event.preventDefault();">
+					<div>
+						<h2>PREVIOUS EDITION'S LECTURES</h2>
+						
+					</div>
+				</a>
+			</li>
+		{% for lecture in lectures %}
+			<li class="cd-item">
+				<a href="#">
+					<div>
+						<h2>{{ lecture.lecturerName }}</h2>
+						<p>{{ lecture.designation }}</p>
+						<b>View More</b>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+			
+		</ul> <!-- .cd-gallery -->
+		
+	</main> <!-- .cd-main -->
+
+	<div class="cd-folding-panel">
+		
+		<div class="fold-left"></div> <!-- this is the left fold -->
+		
+		<div class="fold-right"></div> <!-- this is the right fold -->
+		
+		<div class="cd-fold-content">
+			<!-- content will be loaded using javascript -->
+		</div>
+
+		<a class="cd-close" href="/static#0"></a>
+	</div> <!-- .cd-folding-panel -->
+
+<script src="/static/js/jquery-2.1.1.js"></script>
+<script src="/static/js/mainGuest.js"></script> <!-- Resource jQuery -->
+</body>
+</html>
