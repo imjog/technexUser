@@ -266,3 +266,30 @@ p.error-message
 {
 	color: red;
 }
+#btn-next-page-fb {
+	padding-right: 45px;
+    border: none;
+    display: block;
+    background-size: 60px 70px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 0px;
+    width: 300px;
+    height: 70px;
+    border-bottom: 2px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    box-shadow: 0 4px 2px -2px gray;
+    text-shadow: rgba(0, 0, 0, .5) -1px -1px 0;
+    border-color: #2d5073;
+    background-color: #3b5998;
+    background-image: url(/static/facebook.png);
+}
+#btn-next-page-email
+{
+ width: 300px;
+    height: 70px;
+}
