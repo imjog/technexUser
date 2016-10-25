@@ -19,6 +19,22 @@
         <![endif]-->
         <link rel="shortcut icon" href="/static/favicon.ico">
     </head>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '534344073416290',
+          xfbml: true,
+          version: 'v2.6'
+        });
+      };
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
      <body>
         <div class="top-content">
         	
@@ -77,11 +93,17 @@
                                   <label class="sr-only" for="form-email">Email</label>
                                   <input name="email" placeholder="Email" class="form-email form-control" id="laluram" type="text" value='{% if email %}{{email}}{% endif %}'>
 <!-- my changes -->
-                                  <div class="alert-message alert-email">
+                                  <div class="alert-message alert-email" id="email-error">
                                           <button type="button" id="close-email" class="close-btna close-btn">
                                              <span aria-hidden="true">&times;</span>
                                            </button>
   <!-- <strong>Sorry!</strong> -->Email entered is incorrect.
+</div>
+  <div class="alert-message alert-email" id="email-repeat">
+                                          <button type="button" id="close-email" class="close-btna close-btn">
+                                             <span aria-hidden="true">&times;</span>
+                                           </button>
+  <!-- <strong>Sorry!</strong> -->Email already registered
 </div>
 <!-- my changes -->
                                   <span class="m-field-error" id="mail-error"></span>
@@ -175,6 +197,13 @@
                                 <div class="form-bottom" style="padding-bottom: 35px;">
                                 <div class="form-group" style="display: table;margin: 0 auto;">
                            <h3>To get regular updates and to chat with us in future Connect with messenger</h3>
+                           <div class="fb-send-to-messenger" 
+        messenger_app_id='534344073416290'
+        page_id='225615937462895'
+        data-ref="PASS_THROUGH_PARAM" 
+        color="blue" 
+        size="large">
+      </div>
                             </div>
 
                         </fieldset>

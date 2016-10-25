@@ -7,6 +7,14 @@ function theAjax(uri,data){
  });
 };
 
+function emailUnique(){
+  var email = $("#laluram").val();
+  theAjax('/checkEmail/',{"email":email}).done(function(response){
+    if(response == '1') return true;
+    else return false;
+  })
+};
+
 jQuery(document).ready(function() {
     
     $(".alert-email").hide();
@@ -54,12 +62,12 @@ function phnvalidation()
        
         if(re.test(email) == false)
         {
-             $('.alert-email').show();
+             $('#email-error').show();
              return false;
         }
         else
         { 
-              $(".alert-email").hide();
+              $("#email-error").hide();
               return true;
         }
         
@@ -89,12 +97,18 @@ function validatePassword(){
         parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
             if( $(this).val() == "" ) {
                 $(this).addClass('input-error');
-                console.log('jslkjldlj')
                 next_step = false;
             }});
               if(next_step){
             next_step = emailvalidation() && validatePassword();
             next_step = validatePassword() && emailvalidation();
+        }
+        if(next_step)
+        {
+          next_step=emailUnique();
+          if(!next_step)
+          $('#email-repeat').show();
+
         }
         
         if( next_step ) {
@@ -142,7 +156,8 @@ function validatePassword(){
 $('#laluram').keyup(function(e){
     var code = (e.keyCode ? e.keyCode : e.which);
         if(code !==13)
-          $('.alert-email').hide();
+          $('#email-error').hide();
+        $('#email-repeat').hide();
     });
 $('#confirm_password').keyup(function(e){
     var code = (e.keyCode ? e.keyCode : e.which);
@@ -199,7 +214,7 @@ $('#btn-next-page').on('click', function(e) {
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
                 console.log(data);
-
+                
                 theAjax('/register/',data).done(function(response){
                   if( response == '1') {
 
@@ -208,7 +223,7 @@ $('#btn-next-page').on('click', function(e) {
             });
         }
         else{
-          alert(response);
+          console.log(response); //yahan error dikhana hai
         }
                 });
                };
