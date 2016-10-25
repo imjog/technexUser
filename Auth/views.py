@@ -70,7 +70,7 @@ def register(request):
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.year = data.get('year')
         techprofile.save()
-        #print "codeBaes 2"
+        print "codeBaes 2"
         subject = "Confirmation of Registration for Technex 2017"
         body = "Dear "+ data.get('name',None) +''',
 
@@ -94,7 +94,7 @@ Regards
 Team Technex.'''
         #send_email(email,subject,body)
         newUser = authenticate(username=email, password=password)
-        print 'code base 2'
+        print 'code base 3'
         login(request, newUser)
         return HttpResponse('1')
     else:
