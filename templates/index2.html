@@ -20,6 +20,25 @@ ga('send', 'pageview');
   <body>
 <canvas id="c"></canvas>
 <div class="container" style="position: absolute;top: 0;left: 0;">
+    <!----------NAVBAR-------->
+<div class="jnavbar">
+		<ul class="topnav" id="myTopnav">
+  <li class="topnav-li"><a href="/" style="padding:0px 0px;"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
+  <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+  <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
+  <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li>
+  <li class="topnav-li"><a href="#">EXHIBITIONS</a></li>
+  <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
+  <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER</a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;padding:14px;" onclick="navFunction()">☰</a>
+  </li>
+</ul></div>
+<!----------/NAVBAR-------->
+    <hr class="bottom-border">
 			<button id="menu-toggle" class="menu-toggle"><span>Menu</span></button>
 			<div id="theGrid" class="main">
 				<section class="grid" id="abcd">
@@ -55,7 +74,7 @@ ga('send', 'pageview');
                         <img class="meta__avatar" src="/static/img/fwdicons/extreme-engineering.png" alt="extreme-engineering" /> 
 						<h2 class="title title--preview">Extreme Engineering</h2>
 						 <div class="loader"></div>
-						<span class="category">Extreme Engineering events</span>
+						<span class="category">Core Engineering events</span>
 						<div class="meta meta--preview">
 							</div> 
 					</a>
@@ -79,7 +98,7 @@ ga('send', 'pageview');
                         <img class="meta__avatar" src="/static/img/fwdicons/byte-the-bits.png" alt="byte-the-bits" /> 
 						<h2 class="title title--preview">Byte the Bits</h2>
 						 <div class="loader"></div>
-						<span class="category">Coding events</span>
+						<span class="category">Programming events</span>
 						<div class="meta meta--preview">
 						</div> 
 					</a>
@@ -111,7 +130,7 @@ ga('send', 'pageview');
                         <img class="meta__avatar" src="/static/img/fwdicons/clutch.png" alt="Game Dungeon" /> 
 						<h2 class="title title--preview">Game Dungeon</h2>
 						 <div class="loader"></div>
-						<span class="category">LAN based gaming events</span>
+						<span class="category">Fun informals</span>
 						<div class="meta meta--preview">
 							</div> 
 					</a>
@@ -119,6 +138,18 @@ ga('send', 'pageview');
 				</section>
 					</div>
 			</div>
+      <!----------NAVBAR-------->
+<script>
+function navFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+<!----------/NAVBAR-------->
 			<link rel="stylesheet" type="text/css" href="/static/css/style2.css" />
 			<link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
              <script src='/static/js/kzymdn.js'></script>

@@ -9,27 +9,29 @@
 	<link rel="stylesheet" href="/static/css/guest_css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="/static/css/guest_css/style.css"> <!-- Resource style -->
 	<script src="/static/js/guest_js/modernizr.js"></script> <!-- Modernizr -->
-	<title>Guest Lectures | Technex'17</title>
+	<title>Think Talks | Technex '17</title>
 </head>
 <body>
 	<main class="cd-main">
-<!-------------------------NAVBAR -------------------->
-        <div class="jnavbar">
+    <!----------NAVBAR-------->
+<div class="jnavbar">
 		<ul class="topnav" id="myTopnav">
-  <li><img src="/static/logo-technex.png" height="40px" style="padding-left:8px;"></li>
-  <li><a class="active" href="">EVENTS</a></li>
-  <li><a href="">THINK TALK</a></li>
-  <li><a href="">STARTUP FAIR</a></li>
-  <li><a href="">WORKSHOPS</a></li>
-  <li><a href="">PRONIGHTS</a></li>
-  <li><a href="">CAMPUS AMBASSADOR</a></li>
-  <li><a href="">SPONSERS</a></li>
-  <li><a href="">EXHIBITION</a></li>
+  <li class="topnav-li"><a href="/" style="padding:0px 0px;"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
+  <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+  <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
+  <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li>
+  <li class="topnav-li"><a href="#">EXHIBITIONS</a></li>
+  <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
+  <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER</a></li>
   <li class="icon">
-    <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+    <a href="javascript:void(0);" style="font-size:15px;padding:14px;" onclick="navFunction()">☰</a>
   </li>
 </ul></div>
-<!--------------------/NAVBAR-------------------------->
+<!----------/NAVBAR-------->
+        <hr class="bottom-border">
 		<ul class="cd-gallery">
 		{% for lecture in lectures.lectures %}
 			<li class="cd-item">
@@ -82,6 +84,18 @@ function myFunction() {
     }
 }
 </script>
+    <!----------NAVBAR-------->
+<script>
+function navFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+<!----------/NAVBAR-------->
 <script src="/static/js/guest_js/main.js"></script> <!-- Resource jQuery -->
 </body>
 </html>
