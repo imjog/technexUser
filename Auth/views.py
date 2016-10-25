@@ -29,7 +29,7 @@ def contextCall(request):
         pass
     return response
 
-
+@csrf_exempt
 def register(request):
     if request.user.is_authenticated():
         return redirect('/dashboard')
@@ -39,7 +39,7 @@ def register(request):
         try:
             user = User.objects.get(email = email)
             messages.warning(request,"Email Already Registered !")
-            return redirect('/register')
+            #return redirect('/register')
         except:
             user = User.objects.create_user(username=email, email=email)
         user.first_name = data.get('name',None)
@@ -59,7 +59,7 @@ def register(request):
         #print "codeBaes 2"
         subject = "Confirmation of Registration for Technex 2017"
         body = "Dear "+ data.get('name',None) +''',
-        
+
  You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
 
 An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
