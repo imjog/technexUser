@@ -8,11 +8,12 @@
 	<link href='http://fonts.googleapis.com/css?family=Vollkorn|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/static/css/guest_css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="/static/css/guest_css/style.css"> <!-- Resource style -->
+	<link rel="shortcut icon" href="/static/images/favicon.ico">
 	<script src="/static/js/guest_js/modernizr.js"></script> <!-- Modernizr -->
 	<title>Think Talks | Technex '17</title>
 </head>
 <body>
-	<main class="cd-main">
+	
     <!----------NAVBAR-------->
 <div class="jnavbar">
 		<ul class="topnav" id="myTopnav">
@@ -20,8 +21,8 @@
   <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
   <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
-  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li>
-  <li class="topnav-li"><a href="#">EXHIBITIONS</a></li>
+  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
+  
   <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
@@ -31,7 +32,7 @@
   </li>
 </ul></div>
 <!----------/NAVBAR-------->
-        <hr class="bottom-border">
+        <main class="cd-main">
 		<ul class="cd-gallery">
             <li class="cd-item">
 				<a>
@@ -75,8 +76,16 @@
         var k=$(this).index();
         console.log(k);
         out="";
-        out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em>"+data.lectures[k].lecturerBio+"</em>";
-        console.log(out);
+        if (k == 0)
+        {
+        	out += '<h2 style="color:black">'+'THINK TALKS 2016<br>'+"</h2><p></p><p style='text-align:justify;'>Technex has always been known for its stellar guest lecture series - 'Think Talks' - which have been becoming increasingly attractive over the years. Technex'16 witnessed personalities hailing from varied domains coming together to share their knowledge and experience with students from around the nation. <br><br>India's leading high energy physicist - Mr Atul Gurtu, planetary geologist - Mrs Rosaly Lopes and swarm robotics researcher - Mr Gianni Di Caro presented revolutionary ideas and advancements from their respective areas of research. Mr Prabhu Chawla, one of India's finest political journalists, spoke about the development of the country's scenario over the years he's been into the profession. DRDO Target Specialist Mr Milan Kumar Pal shared amusing knowledge about the innovation that goes into the functioning of an elite state defence organization. Coming from the management world, Mrs Vinita Bali (MD, Britannia Industries Ltd) and Mr Santosh Desai (CEO, Future Brands) won the audience with intriguing talks about the dynamics and working of the Indian industry and market. All the lectures saw throngs of excited students coming to enrich themselves. Technex'17 promises to stand up to the expectations of the participants and present even more interesting and thought provoking talks by some remarkable personalities of the techno-management world.</p>"; 
+        }
+        else
+        {
+        	k = k - 1;
+        	out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
+        }
+        
         document.getElementById('guest-content').innerHTML=out;
         
 });

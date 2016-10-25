@@ -12,12 +12,6 @@ import facebook
 from Auth.models import *
 #from Auth.forms import *
 # Create your views here.
-def team(request):
-    return render(request,"team.html")
-
-def IndexView(request):
-    return render(request,"index.html")
-
 def contextCall(request):
     response = {}
     try:
@@ -29,37 +23,23 @@ def contextCall(request):
         pass
     return response
 
-@csrf_exempt
-def emailUnique(request):
-    response = {}
-    post = request.POST #json.loads(request.body)
-    try:
-        user = User.objects.get(email = post['email'])
-        response = '0'
-    except:
-        response = '1'
-    return HttpResponse(response)
-
-
 
 def register(request):
-    #if request.user.is_authenticated():
-     #   return redirect('/dashboard')
+    if request.user.is_authenticated():
+        return redirect('/dashboard')
     if request.method == 'POST':
         data = request.POST
         email = data.get('email',None)
-        print 'code base 0'
         try:
             user = User.objects.get(email = email)
-            #messages.warning(request,"Email Already Registered !")
-            return HttpResponse("Email Already Registered!") #redirect('/register')
+            messages.warning(request,"Email Already Registered !")
+            return redirect('/register')
         except:
             user = User.objects.create_user(username=email, email=email)
         user.first_name = data.get('name',None)
         password = data.get('password',None)
         user.set_password(password)
         user.save()
-        print 'code base 0'
         try:
             college = College.objects.get(collegeName = data.get('college'))
         except:
@@ -71,45 +51,21 @@ def register(request):
         techprofile.year = data.get('year')
         techprofile.save()
         #print "codeBaes 2"
-        subject = "Confirmation of Registration for Technex 2017"
-        body = "Dear "+ data.get('name',None) +''',
 
- You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
-
-An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
-
-       Our team will be at the task of updating you from time to time, the  information regarding the festival. Please keep visiting the website and the facebook page of Technex '17 to stay up-to-date with the latest happenings at Technex '17.
-
-
-Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
-              
-
-Looking forward to seeing you soon at Technex 2016.
-
-All the best!
-
-
-Regards
-
-Team Technex.'''
-        #send_email(email,subject,body)
         newUser = authenticate(username=email, password=password)
         login(request, newUser)
-        return HttpResponse('1')
+        return redirect('/dashboard')
     else:
-        context= {}
-        context['all_colleges'] = College.objects.all()
         try:
             get = request.GET
-            context['name'] = get['name']
-                        
+            context = {
+                        "name":get['name'],
+                        }
             if 'email' in get:
                 context['email'] = get['email']
-            context['status'] = 1;
-            return render(request,'signUp.html',context)
+            return render(request,'signup.html',context)
         except:
-            context['status'] = 0;
-            return render(request,'signUp.html',context)
+            return render(request,'signup.html')
 
 def loginView(request):
     if request.user.is_authenticated():
@@ -134,7 +90,7 @@ def loginView(request):
 @login_required(login_url='/login')
 def dashboardView(request):
     context = contextCall(request)
-    return render(request,'thankyou.html',context)
+    return render(request,'dashboard.html',context)
 
 @csrf_exempt
 @login_required(login_url='/login') #not /login/
@@ -287,10 +243,6 @@ def eventApi(request):
 def events(request):
     return render(request,'index2.html')
 
-def event2api(request):
-    return JsonResponse(response)
-
-
 def event(request, key):
     response = {}
     if request.method == 'GET':
@@ -312,7 +264,7 @@ def event(request, key):
             eventData = {}
             eventData['eventName'] = event.eventName
             eventData['description'] = event.description
-            # eventData['deadLine'] = event.deadLine
+            eventData['deadLine'] = event.deadLine
             eventData['prizeMoney'] = event.prizeMoney
             eventData['maxMembers'] = event.maxMembers
             eventData['eventOrder'] = event.eventOrder
@@ -327,56 +279,8 @@ def event(request, key):
             eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
             response['events'].append(eventData)
         response['events'].sort(key= lambda x: x['eventOrder'])  
-        metaTags = MetaTags.objects.filter(event = parentEvent)
-        #print json.dumps(response)
-        return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags})
+        return render(request,'index3.html',{'parentEvent':response})
     else:
         response['error'] = True
         response['status'] = 'Invalid Request'
         return JsonResponse(response)    
-
-def guestLecture(request):
-    response = {}
-    resp = {}
-    try:
-        lectures = GuestLecture.objects.all()
-        response['lectures'] = []
-        for lecture in lectures:
-            lectureData = {}
-            lectureData['title'] = lecture.title.encode('ascii','ignore')
-            lectureData['description'] = lecture.description.encode('ascii','ignore')
-            lectureData['lecturerName'] = lecture.lecturerName.encode('ascii','ignore')
-            lectureData['lecturerBio'] = lecture.lecturerBio.encode('ascii','ignore')
-            lectureData['designation'] = lecture.designation.encode('ascii','ignore')
-            lectureData['lectureType'] = lecture.lectureType.encode('ascii','ignore')
-            response['lectures'].append(lectureData)
-    except:
-        response['status'] = 0  
-    return render(request, 'guest.html', {'lectures':response})
-
-def error404(request):
-    return render(request, '404.html')
-
-def error500(request):
-    return render(request, '500.html')
-
-def send_email(recipient, subject, body):
-    
-    return requests.post(
-        "https://api.mailgun.net/v3/mg.technex.in/messages",
-        auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),
-        data={"from": "No-reply <mailgun@mg.technex.in>",
-              "to": recipient,
-              "subject": subject,
-              "text": body})
-
-def botApi(request):
-    response = {}
-    if request.method == 'POST':
-        post = request.POST
-        user = User.objects.get(email = post['email'])
-        techProfile = TechProfile.objects.get(user = user)
-        techprofile.botInfo = post['uid']
-        techprofile.save()
-        response['status'] = 1
-        return JsonResponse(response)

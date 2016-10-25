@@ -29,7 +29,7 @@ h1, h2 {
 h3 {
 	font-size: 22px;
     font-weight: 300;
-    color: #555;
+    color: white;
     line-height: 30px;
 }
 
@@ -138,13 +138,13 @@ ul.navbar-nav {
 }
 
 .form-box {
-	padding-top: 40px;
+	padding-top: 18%;
 }
 
 .form-top {
 	overflow: hidden;
 	padding: 0 25px 15px 25px;
-	background: #fff;
+	background:rgba(0,0,0,0.7);
 	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
 	text-align: left;
 }
@@ -169,7 +169,7 @@ ul.navbar-nav {
 
 .form-bottom {
 	padding: 25px 25px 70px 25px;
-	background: #eee;
+	background: rgba(0,0,0,0.5);
 	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
 	text-align: left;
 }
@@ -265,4 +265,30 @@ div.form-top
 p.error-message
 {
 	color: red;
+}
+#btn-next-page-fb {
+	padding-right: 45px;
+    border: none;
+    display: block;
+    background-size: 60px 70px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 0px;
+    width: 300px;
+    height: 70px;
+    border-bottom: 2px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    text-shadow: rgba(0, 0, 0, .5) -1px -1px 0;
+    border-color: #2d5073;
+    background-color: #3b5998;
+    background-image: url(/static/facebook.png);
+}
+#btn-next-page-email
+{
+ width: 300px;
+  height: 70px;
 }

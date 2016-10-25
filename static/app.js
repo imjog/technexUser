@@ -195,7 +195,6 @@ var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations
                   $(".technex-dates").hide();
 
                document.getElementById("loader-container").style.display="none",
-                  console.log("hi")  
                          $(h[0]).fadeIn(function() {
                             $(this).addClass("is-visible")
 
@@ -207,6 +206,7 @@ var abtdes=["<p>Platform for upcoming startups to <br>showcase their innovations
                               $(".technex-dates").show();
                          });
                         },5000);
+
                          
                 
                

@@ -1986,11 +1986,24 @@ p.signup-open:hover {
 {
     position: relative;
     /* margin-left: 10%; */
-    margin-top: 71.5vh;
+    margin-top: 55.6vh;
     text-align: center;
     width: 100%;
     position: absolute;
     /* bottom: 0%; */
+}
+@media (min-width: 1400px)
+{
+    #mama
+{
+    position: relative;
+    /* margin-left: 10%; */
+    margin-top: 64.5vh;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    /* bottom: 0%; */
+}
 }
 
 #mama-head

@@ -4,9 +4,10 @@ jQuery(document).ready(function($){
 		mainContent = $('.cd-main');
 	/* open folding content */
 	gallery.on('click', 'a', function(event){
-		console.log($(this));
 		event.preventDefault();
+		if($(this).parent().index() != 0){
 		openItemInfo($(this).attr('href'));
+		}
 	});
 
 	/* close folding content */
