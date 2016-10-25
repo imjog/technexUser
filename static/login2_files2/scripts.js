@@ -26,6 +26,9 @@ jQuery(document).ready(function() {
      $('#close-email').on('click',function(){
       $('.alert-email').hide();
     });
+      $('#close-email-repeat').on('click',function(){
+      $('.alert-email').hide();
+    });
      $('#close-mobile').on('click',function(){
       $('.alert-mobile').hide();
     }); 
@@ -105,13 +108,20 @@ function validatePassword(){
         }
         if(next_step)
         {
-          next_step=emailUnique();
-          if(!next_step)
-          $('#email-repeat').show();
-
-        }
-        
-        if( next_step ) {
+          function emailUnique(){
+  var email = $("#laluram").val();
+  theAjax('/checkEmail/',{"email":email}).done(function(response){
+    if(response == '1') return true;
+    else return false;
+  })
+};
+          //next_step=emailUnique();
+          //if(!next_step)
+          var email = $("#laluram").val();
+          theAjax('/checkEmail/',{"email":email}).done(function(response){
+          if(response == '0') {$('#email-repeat').show();next_step = false;}
+   
+  if( next_step ) {
 
             parent_fieldset.fadeOut(400, function() {
                 $(this).next().fadeIn();
@@ -122,6 +132,12 @@ function validatePassword(){
 
             });
         }
+  });
+          //$('#email-repeat').show();
+
+        }
+        
+        
         
     });
         $('#btn-next-page-email').on('click', function() {
@@ -214,7 +230,7 @@ $('#btn-next-page').on('click', function(e) {
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
                 console.log(data);
-                
+
                 theAjax('/register/',data).done(function(response){
                   if( response == '1') {
 

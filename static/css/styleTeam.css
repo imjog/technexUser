@@ -60,7 +60,7 @@ ul.topnav li a {
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
-@media (min-width:1362px){
+@media (min-width:1250px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);
     }
@@ -77,9 +77,9 @@ ul.topnav li a:hover {
 
 ul.topnav li.icon {display: none;}
 
-@media screen and (max-width:1362px) {
+@media screen and (max-width:1250px) {
   ul.topnav li:not(:first-child){display: none;}
-    ul.topnav li:nth-child(10){display: block; float: right;}
+    ul.topnav li:nth-child(9){display: block; float: right;}
   ul.topnav li.icon {
     float: right;
     display: inline-block;
@@ -87,7 +87,7 @@ ul.topnav li.icon {display: none;}
     ul.topnav li a{border:1px solid white;margin-right: 8px;}
 }
 
-@media screen and (max-width:1362px) {
+@media screen and (max-width:1250px) {
   ul.topnav.responsive {position: relative;}
   ul.topnav.responsive li.icon {
     position: absolute;
@@ -792,4 +792,28 @@ xcustom form elements
 }
 .post{
     color: rgba(255,255,255,.7);
+}
+.num-mail{
+    display: none;
+}
+.cd-gallery li:hover .num-mail{
+    transform: translateY(-200%);
+    display: block;
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    margin-left: 3.7%;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    margin-top: 17%;
+    padding-top: 122px;
+}
+.cd-gallery li:hover .cd-gallery img{
+    display: none;
+}
+.fb-team{
+    height: 40px;
+    width: 40px;
+    margin-left: 47%;
+    margin-top: 22px;
 }

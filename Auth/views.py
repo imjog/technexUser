@@ -13,7 +13,7 @@ from Auth.models import *
 #from Auth.forms import *
 # Create your views here.
 def team(request):
-    return render(request,"team.html")
+    return render(request,"teamPage.html")
 
 def IndexView(request):
     return render(request,"index.html")
@@ -59,7 +59,7 @@ def register(request):
         password = data.get('password',None)
         user.set_password(password)
         user.save()
-        print 'code base 0'
+        print 'code base 1'
         try:
             college = College.objects.get(collegeName = data.get('college'))
         except:
@@ -70,7 +70,7 @@ def register(request):
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.year = data.get('year')
         techprofile.save()
-        #print "codeBaes 2"
+        print "codeBaes 2"
         subject = "Confirmation of Registration for Technex 2017"
         body = "Dear "+ data.get('name',None) +''',
 
@@ -94,6 +94,7 @@ Regards
 Team Technex.'''
         #send_email(email,subject,body)
         newUser = authenticate(username=email, password=password)
+        print 'code base 3'
         login(request, newUser)
         return HttpResponse('1')
     else:
@@ -369,7 +370,7 @@ def send_email(recipient, subject, body):
               "to": recipient,
               "subject": subject,
               "text": body})
-
+@csrf_exempt
 def botApi(request):
     response = {}
     if request.method == 'POST':
