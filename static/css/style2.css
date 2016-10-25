@@ -258,6 +258,15 @@ button:focus {
   -webkit-justify-content: center;
   justify-content: center;
 }
+@media screen and (max-width:599px){
+    .grid__item{
+        outline: 1px solid rgba(255,255,255,.5);
+        outline-offset: -14px;
+    }
+    .grid__item:nth-child(1), .grid__item:nth-child(2){
+        display: none;
+    }
+}
 .grid__item:nth-child(1),
 .grid__item:nth-child(2),
 .grid__item:nth-child(3){
