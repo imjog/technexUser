@@ -379,9 +379,13 @@ def botApi(request):
     response = {}
     post = request.POST
     if post['passkey'] == 'Xs6vvZdLhsYHAEK':
-        user = User.objects.get(email = post['email'])
+        try:
+            user = User.objects.get(email = post['email'])
+            response['status'] = 1
+        except:
+            response['status'] = 0
         techProfile = TechProfile.objects.get(user = user)
         techProfile.botInfo = post['uid']
         techProfile.save()
-        response['status'] = 1
+        
         return JsonResponse(response)
