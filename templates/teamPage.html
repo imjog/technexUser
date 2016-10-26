@@ -20,6 +20,16 @@
   ga('send', 'pageview');
 
 </script>
+<script>
+function navFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
 </head>
 <body>
 <!----------NAVBAR-------->
@@ -145,16 +155,7 @@
 <script src="/static/team/js/jquery.mixitup.min.js"></script>
 <script src="/static/team/js/main.js"></script> <!-- Resource jQuery -->
     <!----------NAVBAR-------->
-<script>
-function navFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
-</script>
+
 <!----------/NAVBAR-------->
 </body>
 </html>

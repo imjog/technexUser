@@ -14,6 +14,9 @@ from django_mobile import get_flavour
 from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
+def sponsors(request):
+    return redirect("http://16.technex.in")
+
 def team(request):
     teams = TeamList.objects.all()
     return render(request,"teamPage.html",{"teams":teams})
@@ -78,7 +81,7 @@ def register(request):
         techprofile.year = data.get('year')
         techprofile.save()
         print "codeBaes 2"
-        subject = "Confirmation of Registration for Technex 2017"
+        subject = "[Technex'17] Confirmation of Registration"
         body = "Dear "+ data.get('name',None) +''',
 
  You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
@@ -91,7 +94,7 @@ An important note to ensure that the team can contact you further:  If you find 
 Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
               
 
-Looking forward to seeing you soon at Technex 2016.
+Looking forward to seeing you soon at Technex 2017.
 
 All the best!
 
@@ -373,7 +376,7 @@ def send_email(recipient, subject, body):
     return requests.post(
         "https://api.mailgun.net/v3/mg.technex.in/messages",
         auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),
-        data={"from": "No-reply <mailgun@mg.technex.in>",
+        data={"from": "Support Technex<support@technex.in>",
               "to": recipient,
               "subject": subject,
               "text": body})

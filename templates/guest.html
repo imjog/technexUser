@@ -21,6 +21,18 @@
   ga('send', 'pageview');
 
 </script>
+  <!----------NAVBAR-------->
+<script>
+function navFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+<!----------/NAVBAR-------->
 </head>
 <body>
 	
@@ -100,28 +112,8 @@
         
 });
 </script>
-    <script>
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
-</script>
-    <!----------NAVBAR-------->
-<script>
-function navFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
-</script>
-<!----------/NAVBAR-------->
+    
+  
 <script src="/static/js/guest_js/main.js"></script> <!-- Resource jQuery -->
 </body>
 </html>

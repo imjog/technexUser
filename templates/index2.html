@@ -18,6 +18,18 @@
   ga('send', 'pageview');
 
 </script>
+<script>
+function navFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+<!----------/NAVBAR-------->
+
 </head>
   <body>
 <canvas id="c"></canvas>
@@ -140,18 +152,7 @@
 				</section>
 					</div>
 			</div>
-      <!----------NAVBAR-------->
-<script>
-function navFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
-</script>
-<!----------/NAVBAR-------->
+    
 			<link rel="stylesheet" type="text/css" href="/static/css/style2.css" />
 			<link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
              <script src='/static/js/kzymdn.js'></script>
