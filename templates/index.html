@@ -66,8 +66,8 @@
 <div class="logo">
 <img src="/static/assets/images/logo-footer.png">
   </div>
- 
-<!--
+ {% if browser != 'Firefox' %}
+
                    <div style="margin-top: -11%"> 
                      <svg viewBox="0 0 1500 400">
             <symbol id="s-text">
@@ -100,13 +100,13 @@
           </svg>
 
           </div>
--->
+{% else %}
 
 <!-- MOZILLA STARTS -->
 <div class="technex-mozila">TECHNEX'17</div>
         <p class="technex-dates">TOWARDS SUSTAINABILITY&nbsp;&nbsp; | &nbsp;&nbsp;24 - 26 FEBRUARY</p>
 <!-- MOZILLA ENDS -->   
-
+{% endif %}
       <div class="navigation navigation-initial">
         <button class="button-next mobile-hidden">NEXT</button>
       </div>

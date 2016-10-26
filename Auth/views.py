@@ -19,9 +19,9 @@ def team(request):
 
 def IndexView(request):
     agent = parse(request.META['HTTP_USER_AGENT'])
-    print agent.browser.family
+
     if(get_flavour(request) == 'full'):
-        return render(request,"index.html")
+        return render(request,"index.html",{'browser':agent.browser.family})
     else:
         return render(request,"mobile.html")
 def contextCall(request):
