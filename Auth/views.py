@@ -171,9 +171,10 @@ def fbConnect(request):
             fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
         fb_connect.save()
         try:
-            user = User.objects.get(username = profile['email'])
-            if  user.techprofile.fb is None:
-                user.techprofile.fb = fb_connect
+            techProfile = TechProfile.objects.get(fb = fb_connect)
+            user = techprofile.user #User.objects.get(username = profile['email'])
+            if  techProfile.fb is None:
+                techProfile.fb = fb_connect
             user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request,user)
             response['status'] = 1 #status for logged IN
