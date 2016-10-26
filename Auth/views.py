@@ -18,10 +18,10 @@ def team(request):
     return render(request,"teamPage.html")
 
 def IndexView(request):
-    agent = parse(request.META['HTTP_USER_AGENT'])
+    #agent = parse(request.META['HTTP_USER_AGENT'])
 
     if(get_flavour(request) == 'full'):
-        return render(request,"index.html",{'browser':agent.browser.family})
+        return render(request,"index.html")# {'browser':agent.browser.family})
     else:
         return render(request,"mobile.html")
 def contextCall(request):
