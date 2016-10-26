@@ -79,7 +79,15 @@ def register(request):
         techprofile.college = college
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.year = data.get('year')
-        techprofile.save()
+        print data.get('uid')
+        try:
+            fb_connect = FbConnect.objects.get(uid = data.get('uid'))
+            techprofile.fb = fb_connect
+            print data.get('uid')
+            print 'code base1'
+            techprofile.save()
+        except:
+            techprofile.save()
         print "codeBaes 2"
         subject = "[Technex'17] Confirmation of Registration"
         body = "Dear "+ data.get('name',None) +''',
@@ -113,9 +121,10 @@ Team Technex.'''
         try:
             get = request.GET
             context['name'] = get['name']
-                        
+            context['uid'] = get['uid']            
             if 'email' in get:
                 context['email'] = get['email']
+
             context['status'] = 1;
             return render(request,'signUp.html',context)
         except:
@@ -170,7 +179,7 @@ def fbConnect(request):
         except:
             fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
         fb_connect.save()
-        if True:
+        try:
             techProfile = fb_connect.techprofile#TechProfile.objects.get(fb = fb_connect)
             user = techProfile.user #User.objects.get(username = profile['email'])
             #if  techProfile.fb is None:
@@ -178,12 +187,13 @@ def fbConnect(request):
             user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request,user)
             response['status'] = 1 #status for logged IN
-        else:
+        except:
             context = {}
             if 'name' in profile:
                 context['name'] = profile['name']
             if 'email' in profile:
                 context['email'] = profile['email']
+            context['uid'] =  uid
             print context
             response['context'] = context
             response['status'] = 0 #status signup prepopulation of data

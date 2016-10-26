@@ -94,6 +94,7 @@
                                           <button type="button" id="close-email" class="close-btna close-btn">
                                              <span aria-hidden="true">&times;</span>
                                            </button>
+                                  <input type='hidden' id='uid' value='{% if uid %}{{uid}}{% endif %}' />
   <!-- <strong>Sorry!</strong> -->Email entered is incorrect.
 </div>
   <div class="alert-message alert-email" id="email-repeat">
@@ -275,7 +276,7 @@ function fb_login() {
       else{
         getData = 'name='+response['context']['name'];
         if ('email' in response['context']) getData += '&email='+response['context']['email'];
-        
+        getData += '&uid='+response['context']['uid'];
         window.location = '/register/?'+getData;
 
       } 

@@ -220,6 +220,7 @@ $('#btn-next-page').on('click', function(e) {
                   "year":$("#id_year").val(),
                   "city":$("#form-city").val(),
                   "mobileNumber":$("#form-mobile").val(),
+                  "uid":$("#uid").val(),
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
                 console.log(data);
