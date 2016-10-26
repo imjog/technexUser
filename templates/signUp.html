@@ -240,7 +240,7 @@ window.fbAsyncInit = function () {
         cookie: false,  // enable cookies to allow the server to access
         // the session
         xfbml: true,  // parse social plugins on this page
-        version: 'v2.1' // use version 2.0
+        version: 'v2.0' // use version 2.0
     });
 };
 
@@ -287,7 +287,7 @@ function fb_login() {
 
         }
     }, {
-        scope: 'public_profile,user_info'
+        scope: 'public_profile'
     });
 }
 
