@@ -30,6 +30,7 @@ urlpatterns = [
 	url(r'^checkEmail/',emailUnique,name='emailUnique'),
 	url(r'^botApi/',botApi,name='botApi'),
 	url(r'^sponsors/',sponsors,name='sponsors'),
+	url(r'^ca/',ca,name='ca'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
 

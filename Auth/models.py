@@ -137,6 +137,7 @@ class MetaTags(models.Model):
 class TeamList(models.Model):
     teamId = models.AutoField(primary_key = True)
     teamName = models.CharField(max_length = 50)
+    order = models.SmallIntegerField(default = 0)
     def __unicode__(self):
         return self.teamName
 
@@ -148,5 +149,6 @@ class TeamMembers(models.Model):
     designation = models.CharField(max_length = 50)
     number = models.BigIntegerField(null = True,blank = True)
     team = models.ForeignKey(TeamList)
+    order = models.SmallIntegerField(default = 0)
     def __unicode__(self):
         return '%s %s'%(self.name,self.team.teamName)

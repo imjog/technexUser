@@ -65,7 +65,7 @@ function navFunction() {
 					<li class="filter" data-filter=".color-6"><a href="#0" data-type="color-6">Public Relations</a><li>
 					<li class="filter" data-filter=".color-7"><a href="#0" data-type="color-7">Hospitality</a><li>
 					<li class="filter" data-filter=".color-8"><a href="#0" data-type="color-8">Events</a><li> -->
-					{% for team in teams  %}
+					{% for team in teams|dictsort:"order"  %}
 					<li class="filter" data-filter=".color-{{forloop.counter}}"><a href="#0" data-type="color-{{forloop.counter}}">{{team.teamName}}</a></li>
 					{% endfor %}
 				</ul> <!-- cd-filters -->

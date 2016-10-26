@@ -14,6 +14,9 @@ from django_mobile import get_flavour
 from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
+def ca(request):
+    return redirect("http://ca.technex.in")
+    
 def sponsors(request):
     return redirect("http://16.technex.in")
 
