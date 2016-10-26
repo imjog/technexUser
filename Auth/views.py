@@ -11,15 +11,18 @@ import os
 import facebook
 from Auth.models import *
 from django_mobile import get_flavour
+from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
 def team(request):
-    return render(request,"teamPage.html")
+    teams = TeamList.objects.all()
+    return render(request,"teamPage.html",{"teams":teams})
 
 def IndexView(request):
-    
+    agent = parse(request.META['HTTP_USER_AGENT'])
+
     if(get_flavour(request) == 'full'):
-        return render(request,"index.html")
+        return render(request,"index.html",{'browser':agent.browser.family})
     else:
         return render(request,"mobile.html")
 def contextCall(request):
@@ -379,9 +382,13 @@ def botApi(request):
     response = {}
     post = request.POST
     if post['passkey'] == 'Xs6vvZdLhsYHAEK':
-        user = User.objects.get(email = post['email'])
+        try:
+            user = User.objects.get(email = post['email'])
+            response['status'] = 1
+        except:
+            response['status'] = 0
         techProfile = TechProfile.objects.get(user = user)
-        techprofile.botInfo = post['uid']
-        techprofile.save()
-        response['status'] = 1
+        techProfile.botInfo = post['uid']
+        techProfile.save()
+        
         return JsonResponse(response)

@@ -132,3 +132,20 @@ class MetaTags(models.Model):
     event = models.ForeignKey(ParentEvent)
     def __unicode__(self):
         return '%s %s'%(self.name,self.event.categoryName)
+
+class TeamList(models.Model):
+    teamId = models.AutoField(primary_key = True)
+    teamName = models.CharField(max_length = 50)
+    def __unicode__(self):
+        return self.teamName
+
+class TeamMembers(models.Model):
+    name = models.CharField(max_length = 50)
+    email = models.CharField(max_length = 65,null = True, blank = True)
+    facebookLink = models.TextField(validators=[URLValidator()],blank=True,null = True)
+    photo = models.TextField(validators=[URLValidator()],blank=True,null = True)
+    designation = models.CharField(max_length = 50)
+    number = models.BigIntegerField(null = True,blank = True)
+    team = models.ForeignKey(TeamList)
+    def __unicode__(self):
+        return '%s %s'%(self.name,self.team.teamName)
