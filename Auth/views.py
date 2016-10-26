@@ -171,10 +171,10 @@ def fbConnect(request):
             fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
         fb_connect.save()
         try:
-            techProfile = TechProfile.objects.get(fb = fb_connect)
+            techProfile = fb_connect.techprofile#TechProfile.objects.get(fb = fb_connect)
             user = techProfile.user #User.objects.get(username = profile['email'])
-            if  techProfile.fb is None:
-                techProfile.fb = fb_connect
+            #if  techProfile.fb is None:
+            #   techProfile.fb = fb_connect
             user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request,user)
             response['status'] = 1 #status for logged IN
@@ -396,3 +396,4 @@ def botApi(request):
         techProfile.save()
         
         return JsonResponse(response)
+    return HttpResponse("Invalid Request!")
