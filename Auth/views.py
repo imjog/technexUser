@@ -11,13 +11,15 @@ import os
 import facebook
 from Auth.models import *
 from django_mobile import get_flavour
+from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
 def team(request):
     return render(request,"teamPage.html")
 
 def IndexView(request):
-    
+    agent = parse(request.META['HTTP_USER_AGENT'])
+    print agent.browser.family
     if(get_flavour(request) == 'full'):
         return render(request,"index.html")
     else:
