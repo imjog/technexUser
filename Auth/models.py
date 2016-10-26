@@ -26,7 +26,8 @@ class FbConnect(models.Model):
     uid = models.CharField(max_length = 200, null = True)
     accessToken = models.CharField(max_length = 250, null = True)
     profileImage = models.TextField(validators=[URLValidator()],blank=True,null = True)
-
+    def __unicode__(self):
+        return self.techprofile.user.first_name
 class TechProfile(models.Model):
     user = models.OneToOneField(User)
     technexId = models.CharField(max_length = 30, unique = True, null = True)
