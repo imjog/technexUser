@@ -15,7 +15,8 @@ from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
 def team(request):
-    return render(request,"teamPage.html")
+    teams = TeamList.objects.all()
+    return render(request,"teamPage.html",{"teams":teams})
 
 def IndexView(request):
     #agent = parse(request.META['HTTP_USER_AGENT'])
