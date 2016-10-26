@@ -793,6 +793,21 @@ xcustom form elements
 .post{
     color: rgba(255,255,255,.7);
 }
+.cd-gallery li p{
+    color: white;
+}
+@media screen and (max-width:768px){
+.team-ul{
+    margin-left: -5px;
+}
+}
+@media screen and (max-width:768px){
+    .cd-gallery li {
+        width: 130%;
+        margin-left: -35px;
+    }
+}
+/*
 .num-mail{
     display: none;
 }
@@ -816,4 +831,4 @@ xcustom form elements
     width: 40px;
     margin-left: 47%;
     margin-top: 22px;
-}
+}*/

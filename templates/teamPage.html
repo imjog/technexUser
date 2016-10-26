@@ -62,7 +62,8 @@ ga('send', 'pageview');
 		</div> <!-- cd-tab-filter-wrapper -->
 
 		<section class="cd-gallery">
-			<ul>
+
+            <ul class="team-ul">
 			{% for team in teams %}
 			 {% with forloop.counter as outer_counter %}
 			{% for member in team.teammembers_set.all %}
@@ -75,9 +76,10 @@ ga('send', 'pageview');
 			{% endfor %}
 			<!--
                 <li class="mix color-1"><img src="/static/team/img/g1.png" alt="Image 1">
-                    <div class="num-mail"><p style="color:white">+919695806384</p><a href="fb.com/jogendra.legha" target=""><img src="/static/team/img/fb.png" style="height:40px;width:40px" class="fb-team"></a></div>
                     <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></li>
+                    <p class="post">Convenor</p><p style="color:white;font-size:15px">jogendra.kumar.phy15@iitbhu.ac.in</p>
+                    <p>+914637829602</p>
+                </li>
 				<li class="mix color-1"><img src="/static/team/img/g1.png" alt="Image 2"><div class="num-mail"><p style="color:white">+919695806384</p><a href="fb.com/jogendra.legha" target=""><img src="/static/team/img/fb.png" style="height:40px;width:40px" class="fb-team"></a></div>
                     <p class="jname">Lorem Ipsum</p>
                     <p class="post">Convenor</p>
