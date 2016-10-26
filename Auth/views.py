@@ -172,7 +172,7 @@ def fbConnect(request):
         fb_connect.save()
         try:
             techProfile = TechProfile.objects.get(fb = fb_connect)
-            user = techprofile.user #User.objects.get(username = profile['email'])
+            user = techProfile.user #User.objects.get(username = profile['email'])
             if  techProfile.fb is None:
                 techProfile.fb = fb_connect
             user.backend = 'django.contrib.auth.backends.ModelBackend'
