@@ -79,7 +79,7 @@ function navFunction() {
 			 {% with forloop.counter as outer_counter %}
 			{% for member in team.teammembers_set.all %}
 			<li class="mix color-{{outer_counter}}"><img src="{{member.photo}}" alt="Image 1">
-                    <div class="num-mail"><p style="color:white">{{member.number}}</p><a href="{{member.facebookLink}}" target=""><img src="/static/team/img/fb.png" style="height:40px;width:40px" class="fb-team"></a></div>
+                    <div class="num-mail"><p style="color:white">{{member.number}}</p></div>
                     <p class="jname">{{member.name}}</p>
                     <p class="post">{{member.designation}}</p><p style="color:white">{{member.email}}</p></li>
 			{% endfor %}
