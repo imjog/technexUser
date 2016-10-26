@@ -170,7 +170,7 @@ def fbConnect(request):
         except:
             fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
         fb_connect.save()
-        try:
+        if True:
             techProfile = fb_connect.techprofile#TechProfile.objects.get(fb = fb_connect)
             user = techProfile.user #User.objects.get(username = profile['email'])
             #if  techProfile.fb is None:
@@ -178,7 +178,7 @@ def fbConnect(request):
             user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request,user)
             response['status'] = 1 #status for logged IN
-        except:
+        else:
             context = {}
             if 'name' in profile:
                 context['name'] = profile['name']
