@@ -18,6 +18,125 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <link rel="shortcut icon" href="/static/favicon.ico">
+        <style type="text/css">
+          /*----------------------------NAVBAR--------------------------*/
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  overflow: hidden;
+  background-color: black;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 8px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 16px;
+ letter-spacing: 1px;
+    border-right: 1px solid rgba(255,255,255,.3);
+}
+@media (min-width:1350px){
+    ul.topnav li a{
+        color: rgba(255,255,255,.8);
+    }
+ul.topnav li a:hover {
+/*    background-color:white; color: black;*/
+    border-top: 1px solid white;
+    border-bottom:1px solid white;
+    color: white;
+}
+    ul.topnav{
+        display: inline-block;
+    }
+}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:1350px) {
+  ul.topnav li:not(:first-child){display: none;}
+    ul.topnav li:nth-child(10){display: block; float: right;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+    ul.topnav li a{border:1px solid white;margin-right: 8px;}
+}
+
+@media screen and (max-width:1350px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: center;
+      border: 1px solid rgba(255,255,255,.2);
+  }
+}
+
+@media (min-width:1024px) and (max-width:1399px){
+    ul.topnav li a{
+        padding: 14px 8px;
+    }
+}
+/*
+
+.topnav-li:after {
+  position: absolute;
+  -webkit-transition: 1s;
+  transition: 1s;
+  content: '';
+  width: 0;
+  left: 50%;
+  top: 0;
+  height: 3px;
+  background: red;
+}
+.topnav-li:before {
+  position: absolute;
+  -webkit-transition: 1s;
+  transition: 1s;
+  content: '';
+  width: 0;
+  left: 50%;
+  top: 0;
+  height: 3px;
+  background: yellow;
+}
+.topnav-li:after {
+  right: 0;
+  left: auto;
+}
+.topnav-li:before {
+  left: 0;
+}
+.topnav-li:hover:after {
+  width: 100%;
+  left: 0;
+}
+.topnav-li:hover:before {
+  width: 100%;
+  right: 0;
+    left: auto;
+}
+*/
+/*-------------------/NAVBAR-------------------*/
+        </style>
     </head>
     <script>
       window.fbAsyncInit = function() {
@@ -36,10 +155,29 @@
        }(document, 'script', 'facebook-jssdk'));
     </script>
      <body>
+       <!----------NAVBAR-------->
+<div class="jnavbar" id="abcde">
+    <ul class="topnav" id="myTopnav">
+  <li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
+  <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+  <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
+  <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
+  
+  <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
+  <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;display: inline;">REGISTER</a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;padding:11px;display: inline;" onclick="navFunction()">☰</a>
+  </li>
+</ul>
+</div>
+<!----------/NAVBAR-------->    
         <div class="top-content">
-        	
+             	
             <div class="inner-bg">
-                <div class="container">
+                <div class="container" style="margin-top: -50px;">
                   
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 form-box">
@@ -188,7 +326,7 @@
                           
                           <div class="form-top" style="padding-bottom: 0px;">
                                 <div class="form-top-left">
-                                  <h3><b style="font-size: 26px;padding-bottom: 0px;">THANK YOU <span id='personal'></span>FOR REGISTERING</b></h3>
+                                  <h3><b style="font-size: 26px;padding-bottom: 0px;" id='thankYou'>/b></h3>
                                 </div>
                                 <div class="form-top-right">
                                   <i class="fa fa-user"></i>
@@ -216,6 +354,18 @@
             </div>
             
         </div>
+              <!----------NAVBAR-------->
+<script>
+function navFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+<!----------/NAVBAR-------->
  <script src='/static/jquery.min.js'></script>
         <script src="/static/login2_files2/bootstrap.min.js"></script>
         <script src="/static/login2_files2/jquery.backstretch.min.js"></script>
