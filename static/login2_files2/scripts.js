@@ -226,9 +226,9 @@ $('#btn-next-page').on('click', function(e) {
 
                 theAjax('/register/',data).done(function(response){
                   if( response == '1') {
-          $(".fb-send-to-messenger").attr(
-            "data-ref",$("#laluram").val());
-          $("#personal").html('THANK YOU '+ '$("#form-first-name") '+'FOR REGISTERING');
+          //$(".fb-send-to-messenger").attr(
+            //"data-ref",$("#laluram").val());
+          $("#personal").html('THANK YOU '+ $("#form-first-name") +'FOR REGISTERING');
            parent_fieldset.fadeOut(400, function() {
                 $(this).next().fadeIn();
             });
