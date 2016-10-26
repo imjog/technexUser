@@ -30,22 +30,6 @@ ga('create', 'UA-XXXXX-Y', 'auto');
 ga('send', 'pageview');
 </script>
     </head>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId: '534344073416290',
-          xfbml: true,
-          version: 'v2.6'
-        });
-      };
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
      <body>
    
         <div class="top-content">
@@ -208,14 +192,11 @@ ga('send', 'pageview');
                                 </div>
                                 <div class="form-bottom" style="padding-bottom: 35px;">
                                 <div class="form-group" style="display: table;margin: 0 auto;">
-                           <h3>To get regular updates and to chat with us in future Connect with messenger</h3>
-                           <div class="fb-send-to-messenger" 
-        messenger_app_id='534344073416290'
-        page_id='225615937462895'
-        data-ref="PASS_THROUGH_PARAM" 
-        color="blue" 
-        size="large">
-      </div>
+                           <h3>
+                             <b id='personal'></b>
+
+                           </h3>
+                           
                             </div>
 
                         </fieldset>
