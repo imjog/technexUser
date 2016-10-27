@@ -18,7 +18,7 @@ def ca(request):
     return redirect("http://ca.technex.in")
     
 def sponsors(request):
-    return redirect("http://16.technex.in")
+    return redirect("http://16.technex.in/sponsors")
 
 def team(request):
     teams = TeamList.objects.all()

@@ -224,6 +224,9 @@ $('#btn-next-page').on('click', function(e) {
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
                 console.log(data);
+                $("#btn-next-page").attr("disabled",true);
+
+                $("#btn-next-page").html("Submitting Info Please Wait !!");
 
                 theAjax('/register/',data).done(function(response){
                   if( response == '1') {
@@ -233,11 +236,18 @@ $('#btn-next-page').on('click', function(e) {
            parent_fieldset.fadeOut(400, function() {
                 $(this).next().fadeIn();
             });
+
         }
         else{
           console.log(response); //yahan error dikhana hai
         }
+                })
+                .fail(function(){
+                  $("#btn-next-page").attr("disabled",false);
+                  $("#btn-next-page").html("Next");
+                  alert("Email address above 30 characters !!!");
                 });
+                
                };
          
     });

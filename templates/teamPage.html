@@ -35,7 +35,7 @@ function navFunction() {
 <!----------NAVBAR-------->
 <div class="jnavbar">
 		<ul class="topnav" id="myTopnav">
-  <li class="topnav-li"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></li>
+  <li class="topnav-li"><a href='/'><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
   <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
   <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
@@ -48,7 +48,7 @@ function navFunction() {
     <a href="javascript:void(0);" style="font-size:15px;padding:14px;" onclick="navFunction()">☰</a>
   </li>
 </ul></div>
-<!----------/NAVBAR-------->
+
 	<main class="cd-main-content">
 		<div class="cd-tab-filter-wrapper">
 			<div class="cd-tab-filter">
@@ -57,20 +57,11 @@ function navFunction() {
 						<a data-type="all" href="#0" style='display: none;'>All</a> <!-- selected option on mobile -->
 					</li>
 					<li class="filter" style='display:none'><a class="selected" href="#0" data-type="all">All</a></li>
-					<!-- <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Core</a></li>
-					<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Tech</a></li>
-					<li class="filter" data-filter=".color-3"><a href="#0" data-type="color-3">Design</a><li>
-					<li class="filter" data-filter=".color-4"><a href="#0" data-type="color-4">Publicity</a><li>
-					<li class="filter" data-filter=".color-5"><a href="#0" data-type="color-5">Marketing</a><li>
-					<li class="filter" data-filter=".color-6"><a href="#0" data-type="color-6">Public Relations</a><li>
-					<li class="filter" data-filter=".color-7"><a href="#0" data-type="color-7">Hospitality</a><li>
-					<li class="filter" data-filter=".color-8"><a href="#0" data-type="color-8">Events</a><li> -->
 					{% for team in teams|dictsort:"order"  %}
 					<li class="filter" data-filter=".color-{{forloop.counter}}"><a href="#0" data-type="color-{{forloop.counter}}">{{team.teamName}}</a></li>
 					{% endfor %}
-				</ul> <!-- cd-filters -->
-			</div> <!-- cd-tab-filter -->
-		</div> <!-- cd-tab-filter-wrapper -->
+				</ul>			</div> 
+		</div> 
 
 		<section class="cd-gallery">
 
@@ -85,78 +76,18 @@ function navFunction() {
 			{% endfor %}
 			{% endwith %}
 			{% endfor %}
-			<!--
-                <li class="mix color-1"><img src="/static/team/img/g1.png" alt="Image 1">
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p><p style="color:white;font-size:15px">jogendra.kumar.phy15@iitbhu.ac.in</p>
-                    <p>+914637829602</p>
-                </li>
-				<li class="mix color-1"><img src="/static/team/img/g1.png" alt="Image 2"><div class="num-mail"><p style="color:white">+919695806384</p><a href="fb.com/jogendra.legha" target=""><img src="/static/team/img/fb.png" style="height:40px;width:40px" class="fb-team"></a></div>
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p>
-                <p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p>
-                </li>
-				<li class="mix color-1"><img src="/static/team/img/g1.png" alt="Image 3"><div class="num-mail"><p style="color:white">+919695806384</p><a href="fb.com/jogendra.legha" target=""><img src="/static/team/img/fb.png" style="height:40px;width:40px" class="fb-team"></a></div>
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p>
-                <p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p>
-                </li>
-				<li class="mix color-1"><img src="/static/team/img/core4.png" alt="Image 4"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p></li>
-				<li class="mix color-1"><img src="/static/team/img/core5.png" alt="Image 5"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p></li>
-				<li class="mix color-1"><img src="/static/team/img/core6.png" alt="Image 6"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p></li>
-				<li class="mix color-1"><img src="/static/team/img/core7.png" alt="Image 7"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p></li>
-				<li class="mix color-1"><img src="/static/team/img/core8.png" alt="Image 8"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p></li>
-				<li class="mix color-2"><img src="/static/team/img/tech1.png" alt="Image 9"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>
-                    <p class="jname">Lorem Ipsum</p>
-                    <p class="post">Convenor</p></li>
-				<li class="mix color-2"><img src="/static/team/img/tech2.png" alt="Image 10"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-3"><img src="/static/team/img/design1.png" alt="Image 13"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-3"><img src="/static/team/img/design2.png" alt="Image 14"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-4"><img src="/static/team/img/publicity1.png" alt="Image 15"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-5"><img src="/static/team/img/mark1.png" alt="Image 18"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-7"><img src="/static/team/img/hosp1.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-8"><img src="/static/team/img/event1.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-2"><img src="/static/team/img/tech3.png" alt="Image 11"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-2"><img src="/static/team/img/tech4.png" alt="Image 12"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-
-				<li class="mix color-3"><img src="/static/team/img/design3.png" alt="Image 14"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-
-				<li class="mix color-4"><img src="/static/team/img/publicity2.png" alt="Image 16"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-4"><img src="/static/team/img/publicity3.png" alt="Image 17"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-
-				<li class="mix color-5"><img src="/static/team/img/mark2.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-6"><img src="/static/team/img/pr1.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-
-				<li class="mix color-7"><img src="/static/team/img/hosp2.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-7"><img src="/static/team/img/hosp3.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-
-				<li class="mix color-8"><img src="/static/team/img/event2.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				<li class="mix color-8"><img src="/static/team/img/event3.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
--->
+			
 				<li class="gap"></li>
 				<li class="gap"></li>
 				<li class="gap"></li>
 			</ul>
 			<div class="cd-fail-message">No results found</div>
-		</section> <!-- cd-gallery -->
- <!-- cd-filter -->
-	</main> <!-- cd-main-content -->
+		</section>
+	</main> 
 <script src="/static/team/js/jquery-2.1.1.js"></script>
 <script src="/static/team/js/jquery.mixitup.min.js"></script>
-<script src="/static/team/js/main.js"></script> <!-- Resource jQuery -->
-    <!----------NAVBAR-------->
-
-<!----------/NAVBAR-------->
+<script src="/static/team/js/main.js"></script>
+    
 <script>
 
 $(document).ready(function() {
