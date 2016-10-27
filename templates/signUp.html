@@ -172,11 +172,36 @@
                                             
                                
                             </div>
+                            <div class="form-group" style="color: white;">
+                            HAVE A CA_REFERRAL ID?
+                            <div class="material-switch pull-right">
+                            <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionInfo" class="label-info"></label>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-ca-email">CA-Email</label>
+                             <input name="ca-email" placeholder="Referral Email" class="form-ca-email form-control" id="referral-email" type="text" disabled="true"/> 
+                                                           <div class="alert-message alert-email" id="invalid-referral">
+                                   <button type="button" id="close-invalid-referral" class="close-btn close-btna">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    Invalid Email Address
+</div>
+                                                <div class="alert-message alert-email" id="no-referral">
+                                                  <button type="button" id="close-no-referral" class="close-btn close-btna">
+                       <span aria-hidden="true">&times;</span>
+                </button>
+                 No Such CA Email
+          </div>
+                              
+
+                            </div>
                           
                           <button type="button" class="btn  btna btn-previous">PREVIOUS</button>
 
                            <button type="button" id="btn-next-page" class="btn btna btn-next page-2">NEXT</button>
-                   
+                               
                             </div>
                           
                           

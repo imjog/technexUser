@@ -25,6 +25,13 @@ jQuery(document).ready(function() {
      $('#close-mobile').on('click',function(){
       $('.alert-mobile').hide();
     }); 
+      $('#close-no-referral').on('click',function(){
+      $('.alert-email').hide();
+    });
+       $('#close-invalid-referral').on('click',function(){
+      $('.alert-email').hide();
+    });
+
 function phnvalidation()
     {
         var num = $('.form-mobile-number').val();
@@ -53,7 +60,7 @@ function phnvalidation()
     function emailvalidation()
     {
 
-        var email = $('.form-email').val();
+        var email = $('#laluram').val();
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
        
         if(re.test(email) == false)
@@ -64,6 +71,24 @@ function phnvalidation()
         else
         { 
               $("#email-error").hide();
+              return true;
+        }
+        
+    }
+     function referralemailvalidation()
+    {
+
+        var email = $('#referral-email').val();
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       
+        if(re.test(email) == false)
+        {
+             $('#invalid-referral').show();
+             return false;
+        }
+        else
+        { 
+              $("#invalid-referral").hide();
               return true;
         }
         
@@ -133,6 +158,21 @@ function validatePassword(){
         
         
     });
+
+
+    $("input[type=checkbox]").on("click", function()
+    {
+
+         if($('#someSwitchOptionInfo').is(":checked"))
+        {
+          $("#referral-email").attr("disabled",false);
+        }
+        else
+        {
+          $("#referral-email").attr("disabled",true);
+        }
+    });       
+
         $('#btn-next-page-email').on('click', function() {
         var parent_fieldset = $(this).parents('fieldset');
         var next_step = true;        
@@ -175,15 +215,11 @@ $('#confirm_password').keyup(function(e){
           $('.alert-confirm-password').hide();
         } 
  });
-$('#form-whatsapp').keyup(function(e){
+$('#referral-email').keyup(function(e){
     var code = (e.keyCode ? e.keyCode : e.which);
         if(code !==13)
-          $('.alert-whatsapp').hide();
-    });
-$('#form-pincode').keyup(function(e){
-    var code = (e.keyCode ? e.keyCode : e.which);
-        if(code !==13)
-          $('.alert-pincode').hide();
+          $('#invalid-referral').hide();
+        $('#no-referral').hide();
     });
 $('#btn-next-page').on('click', function(e) {
 
@@ -200,7 +236,8 @@ $('#btn-next-page').on('click', function(e) {
                 }   
         
        parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
-            if( $(this).val() == "" ) {
+            if( $(this).val() == "" && $(this).prop('disabled') != true) {
+              
               e.preventDefault();
                 $(this).addClass('input-error');
                 next_step = false;
@@ -209,7 +246,17 @@ $('#btn-next-page').on('click', function(e) {
              {
                 var mb=phnvalidation();
                 next_step = mb;
+               }
+               if(next_step && $("#referral-email").prop('disabled')==false)
+               {
+                next_step = referralemailvalidation();
                } 
+               if(next_step && $("#referral-email").prop('disabled')==false)
+                {
+                   var email = $("#referral-email").val();
+                  theAjax('/checkEmail/',{"email":email}).done(function(response){
+                if(response == '0') {$('#email-repeat').show();next_step = false;}
+                }
                if(next_step)
                {
                 data = {
