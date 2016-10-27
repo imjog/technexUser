@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="/static/team/css/style.css"> <!-- Resource style -->
 	<link rel="shortcut icon" href="/static/images/favicon.ico">
 	<script src="/static/team/js/modernizr.js"></script> <!-- Modernizr -->
-  	
+
 	<title>Contacts | Technex '17</title>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -53,10 +53,10 @@ function navFunction() {
 		<div class="cd-tab-filter-wrapper">
 			<div class="cd-tab-filter">
 				<ul class="cd-filters">
-					<li class="placeholder"> 
-						<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
-					</li> 
-					<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
+					<li class="placeholder">
+						<a data-type="all" href="#0" style='display: none;'>All</a> <!-- selected option on mobile -->
+					</li>
+					<li class="filter" style='display:none'><a class="selected" href="#0" data-type="all">All</a></li>
 					<!-- <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Core</a></li>
 					<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Tech</a></li>
 					<li class="filter" data-filter=".color-3"><a href="#0" data-type="color-3">Design</a><li>
@@ -75,9 +75,9 @@ function navFunction() {
 		<section class="cd-gallery">
 
             <ul class="team-ul">
-			{% for team in teams %}
+			{% for team in teams|dictsort:"order" %}
 			 {% with forloop.counter as outer_counter %}
-			{% for member in team.teammembers_set.all %}
+			{% for member in team.teammembers_set.all|dictsort:"order" %}
 			<li class="mix color-{{outer_counter}}"><img src="{{member.photo}}" alt="Image 1">
                     <div class="num-mail"><p style="color:white">{{member.number}}</p></div>
                     <p class="jname">{{member.name}}</p>
@@ -128,18 +128,18 @@ function navFunction() {
 				<li class="mix color-8"><img src="/static/team/img/event1.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
 				<li class="mix color-2"><img src="/static/team/img/tech3.png" alt="Image 11"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
 				<li class="mix color-2"><img src="/static/team/img/tech4.png" alt="Image 12"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				
+
 				<li class="mix color-3"><img src="/static/team/img/design3.png" alt="Image 14"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				
+
 				<li class="mix color-4"><img src="/static/team/img/publicity2.png" alt="Image 16"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
 				<li class="mix color-4"><img src="/static/team/img/publicity3.png" alt="Image 17"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				
+
 				<li class="mix color-5"><img src="/static/team/img/mark2.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
 				<li class="mix color-6"><img src="/static/team/img/pr1.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				
+
 				<li class="mix color-7"><img src="/static/team/img/hosp2.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
 				<li class="mix color-7"><img src="/static/team/img/hosp3.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
-				
+
 				<li class="mix color-8"><img src="/static/team/img/event2.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
 				<li class="mix color-8"><img src="/static/team/img/event3.png" alt="Image 19"><div class="num-mail"><p style="color:white">+919695806384</p><p style="color:white">jogendra.kumar.phy15@iitbhu.ac.in</p></div>                     <p class="jname">Lorem Ipsum</p>                     <p class="post">Convenor</p></li>
 -->
