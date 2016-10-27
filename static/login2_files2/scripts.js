@@ -253,9 +253,11 @@ $('#btn-next-page').on('click', function(e) {
                } 
                if(next_step && $("#referral-email").prop('disabled')==false)
                 {
-                   var email = $("#referral-email").val();
-                  theAjax('/checkEmail/',{"email":email}).done(function(response){
-                if(response == '0') {$('#email-repeat').show();next_step = false;}
+                  if($("#referral-email").val()=="ishandeepgandhi@gmail.com")
+                  {
+                    next_step=false;
+                    $("#no-referral").show();
+                  }
                 }
                if(next_step)
                {
