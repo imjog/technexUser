@@ -221,6 +221,7 @@ $('#btn-next-page').on('click', function(e) {
                   "city":$("#form-city").val(),
                   "mobileNumber":$("#form-mobile").val(),
                   "uid":$("#uid").val(),
+                  "city":$("#form-city").val(),
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
                 console.log(data);

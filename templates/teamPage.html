@@ -54,7 +54,7 @@ function navFunction() {
 			<div class="cd-tab-filter">
 				<ul class="cd-filters">
 					<li class="placeholder">
-						<a data-type="all" href="#0" style='display: none;'>All</a> <!-- selected option on mobile -->
+						<a data-type="all" href="#0">CORE</a> <!-- selected option on mobile -->
 					</li>
 					<li class="filter" style='display:none'><a class="selected" href="#0" data-type="all">All</a></li>
 					{% for team in teams|dictsort:"order"  %}
@@ -81,7 +81,7 @@ function navFunction() {
 				<li class="gap"></li>
 				<li class="gap"></li>
 			</ul>
-			<div class="cd-fail-message">No results found</div>
+			<div class="cd-fail-message" style="color: white;">Will be displayed soon</div>
 		</section>
 	</main> 
 <script src="/static/team/js/jquery-2.1.1.js"></script>

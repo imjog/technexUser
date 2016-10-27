@@ -36,6 +36,7 @@ class TechProfile(models.Model):
     college = models.ForeignKey(College,null = True)
     fb = models.OneToOneField(FbConnect,null = True, blank = True)
     botInfo = models.CharField(max_length = 65,null = True, blank = True)
+    city = models.CharField(max_length = 65,default = 'varanasi')
     #profile_photo = models.TextField(validators=[URLValidator()],blank=True)
 
     def __unicode__(self):

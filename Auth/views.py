@@ -81,6 +81,7 @@ def register(request):
         techprofile = TechProfile(user = user)
         techprofile.college = college
         techprofile.mobileNumber = data.get('mobileNumber')
+        techprofile.city = data.get('city')
         techprofile.year = data.get('year')
         print data.get('uid')
         try:
