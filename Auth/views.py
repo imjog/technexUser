@@ -124,7 +124,7 @@ Team Technex.'''
         return HttpResponse('1')
     else:
         context= {}
-        context['all_colleges'] = College.objects.filter(status = True)
+        context['all_colleges'] = College.objects.filter(status = False)
         try:
             get = request.GET
             context['name'] = get['name']
