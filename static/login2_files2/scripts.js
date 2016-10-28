@@ -256,7 +256,7 @@ $('#btn-next-page').on('click', function(e) {
                   if($("#referral-email").val()=="ishandeepgandhi@gmail.com")
                   {
                     next_step=false;
-                    $("#no-referral").show();
+                    //$("#no-referral").show();
                   }
                 }
                if(next_step)
@@ -273,6 +273,7 @@ $('#btn-next-page').on('click', function(e) {
                   "city":$("#form-city").val(),
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
+                if($("#referral-email").prop("disabled")) data['referral'] = $("#referral-email").val();
                 console.log(data);
                 $("#btn-next-page").attr("disabled",true);
 

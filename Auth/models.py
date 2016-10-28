@@ -20,6 +20,7 @@ def get_user_image_folder(instance, filename):
 class College(models.Model):
     collegeId = models.AutoField(primary_key = True)
     collegeName = models.CharField(max_length=250)
+    status = models.BooleanField(default = False)
     def __unicode__(self):
         return self.collegeName
 class FbConnect(models.Model):

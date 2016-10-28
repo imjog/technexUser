@@ -63,11 +63,14 @@ def register(request):
         email = data.get('email',None)
         print 'code base 0'
         try:
-            user = User.objects.get(email = email)
+            techProfile = TechProfile.objects.get(email = email)
+            #user = User.objects.get(email = email)
             #messages.warning(request,"Email Already Registered !")
             return HttpResponse("Email Already Registered!") #redirect('/register')
         except:
-            user = User.objects.create_user(username=email, email=email)
+            bugUsername = User.objects.latest('id').id
+            user = User.objects.create_user(username=str(bugUsername+1))
+            techprofile = TechProfile(user = user,email = email)
         user.first_name = data.get('name',None)
         password = data.get('password',None)
         user.set_password(password)
@@ -78,7 +81,7 @@ def register(request):
         except:
             college = College(collegeName = data.get('college'))
             college.save()
-        techprofile = TechProfile(user = user)
+        
         techprofile.college = college
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.city = data.get('city')
@@ -115,13 +118,13 @@ Regards
 
 Team Technex.'''
         #send_email(email,subject,body)
-        newUser = authenticate(username=email, password=password)
-        print 'code base 3'
-        login(request, newUser)
+        #newUser = authenticate(username=email, password=password)
+        #print 'code base 3'
+        #login(request, newUser)
         return HttpResponse('1')
     else:
         context= {}
-        context['all_colleges'] = College.objects.all()
+        context['all_colleges'] = College.objects.filter(status = True)
         try:
             get = request.GET
             context['name'] = get['name']
