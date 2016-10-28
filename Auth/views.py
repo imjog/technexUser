@@ -117,7 +117,7 @@ All the best!
 Regards
 
 Team Technex.'''
-        #send_email(email,subject,body)
+        send_email(email,subject,body)
         #newUser = authenticate(username=email, password=password)
         #print 'code base 3'
         #login(request, newUser)
