@@ -30,13 +30,15 @@ class FbConnect(models.Model):
         return self.uid
 class TechProfile(models.Model):
     user = models.OneToOneField(User)
-    technexId = models.CharField(max_length = 30, unique = True, null = True)
+    email = models.EmailField(max_length = 60,null = True, blank = True)
+    technexId = models.CharField(max_length = 30,null = True,blank = True)
     year = models.IntegerField(choices=year_choices)
     mobileNumber = models.BigIntegerField()
     college = models.ForeignKey(College,null = True)
     fb = models.OneToOneField(FbConnect,null = True, blank = True)
     botInfo = models.CharField(max_length = 65,null = True, blank = True)
     city = models.CharField(max_length = 65,default = 'varanasi')
+    referral = models.EmailField(max_length = 60, null = True, blank = True)
     #profile_photo = models.TextField(validators=[URLValidator()],blank=True)
 
     def __unicode__(self):
