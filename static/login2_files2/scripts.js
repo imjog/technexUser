@@ -273,7 +273,7 @@ $('#btn-next-page').on('click', function(e) {
                   "city":$("#form-city").val(),
                   "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
                 };
-                if($("#referral-email").prop("disabled")) data['referral'] = $("#referral-email").val();
+                if(!$("#referral-email").prop("disabled")) data['referral'] = $("#referral-email").val();
                 console.log(data);
                 $("#btn-next-page").attr("disabled",true);
 
@@ -283,7 +283,7 @@ $('#btn-next-page').on('click', function(e) {
                   if( response == '1') {
           //$(".fb-send-to-messenger").attr(
             //"data-ref",$("#laluram").val());
-          $("#personal").html('THANK YOU '+ $("#form-first-name").val() +' FOR REGISTERING<br>Checkout the <a href="/events"><u>Events</u></a> we have in store for you :)');
+          $("#personal").html('THANK YOU '+ $("#form-first-name").val() +' FOR REGISTERING<br>Checkout the <a href="/events"><u>Events</u></a> we have in store for you :) <br> (Confirmation Mail sent to your Email)');
            parent_fieldset.fadeOut(400, function() {
                 $(this).next().fadeIn();
             });
@@ -296,7 +296,7 @@ $('#btn-next-page').on('click', function(e) {
                 .fail(function(){
                   $("#btn-next-page").attr("disabled",false);
                   $("#btn-next-page").html("Next");
-                  alert("Email address above 30 characters !!!");
+                  alert("Error Registeration. Report error at bikram.bharti99@gmail.com");
                 });
                 
                };

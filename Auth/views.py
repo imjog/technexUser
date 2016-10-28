@@ -47,7 +47,8 @@ def emailUnique(request):
     response = {}
     post = request.POST #json.loads(request.body)
     try:
-        user = User.objects.get(email = post['email'])
+        techProfile = TechProfile.objects.get(email = post['email'])
+        #user = User.objects.get(email = post['email'])
         response = '0'
     except:
         response = '1'
@@ -86,6 +87,9 @@ def register(request):
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.city = data.get('city')
         techprofile.year = data.get('year')
+        if 'referral' in data:
+            techprofile.referral = data['referral']
+            print 'code base 1.5'
         print data.get('uid')
         try:
             fb_connect = FbConnect.objects.get(uid = data.get('uid'))
@@ -99,7 +103,7 @@ def register(request):
         subject = "[Technex'17] Confirmation of Registration"
         body = "Dear "+ data.get('name',None) +''',
 
- You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
+You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
 
 An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
 
@@ -124,7 +128,7 @@ Team Technex.'''
         return HttpResponse('1')
     else:
         context= {}
-        context['all_colleges'] = College.objects.filter(status = False)
+        context['all_colleges'] = College.objects.filter(status = True).values_list('collegeName',flat=True).distinct()
         try:
             get = request.GET
             context['name'] = get['name']
