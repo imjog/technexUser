@@ -318,3 +318,38 @@ def workshopApi(request):
         response['status'] = 0
     return JsonResponse(response)
 
+@csrf_exempt
+def caEmailCount(request):
+    response = {}
+    post = request.POST
+    if post['pass'] == 'bheenka':
+        
+        techProfiles = TechProfile.objects.filter(referral = post['email']).count()
+        response['count'] = techProfiles
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return JsonResponse(response)
+
+@csrf_exempt
+def caEmailInfo(request):
+    response = {}
+    post = request.POST
+    if post['pass'] == 'bheenka':
+        techProfiles = TechProfile.objects.filter(referral = post['email'])
+        response['count'] = techProfiles.count()
+        response['info'] = []
+        response['status'] = 1
+        for techProfile in techProfiles:
+            info = {}
+            info['email'] = techProfile.email
+            info['year'] = techProfile.year
+            info['mobileNumber'] = techProfile.mobileNumber
+            info['college'] = techProfile.college.collegeName
+            info['city'] = techProfile.city
+            response['info'].append(info)
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return JsonResponse(response)
