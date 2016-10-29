@@ -20,14 +20,15 @@
         <link rel="shortcut icon" href="/static/favicon.ico">
         <style type="text/css">
         </style>
-        <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+       <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-XXXXX-Y', 'auto');
-ga('send', 'pageview');
+  ga('create', 'UA-68539305-2', 'auto');
+  ga('send', 'pageview');
+
 </script>
     </head>
      <body>
@@ -93,6 +94,7 @@ ga('send', 'pageview');
                                           <button type="button" id="close-email" class="close-btna close-btn">
                                              <span aria-hidden="true">&times;</span>
                                            </button>
+                                  <input type='hidden' id='uid' value='{% if uid %}{{uid}}{% endif %}' />
   <!-- <strong>Sorry!</strong> -->Email entered is incorrect.
 </div>
   <div class="alert-message alert-email" id="email-repeat">
@@ -144,7 +146,7 @@ ga('send', 'pageview');
 
                                      <div class="form-group">
                                      <label class="sr-only" for="form-college">YEAR</label>
-                                        <select class="show-menu-arrow form-control" id="id_year" name="year">
+                                        <select style="background: rgba(0,0,0,0.8);" class="show-menu-arrow form-control" id="id_year" name="year">
                                         <option selected="selected" value="-1">--SELECT YOUR YEAR--</option>
                           <option value="1">First</option>
                   <option value="2">Second</option>
@@ -170,11 +172,36 @@ ga('send', 'pageview');
                                             
                                
                             </div>
+                            <div class="form-group" style="color: white;">
+                            HAVE A CA REFERRAL ID?
+                            <div class="material-switch pull-right">
+                            <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionInfo" class="label-info"></label>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-ca-email">CA-Email</label>
+                             <input name="ca-email" placeholder="Referral Email" class="form-ca-email form-control" id="referral-email" type="text" disabled="true"/> 
+                                                           <div class="alert-message alert-email" id="invalid-referral">
+                                   <button type="button" id="close-invalid-referral" class="close-btn close-btna">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    Invalid Email Address
+</div>
+                                                <div class="alert-message alert-email" id="no-referral">
+                                                  <button type="button" id="close-no-referral" class="close-btn close-btna">
+                       <span aria-hidden="true">&times;</span>
+                </button>
+                 No Such CA Email
+          </div>
+                              
+
+                            </div>
                           
                           <button type="button" class="btn  btna btn-previous">PREVIOUS</button>
 
                            <button type="button" id="btn-next-page" class="btn btna btn-next page-2">NEXT</button>
-                   
+                               
                             </div>
                           
                           
@@ -274,7 +301,7 @@ function fb_login() {
       else{
         getData = 'name='+response['context']['name'];
         if ('email' in response['context']) getData += '&email='+response['context']['email'];
-        
+        getData += '&uid='+response['context']['uid'];
         window.location = '/register/?'+getData;
 
       } 

@@ -219,6 +219,14 @@ body {
         display: none!important
     }
 }
+@media (min-width: 1330px) {
+    .jnavbar
+    {
+        background: black;
+      display: table;
+      margin: 0 auto;
+    }
+}
 @-webkit-keyframes a {
     0% {
         clip: rect(30px, 9999px, 6px, 0)

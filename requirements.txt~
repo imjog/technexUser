@@ -18,3 +18,7 @@ sendgrid-django==2.0.0
 smtpapi==0.3.1
 whitenoise==3.2
 django_mobile==0.7.0
+user_agents==0.3.2
+ua-parser==0.3.6
+pyyaml
+

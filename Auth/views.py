@@ -14,6 +14,12 @@ from django_mobile import get_flavour
 from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
+def ca(request):
+    return redirect("http://ca.technex.in")
+    
+def sponsors(request):
+    return redirect("http://16.technex.in/sponsors")
+
 def team(request):
     teams = TeamList.objects.all()
     return render(request,"teamPage.html",{"teams":teams})
@@ -41,7 +47,8 @@ def emailUnique(request):
     response = {}
     post = request.POST #json.loads(request.body)
     try:
-        user = User.objects.get(email = post['email'])
+        techProfile = TechProfile.objects.get(email = post['email'])
+        #user = User.objects.get(email = post['email'])
         response = '0'
     except:
         response = '1'
@@ -57,11 +64,14 @@ def register(request):
         email = data.get('email',None)
         print 'code base 0'
         try:
-            user = User.objects.get(email = email)
+            techProfile = TechProfile.objects.get(email = email)
+            #user = User.objects.get(email = email)
             #messages.warning(request,"Email Already Registered !")
             return HttpResponse("Email Already Registered!") #redirect('/register')
         except:
-            user = User.objects.create_user(username=email, email=email)
+            bugUsername = User.objects.latest('id').id
+            user = User.objects.create_user(username=str(bugUsername+1))
+            techprofile = TechProfile(user = user,email = email)
         user.first_name = data.get('name',None)
         password = data.get('password',None)
         user.set_password(password)
@@ -72,16 +82,28 @@ def register(request):
         except:
             college = College(collegeName = data.get('college'))
             college.save()
-        techprofile = TechProfile(user = user)
+        
         techprofile.college = college
         techprofile.mobileNumber = data.get('mobileNumber')
+        techprofile.city = data.get('city')
         techprofile.year = data.get('year')
-        techprofile.save()
+        if 'referral' in data:
+            techprofile.referral = data['referral']
+            print 'code base 1.5'
+        print data.get('uid')
+        try:
+            fb_connect = FbConnect.objects.get(uid = data.get('uid'))
+            techprofile.fb = fb_connect
+            print data.get('uid')
+            print 'code base1'
+            techprofile.save()
+        except:
+            techprofile.save()
         print "codeBaes 2"
-        subject = "Confirmation of Registration for Technex 2017"
+        subject = "[Technex'17] Confirmation of Registration"
         body = "Dear "+ data.get('name',None) +''',
 
- You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
+You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
 
 An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
 
@@ -91,7 +113,7 @@ An important note to ensure that the team can contact you further:  If you find 
 Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
               
 
-Looking forward to seeing you soon at Technex 2016.
+Looking forward to seeing you soon at Technex 2017.
 
 All the best!
 
@@ -99,20 +121,21 @@ All the best!
 Regards
 
 Team Technex.'''
-        #send_email(email,subject,body)
-        newUser = authenticate(username=email, password=password)
-        print 'code base 3'
-        login(request, newUser)
+        send_email(email,subject,body)
+        #newUser = authenticate(username=email, password=password)
+        #print 'code base 3'
+        #login(request, newUser)
         return HttpResponse('1')
     else:
         context= {}
-        context['all_colleges'] = College.objects.all()
+        context['all_colleges'] = College.objects.filter(status = True).values_list('collegeName',flat=True).distinct()
         try:
             get = request.GET
             context['name'] = get['name']
-                        
+            context['uid'] = get['uid']            
             if 'email' in get:
                 context['email'] = get['email']
+
             context['status'] = 1;
             return render(request,'signUp.html',context)
         except:
@@ -168,9 +191,10 @@ def fbConnect(request):
             fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
         fb_connect.save()
         try:
-            user = User.objects.get(username = profile['email'])
-            if  user.techprofile.fb is None:
-                user.techprofile.fb = fb_connect
+            techProfile = fb_connect.techprofile#TechProfile.objects.get(fb = fb_connect)
+            user = techProfile.user #User.objects.get(username = profile['email'])
+            #if  techProfile.fb is None:
+            #   techProfile.fb = fb_connect
             user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request,user)
             response['status'] = 1 #status for logged IN
@@ -180,6 +204,7 @@ def fbConnect(request):
                 context['name'] = profile['name']
             if 'email' in profile:
                 context['email'] = profile['email']
+            context['uid'] =  uid
             print context
             response['context'] = context
             response['status'] = 0 #status signup prepopulation of data
@@ -373,7 +398,7 @@ def send_email(recipient, subject, body):
     return requests.post(
         "https://api.mailgun.net/v3/mg.technex.in/messages",
         auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),
-        data={"from": "No-reply <mailgun@mg.technex.in>",
+        data={"from": "Support Technex<support@technex.in>",
               "to": recipient,
               "subject": subject,
               "text": body})
@@ -392,3 +417,4 @@ def botApi(request):
         techProfile.save()
         
         return JsonResponse(response)
+    return HttpResponse("Invalid Request!")
