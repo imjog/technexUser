@@ -87,11 +87,10 @@ function navFunction() {
 		<div class="fold-right"></div> <!-- this is the right fold -->
 		
 		<div class="cd-fold-content" style="color:black" id="guest-content">
-			
 		</div>
-
+        
 		<a class="cd-close" href="#0"></a>
-	</div> <!-- .cd-folding-panel -->
+	</div> <img src="" height="80px" width="80px" style="border:1px solid black;"><!-- .cd-folding-panel -->
 <script src="/static/js/guest_js/jquery-2.1.1.js"></script>
 <script type="text/javascript">
     var data={{ lectures|safe }};
@@ -107,7 +106,7 @@ function navFunction() {
         else
         {
         	k = k - 1;
-        	out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
+        	out+='<h2 style="color:black">'+'<img src="" height="80px" width="80px" style="border:1px solid black;">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
         }
         
         document.getElementById('guest-content').innerHTML=out;
