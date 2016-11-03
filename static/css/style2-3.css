@@ -691,7 +691,7 @@ button:focus {
 @media screen and (max-width: 599px){
     .content__item p {
   max-width: 1200px;
-  margin: 13em auto;
+  margin: 12em auto;
 }
 }
 
