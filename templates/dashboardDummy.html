@@ -1,0 +1,79 @@
+hi {{  techProfile.email }} <a href='/logout'>logout</a><br><br>
+Teams with Member Status:<br> 
+{% for team in teamsAsMember %}
+{{ team.teamName}}::<a href='#' class='CRUD' id='{{team.teamId}}' name='teamLeave/'>Leave Team</a><br>
+Leader:{{ team.teamLeader.user.first_name}}({{team.teamLeader.email}})
+Members:{% for member in team.members.all %}
+{{ member.user.first_name}}({{ member.email}})<br>
+{% endfor %}
+{% endfor %}
+<br><br>
+Teams with Leader Status:<br>
+{% for team in teamsAsLeader %}
+{{ team.teamName}}::<a href='#' class='CRUD' name='teamDelete/' id='{{team.teamId}}'>Delete Team</a><br>
+Members:{% for member in team.members.all %}
+{{ member.user.first_name}}({{ member.email}})::<a href='#' class='CRUD' name='memberDelete/' id="{{ member.email }} {{team.teamId}}">Delete Member</a><br>
+{% endfor %}
+{% endfor %}
+<br><br>
+<br><br>
+
+<input type='text' id='teamName' value='teamName' />
+<input type='text' id='eventSlug' value='eventSlug' />
+
+<button id='addMember'>add Member</button>
+<button id='register'>Register Team</button>
+
+<script src="/static/jquery.min.js"></script>
+<script type="text/javascript">
+
+  function theAjax(uri,data){
+ return $.ajax({
+    type:"POST",
+    dataType:"json",
+    url: uri,
+    data : data
+ });
+};
+	var csrf = "{{ csrf_token }}";
+	$(".CRUD").on("click",function(e){
+
+		target = $(e.target);
+		url = '/techo/'+target.attr('name');
+		identifier = target.attr('id').split(" ");
+		data = {}
+		data['identifier'] = identifier[0];
+		data['teamId'] = identifier[1];
+		data['csrfmiddlewaretoken'] = csrf; 
+		
+		theAjax(url,data).done(function(response){
+			location.reload();
+		})
+
+
+	});
+
+	$("#addMember").on("click",function(event){
+		$("#eventSlug").after("<br><input type='text' class='members' value='emailOfMember' />");
+	});
+	$("#register").on("click",function(event){
+		data = {}
+		data['teamLeaderEmail'] = "{{techProfile.email}}";
+		data['teamName'] = $("#teamName").val();
+		data['eventSlug'] = $("#eventSlug").val();
+		data['members'] = []
+		data['csrfmiddlewaretoken'] = csrf;
+		$(".members").each(function(){
+			member = {}
+			member['memberEmail'] = $(this).val();
+			
+			data['members'].push(member);
+		});
+		console.log(data);
+		data = JSON.stringify(data)
+		theAjax('/techo/register/',data).done(function(response){
+			location.reload();
+		})
+	});
+
+</script>

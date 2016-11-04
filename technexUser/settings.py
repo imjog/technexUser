@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'authApi',
     'django_mobile',
+    'Events',
 ]
 
 MIDDLEWARE_CLASSES = [

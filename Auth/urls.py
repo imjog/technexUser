@@ -21,7 +21,9 @@ urlpatterns = [
 	url(r'^events/$', events, name='event'),
 	url(r'^events/(?P<key>[\w\-]+)/$', event, name='events'),
 	url(r'^dashboard/$', dashboardView,name='dashboard'),
-	url(r'^logout/$', logoutView,name='logout'),
+	#url(r'^logout/$', logoutView,name='logout'),
+	url(r'^logout/$', 'django.contrib.auth.views.logout',
+                          {'next_page': '/login'}),
 	url(r'^fbConnect/$', fbConnect,name='fbConnect'),
 	url(r'^resetPass/(?P<key>[\w\-]+)/$', resetPass, name='resetPass'),
 	url(r'^$',IndexView,name='home'),
@@ -31,6 +33,7 @@ urlpatterns = [
 	url(r'^botApi/',botApi,name='botApi'),
 	url(r'^sponsors/',sponsors,name='sponsors'),
 	url(r'^ca/',ca,name='ca'),
+	url(r'^dashboardDummy/', dummyDashboard, name='Apparent Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
 
