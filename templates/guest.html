@@ -68,7 +68,7 @@ function navFunction() {
 		{% for lecture in lectures.lectures %}
 			<li class="cd-item">
 				<a>
-					<div>`
+					<div><img src="{{lecture.photo}}" class="guestimg">
 						<h2>{{ lecture.lecturerName }}</h2>
 						<p>{{ lecture.designation }}</p>
 						<b>View More</b>
@@ -106,7 +106,7 @@ function navFunction() {
         else
         {
         	k = k - 1;
-        	out+='<img src="data.lectures[k].photo" class="talkimg">'+'<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
+        	out+='<img src='+data.lectures[k].photo+' class="talkimg">'+'<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
         }
         
         document.getElementById('guest-content').innerHTML=out;

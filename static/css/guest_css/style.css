@@ -770,10 +770,14 @@ Javascript disabled
 
 
 .talkimg{
-    border: 1px solid black;
     margin-bottom: 26px;
     margin-left: 35%;
     height: 100px;
     width: 100px;
     border-radius: 50%;
+}
+.guestimg{
+    height: 100px;
+    width: 100px;
+    margin-bottom: 25px;
 }
