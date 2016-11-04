@@ -1442,3 +1442,7 @@ hr{
     width: 60%;
     top: 0px;
 }
+
+big{
+    line-height: 20px;
+}
