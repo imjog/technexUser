@@ -292,3 +292,132 @@ p.error-message
  width: 300px;
   height: 70px;
 }
+
+/*----------------------------NAVBAR--------------------------*/
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  overflow: hidden;
+  background-color: black;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 8px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 16px;
+ letter-spacing: 1px;
+    border-right: 1px solid rgba(255,255,255,.3);
+}
+@media (min-width:1350px){
+    ul.topnav li a{
+        color: rgba(255,255,255,.8);
+    }
+ul.topnav li a:hover {
+/*    background-color:white; color: black;*/
+    border-top: 1px solid white;
+    border-bottom:1px solid white;
+    color: white;
+}
+    ul.topnav{
+        display: inline-block;
+    }
+}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:1350px) {
+  ul.topnav li:not(:first-child){display: none;}
+    ul.topnav li:nth-child(10){display: block; float: right;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+    ul.topnav li a{border:1px solid white;margin-right: 8px;}
+}
+
+@media screen and (max-width:1350px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: center;
+      border: 1px solid rgba(255,255,255,.2);
+  }
+}
+
+@media (min-width:1024px) and (max-width:1399px){
+    ul.topnav li a{
+        padding: 14px 8px;
+    }
+}
+@media (min-width: 1330px) {
+    .jnavbar
+    {
+    display: table;
+    margin: 0 auto;
+    width: 100%;
+    background: rgba(0,0,0,.7);
+    line-height: 16px;
+    }
+}
+
+/*
+
+.topnav-li:after {
+  position: absolute;
+  -webkit-transition: 1s;
+  transition: 1s;
+  content: '';
+  width: 0;
+  left: 50%;
+  top: 0;
+  height: 3px;
+  background: red;
+}
+.topnav-li:before {
+  position: absolute;
+  -webkit-transition: 1s;
+  transition: 1s;
+  content: '';
+  width: 0;
+  left: 50%;
+  top: 0;
+  height: 3px;
+  background: yellow;
+}
+.topnav-li:after {
+  right: 0;
+  left: auto;
+}
+.topnav-li:before {
+  left: 0;
+}
+.topnav-li:hover:after {
+  width: 100%;
+  left: 0;
+}
+.topnav-li:hover:before {
+  width: 100%;
+  right: 0;
+    left: auto;
+}
+*/
+/*-------------------/NAVBAR-------------------*/

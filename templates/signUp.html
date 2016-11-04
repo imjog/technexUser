@@ -30,7 +30,36 @@
   ga('send', 'pageview');
 
 </script>
+    <script>
+function navFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
     </head>
+    <!----------NAVBAR-------->
+<div class="jnavbar" id="abcde">
+		<ul class="topnav" id="myTopnav">
+  <li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
+  <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+  <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
+  <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
+  
+  <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
+  <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;float:">REGISTER</a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;padding:11px;" onclick="navFunction()">☰</a>
+  </li>
+</ul>
+</div>
+<!----------/NAVBAR-------->
      <body>
    
         <div class="top-content">
