@@ -1425,6 +1425,7 @@ hr{
 .content-li h4{
     padding-top: 125px;
     text-align: left;
+    line-height: 20px;
 }
 .content-li h4 p{
     line-height: 20px;
