@@ -99,6 +99,7 @@ class GuestLecture(models.Model):
     designation = models.CharField(max_length = 100)
     lecturerBio = RichTextField()
     lectureType = models.CharField(max_length = 100)
+    photo = models.TextField(validators=[URLValidator()],blank=True,null = True)
     def __unicode__(self):
         return '%s %s'%(self.title,self.lecturerName)
 
