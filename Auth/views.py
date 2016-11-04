@@ -42,6 +42,15 @@ def contextCall(request):
         pass
     return response
 
+@login_required(login_url = '/login')
+def dummyDashboard(request):
+    context = contextCall(request)
+    
+    context['teamsAsMember'] = Team.objects.filter(members = context['techProfile'])
+    context['teamsAsLeader'] = Team.objects.filter(teamLeader = context['techProfile'])
+    print context
+    return render(request, 'dashboardDummy.html',context)
+
 @csrf_exempt
 def emailUnique(request):
     response = {}
@@ -148,14 +157,17 @@ def loginView(request):
     if request.method == 'POST':
         post = request.POST
         try:
-            user = User.objects.get(email = post['email'])
+            techProfile = TechProfile.objects.get(email = post['email'])
         except:
             messages.warning(request,"No User registered with the email!")
             return redirect('/login')
-        user = authenticate(username = post['email'], email= post['email'], password = post['password'])
+        #user = authenticate(username = post['email'], email= post['email'], password = post['password'])
+        kUser = techProfile.user
+        user = authenticate(username = kUser.username, password = post['password'])
+        
         if user is not None:
             login(request, user)
-            return redirect('/dashboard')
+            return redirect('/dashboardDummy')
         else:
             messages.warning(request,"Invalid Credentials !")
             return redirect('/login')
