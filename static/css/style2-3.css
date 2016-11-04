@@ -691,7 +691,7 @@ button:focus {
 @media screen and (max-width: 599px){
     .content__item p {
   max-width: 1200px;
-  margin: 13em auto;
+  margin: 12em auto;
 }
 }
 
@@ -1423,9 +1423,13 @@ hr{
     }
 }
 .content-li h4{
-    padding-top: 0px;
+    padding-top: 125px;
     text-align: left;
 }
+.content-li h4 p{
+    line-height: 20px;
+}
+
 @media screen and (min-width:768px){
     .content-li h4{
     padding-top: 0px;

@@ -86,9 +86,9 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
     },{}],
     2: [function(e, t, r) {
         "use strict";
-        window.$ = window.jQuery = e("jquery"), e("jquery-mousewheel")($), e("velocity-animate"), e("magnific-popup");
-           var n = e("howler"),
-            i = e("./utils"),
+        window.$ = window.jQuery = e("jquery"),e("velocity-animate");
+           // var n = e("howler"),
+           var i = e("./utils"),
             o = e("./scene");
         window.onload = function() {
             function e() {
@@ -101,8 +101,8 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
             }
 
             function t(e) {
-                !g && d != e && e >= 0 && p > e && (g = !0, f = d, d = e, x.play(), $(h[f]).fadeOut(function() {
-                    $(h[f]).removeClass("is-visible"), 0 == d || d == p - 1 ? $("#overlay-controls .technex-logo-large").removeClass("is-small") : $("#overlay-controls .technex-logo-large").addClass("is-small"), o.setSection(d, function() {
+                !g && d != e && e >= 0 && p > e && (g = !0, f = d, d = e,$(h[f]).fadeOut(function() {
+                    $(h[f]).removeClass("is-visible"), o.setSection(d, function() {
                         $(h[d]).fadeIn(), $(h[d]).addClass("is-visible"), g = !1
                     })
                 }))
@@ -115,78 +115,13 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
             function a() {
                 t(d - 1)
             }
-
-            function s() {
-                y.fadeOut(0, 300), $("#overlay-controls .technex-logo-large").addClass("is-hidden"), $(h[d]).fadeOut(function() {
-                    $("#philosophy-container .gallery-container").css("-webkit-overflow-scrolling", "auto"), i.delay(function() {
-                        $("#philosophy-container .gallery-container").css("-webkit-overflow-scrolling", "touch")
-                    }, 100), m = !0, $("#philosophy-container").velocity({
-                        opacity: 1
-                    }, {
-                        duration: 200,
-                        complete: function() {
-                            $(".gallery-item").each(function(e) {
-                                var t = $($(this).children()[0]),
-                                    r = t.attr("data-src");
-                                r && (t.attr("src", r), t.removeAttr("data-src")), $(this).delay(100 * e++).velocity({
-                                    opacity: 1
-                                })
-                            })
-                        },
-                        display: "block"
-                    })
-                })
-            }
-
-            function u() {
-                y.fadeIn(.3, 300), $("#philosophy-container").fadeOut(function() {
-                    $("#overlay-controls .technex-logo-large").removeClass("is-hidden"), $(h[d]).fadeIn(), $(".gallery-item").each(function() {
-                        $(this).css({
-                            opacity: 0
-                        })
-                    }), $(".video iframe").each(function() {
-                        var e = this,
-                            t = this.src;
-                        this.src = "", i.delay(function() {
-                            e.src = t
-                        }, 100)
-                    })
-                }), m = !1
-            }
-
-            function c() {
-                m = !0, $("#signup").fadeIn(function() {
-                    $("#email-input").focus()
-                })
-            }
-
-            function l() {
-                $("#signup").fadeOut(function() {
-                    m = !1
-                })
-            }
             var h = $("#sections-container section"),
                 p = h.length,
                 d = 0,
                 f = 0,
                 m = !1,
                 g = !1,
-                v = !1,
-                y = new Howl({
-                    urls: ["/static/assets/sounds/space.mp3", "/static/assets/sounds/space.ogg"],
-                    loop: !0,
-                    autoplay: !0,
-                    volume: .3
-                }),
-                x = new Howl({
-                    urls: ["/static/assets/sounds/woosh.mp3", "/static/assets/sounds/woosh.ogg"],
-                    volume: .8
-                }),
-                b = new Howl({
-                    urls: ["/static/assets/sounds/hover.mp3", "/static/assets/sounds/hover.ogg"]
-                }),
-                w = n.Howler.ctx;
-            w && 48e3 === w.sampleRate && (window.AudioContext = window.AudioContext || window.webkitAudioContext, n.Howler.ctx = new AudioContext);
+                v = !1;
             var S = e(),
                 M = S ? S + "Hidden" : "hidden",
                 T = S ? S + "visibilitychange" : "visibilitychange";
@@ -206,22 +141,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                               $(".technex-dates").show();
                          });
                         },5000);
-
-                         
-                
-               
-            }), $(".button-next").on("click", r), $(".button-prev").on("click", a), $(".philosophy-open").on("click", s), $(".philosophy-close").on("click", u), $(".signup-open").on("click", c), $(".signup-close").on("click", l);
-            var _ = i.debounce(function() {
-                b.play();
-            }, 600, !0);
-            $(".big-button").on("mouseenter", _), $(".button-menu").on("click", function() {
-                $(this).toggleClass("is-active"), $("#info-menu").toggleClass("is-visible"), $(this).parent().toggleClass("is-hidden")
-            }), $(".button-mute").on("click", function() {
-                v ? (v = !1, n.Howler.unmute(), $(this).find(".audio-button").removeClass("is-muted")) : (v = !0, n.Howler.mute(), $(this).find(".audio-button").addClass("is-muted"))
-            }), $(".social-share a.share").on("click", function() {
-                var e = $(this).attr("data-href");
-                window.open(e, "Share", "width=550,height=420,top=200,left=300")
-            });
+            }), $(".button-next").on("click", r), $(".button-prev").on("click", a);
             var E = 0,
                 C = 300,
                 A = !1,
@@ -243,13 +163,13 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                 }
             })
         }
-    },
-     {
+            },
+         {
         "./scene": 5,
         "./utils": 7,
-        howler: 9,
+        // howler: 9,
         jquery: 11,
-        "jquery-mousewheel": 10,
+        // "jquery-mousewheel": 10,
         "magnific-popup": 12,
         "velocity-animate": 16
     }],
@@ -335,7 +255,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                 e.geometry.verticesNeedUpdate = !0, e.geometry.colorsNeedUpdate = !0
             }
         }
-    }, {
+         }, {
         three: 14
     }],
     4: [function(e, t, r) {
@@ -427,7 +347,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                 this.glow.scale.set(4 * r, 4 * r, 4 * r), this.largeStars.scale.set(t, t, t), this.haze.scale.set(e, e, e), this.stars.scale.set(e, e, e)
             }
         }
-    }, {
+        }, {
         three: 14
     }],
     5: [function(e, t, r) {
@@ -611,21 +531,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                                 else
                                    O++;
                             }
-                            // else 
-                            // {
-                            //    if( O > 500 && 700 > O )   
-                            //    {
-                            //      n("#worldLabel1").addClass("is-visible");
-                            //       document.getElementById("mama-head").innerHTML="Rave Parties";
-                            //    } 
-                            //    else
-                            //    {
-
-                            //    }                     
-                            // }
-
-                        // O > 200 && 400 > O ? n("#worldLabel0").addClass("is-visible") : O > 500 && 700 > O ? n("#worldLabel1").addClass("is-visible") : O > 800 && 1e3 > O ? n("#worldLabel2").addClass("is-visible") : O > 1100 && 1300 > O ? n("#worldLabel5").addClass("is-visible") : O > 1300 && (O = 0), O++
-                    }
+                            }
                     V.obj.rotation.y += 5e-4, F.obj.rotation.y += .001, 3 == k && N.rotate(.001), i.update(), _.update(), S.render(M, T), C.render(A, T)
                 }
                 var e = e,
@@ -790,7 +696,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                 }
             }
         }
-    }, {
+        }, {
         "./CSS3DRenderer": 1,
         "./face": 3,
         "./galaxy": 4,
@@ -831,7 +737,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                 return this.obj.add(s), this.obj
             }
         }
-    }, {
+        }, {
         three: 14
     }],
     7: [function(e, t, r) {
@@ -889,497 +795,9 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                 for (var e = 0; e < this.worldCount; e++) this.worlds[e].position.lerpVectors(this.worldOptions.start[e], this.worldOptions.end[e], this.blastTween)
             }
         }
-    }, {
+        }, {
         three: 14
     }],
-    9: [function(e, t, r) {
-        ! function() {
-            var e = {},
-                t = null,
-                n = !0,
-                i = !1;
-            try {
-                "undefined" != typeof AudioContext ? t = new AudioContext : "undefined" != typeof webkitAudioContext ? t = new webkitAudioContext : n = !1
-            } catch (o) {
-                n = !1
-            }
-            if (!n)
-                if ("undefined" != typeof Audio) try {
-                    new Audio
-                } catch (o) {
-                    i = !0
-                } else i = !0;
-            if (n) {
-                var a = "undefined" == typeof t.createGain ? t.createGainNode() : t.createGain();
-                a.gain.value = 1, a.connect(t.destination)
-            }
-            var s = function(e) {
-                this._volume = 1, this._muted = !1, this.usingWebAudio = n, this.ctx = t, this.noAudio = i, this._howls = [], this._codecs = e, this.iOSAutoEnable = !0
-            };
-            s.prototype = {
-                volume: function(e) {
-                    var t = this;
-                    if (e = parseFloat(e), e >= 0 && 1 >= e) {
-                        t._volume = e, n && (a.gain.value = e);
-                        for (var r in t._howls)
-                            if (t._howls.hasOwnProperty(r) && t._howls[r]._webAudio === !1)
-                                for (var i = 0; i < t._howls[r]._audioNode.length; i++) t._howls[r]._audioNode[i].volume = t._howls[r]._volume * t._volume;
-                        return t
-                    }
-                    return n ? a.gain.value : t._volume
-                },
-                mute: function() {
-                    return this._setMuted(!0), this
-                },
-                unmute: function() {
-                    return this._setMuted(!1), this
-                },
-                _setMuted: function(e) {
-                    var t = this;
-                    t._muted = e, n && (a.gain.value = e ? 0 : t._volume);
-                    for (var r in t._howls)
-                        if (t._howls.hasOwnProperty(r) && t._howls[r]._webAudio === !1)
-                            for (var i = 0; i < t._howls[r]._audioNode.length; i++) t._howls[r]._audioNode[i].muted = e
-                },
-                codecs: function(e) {
-                    return this._codecs[e]
-                },
-                _enableiOSAudio: function() {
-                    var e = this;
-                    if (!t || !e._iOSEnabled && /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                        e._iOSEnabled = !1;
-                        var r = function() {
-                            var n = t.createBuffer(1, 1, 22050),
-                                i = t.createBufferSource();
-                            i.buffer = n, i.connect(t.destination), "undefined" == typeof i.start ? i.noteOn(0) : i.start(0), setTimeout(function() {
-                                (i.playbackState === i.PLAYING_STATE || i.playbackState === i.FINISHED_STATE) && (e._iOSEnabled = !0, e.iOSAutoEnable = !1, window.removeEventListener("touchend", r, !1))
-                            }, 0)
-                        };
-                        return window.addEventListener("touchend", r, !1), e
-                    }
-                }
-            };
-            var u = null,
-                c = {};
-            i || (u = new Audio, c = {
-                mp3: !!u.canPlayType("audio/mpeg;").replace(/^no$/, ""),
-                opus: !!u.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, ""),
-                ogg: !!u.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ""),
-                wav: !!u.canPlayType('audio/wav; codecs="1"').replace(/^no$/, ""),
-                aac: !!u.canPlayType("audio/aac;").replace(/^no$/, ""),
-                m4a: !!(u.canPlayType("audio/x-m4a;") || u.canPlayType("audio/m4a;") || u.canPlayType("audio/aac;")).replace(/^no$/, ""),
-                mp4: !!(u.canPlayType("audio/x-mp4;") || u.canPlayType("audio/mp4;") || u.canPlayType("audio/aac;")).replace(/^no$/, ""),
-                weba: !!u.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, "")
-            });
-            var l = new s(c),
-                h = function(e) {
-                    var r = this;
-                    r._autoplay = e.autoplay || !1, r._buffer = e.buffer || !1, r._duration = e.duration || 0, r._format = e.format || null, r._loop = e.loop || !1, r._loaded = !1, r._sprite = e.sprite || {}, r._src = e.src || "", r._pos3d = e.pos3d || [0, 0, -.5], r._volume = void 0 !== e.volume ? e.volume : 1, r._urls = e.urls || [], r._rate = e.rate || 1, r._model = e.model || null, r._onload = [e.onload || function() {}], r._onloaderror = [e.onloaderror || function() {}], r._onend = [e.onend || function() {}], r._onpause = [e.onpause || function() {}], r._onplay = [e.onplay || function() {}], r._onendTimer = [], r._webAudio = n && !r._buffer, r._audioNode = [], r._webAudio && r._setupAudioNode(), "undefined" != typeof t && t && l.iOSAutoEnable && l._enableiOSAudio(), l._howls.push(r), r.load()
-                };
-            if (h.prototype = {
-                    load: function() {
-                        var e = this,
-                            t = null;
-                        if (i) return void e.on("loaderror");
-                        for (var r = 0; r < e._urls.length; r++) {
-                            var n, o;
-                            if (e._format) n = e._format;
-                            else {
-                                if (o = e._urls[r], n = /^data:audio\/([^;,]+);/i.exec(o), n || (n = /\.([^.]+)$/.exec(o.split("?", 1)[0])), !n) return void e.on("loaderror");
-                                n = n[1].toLowerCase()
-                            }
-                            if (c[n]) {
-                                t = e._urls[r];
-                                break
-                            }
-                        }
-                        if (!t) return void e.on("loaderror");
-                        if (e._src = t, e._webAudio) p(e, t);
-                        else {
-                            var a = new Audio;
-                            a.addEventListener("error", function() {
-                                a.error && 4 === a.error.code && (s.noAudio = !0), e.on("loaderror", {
-                                    type: a.error ? a.error.code : 0
-                                })
-                            }, !1), e._audioNode.push(a), a.src = t, a._pos = 0, a.preload = "auto", a.volume = l._muted ? 0 : e._volume * l.volume();
-                            var u = function() {
-                                e._duration = Math.ceil(10 * a.duration) / 10, 0 === Object.getOwnPropertyNames(e._sprite).length && (e._sprite = {
-                                    _default: [0, 1e3 * e._duration]
-                                }), e._loaded || (e._loaded = !0, e.on("load")), e._autoplay && e.play(), a.removeEventListener("canplaythrough", u, !1)
-                            };
-                            a.addEventListener("canplaythrough", u, !1), a.load()
-                        }
-                        return e
-                    },
-                    urls: function(e) {
-                        var t = this;
-                        return e ? (t.stop(), t._urls = "string" == typeof e ? [e] : e, t._loaded = !1, t.load(), t) : t._urls
-                    },
-                    play: function(e, r) {
-                        var n = this;
-                        return "function" == typeof e && (r = e), e && "function" != typeof e || (e = "_default"), n._loaded ? n._sprite[e] ? (n._inactiveNode(function(i) {
-                            i._sprite = e;
-                            var o = i._pos > 0 ? i._pos : n._sprite[e][0] / 1e3,
-                                a = 0;
-                            n._webAudio ? (a = n._sprite[e][1] / 1e3 - i._pos, i._pos > 0 && (o = n._sprite[e][0] / 1e3 + o)) : a = n._sprite[e][1] / 1e3 - (o - n._sprite[e][0] / 1e3);
-                            var s, u = !(!n._loop && !n._sprite[e][2]),
-                                c = "string" == typeof r ? r : Math.round(Date.now() * Math.random()) + "";
-                            if (function() {
-                                    var t = {
-                                        id: c,
-                                        sprite: e,
-                                        loop: u
-                                    };
-                                    s = setTimeout(function() {
-                                        !n._webAudio && u && n.stop(t.id).play(e, t.id), n._webAudio && !u && (n._nodeById(t.id).paused = !0, n._nodeById(t.id)._pos = 0, n._clearEndTimer(t.id)), n._webAudio || u || n.stop(t.id), n.on("end", c)
-                                    }, 1e3 * a), n._onendTimer.push({
-                                        timer: s,
-                                        id: t.id
-                                    })
-                                }(), n._webAudio) {
-                                var h = n._sprite[e][0] / 1e3,
-                                    p = n._sprite[e][1] / 1e3;
-                                i.id = c, i.paused = !1, m(n, [u, h, p], c), n._playStart = t.currentTime, i.gain.value = n._volume, "undefined" == typeof i.bufferSource.start ? u ? i.bufferSource.noteGrainOn(0, o, 86400) : i.bufferSource.noteGrainOn(0, o, a) : u ? i.bufferSource.start(0, o, 86400) : i.bufferSource.start(0, o, a)
-                            } else {
-                                if (4 !== i.readyState && (i.readyState || !navigator.isCocoonJS)) return n._clearEndTimer(c),
-                                    function() {
-                                        var t = n,
-                                            o = e,
-                                            a = r,
-                                            s = i,
-                                            u = function() {
-                                                t.play(o, a), s.removeEventListener("canplaythrough", u, !1)
-                                            };
-                                        s.addEventListener("canplaythrough", u, !1)
-                                    }(), n;
-                                i.readyState = 4, i.id = c, i.currentTime = o, i.muted = l._muted || i.muted, i.volume = n._volume * l.volume(), setTimeout(function() {
-                                    i.play()
-                                }, 0)
-                            }
-                            return n.on("play"), "function" == typeof r && r(c), n
-                        }), n) : ("function" == typeof r && r(), n) : (n.on("load", function() {
-                            n.play(e, r)
-                        }), n)
-                    },
-                    pause: function(e) {
-                        var t = this;
-                        if (!t._loaded) return t.on("play", function() {
-                            t.pause(e)
-                        }), t;
-                        t._clearEndTimer(e);
-                        var r = e ? t._nodeById(e) : t._activeNode();
-                        if (r)
-                            if (r._pos = t.pos(null, e), t._webAudio) {
-                                if (!r.bufferSource || r.paused) return t;
-                                r.paused = !0, "undefined" == typeof r.bufferSource.stop ? r.bufferSource.noteOff(0) : r.bufferSource.stop(0)
-                            } else r.pause();
-                        return t.on("pause"), t
-                    },
-                    stop: function(e) {
-                        var t = this;
-                        if (!t._loaded) return t.on("play", function() {
-                            t.stop(e)
-                        }), t;
-                        t._clearEndTimer(e);
-                        var r = e ? t._nodeById(e) : t._activeNode();
-                        if (r)
-                            if (r._pos = 0, t._webAudio) {
-                                if (!r.bufferSource || r.paused) return t;
-                                r.paused = !0, "undefined" == typeof r.bufferSource.stop ? r.bufferSource.noteOff(0) : r.bufferSource.stop(0)
-                            } else isNaN(r.duration) || (r.pause(), r.currentTime = 0);
-                        return t
-                    },
-                    mute: function(e) {
-                        var t = this;
-                        if (!t._loaded) return t.on("play", function() {
-                            t.mute(e)
-                        }), t;
-                        var r = e ? t._nodeById(e) : t._activeNode();
-                        return r && (t._webAudio ? r.gain.value = 0 : r.muted = !0), t
-                    },
-                    unmute: function(e) {
-                        var t = this;
-                        if (!t._loaded) return t.on("play", function() {
-                            t.unmute(e)
-                        }), t;
-                        var r = e ? t._nodeById(e) : t._activeNode();
-                        return r && (t._webAudio ? r.gain.value = t._volume : r.muted = !1), t
-                    },
-                    volume: function(e, t) {
-                        var r = this;
-                        if (e = parseFloat(e), e >= 0 && 1 >= e) {
-                            if (r._volume = e, !r._loaded) return r.on("play", function() {
-                                r.volume(e, t)
-                            }), r;
-                            var n = t ? r._nodeById(t) : r._activeNode();
-                            return n && (r._webAudio ? n.gain.value = e : n.volume = e * l.volume()), r
-                        }
-                        return r._volume
-                    },
-                    loop: function(e) {
-                        var t = this;
-                        return "boolean" == typeof e ? (t._loop = e, t) : t._loop
-                    },
-                    sprite: function(e) {
-                        var t = this;
-                        return "object" == typeof e ? (t._sprite = e, t) : t._sprite
-                    },
-                    pos: function(e, r) {
-                        var n = this;
-                        if (!n._loaded) return n.on("load", function() {
-                            n.pos(e)
-                        }), "number" == typeof e ? n : n._pos || 0;
-                        e = parseFloat(e);
-                        var i = r ? n._nodeById(r) : n._activeNode();
-                        if (i) return e >= 0 ? (n.pause(r), i._pos = e, n.play(i._sprite, r), n) : n._webAudio ? i._pos + (t.currentTime - n._playStart) : i.currentTime;
-                        if (e >= 0) return n;
-                        for (var o = 0; o < n._audioNode.length; o++)
-                            if (n._audioNode[o].paused && 4 === n._audioNode[o].readyState) return n._webAudio ? n._audioNode[o]._pos : n._audioNode[o].currentTime
-                    },
-                    pos3d: function(e, t, r, n) {
-                        var i = this;
-                        if (t = "undefined" != typeof t && t ? t : 0, r = "undefined" != typeof r && r ? r : -.5, !i._loaded) return i.on("play", function() {
-                            i.pos3d(e, t, r, n)
-                        }), i;
-                        if (!(e >= 0 || 0 > e)) return i._pos3d;
-                        if (i._webAudio) {
-                            var o = n ? i._nodeById(n) : i._activeNode();
-                            o && (i._pos3d = [e, t, r], o.panner.setPosition(e, t, r), o.panner.panningModel = i._model || "HRTF")
-                        }
-                        return i
-                    },
-                    fade: function(e, t, r, n, i) {
-                        var o = this,
-                            a = Math.abs(e - t),
-                            s = e > t ? "down" : "up",
-                            u = a / .01,
-                            c = r / u;
-                        if (!o._loaded) return o.on("load", function() {
-                            o.fade(e, t, r, n, i)
-                        }), o;
-                        o.volume(e, i);
-                        for (var l = 1; u >= l; l++) ! function() {
-                            var e = o._volume + ("up" === s ? .01 : -.01) * l,
-                                r = Math.round(1e3 * e) / 1e3,
-                                a = t;
-                            setTimeout(function() {
-                                o.volume(r, i), r === a && n && n()
-                            }, c * l)
-                        }()
-                    },
-                    fadeIn: function(e, t, r) {
-                        return this.volume(0).play().fade(0, e, t, r)
-                    },
-                    fadeOut: function(e, t, r, n) {
-                        var i = this;
-                        return i.fade(i._volume, e, t, function() {
-                            r && r(), i.pause(n), i.on("end")
-                        }, n)
-                    },
-                    _nodeById: function(e) {
-                        for (var t = this, r = t._audioNode[0], n = 0; n < t._audioNode.length; n++)
-                            if (t._audioNode[n].id === e) {
-                                r = t._audioNode[n];
-                                break
-                            }
-                        return r
-                    },
-                    _activeNode: function() {
-                        for (var e = this, t = null, r = 0; r < e._audioNode.length; r++)
-                            if (!e._audioNode[r].paused) {
-                                t = e._audioNode[r];
-                                break
-                            }
-                        return e._drainPool(), t
-                    },
-                    _inactiveNode: function(e) {
-                        for (var t = this, r = null, n = 0; n < t._audioNode.length; n++)
-                            if (t._audioNode[n].paused && 4 === t._audioNode[n].readyState) {
-                                e(t._audioNode[n]), r = !0;
-                                break
-                            }
-                        if (t._drainPool(), !r) {
-                            var i;
-                            if (t._webAudio) i = t._setupAudioNode(), e(i);
-                            else {
-                                t.load(), i = t._audioNode[t._audioNode.length - 1];
-                                var o = navigator.isCocoonJS ? "canplaythrough" : "loadedmetadata",
-                                    a = function() {
-                                        i.removeEventListener(o, a, !1), e(i)
-                                    };
-                                i.addEventListener(o, a, !1)
-                            }
-                        }
-                    },
-                    _drainPool: function() {
-                        var e, t = this,
-                            r = 0;
-                        for (e = 0; e < t._audioNode.length; e++) t._audioNode[e].paused && r++;
-                        for (e = t._audioNode.length - 1; e >= 0 && !(5 >= r); e--) t._audioNode[e].paused && (t._webAudio && t._audioNode[e].disconnect(0), r--, t._audioNode.splice(e, 1))
-                    },
-                    _clearEndTimer: function(e) {
-                        for (var t = this, r = 0, n = 0; n < t._onendTimer.length; n++)
-                            if (t._onendTimer[n].id === e) {
-                                r = n;
-                                break
-                            }
-                        var i = t._onendTimer[r];
-                        i && (clearTimeout(i.timer), t._onendTimer.splice(r, 1))
-                    },
-                    _setupAudioNode: function() {
-                        var e = this,
-                            r = e._audioNode,
-                            n = e._audioNode.length;
-                        return r[n] = "undefined" == typeof t.createGain ? t.createGainNode() : t.createGain(), r[n].gain.value = e._volume, r[n].paused = !0, r[n]._pos = 0, r[n].readyState = 4, r[n].connect(a), r[n].panner = t.createPanner(), r[n].panner.panningModel = e._model || "equalpower", r[n].panner.setPosition(e._pos3d[0], e._pos3d[1], e._pos3d[2]), r[n].panner.connect(r[n]), r[n]
-                    },
-                    on: function(e, t) {
-                        var r = this,
-                            n = r["_on" + e];
-                        if ("function" == typeof t) n.push(t);
-                        else
-                            for (var i = 0; i < n.length; i++) t ? n[i].call(r, t) : n[i].call(r);
-                        return r
-                    },
-                    off: function(e, t) {
-                        var r = this,
-                            n = r["_on" + e],
-                            i = t ? t.toString() : null;
-                        if (i) {
-                            for (var o = 0; o < n.length; o++)
-                                if (i === n[o].toString()) {
-                                    n.splice(o, 1);
-                                    break
-                                }
-                        } else r["_on" + e] = [];
-                        return r
-                    },
-                    unload: function() {
-                        for (var t = this, r = t._audioNode, n = 0; n < t._audioNode.length; n++) r[n].paused || (t.stop(r[n].id), t.on("end", r[n].id)), t._webAudio ? r[n].disconnect(0) : r[n].src = "";
-                        for (n = 0; n < t._onendTimer.length; n++) clearTimeout(t._onendTimer[n].timer);
-                        var i = l._howls.indexOf(t);
-                        null !== i && i >= 0 && l._howls.splice(i, 1), delete e[t._src], t = null
-                    }
-                }, n) var p = function(t, r) {
-                    if (r in e) return t._duration = e[r].duration, void f(t);
-                    if (/^data:[^;]+;base64,/.test(r)) {
-                        for (var n = atob(r.split(",")[1]), i = new Uint8Array(n.length), o = 0; o < n.length; ++o) i[o] = n.charCodeAt(o);
-                        d(i.buffer, t, r)
-                    } else {
-                        var a = new XMLHttpRequest;
-                        a.open("GET", r, !0), a.responseType = "arraybuffer", a.onload = function() {
-                            d(a.response, t, r)
-                        }, a.onerror = function() {
-                            t._webAudio && (t._buffer = !0, t._webAudio = !1, t._audioNode = [], delete t._gainNode, delete e[r], t.load())
-                        };
-                        try {
-                            // a.send()
-                        } catch (s) {
-                            a.onerror()
-                        }
-                    }
-                },
-                d = function(r, n, i) {
-                    t.decodeAudioData(r, function(t) {
-                        t && (e[i] = t, f(n, t))
-                    }, function(e) {
-                        n.on("loaderror")
-                    })
-                },
-                f = function(e, t) {
-                    e._duration = t ? t.duration : e._duration, 0 === Object.getOwnPropertyNames(e._sprite).length && (e._sprite = {
-                        _default: [0, 1e3 * e._duration]
-                    }), e._loaded || (e._loaded = !0, e.on("load")), e._autoplay && e.play()
-                },
-                m = function(r, n, i) {
-                    var o = r._nodeById(i);
-                    o.bufferSource = t.createBufferSource(), o.bufferSource.buffer = e[r._src], o.bufferSource.connect(o.panner), o.bufferSource.loop = n[0], n[0] && (o.bufferSource.loopStart = n[1], o.bufferSource.loopEnd = n[1] + n[2]), o.bufferSource.playbackRate.value = r._rate
-                };
-            "function" == typeof define && define.amd && define(function() {
-                return {
-                    Howler: l,
-                    Howl: h
-                }
-            }), "undefined" != typeof r && (r.Howler = l, r.Howl = h), "undefined" != typeof window && (window.Howler = l, window.Howl = h)
-        }()
-    }, {}],
-    10: [function(e, t, r) {
-        ! function(e) {
-            "function" == typeof define && define.amd ? define(["jquery"], e) : "object" == typeof r ? t.exports = e : e(jQuery)
-        }(function(e) {
-            function t(t) {
-                var a = t || window.event,
-                    s = u.call(arguments, 1),
-                    c = 0,
-                    h = 0,
-                    p = 0,
-                    d = 0,
-                    f = 0,
-                    m = 0;
-                if (t = e.event.fix(a), t.type = "mousewheel", "detail" in a && (p = -1 * a.detail), "wheelDelta" in a && (p = a.wheelDelta), "wheelDeltaY" in a && (p = a.wheelDeltaY), "wheelDeltaX" in a && (h = -1 * a.wheelDeltaX), "axis" in a && a.axis === a.HORIZONTAL_AXIS && (h = -1 * p, p = 0), c = 0 === p ? h : p, "deltaY" in a && (p = -1 * a.deltaY, c = p), "deltaX" in a && (h = a.deltaX, 0 === p && (c = -1 * h)), 0 !== p || 0 !== h) {
-                    if (1 === a.deltaMode) {
-                        var g = e.data(this, "mousewheel-line-height");
-                        c *= g, p *= g, h *= g
-                    } else if (2 === a.deltaMode) {
-                        var v = e.data(this, "mousewheel-page-height");
-                        c *= v, p *= v, h *= v
-                    }
-                    if (d = Math.max(Math.abs(p), Math.abs(h)), (!o || o > d) && (o = d, n(a, d) && (o /= 40)), n(a, d) && (c /= 40, h /= 40, p /= 40), c = Math[c >= 1 ? "floor" : "ceil"](c / o), h = Math[h >= 1 ? "floor" : "ceil"](h / o), p = Math[p >= 1 ? "floor" : "ceil"](p / o), l.settings.normalizeOffset && this.getBoundingClientRect) {
-                        var y = this.getBoundingClientRect();
-                        f = t.clientX - y.left, m = t.clientY - y.top
-                    }
-                    return t.deltaX = h, t.deltaY = p, t.deltaFactor = o, t.offsetX = f, t.offsetY = m, t.deltaMode = 0, s.unshift(t, c, h, p), i && clearTimeout(i), i = setTimeout(r, 200), (e.event.dispatch || e.event.handle).apply(this, s)
-                }
-            }
-
-            function r() {
-                o = null
-            }
-
-            function n(e, t) {
-                return l.settings.adjustOldDeltas && "mousewheel" === e.type && t % 120 === 0
-            }
-            var i, o, a = ["wheel", "mousewheel", "DOMMouseScroll", "MozMousePixelScroll"],
-                s = "onwheel" in document || document.documentMode >= 9 ? ["wheel"] : ["mousewheel", "DomMouseScroll", "MozMousePixelScroll"],
-                u = Array.prototype.slice;
-            if (e.event.fixHooks)
-                for (var c = a.length; c;) e.event.fixHooks[a[--c]] = e.event.mouseHooks;
-            var l = e.event.special.mousewheel = {
-                version: "3.1.12",
-                setup: function() {
-                    if (this.addEventListener)
-                        for (var r = s.length; r;) this.addEventListener(s[--r], t, !1);
-                    else this.onmousewheel = t;
-                    e.data(this, "mousewheel-line-height", l.getLineHeight(this)), e.data(this, "mousewheel-page-height", l.getPageHeight(this))
-                },
-                teardown: function() {
-                    if (this.removeEventListener)
-                        for (var r = s.length; r;) this.removeEventListener(s[--r], t, !1);
-                    else this.onmousewheel = null;
-                    e.removeData(this, "mousewheel-line-height"), e.removeData(this, "mousewheel-page-height")
-                },
-                getLineHeight: function(t) {
-                    var r = e(t),
-                        n = r["offsetParent" in e.fn ? "offsetParent" : "parent"]();
-                    return n.length || (n = e("body")), parseInt(n.css("fontSize"), 10) || parseInt(r.css("fontSize"), 10) || 16
-                },
-                getPageHeight: function(t) {
-                    return e(t).height()
-                },
-                settings: {
-                    adjustOldDeltas: !0,
-                    normalizeOffset: !0
-                }
-            };
-            e.fn.extend({
-                mousewheel: function(e) {
-                    return e ? this.bind("mousewheel", e) : this.trigger("mousewheel")
-                },
-                unmousewheel: function(e) {
-                    return this.unbind("mousewheel", e)
-                }
-            })
-        })
-    }, {}],
     11: [function(e, t, r) {
         ! function(e, r) {
             "object" == typeof t && "object" == typeof t.exports ? t.exports = e.document ? r(e, !0) : function(e) {
@@ -4400,700 +3818,6 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
             }, typeof t === _e && (e.jQuery = e.$ = J), J
         })
     }, {}],
-    12: [function(e, t, r) {
-        ! function(t) {
-            "function" == typeof define && define.amd ? define(["jquery"], t) : t("object" == typeof r ? e("jquery") : window.jQuery || window.Zepto)
-        }(function(e) {
-            var t, r, n, i, o, a, s = "Close",
-                u = "BeforeClose",
-                c = "AfterClose",
-                l = "BeforeAppend",
-                h = "MarkupParse",
-                p = "Open",
-                d = "Change",
-                f = "mfp",
-                m = "." + f,
-                g = "mfp-ready",
-                v = "mfp-removing",
-                y = "mfp-prevent-close",
-                x = function() {},
-                b = !!window.jQuery,
-                w = e(window),
-                S = function(e, r) {
-                    t.ev.on(f + e + m, r)
-                },
-                M = function(t, r, n, i) {
-                    var o = document.createElement("div");
-                    return o.className = "mfp-" + t, n && (o.innerHTML = n), i ? r && r.appendChild(o) : (o = e(o), r && o.appendTo(r)), o
-                },
-                T = function(r, n) {
-                    t.ev.triggerHandler(f + r, n), t.st.callbacks && (r = r.charAt(0).toLowerCase() + r.slice(1), t.st.callbacks[r] && t.st.callbacks[r].apply(t, e.isArray(n) ? n : [n]))
-                },
-                _ = function(r) {
-                    return r === a && t.currTemplate.closeBtn || (t.currTemplate.closeBtn = e(t.st.closeMarkup.replace("%title%", t.st.tClose)), a = r), t.currTemplate.closeBtn
-                },
-                E = function() {
-                    e.magnificPopup.instance || (t = new x, t.init(), e.magnificPopup.instance = t)
-                },
-                C = function() {
-                    var e = document.createElement("p").style,
-                        t = ["ms", "O", "Moz", "Webkit"];
-                    if (void 0 !== e.transition) return !0;
-                    for (; t.length;)
-                        if (t.pop() + "Transition" in e) return !0;
-                    return !1
-                };
-            x.prototype = {
-                constructor: x,
-                init: function() {
-                    var r = navigator.appVersion;
-                    t.isIE7 = -1 !== r.indexOf("MSIE 7."), t.isIE8 = -1 !== r.indexOf("MSIE 8."), t.isLowIE = t.isIE7 || t.isIE8, t.isAndroid = /android/gi.test(r), t.isIOS = /iphone|ipad|ipod/gi.test(r), t.supportsTransition = C(), t.probablyMobile = t.isAndroid || t.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent), n = e(document), t.popupsCache = {}
-                },
-                open: function(r) {
-                    var i;
-                    if (r.isObj === !1) {
-                        t.items = r.items.toArray(), t.index = 0;
-                        var a, s = r.items;
-                        for (i = 0; i < s.length; i++)
-                            if (a = s[i], a.parsed && (a = a.el[0]), a === r.el[0]) {
-                                t.index = i;
-                                break
-                            }
-                    } else t.items = e.isArray(r.items) ? r.items : [r.items], t.index = r.index || 0;
-                    if (t.isOpen) return void t.updateItemHTML();
-                    t.types = [], o = "", r.mainEl && r.mainEl.length ? t.ev = r.mainEl.eq(0) : t.ev = n, r.key ? (t.popupsCache[r.key] || (t.popupsCache[r.key] = {}), t.currTemplate = t.popupsCache[r.key]) : t.currTemplate = {}, t.st = e.extend(!0, {}, e.magnificPopup.defaults, r), t.fixedContentPos = "auto" === t.st.fixedContentPos ? !t.probablyMobile : t.st.fixedContentPos, t.st.modal && (t.st.closeOnContentClick = !1, t.st.closeOnBgClick = !1, t.st.showCloseBtn = !1, t.st.enableEscapeKey = !1), t.bgOverlay || (t.bgOverlay = M("bg").on("click" + m, function() {
-                        t.close()
-                    }), t.wrap = M("wrap").attr("tabindex", -1).on("click" + m, function(e) {
-                        t._checkIfClose(e.target) && t.close()
-                    }), t.container = M("container", t.wrap)), t.contentContainer = M("content"), t.st.preloader && (t.preloader = M("preloader", t.container, t.st.tLoading));
-                    var u = e.magnificPopup.modules;
-                    for (i = 0; i < u.length; i++) {
-                        var c = u[i];
-                        c = c.charAt(0).toUpperCase() + c.slice(1), t["init" + c].call(t)
-                    }
-                    T("BeforeOpen"), t.st.showCloseBtn && (t.st.closeBtnInside ? (S(h, function(e, t, r, n) {
-                        r.close_replaceWith = _(n.type)
-                    }), o += " mfp-close-btn-in") : t.wrap.append(_())), t.st.alignTop && (o += " mfp-align-top"), t.fixedContentPos ? t.wrap.css({
-                        overflow: t.st.overflowY,
-                        overflowX: "hidden",
-                        overflowY: t.st.overflowY
-                    }) : t.wrap.css({
-                        top: w.scrollTop(),
-                        position: "absolute"
-                    }), (t.st.fixedBgPos === !1 || "auto" === t.st.fixedBgPos && !t.fixedContentPos) && t.bgOverlay.css({
-                        height: n.height(),
-                        position: "absolute"
-                    }), t.st.enableEscapeKey && n.on("keyup" + m, function(e) {
-                        27 === e.keyCode && t.close()
-                    }), w.on("resize" + m, function() {
-                        t.updateSize()
-                    }), t.st.closeOnContentClick || (o += " mfp-auto-cursor"), o && t.wrap.addClass(o);
-                    var l = t.wH = w.height(),
-                        d = {};
-                    if (t.fixedContentPos && t._hasScrollBar(l)) {
-                        var f = t._getScrollbarSize();
-                        f && (d.marginRight = f)
-                    }
-                    t.fixedContentPos && (t.isIE7 ? e("body, html").css("overflow", "hidden") : d.overflow = "hidden");
-                    var v = t.st.mainClass;
-                    return t.isIE7 && (v += " mfp-ie7"), v && t._addClassToMFP(v), t.updateItemHTML(), T("BuildControls"), e("html").css(d), t.bgOverlay.add(t.wrap).prependTo(t.st.prependTo || e(document.body)), t._lastFocusedEl = document.activeElement, setTimeout(function() {
-                        t.content ? (t._addClassToMFP(g), t._setFocus()) : t.bgOverlay.addClass(g), n.on("focusin" + m, t._onFocusIn)
-                    }, 16), t.isOpen = !0, t.updateSize(l), T(p), r
-                },
-                close: function() {
-                    t.isOpen && (T(u), t.isOpen = !1, t.st.removalDelay && !t.isLowIE && t.supportsTransition ? (t._addClassToMFP(v), setTimeout(function() {
-                        t._close()
-                    }, t.st.removalDelay)) : t._close())
-                },
-                _close: function() {
-                    T(s);
-                    var r = v + " " + g + " ";
-                    if (t.bgOverlay.detach(), t.wrap.detach(), t.container.empty(), t.st.mainClass && (r += t.st.mainClass + " "), t._removeClassFromMFP(r), t.fixedContentPos) {
-                        var i = {
-                            marginRight: ""
-                        };
-                        t.isIE7 ? e("body, html").css("overflow", "") : i.overflow = "", e("html").css(i)
-                    }
-                    n.off("keyup" + m + " focusin" + m), t.ev.off(m), t.wrap.attr("class", "mfp-wrap").removeAttr("style"), t.bgOverlay.attr("class", "mfp-bg"), t.container.attr("class", "mfp-container"), !t.st.showCloseBtn || t.st.closeBtnInside && t.currTemplate[t.currItem.type] !== !0 || t.currTemplate.closeBtn && t.currTemplate.closeBtn.detach(), t.st.autoFocusLast && t._lastFocusedEl && e(t._lastFocusedEl).focus(), t.currItem = null, t.content = null, t.currTemplate = null, t.prevHeight = 0, T(c)
-                },
-                updateSize: function(e) {
-                    if (t.isIOS) {
-                        var r = document.documentElement.clientWidth / window.innerWidth,
-                            n = window.innerHeight * r;
-                        t.wrap.css("height", n), t.wH = n
-                    } else t.wH = e || w.height();
-                    t.fixedContentPos || t.wrap.css("height", t.wH), T("Resize")
-                },
-                updateItemHTML: function() {
-                    var r = t.items[t.index];
-                    t.contentContainer.detach(), t.content && t.content.detach(), r.parsed || (r = t.parseEl(t.index));
-                    var n = r.type;
-                    if (T("BeforeChange", [t.currItem ? t.currItem.type : "", n]), t.currItem = r, !t.currTemplate[n]) {
-                        var o = t.st[n] ? t.st[n].markup : !1;
-                        T("FirstMarkupParse", o), o ? t.currTemplate[n] = e(o) : t.currTemplate[n] = !0
-                    }
-                    i && i !== r.type && t.container.removeClass("mfp-" + i + "-holder");
-                    var a = t["get" + n.charAt(0).toUpperCase() + n.slice(1)](r, t.currTemplate[n]);
-                    t.appendContent(a, n), r.preloaded = !0, T(d, r), i = r.type, t.container.prepend(t.contentContainer), T("AfterChange")
-                },
-                appendContent: function(e, r) {
-                    t.content = e, e ? t.st.showCloseBtn && t.st.closeBtnInside && t.currTemplate[r] === !0 ? t.content.find(".mfp-close").length || t.content.append(_()) : t.content = e : t.content = "", T(l), t.container.addClass("mfp-" + r + "-holder"), t.contentContainer.append(t.content)
-                },
-                parseEl: function(r) {
-                    var n, i = t.items[r];
-                    if (i.tagName ? i = {
-                            el: e(i)
-                        } : (n = i.type, i = {
-                            data: i,
-                            src: i.src
-                        }), i.el) {
-                        for (var o = t.types, a = 0; a < o.length; a++)
-                            if (i.el.hasClass("mfp-" + o[a])) {
-                                n = o[a];
-                                break
-                            }
-                        i.src = i.el.attr("data-mfp-src"), i.src || (i.src = i.el.attr("href"))
-                    }
-                    return i.type = n || t.st.type || "inline", i.index = r, i.parsed = !0, t.items[r] = i, T("ElementParse", i), t.items[r]
-                },
-                addGroup: function(e, r) {
-                    var n = function(n) {
-                        n.mfpEl = this, t._openClick(n, e, r)
-                    };
-                    r || (r = {});
-                    var i = "click.magnificPopup";
-                    r.mainEl = e, r.items ? (r.isObj = !0, e.off(i).on(i, n)) : (r.isObj = !1, r.delegate ? e.off(i).on(i, r.delegate, n) : (r.items = e, e.off(i).on(i, n)))
-                },
-                _openClick: function(r, n, i) {
-                    var o = void 0 !== i.midClick ? i.midClick : e.magnificPopup.defaults.midClick;
-                    if (o || !(2 === r.which || r.ctrlKey || r.metaKey || r.altKey || r.shiftKey)) {
-                        var a = void 0 !== i.disableOn ? i.disableOn : e.magnificPopup.defaults.disableOn;
-                        if (a)
-                            if (e.isFunction(a)) {
-                                if (!a.call(t)) return !0
-                            } else if (w.width() < a) return !0;
-                        r.type && (r.preventDefault(), t.isOpen && r.stopPropagation()), i.el = e(r.mfpEl), i.delegate && (i.items = n.find(i.delegate)), t.open(i)
-                    }
-                },
-                updateStatus: function(e, n) {
-                    if (t.preloader) {
-                        r !== e && t.container.removeClass("mfp-s-" + r), n || "loading" !== e || (n = t.st.tLoading);
-                        var i = {
-                            status: e,
-                            text: n
-                        };
-                        T("UpdateStatus", i), e = i.status, n = i.text, t.preloader.html(n), t.preloader.find("a").on("click", function(e) {
-                            e.stopImmediatePropagation()
-                        }), t.container.addClass("mfp-s-" + e), r = e
-                    }
-                },
-                _checkIfClose: function(r) {
-                    if (!e(r).hasClass(y)) {
-                        var n = t.st.closeOnContentClick,
-                            i = t.st.closeOnBgClick;
-                        if (n && i) return !0;
-                        if (!t.content || e(r).hasClass("mfp-close") || t.preloader && r === t.preloader[0]) return !0;
-                        if (r === t.content[0] || e.contains(t.content[0], r)) {
-                            if (n) return !0
-                        } else if (i && e.contains(document, r)) return !0;
-                        return !1
-                    }
-                },
-                _addClassToMFP: function(e) {
-                    t.bgOverlay.addClass(e), t.wrap.addClass(e)
-                },
-                _removeClassFromMFP: function(e) {
-                    this.bgOverlay.removeClass(e), t.wrap.removeClass(e)
-                },
-                _hasScrollBar: function(e) {
-                    return (t.isIE7 ? n.height() : document.body.scrollHeight) > (e || w.height())
-                },
-                _setFocus: function() {
-                    (t.st.focus ? t.content.find(t.st.focus).eq(0) : t.wrap).focus()
-                },
-                _onFocusIn: function(r) {
-                    return r.target === t.wrap[0] || e.contains(t.wrap[0], r.target) ? void 0 : (t._setFocus(), !1)
-                },
-                _parseMarkup: function(t, r, n) {
-                    var i;
-                    n.data && (r = e.extend(n.data, r)), T(h, [t, r, n]), e.each(r, function(e, r) {
-                        if (void 0 === r || r === !1) return !0;
-                        if (i = e.split("_"), i.length > 1) {
-                            var n = t.find(m + "-" + i[0]);
-                            if (n.length > 0) {
-                                var o = i[1];
-                                "replaceWith" === o ? n[0] !== r[0] && n.replaceWith(r) : "img" === o ? n.is("img") ? n.attr("src", r) : n.replaceWith('<img src="' + r + '" class="' + n.attr("class") + '" />') : n.attr(i[1], r)
-                            }
-                        } else t.find(m + "-" + e).html(r)
-                    })
-                },
-                _getScrollbarSize: function() {
-                    if (void 0 === t.scrollbarSize) {
-                        var e = document.createElement("div");
-                        e.style.cssText = "width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;", document.body.appendChild(e), t.scrollbarSize = e.offsetWidth - e.clientWidth, document.body.removeChild(e)
-                    }
-                    return t.scrollbarSize
-                }
-            }, e.magnificPopup = {
-                instance: null,
-                proto: x.prototype,
-                modules: [],
-                open: function(t, r) {
-                    return E(), t = t ? e.extend(!0, {}, t) : {}, t.isObj = !0, t.index = r || 0, this.instance.open(t)
-                },
-                close: function() {
-                    return e.magnificPopup.instance && e.magnificPopup.instance.close()
-                },
-                registerModule: function(t, r) {
-                    r.options && (e.magnificPopup.defaults[t] = r.options), e.extend(this.proto, r.proto), this.modules.push(t)
-                },
-                defaults: {
-                    disableOn: 0,
-                    key: null,
-                    midClick: !1,
-                    mainClass: "",
-                    preloader: !0,
-                    focus: "",
-                    closeOnContentClick: !1,
-                    closeOnBgClick: !0,
-                    closeBtnInside: !0,
-                    showCloseBtn: !0,
-                    enableEscapeKey: !0,
-                    modal: !1,
-                    alignTop: !1,
-                    removalDelay: 0,
-                    prependTo: null,
-                    fixedContentPos: "auto",
-                    fixedBgPos: "auto",
-                    overflowY: "auto",
-                    closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>',
-                    tClose: "Close (Esc)",
-                    tLoading: "Loading...",
-                    autoFocusLast: !0
-                }
-            }, e.fn.magnificPopup = function(r) {
-                E();
-                var n = e(this);
-                if ("string" == typeof r)
-                    if ("open" === r) {
-                        var i, o = b ? n.data("magnificPopup") : n[0].magnificPopup,
-                            a = parseInt(arguments[1], 10) || 0;
-                        o.items ? i = o.items[a] : (i = n, o.delegate && (i = i.find(o.delegate)), i = i.eq(a)), t._openClick({
-                            mfpEl: i
-                        }, n, o)
-                    } else t.isOpen && t[r].apply(t, Array.prototype.slice.call(arguments, 1));
-                else r = e.extend(!0, {}, r), b ? n.data("magnificPopup", r) : n[0].magnificPopup = r, t.addGroup(n, r);
-                return n
-            };
-            var A, L, P, k = "inline",
-                D = function() {
-                    P && (L.after(P.addClass(A)).detach(), P = null)
-                };
-            e.magnificPopup.registerModule(k, {
-                options: {
-                    hiddenClass: "hide",
-                    markup: "",
-                    tNotFound: "Content not found"
-                },
-                proto: {
-                    initInline: function() {
-                        t.types.push(k), S(s + "." + k, function() {
-                            D()
-                        })
-                    },
-                    getInline: function(r, n) {
-                        if (D(), r.src) {
-                            var i = t.st.inline,
-                                o = e(r.src);
-                            if (o.length) {
-                                var a = o[0].parentNode;
-                                a && a.tagName && (L || (A = i.hiddenClass, L = M(A), A = "mfp-" + A), P = o.after(L).detach().removeClass(A)), t.updateStatus("ready")
-                            } else t.updateStatus("error", i.tNotFound), o = e("<div>");
-                            return r.inlineElement = o, o
-                        }
-                        return t.updateStatus("ready"), t._parseMarkup(n, {}, r), n
-                    }
-                }
-            });
-            var R, O = "ajax",
-                F = function() {
-                    R && e(document.body).removeClass(R)
-                },
-                V = function() {
-                    F(), t.req && t.req.abort()
-                };
-            e.magnificPopup.registerModule(O, {
-                options: {
-                    settings: null,
-                    cursor: "mfp-ajax-cur",
-                    tError: '<a href="%url%">The content</a> could not be loaded.'
-                },
-                proto: {
-                    initAjax: function() {
-                        t.types.push(O), R = t.st.ajax.cursor, S(s + "." + O, V), S("BeforeChange." + O, V)
-                    },
-                    getAjax: function(r) {
-                        R && e(document.body).addClass(R), t.updateStatus("loading");
-                        var n = e.extend({
-                            url: r.src,
-                            success: function(n, i, o) {
-                                var a = {
-                                    data: n,
-                                    xhr: o
-                                };
-                                T("ParseAjax", a), t.appendContent(e(a.data), O), r.finished = !0, F(), t._setFocus(), setTimeout(function() {
-                                    t.wrap.addClass(g)
-                                }, 16), t.updateStatus("ready"), T("AjaxContentAdded")
-                            },
-                            error: function() {
-                                F(), r.finished = r.loadError = !0, t.updateStatus("error", t.st.ajax.tError.replace("%url%", r.src))
-                            }
-                        }, t.st.ajax.settings);
-                        return t.req = e.ajax(n), ""
-                    }
-                }
-            });
-            var N, B = function(r) {
-                if (r.data && void 0 !== r.data.title) return r.data.title;
-                var n = t.st.image.titleSrc;
-                if (n) {
-                    if (e.isFunction(n)) return n.call(t, r);
-                    if (r.el) return r.el.attr(n) || ""
-                }
-                return ""
-            };
-            e.magnificPopup.registerModule("image", {
-                options: {
-                    markup: '<div class="mfp-figure"><div class="mfp-close"></div><figure><div class="mfp-img"></div><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter"></div></div></figcaption></figure></div>',
-                    cursor: "mfp-zoom-out-cur",
-                    titleSrc: "title",
-                    verticalFit: !0,
-                    tError: '<a href="%url%">The image</a> could not be loaded.'
-                },
-                proto: {
-                    initImage: function() {
-                        var r = t.st.image,
-                            n = ".image";
-                        t.types.push("image"), S(p + n, function() {
-                            "image" === t.currItem.type && r.cursor && e(document.body).addClass(r.cursor)
-                        }), S(s + n, function() {
-                            r.cursor && e(document.body).removeClass(r.cursor), w.off("resize" + m)
-                        }), S("Resize" + n, t.resizeImage), t.isLowIE && S("AfterChange", t.resizeImage)
-                    },
-                    resizeImage: function() {
-                        var e = t.currItem;
-                        if (e && e.img && t.st.image.verticalFit) {
-                            var r = 0;
-                            t.isLowIE && (r = parseInt(e.img.css("padding-top"), 10) + parseInt(e.img.css("padding-bottom"), 10)), e.img.css("max-height", t.wH - r)
-                        }
-                    },
-                    _onImageHasSize: function(e) {
-                        e.img && (e.hasSize = !0, N && clearInterval(N), e.isCheckingImgSize = !1, T("ImageHasSize", e), e.imgHidden && (t.content && t.content.removeClass("mfp-loading"), e.imgHidden = !1))
-                    },
-                    findImageSize: function(e) {
-                        var r = 0,
-                            n = e.img[0],
-                            i = function(o) {
-                                N && clearInterval(N), N = setInterval(function() {
-                                    return n.naturalWidth > 0 ? void t._onImageHasSize(e) : (r > 200 && clearInterval(N), r++, void(3 === r ? i(10) : 40 === r ? i(50) : 100 === r && i(500)))
-                                }, o)
-                            };
-                        i(1)
-                    },
-                    getImage: function(r, n) {
-                        var i = 0,
-                            o = function() {
-                                r && (r.img[0].complete ? (r.img.off(".mfploader"), r === t.currItem && (t._onImageHasSize(r), t.updateStatus("ready")), r.hasSize = !0, r.loaded = !0, T("ImageLoadComplete")) : (i++, 200 > i ? setTimeout(o, 100) : a()))
-                            },
-                            a = function() {
-                                r && (r.img.off(".mfploader"), r === t.currItem && (t._onImageHasSize(r), t.updateStatus("error", s.tError.replace("%url%", r.src))), r.hasSize = !0, r.loaded = !0, r.loadError = !0)
-                            },
-                            s = t.st.image,
-                            u = n.find(".mfp-img");
-                        if (u.length) {
-                            var c = document.createElement("img");
-                            c.className = "mfp-img", r.el && r.el.find("img").length && (c.alt = r.el.find("img").attr("alt")), r.img = e(c).on("load.mfploader", o).on("error.mfploader", a), c.src = r.src, u.is("img") && (r.img = r.img.clone()), c = r.img[0], c.naturalWidth > 0 ? r.hasSize = !0 : c.width || (r.hasSize = !1)
-                        }
-                        return t._parseMarkup(n, {
-                            title: B(r),
-                            img_replaceWith: r.img
-                        }, r), t.resizeImage(), r.hasSize ? (N && clearInterval(N), r.loadError ? (n.addClass("mfp-loading"), t.updateStatus("error", s.tError.replace("%url%", r.src))) : (n.removeClass("mfp-loading"), t.updateStatus("ready")), n) : (t.updateStatus("loading"), r.loading = !0, r.hasSize || (r.imgHidden = !0, n.addClass("mfp-loading"), t.findImageSize(r)), n)
-                    }
-                }
-            });
-            var I, U = function() {
-                return void 0 === I && (I = void 0 !== document.createElement("p").style.MozTransform), I
-            };
-            e.magnificPopup.registerModule("zoom", {
-                options: {
-                    enabled: !1,
-                    easing: "ease-in-out",
-                    duration: 300,
-                    opener: function(e) {
-                        return e.is("img") ? e : e.find("img")
-                    }
-                },
-                proto: {
-                    initZoom: function() {
-                        var e, r = t.st.zoom,
-                            n = ".zoom";
-                        if (r.enabled && t.supportsTransition) {
-                            var i, o, a = r.duration,
-                                c = function(e) {
-                                    var t = e.clone().removeAttr("style").removeAttr("class").addClass("mfp-animated-image"),
-                                        n = "all " + r.duration / 1e3 + "s " + r.easing,
-                                        i = {
-                                            position: "fixed",
-                                            zIndex: 9999,
-                                            left: 0,
-                                            top: 0,
-                                            "-webkit-backface-visibility": "hidden"
-                                        },
-                                        o = "transition";
-                                    return i["-webkit-" + o] = i["-moz-" + o] = i["-o-" + o] = i[o] = n, t.css(i), t
-                                },
-                                l = function() {
-                                    t.content.css("visibility", "visible")
-                                };
-                            S("BuildControls" + n, function() {
-                                if (t._allowZoom()) {
-                                    if (clearTimeout(i), t.content.css("visibility", "hidden"), e = t._getItemToZoom(), !e) return void l();
-                                    o = c(e), o.css(t._getOffset()), t.wrap.append(o), i = setTimeout(function() {
-                                        o.css(t._getOffset(!0)), i = setTimeout(function() {
-                                            l(), setTimeout(function() {
-                                                o.remove(), e = o = null, T("ZoomAnimationEnded")
-                                            }, 16)
-                                        }, a)
-                                    }, 16)
-                                }
-                            }), S(u + n, function() {
-                                if (t._allowZoom()) {
-                                    if (clearTimeout(i), t.st.removalDelay = a, !e) {
-                                        if (e = t._getItemToZoom(), !e) return;
-                                        o = c(e)
-                                    }
-                                    o.css(t._getOffset(!0)), t.wrap.append(o), t.content.css("visibility", "hidden"), setTimeout(function() {
-                                        o.css(t._getOffset())
-                                    }, 16)
-                                }
-                            }), S(s + n, function() {
-                                t._allowZoom() && (l(), o && o.remove(), e = null)
-                            })
-                        }
-                    },
-                    _allowZoom: function() {
-                        return "image" === t.currItem.type
-                    },
-                    _getItemToZoom: function() {
-                        return t.currItem.hasSize ? t.currItem.img : !1
-                    },
-                    _getOffset: function(r) {
-                        var n;
-                        n = r ? t.currItem.img : t.st.zoom.opener(t.currItem.el || t.currItem);
-                        var i = n.offset(),
-                            o = parseInt(n.css("padding-top"), 10),
-                            a = parseInt(n.css("padding-bottom"), 10);
-                        i.top -= e(window).scrollTop() - o;
-                        var s = {
-                            width: n.width(),
-                            height: (b ? n.innerHeight() : n[0].offsetHeight) - a - o
-                        };
-                        return U() ? s["-moz-transform"] = s.transform = "translate(" + i.left + "px," + i.top + "px)" : (s.left = i.left, s.top = i.top), s
-                    }
-                }
-            });
-            var z = "iframe",
-                G = "//about:blank",
-                j = function(e) {
-                    if (t.currTemplate[z]) {
-                        var r = t.currTemplate[z].find("iframe");
-                        r.length && (e || (r[0].src = G), t.isIE8 && r.css("display", e ? "block" : "none"))
-                    }
-                };
-            e.magnificPopup.registerModule(z, {
-                options: {
-                    markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe></div>',
-                    srcAction: "iframe_src",
-                    patterns: {
-                        youtube: {
-                            // index: "youtube.com",
-                            // id: "v=",
-                            // src: "//www.youtube.com/embed/%id%?autoplay=1"
-                        },
-                        vimeo: {
-                            // index: "vimeo.com/",
-                            // id: "/",
-                            // src: "//player.vimeo.com/video/%id%?autoplay=1"
-                        },
-                        gmaps: {
-                            // index: "//maps.google.",
-                            // src: "%id%&output=embed"
-                        }
-                    }
-                },
-                proto: {
-                    initIframe: function() {
-                        t.types.push(z), S("BeforeChange", function(e, t, r) {
-                            t !== r && (t === z ? j() : r === z && j(!0))
-                        }), S(s + "." + z, function() {
-                            j()
-                        })
-                    },
-                    getIframe: function(r, n) {
-                        var i = r.src,
-                            o = t.st.iframe;
-                        e.each(o.patterns, function() {
-                            return i.indexOf(this.index) > -1 ? (this.id && (i = "string" == typeof this.id ? i.substr(i.lastIndexOf(this.id) + this.id.length, i.length) : this.id.call(this, i)), i = this.src.replace("%id%", i), !1) : void 0
-                        });
-                        var a = {};
-                        return o.srcAction && (a[o.srcAction] = i), t._parseMarkup(n, a, r), t.updateStatus("ready"), n
-                    }
-                }
-            });
-            var H = function(e) {
-                    var r = t.items.length;
-                    return e > r - 1 ? e - r : 0 > e ? r + e : e
-                },
-                W = function(e, t, r) {
-                    return e.replace(/%curr%/gi, t + 1).replace(/%total%/gi, r)
-                };
-            e.magnificPopup.registerModule("gallery", {
-                options: {
-                    enabled: !1,
-                    arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
-                    preload: [0, 2],
-                    navigateByImgClick: !0,
-                    arrows: !0,
-                    tPrev: "Previous (Left arrow key)",
-                    tNext: "Next (Right arrow key)",
-                    tCounter: "%curr% of %total%"
-                },
-                proto: {
-                    initGallery: function() {
-                        var r = t.st.gallery,
-                            i = ".mfp-gallery",
-                            a = Boolean(e.fn.mfpFastClick);
-                        return t.direction = !0, r && r.enabled ? (o += " mfp-gallery", S(p + i, function() {
-                            r.navigateByImgClick && t.wrap.on("click" + i, ".mfp-img", function() {
-                                return t.items.length > 1 ? (t.next(), !1) : void 0
-                            }), n.on("keydown" + i, function(e) {
-                                37 === e.keyCode ? t.prev() : 39 === e.keyCode && t.next()
-                            })
-                        }), S("UpdateStatus" + i, function(e, r) {
-                            r.text && (r.text = W(r.text, t.currItem.index, t.items.length))
-                        }), S(h + i, function(e, n, i, o) {
-                            var a = t.items.length;
-                            i.counter = a > 1 ? W(r.tCounter, o.index, a) : ""
-                        }), S("BuildControls" + i, function() {
-                            if (t.items.length > 1 && r.arrows && !t.arrowLeft) {
-                                var n = r.arrowMarkup,
-                                    i = t.arrowLeft = e(n.replace(/%title%/gi, r.tPrev).replace(/%dir%/gi, "left")).addClass(y),
-                                    o = t.arrowRight = e(n.replace(/%title%/gi, r.tNext).replace(/%dir%/gi, "right")).addClass(y),
-                                    s = a ? "mfpFastClick" : "click";
-                                i[s](function() {
-                                    t.prev()
-                                }), o[s](function() {
-                                    t.next()
-                                }), t.isIE7 && (M("b", i[0], !1, !0), M("a", i[0], !1, !0), M("b", o[0], !1, !0), M("a", o[0], !1, !0)), t.container.append(i.add(o))
-                            }
-                        }), S(d + i, function() {
-                            t._preloadTimeout && clearTimeout(t._preloadTimeout), t._preloadTimeout = setTimeout(function() {
-                                t.preloadNearbyImages(), t._preloadTimeout = null
-                            }, 16)
-                        }), void S(s + i, function() {
-                            n.off(i), t.wrap.off("click" + i), t.arrowLeft && a && t.arrowLeft.add(t.arrowRight).destroyMfpFastClick(), t.arrowRight = t.arrowLeft = null
-                        })) : !1
-                    },
-                    next: function() {
-                        t.direction = !0, t.index = H(t.index + 1), t.updateItemHTML()
-                    },
-                    prev: function() {
-                        t.direction = !1, t.index = H(t.index - 1), t.updateItemHTML()
-                    },
-                    goTo: function(e) {
-                        t.direction = e >= t.index, t.index = e, t.updateItemHTML()
-                    },
-                    preloadNearbyImages: function() {
-                        var e, r = t.st.gallery.preload,
-                            n = Math.min(r[0], t.items.length),
-                            i = Math.min(r[1], t.items.length);
-                        for (e = 1; e <= (t.direction ? i : n); e++) t._preloadItem(t.index + e);
-                        for (e = 1; e <= (t.direction ? n : i); e++) t._preloadItem(t.index - e)
-                    },
-                    _preloadItem: function(r) {
-                        if (r = H(r), !t.items[r].preloaded) {
-                            var n = t.items[r];
-                            n.parsed || (n = t.parseEl(r)), T("LazyLoad", n), "image" === n.type && (n.img = e('<img class="mfp-img" />').on("load.mfploader", function() {
-                                n.hasSize = !0
-                            }).on("error.mfploader", function() {
-                                n.hasSize = !0, n.loadError = !0, T("LazyLoadError", n)
-                            }).attr("src", n.src)), n.preloaded = !0
-                        }
-                    }
-                }
-            });
-            var X = "retina";
-            e.magnificPopup.registerModule(X, {
-                    options: {
-                        replaceSrc: function(e) {
-                            return e.src.replace(/\.\w+$/, function(e) {
-                                return "@2x" + e
-                            })
-                        },
-                        ratio: 1
-                    },
-                    proto: {
-                        initRetina: function() {
-                            if (window.devicePixelRatio > 1) {
-                                var e = t.st.retina,
-                                    r = e.ratio;
-                                r = isNaN(r) ? r() : r, r > 1 && (S("ImageHasSize." + X, function(e, t) {
-                                    t.img.css({
-                                        "max-width": t.img[0].naturalWidth / r,
-                                        width: "100%"
-                                    })
-                                }), S("ElementParse." + X, function(t, n) {
-                                    n.src = e.replaceSrc(n, r)
-                                }))
-                            }
-                        }
-                    }
-                }),
-                function() {
-                    var t = 1e3,
-                        r = "ontouchstart" in window,
-                        n = function() {
-                            w.off("touchmove" + o + " touchend" + o)
-                        },
-                        i = "mfpFastClick",
-                        o = "." + i;
-                    e.fn.mfpFastClick = function(i) {
-                        return e(this).each(function() {
-                            var a, s = e(this);
-                            if (r) {
-                                var u, c, l, h, p, d;
-                                s.on("touchstart" + o, function(e) {
-                                    h = !1, d = 1, p = e.originalEvent ? e.originalEvent.touches[0] : e.touches[0], c = p.clientX, l = p.clientY, w.on("touchmove" + o, function(e) {
-                                        p = e.originalEvent ? e.originalEvent.touches : e.touches, d = p.length, p = p[0], (Math.abs(p.clientX - c) > 10 || Math.abs(p.clientY - l) > 10) && (h = !0, n())
-                                    }).on("touchend" + o, function(e) {
-                                        n(), h || d > 1 || (a = !0, e.preventDefault(), clearTimeout(u), u = setTimeout(function() {
-                                            a = !1
-                                        }, t), i())
-                                    })
-                                })
-                            }
-                            s.on("click" + o, function() {
-                                a || i()
-                            })
-                        })
-                    }, e.fn.destroyMfpFastClick = function() {
-                        e(this).off("touchstart" + o + " click" + o), r && w.off("touchmove" + o + " touchend" + o)
-                    }
-                }(), E()
-        })
-    }, {
-        jquery: 11
-    }],
     13: [function(e, t, r) {
         t.exports = function(e) {
             function t(t) {
@@ -11015,7 +9739,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
             }, i.ParticleSystemMaterial = function(e) {
                 return new i.PointsMaterial(e)
             }, i.ShaderMaterial = function(e) {
-                i.Material.call(this), this.type = "ShaderMaterial", this.defines = {}, this.uniforms = {}, this.vertexShader = "void main() {\n	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}", this.fragmentShader = "void main() {\n	gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );\n}", this.shading = i.SmoothShading, this.linewidth = 1, this.wireframe = !1, this.wireframeLinewidth = 1, this.fog = !1, this.lights = !1, this.vertexColors = i.NoColors, this.skinning = !1, this.morphTargets = !1, this.morphNormals = !1, this.derivatives = !1, this.defaultAttributeValues = {
+                i.Material.call(this), this.type = "ShaderMaterial", this.defines = {}, this.uniforms = {}, this.vertexShader = "void main() {\n    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}", this.fragmentShader = "void main() {\n   gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );\n}", this.shading = i.SmoothShading, this.linewidth = 1, this.wireframe = !1, this.wireframeLinewidth = 1, this.fog = !1, this.lights = !1, this.vertexColors = i.NoColors, this.skinning = !1, this.morphTargets = !1, this.morphNormals = !1, this.derivatives = !1, this.defaultAttributeValues = {
                     color: [1, 1, 1],
                     uv: [0, 0],
                     uv2: [0, 0]
@@ -11547,8 +10271,8 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                 this.name = "", this.color = new i.Color(e), this.density = void 0 !== t ? t : 25e-5
             }, i.FogExp2.prototype.clone = function() {
                 return new i.FogExp2(this.color.getHex(), this.density)
-            }, i.ShaderChunk = {}, i.ShaderChunk.alphamap_fragment = "#ifdef USE_ALPHAMAP\n\n	diffuseColor.a *= texture2D( alphaMap, vUv ).g;\n\n#endif\n", i.ShaderChunk.alphamap_pars_fragment = "#ifdef USE_ALPHAMAP\n\n	uniform sampler2D alphaMap;\n\n#endif\n", i.ShaderChunk.alphatest_fragment = "#ifdef ALPHATEST\n\n	if ( diffuseColor.a < ALPHATEST ) discard;\n\n#endif\n", i.ShaderChunk.aomap_fragment = "#ifdef USE_AOMAP\n\n	totalAmbientLight *= ( texture2D( aoMap, vUv2 ).r - 1.0 ) * aoMapIntensity + 1.0;\n\n#endif\n", i.ShaderChunk.aomap_pars_fragment = "#ifdef USE_AOMAP\n\n	uniform sampler2D aoMap;\n	uniform float aoMapIntensity;\n\n#endif", i.ShaderChunk.begin_vertex = "\nvec3 transformed = vec3( position );\n", i.ShaderChunk.beginnormal_vertex = "\nvec3 objectNormal = vec3( normal );\n", i.ShaderChunk.bumpmap_pars_fragment = "#ifdef USE_BUMPMAP\n\n	uniform sampler2D bumpMap;\n	uniform float bumpScale;\n\n\n\n	vec2 dHdxy_fwd() {\n\n		vec2 dSTdx = dFdx( vUv );\n		vec2 dSTdy = dFdy( vUv );\n\n		float Hll = bumpScale * texture2D( bumpMap, vUv ).x;\n		float dBx = bumpScale * texture2D( bumpMap, vUv + dSTdx ).x - Hll;\n		float dBy = bumpScale * texture2D( bumpMap, vUv + dSTdy ).x - Hll;\n\n		return vec2( dBx, dBy );\n\n	}\n\n	vec3 perturbNormalArb( vec3 surf_pos, vec3 surf_norm, vec2 dHdxy ) {\n\n		vec3 vSigmaX = dFdx( surf_pos );\n		vec3 vSigmaY = dFdy( surf_pos );\n		vec3 vN = surf_norm;\n		vec3 R1 = cross( vSigmaY, vN );\n		vec3 R2 = cross( vN, vSigmaX );\n\n		float fDet = dot( vSigmaX, R1 );\n\n		vec3 vGrad = sign( fDet ) * ( dHdxy.x * R1 + dHdxy.y * R2 );\n		return normalize( abs( fDet ) * surf_norm - vGrad );\n\n	}\n\n#endif\n", i.ShaderChunk.color_fragment = "#ifdef USE_COLOR\n\n	diffuseColor.rgb *= vColor;\n\n#endif", i.ShaderChunk.color_pars_fragment = "#ifdef USE_COLOR\n\n	varying vec3 vColor;\n\n#endif\n", i.ShaderChunk.color_pars_vertex = "#ifdef USE_COLOR\n\n	varying vec3 vColor;\n\n#endif", i.ShaderChunk.color_vertex = "#ifdef USE_COLOR\n\n	vColor.xyz = color.xyz;\n\n#endif", i.ShaderChunk.common = "#define PI 3.14159\n#define PI2 6.28318\n#define RECIPROCAL_PI2 0.15915494\n#define LOG2 1.442695\n#define EPSILON 1e-6\n\n#define saturate(a) clamp( a, 0.0, 1.0 )\n#define whiteCompliment(a) ( 1.0 - saturate( a ) )\n\nvec3 transformDirection( in vec3 normal, in mat4 matrix ) {\n\n	return normalize( ( matrix * vec4( normal, 0.0 ) ).xyz );\n\n}\n\nvec3 inverseTransformDirection( in vec3 normal, in mat4 matrix ) {\n\n	return normalize( ( vec4( normal, 0.0 ) * matrix ).xyz );\n\n}\n\nvec3 projectOnPlane(in vec3 point, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n	float distance = dot( planeNormal, point - pointOnPlane );\n\n	return - distance * planeNormal + point;\n\n}\n\nfloat sideOfPlane( in vec3 point, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n	return sign( dot( point - pointOnPlane, planeNormal ) );\n\n}\n\nvec3 linePlaneIntersect( in vec3 pointOnLine, in vec3 lineDirection, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n	return lineDirection * ( dot( planeNormal, pointOnPlane - pointOnLine ) / dot( planeNormal, lineDirection ) ) + pointOnLine;\n\n}\n\nfloat calcLightAttenuation( float lightDistance, float cutoffDistance, float decayExponent ) {\n\n	if ( decayExponent > 0.0 ) {\n\n	  return pow( saturate( -lightDistance / cutoffDistance + 1.0 ), decayExponent );\n\n	}\n\n	return 1.0;\n\n}\n\nvec3 F_Schlick( in vec3 specularColor, in float dotLH ) {\n\n\n	float fresnel = exp2( ( -5.55437 * dotLH - 6.98316 ) * dotLH );\n\n	return ( 1.0 - specularColor ) * fresnel + specularColor;\n\n}\n\nfloat G_BlinnPhong_Implicit( /* in float dotNL, in float dotNV */ ) {\n\n\n	return 0.25;\n\n}\n\nfloat D_BlinnPhong( in float shininess, in float dotNH ) {\n\n\n	return ( shininess * 0.5 + 1.0 ) * pow( dotNH, shininess );\n\n}\n\nvec3 BRDF_BlinnPhong( in vec3 specularColor, in float shininess, in vec3 normal, in vec3 lightDir, in vec3 viewDir ) {\n\n	vec3 halfDir = normalize( lightDir + viewDir );\n\n	float dotNH = saturate( dot( normal, halfDir ) );\n	float dotLH = saturate( dot( lightDir, halfDir ) );\n\n	vec3 F = F_Schlick( specularColor, dotLH );\n\n	float G = G_BlinnPhong_Implicit( /* dotNL, dotNV */ );\n\n	float D = D_BlinnPhong( shininess, dotNH );\n\n	return F * G * D;\n\n}\n\nvec3 inputToLinear( in vec3 a ) {\n\n	#ifdef GAMMA_INPUT\n\n		return pow( a, vec3( float( GAMMA_FACTOR ) ) );\n\n	#else\n\n		return a;\n\n	#endif\n\n}\n\nvec3 linearToOutput( in vec3 a ) {\n\n	#ifdef GAMMA_OUTPUT\n\n		return pow( a, vec3( 1.0 / float( GAMMA_FACTOR ) ) );\n\n	#else\n\n		return a;\n\n	#endif\n\n}\n", i.ShaderChunk.defaultnormal_vertex = "#ifdef FLIP_SIDED\n\n	objectNormal = -objectNormal;\n\n#endif\n\nvec3 transformedNormal = normalMatrix * objectNormal;\n", i.ShaderChunk.displacementmap_vertex = "#ifdef USE_DISPLACEMENTMAP\n\n	transformed += normal * ( texture2D( displacementMap, uv ).x * displacementScale + displacementBias );\n\n#endif\n", i.ShaderChunk.displacementmap_pars_vertex = "#ifdef USE_DISPLACEMENTMAP\n\n	uniform sampler2D displacementMap;\n	uniform float displacementScale;\n	uniform float displacementBias;\n\n#endif\n", i.ShaderChunk.emissivemap_fragment = "#ifdef USE_EMISSIVEMAP\n\n	vec4 emissiveColor = texture2D( emissiveMap, vUv );\n\n	emissiveColor.rgb = inputToLinear( emissiveColor.rgb );\n\n	totalEmissiveLight *= emissiveColor.rgb;\n\n#endif\n", i.ShaderChunk.emissivemap_pars_fragment = "#ifdef USE_EMISSIVEMAP\n\n	uniform sampler2D emissiveMap;\n\n#endif\n", i.ShaderChunk.envmap_fragment = "#ifdef USE_ENVMAP\n\n	#if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( PHONG )\n\n		vec3 cameraToVertex = normalize( vWorldPosition - cameraPosition );\n\n		vec3 worldNormal = inverseTransformDirection( normal, viewMatrix );\n\n		#ifdef ENVMAP_MODE_REFLECTION\n\n			vec3 reflectVec = reflect( cameraToVertex, worldNormal );\n\n		#else\n\n			vec3 reflectVec = refract( cameraToVertex, worldNormal, refractionRatio );\n\n		#endif\n\n	#else\n\n		vec3 reflectVec = vReflect;\n\n	#endif\n\n	#ifdef DOUBLE_SIDED\n		float flipNormal = ( float( gl_FrontFacing ) * 2.0 - 1.0 );\n	#else\n		float flipNormal = 1.0;\n	#endif\n\n	#ifdef ENVMAP_TYPE_CUBE\n		vec4 envColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * reflectVec.x, reflectVec.yz ) );\n\n	#elif defined( ENVMAP_TYPE_EQUIREC )\n		vec2 sampleUV;\n		sampleUV.y = saturate( flipNormal * reflectVec.y * 0.5 + 0.5 );\n		sampleUV.x = atan( flipNormal * reflectVec.z, flipNormal * reflectVec.x ) * RECIPROCAL_PI2 + 0.5;\n		vec4 envColor = texture2D( envMap, sampleUV );\n\n	#elif defined( ENVMAP_TYPE_SPHERE )\n		vec3 reflectView = flipNormal * normalize((viewMatrix * vec4( reflectVec, 0.0 )).xyz + vec3(0.0,0.0,1.0));\n		vec4 envColor = texture2D( envMap, reflectView.xy * 0.5 + 0.5 );\n	#endif\n\n	envColor.xyz = inputToLinear( envColor.xyz );\n\n	#ifdef ENVMAP_BLENDING_MULTIPLY\n\n		outgoingLight = mix( outgoingLight, outgoingLight * envColor.xyz, specularStrength * reflectivity );\n\n	#elif defined( ENVMAP_BLENDING_MIX )\n\n		outgoingLight = mix( outgoingLight, envColor.xyz, specularStrength * reflectivity );\n\n	#elif defined( ENVMAP_BLENDING_ADD )\n\n		outgoingLight += envColor.xyz * specularStrength * reflectivity;\n\n	#endif\n\n#endif\n", i.ShaderChunk.envmap_pars_fragment = "#ifdef USE_ENVMAP\n\n	uniform float reflectivity;\n	#ifdef ENVMAP_TYPE_CUBE\n		uniform samplerCube envMap;\n	#else\n		uniform sampler2D envMap;\n	#endif\n	uniform float flipEnvMap;\n\n	#if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( PHONG )\n\n		uniform float refractionRatio;\n\n	#else\n\n		varying vec3 vReflect;\n\n	#endif\n\n#endif\n", i.ShaderChunk.envmap_pars_vertex = "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP ) && ! defined( USE_NORMALMAP ) && ! defined( PHONG )\n\n	varying vec3 vReflect;\n\n	uniform float refractionRatio;\n\n#endif\n", i.ShaderChunk.envmap_vertex = "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP ) && ! defined( USE_NORMALMAP ) && ! defined( PHONG )\n\n	vec3 cameraToVertex = normalize( worldPosition.xyz - cameraPosition );\n\n	vec3 worldNormal = inverseTransformDirection( transformedNormal, viewMatrix );\n\n	#ifdef ENVMAP_MODE_REFLECTION\n\n		vReflect = reflect( cameraToVertex, worldNormal );\n\n	#else\n\n		vReflect = refract( cameraToVertex, worldNormal, refractionRatio );\n\n	#endif\n\n#endif\n", i.ShaderChunk.fog_fragment = "#ifdef USE_FOG\n\n	#ifdef USE_LOGDEPTHBUF_EXT\n\n		float depth = gl_FragDepthEXT / gl_FragCoord.w;\n\n	#else\n\n		float depth = gl_FragCoord.z / gl_FragCoord.w;\n\n	#endif\n\n	#ifdef FOG_EXP2\n\n		float fogFactor = whiteCompliment( exp2( - fogDensity * fogDensity * depth * depth * LOG2 ) );\n\n	#else\n\n		float fogFactor = smoothstep( fogNear, fogFar, depth );\n\n	#endif\n	\n	outgoingLight = mix( outgoingLight, fogColor, fogFactor );\n\n#endif", i.ShaderChunk.fog_pars_fragment = "#ifdef USE_FOG\n\n	uniform vec3 fogColor;\n\n	#ifdef FOG_EXP2\n\n		uniform float fogDensity;\n\n	#else\n\n		uniform float fogNear;\n		uniform float fogFar;\n	#endif\n\n#endif", i.ShaderChunk.hemilight_fragment = "#if MAX_HEMI_LIGHTS > 0\n\n	for ( int i = 0; i < MAX_HEMI_LIGHTS; i ++ ) {\n\n		vec3 lightDir = hemisphereLightDirection[ i ];\n\n		float dotProduct = dot( normal, lightDir );\n\n		float hemiDiffuseWeight = 0.5 * dotProduct + 0.5;\n\n		vec3 lightColor = mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeight );\n\n		totalAmbientLight += lightColor;\n\n	}\n\n#endif\n\n", i.ShaderChunk.lightmap_fragment = "#ifdef USE_LIGHTMAP\n\n	totalAmbientLight += texture2D( lightMap, vUv2 ).xyz * lightMapIntensity;\n\n#endif\n", i.ShaderChunk.lightmap_pars_fragment = "#ifdef USE_LIGHTMAP\n\n	uniform sampler2D lightMap;\n	uniform float lightMapIntensity;\n\n#endif", i.ShaderChunk.lights_lambert_pars_vertex = "#if MAX_DIR_LIGHTS > 0\n\n	uniform vec3 directionalLightColor[ MAX_DIR_LIGHTS ];\n	uniform vec3 directionalLightDirection[ MAX_DIR_LIGHTS ];\n\n#endif\n\n#if MAX_HEMI_LIGHTS > 0\n\n	uniform vec3 hemisphereLightSkyColor[ MAX_HEMI_LIGHTS ];\n	uniform vec3 hemisphereLightGroundColor[ MAX_HEMI_LIGHTS ];\n	uniform vec3 hemisphereLightDirection[ MAX_HEMI_LIGHTS ];\n\n#endif\n\n#if MAX_POINT_LIGHTS > 0\n\n	uniform vec3 pointLightColor[ MAX_POINT_LIGHTS ];\n	uniform vec3 pointLightPosition[ MAX_POINT_LIGHTS ];\n	uniform float pointLightDistance[ MAX_POINT_LIGHTS ];\n	uniform float pointLightDecay[ MAX_POINT_LIGHTS ];\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0\n\n	uniform vec3 spotLightColor[ MAX_SPOT_LIGHTS ];\n	uniform vec3 spotLightPosition[ MAX_SPOT_LIGHTS ];\n	uniform vec3 spotLightDirection[ MAX_SPOT_LIGHTS ];\n	uniform float spotLightDistance[ MAX_SPOT_LIGHTS ];\n	uniform float spotLightAngleCos[ MAX_SPOT_LIGHTS ];\n	uniform float spotLightExponent[ MAX_SPOT_LIGHTS ];\n	uniform float spotLightDecay[ MAX_SPOT_LIGHTS ];\n\n#endif\n", i.ShaderChunk.lights_lambert_vertex = "vLightFront = vec3( 0.0 );\n\n#ifdef DOUBLE_SIDED\n\n	vLightBack = vec3( 0.0 );\n\n#endif\n\nvec3 normal = normalize( transformedNormal );\n\n#if MAX_POINT_LIGHTS > 0\n\n	for ( int i = 0; i < MAX_POINT_LIGHTS; i ++ ) {\n\n		vec3 lightColor = pointLightColor[ i ];\n\n		vec3 lVector = pointLightPosition[ i ] - mvPosition.xyz;\n		vec3 lightDir = normalize( lVector );\n\n\n		float attenuation = calcLightAttenuation( length( lVector ), pointLightDistance[ i ], pointLightDecay[ i ] );\n\n\n		float dotProduct = dot( normal, lightDir );\n\n		vLightFront += lightColor * attenuation * saturate( dotProduct );\n\n		#ifdef DOUBLE_SIDED\n\n			vLightBack += lightColor * attenuation * saturate( - dotProduct );\n\n		#endif\n\n	}\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0\n\n	for ( int i = 0; i < MAX_SPOT_LIGHTS; i ++ ) {\n\n		vec3 lightColor = spotLightColor[ i ];\n\n		vec3 lightPosition = spotLightPosition[ i ];\n		vec3 lVector = lightPosition - mvPosition.xyz;\n		vec3 lightDir = normalize( lVector );\n\n		float spotEffect = dot( spotLightDirection[ i ], lightDir );\n\n		if ( spotEffect > spotLightAngleCos[ i ] ) {\n\n			spotEffect = saturate( pow( saturate( spotEffect ), spotLightExponent[ i ] ) );\n\n\n			float attenuation = calcLightAttenuation( length( lVector ), spotLightDistance[ i ], spotLightDecay[ i ] );\n\n			attenuation *= spotEffect;\n\n\n			float dotProduct = dot( normal, lightDir );\n\n			vLightFront += lightColor * attenuation * saturate( dotProduct );\n\n			#ifdef DOUBLE_SIDED\n\n				vLightBack += lightColor * attenuation * saturate( - dotProduct );\n\n			#endif\n\n		}\n\n	}\n\n#endif\n\n#if MAX_DIR_LIGHTS > 0\n\n	for ( int i = 0; i < MAX_DIR_LIGHTS; i ++ ) {\n\n		vec3 lightColor = directionalLightColor[ i ];\n\n		vec3 lightDir = directionalLightDirection[ i ];\n\n\n		float dotProduct = dot( normal, lightDir );\n\n		vLightFront += lightColor * saturate( dotProduct );\n\n		#ifdef DOUBLE_SIDED\n\n			vLightBack += lightColor * saturate( - dotProduct );\n\n		#endif\n\n	}\n\n#endif\n\n#if MAX_HEMI_LIGHTS > 0\n\n	for ( int i = 0; i < MAX_HEMI_LIGHTS; i ++ ) {\n\n		vec3 lightDir = hemisphereLightDirection[ i ];\n\n\n		float dotProduct = dot( normal, lightDir );\n\n		float hemiDiffuseWeight = 0.5 * dotProduct + 0.5;\n\n		vLightFront += mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeight );\n\n		#ifdef DOUBLE_SIDED\n\n			float hemiDiffuseWeightBack = - 0.5 * dotProduct + 0.5;\n\n			vLightBack += mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeightBack );\n\n		#endif\n\n	}\n\n#endif\n", i.ShaderChunk.lights_phong_fragment = "vec3 viewDir = normalize( vViewPosition );\n\nvec3 totalDiffuseLight = vec3( 0.0 );\nvec3 totalSpecularLight = vec3( 0.0 );\n\n#if MAX_POINT_LIGHTS > 0\n\n	for ( int i = 0; i < MAX_POINT_LIGHTS; i ++ ) {\n\n		vec3 lightColor = pointLightColor[ i ];\n\n		vec3 lightPosition = pointLightPosition[ i ];\n		vec3 lVector = lightPosition + vViewPosition.xyz;\n		vec3 lightDir = normalize( lVector );\n\n\n		float attenuation = calcLightAttenuation( length( lVector ), pointLightDistance[ i ], pointLightDecay[ i ] );\n\n\n		float cosineTerm = saturate( dot( normal, lightDir ) );\n\n		totalDiffuseLight += lightColor * attenuation * cosineTerm;\n\n\n		vec3 brdf = BRDF_BlinnPhong( specular, shininess, normal, lightDir, viewDir );\n\n		totalSpecularLight += brdf * specularStrength * lightColor * attenuation * cosineTerm;\n\n\n	}\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0\n\n	for ( int i = 0; i < MAX_SPOT_LIGHTS; i ++ ) {\n\n		vec3 lightColor = spotLightColor[ i ];\n\n		vec3 lightPosition = spotLightPosition[ i ];\n		vec3 lVector = lightPosition + vViewPosition.xyz;\n		vec3 lightDir = normalize( lVector );\n\n		float spotEffect = dot( spotLightDirection[ i ], lightDir );\n\n		if ( spotEffect > spotLightAngleCos[ i ] ) {\n\n			spotEffect = saturate( pow( saturate( spotEffect ), spotLightExponent[ i ] ) );\n\n\n			float attenuation = calcLightAttenuation( length( lVector ), spotLightDistance[ i ], spotLightDecay[ i ] );\n\n			attenuation *= spotEffect;\n\n\n			float cosineTerm = saturate( dot( normal, lightDir ) );\n\n			totalDiffuseLight += lightColor * attenuation * cosineTerm;\n\n\n			vec3 brdf = BRDF_BlinnPhong( specular, shininess, normal, lightDir, viewDir );\n\n			totalSpecularLight += brdf * specularStrength * lightColor * attenuation * cosineTerm;\n\n		}\n\n	}\n\n#endif\n\n#if MAX_DIR_LIGHTS > 0\n\n	for ( int i = 0; i < MAX_DIR_LIGHTS; i ++ ) {\n\n		vec3 lightColor = directionalLightColor[ i ];\n\n		vec3 lightDir = directionalLightDirection[ i ];\n\n\n		float cosineTerm = saturate( dot( normal, lightDir ) );\n\n		totalDiffuseLight += lightColor * cosineTerm;\n\n\n		vec3 brdf = BRDF_BlinnPhong( specular, shininess, normal, lightDir, viewDir );\n\n		totalSpecularLight += brdf * specularStrength * lightColor * cosineTerm;\n\n	}\n\n#endif\n", i.ShaderChunk.lights_phong_pars_fragment = "uniform vec3 ambientLightColor;\n\n#if MAX_DIR_LIGHTS > 0\n\n	uniform vec3 directionalLightColor[ MAX_DIR_LIGHTS ];\n	uniform vec3 directionalLightDirection[ MAX_DIR_LIGHTS ];\n\n#endif\n\n#if MAX_HEMI_LIGHTS > 0\n\n	uniform vec3 hemisphereLightSkyColor[ MAX_HEMI_LIGHTS ];\n	uniform vec3 hemisphereLightGroundColor[ MAX_HEMI_LIGHTS ];\n	uniform vec3 hemisphereLightDirection[ MAX_HEMI_LIGHTS ];\n\n#endif\n\n#if MAX_POINT_LIGHTS > 0\n\n	uniform vec3 pointLightColor[ MAX_POINT_LIGHTS ];\n\n	uniform vec3 pointLightPosition[ MAX_POINT_LIGHTS ];\n	uniform float pointLightDistance[ MAX_POINT_LIGHTS ];\n	uniform float pointLightDecay[ MAX_POINT_LIGHTS ];\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0\n\n	uniform vec3 spotLightColor[ MAX_SPOT_LIGHTS ];\n	uniform vec3 spotLightPosition[ MAX_SPOT_LIGHTS ];\n	uniform vec3 spotLightDirection[ MAX_SPOT_LIGHTS ];\n	uniform float spotLightAngleCos[ MAX_SPOT_LIGHTS ];\n	uniform float spotLightExponent[ MAX_SPOT_LIGHTS ];\n	uniform float spotLightDistance[ MAX_SPOT_LIGHTS ];\n	uniform float spotLightDecay[ MAX_SPOT_LIGHTS ];\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0 || defined( USE_ENVMAP )\n\n	varying vec3 vWorldPosition;\n\n#endif\n\nvarying vec3 vViewPosition;\n\n#ifndef FLAT_SHADED\n\n	varying vec3 vNormal;\n\n#endif\n", i.ShaderChunk.lights_phong_pars_vertex = "#if MAX_SPOT_LIGHTS > 0 || defined( USE_ENVMAP )\n\n	varying vec3 vWorldPosition;\n\n#endif\n\n#if MAX_POINT_LIGHTS > 0\n\n	uniform vec3 pointLightPosition[ MAX_POINT_LIGHTS ];\n\n#endif\n", i.ShaderChunk.lights_phong_vertex = "#if MAX_SPOT_LIGHTS > 0 || defined( USE_ENVMAP )\n\n	vWorldPosition = worldPosition.xyz;\n\n#endif\n", i.ShaderChunk.linear_to_gamma_fragment = "\n	outgoingLight = linearToOutput( outgoingLight );\n", i.ShaderChunk.logdepthbuf_fragment = "#if defined(USE_LOGDEPTHBUF) && defined(USE_LOGDEPTHBUF_EXT)\n\n	gl_FragDepthEXT = log2(vFragDepth) * logDepthBufFC * 0.5;\n\n#endif", i.ShaderChunk.logdepthbuf_pars_fragment = "#ifdef USE_LOGDEPTHBUF\n\n	uniform float logDepthBufFC;\n\n	#ifdef USE_LOGDEPTHBUF_EXT\n\n		varying float vFragDepth;\n\n	#endif\n\n#endif\n", i.ShaderChunk.logdepthbuf_pars_vertex = "#ifdef USE_LOGDEPTHBUF\n\n	#ifdef USE_LOGDEPTHBUF_EXT\n\n		varying float vFragDepth;\n\n	#endif\n\n	uniform float logDepthBufFC;\n\n#endif", i.ShaderChunk.logdepthbuf_vertex = "#ifdef USE_LOGDEPTHBUF\n\n	gl_Position.z = log2(max( EPSILON, gl_Position.w + 1.0 )) * logDepthBufFC;\n\n	#ifdef USE_LOGDEPTHBUF_EXT\n\n		vFragDepth = 1.0 + gl_Position.w;\n\n#else\n\n		gl_Position.z = (gl_Position.z - 1.0) * gl_Position.w;\n\n	#endif\n\n#endif", i.ShaderChunk.map_fragment = "#ifdef USE_MAP\n\n	vec4 texelColor = texture2D( map, vUv );\n\n	texelColor.xyz = inputToLinear( texelColor.xyz );\n\n	diffuseColor *= texelColor;\n\n#endif\n", i.ShaderChunk.map_pars_fragment = "#ifdef USE_MAP\n\n	uniform sampler2D map;\n\n#endif", i.ShaderChunk.map_particle_fragment = "#ifdef USE_MAP\n\n	diffuseColor *= texture2D( map, vec2( gl_PointCoord.x, 1.0 - gl_PointCoord.y ) * offsetRepeat.zw + offsetRepeat.xy );\n\n#endif\n", i.ShaderChunk.map_particle_pars_fragment = "#ifdef USE_MAP\n\n	uniform vec4 offsetRepeat;\n	uniform sampler2D map;\n\n#endif\n", i.ShaderChunk.morphnormal_vertex = "#ifdef USE_MORPHNORMALS\n\n	objectNormal += ( morphNormal0 - normal ) * morphTargetInfluences[ 0 ];\n	objectNormal += ( morphNormal1 - normal ) * morphTargetInfluences[ 1 ];\n	objectNormal += ( morphNormal2 - normal ) * morphTargetInfluences[ 2 ];\n	objectNormal += ( morphNormal3 - normal ) * morphTargetInfluences[ 3 ];\n\n#endif\n", i.ShaderChunk.morphtarget_pars_vertex = "#ifdef USE_MORPHTARGETS\n\n	#ifndef USE_MORPHNORMALS\n\n	uniform float morphTargetInfluences[ 8 ];\n\n	#else\n\n	uniform float morphTargetInfluences[ 4 ];\n\n	#endif\n\n#endif", i.ShaderChunk.morphtarget_vertex = "#ifdef USE_MORPHTARGETS\n\n	transformed += ( morphTarget0 - position ) * morphTargetInfluences[ 0 ];\n	transformed += ( morphTarget1 - position ) * morphTargetInfluences[ 1 ];\n	transformed += ( morphTarget2 - position ) * morphTargetInfluences[ 2 ];\n	transformed += ( morphTarget3 - position ) * morphTargetInfluences[ 3 ];\n\n	#ifndef USE_MORPHNORMALS\n\n	transformed += ( morphTarget4 - position ) * morphTargetInfluences[ 4 ];\n	transformed += ( morphTarget5 - position ) * morphTargetInfluences[ 5 ];\n	transformed += ( morphTarget6 - position ) * morphTargetInfluences[ 6 ];\n	transformed += ( morphTarget7 - position ) * morphTargetInfluences[ 7 ];\n\n	#endif\n\n#endif\n", i.ShaderChunk.normal_phong_fragment = "#ifndef FLAT_SHADED\n\n	vec3 normal = normalize( vNormal );\n\n	#ifdef DOUBLE_SIDED\n\n		normal = normal * ( -1.0 + 2.0 * float( gl_FrontFacing ) );\n\n	#endif\n\n#else\n\n	vec3 fdx = dFdx( vViewPosition );\n	vec3 fdy = dFdy( vViewPosition );\n	vec3 normal = normalize( cross( fdx, fdy ) );\n\n#endif\n\n#ifdef USE_NORMALMAP\n\n	normal = perturbNormal2Arb( -vViewPosition, normal );\n\n#elif defined( USE_BUMPMAP )\n\n	normal = perturbNormalArb( -vViewPosition, normal, dHdxy_fwd() );\n\n#endif\n\n",
-            i.ShaderChunk.normalmap_pars_fragment = "#ifdef USE_NORMALMAP\n\n	uniform sampler2D normalMap;\n	uniform vec2 normalScale;\n\n\n	vec3 perturbNormal2Arb( vec3 eye_pos, vec3 surf_norm ) {\n\n		vec3 q0 = dFdx( eye_pos.xyz );\n		vec3 q1 = dFdy( eye_pos.xyz );\n		vec2 st0 = dFdx( vUv.st );\n		vec2 st1 = dFdy( vUv.st );\n\n		vec3 S = normalize( q0 * st1.t - q1 * st0.t );\n		vec3 T = normalize( -q0 * st1.s + q1 * st0.s );\n		vec3 N = normalize( surf_norm );\n\n		vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0;\n		mapN.xy = normalScale * mapN.xy;\n		mat3 tsn = mat3( S, T, N );\n		return normalize( tsn * mapN );\n\n	}\n\n#endif\n", i.ShaderChunk.project_vertex = "#ifdef USE_SKINNING\n\n	vec4 mvPosition = modelViewMatrix * skinned;\n\n#else\n\n	vec4 mvPosition = modelViewMatrix * vec4( transformed, 1.0 );\n\n#endif\n\ngl_Position = projectionMatrix * mvPosition;\n", i.ShaderChunk.shadowmap_fragment = "#ifdef USE_SHADOWMAP\n\n	for ( int i = 0; i < MAX_SHADOWS; i ++ ) {\n\n		float texelSizeY =  1.0 / shadowMapSize[ i ].y;\n\n		float shadow = 0.0;\n\n#if defined( POINT_LIGHT_SHADOWS )\n\n		bool isPointLight = shadowDarkness[ i ] < 0.0;\n\n		if ( isPointLight ) {\n\n			float realShadowDarkness = abs( shadowDarkness[ i ] );\n\n			vec3 lightToPosition = vShadowCoord[ i ].xyz;\n\n	#if defined( SHADOWMAP_TYPE_PCF ) || defined( SHADOWMAP_TYPE_PCF_SOFT )\n\n			vec3 bd3D = normalize( lightToPosition );\n			float dp = length( lightToPosition );\n\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D, texelSizeY ) ), shadowBias[ i ], shadow );\n\n\n	#if defined( SHADOWMAP_TYPE_PCF )\n			const float Dr = 1.25;\n	#elif defined( SHADOWMAP_TYPE_PCF_SOFT )\n			const float Dr = 2.25;\n	#endif\n\n			float os = Dr *  2.0 * texelSizeY;\n\n			const vec3 Gsd = vec3( - 1, 0, 1 );\n\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zzz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zxz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xxz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xzz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zzx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zxx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xxx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xzx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zzy * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zxy * os, texelSizeY ) ), shadowBias[ i ], shadow );\n\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xxy * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xzy * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zyz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xyz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zyx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xyx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.yzz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.yxz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.yxx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.yzx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n\n			shadow *= realShadowDarkness * ( 1.0 / 21.0 );\n\n	#else \n			vec3 bd3D = normalize( lightToPosition );\n			float dp = length( lightToPosition );\n\n			adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D, texelSizeY ) ), shadowBias[ i ], shadow );\n\n			shadow *= realShadowDarkness;\n\n	#endif\n\n		} else {\n\n#endif \n			float texelSizeX =  1.0 / shadowMapSize[ i ].x;\n\n			vec3 shadowCoord = vShadowCoord[ i ].xyz / vShadowCoord[ i ].w;\n\n\n			bvec4 inFrustumVec = bvec4 ( shadowCoord.x >= 0.0, shadowCoord.x <= 1.0, shadowCoord.y >= 0.0, shadowCoord.y <= 1.0 );\n			bool inFrustum = all( inFrustumVec );\n\n			bvec2 frustumTestVec = bvec2( inFrustum, shadowCoord.z <= 1.0 );\n\n			bool frustumTest = all( frustumTestVec );\n\n			if ( frustumTest ) {\n\n	#if defined( SHADOWMAP_TYPE_PCF )\n\n\n				/*\n					for ( float y = -1.25; y <= 1.25; y += 1.25 )\n						for ( float x = -1.25; x <= 1.25; x += 1.25 ) {\n							vec4 rgbaDepth = texture2D( shadowMap[ i ], vec2( x * xPixelOffset, y * yPixelOffset ) + shadowCoord.xy );\n							float fDepth = unpackDepth( rgbaDepth );\n							if ( fDepth < shadowCoord.z )\n								shadow += 1.0;\n					}\n					shadow /= 9.0;\n				*/\n\n				shadowCoord.z += shadowBias[ i ];\n\n				const float ShadowDelta = 1.0 / 9.0;\n\n				float xPixelOffset = texelSizeX;\n				float yPixelOffset = texelSizeY;\n\n				float dx0 = - 1.25 * xPixelOffset;\n				float dy0 = - 1.25 * yPixelOffset;\n				float dx1 = 1.25 * xPixelOffset;\n				float dy1 = 1.25 * yPixelOffset;\n\n				float fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n				shadow *= shadowDarkness[ i ];\n\n	#elif defined( SHADOWMAP_TYPE_PCF_SOFT )\n\n\n				shadowCoord.z += shadowBias[ i ];\n\n				float xPixelOffset = texelSizeX;\n				float yPixelOffset = texelSizeY;\n\n				float dx0 = - 1.0 * xPixelOffset;\n				float dy0 = - 1.0 * yPixelOffset;\n				float dx1 = 1.0 * xPixelOffset;\n				float dy1 = 1.0 * yPixelOffset;\n\n				mat3 shadowKernel;\n				mat3 depthKernel;\n\n				depthKernel[ 0 ][ 0 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );\n				depthKernel[ 0 ][ 1 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );\n				depthKernel[ 0 ][ 2 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy1 ) ) );\n				depthKernel[ 1 ][ 0 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );\n				depthKernel[ 1 ][ 1 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );\n				depthKernel[ 1 ][ 2 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );\n				depthKernel[ 2 ][ 0 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );\n				depthKernel[ 2 ][ 1 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );\n				depthKernel[ 2 ][ 2 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );\n\n				vec3 shadowZ = vec3( shadowCoord.z );\n				shadowKernel[ 0 ] = vec3( lessThan( depthKernel[ 0 ], shadowZ ) );\n				shadowKernel[ 0 ] *= vec3( 0.25 );\n\n				shadowKernel[ 1 ] = vec3( lessThan( depthKernel[ 1 ], shadowZ ) );\n				shadowKernel[ 1 ] *= vec3( 0.25 );\n\n				shadowKernel[ 2 ] = vec3( lessThan( depthKernel[ 2 ], shadowZ ) );\n				shadowKernel[ 2 ] *= vec3( 0.25 );\n\n				vec2 fractionalCoord = 1.0 - fract( shadowCoord.xy * shadowMapSize[ i ].xy );\n\n				shadowKernel[ 0 ] = mix( shadowKernel[ 1 ], shadowKernel[ 0 ], fractionalCoord.x );\n				shadowKernel[ 1 ] = mix( shadowKernel[ 2 ], shadowKernel[ 1 ], fractionalCoord.x );\n\n				vec4 shadowValues;\n				shadowValues.x = mix( shadowKernel[ 0 ][ 1 ], shadowKernel[ 0 ][ 0 ], fractionalCoord.y );\n				shadowValues.y = mix( shadowKernel[ 0 ][ 2 ], shadowKernel[ 0 ][ 1 ], fractionalCoord.y );\n				shadowValues.z = mix( shadowKernel[ 1 ][ 1 ], shadowKernel[ 1 ][ 0 ], fractionalCoord.y );\n				shadowValues.w = mix( shadowKernel[ 1 ][ 2 ], shadowKernel[ 1 ][ 1 ], fractionalCoord.y );\n\n				shadow = dot( shadowValues, vec4( 1.0 ) ) * shadowDarkness[ i ];\n\n	#else \n				shadowCoord.z += shadowBias[ i ];\n\n				vec4 rgbaDepth = texture2D( shadowMap[ i ], shadowCoord.xy );\n				float fDepth = unpackDepth( rgbaDepth );\n\n				if ( fDepth < shadowCoord.z )\n					shadow = shadowDarkness[ i ];\n\n	#endif\n\n			}\n\n#ifdef SHADOWMAP_DEBUG\n\n			if ( inFrustum ) {\n\n				if ( i == 0 ) {\n\n					outgoingLight *= vec3( 1.0, 0.5, 0.0 );\n\n				} else if ( i == 1 ) {\n\n					outgoingLight *= vec3( 0.0, 1.0, 0.8 );\n\n				} else {\n\n					outgoingLight *= vec3( 0.0, 0.5, 1.0 );\n\n				}\n\n			}\n\n#endif\n\n#if defined( POINT_LIGHT_SHADOWS )\n\n		}\n\n#endif\n\n		shadowMask = shadowMask * vec3( 1.0 - shadow );\n\n	}\n\n#endif\n", i.ShaderChunk.shadowmap_pars_fragment = "#ifdef USE_SHADOWMAP\n\n	uniform sampler2D shadowMap[ MAX_SHADOWS ];\n	uniform vec2 shadowMapSize[ MAX_SHADOWS ];\n\n	uniform float shadowDarkness[ MAX_SHADOWS ];\n	uniform float shadowBias[ MAX_SHADOWS ];\n\n	varying vec4 vShadowCoord[ MAX_SHADOWS ];\n\n	float unpackDepth( const in vec4 rgba_depth ) {\n\n		const vec4 bit_shift = vec4( 1.0 / ( 256.0 * 256.0 * 256.0 ), 1.0 / ( 256.0 * 256.0 ), 1.0 / 256.0, 1.0 );\n		float depth = dot( rgba_depth, bit_shift );\n		return depth;\n\n	}\n\n	#if defined(POINT_LIGHT_SHADOWS)\n\n\n		void adjustShadowValue1K( const float testDepth, const vec4 textureData, const float bias, inout float shadowValue ) {\n\n			const vec4 bitSh = vec4( 1.0 / ( 256.0 * 256.0 * 256.0 ), 1.0 / ( 256.0 * 256.0 ), 1.0 / 256.0, 1.0 );\n			if ( testDepth >= dot( textureData, bitSh ) * 1000.0 + bias )\n				shadowValue += 1.0;\n\n		}\n\n\n		vec2 cubeToUV( vec3 v, float texelSizeY ) {\n\n\n			vec3 absV = abs( v );\n\n\n			float scaleToCube = 1.0 / max( absV.x, max( absV.y, absV.z ) );\n			absV *= scaleToCube;\n\n\n			v *= scaleToCube * ( 1.0 - 2.0 * texelSizeY );\n\n\n\n			vec2 planar = v.xy;\n\n			float almostATexel = 1.5 * texelSizeY;\n			float almostOne = 1.0 - almostATexel;\n\n			if ( absV.z >= almostOne ) {\n\n				if ( v.z > 0.0 )\n					planar.x = 4.0 - v.x;\n\n			} else if ( absV.x >= almostOne ) {\n\n				float signX = sign( v.x );\n				planar.x = v.z * signX + 2.0 * signX;\n\n			} else if ( absV.y >= almostOne ) {\n\n				float signY = sign( v.y );\n				planar.x = v.x + 2.0 * signY + 2.0;\n				planar.y = v.z * signY - 2.0;\n\n			}\n\n\n			return vec2( 0.125, 0.25 ) * planar + vec2( 0.375, 0.75 );\n\n		}\n\n	#endif\n\n#endif\n", i.ShaderChunk.shadowmap_pars_vertex = "#ifdef USE_SHADOWMAP\n\n	uniform float shadowDarkness[ MAX_SHADOWS ];\n	uniform mat4 shadowMatrix[ MAX_SHADOWS ];\n	varying vec4 vShadowCoord[ MAX_SHADOWS ];\n\n#endif", i.ShaderChunk.shadowmap_vertex = "#ifdef USE_SHADOWMAP\n\n	for ( int i = 0; i < MAX_SHADOWS; i ++ ) {\n\n			vShadowCoord[ i ] = shadowMatrix[ i ] * worldPosition;\n\n	}\n\n#endif", i.ShaderChunk.skinbase_vertex = "#ifdef USE_SKINNING\n\n	mat4 boneMatX = getBoneMatrix( skinIndex.x );\n	mat4 boneMatY = getBoneMatrix( skinIndex.y );\n	mat4 boneMatZ = getBoneMatrix( skinIndex.z );\n	mat4 boneMatW = getBoneMatrix( skinIndex.w );\n\n#endif", i.ShaderChunk.skinning_pars_vertex = "#ifdef USE_SKINNING\n\n	uniform mat4 bindMatrix;\n	uniform mat4 bindMatrixInverse;\n\n	#ifdef BONE_TEXTURE\n\n		uniform sampler2D boneTexture;\n		uniform int boneTextureWidth;\n		uniform int boneTextureHeight;\n\n		mat4 getBoneMatrix( const in float i ) {\n\n			float j = i * 4.0;\n			float x = mod( j, float( boneTextureWidth ) );\n			float y = floor( j / float( boneTextureWidth ) );\n\n			float dx = 1.0 / float( boneTextureWidth );\n			float dy = 1.0 / float( boneTextureHeight );\n\n			y = dy * ( y + 0.5 );\n\n			vec4 v1 = texture2D( boneTexture, vec2( dx * ( x + 0.5 ), y ) );\n			vec4 v2 = texture2D( boneTexture, vec2( dx * ( x + 1.5 ), y ) );\n			vec4 v3 = texture2D( boneTexture, vec2( dx * ( x + 2.5 ), y ) );\n			vec4 v4 = texture2D( boneTexture, vec2( dx * ( x + 3.5 ), y ) );\n\n			mat4 bone = mat4( v1, v2, v3, v4 );\n\n			return bone;\n\n		}\n\n	#else\n\n		uniform mat4 boneGlobalMatrices[ MAX_BONES ];\n\n		mat4 getBoneMatrix( const in float i ) {\n\n			mat4 bone = boneGlobalMatrices[ int(i) ];\n			return bone;\n\n		}\n\n	#endif\n\n#endif\n", i.ShaderChunk.skinning_vertex = "#ifdef USE_SKINNING\n\n	vec4 skinVertex = bindMatrix * vec4( transformed, 1.0 );\n\n	vec4 skinned = vec4( 0.0 );\n	skinned += boneMatX * skinVertex * skinWeight.x;\n	skinned += boneMatY * skinVertex * skinWeight.y;\n	skinned += boneMatZ * skinVertex * skinWeight.z;\n	skinned += boneMatW * skinVertex * skinWeight.w;\n	skinned  = bindMatrixInverse * skinned;\n\n#endif\n", i.ShaderChunk.skinnormal_vertex = "#ifdef USE_SKINNING\n\n	mat4 skinMatrix = mat4( 0.0 );\n	skinMatrix += skinWeight.x * boneMatX;\n	skinMatrix += skinWeight.y * boneMatY;\n	skinMatrix += skinWeight.z * boneMatZ;\n	skinMatrix += skinWeight.w * boneMatW;\n	skinMatrix  = bindMatrixInverse * skinMatrix * bindMatrix;\n\n	objectNormal = vec4( skinMatrix * vec4( objectNormal, 0.0 ) ).xyz;\n\n#endif\n", i.ShaderChunk.specularmap_fragment = "float specularStrength;\n\n#ifdef USE_SPECULARMAP\n\n	vec4 texelSpecular = texture2D( specularMap, vUv );\n	specularStrength = texelSpecular.r;\n\n#else\n\n	specularStrength = 1.0;\n\n#endif", i.ShaderChunk.specularmap_pars_fragment = "#ifdef USE_SPECULARMAP\n\n	uniform sampler2D specularMap;\n\n#endif", i.ShaderChunk.uv2_pars_fragment = "#if defined( USE_LIGHTMAP ) || defined( USE_AOMAP )\n\n	varying vec2 vUv2;\n\n#endif", i.ShaderChunk.uv2_pars_vertex = "#if defined( USE_LIGHTMAP ) || defined( USE_AOMAP )\n\n	attribute vec2 uv2;\n	varying vec2 vUv2;\n\n#endif", i.ShaderChunk.uv2_vertex = "#if defined( USE_LIGHTMAP ) || defined( USE_AOMAP )\n\n	vUv2 = uv2;\n\n#endif", i.ShaderChunk.uv_pars_fragment = "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP ) || defined( USE_ALPHAMAP ) || defined( USE_EMISSIVEMAP )\n\n	varying vec2 vUv;\n\n#endif", i.ShaderChunk.uv_pars_vertex = "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP ) || defined( USE_ALPHAMAP ) || defined( USE_EMISSIVEMAP )\n\n	varying vec2 vUv;\n	uniform vec4 offsetRepeat;\n\n#endif\n", i.ShaderChunk.uv_vertex = "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP ) || defined( USE_ALPHAMAP ) || defined( USE_EMISSIVEMAP )\n\n	vUv = uv * offsetRepeat.zw + offsetRepeat.xy;\n\n#endif", i.ShaderChunk.worldpos_vertex = "#if defined( USE_ENVMAP ) || defined( PHONG ) || defined( LAMBERT ) || defined ( USE_SHADOWMAP )\n\n	#ifdef USE_SKINNING\n\n		vec4 worldPosition = modelMatrix * skinned;\n\n	#else\n\n		vec4 worldPosition = modelMatrix * vec4( transformed, 1.0 );\n\n	#endif\n\n#endif\n", i.UniformsUtils = {
+            }, i.ShaderChunk = {}, i.ShaderChunk.alphamap_fragment = "#ifdef USE_ALPHAMAP\n\n   diffuseColor.a *= texture2D( alphaMap, vUv ).g;\n\n#endif\n", i.ShaderChunk.alphamap_pars_fragment = "#ifdef USE_ALPHAMAP\n\n   uniform sampler2D alphaMap;\n\n#endif\n", i.ShaderChunk.alphatest_fragment = "#ifdef ALPHATEST\n\n  if ( diffuseColor.a < ALPHATEST ) discard;\n\n#endif\n", i.ShaderChunk.aomap_fragment = "#ifdef USE_AOMAP\n\n   totalAmbientLight *= ( texture2D( aoMap, vUv2 ).r - 1.0 ) * aoMapIntensity + 1.0;\n\n#endif\n", i.ShaderChunk.aomap_pars_fragment = "#ifdef USE_AOMAP\n\n   uniform sampler2D aoMap;\n  uniform float aoMapIntensity;\n\n#endif", i.ShaderChunk.begin_vertex = "\nvec3 transformed = vec3( position );\n", i.ShaderChunk.beginnormal_vertex = "\nvec3 objectNormal = vec3( normal );\n", i.ShaderChunk.bumpmap_pars_fragment = "#ifdef USE_BUMPMAP\n\n  uniform sampler2D bumpMap;\n    uniform float bumpScale;\n\n\n\n    vec2 dHdxy_fwd() {\n\n      vec2 dSTdx = dFdx( vUv );\n     vec2 dSTdy = dFdy( vUv );\n\n       float Hll = bumpScale * texture2D( bumpMap, vUv ).x;\n      float dBx = bumpScale * texture2D( bumpMap, vUv + dSTdx ).x - Hll;\n        float dBy = bumpScale * texture2D( bumpMap, vUv + dSTdy ).x - Hll;\n\n      return vec2( dBx, dBy );\n\n    }\n\n   vec3 perturbNormalArb( vec3 surf_pos, vec3 surf_norm, vec2 dHdxy ) {\n\n        vec3 vSigmaX = dFdx( surf_pos );\n      vec3 vSigmaY = dFdy( surf_pos );\n      vec3 vN = surf_norm;\n      vec3 R1 = cross( vSigmaY, vN );\n       vec3 R2 = cross( vN, vSigmaX );\n\n     float fDet = dot( vSigmaX, R1 );\n\n        vec3 vGrad = sign( fDet ) * ( dHdxy.x * R1 + dHdxy.y * R2 );\n      return normalize( abs( fDet ) * surf_norm - vGrad );\n\n    }\n\n#endif\n", i.ShaderChunk.color_fragment = "#ifdef USE_COLOR\n\n    diffuseColor.rgb *= vColor;\n\n#endif", i.ShaderChunk.color_pars_fragment = "#ifdef USE_COLOR\n\n   varying vec3 vColor;\n\n#endif\n", i.ShaderChunk.color_pars_vertex = "#ifdef USE_COLOR\n\n  varying vec3 vColor;\n\n#endif", i.ShaderChunk.color_vertex = "#ifdef USE_COLOR\n\n vColor.xyz = color.xyz;\n\n#endif", i.ShaderChunk.common = "#define PI 3.14159\n#define PI2 6.28318\n#define RECIPROCAL_PI2 0.15915494\n#define LOG2 1.442695\n#define EPSILON 1e-6\n\n#define saturate(a) clamp( a, 0.0, 1.0 )\n#define whiteCompliment(a) ( 1.0 - saturate( a ) )\n\nvec3 transformDirection( in vec3 normal, in mat4 matrix ) {\n\n  return normalize( ( matrix * vec4( normal, 0.0 ) ).xyz );\n\n}\n\nvec3 inverseTransformDirection( in vec3 normal, in mat4 matrix ) {\n\n    return normalize( ( vec4( normal, 0.0 ) * matrix ).xyz );\n\n}\n\nvec3 projectOnPlane(in vec3 point, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n  float distance = dot( planeNormal, point - pointOnPlane );\n\n  return - distance * planeNormal + point;\n\n}\n\nfloat sideOfPlane( in vec3 point, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n    return sign( dot( point - pointOnPlane, planeNormal ) );\n\n}\n\nvec3 linePlaneIntersect( in vec3 pointOnLine, in vec3 lineDirection, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n return lineDirection * ( dot( planeNormal, pointOnPlane - pointOnLine ) / dot( planeNormal, lineDirection ) ) + pointOnLine;\n\n}\n\nfloat calcLightAttenuation( float lightDistance, float cutoffDistance, float decayExponent ) {\n\n if ( decayExponent > 0.0 ) {\n\n      return pow( saturate( -lightDistance / cutoffDistance + 1.0 ), decayExponent );\n\n   }\n\n   return 1.0;\n\n}\n\nvec3 F_Schlick( in vec3 specularColor, in float dotLH ) {\n\n\n float fresnel = exp2( ( -5.55437 * dotLH - 6.98316 ) * dotLH );\n\n return ( 1.0 - specularColor ) * fresnel + specularColor;\n\n}\n\nfloat G_BlinnPhong_Implicit( /* in float dotNL, in float dotNV */ ) {\n\n\n   return 0.25;\n\n}\n\nfloat D_BlinnPhong( in float shininess, in float dotNH ) {\n\n\n   return ( shininess * 0.5 + 1.0 ) * pow( dotNH, shininess );\n\n}\n\nvec3 BRDF_BlinnPhong( in vec3 specularColor, in float shininess, in vec3 normal, in vec3 lightDir, in vec3 viewDir ) {\n\n  vec3 halfDir = normalize( lightDir + viewDir );\n\n float dotNH = saturate( dot( normal, halfDir ) );\n float dotLH = saturate( dot( lightDir, halfDir ) );\n\n vec3 F = F_Schlick( specularColor, dotLH );\n\n float G = G_BlinnPhong_Implicit( /* dotNL, dotNV */ );\n\n  float D = D_BlinnPhong( shininess, dotNH );\n\n return F * G * D;\n\n}\n\nvec3 inputToLinear( in vec3 a ) {\n\n #ifdef GAMMA_INPUT\n\n      return pow( a, vec3( float( GAMMA_FACTOR ) ) );\n\n #else\n\n       return a;\n\n   #endif\n\n}\n\nvec3 linearToOutput( in vec3 a ) {\n\n   #ifdef GAMMA_OUTPUT\n\n     return pow( a, vec3( 1.0 / float( GAMMA_FACTOR ) ) );\n\n   #else\n\n       return a;\n\n   #endif\n\n}\n", i.ShaderChunk.defaultnormal_vertex = "#ifdef FLIP_SIDED\n\n objectNormal = -objectNormal;\n\n#endif\n\nvec3 transformedNormal = normalMatrix * objectNormal;\n", i.ShaderChunk.displacementmap_vertex = "#ifdef USE_DISPLACEMENTMAP\n\n transformed += normal * ( texture2D( displacementMap, uv ).x * displacementScale + displacementBias );\n\n#endif\n", i.ShaderChunk.displacementmap_pars_vertex = "#ifdef USE_DISPLACEMENTMAP\n\n    uniform sampler2D displacementMap;\n    uniform float displacementScale;\n  uniform float displacementBias;\n\n#endif\n", i.ShaderChunk.emissivemap_fragment = "#ifdef USE_EMISSIVEMAP\n\n  vec4 emissiveColor = texture2D( emissiveMap, vUv );\n\n emissiveColor.rgb = inputToLinear( emissiveColor.rgb );\n\n totalEmissiveLight *= emissiveColor.rgb;\n\n#endif\n", i.ShaderChunk.emissivemap_pars_fragment = "#ifdef USE_EMISSIVEMAP\n\n    uniform sampler2D emissiveMap;\n\n#endif\n", i.ShaderChunk.envmap_fragment = "#ifdef USE_ENVMAP\n\n #if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( PHONG )\n\n      vec3 cameraToVertex = normalize( vWorldPosition - cameraPosition );\n\n     vec3 worldNormal = inverseTransformDirection( normal, viewMatrix );\n\n     #ifdef ENVMAP_MODE_REFLECTION\n\n           vec3 reflectVec = reflect( cameraToVertex, worldNormal );\n\n       #else\n\n           vec3 reflectVec = refract( cameraToVertex, worldNormal, refractionRatio );\n\n      #endif\n\n  #else\n\n       vec3 reflectVec = vReflect;\n\n #endif\n\n  #ifdef DOUBLE_SIDED\n       float flipNormal = ( float( gl_FrontFacing ) * 2.0 - 1.0 );\n   #else\n     float flipNormal = 1.0;\n   #endif\n\n  #ifdef ENVMAP_TYPE_CUBE\n       vec4 envColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * reflectVec.x, reflectVec.yz ) );\n\n   #elif defined( ENVMAP_TYPE_EQUIREC )\n      vec2 sampleUV;\n        sampleUV.y = saturate( flipNormal * reflectVec.y * 0.5 + 0.5 );\n       sampleUV.x = atan( flipNormal * reflectVec.z, flipNormal * reflectVec.x ) * RECIPROCAL_PI2 + 0.5;\n     vec4 envColor = texture2D( envMap, sampleUV );\n\n  #elif defined( ENVMAP_TYPE_SPHERE )\n       vec3 reflectView = flipNormal * normalize((viewMatrix * vec4( reflectVec, 0.0 )).xyz + vec3(0.0,0.0,1.0));\n        vec4 envColor = texture2D( envMap, reflectView.xy * 0.5 + 0.5 );\n  #endif\n\n  envColor.xyz = inputToLinear( envColor.xyz );\n\n   #ifdef ENVMAP_BLENDING_MULTIPLY\n\n     outgoingLight = mix( outgoingLight, outgoingLight * envColor.xyz, specularStrength * reflectivity );\n\n    #elif defined( ENVMAP_BLENDING_MIX )\n\n        outgoingLight = mix( outgoingLight, envColor.xyz, specularStrength * reflectivity );\n\n    #elif defined( ENVMAP_BLENDING_ADD )\n\n        outgoingLight += envColor.xyz * specularStrength * reflectivity;\n\n    #endif\n\n#endif\n", i.ShaderChunk.envmap_pars_fragment = "#ifdef USE_ENVMAP\n\n    uniform float reflectivity;\n   #ifdef ENVMAP_TYPE_CUBE\n       uniform samplerCube envMap;\n   #else\n     uniform sampler2D envMap;\n #endif\n    uniform float flipEnvMap;\n\n   #if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( PHONG )\n\n      uniform float refractionRatio;\n\n  #else\n\n       varying vec3 vReflect;\n\n  #endif\n\n#endif\n", i.ShaderChunk.envmap_pars_vertex = "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP ) && ! defined( USE_NORMALMAP ) && ! defined( PHONG )\n\n  varying vec3 vReflect;\n\n  uniform float refractionRatio;\n\n#endif\n", i.ShaderChunk.envmap_vertex = "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP ) && ! defined( USE_NORMALMAP ) && ! defined( PHONG )\n\n   vec3 cameraToVertex = normalize( worldPosition.xyz - cameraPosition );\n\n  vec3 worldNormal = inverseTransformDirection( transformedNormal, viewMatrix );\n\n  #ifdef ENVMAP_MODE_REFLECTION\n\n       vReflect = reflect( cameraToVertex, worldNormal );\n\n  #else\n\n       vReflect = refract( cameraToVertex, worldNormal, refractionRatio );\n\n #endif\n\n#endif\n", i.ShaderChunk.fog_fragment = "#ifdef USE_FOG\n\n   #ifdef USE_LOGDEPTHBUF_EXT\n\n      float depth = gl_FragDepthEXT / gl_FragCoord.w;\n\n #else\n\n       float depth = gl_FragCoord.z / gl_FragCoord.w;\n\n  #endif\n\n  #ifdef FOG_EXP2\n\n     float fogFactor = whiteCompliment( exp2( - fogDensity * fogDensity * depth * depth * LOG2 ) );\n\n  #else\n\n       float fogFactor = smoothstep( fogNear, fogFar, depth );\n\n #endif\n    \n  outgoingLight = mix( outgoingLight, fogColor, fogFactor );\n\n#endif", i.ShaderChunk.fog_pars_fragment = "#ifdef USE_FOG\n\n    uniform vec3 fogColor;\n\n  #ifdef FOG_EXP2\n\n     uniform float fogDensity;\n\n   #else\n\n       uniform float fogNear;\n        uniform float fogFar;\n #endif\n\n#endif", i.ShaderChunk.hemilight_fragment = "#if MAX_HEMI_LIGHTS > 0\n\n  for ( int i = 0; i < MAX_HEMI_LIGHTS; i ++ ) {\n\n      vec3 lightDir = hemisphereLightDirection[ i ];\n\n      float dotProduct = dot( normal, lightDir );\n\n     float hemiDiffuseWeight = 0.5 * dotProduct + 0.5;\n\n       vec3 lightColor = mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeight );\n\n      totalAmbientLight += lightColor;\n\n    }\n\n#endif\n\n", i.ShaderChunk.lightmap_fragment = "#ifdef USE_LIGHTMAP\n\n    totalAmbientLight += texture2D( lightMap, vUv2 ).xyz * lightMapIntensity;\n\n#endif\n", i.ShaderChunk.lightmap_pars_fragment = "#ifdef USE_LIGHTMAP\n\n uniform sampler2D lightMap;\n   uniform float lightMapIntensity;\n\n#endif", i.ShaderChunk.lights_lambert_pars_vertex = "#if MAX_DIR_LIGHTS > 0\n\n uniform vec3 directionalLightColor[ MAX_DIR_LIGHTS ];\n uniform vec3 directionalLightDirection[ MAX_DIR_LIGHTS ];\n\n#endif\n\n#if MAX_HEMI_LIGHTS > 0\n\n  uniform vec3 hemisphereLightSkyColor[ MAX_HEMI_LIGHTS ];\n  uniform vec3 hemisphereLightGroundColor[ MAX_HEMI_LIGHTS ];\n   uniform vec3 hemisphereLightDirection[ MAX_HEMI_LIGHTS ];\n\n#endif\n\n#if MAX_POINT_LIGHTS > 0\n\n uniform vec3 pointLightColor[ MAX_POINT_LIGHTS ];\n uniform vec3 pointLightPosition[ MAX_POINT_LIGHTS ];\n  uniform float pointLightDistance[ MAX_POINT_LIGHTS ];\n uniform float pointLightDecay[ MAX_POINT_LIGHTS ];\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0\n\n uniform vec3 spotLightColor[ MAX_SPOT_LIGHTS ];\n   uniform vec3 spotLightPosition[ MAX_SPOT_LIGHTS ];\n    uniform vec3 spotLightDirection[ MAX_SPOT_LIGHTS ];\n   uniform float spotLightDistance[ MAX_SPOT_LIGHTS ];\n   uniform float spotLightAngleCos[ MAX_SPOT_LIGHTS ];\n   uniform float spotLightExponent[ MAX_SPOT_LIGHTS ];\n   uniform float spotLightDecay[ MAX_SPOT_LIGHTS ];\n\n#endif\n", i.ShaderChunk.lights_lambert_vertex = "vLightFront = vec3( 0.0 );\n\n#ifdef DOUBLE_SIDED\n\n vLightBack = vec3( 0.0 );\n\n#endif\n\nvec3 normal = normalize( transformedNormal );\n\n#if MAX_POINT_LIGHTS > 0\n\n    for ( int i = 0; i < MAX_POINT_LIGHTS; i ++ ) {\n\n     vec3 lightColor = pointLightColor[ i ];\n\n     vec3 lVector = pointLightPosition[ i ] - mvPosition.xyz;\n      vec3 lightDir = normalize( lVector );\n\n\n     float attenuation = calcLightAttenuation( length( lVector ), pointLightDistance[ i ], pointLightDecay[ i ] );\n\n\n     float dotProduct = dot( normal, lightDir );\n\n     vLightFront += lightColor * attenuation * saturate( dotProduct );\n\n       #ifdef DOUBLE_SIDED\n\n         vLightBack += lightColor * attenuation * saturate( - dotProduct );\n\n      #endif\n\n  }\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0\n\n  for ( int i = 0; i < MAX_SPOT_LIGHTS; i ++ ) {\n\n      vec3 lightColor = spotLightColor[ i ];\n\n      vec3 lightPosition = spotLightPosition[ i ];\n      vec3 lVector = lightPosition - mvPosition.xyz;\n        vec3 lightDir = normalize( lVector );\n\n       float spotEffect = dot( spotLightDirection[ i ], lightDir );\n\n        if ( spotEffect > spotLightAngleCos[ i ] ) {\n\n            spotEffect = saturate( pow( saturate( spotEffect ), spotLightExponent[ i ] ) );\n\n\n           float attenuation = calcLightAttenuation( length( lVector ), spotLightDistance[ i ], spotLightDecay[ i ] );\n\n         attenuation *= spotEffect;\n\n\n            float dotProduct = dot( normal, lightDir );\n\n         vLightFront += lightColor * attenuation * saturate( dotProduct );\n\n           #ifdef DOUBLE_SIDED\n\n             vLightBack += lightColor * attenuation * saturate( - dotProduct );\n\n          #endif\n\n      }\n\n   }\n\n#endif\n\n#if MAX_DIR_LIGHTS > 0\n\n   for ( int i = 0; i < MAX_DIR_LIGHTS; i ++ ) {\n\n       vec3 lightColor = directionalLightColor[ i ];\n\n       vec3 lightDir = directionalLightDirection[ i ];\n\n\n       float dotProduct = dot( normal, lightDir );\n\n     vLightFront += lightColor * saturate( dotProduct );\n\n     #ifdef DOUBLE_SIDED\n\n         vLightBack += lightColor * saturate( - dotProduct );\n\n        #endif\n\n  }\n\n#endif\n\n#if MAX_HEMI_LIGHTS > 0\n\n  for ( int i = 0; i < MAX_HEMI_LIGHTS; i ++ ) {\n\n      vec3 lightDir = hemisphereLightDirection[ i ];\n\n\n        float dotProduct = dot( normal, lightDir );\n\n     float hemiDiffuseWeight = 0.5 * dotProduct + 0.5;\n\n       vLightFront += mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeight );\n\n     #ifdef DOUBLE_SIDED\n\n         float hemiDiffuseWeightBack = - 0.5 * dotProduct + 0.5;\n\n         vLightBack += mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeightBack );\n\n      #endif\n\n  }\n\n#endif\n", i.ShaderChunk.lights_phong_fragment = "vec3 viewDir = normalize( vViewPosition );\n\nvec3 totalDiffuseLight = vec3( 0.0 );\nvec3 totalSpecularLight = vec3( 0.0 );\n\n#if MAX_POINT_LIGHTS > 0\n\n  for ( int i = 0; i < MAX_POINT_LIGHTS; i ++ ) {\n\n     vec3 lightColor = pointLightColor[ i ];\n\n     vec3 lightPosition = pointLightPosition[ i ];\n     vec3 lVector = lightPosition + vViewPosition.xyz;\n     vec3 lightDir = normalize( lVector );\n\n\n     float attenuation = calcLightAttenuation( length( lVector ), pointLightDistance[ i ], pointLightDecay[ i ] );\n\n\n     float cosineTerm = saturate( dot( normal, lightDir ) );\n\n     totalDiffuseLight += lightColor * attenuation * cosineTerm;\n\n\n       vec3 brdf = BRDF_BlinnPhong( specular, shininess, normal, lightDir, viewDir );\n\n      totalSpecularLight += brdf * specularStrength * lightColor * attenuation * cosineTerm;\n\n\n    }\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0\n\n  for ( int i = 0; i < MAX_SPOT_LIGHTS; i ++ ) {\n\n      vec3 lightColor = spotLightColor[ i ];\n\n      vec3 lightPosition = spotLightPosition[ i ];\n      vec3 lVector = lightPosition + vViewPosition.xyz;\n     vec3 lightDir = normalize( lVector );\n\n       float spotEffect = dot( spotLightDirection[ i ], lightDir );\n\n        if ( spotEffect > spotLightAngleCos[ i ] ) {\n\n            spotEffect = saturate( pow( saturate( spotEffect ), spotLightExponent[ i ] ) );\n\n\n           float attenuation = calcLightAttenuation( length( lVector ), spotLightDistance[ i ], spotLightDecay[ i ] );\n\n         attenuation *= spotEffect;\n\n\n            float cosineTerm = saturate( dot( normal, lightDir ) );\n\n         totalDiffuseLight += lightColor * attenuation * cosineTerm;\n\n\n           vec3 brdf = BRDF_BlinnPhong( specular, shininess, normal, lightDir, viewDir );\n\n          totalSpecularLight += brdf * specularStrength * lightColor * attenuation * cosineTerm;\n\n      }\n\n   }\n\n#endif\n\n#if MAX_DIR_LIGHTS > 0\n\n   for ( int i = 0; i < MAX_DIR_LIGHTS; i ++ ) {\n\n       vec3 lightColor = directionalLightColor[ i ];\n\n       vec3 lightDir = directionalLightDirection[ i ];\n\n\n       float cosineTerm = saturate( dot( normal, lightDir ) );\n\n     totalDiffuseLight += lightColor * cosineTerm;\n\n\n     vec3 brdf = BRDF_BlinnPhong( specular, shininess, normal, lightDir, viewDir );\n\n      totalSpecularLight += brdf * specularStrength * lightColor * cosineTerm;\n\n    }\n\n#endif\n", i.ShaderChunk.lights_phong_pars_fragment = "uniform vec3 ambientLightColor;\n\n#if MAX_DIR_LIGHTS > 0\n\n   uniform vec3 directionalLightColor[ MAX_DIR_LIGHTS ];\n uniform vec3 directionalLightDirection[ MAX_DIR_LIGHTS ];\n\n#endif\n\n#if MAX_HEMI_LIGHTS > 0\n\n  uniform vec3 hemisphereLightSkyColor[ MAX_HEMI_LIGHTS ];\n  uniform vec3 hemisphereLightGroundColor[ MAX_HEMI_LIGHTS ];\n   uniform vec3 hemisphereLightDirection[ MAX_HEMI_LIGHTS ];\n\n#endif\n\n#if MAX_POINT_LIGHTS > 0\n\n uniform vec3 pointLightColor[ MAX_POINT_LIGHTS ];\n\n   uniform vec3 pointLightPosition[ MAX_POINT_LIGHTS ];\n  uniform float pointLightDistance[ MAX_POINT_LIGHTS ];\n uniform float pointLightDecay[ MAX_POINT_LIGHTS ];\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0\n\n uniform vec3 spotLightColor[ MAX_SPOT_LIGHTS ];\n   uniform vec3 spotLightPosition[ MAX_SPOT_LIGHTS ];\n    uniform vec3 spotLightDirection[ MAX_SPOT_LIGHTS ];\n   uniform float spotLightAngleCos[ MAX_SPOT_LIGHTS ];\n   uniform float spotLightExponent[ MAX_SPOT_LIGHTS ];\n   uniform float spotLightDistance[ MAX_SPOT_LIGHTS ];\n   uniform float spotLightDecay[ MAX_SPOT_LIGHTS ];\n\n#endif\n\n#if MAX_SPOT_LIGHTS > 0 || defined( USE_ENVMAP )\n\n  varying vec3 vWorldPosition;\n\n#endif\n\nvarying vec3 vViewPosition;\n\n#ifndef FLAT_SHADED\n\n    varying vec3 vNormal;\n\n#endif\n", i.ShaderChunk.lights_phong_pars_vertex = "#if MAX_SPOT_LIGHTS > 0 || defined( USE_ENVMAP )\n\n  varying vec3 vWorldPosition;\n\n#endif\n\n#if MAX_POINT_LIGHTS > 0\n\n  uniform vec3 pointLightPosition[ MAX_POINT_LIGHTS ];\n\n#endif\n", i.ShaderChunk.lights_phong_vertex = "#if MAX_SPOT_LIGHTS > 0 || defined( USE_ENVMAP )\n\n    vWorldPosition = worldPosition.xyz;\n\n#endif\n", i.ShaderChunk.linear_to_gamma_fragment = "\n  outgoingLight = linearToOutput( outgoingLight );\n", i.ShaderChunk.logdepthbuf_fragment = "#if defined(USE_LOGDEPTHBUF) && defined(USE_LOGDEPTHBUF_EXT)\n\n gl_FragDepthEXT = log2(vFragDepth) * logDepthBufFC * 0.5;\n\n#endif", i.ShaderChunk.logdepthbuf_pars_fragment = "#ifdef USE_LOGDEPTHBUF\n\n uniform float logDepthBufFC;\n\n    #ifdef USE_LOGDEPTHBUF_EXT\n\n      varying float vFragDepth;\n\n   #endif\n\n#endif\n", i.ShaderChunk.logdepthbuf_pars_vertex = "#ifdef USE_LOGDEPTHBUF\n\n    #ifdef USE_LOGDEPTHBUF_EXT\n\n      varying float vFragDepth;\n\n   #endif\n\n  uniform float logDepthBufFC;\n\n#endif", i.ShaderChunk.logdepthbuf_vertex = "#ifdef USE_LOGDEPTHBUF\n\n gl_Position.z = log2(max( EPSILON, gl_Position.w + 1.0 )) * logDepthBufFC;\n\n  #ifdef USE_LOGDEPTHBUF_EXT\n\n      vFragDepth = 1.0 + gl_Position.w;\n\n#else\n\n      gl_Position.z = (gl_Position.z - 1.0) * gl_Position.w;\n\n  #endif\n\n#endif", i.ShaderChunk.map_fragment = "#ifdef USE_MAP\n\n vec4 texelColor = texture2D( map, vUv );\n\n    texelColor.xyz = inputToLinear( texelColor.xyz );\n\n   diffuseColor *= texelColor;\n\n#endif\n", i.ShaderChunk.map_pars_fragment = "#ifdef USE_MAP\n\n uniform sampler2D map;\n\n#endif", i.ShaderChunk.map_particle_fragment = "#ifdef USE_MAP\n\n    diffuseColor *= texture2D( map, vec2( gl_PointCoord.x, 1.0 - gl_PointCoord.y ) * offsetRepeat.zw + offsetRepeat.xy );\n\n#endif\n", i.ShaderChunk.map_particle_pars_fragment = "#ifdef USE_MAP\n\n  uniform vec4 offsetRepeat;\n    uniform sampler2D map;\n\n#endif\n", i.ShaderChunk.morphnormal_vertex = "#ifdef USE_MORPHNORMALS\n\n    objectNormal += ( morphNormal0 - normal ) * morphTargetInfluences[ 0 ];\n   objectNormal += ( morphNormal1 - normal ) * morphTargetInfluences[ 1 ];\n   objectNormal += ( morphNormal2 - normal ) * morphTargetInfluences[ 2 ];\n   objectNormal += ( morphNormal3 - normal ) * morphTargetInfluences[ 3 ];\n\n#endif\n", i.ShaderChunk.morphtarget_pars_vertex = "#ifdef USE_MORPHTARGETS\n\n  #ifndef USE_MORPHNORMALS\n\n    uniform float morphTargetInfluences[ 8 ];\n\n   #else\n\n   uniform float morphTargetInfluences[ 4 ];\n\n   #endif\n\n#endif", i.ShaderChunk.morphtarget_vertex = "#ifdef USE_MORPHTARGETS\n\n  transformed += ( morphTarget0 - position ) * morphTargetInfluences[ 0 ];\n  transformed += ( morphTarget1 - position ) * morphTargetInfluences[ 1 ];\n  transformed += ( morphTarget2 - position ) * morphTargetInfluences[ 2 ];\n  transformed += ( morphTarget3 - position ) * morphTargetInfluences[ 3 ];\n\n    #ifndef USE_MORPHNORMALS\n\n    transformed += ( morphTarget4 - position ) * morphTargetInfluences[ 4 ];\n  transformed += ( morphTarget5 - position ) * morphTargetInfluences[ 5 ];\n  transformed += ( morphTarget6 - position ) * morphTargetInfluences[ 6 ];\n  transformed += ( morphTarget7 - position ) * morphTargetInfluences[ 7 ];\n\n    #endif\n\n#endif\n", i.ShaderChunk.normal_phong_fragment = "#ifndef FLAT_SHADED\n\n vec3 normal = normalize( vNormal );\n\n #ifdef DOUBLE_SIDED\n\n     normal = normal * ( -1.0 + 2.0 * float( gl_FrontFacing ) );\n\n #endif\n\n#else\n\n vec3 fdx = dFdx( vViewPosition );\n vec3 fdy = dFdy( vViewPosition );\n vec3 normal = normalize( cross( fdx, fdy ) );\n\n#endif\n\n#ifdef USE_NORMALMAP\n\n normal = perturbNormal2Arb( -vViewPosition, normal );\n\n#elif defined( USE_BUMPMAP )\n\n   normal = perturbNormalArb( -vViewPosition, normal, dHdxy_fwd() );\n\n#endif\n\n",
+            i.ShaderChunk.normalmap_pars_fragment = "#ifdef USE_NORMALMAP\n\n   uniform sampler2D normalMap;\n  uniform vec2 normalScale;\n\n\n vec3 perturbNormal2Arb( vec3 eye_pos, vec3 surf_norm ) {\n\n        vec3 q0 = dFdx( eye_pos.xyz );\n        vec3 q1 = dFdy( eye_pos.xyz );\n        vec2 st0 = dFdx( vUv.st );\n        vec2 st1 = dFdy( vUv.st );\n\n      vec3 S = normalize( q0 * st1.t - q1 * st0.t );\n        vec3 T = normalize( -q0 * st1.s + q1 * st0.s );\n       vec3 N = normalize( surf_norm );\n\n        vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0;\n      mapN.xy = normalScale * mapN.xy;\n      mat3 tsn = mat3( S, T, N );\n       return normalize( tsn * mapN );\n\n }\n\n#endif\n", i.ShaderChunk.project_vertex = "#ifdef USE_SKINNING\n\n vec4 mvPosition = modelViewMatrix * skinned;\n\n#else\n\n   vec4 mvPosition = modelViewMatrix * vec4( transformed, 1.0 );\n\n#endif\n\ngl_Position = projectionMatrix * mvPosition;\n", i.ShaderChunk.shadowmap_fragment = "#ifdef USE_SHADOWMAP\n\n    for ( int i = 0; i < MAX_SHADOWS; i ++ ) {\n\n      float texelSizeY =  1.0 / shadowMapSize[ i ].y;\n\n     float shadow = 0.0;\n\n#if defined( POINT_LIGHT_SHADOWS )\n\n       bool isPointLight = shadowDarkness[ i ] < 0.0;\n\n      if ( isPointLight ) {\n\n           float realShadowDarkness = abs( shadowDarkness[ i ] );\n\n          vec3 lightToPosition = vShadowCoord[ i ].xyz;\n\n   #if defined( SHADOWMAP_TYPE_PCF ) || defined( SHADOWMAP_TYPE_PCF_SOFT )\n\n         vec3 bd3D = normalize( lightToPosition );\n         float dp = length( lightToPosition );\n\n           adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D, texelSizeY ) ), shadowBias[ i ], shadow );\n\n\n    #if defined( SHADOWMAP_TYPE_PCF )\n         const float Dr = 1.25;\n    #elif defined( SHADOWMAP_TYPE_PCF_SOFT )\n          const float Dr = 2.25;\n    #endif\n\n          float os = Dr *  2.0 * texelSizeY;\n\n          const vec3 Gsd = vec3( - 1, 0, 1 );\n\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zzz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zxz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xxz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xzz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zzx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zxx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xxx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xzx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zzy * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zxy * os, texelSizeY ) ), shadowBias[ i ], shadow );\n\n           adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xxy * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xzy * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zyz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xyz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.zyx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.xyx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.yzz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.yxz * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.yxx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n         adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D + Gsd.yzx * os, texelSizeY ) ), shadowBias[ i ], shadow );\n\n           shadow *= realShadowDarkness * ( 1.0 / 21.0 );\n\n  #else \n            vec3 bd3D = normalize( lightToPosition );\n         float dp = length( lightToPosition );\n\n           adjustShadowValue1K( dp, texture2D( shadowMap[ i ], cubeToUV( bd3D, texelSizeY ) ), shadowBias[ i ], shadow );\n\n          shadow *= realShadowDarkness;\n\n   #endif\n\n      } else {\n\n#endif \n           float texelSizeX =  1.0 / shadowMapSize[ i ].x;\n\n         vec3 shadowCoord = vShadowCoord[ i ].xyz / vShadowCoord[ i ].w;\n\n\n           bvec4 inFrustumVec = bvec4 ( shadowCoord.x >= 0.0, shadowCoord.x <= 1.0, shadowCoord.y >= 0.0, shadowCoord.y <= 1.0 );\n            bool inFrustum = all( inFrustumVec );\n\n           bvec2 frustumTestVec = bvec2( inFrustum, shadowCoord.z <= 1.0 );\n\n            bool frustumTest = all( frustumTestVec );\n\n           if ( frustumTest ) {\n\n    #if defined( SHADOWMAP_TYPE_PCF )\n\n\n             /*\n                    for ( float y = -1.25; y <= 1.25; y += 1.25 )\n                     for ( float x = -1.25; x <= 1.25; x += 1.25 ) {\n                           vec4 rgbaDepth = texture2D( shadowMap[ i ], vec2( x * xPixelOffset, y * yPixelOffset ) + shadowCoord.xy );\n                            float fDepth = unpackDepth( rgbaDepth );\n                          if ( fDepth < shadowCoord.z )\n                             shadow += 1.0;\n                    }\n                 shadow /= 9.0;\n                */\n\n              shadowCoord.z += shadowBias[ i ];\n\n               const float ShadowDelta = 1.0 / 9.0;\n\n                float xPixelOffset = texelSizeX;\n              float yPixelOffset = texelSizeY;\n\n                float dx0 = - 1.25 * xPixelOffset;\n                float dy0 = - 1.25 * yPixelOffset;\n                float dx1 = 1.25 * xPixelOffset;\n              float dy1 = 1.25 * yPixelOffset;\n\n                float fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );\n             if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );\n               if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );\n               if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );\n               if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );\n              if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );\n               if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy1 ) ) );\n               if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );\n               if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );\n               if ( fDepth < shadowCoord.z ) shadow += ShadowDelta;\n\n                shadow *= shadowDarkness[ i ];\n\n  #elif defined( SHADOWMAP_TYPE_PCF_SOFT )\n\n\n              shadowCoord.z += shadowBias[ i ];\n\n               float xPixelOffset = texelSizeX;\n              float yPixelOffset = texelSizeY;\n\n                float dx0 = - 1.0 * xPixelOffset;\n             float dy0 = - 1.0 * yPixelOffset;\n             float dx1 = 1.0 * xPixelOffset;\n               float dy1 = 1.0 * yPixelOffset;\n\n             mat3 shadowKernel;\n                mat3 depthKernel;\n\n               depthKernel[ 0 ][ 0 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );\n                depthKernel[ 0 ][ 1 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );\n                depthKernel[ 0 ][ 2 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy1 ) ) );\n                depthKernel[ 1 ][ 0 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );\n                depthKernel[ 1 ][ 1 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );\n               depthKernel[ 1 ][ 2 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );\n                depthKernel[ 2 ][ 0 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );\n                depthKernel[ 2 ][ 1 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );\n                depthKernel[ 2 ][ 2 ] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );\n\n              vec3 shadowZ = vec3( shadowCoord.z );\n             shadowKernel[ 0 ] = vec3( lessThan( depthKernel[ 0 ], shadowZ ) );\n                shadowKernel[ 0 ] *= vec3( 0.25 );\n\n              shadowKernel[ 1 ] = vec3( lessThan( depthKernel[ 1 ], shadowZ ) );\n                shadowKernel[ 1 ] *= vec3( 0.25 );\n\n              shadowKernel[ 2 ] = vec3( lessThan( depthKernel[ 2 ], shadowZ ) );\n                shadowKernel[ 2 ] *= vec3( 0.25 );\n\n              vec2 fractionalCoord = 1.0 - fract( shadowCoord.xy * shadowMapSize[ i ].xy );\n\n               shadowKernel[ 0 ] = mix( shadowKernel[ 1 ], shadowKernel[ 0 ], fractionalCoord.x );\n               shadowKernel[ 1 ] = mix( shadowKernel[ 2 ], shadowKernel[ 1 ], fractionalCoord.x );\n\n             vec4 shadowValues;\n                shadowValues.x = mix( shadowKernel[ 0 ][ 1 ], shadowKernel[ 0 ][ 0 ], fractionalCoord.y );\n                shadowValues.y = mix( shadowKernel[ 0 ][ 2 ], shadowKernel[ 0 ][ 1 ], fractionalCoord.y );\n                shadowValues.z = mix( shadowKernel[ 1 ][ 1 ], shadowKernel[ 1 ][ 0 ], fractionalCoord.y );\n                shadowValues.w = mix( shadowKernel[ 1 ][ 2 ], shadowKernel[ 1 ][ 1 ], fractionalCoord.y );\n\n              shadow = dot( shadowValues, vec4( 1.0 ) ) * shadowDarkness[ i ];\n\n    #else \n                shadowCoord.z += shadowBias[ i ];\n\n               vec4 rgbaDepth = texture2D( shadowMap[ i ], shadowCoord.xy );\n             float fDepth = unpackDepth( rgbaDepth );\n\n                if ( fDepth < shadowCoord.z )\n                 shadow = shadowDarkness[ i ];\n\n   #endif\n\n          }\n\n#ifdef SHADOWMAP_DEBUG\n\n         if ( inFrustum ) {\n\n              if ( i == 0 ) {\n\n                 outgoingLight *= vec3( 1.0, 0.5, 0.0 );\n\n             } else if ( i == 1 ) {\n\n                  outgoingLight *= vec3( 0.0, 1.0, 0.8 );\n\n             } else {\n\n                    outgoingLight *= vec3( 0.0, 0.5, 1.0 );\n\n             }\n\n           }\n\n#endif\n\n#if defined( POINT_LIGHT_SHADOWS )\n\n       }\n\n#endif\n\n     shadowMask = shadowMask * vec3( 1.0 - shadow );\n\n }\n\n#endif\n", i.ShaderChunk.shadowmap_pars_fragment = "#ifdef USE_SHADOWMAP\n\n   uniform sampler2D shadowMap[ MAX_SHADOWS ];\n   uniform vec2 shadowMapSize[ MAX_SHADOWS ];\n\n  uniform float shadowDarkness[ MAX_SHADOWS ];\n  uniform float shadowBias[ MAX_SHADOWS ];\n\n    varying vec4 vShadowCoord[ MAX_SHADOWS ];\n\n   float unpackDepth( const in vec4 rgba_depth ) {\n\n     const vec4 bit_shift = vec4( 1.0 / ( 256.0 * 256.0 * 256.0 ), 1.0 / ( 256.0 * 256.0 ), 1.0 / 256.0, 1.0 );\n        float depth = dot( rgba_depth, bit_shift );\n       return depth;\n\n   }\n\n   #if defined(POINT_LIGHT_SHADOWS)\n\n\n      void adjustShadowValue1K( const float testDepth, const vec4 textureData, const float bias, inout float shadowValue ) {\n\n          const vec4 bitSh = vec4( 1.0 / ( 256.0 * 256.0 * 256.0 ), 1.0 / ( 256.0 * 256.0 ), 1.0 / 256.0, 1.0 );\n            if ( testDepth >= dot( textureData, bitSh ) * 1000.0 + bias )\n             shadowValue += 1.0;\n\n     }\n\n\n     vec2 cubeToUV( vec3 v, float texelSizeY ) {\n\n\n           vec3 absV = abs( v );\n\n\n         float scaleToCube = 1.0 / max( absV.x, max( absV.y, absV.z ) );\n           absV *= scaleToCube;\n\n\n          v *= scaleToCube * ( 1.0 - 2.0 * texelSizeY );\n\n\n\n          vec2 planar = v.xy;\n\n         float almostATexel = 1.5 * texelSizeY;\n            float almostOne = 1.0 - almostATexel;\n\n           if ( absV.z >= almostOne ) {\n\n                if ( v.z > 0.0 )\n                  planar.x = 4.0 - v.x;\n\n           } else if ( absV.x >= almostOne ) {\n\n             float signX = sign( v.x );\n                planar.x = v.z * signX + 2.0 * signX;\n\n           } else if ( absV.y >= almostOne ) {\n\n             float signY = sign( v.y );\n                planar.x = v.x + 2.0 * signY + 2.0;\n               planar.y = v.z * signY - 2.0;\n\n           }\n\n\n         return vec2( 0.125, 0.25 ) * planar + vec2( 0.375, 0.75 );\n\n      }\n\n   #endif\n\n#endif\n", i.ShaderChunk.shadowmap_pars_vertex = "#ifdef USE_SHADOWMAP\n\n    uniform float shadowDarkness[ MAX_SHADOWS ];\n  uniform mat4 shadowMatrix[ MAX_SHADOWS ];\n varying vec4 vShadowCoord[ MAX_SHADOWS ];\n\n#endif", i.ShaderChunk.shadowmap_vertex = "#ifdef USE_SHADOWMAP\n\n    for ( int i = 0; i < MAX_SHADOWS; i ++ ) {\n\n          vShadowCoord[ i ] = shadowMatrix[ i ] * worldPosition;\n\n  }\n\n#endif", i.ShaderChunk.skinbase_vertex = "#ifdef USE_SKINNING\n\n  mat4 boneMatX = getBoneMatrix( skinIndex.x );\n mat4 boneMatY = getBoneMatrix( skinIndex.y );\n mat4 boneMatZ = getBoneMatrix( skinIndex.z );\n mat4 boneMatW = getBoneMatrix( skinIndex.w );\n\n#endif", i.ShaderChunk.skinning_pars_vertex = "#ifdef USE_SKINNING\n\n uniform mat4 bindMatrix;\n  uniform mat4 bindMatrixInverse;\n\n #ifdef BONE_TEXTURE\n\n     uniform sampler2D boneTexture;\n        uniform int boneTextureWidth;\n     uniform int boneTextureHeight;\n\n      mat4 getBoneMatrix( const in float i ) {\n\n            float j = i * 4.0;\n            float x = mod( j, float( boneTextureWidth ) );\n            float y = floor( j / float( boneTextureWidth ) );\n\n           float dx = 1.0 / float( boneTextureWidth );\n           float dy = 1.0 / float( boneTextureHeight );\n\n            y = dy * ( y + 0.5 );\n\n           vec4 v1 = texture2D( boneTexture, vec2( dx * ( x + 0.5 ), y ) );\n          vec4 v2 = texture2D( boneTexture, vec2( dx * ( x + 1.5 ), y ) );\n          vec4 v3 = texture2D( boneTexture, vec2( dx * ( x + 2.5 ), y ) );\n          vec4 v4 = texture2D( boneTexture, vec2( dx * ( x + 3.5 ), y ) );\n\n            mat4 bone = mat4( v1, v2, v3, v4 );\n\n         return bone;\n\n        }\n\n   #else\n\n       uniform mat4 boneGlobalMatrices[ MAX_BONES ];\n\n       mat4 getBoneMatrix( const in float i ) {\n\n            mat4 bone = boneGlobalMatrices[ int(i) ];\n         return bone;\n\n        }\n\n   #endif\n\n#endif\n", i.ShaderChunk.skinning_vertex = "#ifdef USE_SKINNING\n\n   vec4 skinVertex = bindMatrix * vec4( transformed, 1.0 );\n\n    vec4 skinned = vec4( 0.0 );\n   skinned += boneMatX * skinVertex * skinWeight.x;\n  skinned += boneMatY * skinVertex * skinWeight.y;\n  skinned += boneMatZ * skinVertex * skinWeight.z;\n  skinned += boneMatW * skinVertex * skinWeight.w;\n  skinned  = bindMatrixInverse * skinned;\n\n#endif\n", i.ShaderChunk.skinnormal_vertex = "#ifdef USE_SKINNING\n\n    mat4 skinMatrix = mat4( 0.0 );\n    skinMatrix += skinWeight.x * boneMatX;\n    skinMatrix += skinWeight.y * boneMatY;\n    skinMatrix += skinWeight.z * boneMatZ;\n    skinMatrix += skinWeight.w * boneMatW;\n    skinMatrix  = bindMatrixInverse * skinMatrix * bindMatrix;\n\n  objectNormal = vec4( skinMatrix * vec4( objectNormal, 0.0 ) ).xyz;\n\n#endif\n", i.ShaderChunk.specularmap_fragment = "float specularStrength;\n\n#ifdef USE_SPECULARMAP\n\n    vec4 texelSpecular = texture2D( specularMap, vUv );\n   specularStrength = texelSpecular.r;\n\n#else\n\n    specularStrength = 1.0;\n\n#endif", i.ShaderChunk.specularmap_pars_fragment = "#ifdef USE_SPECULARMAP\n\n   uniform sampler2D specularMap;\n\n#endif", i.ShaderChunk.uv2_pars_fragment = "#if defined( USE_LIGHTMAP ) || defined( USE_AOMAP )\n\n   varying vec2 vUv2;\n\n#endif", i.ShaderChunk.uv2_pars_vertex = "#if defined( USE_LIGHTMAP ) || defined( USE_AOMAP )\n\n attribute vec2 uv2;\n   varying vec2 vUv2;\n\n#endif", i.ShaderChunk.uv2_vertex = "#if defined( USE_LIGHTMAP ) || defined( USE_AOMAP )\n\n  vUv2 = uv2;\n\n#endif", i.ShaderChunk.uv_pars_fragment = "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP ) || defined( USE_ALPHAMAP ) || defined( USE_EMISSIVEMAP )\n\n   varying vec2 vUv;\n\n#endif", i.ShaderChunk.uv_pars_vertex = "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP ) || defined( USE_ALPHAMAP ) || defined( USE_EMISSIVEMAP )\n\n   varying vec2 vUv;\n uniform vec4 offsetRepeat;\n\n#endif\n", i.ShaderChunk.uv_vertex = "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP ) || defined( USE_ALPHAMAP ) || defined( USE_EMISSIVEMAP )\n\n vUv = uv * offsetRepeat.zw + offsetRepeat.xy;\n\n#endif", i.ShaderChunk.worldpos_vertex = "#if defined( USE_ENVMAP ) || defined( PHONG ) || defined( LAMBERT ) || defined ( USE_SHADOWMAP )\n\n #ifdef USE_SKINNING\n\n     vec4 worldPosition = modelMatrix * skinned;\n\n #else\n\n       vec4 worldPosition = modelMatrix * vec4( transformed, 1.0 );\n\n    #endif\n\n#endif\n", i.UniformsUtils = {
                 merge: function(e) {
                     for (var t = {}, r = 0; r < e.length; r++) {
                         var n = this.clone(e[r]);
@@ -11825,8 +10549,8 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
             }, i.ShaderLib = {
                 basic: {
                     uniforms: i.UniformsUtils.merge([i.UniformsLib.common, i.UniformsLib.aomap, i.UniformsLib.fog, i.UniformsLib.shadowmap]),
-                    vertexShader: [i.ShaderChunk.common, i.ShaderChunk.uv_pars_vertex, i.ShaderChunk.uv2_pars_vertex, i.ShaderChunk.envmap_pars_vertex, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.skinning_pars_vertex, i.ShaderChunk.shadowmap_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.uv_vertex, i.ShaderChunk.uv2_vertex, i.ShaderChunk.color_vertex, i.ShaderChunk.skinbase_vertex, "	#ifdef USE_ENVMAP", i.ShaderChunk.beginnormal_vertex, i.ShaderChunk.morphnormal_vertex, i.ShaderChunk.skinnormal_vertex, i.ShaderChunk.defaultnormal_vertex, "	#endif", i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.skinning_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, i.ShaderChunk.worldpos_vertex, i.ShaderChunk.envmap_vertex, i.ShaderChunk.shadowmap_vertex, "}"].join("\n"),
-                    fragmentShader: ["uniform vec3 diffuse;", "uniform float opacity;", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.uv_pars_fragment, i.ShaderChunk.uv2_pars_fragment, i.ShaderChunk.map_pars_fragment, i.ShaderChunk.alphamap_pars_fragment, i.ShaderChunk.aomap_pars_fragment, i.ShaderChunk.envmap_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.shadowmap_pars_fragment, i.ShaderChunk.specularmap_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "	vec3 outgoingLight = vec3( 0.0 );", "	vec4 diffuseColor = vec4( diffuse, opacity );", "	vec3 totalAmbientLight = vec3( 1.0 );", "	vec3 shadowMask = vec3( 1.0 );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.map_fragment, i.ShaderChunk.color_fragment, i.ShaderChunk.alphamap_fragment, i.ShaderChunk.alphatest_fragment, i.ShaderChunk.specularmap_fragment, i.ShaderChunk.aomap_fragment, i.ShaderChunk.shadowmap_fragment, "	outgoingLight = diffuseColor.rgb * totalAmbientLight * shadowMask;", i.ShaderChunk.envmap_fragment, i.ShaderChunk.linear_to_gamma_fragment, i.ShaderChunk.fog_fragment, "	gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
+                    vertexShader: [i.ShaderChunk.common, i.ShaderChunk.uv_pars_vertex, i.ShaderChunk.uv2_pars_vertex, i.ShaderChunk.envmap_pars_vertex, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.skinning_pars_vertex, i.ShaderChunk.shadowmap_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.uv_vertex, i.ShaderChunk.uv2_vertex, i.ShaderChunk.color_vertex, i.ShaderChunk.skinbase_vertex, "    #ifdef USE_ENVMAP", i.ShaderChunk.beginnormal_vertex, i.ShaderChunk.morphnormal_vertex, i.ShaderChunk.skinnormal_vertex, i.ShaderChunk.defaultnormal_vertex, "  #endif", i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.skinning_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, i.ShaderChunk.worldpos_vertex, i.ShaderChunk.envmap_vertex, i.ShaderChunk.shadowmap_vertex, "}"].join("\n"),
+                    fragmentShader: ["uniform vec3 diffuse;", "uniform float opacity;", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.uv_pars_fragment, i.ShaderChunk.uv2_pars_fragment, i.ShaderChunk.map_pars_fragment, i.ShaderChunk.alphamap_pars_fragment, i.ShaderChunk.aomap_pars_fragment, i.ShaderChunk.envmap_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.shadowmap_pars_fragment, i.ShaderChunk.specularmap_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "    vec3 outgoingLight = vec3( 0.0 );", "   vec4 diffuseColor = vec4( diffuse, opacity );", "   vec3 totalAmbientLight = vec3( 1.0 );", "   vec3 shadowMask = vec3( 1.0 );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.map_fragment, i.ShaderChunk.color_fragment, i.ShaderChunk.alphamap_fragment, i.ShaderChunk.alphatest_fragment, i.ShaderChunk.specularmap_fragment, i.ShaderChunk.aomap_fragment, i.ShaderChunk.shadowmap_fragment, " outgoingLight = diffuseColor.rgb * totalAmbientLight * shadowMask;", i.ShaderChunk.envmap_fragment, i.ShaderChunk.linear_to_gamma_fragment, i.ShaderChunk.fog_fragment, "   gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
                 },
                 lambert: {
                     uniforms: i.UniformsUtils.merge([i.UniformsLib.common, i.UniformsLib.fog, i.UniformsLib.lights, i.UniformsLib.shadowmap, {
@@ -11835,8 +10559,8 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                             value: new i.Color(0)
                         }
                     }]),
-                    vertexShader: ["#define LAMBERT", "varying vec3 vLightFront;", "#ifdef DOUBLE_SIDED", "	varying vec3 vLightBack;", "#endif", i.ShaderChunk.common, i.ShaderChunk.uv_pars_vertex, i.ShaderChunk.uv2_pars_vertex, i.ShaderChunk.envmap_pars_vertex, i.ShaderChunk.lights_lambert_pars_vertex, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.skinning_pars_vertex, i.ShaderChunk.shadowmap_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.uv_vertex, i.ShaderChunk.uv2_vertex, i.ShaderChunk.color_vertex, i.ShaderChunk.beginnormal_vertex, i.ShaderChunk.morphnormal_vertex, i.ShaderChunk.skinbase_vertex, i.ShaderChunk.skinnormal_vertex, i.ShaderChunk.defaultnormal_vertex, i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.skinning_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, i.ShaderChunk.worldpos_vertex, i.ShaderChunk.envmap_vertex, i.ShaderChunk.lights_lambert_vertex, i.ShaderChunk.shadowmap_vertex, "}"].join("\n"),
-                    fragmentShader: ["uniform vec3 diffuse;", "uniform vec3 emissive;", "uniform float opacity;", "uniform vec3 ambientLightColor;", "varying vec3 vLightFront;", "#ifdef DOUBLE_SIDED", "	varying vec3 vLightBack;", "#endif", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.uv_pars_fragment, i.ShaderChunk.uv2_pars_fragment, i.ShaderChunk.map_pars_fragment, i.ShaderChunk.alphamap_pars_fragment, i.ShaderChunk.envmap_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.shadowmap_pars_fragment, i.ShaderChunk.specularmap_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "	vec3 outgoingLight = vec3( 0.0 );", "	vec4 diffuseColor = vec4( diffuse, opacity );", "	vec3 totalAmbientLight = ambientLightColor;", "	vec3 shadowMask = vec3( 1.0 );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.map_fragment, i.ShaderChunk.color_fragment, i.ShaderChunk.alphamap_fragment, i.ShaderChunk.alphatest_fragment, i.ShaderChunk.specularmap_fragment, i.ShaderChunk.shadowmap_fragment, "	#ifdef DOUBLE_SIDED", "		if ( gl_FrontFacing )", "			outgoingLight += diffuseColor.rgb * ( vLightFront * shadowMask + totalAmbientLight ) + emissive;", "		else", "			outgoingLight += diffuseColor.rgb * ( vLightBack * shadowMask + totalAmbientLight ) + emissive;", "	#else", "		outgoingLight += diffuseColor.rgb * ( vLightFront * shadowMask + totalAmbientLight ) + emissive;", "	#endif", i.ShaderChunk.envmap_fragment, i.ShaderChunk.linear_to_gamma_fragment, i.ShaderChunk.fog_fragment, "	gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
+                    vertexShader: ["#define LAMBERT", "varying vec3 vLightFront;", "#ifdef DOUBLE_SIDED", " varying vec3 vLightBack;", "#endif", i.ShaderChunk.common, i.ShaderChunk.uv_pars_vertex, i.ShaderChunk.uv2_pars_vertex, i.ShaderChunk.envmap_pars_vertex, i.ShaderChunk.lights_lambert_pars_vertex, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.skinning_pars_vertex, i.ShaderChunk.shadowmap_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.uv_vertex, i.ShaderChunk.uv2_vertex, i.ShaderChunk.color_vertex, i.ShaderChunk.beginnormal_vertex, i.ShaderChunk.morphnormal_vertex, i.ShaderChunk.skinbase_vertex, i.ShaderChunk.skinnormal_vertex, i.ShaderChunk.defaultnormal_vertex, i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.skinning_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, i.ShaderChunk.worldpos_vertex, i.ShaderChunk.envmap_vertex, i.ShaderChunk.lights_lambert_vertex, i.ShaderChunk.shadowmap_vertex, "}"].join("\n"),
+                    fragmentShader: ["uniform vec3 diffuse;", "uniform vec3 emissive;", "uniform float opacity;", "uniform vec3 ambientLightColor;", "varying vec3 vLightFront;", "#ifdef DOUBLE_SIDED", "  varying vec3 vLightBack;", "#endif", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.uv_pars_fragment, i.ShaderChunk.uv2_pars_fragment, i.ShaderChunk.map_pars_fragment, i.ShaderChunk.alphamap_pars_fragment, i.ShaderChunk.envmap_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.shadowmap_pars_fragment, i.ShaderChunk.specularmap_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "  vec3 outgoingLight = vec3( 0.0 );", "   vec4 diffuseColor = vec4( diffuse, opacity );", "   vec3 totalAmbientLight = ambientLightColor;", " vec3 shadowMask = vec3( 1.0 );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.map_fragment, i.ShaderChunk.color_fragment, i.ShaderChunk.alphamap_fragment, i.ShaderChunk.alphatest_fragment, i.ShaderChunk.specularmap_fragment, i.ShaderChunk.shadowmap_fragment, "   #ifdef DOUBLE_SIDED", "     if ( gl_FrontFacing )", "           outgoingLight += diffuseColor.rgb * ( vLightFront * shadowMask + totalAmbientLight ) + emissive;", "        else", "            outgoingLight += diffuseColor.rgb * ( vLightBack * shadowMask + totalAmbientLight ) + emissive;", " #else", "       outgoingLight += diffuseColor.rgb * ( vLightFront * shadowMask + totalAmbientLight ) + emissive;", "    #endif", i.ShaderChunk.envmap_fragment, i.ShaderChunk.linear_to_gamma_fragment, i.ShaderChunk.fog_fragment, "   gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
                 },
                 phong: {
                     uniforms: i.UniformsUtils.merge([i.UniformsLib.common, i.UniformsLib.aomap, i.UniformsLib.lightmap, i.UniformsLib.emissivemap, i.UniformsLib.bumpmap, i.UniformsLib.normalmap, i.UniformsLib.displacementmap, i.UniformsLib.fog, i.UniformsLib.lights, i.UniformsLib.shadowmap, {
@@ -11853,13 +10577,13 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                             value: 30
                         }
                     }]),
-                    vertexShader: ["#define PHONG", "varying vec3 vViewPosition;", "#ifndef FLAT_SHADED", "	varying vec3 vNormal;", "#endif", i.ShaderChunk.common, i.ShaderChunk.uv_pars_vertex, i.ShaderChunk.uv2_pars_vertex, i.ShaderChunk.displacementmap_pars_vertex, i.ShaderChunk.envmap_pars_vertex, i.ShaderChunk.lights_phong_pars_vertex, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.skinning_pars_vertex, i.ShaderChunk.shadowmap_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.uv_vertex, i.ShaderChunk.uv2_vertex, i.ShaderChunk.color_vertex, i.ShaderChunk.beginnormal_vertex, i.ShaderChunk.morphnormal_vertex, i.ShaderChunk.skinbase_vertex, i.ShaderChunk.skinnormal_vertex, i.ShaderChunk.defaultnormal_vertex, "#ifndef FLAT_SHADED", "	vNormal = normalize( transformedNormal );", "#endif", i.ShaderChunk.begin_vertex, i.ShaderChunk.displacementmap_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.skinning_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, "	vViewPosition = - mvPosition.xyz;", i.ShaderChunk.worldpos_vertex, i.ShaderChunk.envmap_vertex, i.ShaderChunk.lights_phong_vertex, i.ShaderChunk.shadowmap_vertex, "}"].join("\n"),
-                    fragmentShader: ["#define PHONG", "uniform vec3 diffuse;", "uniform vec3 emissive;", "uniform vec3 specular;", "uniform float shininess;", "uniform float opacity;", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.uv_pars_fragment, i.ShaderChunk.uv2_pars_fragment, i.ShaderChunk.map_pars_fragment, i.ShaderChunk.alphamap_pars_fragment, i.ShaderChunk.aomap_pars_fragment, i.ShaderChunk.lightmap_pars_fragment, i.ShaderChunk.emissivemap_pars_fragment, i.ShaderChunk.envmap_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.lights_phong_pars_fragment, i.ShaderChunk.shadowmap_pars_fragment, i.ShaderChunk.bumpmap_pars_fragment, i.ShaderChunk.normalmap_pars_fragment, i.ShaderChunk.specularmap_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "	vec3 outgoingLight = vec3( 0.0 );", "	vec4 diffuseColor = vec4( diffuse, opacity );", "	vec3 totalAmbientLight = ambientLightColor;", "	vec3 totalEmissiveLight = emissive;", "	vec3 shadowMask = vec3( 1.0 );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.map_fragment, i.ShaderChunk.color_fragment, i.ShaderChunk.alphamap_fragment, i.ShaderChunk.alphatest_fragment, i.ShaderChunk.specularmap_fragment, i.ShaderChunk.normal_phong_fragment, i.ShaderChunk.lightmap_fragment, i.ShaderChunk.hemilight_fragment, i.ShaderChunk.aomap_fragment, i.ShaderChunk.emissivemap_fragment, i.ShaderChunk.lights_phong_fragment, i.ShaderChunk.shadowmap_fragment, "totalDiffuseLight *= shadowMask;", "totalSpecularLight *= shadowMask;", "#ifdef METAL", "	outgoingLight += diffuseColor.rgb * ( totalDiffuseLight + totalAmbientLight ) * specular + totalSpecularLight + totalEmissiveLight;", "#else", "	outgoingLight += diffuseColor.rgb * ( totalDiffuseLight + totalAmbientLight ) + totalSpecularLight + totalEmissiveLight;", "#endif", i.ShaderChunk.envmap_fragment, i.ShaderChunk.linear_to_gamma_fragment, i.ShaderChunk.fog_fragment, "	gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
+                    vertexShader: ["#define PHONG", "varying vec3 vViewPosition;", "#ifndef FLAT_SHADED", " varying vec3 vNormal;", "#endif", i.ShaderChunk.common, i.ShaderChunk.uv_pars_vertex, i.ShaderChunk.uv2_pars_vertex, i.ShaderChunk.displacementmap_pars_vertex, i.ShaderChunk.envmap_pars_vertex, i.ShaderChunk.lights_phong_pars_vertex, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.skinning_pars_vertex, i.ShaderChunk.shadowmap_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.uv_vertex, i.ShaderChunk.uv2_vertex, i.ShaderChunk.color_vertex, i.ShaderChunk.beginnormal_vertex, i.ShaderChunk.morphnormal_vertex, i.ShaderChunk.skinbase_vertex, i.ShaderChunk.skinnormal_vertex, i.ShaderChunk.defaultnormal_vertex, "#ifndef FLAT_SHADED", "  vNormal = normalize( transformedNormal );", "#endif", i.ShaderChunk.begin_vertex, i.ShaderChunk.displacementmap_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.skinning_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, "  vViewPosition = - mvPosition.xyz;", i.ShaderChunk.worldpos_vertex, i.ShaderChunk.envmap_vertex, i.ShaderChunk.lights_phong_vertex, i.ShaderChunk.shadowmap_vertex, "}"].join("\n"),
+                    fragmentShader: ["#define PHONG", "uniform vec3 diffuse;", "uniform vec3 emissive;", "uniform vec3 specular;", "uniform float shininess;", "uniform float opacity;", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.uv_pars_fragment, i.ShaderChunk.uv2_pars_fragment, i.ShaderChunk.map_pars_fragment, i.ShaderChunk.alphamap_pars_fragment, i.ShaderChunk.aomap_pars_fragment, i.ShaderChunk.lightmap_pars_fragment, i.ShaderChunk.emissivemap_pars_fragment, i.ShaderChunk.envmap_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.lights_phong_pars_fragment, i.ShaderChunk.shadowmap_pars_fragment, i.ShaderChunk.bumpmap_pars_fragment, i.ShaderChunk.normalmap_pars_fragment, i.ShaderChunk.specularmap_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "  vec3 outgoingLight = vec3( 0.0 );", "   vec4 diffuseColor = vec4( diffuse, opacity );", "   vec3 totalAmbientLight = ambientLightColor;", " vec3 totalEmissiveLight = emissive;", " vec3 shadowMask = vec3( 1.0 );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.map_fragment, i.ShaderChunk.color_fragment, i.ShaderChunk.alphamap_fragment, i.ShaderChunk.alphatest_fragment, i.ShaderChunk.specularmap_fragment, i.ShaderChunk.normal_phong_fragment, i.ShaderChunk.lightmap_fragment, i.ShaderChunk.hemilight_fragment, i.ShaderChunk.aomap_fragment, i.ShaderChunk.emissivemap_fragment, i.ShaderChunk.lights_phong_fragment, i.ShaderChunk.shadowmap_fragment, "totalDiffuseLight *= shadowMask;", "totalSpecularLight *= shadowMask;", "#ifdef METAL", "   outgoingLight += diffuseColor.rgb * ( totalDiffuseLight + totalAmbientLight ) * specular + totalSpecularLight + totalEmissiveLight;", "#else", "    outgoingLight += diffuseColor.rgb * ( totalDiffuseLight + totalAmbientLight ) + totalSpecularLight + totalEmissiveLight;", "#endif", i.ShaderChunk.envmap_fragment, i.ShaderChunk.linear_to_gamma_fragment, i.ShaderChunk.fog_fragment, "   gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
                 },
                 points: {
                     uniforms: i.UniformsUtils.merge([i.UniformsLib.points, i.UniformsLib.shadowmap]),
-                    vertexShader: ["uniform float size;", "uniform float scale;", i.ShaderChunk.common, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.shadowmap_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.color_vertex, "	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );", "	#ifdef USE_SIZEATTENUATION", "		gl_PointSize = size * ( scale / length( mvPosition.xyz ) );", "	#else", "		gl_PointSize = size;", "	#endif", "	gl_Position = projectionMatrix * mvPosition;", i.ShaderChunk.logdepthbuf_vertex, i.ShaderChunk.worldpos_vertex, i.ShaderChunk.shadowmap_vertex, "}"].join("\n"),
-                    fragmentShader: ["uniform vec3 psColor;", "uniform float opacity;", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.map_particle_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.shadowmap_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "	vec3 outgoingLight = vec3( 0.0 );", "	vec4 diffuseColor = vec4( psColor, opacity );", "	vec3 shadowMask = vec3( 1.0 );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.map_particle_fragment, i.ShaderChunk.color_fragment, i.ShaderChunk.alphatest_fragment, i.ShaderChunk.shadowmap_fragment, "	outgoingLight = diffuseColor.rgb * shadowMask;", i.ShaderChunk.fog_fragment, "	gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
+                    vertexShader: ["uniform float size;", "uniform float scale;", i.ShaderChunk.common, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.shadowmap_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.color_vertex, " vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );", "  #ifdef USE_SIZEATTENUATION", "      gl_PointSize = size * ( scale / length( mvPosition.xyz ) );", " #else", "       gl_PointSize = size;", "    #endif", "  gl_Position = projectionMatrix * mvPosition;", i.ShaderChunk.logdepthbuf_vertex, i.ShaderChunk.worldpos_vertex, i.ShaderChunk.shadowmap_vertex, "}"].join("\n"),
+                    fragmentShader: ["uniform vec3 psColor;", "uniform float opacity;", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.map_particle_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.shadowmap_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "  vec3 outgoingLight = vec3( 0.0 );", "   vec4 diffuseColor = vec4( psColor, opacity );", "   vec3 shadowMask = vec3( 1.0 );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.map_particle_fragment, i.ShaderChunk.color_fragment, i.ShaderChunk.alphatest_fragment, i.ShaderChunk.shadowmap_fragment, "   outgoingLight = diffuseColor.rgb * shadowMask;", i.ShaderChunk.fog_fragment, "  gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
                 },
                 dashed: {
                     uniforms: i.UniformsUtils.merge([i.UniformsLib.common, i.UniformsLib.fog, {
@@ -11876,8 +10600,8 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                             value: 2
                         }
                     }]),
-                    vertexShader: ["uniform float scale;", "attribute float lineDistance;", "varying float vLineDistance;", i.ShaderChunk.common, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.color_vertex, "	vLineDistance = scale * lineDistance;", "	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );", "	gl_Position = projectionMatrix * mvPosition;", i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
-                    fragmentShader: ["uniform vec3 diffuse;", "uniform float opacity;", "uniform float dashSize;", "uniform float totalSize;", "varying float vLineDistance;", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "	if ( mod( vLineDistance, totalSize ) > dashSize ) {", "		discard;", "	}", "	vec3 outgoingLight = vec3( 0.0 );", "	vec4 diffuseColor = vec4( diffuse, opacity );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.color_fragment, "	outgoingLight = diffuseColor.rgb;", i.ShaderChunk.fog_fragment, "	gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
+                    vertexShader: ["uniform float scale;", "attribute float lineDistance;", "varying float vLineDistance;", i.ShaderChunk.common, i.ShaderChunk.color_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.color_vertex, "    vLineDistance = scale * lineDistance;", "   vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );", "  gl_Position = projectionMatrix * mvPosition;", i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
+                    fragmentShader: ["uniform vec3 diffuse;", "uniform float opacity;", "uniform float dashSize;", "uniform float totalSize;", "varying float vLineDistance;", i.ShaderChunk.common, i.ShaderChunk.color_pars_fragment, i.ShaderChunk.fog_pars_fragment, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "    if ( mod( vLineDistance, totalSize ) > dashSize ) {", "     discard;", "    }", "   vec3 outgoingLight = vec3( 0.0 );", "   vec4 diffuseColor = vec4( diffuse, opacity );", i.ShaderChunk.logdepthbuf_fragment, i.ShaderChunk.color_fragment, " outgoingLight = diffuseColor.rgb;", i.ShaderChunk.fog_fragment, "   gl_FragColor = vec4( outgoingLight, diffuseColor.a );", "}"].join("\n")
                 },
                 depth: {
                     uniforms: {
@@ -11895,7 +10619,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                         }
                     },
                     vertexShader: [i.ShaderChunk.common, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
-                    fragmentShader: ["uniform float mNear;", "uniform float mFar;", "uniform float opacity;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", i.ShaderChunk.logdepthbuf_fragment, "	#ifdef USE_LOGDEPTHBUF_EXT", "		float depth = gl_FragDepthEXT / gl_FragCoord.w;", "	#else", "		float depth = gl_FragCoord.z / gl_FragCoord.w;", "	#endif", "	float color = 1.0 - smoothstep( mNear, mFar, depth );", "	gl_FragColor = vec4( vec3( color ), opacity );", "}"].join("\n")
+                    fragmentShader: ["uniform float mNear;", "uniform float mFar;", "uniform float opacity;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", i.ShaderChunk.logdepthbuf_fragment, " #ifdef USE_LOGDEPTHBUF_EXT", "      float depth = gl_FragDepthEXT / gl_FragCoord.w;", " #else", "       float depth = gl_FragCoord.z / gl_FragCoord.w;", "  #endif", "  float color = 1.0 - smoothstep( mNear, mFar, depth );", "   gl_FragColor = vec4( vec3( color ), opacity );", "}"].join("\n")
                 },
                 normal: {
                     uniforms: {
@@ -11904,8 +10628,8 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                             value: 1
                         }
                     },
-                    vertexShader: ["varying vec3 vNormal;", i.ShaderChunk.common, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", "	vNormal = normalize( normalMatrix * normal );", i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
-                    fragmentShader: ["uniform float opacity;", "varying vec3 vNormal;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "	gl_FragColor = vec4( 0.5 * normalize( vNormal ) + 0.5, opacity );", i.ShaderChunk.logdepthbuf_fragment, "}"].join("\n")
+                    vertexShader: ["varying vec3 vNormal;", i.ShaderChunk.common, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", "  vNormal = normalize( normalMatrix * normal );", i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
+                    fragmentShader: ["uniform float opacity;", "varying vec3 vNormal;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "   gl_FragColor = vec4( 0.5 * normalize( vNormal ) + 0.5, opacity );", i.ShaderChunk.logdepthbuf_fragment, "}"].join("\n")
                 },
                 cube: {
                     uniforms: {
@@ -11918,8 +10642,8 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                             value: -1
                         }
                     },
-                    vertexShader: ["varying vec3 vWorldPosition;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", "	vWorldPosition = transformDirection( position, modelMatrix );", "	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );", i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
-                    fragmentShader: ["uniform samplerCube tCube;", "uniform float tFlip;", "varying vec3 vWorldPosition;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "	gl_FragColor = textureCube( tCube, vec3( tFlip * vWorldPosition.x, vWorldPosition.yz ) );", i.ShaderChunk.logdepthbuf_fragment, "}"].join("\n")
+                    vertexShader: ["varying vec3 vWorldPosition;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", "  vWorldPosition = transformDirection( position, modelMatrix );", "   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );", i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
+                    fragmentShader: ["uniform samplerCube tCube;", "uniform float tFlip;", "varying vec3 vWorldPosition;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "    gl_FragColor = textureCube( tCube, vec3( tFlip * vWorldPosition.x, vWorldPosition.yz ) );", i.ShaderChunk.logdepthbuf_fragment, "}"].join("\n")
                 },
                 equirect: {
                     uniforms: {
@@ -11932,13 +10656,13 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                             value: -1
                         }
                     },
-                    vertexShader: ["varying vec3 vWorldPosition;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", "	vWorldPosition = transformDirection( position, modelMatrix );", "	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );", i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
+                    vertexShader: ["varying vec3 vWorldPosition;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", "  vWorldPosition = transformDirection( position, modelMatrix );", "   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );", i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
                     fragmentShader: ["uniform sampler2D tEquirect;", "uniform float tFlip;", "varying vec3 vWorldPosition;", i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "void main() {", "vec3 direction = normalize( vWorldPosition );", "vec2 sampleUV;", "sampleUV.y = saturate( tFlip * direction.y * -0.5 + 0.5 );", "sampleUV.x = atan( direction.z, direction.x ) * RECIPROCAL_PI2 + 0.5;", "gl_FragColor = texture2D( tEquirect, sampleUV );", i.ShaderChunk.logdepthbuf_fragment, "}"].join("\n")
                 },
                 depthRGBA: {
                     uniforms: {},
                     vertexShader: [i.ShaderChunk.common, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.skinning_pars_vertex, i.ShaderChunk.logdepthbuf_pars_vertex, "void main() {", i.ShaderChunk.skinbase_vertex, i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.skinning_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.logdepthbuf_vertex, "}"].join("\n"),
-                    fragmentShader: [i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "vec4 pack_depth( const in float depth ) {", "	const vec4 bit_shift = vec4( 256.0 * 256.0 * 256.0, 256.0 * 256.0, 256.0, 1.0 );", "	const vec4 bit_mask = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );", "	vec4 res = mod( depth * bit_shift * vec4( 255 ), vec4( 256 ) ) / vec4( 255 );", "	res -= res.xxyz * bit_mask;", "	return res;", "}", "void main() {", i.ShaderChunk.logdepthbuf_fragment, "	#ifdef USE_LOGDEPTHBUF_EXT", "		gl_FragData[ 0 ] = pack_depth( gl_FragDepthEXT );", "	#else", "		gl_FragData[ 0 ] = pack_depth( gl_FragCoord.z );", "	#endif", "}"].join("\n")
+                    fragmentShader: [i.ShaderChunk.common, i.ShaderChunk.logdepthbuf_pars_fragment, "vec4 pack_depth( const in float depth ) {", "  const vec4 bit_shift = vec4( 256.0 * 256.0 * 256.0, 256.0 * 256.0, 256.0, 1.0 );", "    const vec4 bit_mask = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );", "   vec4 res = mod( depth * bit_shift * vec4( 255 ), vec4( 256 ) ) / vec4( 255 );", "   res -= res.xxyz * bit_mask;", " return res;", "}", "void main() {", i.ShaderChunk.logdepthbuf_fragment, "   #ifdef USE_LOGDEPTHBUF_EXT", "      gl_FragData[ 0 ] = pack_depth( gl_FragDepthEXT );", "   #else", "       gl_FragData[ 0 ] = pack_depth( gl_FragCoord.z );", "    #endif", "}"].join("\n")
                 },
                 distanceRGBA: {
                     uniforms: {
@@ -11948,7 +10672,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                         }
                     },
                     vertexShader: ["varying vec4 vWorldPosition;", i.ShaderChunk.common, i.ShaderChunk.morphtarget_pars_vertex, i.ShaderChunk.skinning_pars_vertex, "void main() {", i.ShaderChunk.skinbase_vertex, i.ShaderChunk.begin_vertex, i.ShaderChunk.morphtarget_vertex, i.ShaderChunk.skinning_vertex, i.ShaderChunk.project_vertex, i.ShaderChunk.worldpos_vertex, "vWorldPosition = worldPosition;", "}"].join("\n"),
-                    fragmentShader: ["uniform vec3 lightPos;", "varying vec4 vWorldPosition;", i.ShaderChunk.common, "vec4 pack1K ( float depth ) {", "   depth /= 1000.0;", "   const vec4 bitSh = vec4( 256.0 * 256.0 * 256.0, 256.0 * 256.0, 256.0, 1.0 );", "	const vec4 bitMsk = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );", "	vec4 res = fract( depth * bitSh );", "	res -= res.xxyz * bitMsk;", "	return res; ", "}", "float unpack1K ( vec4 color ) {", "	const vec4 bitSh = vec4( 1.0 / ( 256.0 * 256.0 * 256.0 ), 1.0 / ( 256.0 * 256.0 ), 1.0 / 256.0, 1.0 );", "	return dot( color, bitSh ) * 1000.0;", "}", "void main () {", "	gl_FragColor = pack1K( length( vWorldPosition.xyz - lightPos.xyz ) );", "}"].join("\n")
+                    fragmentShader: ["uniform vec3 lightPos;", "varying vec4 vWorldPosition;", i.ShaderChunk.common, "vec4 pack1K ( float depth ) {", "   depth /= 1000.0;", "   const vec4 bitSh = vec4( 256.0 * 256.0 * 256.0, 256.0 * 256.0, 256.0, 1.0 );", "   const vec4 bitMsk = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );", " vec4 res = fract( depth * bitSh );", "  res -= res.xxyz * bitMsk;", "   return res; ", "}", "float unpack1K ( vec4 color ) {", "    const vec4 bitSh = vec4( 1.0 / ( 256.0 * 256.0 * 256.0 ), 1.0 / ( 256.0 * 256.0 ), 1.0 / 256.0, 1.0 );", "  return dot( color, bitSh ) * 1000.0;", "}", "void main () {", " gl_FragColor = pack1K( length( vWorldPosition.xyz - lightPos.xyz ) );", "}"].join("\n")
                 }
             }, i.WebGLRenderer = function(e) {
                 function t(e, t, r, n) {
@@ -13286,7 +12010,7 @@ var links= ['#','#','/talks','/sponsors','#','#','#','/events','#'];
                     var y, x, b = a.gammaFactor > 0 ? a.gammaFactor : 1,
                         w = e(h),
                         S = l.createProgram();
-                    u instanceof i.RawShaderMaterial ? (y = "", x = "") : (y = ["precision " + c.precision + " float;", "precision " + c.precision + " int;", "#define SHADER_NAME " + u.__webglShader.name, w, c.supportsVertexTextures ? "#define VERTEX_TEXTURES" : "", a.gammaInput ? "#define GAMMA_INPUT" : "", a.gammaOutput ? "#define GAMMA_OUTPUT" : "", "#define GAMMA_FACTOR " + b, "#define MAX_DIR_LIGHTS " + c.maxDirLights, "#define MAX_POINT_LIGHTS " + c.maxPointLights, "#define MAX_SPOT_LIGHTS " + c.maxSpotLights, "#define MAX_HEMI_LIGHTS " + c.maxHemiLights, "#define MAX_SHADOWS " + c.maxShadows, "#define MAX_BONES " + c.maxBones, c.map ? "#define USE_MAP" : "", c.envMap ? "#define USE_ENVMAP" : "", c.envMap ? "#define " + g : "", c.lightMap ? "#define USE_LIGHTMAP" : "", c.aoMap ? "#define USE_AOMAP" : "", c.emissiveMap ? "#define USE_EMISSIVEMAP" : "", c.bumpMap ? "#define USE_BUMPMAP" : "", c.normalMap ? "#define USE_NORMALMAP" : "", c.displacementMap && c.supportsVertexTextures ? "#define USE_DISPLACEMENTMAP" : "", c.specularMap ? "#define USE_SPECULARMAP" : "", c.alphaMap ? "#define USE_ALPHAMAP" : "", c.vertexColors ? "#define USE_COLOR" : "", c.flatShading ? "#define FLAT_SHADED" : "", c.skinning ? "#define USE_SKINNING" : "", c.useVertexTexture ? "#define BONE_TEXTURE" : "", c.morphTargets ? "#define USE_MORPHTARGETS" : "", c.morphNormals && c.flatShading === !1 ? "#define USE_MORPHNORMALS" : "", c.doubleSided ? "#define DOUBLE_SIDED" : "", c.flipSided ? "#define FLIP_SIDED" : "", c.shadowMapEnabled ? "#define USE_SHADOWMAP" : "", c.shadowMapEnabled ? "#define " + f : "", c.shadowMapDebug ? "#define SHADOWMAP_DEBUG" : "", c.pointLightShadows > 0 ? "#define POINT_LIGHT_SHADOWS" : "", c.sizeAttenuation ? "#define USE_SIZEATTENUATION" : "", c.logarithmicDepthBuffer ? "#define USE_LOGDEPTHBUF" : "", c.logarithmicDepthBuffer && a.extensions.get("EXT_frag_depth") ? "#define USE_LOGDEPTHBUF_EXT" : "", "uniform mat4 modelMatrix;", "uniform mat4 modelViewMatrix;", "uniform mat4 projectionMatrix;", "uniform mat4 viewMatrix;", "uniform mat3 normalMatrix;", "uniform vec3 cameraPosition;", "attribute vec3 position;", "attribute vec3 normal;", "attribute vec2 uv;", "#ifdef USE_COLOR", "	attribute vec3 color;", "#endif", "#ifdef USE_MORPHTARGETS", "	attribute vec3 morphTarget0;", "	attribute vec3 morphTarget1;", "	attribute vec3 morphTarget2;", "	attribute vec3 morphTarget3;", "	#ifdef USE_MORPHNORMALS", "		attribute vec3 morphNormal0;", "		attribute vec3 morphNormal1;", "		attribute vec3 morphNormal2;", "		attribute vec3 morphNormal3;", "	#else", "		attribute vec3 morphTarget4;", "		attribute vec3 morphTarget5;", "		attribute vec3 morphTarget6;", "		attribute vec3 morphTarget7;", "	#endif", "#endif", "#ifdef USE_SKINNING", "	attribute vec4 skinIndex;", "	attribute vec4 skinWeight;", "#endif", "\n"].filter(n).join("\n"), x = [c.bumpMap || c.normalMap || c.flatShading || u.derivatives ? "#extension GL_OES_standard_derivatives : enable" : "", c.logarithmicDepthBuffer && a.extensions.get("EXT_frag_depth") ? "#extension GL_EXT_frag_depth : enable" : "", "precision " + c.precision + " float;", "precision " + c.precision + " int;", "#define SHADER_NAME " + u.__webglShader.name, w, "#define MAX_DIR_LIGHTS " + c.maxDirLights, "#define MAX_POINT_LIGHTS " + c.maxPointLights, "#define MAX_SPOT_LIGHTS " + c.maxSpotLights, "#define MAX_HEMI_LIGHTS " + c.maxHemiLights, "#define MAX_SHADOWS " + c.maxShadows, c.alphaTest ? "#define ALPHATEST " + c.alphaTest : "", a.gammaInput ? "#define GAMMA_INPUT" : "", a.gammaOutput ? "#define GAMMA_OUTPUT" : "", "#define GAMMA_FACTOR " + b, c.useFog && c.fog ? "#define USE_FOG" : "", c.useFog && c.fogExp ? "#define FOG_EXP2" : "", c.map ? "#define USE_MAP" : "", c.envMap ? "#define USE_ENVMAP" : "", c.envMap ? "#define " + m : "", c.envMap ? "#define " + g : "", c.envMap ? "#define " + v : "", c.lightMap ? "#define USE_LIGHTMAP" : "", c.aoMap ? "#define USE_AOMAP" : "", c.emissiveMap ? "#define USE_EMISSIVEMAP" : "", c.bumpMap ? "#define USE_BUMPMAP" : "", c.normalMap ? "#define USE_NORMALMAP" : "", c.specularMap ? "#define USE_SPECULARMAP" : "", c.alphaMap ? "#define USE_ALPHAMAP" : "", c.vertexColors ? "#define USE_COLOR" : "", c.flatShading ? "#define FLAT_SHADED" : "", c.metal ? "#define METAL" : "", c.doubleSided ? "#define DOUBLE_SIDED" : "", c.flipSided ? "#define FLIP_SIDED" : "", c.shadowMapEnabled ? "#define USE_SHADOWMAP" : "", c.shadowMapEnabled ? "#define " + f : "", c.shadowMapDebug ? "#define SHADOWMAP_DEBUG" : "", c.pointLightShadows > 0 ? "#define POINT_LIGHT_SHADOWS" : "", c.logarithmicDepthBuffer ? "#define USE_LOGDEPTHBUF" : "", c.logarithmicDepthBuffer && a.extensions.get("EXT_frag_depth") ? "#define USE_LOGDEPTHBUF_EXT" : "", "uniform mat4 viewMatrix;", "uniform vec3 cameraPosition;", "\n"].filter(n).join("\n"));
+                    u instanceof i.RawShaderMaterial ? (y = "", x = "") : (y = ["precision " + c.precision + " float;", "precision " + c.precision + " int;", "#define SHADER_NAME " + u.__webglShader.name, w, c.supportsVertexTextures ? "#define VERTEX_TEXTURES" : "", a.gammaInput ? "#define GAMMA_INPUT" : "", a.gammaOutput ? "#define GAMMA_OUTPUT" : "", "#define GAMMA_FACTOR " + b, "#define MAX_DIR_LIGHTS " + c.maxDirLights, "#define MAX_POINT_LIGHTS " + c.maxPointLights, "#define MAX_SPOT_LIGHTS " + c.maxSpotLights, "#define MAX_HEMI_LIGHTS " + c.maxHemiLights, "#define MAX_SHADOWS " + c.maxShadows, "#define MAX_BONES " + c.maxBones, c.map ? "#define USE_MAP" : "", c.envMap ? "#define USE_ENVMAP" : "", c.envMap ? "#define " + g : "", c.lightMap ? "#define USE_LIGHTMAP" : "", c.aoMap ? "#define USE_AOMAP" : "", c.emissiveMap ? "#define USE_EMISSIVEMAP" : "", c.bumpMap ? "#define USE_BUMPMAP" : "", c.normalMap ? "#define USE_NORMALMAP" : "", c.displacementMap && c.supportsVertexTextures ? "#define USE_DISPLACEMENTMAP" : "", c.specularMap ? "#define USE_SPECULARMAP" : "", c.alphaMap ? "#define USE_ALPHAMAP" : "", c.vertexColors ? "#define USE_COLOR" : "", c.flatShading ? "#define FLAT_SHADED" : "", c.skinning ? "#define USE_SKINNING" : "", c.useVertexTexture ? "#define BONE_TEXTURE" : "", c.morphTargets ? "#define USE_MORPHTARGETS" : "", c.morphNormals && c.flatShading === !1 ? "#define USE_MORPHNORMALS" : "", c.doubleSided ? "#define DOUBLE_SIDED" : "", c.flipSided ? "#define FLIP_SIDED" : "", c.shadowMapEnabled ? "#define USE_SHADOWMAP" : "", c.shadowMapEnabled ? "#define " + f : "", c.shadowMapDebug ? "#define SHADOWMAP_DEBUG" : "", c.pointLightShadows > 0 ? "#define POINT_LIGHT_SHADOWS" : "", c.sizeAttenuation ? "#define USE_SIZEATTENUATION" : "", c.logarithmicDepthBuffer ? "#define USE_LOGDEPTHBUF" : "", c.logarithmicDepthBuffer && a.extensions.get("EXT_frag_depth") ? "#define USE_LOGDEPTHBUF_EXT" : "", "uniform mat4 modelMatrix;", "uniform mat4 modelViewMatrix;", "uniform mat4 projectionMatrix;", "uniform mat4 viewMatrix;", "uniform mat3 normalMatrix;", "uniform vec3 cameraPosition;", "attribute vec3 position;", "attribute vec3 normal;", "attribute vec2 uv;", "#ifdef USE_COLOR", "  attribute vec3 color;", "#endif", "#ifdef USE_MORPHTARGETS", "  attribute vec3 morphTarget0;", "    attribute vec3 morphTarget1;", "    attribute vec3 morphTarget2;", "    attribute vec3 morphTarget3;", "    #ifdef USE_MORPHNORMALS", "     attribute vec3 morphNormal0;", "        attribute vec3 morphNormal1;", "        attribute vec3 morphNormal2;", "        attribute vec3 morphNormal3;", "    #else", "       attribute vec3 morphTarget4;", "        attribute vec3 morphTarget5;", "        attribute vec3 morphTarget6;", "        attribute vec3 morphTarget7;", "    #endif", "#endif", "#ifdef USE_SKINNING", " attribute vec4 skinIndex;", "   attribute vec4 skinWeight;", "#endif", "\n"].filter(n).join("\n"), x = [c.bumpMap || c.normalMap || c.flatShading || u.derivatives ? "#extension GL_OES_standard_derivatives : enable" : "", c.logarithmicDepthBuffer && a.extensions.get("EXT_frag_depth") ? "#extension GL_EXT_frag_depth : enable" : "", "precision " + c.precision + " float;", "precision " + c.precision + " int;", "#define SHADER_NAME " + u.__webglShader.name, w, "#define MAX_DIR_LIGHTS " + c.maxDirLights, "#define MAX_POINT_LIGHTS " + c.maxPointLights, "#define MAX_SPOT_LIGHTS " + c.maxSpotLights, "#define MAX_HEMI_LIGHTS " + c.maxHemiLights, "#define MAX_SHADOWS " + c.maxShadows, c.alphaTest ? "#define ALPHATEST " + c.alphaTest : "", a.gammaInput ? "#define GAMMA_INPUT" : "", a.gammaOutput ? "#define GAMMA_OUTPUT" : "", "#define GAMMA_FACTOR " + b, c.useFog && c.fog ? "#define USE_FOG" : "", c.useFog && c.fogExp ? "#define FOG_EXP2" : "", c.map ? "#define USE_MAP" : "", c.envMap ? "#define USE_ENVMAP" : "", c.envMap ? "#define " + m : "", c.envMap ? "#define " + g : "", c.envMap ? "#define " + v : "", c.lightMap ? "#define USE_LIGHTMAP" : "", c.aoMap ? "#define USE_AOMAP" : "", c.emissiveMap ? "#define USE_EMISSIVEMAP" : "", c.bumpMap ? "#define USE_BUMPMAP" : "", c.normalMap ? "#define USE_NORMALMAP" : "", c.specularMap ? "#define USE_SPECULARMAP" : "", c.alphaMap ? "#define USE_ALPHAMAP" : "", c.vertexColors ? "#define USE_COLOR" : "", c.flatShading ? "#define FLAT_SHADED" : "", c.metal ? "#define METAL" : "", c.doubleSided ? "#define DOUBLE_SIDED" : "", c.flipSided ? "#define FLIP_SIDED" : "", c.shadowMapEnabled ? "#define USE_SHADOWMAP" : "", c.shadowMapEnabled ? "#define " + f : "", c.shadowMapDebug ? "#define SHADOWMAP_DEBUG" : "", c.pointLightShadows > 0 ? "#define POINT_LIGHT_SHADOWS" : "", c.logarithmicDepthBuffer ? "#define USE_LOGDEPTHBUF" : "", c.logarithmicDepthBuffer && a.extensions.get("EXT_frag_depth") ? "#define USE_LOGDEPTHBUF_EXT" : "", "uniform mat4 viewMatrix;", "uniform vec3 cameraPosition;", "\n"].filter(n).join("\n"));
                     var M = y + p,
                         T = x + d,
                         _ = i.WebGLShader(l, l.VERTEX_SHADER, M),

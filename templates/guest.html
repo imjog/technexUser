@@ -4,13 +4,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<title>Think Talks | Technex '17</title>	
+	<meta name="description" content="Witness the stellar guest lecture series comprising gaints from different domains.">
+    <meta name="keywords" content="lectures, talks, guest lectures, think talks, nasa lecture, ceo lectures, vinod dham, guest, technex, technex17, technex 17, technex iit, technex bhu, techfest bhu, iitbhu, Indian Institute of technology, iit, bhu, iit festival, iit bhu technical festival, university, india, bhu, 2017, 2k17, 17, varanasi, big, best, biggest, awesome, large, largest">
 	<link href='http://fonts.googleapis.com/css?family=Vollkorn|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/static/css/guest_css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="/static/css/guest_css/style.css"> <!-- Resource style -->
 	<link rel="shortcut icon" href="/static/images/favicon.ico">
 	<script src="/static/js/guest_js/modernizr.js"></script> <!-- Modernizr -->
-	<title>Think Talks | Technex '17</title>
+	
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -85,11 +87,10 @@ function navFunction() {
 		<div class="fold-right"></div> <!-- this is the right fold -->
 		
 		<div class="cd-fold-content" style="color:black" id="guest-content">
-			
 		</div>
-
+        
 		<a class="cd-close" href="#0"></a>
-	</div> <!-- .cd-folding-panel -->
+	</div> <img src="" height="80px" width="80px" style="border:1px solid black;"><!-- .cd-folding-panel -->
 <script src="/static/js/guest_js/jquery-2.1.1.js"></script>
 <script type="text/javascript">
     var data={{ lectures|safe }};
@@ -105,7 +106,7 @@ function navFunction() {
         else
         {
         	k = k - 1;
-        	out+='<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
+        	out+='<h2 style="color:black">'+'<img src="" height="80px" width="80px" style="border:1px solid black;">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
         }
         
         document.getElementById('guest-content').innerHTML=out;
