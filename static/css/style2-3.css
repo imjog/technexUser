@@ -120,7 +120,7 @@ font-weight: bold;}
 a {
   outline: none;
   color: white;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover,
