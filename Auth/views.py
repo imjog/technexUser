@@ -14,6 +14,9 @@ from django_mobile import get_flavour
 from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
+def genetella(request):
+    return render(request, 'dash.html')
+    
 def ca(request):
     return redirect("http://ca.technex.in")
     
