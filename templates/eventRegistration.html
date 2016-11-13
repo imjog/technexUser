@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Event Reg</title>
+	        <link rel='stylesheet' href='/static/login2_files2/kla.css'>
+        <link rel="stylesheet" href="/static/login2_files2/css.css">
+        <link rel="stylesheet" href="/static/login2_files2/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/login2_files2/font-awesome.min.css">
+		<link rel="stylesheet" href="/static/login2_files2/form-elements.css">
+        <link rel="stylesheet" href="/static/login2_files2/assets/css/style.css">
+                <link rel="shortcut icon" href="/static/favicon.ico">
+	<script src="/static/eventReg/angular.min.js"></script>
+	<script src="/static/eventReg/main.js"></script>
+</head>
+<body>
+<!-- <div class="top-content"> -->
+ <div class="inner-bg">
+<div class="container" style="margin-top: -50px;">
+<div class="row">
+<div ng-app="evnt" ng-controller="evnt-control" class="col-sm-6 col-sm-offset-3 form-box">
+<div ng-bind-html="message" style='background: green; font:red;'></div>
+<form role="form" action="" method="post" class="event-registration-form">
+{% csrf_token %}
+<fieldset>
+           <div class="form-top" style="padding-bottom: 0px;">
+                                <div class="form-top-left">
+                                  <h3><b style="font-size: 26px;padding-bottom: 0px;">REGISTER FOR TECHNEX '17</b></h3>
+                                </div>
+                                <div class="form-top-right">
+                                 
+                                </div>
+                                </div>
+                                  <div class="form-bottom" style="padding-bottom: 35px;">
+<div class="form-group">                                  
+<input type="hidden" name='teamLeaderEmail' value='{{techProfile.email}}' style="background: rgba(0,0,0,0.8);" required />
+<input type="text" placeholder="Team Name" name='teamName' style="background: rgba(0,0,0,0.8);" required />
+<select ng-options='f.events as f.parentEvent for f in options' ng-model="parentEvent" ng-change="update()">
+  <option value="">-- Select Parent Event --</option>
+	</select>
+	</div>
+	<div class="form-group">
+<select ng-options="p as p for p in parentEvent" ng-model="selectedevent" ng-change="update()" name='eventSlug'>
+<option value="">-- Select Event --</option>
+</select>
+</div>
+<div>
+<div data-ng-repeat="field in members" class="form-group">
+<input type="text" name='members' style="background: rgba(0,0,0,0.8);" required />
+<button type="button" ng-click='removeMember($index)' class="btn">Remove Member</button>
+</div>
+</div>
+<button type="button" ng-click="addMember()" ng-disabled='max == counter || max==undefined' class="btn">Add Member</button>
+<button type="submit" class="btn" ng-click="register()">SUBMIT</button>
+
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
+</body>
+<script src='/static/jquery.min.js'></script>
+<script src="/static/login2_files2/bootstrap.min.js"></script>
+<script src="/static/login2_files2/jquery.backstretch.min.js"></script>
+<script src="/static/login2_files2/retina-1.1.0.min.js"></script>
+<script src="/static/js/1.12.0jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$.backstretch("/static/login2_files/1.jpg");
+    
+    $('#top-navbar-1').on('shown.bs.collapse', function(){
+        $.backstretch("resize");
+    });
+    $('#top-navbar-1').on('hidden.bs.collapse', function(){
+        $.backstretch("resize");
+    });
+	</script>
+</html>

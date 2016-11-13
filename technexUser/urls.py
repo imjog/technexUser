@@ -18,9 +18,10 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^events/',include('Events.urls')),
     url(r'^',include('Auth.urls')),
     url(r'^api/',include('authApi.urls')),
-    url(r'^techo/',include('Events.urls')),
+    
 ]
 
 handler404 = 'Auth.views.error404'
