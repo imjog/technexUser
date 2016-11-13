@@ -1128,6 +1128,11 @@ ul.topnav li a {
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
+@media (max-width:1320px){
+    ul.topnav li a{
+        padding: 10px 10px;
+    }
+}
 @media (min-width:1350px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);

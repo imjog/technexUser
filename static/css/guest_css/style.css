@@ -347,13 +347,19 @@ Main content
   padding: 1em 0;
 }
 .cd-item b {
-  display: inline-block;
+  display: none;
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 5px;
   padding: 1em 1.3em;
   border: 1px solid #ffffff;
+}
+@media only screen and (min-width: 768px){
+    .cd-item b{
+        display: inline-block;
+    }
+    
 }
 @media only screen and (min-width: 1100px) {
   .cd-item {
@@ -760,4 +766,19 @@ Javascript disabled
   -ms-transform: translateY(0);
   -o-transform: translateY(0);
   transform: translateY(0);
+}
+
+
+.talkimg{
+    margin-bottom: 26px;
+    margin-left: 0px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.guestimg{
+    height: 100px;
+    width: 100px;
+    margin-bottom: 25px;
+    border-radius: 50%;
 }

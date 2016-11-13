@@ -46,7 +46,6 @@ function navFunction() {
   <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
   <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
-  
   <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
@@ -67,8 +66,8 @@ function navFunction() {
 			</li>
 		{% for lecture in lectures.lectures %}
 			<li class="cd-item">
-				<a>
-					<div>
+				<a>   
+					<div><img src="{{lecture.photo}}" class="guestimg">
 						<h2>{{ lecture.lecturerName }}</h2>
 						<p>{{ lecture.designation }}</p>
 						<b>View More</b>
@@ -90,7 +89,7 @@ function navFunction() {
 		</div>
         
 		<a class="cd-close" href="#0"></a>
-	</div> <img src="" height="80px" width="80px" style="border:1px solid black;"><!-- .cd-folding-panel -->
+	</div><!-- .cd-folding-panel -->
 <script src="/static/js/guest_js/jquery-2.1.1.js"></script>
 <script type="text/javascript">
     var data={{ lectures|safe }};
@@ -106,7 +105,7 @@ function navFunction() {
         else
         {
         	k = k - 1;
-        	out+='<h2 style="color:black">'+'<img src="" height="80px" width="80px" style="border:1px solid black;">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
+        	out+='<img src='+data.lectures[k].photo+' class="talkimg">'+'<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
         }
         
         document.getElementById('guest-content').innerHTML=out;

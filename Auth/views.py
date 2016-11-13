@@ -397,6 +397,7 @@ def guestLecture(request):
             lectureData['lecturerBio'] = lecture.lecturerBio.encode('ascii','ignore')
             lectureData['designation'] = lecture.designation.encode('ascii','ignore')
             lectureData['lectureType'] = lecture.lectureType.encode('ascii','ignore')
+            lectureData['photo'] = lecture.photo.encode('ascii','ignore')
             response['lectures'].append(lectureData)
     except:
         response['status'] = 0  
