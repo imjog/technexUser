@@ -15,8 +15,10 @@ server = "https://technexuser.herokuapp.com/"
 @csrf_exempt
 def eventRegistration(request):
     response = {}
+    print 
     if request.method == 'POST':
         data = json.loads(request.body)
+        print data
         event = Event.objects.get(nameSlug = data['eventSlug'])
         try:
             team = Team.objects.get(teamName = data['teamName'], event = event)
@@ -32,11 +34,11 @@ def eventRegistration(request):
 	            teamLeader = TechProfile.objects.get(email = data['teamLeaderEmail'])
 	        users = []
 	        for member in data['members']:
-	            if 'memberEmail' in member:
-	                user = TechProfile.objects.get(email = member['memberEmail'])
+	            try:#if 'memberEmail' in member:
+	                user = TechProfile.objects.get(email = member)#member['memberEmail'])
 	                users.append(user)
-	            elif 'memberTechnexId' in member:
-	                user = TechProfile.objects.get(technexId = member['memberTechnexId'])
+	            except:#elif 'memberTechnexId' in member:
+	                user = TechProfile.objects.get(technexId = member)#member['memberTechnexId'])
 	                users.append(user)
 	        users = list(set(users))
 	        try:
