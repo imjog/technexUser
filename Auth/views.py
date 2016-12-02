@@ -14,6 +14,7 @@ from django_mobile import get_flavour
 from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
+@csrf_exempt
 def genetella(request):
     return render(request, 'dash.html')
     
