@@ -53,7 +53,7 @@ function navFunction() {
   <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;padding:10px 10px">REGISTER</a></li>
+  <li class="topnav-li" id="reg"><a style="font-weight:600;background:#0084ff;padding:10px 10px" data-toggle="modal" data-target="#myModal">REGISTER</a></li>
   <li class="icon">
     <a href="javascript:void(0);" style="font-size:18px;padding:10px;" onclick="navFunction()">☰</a>
   </li>
@@ -265,6 +265,46 @@ function navFunction() {
             </div>
             
         </div>
+
+          <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="top: 70px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Login to Technex'17</h4>
+        </div>
+        <div class="modal-body">
+         <form role="form" method="post" class="login-form">
+         <div class="form-group">
+         <input type="text" class="form-control" name="login-id" id="login-id" placeholder="TechnexID or email" />
+         </div>
+         <div class="form-group">
+         <input type="password" placeholder="Password" class="form-control" id="login-pass"/>
+         </div>
+          <div class="form-group" style="margin-top: 6%;margin: 0 auto;">
+                          <button type="button" class="form-control btn">LOGIN</button>
+                          </div>
+                                               <div class="form-group" style="display: table;margin: 0 auto;">
+                             <h3 style="color: black;"> ----- OR ----- </h3>
+                            </div>
+                                         <div class="form-group" style="margin: 0 auto;">
+                            <button type="button" id="btn-next-page-fb" class="form-control" onclick="fb_login()" style="width: 100%">LOGIN WITH FACEBOOK</button>
+                            </div>
+
+         </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+     
+
+
 
  <script src='/static/jquery.min.js'></script>
         <script src="/static/login2_files2/bootstrap.min.js"></script>

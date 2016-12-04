@@ -53,7 +53,7 @@ def dummyDashboard(request):
     context['teamsAsMember'] = Team.objects.filter(members = context['techProfile'])
     context['teamsAsLeader'] = Team.objects.filter(teamLeader = context['techProfile'])
     print context
-    return render(request, 'dashboardDummy.html',context)
+    return redirect('/events/register')#render(request, 'eventRegistration.html',context)
 
 @csrf_exempt
 def emailUnique(request):

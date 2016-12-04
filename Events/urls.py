@@ -12,5 +12,6 @@ urlpatterns = [
 	url(r'^teamLeave/$', teamLeave, name='teamLeave'),
 	url(r'^teamDelete/$', teamDelete, name='teamDelete'),
 	url(r'^memberDelete/$', memberDelete, name='memberDelete'),
+	#url(r'^register/$', event, name='event Reg'),
 	
 ]
