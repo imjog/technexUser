@@ -14,6 +14,7 @@ from django_mobile import get_flavour
 from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
+
 def profileValidation(request):
     response = {}
     response['status'] = 0
@@ -27,6 +28,12 @@ def profileValidation(request):
             return JsonResponse(response)
     else:
         return JsonResponse(response)
+
+@csrf_exempt
+def genetella(request):
+    return render(request, 'dash.html')
+    
+
 def ca(request):
     return redirect("http://ca.technex.in")
     
