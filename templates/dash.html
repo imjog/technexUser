@@ -45,7 +45,7 @@ input.ng-invalid {
     </style>
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md" ng-app="evnt">
 
 
     
@@ -78,7 +78,7 @@ input.ng-invalid {
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="index.html"><i class="fa fa-home"></i> Register Team</a>
+                  <li><a href="#eventReg"><i class="fa fa-home"></i> Register Team</a>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Teams <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -208,44 +208,12 @@ input.ng-invalid {
                   </div>
                   <div class="x_content">
                     <br>
-                    <div ng-app="evnt" ng-controller="evnt-control" class="col-sm-6 col-sm-offset-3 form-box">
-                    <form role="form" action="" method="post" class="event-registration-form"
-    >
-<fieldset>
-                                  <div class="form-bottom" style="padding-bottom: 35px;">
-<div class="form-group">                                  
-<select ng-options='f.events as f.parentEvent for f in options' ng-model="parentEvent" ng-change="update()" class="form-control">
-  <option value="">-- Select Parent Event --</option>
-  </select>
-  </div>
-  <div class="form-group">
-<select ng-options="p as p for p in parentEvent" ng-model="selectedevent" ng-change="update()" class="form-control">
-<option value="">-- Select Event --</option>
-</select>
-</div>
-<div class="form-group">
-<input type='text' ng-model="teamName" class="form-control" style="margin-bottom: 10px;"/>
-</div>
-<div class="form-group has-feedback">
-<input type="email" class="form-control" readonly="readonly" value="abcd@gmail.com">
-<span class="glyphicon glyphicon-king form-control-feedback right" style="right: 0px" aria-hidden="true"></input></span>
-</div>
-<div>
-<div data-ng-repeat="field in members track by $index" class="form-group ">
-  <div class="col-md-6 col-sm-6 col-xs-12 has-feedback member-input">
-<input type="email" ng-model="a[$index]" class="form-control col-md-7 col-xs-12" required />
-<span class="glyphicon glyphicon-pawn form-control-feedback right" style="right: 10px" aria-hidden="true"></span>
-</div>
+                    <div  class="col-sm-6 col-sm-offset-3 form-box">
+                   
+    <div ng-view>
 
-<button type="button" ng-click='removeMember($index)' class="btn btn-danger">Remove</button>
-</div>
-</div>
-<button type="button" ng-click="addMember()" ng-disabled='max == counter || max==undefined' class="btn btn-primary">Add Member</button>
-<button type="button" class="btn btn-success" ng-disabled='max == counter+1 || max==undefined' ng-click="submitForm()">SUBMIT</button>
-</div>
-</fieldset>
+    </div>
 
-</form>
 
 </div>
                   </div>
@@ -255,20 +223,8 @@ input.ng-invalid {
             
 
 
+          <br >
 
-          <br />
-
-          
-<div ng-app="testApp">
-
-<p><a href="#/">Main</a></p>
-
-<a href="#test1">test1</a>
-<a href="#test2">test2</a>
-<a href="#test3">test3</a>
-
-<div ng-view></div>
-</div>
 
 
     
@@ -287,8 +243,27 @@ input.ng-invalid {
         <!-- /footer content -->
       </div>
     </div>
+        <script>
+        //var appapp = angular.module('ngRoutingDemo', ['ngRoute']);
+
+ //        appapp.config(function ($routeProvider) {
+             
+ //            $routeProvider.when('/', {
+ // template: '<h1>kijdwjid</h1>',
+                
+ //            }).when('/student/', {
+               
+ //                               template:'<h1>jdcjdcjdcjod</h1>',
+                
+ //            }).otherwise({
+ //                redirectTo: "/"
+ //            });
+
+ //    });
+    </script>
 
     <!-- jQuery -->
+  
     <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap -->

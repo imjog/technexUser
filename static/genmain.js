@@ -30,23 +30,24 @@ function findWithAttr(array, attr, value) {
     return -1;
 }
 
-var app = angular.module('evnt', []);
-var app1 = angular.module('testApp', ["ngRoute"]);
-app1.config(function($routeProvider) {
-    $routeProvider
-    .when("/" ,{
-      templateUrl : "test1.html"
-    })
-    .when("/test1", {
-        templateUrl : "test1.html"
-    })
-    .when("/test2", {
-        templateUrl : "test2.html"
-    })
-    .when("/test3", {
-        templateUrl : "test3.html"
+var app = angular.module('evnt', ['ngRoute']);
+
+app.config(function ($routeProvider) {
+             
+            $routeProvider.when('/eventReg/', {
+ templateUrl: '/static/dash/teamregister.html',
+ controller: 'evnt-control',
+                
+            }).when('/student/', {
+               
+                               template:'<h1>jdcjdcjdcjod</h1>',
+                
+            }).otherwise({
+                redirectTo: "/"
+            });
+
     });
-});
+
 app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, $window,$http) {
    console.log("hi");
   $scope.parentEvent = '';
