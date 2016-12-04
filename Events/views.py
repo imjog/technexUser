@@ -13,7 +13,7 @@ from Auth.models import *
 from Auth.views import contextCall
 server = "https://technexuser.herokuapp.com/"
 
-@login_required
+
 @csrf_exempt
 def eventRegistration(request):
 	response = {}
