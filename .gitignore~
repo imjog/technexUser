@@ -1,0 +1,7 @@
+venv
+*.pyc
+staticfiles
+/db.sqlite
+/.gitignore
+*.~
+.DS_Store
