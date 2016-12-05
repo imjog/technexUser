@@ -20,10 +20,30 @@ jQuery(document).ready(function() {
 
 
   $("#login-btn").on("click",function(){
+    var x=true;
+      if($("#login-id").val()=="")
+      {
+        $("#login-id").addClass("input-error");
+        x=false;
+      }
+      if($("#login-pass").val()=="")
+      {
+         $("#login-pass").addClass("input-error");
+          x=false; 
+               }
+       if(x)
+       {
+         x=(loginemailvalidation() || technexIdValidation())
+       }        
+       if(x)
+       {
 
-      if($("#login-id").)
+       }
 
   });
+
+
+
 
 
 
@@ -67,6 +87,7 @@ jQuery(document).ready(function() {
     });
 
 
+
 function phnvalidation()
     {
         var num = $('.form-mobile-number').val();
@@ -91,6 +112,33 @@ function phnvalidation()
     $('#top-navbar-1').on('hidden.bs.collapse', function(){
         $.backstretch("resize");
     });
+
+
+function technexIdValidation()
+{
+   var id=$("#login-id").val().trim();
+    return id.length==9 && id.substring(0,4)=="TX17" && !isNan(parseInt(id.substring(4)));
+
+}
+
+        function loginemailvalidation()
+    {
+
+        var email = $('#login-id').val();
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       
+        if(re.test(email) == false)
+        {
+             $('#email-error').show();
+             return false;
+        }
+        else
+        { 
+              $("#email-error").hide();
+              return true;
+        }
+        
+    }
 
     function emailvalidation()
     {
@@ -144,6 +192,9 @@ function validatePassword(){
     $('.registration-form fieldset:first-child').fadeIn('slow');
     
     $('.registration-form input[type="text"], .registration-form input[type="password"], .registration-form textarea, .registration-form select').on('focus', function() {
+        $(this).removeClass('input-error');
+    });
+    $('.login-form input[type="text"], .registration-form input[type="password"], .registration-form textarea, .registration-form select').on('focus', function() {
         $(this).removeClass('input-error');
     });
     $('#btn-next').on('click', function() {
