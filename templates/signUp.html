@@ -53,7 +53,7 @@ function navFunction() {
   <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a style="font-weight:600;background:#0084ff;padding:10px 10px" data-toggle="modal" data-target="#myModal">REGISTER</a></li>
+  <li class="topnav-li" id="reg"><a  href="/register" style="font-weight:600;background:#0084ff;padding:10px 10px">REGISTER</a></li>
   <li class="icon">
     <a href="javascript:void(0);" style="font-size:18px;padding:10px;" onclick="navFunction()">☰</a>
   </li>
@@ -69,8 +69,43 @@ function navFunction() {
                   
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 form-box">
+                                 <form role="form" method="post" class="login-form">
+                                     <fieldset style="display: block;">
+                            <div class="form-top" style="padding-bottom: 0px;">
+                                <div class="form-top-left">
+                                  <h3><b style="font-size: 26px;padding-bottom: 0px;">LOGIN TO TECHNEX '17</b></h3>
+                                </div>
+                                <div class="form-top-right">
+                                  <i class="fa fa-user"></i>
+                                </div>
+                                </div>
+                                <div class="form-bottom" style="padding-bottom: 35px;">
+                                                                         <div class="form-group" style="margin: 0 auto;">
+                            <button type="button" id="btn-next-page-fb" class="form-control" onclick="fb_login()" style="width: 100%">Continue With Facebook</button>
+                            </div>
+                                                                  <div class="form-group" style="display: table;margin: 0 auto;">
+                             <h3> ----- OR ----- </h3>
+                            </div>
+                     <div class="form-group">
+                            <input type="text" class="form-control" name="login-id" id="login-id" placeholder="TechnexID or email" />
+                      </div>
+                         <div class="form-group">
+           <input type="password" placeholder="Password" class="form-control" id="login-pass"/>
+                  </div>
+                        <div class="form-group" style="margin-top: 6%;margin: 0 auto;">
+                          <button type="button" class="form-control btn" id="login-btn">LOGIN</button>
+                          </div>
+         
+
+                            <div class="form-group">
+                            <a href="#" id="not-registered">Not Registered? Register Here</a>
+                            </div>
+                                                            </div>
+                            </fieldset>
+
+                          </form>
                         	
-                        	<form role="form" action="" method="post" class="registration-form">
+                        	<form role="form" action="" method="post" class="registration-form" style="display: none;">
                         		
                           {% csrf_token %}
 

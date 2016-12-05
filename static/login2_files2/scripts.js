@@ -9,7 +9,41 @@ function theAjax(uri,data){
 
 
 jQuery(document).ready(function() {
-    
+
+     //$(".registration-form").hide();
+    $("#not-registered").on("click",function(){
+   $(".login-form").fadeOut(400,function(){
+   $(".registration-form").fadeIn(); 
+   });
+   
+    });
+
+
+  $("#login-btn").on("click",function(){
+
+      if($("#login-id").)
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $(".alert-email").hide();
     $(".alert-confirm-password").hide();
     $(".alert-mobile").hide();
@@ -31,6 +65,7 @@ jQuery(document).ready(function() {
        $('#close-invalid-referral').on('click',function(){
       $('.alert-email').hide();
     });
+
 
 function phnvalidation()
     {
