@@ -14,6 +14,26 @@ from django_mobile import get_flavour
 from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
+@csrf_exempt
+def profileValidation(request):
+    response = {}
+    response['status'] = 0
+    if request.method == 'POST':
+        post = request.POST
+        try:
+            techprofile = TechProfile.objects.get(email = post['email'])
+            response['status'] = 1
+            return JsonResponse(response)
+        except:
+            return JsonResponse(response)
+    else:
+        return JsonResponse(response)
+
+@csrf_exempt
+def genetella(request):
+    return render(request, 'dash.html')
+    
+
 def ca(request):
     return redirect("http://ca.technex.in")
     

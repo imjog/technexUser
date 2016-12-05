@@ -13,53 +13,49 @@ from Auth.models import *
 from Auth.views import contextCall
 server = "https://technexuser.herokuapp.com/"
 
-@login_required
+
 @csrf_exempt
 def eventRegistration(request):
-    response = {}
-    if request.method == 'POST':
-        data = request.POST#json.loads(request.body)
-        event = Event.objects.get(nameSlug = data['eventSlug'].split(':')[1])
-        try:
-            team = Team.objects.get(teamName = data['teamName'], event = event)
-            response['status'] = 0
-            response['error'] = "TeamName Already exists"
-            return JsonResponse(response)
-        except:
+	response = {}
+     
+	if request.method == 'POST':
+		data = json.loads(request.body)
+		print data
+		event = Event.objects.get(nameSlug = data['eventSlug'])
+		try:
+			team = Team.objects.get(teamName = data['teamName'], event = event)
+			response['status'] = 0
+			response['error'] = "TeamName Already exists"
+			return JsonResponse(response)
+		except:
            
-	        if 'teamLeaderTechnexId' in data:
-	            teamLeader = TechProfile.objects.get(technexId = data['teamLeaderTechnexId'])
+			if 'teamLeaderTechnexId' in data:
+				teamLeader = TechProfile.objects.get(technexId = data['teamLeaderTechnexId'])
 	            
-	        else:
-	            teamLeader = TechProfile.objects.get(email = data['teamLeaderEmail'])
-	        users = []
-	        
-	        for member in data.getlist('members'):
-	            if True:
-	                try:
-	                	user = TechProfile.objects.get(email = member)
-	                	users.append(user)
-	                except:
-	                	response['status'] = 0
-	                	response['error'] = 'Invalid Email('+member+')'
-	                	return JsonResponse({"err"})
-	            elif 'memberTechnexId' in member:
-	                user = TechProfile.objects.get(technexId = member['memberTechnexId'])
-	                users.append(user)
-	        users = list(set(users))
-	        try:
-	            team = Team.objects.get(teamLeader = teamLeader,event = event)
-	        except:
-	            team = Team(teamLeader = teamLeader,event = event, teamName = data['teamName'])
-	            team.save()
-	        for user in users:
-	            team.members.add(user)
-	        response['status'] = 1
-	        return JsonResponse(response)
-    else:
-        response['status'] = 0
-        return render(request, 'eventRegistration.html',contextCall(request))
-        #return JsonResponse(response)
+			else:
+				teamLeader = TechProfile.objects.get(email = data['teamLeaderEmail'])
+			users = []
+			for member in data['members']:
+				try:#if 'memberEmail' in member:
+					user = TechProfile.objects.get(email = member)#member['memberEmail'])
+					users.append(user)
+				except:#elif 'memberTechnexId' in member:
+					user = TechProfile.objects.get(technexId = member)#member['memberTechnexId'])
+				users.append(user)
+			users = list(set(users))
+			try:
+			    team = Team.objects.get(teamLeader = teamLeader,event = event)
+			except:
+			    team = Team(teamLeader = teamLeader,event = event, teamName = data['teamName'])
+			    team.save()
+			for user in users:
+			    team.members.add(user)
+			response['status'] = 1
+			return JsonResponse(response)
+	else:
+		response['status'] = 0
+		return render(request, 'eventRegistration.html',contextCall(request))
+		#return JsonResponse(response)
 
 
 def teamLeave(request):
