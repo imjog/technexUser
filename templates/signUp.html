@@ -80,6 +80,12 @@ function navFunction() {
                                 </div>
                                 </div>
                                 <div class="form-bottom" style="padding-bottom: 35px;">
+                                  <div class="alert-message login-error" id="login-error">
+                                          <button type="button" id="close-login-error" class="close-btna close-btn">
+                                             <span aria-hidden="true">&times;</span>
+                                           </button>
+  <p class="login-error-message">HI</p>
+</div>
                                                                          <div class="form-group" style="margin: 0 auto;">
                             <button type="button" id="btn-next-page-fb" class="form-control" onclick="fb_login()" style="width: 100%">Continue With Facebook</button>
                             </div>
@@ -88,6 +94,12 @@ function navFunction() {
                             </div>
                      <div class="form-group">
                             <input type="text" class="form-control" name="login-id" id="login-id" placeholder="TechnexID or email" />
+                              <div class="alert-message login-invalid" id="login-invalid">
+                                          <button type="button" id="close-login-invalid" class="close-btna close-btn">
+                                             <span aria-hidden="true">&times;</span>
+                                           </button>
+  <!-- <strong>Sorry!</strong> -->Invalid Email or TechnexID
+</div>
                       </div>
                          <div class="form-group">
            <input type="password" placeholder="Password" class="form-control" id="login-pass"/>
@@ -130,6 +142,9 @@ function navFunction() {
                             <div class="form-group" style="margin-top: 6%;display: table;margin: 0 auto;">
                           <button type="button" id="btn-next-page-email" class="btn btn-next">REGISTER WITH EMAIL</button>
                           </div>
+                          <div class="form-group" style="display: table;margin: 0 auto;">
+                            <a href="#" id="already-registered">Already Registered? Login Here</a>
+                            </div>
                                 </div>
                             </fieldset>
 

@@ -17,6 +17,14 @@ jQuery(document).ready(function() {
    });
    
     });
+     $("#already-registered").on("click",function(){
+      console.log("hi");
+   $(".registration-form").fadeOut(400,function(){
+   $(".login-form").fadeIn(); 
+   });
+   
+    });
+
 
 
   $("#login-btn").on("click",function(){
@@ -30,14 +38,37 @@ jQuery(document).ready(function() {
       {
          $("#login-pass").addClass("input-error");
           x=false; 
+
                }
        if(x)
        {
          x=(loginemailvalidation() || technexIdValidation())
+         if(!x){
+          $(".login-invalid").show();
+         }
        }        
        if(x)
        {
-
+         $("#login-btn").html("Logging you in");
+          data = {
+            "email":$("#login-id").val(),
+            "password":$("#login-pass").val(),
+            "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val()
+          }
+          theAjax('/login/',data)
+          .done(function(response){
+            console.log(response);
+            if(response.status==1)
+            {
+              
+            }
+            if(response.status==0)
+            {
+               $("#login-btn").html("Login");
+               $(".login-error-message").html(response.error);
+               $(".login-error").show();
+            }
+          })
        }
 
   });
@@ -61,9 +92,9 @@ jQuery(document).ready(function() {
 
 
 
+    $(".login-error").hide();
 
-
-
+     $(".login-invalid").hide();
     $(".alert-email").hide();
     $(".alert-confirm-password").hide();
     $(".alert-mobile").hide();
@@ -85,6 +116,13 @@ jQuery(document).ready(function() {
        $('#close-invalid-referral').on('click',function(){
       $('.alert-email').hide();
     });
+   $('#close-login-invalid').on('click',function(){
+      $('.login-invalid').hide();
+    });
+    $("#close-login-error").on('click',function(){
+      $('.login-error').hide();
+
+    })
 
 
 
@@ -286,6 +324,26 @@ function validatePassword(){
         var code = (e.keyCode ? e.keyCode : e.which);
         if(code !==13)
         $('.alert-mobile').hide();
+    });
+
+    $("#login-id").keyup(function(e){
+         var code= (e.keyCode ? e.keyCode : e.which);
+         if(code!=13)
+         {
+          $(".login-invalid").hide();
+          $(".login-error").hide();
+         }  
+
+    });
+
+$("#login-pass").keyup(function(e){
+         var code= (e.keyCode ? e.keyCode : e.which);
+         if(code!=13)
+         {
+          $(".login-invalid").hide();
+          $(".login-error").hide();
+         }  
+
     });
 
 $('#laluram').keyup(function(e){

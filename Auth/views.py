@@ -172,27 +172,37 @@ Team Technex.'''
             return render(request,'signUp.html',context)
 
 def loginView(request):
+    response = {}
     if request.user.is_authenticated():
         return redirect('/dashboard')
     if request.method == 'POST':
+        
         post = request.POST
         try:
-            techProfile = TechProfile.objects.get(email = post['email'])
+            try:
+                techProfile = TechProfile.objects.get(email = post['email'])
+            except:
+                techProfile = TechProfile.objects.get(technexId = post['email'])
         except:
-            messages.warning(request,"No User registered with the email!")
-            return redirect('/login')
+            response['status'] = 0
+            response['error'] = "No User registered with the email!"
+            return JsonResponse(response)
         #user = authenticate(username = post['email'], email= post['email'], password = post['password'])
         kUser = techProfile.user
         user = authenticate(username = kUser.username, password = post['password'])
         
         if user is not None:
             login(request, user)
-            return redirect('/dashboardDummy')
+            response['status'] = 1
+            return JsonResponse(response)
         else:
-            messages.warning(request,"Invalid Credentials !")
-            return redirect('/login')
+            response['status'] = 0
+            response['error'] = "Invalid Credentials !"
+            return JsonResponse(response)
     else:
-        return render(request,'login.html')
+        response['status'] = 0
+        response['error'] = "Invalid Request!!"
+        return JsonResponse(response)
 
 @login_required(login_url='/login')
 def dashboardView(request):
