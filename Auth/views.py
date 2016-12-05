@@ -451,3 +451,69 @@ def botApi(request):
         
         return JsonResponse(response)
     return HttpResponse("Invalid Request!")
+
+@csrf_exempt
+def forgotPassword(request):
+    if request.method == 'POST':
+        email = request.POST.get("form-email")
+
+        try:
+            user = User.objects.get(email = email)
+            if user.is_active is False:
+                messages.warning(request,"Please confirm your email first!")
+                return redirect('/login')
+        except:
+            messages.warning(request,"Email not registered")
+            return redirect('/login')
+
+        subject = "Reset Password"
+        forgotPassKey = 'Technex' + email + "caportal"
+        forgotPassKey = str(hash(forgotPassKey))
+
+        try:
+            key = Key.objects.get(ca = user.caprofile)
+            key.forgotPassKey = forgotPassKey
+            key.save()
+        except:
+            key = Key(ca = user.caprofile,forgotPassKey = forgotPassKey)
+            key.save()
+
+        body = "Please Cick on the following link to reset your Technex CA Portal Password.\n\n"
+        body += server + "resetPass/" + forgotPassKey
+
+        if send_email(email, subject, body):
+            messages.success(request, "Password Reset link sent to your Email.")
+            return redirect('/login')
+        else:
+            messages.warning(request, "Email couldn't  be send, Retry please!")
+    else:
+        raise Http404('NOT ALLOWED')
+
+@csrf_exempt
+def resetPass(request,forgotPassKey):
+    if request.method == 'GET':
+        try:
+            key = Key.objects.get(forgotPassKey = int(forgotPassKey))
+            return render(request,"ca/reset.html")
+        except:
+            messages.warning(request,'Invalid Url !')
+            return redirect('/login')
+
+    elif request.method == "POST":
+        post = request.POST
+        try:
+            key = Key.objects.get(forgotPassKey=forgotPassKey)
+            caprofile = key.ca
+            password1 = post.get('form-password')
+            password2 = post.get('form-repeat-password')
+            if password1 == password2:
+                caprofile.user.set_password(password1)
+                caprofile.user.save()
+                messages.success(request,'password set successfully!',fail_silently=True)
+                return redirect('/login')
+            else:
+                messages.warning(request,"passwords didn't match!")
+                url = server + "/resetPass/" + key
+                return redirect(request, url)
+        except:
+            raise Http404('Not allowed')
