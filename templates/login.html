@@ -12,10 +12,16 @@ Login
                             {% endfor %}
                           {% endif %}
 <form method='post'>
-{%csrf_token%}
+
 <input type='text' name='email'></input>
 <input type='password' name='password'></input>
 <input type='submit' value='login' />
+<br><br><br>
+</form>
+<form method='post'>
+{%csrf_token%}
+Type your email: <input type='text' name='email' />
+<button type='submit'>send request</button>
 </form>
 <button onclick="fb_login()">
           Facebook Connect

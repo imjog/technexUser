@@ -37,12 +37,18 @@ def eventRegistration(request):
 			users = []
 			# print "here"
 			for member in data['members']:
-				try:#if 'memberEmail' in member:
-					user = TechProfile.objects.get(email = member)#member['memberEmail'])
-					users.append(user)
-				except:#elif 'memberTechnexId' in member:
-					user = TechProfile.objects.get(technexId = member)#member['memberTechnexId'])
-				users.append(user)
+				try:	
+					try:
+						user = TechProfile.objects.get(email = member)
+						users.append(user)
+					except:
+						user = TechProfile.objects.get(technexId = member)
+						users.append(user)
+				except:
+					response['status'] = 0
+					response['error'] = 'Member not Registered('+member+')'
+					return JsonResponse(response)
+				
 			users = list(set(users))
 			try:
 			    team = Team.objects.get(teamLeader = teamLeader,event = event)
