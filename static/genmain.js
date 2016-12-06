@@ -72,15 +72,23 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
   	$scope.a.splice(z,1);
   	$scope.counter--;
   };
+   
+   $scope.removeerror = function(z){
+     var x=document.getElementsByClassName("abcd");
+     var y=document.getElementsByClassName("parsley-errors-list");
+     $(x[z]).removeClass("parsley-error");
+     $(x[z]).removeClass("input-error");
+     $(y[z]).hide();
+   };
   $scope.update = function(){
 
   	try{ 
   	$scope.max = $scope.options[$scope.parentEventIndex()].max[$scope.parentEvent.indexOf($scope.selectedevent)];
   	$scope.a  = new Array($scope.max);
-    //     while($scope.members.length!=0)
-    // {
-    //     $scope.members.pop();    
-    // }
+        while($scope.members.length!=0)
+    {
+        $scope.members.pop();    
+    }
     $scope.members=[];
     $scope.counter=0;
   	return false;
@@ -120,19 +128,3 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
   }]);
 
 
-    $(document).ready(function(){
-
-console.log("hi");
-   $('.team-reg-submit').on("click",function(){
-   //    var x=$(".abcd");
-   //    var y=true;
-   //    var team_name=$(".teamName").val();
-   //    console.log(x);
-   //    console.log(y);
-
-   // angular.element(document.getElementById('body')).scope().submitForm();
-   console.log("hi");
-   });
-
-
-});

@@ -155,7 +155,7 @@ function phnvalidation()
 function technexIdValidation()
 {
    var id=$("#login-id").val().trim();
-    return id.length==9 && id.substring(0,4)=="TX17" && !isNan(parseInt(id.substring(4)));
+    return id.length==9 && id.substring(0,4)=="TX17" && !isNaN(parseInt(id.substring(4)));
 
 }
 

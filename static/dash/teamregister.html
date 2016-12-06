@@ -36,7 +36,8 @@
 <div>
 <div data-ng-repeat="field in members track by $index" class="form-group ">
   <div class="col-md-6 col-sm-6 col-xs-12 has-feedback member-input">
-<input type="email" ng-model="a[$index]" class="form-control col-md-7 col-xs-12 abcd" required />
+<input type="text" ng-model="a[$index]" class="form-control col-md-7 col-xs-12 abcd" ng-focus="removeerror($index)" required />
+<ul class="parsley-errors-list filled" style="display: none;"><li class="parsley-required">Invalid Email or TechnexID</li></ul>
 <span class="glyphicon glyphicon-pawn form-control-feedback right" style="right: 10px" aria-hidden="true"></span>
 </div>
 
@@ -68,6 +69,18 @@
           <script type="text/javascript">
           	    $(document).ready(function(){
 
+function membervalid(data){
+   var id=data.trim();
+    var tid=id.length==9 && id.substring(0,4)=="TX17" && !isNaN(parseInt(id.substring(4)));
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       console.log("////");
+       console.log(tid);
+      var email=re.test(id)
+       return (email || tid);  
+        
+    }
+
+
 console.log("hi");
    $('.team-reg-submit').on("click",function(){
       var x=$(".abcd");
@@ -97,11 +110,43 @@ console.log("hi");
           	$("#teamName").addClass("input-error");
           }    
       }
+      var z=$(".abcd");
+      var ze=$(".parsley-errors-list");
+      if(y)
+      {
+      	var i;
+      	for(i=0;i<z.length;i++)
+      	{
+      		if(z[i].value=="")
+      		{
+                 $(z[i]).addClass("input-error");
+                 y=false;
+      		}
+      	}
+      }
+      if(y)
+      {
+      	var i;
+      	for(i=0;i<z.length;i++)
+      	{
+      		if(!membervalid(z[i].value))
+      		{
+             $(z[i]).addClass("parsley-error");
+             $(ze[i]).show();
+             y=false;                
+      		}
+      	}
+      }
       	if(y)
 		{
  		angular.element(document.getElementById('abcdlf')).scope().$$childTail.submitForm();
 		}	
-   });
+   }); 
+   $('.event-registration-form input[type="text"], .event-registration-form input[type="password"], .event-registration-form textarea, .event-registration-form select').on('focus', function() {
+        
+         $(this).removeClass('input-error');
+    });
+   
 
 
 });
