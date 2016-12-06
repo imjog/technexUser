@@ -1,0 +1,504 @@
+<div class="right_col" role="main" style="min-height: 1164px;">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>User Profile</h3>
+              </div>
+
+              
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  
+                  <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+                          <img class="img-responsive avatar-view" src="/static/profile.png" alt="Avatar" title="Change the avatar">
+                        </div>
+                      </div>
+                      <h3>Samuel Doe</h3>
+
+                      <ul class="list-unstyled user_data">
+                        <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                        </li>
+
+                        <li>
+                          <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                        </li>
+
+                        <li class="m-top-xs">
+                          <i class="fa fa-external-link user-profile-icon"></i>
+                          <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                        </li>
+                      </ul>
+
+                      <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                      <br>
+
+                      <!-- start skills -->
+                      <h4>Skills</h4>
+                      <ul class="list-unstyled user_data">
+                        <li>
+                          <p>Web Applications</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50" aria-valuenow="49" style="width: 50%;"></div>
+                          </div>
+                        </li>
+                        <li>
+                          <p>Website Design</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70" aria-valuenow="69" style="width: 70%;"></div>
+                          </div>
+                        </li>
+                        <li>
+                          <p>Automation &amp; Testing</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30" aria-valuenow="29" style="width: 30%;"></div>
+                          </div>
+                        </li>
+                        <li>
+                          <p>UI / UX</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50" aria-valuenow="49" style="width: 50%;"></div>
+                          </div>
+                        </li>
+                      </ul>
+                      <!-- end of skills -->
+
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+                      
+                      <!-- start of user-activity-graph -->
+                      
+                      <!-- end of user-activity-graph -->
+
+                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-init='tab1="active"'>
+                          <!-- <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                          </li> -->
+                          <li role="presentation" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;tab1="active";tab2=""' >Projects Worked on</a>
+                          </li>
+                          <li role="presentation" ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;tab2="active";tab1=""'>Profile</a>
+                          </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                          <div class="tab-pane fade" id="tab_content2" style="display: inline;" ng-hide="showDetails">
+
+                            <!-- start user projects -->
+          
+
+                    <!-- start project list -->
+                    <table class="table table-striped projects">
+                      <thead>
+                        <tr>
+                          <th style="width: 1%">#</th>
+                          <th style="width: 20%">Project Name</th>
+                          <th>Team Members</th>
+                          <th>Project Progress</th>
+                          <th>Status</th>
+                          <th style="width: 20%">#Edit</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57" aria-valuenow="56" style="width: 57%;"></div>
+                            </div>
+                            <small>57% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47" aria-valuenow="46" style="width: 47%;"></div>
+                            </div>
+                            <small>47% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77" aria-valuenow="76" style="width: 77%;"></div>
+                            </div>
+                            <small>77% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60" aria-valuenow="59" style="width: 60%;"></div>
+                            </div>
+                            <small>60% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="12" aria-valuenow="11" style="width: 12%;"></div>
+                            </div>
+                            <small>12% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="35" aria-valuenow="34" style="width: 35%;"></div>
+                            </div>
+                            <small>35% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="87" aria-valuenow="86" style="width: 87%;"></div>
+                            </div>
+                            <small>87% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77" aria-valuenow="76" style="width: 77%;"></div>
+                            </div>
+                            <small>77% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>Pesamakini Backend UI</a>
+                            <br>
+                            <small>Created 01.01.2015</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                              <li>
+                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              </li>
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77" aria-valuenow="76" style="width: 77%;"></div>
+                            </div>
+                            <small>77% Complete</small>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- end project list -->
+                            <!-- end user projects -->
+
+                          </div>
+                          <div class="tab-pane fade" id="tab_content3" style="display: inline;" ng-show="showDetails">
+
+
+                          <div class="x_title" style="border-bottom: 3px solid #E6E9ED;">
+                    <h2>Personal Info</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                           
+                    <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div class="clearfix"></div>
+                    </div>
+                                        <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div class="clearfix"></div>
+                    </div>
+                                        <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div class="clearfix"></div>
+                    </div>
+                                        <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_title" style="border-bottom: 3px solid #E6E9ED;">
+                    <h2>Personal Info</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                           
+                    <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div class="clearfix"></div>
+                    </div>
+                                        <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div class="clearfix"></div>
+                    </div>
+                                        <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div class="clearfix"></div>
+                    </div>
+                                        <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div class="clearfix"></div>
+                    </div>
+
+
+                    
+             
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

@@ -38,9 +38,9 @@ app.config(function ($routeProvider) {
  templateUrl: '/static/dash/teamregister.html',
  controller: 'evnt-control',
                 
-            }).when('/student/', {
+            }).when('/profile/', {
                
-                               template:'<h1>jdcjdcjdcjod</h1>',
+                               templateUrl:'/static/profile.html',
                 
             }).otherwise({
                 redirectTo: "/"
@@ -57,6 +57,7 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
   $scope.counter = 0;
   $scope.members = [];
   $scope.user;
+  $scope.leader = document.getElementById('userEmail').value;
   $scope.parentEventIndex = function(){
   	return findWithAttr($scope.options,'events',$scope.parentEvent);
   };
@@ -107,13 +108,31 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
      
     $http({
       method: 'POST',
-      url : '/techo/register/',
+      url : '/events/register/',
       data : data
     })
     .success(function(data){
         console.log(data);
     })
-  }
+  };
 
 
   }]);
+
+
+    $(document).ready(function(){
+
+console.log("hi");
+   $('.team-reg-submit').on("click",function(){
+   //    var x=$(".abcd");
+   //    var y=true;
+   //    var team_name=$(".teamName").val();
+   //    console.log(x);
+   //    console.log(y);
+
+   // angular.element(document.getElementById('body')).scope().submitForm();
+   console.log("hi");
+   });
+
+
+});

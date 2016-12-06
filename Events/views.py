@@ -22,19 +22,20 @@ def eventRegistration(request):
 		data = json.loads(request.body)
 		print data
 		event = Event.objects.get(nameSlug = data['eventSlug'])
+		print "here"
 		try:
+			# print "here"
 			team = Team.objects.get(teamName = data['teamName'], event = event)
 			response['status'] = 0
 			response['error'] = "TeamName Already exists"
 			return JsonResponse(response)
 		except:
-           
 			if 'teamLeaderTechnexId' in data:
 				teamLeader = TechProfile.objects.get(technexId = data['teamLeaderTechnexId'])
-	            
 			else:
 				teamLeader = TechProfile.objects.get(email = data['teamLeaderEmail'])
 			users = []
+			# print "here"
 			for member in data['members']:
 				try:#if 'memberEmail' in member:
 					user = TechProfile.objects.get(email = member)#member['memberEmail'])

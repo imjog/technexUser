@@ -26,10 +26,15 @@
 
     <!-- Custom Theme Style -->
     <link href="/static/build/css/custom.min.css" rel="stylesheet">
+      <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
         <script src="/static/vendors/angular.min.js"></script>
         <script src="/static/angular-route.js"></script>
     <script src="/static/genmain.js"></script>
     <style>
+  .input-error 
+  {
+      border-color: red;
+  }
 
 input.ng-invalid {
     border:2px solid red;
@@ -42,10 +47,11 @@ input.ng-invalid {
    margin-left: -10px;
    width: 80%;
 }
+
     </style>
   </head>
 
-  <body class="nav-md" ng-app="evnt">
+  <body class="nav-md" ng-app="evnt" id="abcdlf">
 
 
     
@@ -78,17 +84,20 @@ input.ng-invalid {
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                <li><a href="#profile"><i class="fa fa-home"></i> View Profile</a>
+                  </li>
                   <li><a href="#eventReg"><i class="fa fa-home"></i> Register Team</a>
                   </li>
+
                   <li><a><i class="fa fa-edit"></i> Teams <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
+                   <!--  <ul class="nav child_menu">
                       <li><a>Maze explorer</a></li>
                       <li><a>Xestos</a></li>
                       <li><a>Ancd</a></li>
                       <li><a>kkslsl</a></li>
                       <li><a>ospso</a></li>
                       <li><a>xlklxslk</a></li>
-                    </ul>
+                    </ul> -->
                   </li>
                
                 </ul>
@@ -196,75 +205,34 @@ input.ng-invalid {
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main" style="height: 100%;">
-          <!-- top tiles -->
-          <div class="row tile_count">
-               <div class="col-md-12">
-               <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Event Name | Team Name <small>different form elements</small></h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <br>
-                    <div  class="col-sm-6 col-sm-offset-3 form-box">
+        
                    
     <div ng-view>
 
     </div>
 
 
-</div>
-                  </div>
-                </div>
-              </div>
-               </div>
-            
 
-
-          <br >
-
-
-
-    
-            </div>
-          </div>
         </div>
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
+<!--         <footer>
           <div class="pull-right">
             Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
-        </footer>
+        </footer> -->
         <!-- /footer content -->
       </div>
     </div>
-        <script>
-        //var appapp = angular.module('ngRoutingDemo', ['ngRoute']);
-
- //        appapp.config(function ($routeProvider) {
-             
- //            $routeProvider.when('/', {
- // template: '<h1>kijdwjid</h1>',
-                
- //            }).when('/student/', {
-               
- //                               template:'<h1>jdcjdcjdcjod</h1>',
-                
- //            }).otherwise({
- //                redirectTo: "/"
- //            });
-
- //    });
-    </script>
+        
+      
 
     <!-- jQuery -->
+
+  <input type='hidden' id='userEmail' value="{{ request.user.techprofile.email }}" /> 
   
-    <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap -->
     <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -273,7 +241,7 @@ input.ng-invalid {
     <!-- NProgress -->
     <script src="/static/vendors/nprogress/nprogress.js"></script>
    <script src="/static/build/js/custom.min.js"></script>
-
+    
 
   </body>
 </html>

@@ -60,7 +60,7 @@ jQuery(document).ready(function() {
             console.log(response);
             if(response.status==1)
             {
-              
+              window.location.assign("/register");
             }
             if(response.status==0)
             {

@@ -29,7 +29,7 @@ def profileValidation(request):
     else:
         return JsonResponse(response)
 
-@csrf_exempt
+@login_required(login_url='/register/')
 def genetella(request):
     return render(request, 'dash.html')
     
@@ -62,7 +62,7 @@ def contextCall(request):
         pass
     return response
 
-@login_required(login_url = '/login')
+@login_required(login_url = '/register')
 def dummyDashboard(request):
     context = contextCall(request)
     
@@ -86,8 +86,8 @@ def emailUnique(request):
 
 
 def register(request):
-    #if request.user.is_authenticated():
-     #   return redirect('/dashboard')
+    if request.user.is_authenticated():
+        return redirect('/dashboard')
     if request.method == 'POST':
         data = request.POST
         email = data.get('email',None)
@@ -174,7 +174,9 @@ Team Technex.'''
 def loginView(request):
     response = {}
     if request.user.is_authenticated():
-        return redirect('/dashboard')
+        response['status'] = 0
+        response['error'] = 'Already logged In'
+        return JsonResponse(response)
     if request.method == 'POST':
         
         post = request.POST
@@ -204,16 +206,16 @@ def loginView(request):
         response['error'] = "Invalid Request!!"
         return JsonResponse(response)
 
-@login_required(login_url='/login')
+@login_required(login_url='/register')
 def dashboardView(request):
     context = contextCall(request)
     return render(request,'thankyou.html',context)
 
 @csrf_exempt
-@login_required(login_url='/login') #not /login/
+@login_required(login_url='/register') #not /login/
 def logoutView(request):
     logout(request)
-    return redirect('/login')
+    return redirect('/register')
 
 
 def fbConnect(request):
@@ -294,7 +296,7 @@ def resetPass(request,key):
             return render(request,"reset.html")
         except:
             messages.warning(request,'Invalid Url !')
-            return redirect('/login')
+            return redirect('/register')
 
     elif request.method == "POST":
         post = request.POST
@@ -308,7 +310,7 @@ def resetPass(request,key):
                 user.set_password(password1)
                 user.save()
                 messages.success(request,'password set successfully!',fail_silently=True)
-                return redirect('/login')
+                return redirect('/register')
             else:
                 messages.warning(request,"passwords didn't match!")
                 url = server+"/resetPass/"+key
