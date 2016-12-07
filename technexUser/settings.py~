@@ -23,14 +23,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a+lgm+6_g1ln9xl*=!u9galr&#&zaurt2%a*3ss)qt#xf0ck-9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-if 'DEBUG' in os.environ:
-    if os.environ['DEBUG'] == 'FALSE':
-        DEBUG = False
+DEBUG = False
+# if 'DEBUG' in os.environ:
+#     if os.environ['DEBUG'] == 'FALSE':
+#         DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-
+import django_mobile
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'Auth',
     'ckeditor',
     'authApi',
+    'django_mobile',
+    'Events',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,7 +58,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
+    'django.middleware.common.CommonMiddleware',
+    'django_mobile.middleware.MobileDetectionMiddleware',
+    'django_mobile.middleware.SetFlavourMiddleware',
 ]
 
 ROOT_URLCONF = 'technexUser.urls'
@@ -72,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_mobile.context_processors.flavour',
             ],
         },
     },
@@ -144,3 +149,5 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+CORS_ORIGIN_ALLOW_ALL = True
