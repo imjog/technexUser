@@ -133,7 +133,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_HOST = 'https://d1guaaup0pib3t.cloudfront.net' if not DEBUG else ''
 STATIC_URL = STATIC_HOST + '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR, 'static').replace('\\','/'),
+)
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
