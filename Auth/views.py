@@ -14,6 +14,8 @@ from django_mobile import get_flavour
 from user_agents import parse
 #from Auth.forms import *
 # Create your views here.
+server = 'http://localhost:8000/'
+
 @csrf_exempt
 def profileValidation(request):
     response = {}
@@ -466,41 +468,46 @@ def botApi(request):
 
 @csrf_exempt
 def forgotPassword(request):
+    response = {}
     if request.method == 'POST':
-        email = request.POST.get("form-email")
+        email = request.POST.get("email")
 
         try:
-            user = User.objects.get(email = email)
-            if user.is_active is False:
-                messages.warning(request,"Please confirm your email first!")
-                return redirect('/login')
+            user = TechProfile.objects.get(email = email).user
         except:
-            messages.warning(request,"Email not registered")
-            return redirect('/login')
-
+            response['status'] = 0
+            response['error'] = 'Email not Registered!!'
+            return JsonResponse(response)
         subject = "Reset Password"
         forgotPassKey = 'Technex' + email + "caportal"
         forgotPassKey = str(hash(forgotPassKey))
 
         try:
-            key = Key.objects.get(ca = user.caprofile)
-            key.forgotPassKey = forgotPassKey
+            key = ForgotPass.objects.get(user = user)
+            key.key = forgotPassKey
             key.save()
         except:
-            key = Key(ca = user.caprofile,forgotPassKey = forgotPassKey)
+            key = ForgotPass(user = user,key = forgotPassKey)
             key.save()
 
         body = "Please Cick on the following link to reset your Technex CA Portal Password.\n\n"
         body += server + "resetPass/" + forgotPassKey
 
         if send_email(email, subject, body):
-            messages.success(request, "Password Reset link sent to your Email.")
-            return redirect('/login')
+            response['status'] = 1
+            return JsonResponse(response)
         else:
-            messages.warning(request, "Email couldn't  be send, Retry please!")
+            response['status'] = 0
+            response['error'] = 'Connection Problem..Please Try Again'
+            return JsonResponse(response)
     else:
-        raise Http404('NOT ALLOWED')
+        return render(request,'login.html')
+        response['status'] = 0
+        response['error'] = 'Invalid Request'
+        return JsonResponse(response)
 
+        
+'''
 @csrf_exempt
 def resetPass(request,forgotPassKey):
     if request.method == 'GET':
@@ -529,3 +536,4 @@ def resetPass(request,forgotPassKey):
                 return redirect(request, url)
         except:
             raise Http404('Not allowed')
+'''

@@ -10,6 +10,9 @@
                     <h2>Event Name | Team Name <small>different form elements</small></h2>
                     <div class="clearfix"></div>
                   </div>
+                    <div class="form-group" id="error-message">
+                    <h3 style="text-align: center;" id="error-message-display">ERROR MESSAGE</h3>
+                    </div>                             
                   <div class="x_content">
                     <br>
                     <div  class="col-sm-6 col-sm-offset-3 form-box">
@@ -68,6 +71,7 @@
           </div>
           <script type="text/javascript">
           	    $(document).ready(function(){
+          	    	$("#error-message").hide();
 
 function membervalid(data){
    var id=data.trim();
@@ -83,6 +87,7 @@ function membervalid(data){
 
 console.log("hi");
    $('.team-reg-submit').on("click",function(){
+       
       var x=$(".abcd");
       var y=true;
       var team_name=$(".teamName").val();

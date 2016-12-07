@@ -100,6 +100,7 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
   };
   $scope.submitForm = function(event)
   {
+     $(".team-reg-submit").html("Submitting. Please Wait!")
      var c = new Array();
      var i;
      for(i=0;i<$scope.counter;i++)
@@ -110,7 +111,7 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
       "eventSlug":$scope.selectedevent,
       "teamName":$scope.teamName,
       "members":c,
-      "teamLeaderEmail":'bikram.bharti99@gmail.com'
+      "teamLeaderEmail":$scope.leader
      }
    console.log(data);
      
@@ -121,6 +122,22 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
     })
     .success(function(data){
         console.log(data);
+        if(data.status==1)
+        {
+           $scope.parentEvent='robonex';
+          $scope.parentEvent='-- Select Parent Event --';
+          $(".team-reg-submit").html("Submit");
+          $("#error-message").css('background','green')
+          $("#error-message-display").html("Team successfully Registered");
+          $("#error-message").show();
+        }
+        if(data.status==0)
+        {
+           $("#error-message").css('background','#e88a83')
+          $("#error-message-display").html(data.error);
+          $("#error-message").show();
+          $(".team-reg-submit").html("Submit");
+        }
     })
   };
 

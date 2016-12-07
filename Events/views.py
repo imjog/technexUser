@@ -37,18 +37,46 @@ def eventRegistration(request):
 			users = []
 			# print "here"
 			for member in data['members']:
-				try:#if 'memberEmail' in member:
-					user = TechProfile.objects.get(email = member)#member['memberEmail'])
-					users.append(user)
-				except:#elif 'memberTechnexId' in member:
-					user = TechProfile.objects.get(technexId = member)#member['memberTechnexId'])
-				users.append(user)
+				try:	
+					try:
+						user = TechProfile.objects.get(email = member)
+						users.append(user)
+					except:
+						user = TechProfile.objects.get(technexId = member)
+						users.append(user)
+				except:
+					response['status'] = 0
+					response['error'] = 'Member not Registered('+member+')'
+					return JsonResponse(response)
+				
 			users = list(set(users))
 			try:
-			    team = Team.objects.get(teamLeader = teamLeader,event = event)
+				try:
+					team = Team.objects.get(teamLeader = teamLeader,event = event)
+					response['status'] = 0
+					response['error'] = 'You have Already registered for this event!!'
+					return JsonResponse(response)
+				except:
+					team = Team.objects.get(event = event, members = teamLeader)
+					response['status'] = 0
+					response['error'] = 'You have Already registered for this event !!'
 			except:
-			    team = Team(teamLeader = teamLeader,event = event, teamName = data['teamName'])
-			    team.save()
+				for u in users: 
+					try:
+						try:
+							team = Team.objects.get(event = event, members = u)
+							response['status'] = 0
+							response['error'] = u.email+' Already registered !!!'
+							return JsonResponse(response)
+						except:
+							team = Team.objects.get(event = event, teamLeader = u)
+							response['status'] = 0
+							response['error'] = u.email+' Already registered !!!'
+							return JsonResponse(response)
+					except:
+						pass
+				team = Team(teamLeader = teamLeader,event = event, teamName = data['teamName'])
+				team.save()
 			for user in users:
 			    team.members.add(user)
 			response['status'] = 1
