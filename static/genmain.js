@@ -41,6 +41,7 @@ app.config(function ($routeProvider) {
             }).when('/profile/', {
                
                                templateUrl:'/static/profile.html',
+                               controller:'profileEdit',
                 
             }).otherwise({
                 redirectTo: "/"
@@ -72,15 +73,23 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
   	$scope.a.splice(z,1);
   	$scope.counter--;
   };
+   
+   $scope.removeerror = function(z){
+     var x=document.getElementsByClassName("abcd");
+     var y=document.getElementsByClassName("parsley-errors-list");
+     $(x[z]).removeClass("parsley-error");
+     $(x[z]).removeClass("input-error");
+     $(y[z]).hide();
+   };
   $scope.update = function(){
 
   	try{ 
   	$scope.max = $scope.options[$scope.parentEventIndex()].max[$scope.parentEvent.indexOf($scope.selectedevent)];
   	$scope.a  = new Array($scope.max);
-    //     while($scope.members.length!=0)
-    // {
-    //     $scope.members.pop();    
-    // }
+        while($scope.members.length!=0)
+    {
+        $scope.members.pop();    
+    }
     $scope.members=[];
     $scope.counter=0;
   	return false;
@@ -92,6 +101,7 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
   };
   $scope.submitForm = function(event)
   {
+     $(".team-reg-submit").html("Submitting. Please Wait!")
      var c = new Array();
      var i;
      for(i=0;i<$scope.counter;i++)
@@ -102,7 +112,7 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
       "eventSlug":$scope.selectedevent,
       "teamName":$scope.teamName,
       "members":c,
-      "teamLeaderEmail":'bikram.bharti99@gmail.com'
+      "teamLeaderEmail":$scope.leader
      }
    console.log(data);
      
@@ -113,26 +123,166 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
     })
     .success(function(data){
         console.log(data);
+        if(data.status==1)
+        {
+           $scope.parentEvent='robonex';
+          $scope.parentEvent='-- Select Parent Event --';
+          $(".team-reg-submit").html("Submit");
+          $("#error-message").css('background','green')
+          $("#error-message-display").html("Team successfully Registered");
+          $("#error-message").show();
+        }
+        if(data.status==0)
+        {
+           $("#error-message").css('background','#e88a83')
+          $("#error-message-display").html(data.error);
+          $("#error-message").show();
+          $(".team-reg-submit").html("Submit");
+        }
     })
   };
 
 
   }]);
 
+app.controller("profileEdit",function($scope, profileData,$http){
 
-    $(document).ready(function(){
+        $scope.editIndex = -1;
+        $scope.editObject =   {
+            name: "",
+                technexId: "",
+                college: "",
+                year: "",
+                city: "",
+                email: "",
+                mobile: ""
+        };
 
-console.log("hi");
-   $('.team-reg-submit').on("click",function(){
-   //    var x=$(".abcd");
-   //    var y=true;
-   //    var team_name=$(".teamName").val();
-   //    console.log(x);
-   //    console.log(y);
+        $scope.employeeArray = profileData.getStaffArray();
+        $scope.position = function(data){
+          var x=parseInt(data);
+          switch(x)
+          {
+            case 1:
+            return "Freshmen";
+            case 2:
+            return "Sophomore";
+            case 3:
+            return "Junior";
+            case 4:
+            return "Senior";
+            case 5:
+            return "Senior";
+            default:
+            return "Student";
+          }
+        }
 
-   // angular.element(document.getElementById('body')).scope().submitForm();
-   console.log("hi");
-   });
+        //edit button click
+        $scope.editingPerson = function(personIndex){
+            $scope.editObject = angular.copy($scope.employeeArray[personIndex]);
+            $scope.editIndex = personIndex;
+        };
+        $scope.rmcls = function(){
+          $("input").removeClass("parsley-error");
+          $(".parsley-errors-list").hide();
+          $("errormsg").hide();
+
+        } 
+
+        //cancelEdit
+        $scope.cancelEdit = function(){
+            $scope.editIndex = -1;
+
+        };
+
+        //saveEdit
+        $scope.saveEdit = function(personIndex){
+          console.log(personIndex);
+          var cdata = JSON.stringify($scope.editObject);
+          console.log(cdata);
+          var y=true;
+             if(y)
+             {
+              if($("#forname").val()=="")
+              {
+                $("#forname").addClass("parsley-error");
+                y=false;
+              }
+                if($("#forcollege").val()=="")
+                {
+                   $("#forcollege").addClass("parsley-error");
+                y=false;
+                }
+                if($("#forcollegeyear").val()=="" || (isNaN(parseInt($("#forcollegeyear").val()))))
+                {
+                  $("#forcollegeyear").addClass("parsley-error");
+                  y=false;  
+                }
+                if(!(isNaN(parseInt($("#forcollegeyear").val()))))
+                {
+                   var x=parseInt($("#forcollegeyear").val());
+                  if(x>5 || x<1)
+                  {
+                    $("#forcollegeyear").addClass("parsley-error");
+                    $("#collegeyearerr").show();
+                    y=false;
+                  }
+                }
+                if($("#forcity").val()=="")
+                {
+                  $("#forcity").addClass("parsley-error");
+                  y=false;
+                }
+                if($("#formobile").val()=="")
+                {
+                  $("#formobile").addClass("parsley-error");
+                  y=false;
+                }
+                if($("#formobile").val()!="")
+                {
+                  num=$("#formobile").val();
+                  if((num.length!==10) || (isNaN(parseInt(num))) || (parseInt(num).toString().length  != num.length))
+                   {
+                       
+                       $("#formobile").addClass("parsley-error");
+                       $("#mobileerr").show();
+                       y=false;
+                   }
+
+                }
+
+
+
+             }
+              
+           if(y)
+           {   
+              $http({
+      method: 'POST',
+      url : '/updateProfile/',
+      data : cdata
+    })
+    .success(function(data){
+        console.log(data);
+        if(data.status==1)
+        {
+            profileData.updateInfo(personIndex, $scope.editObject);
+            $scope.editIndex = -1;   
+        }
+        if(data.status==0)
+        {
+           console.log('Could not save Data!!!');
+        }
+    });
+            
+         }   
+        };
+    });
+
+$(document).ready(function(){
 
 
 });
+
+

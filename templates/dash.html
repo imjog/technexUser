@@ -1,88 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="evnt" id="abcdlf">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Gentellela Alela! | </title>
-
-    <!-- Bootstrap -->
+    <title id="dashtitle">Technex '17 | Home</title>
     <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
     <link href="/static/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
     <link href="/static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
     <link href="/static/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- JQVMap -->
     <link href="/static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
     <link href="/static/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
     <link href="/static/build/css/custom.min.css" rel="stylesheet">
-      <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
-        <script src="/static/vendors/angular.min.js"></script>
-        <script src="/static/angular-route.js"></script>
+    <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/static/vendors/angular.min.js"></script>
+    <script src="/static/angular-route.js"></script>
     <script src="/static/genmain.js"></script>
     <style>
-  .input-error 
+    .input-error 
+    {
+        border-color: red;
+    }
+  .member-input
   {
-      border-color: red;
-  }
-
-input.ng-invalid {
-    border:2px solid red;
-}
-    input.ng-pristine{
-      border: 2px solid;
-    } 
-.member-input
-{
    margin-left: -10px;
    width: 80%;
-}
+  }
 
-    </style>
+  </style>
   </head>
-
-  <body class="nav-md" ng-app="evnt" id="abcdlf">
-
-
-    
+  <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+              <a href="/dashboard/" class="site_title"><i class="fa"><img src="/static/favicon.ico"></i> <span>Technex '17</span></a>
             </div>
 
             <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="/static/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="/static/profile.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2>{{user.first_name}}</h2>
               </div>
             </div>
-            <!-- /menu profile quick info -->
-
             <br />
-
-            <!-- sidebar menu -->
+            <br/>
+            <br/>
+            <br/>
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
+              <div class="menu_section" style="margin-top: 30px;">
+
                 <ul class="nav side-menu">
                 <li><a href="#profile"><i class="fa fa-home"></i> View Profile</a>
                   </li>
@@ -118,130 +92,81 @@ input.ng-invalid {
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/static/images/img.jpg" alt="">John Doe
+                    <img src="/static/profile.png" alt="">{{user.first_name}}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                      <!--   <span class="badge bg-red pull-right">50%</span> -->
-                        <span>Settings</span>
-                      </a>
-                    </li>
+                    <li><a href="#profile"> Profile</a></li>
                     <!-- <li><a href="javascript:;">Help</a></li> -->
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <span class="badge bg-green">1</span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="/static/images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="/static/favicon.ico" alt="Profile Image" /></span>
                         <span>
-                          <span>John Smith</span>
+                          <span>Team Technex</span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                          Thank you for registering for Technex'17 
                         </span>
                       </a>
                     </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="/static/images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="/static/images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="/static/images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
+                    <!-- <li>
                       <div class="text-center">
                         <a>
                           <strong>See All Alerts</strong>
                           <i class="fa fa-angle-right"></i>
                         </a>
                       </div>
-                    </li>
+                    </li> -->
                   </ul>
                 </li>
               </ul>
             </nav>
           </div>
-        </div>
-        <!-- /top navigation -->
-
-        <!-- page content -->
-        
-                   
+        </div>     
     <div ng-view>
-
     </div>
-
-
-
         </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-<!--         <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer> -->
-        <!-- /footer content -->
       </div>
     </div>
-        
-      
-
-    <!-- jQuery -->
-
   <input type='hidden' id='userEmail' value="{{ request.user.techprofile.email }}" /> 
-  
-
-    <!-- Bootstrap -->
     <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <!-- <script src="/static/vendors/fastclick/lib/fastclick.js"></script> -->
-    <!-- NProgress -->
     <script src="/static/vendors/nprogress/nprogress.js"></script>
-   <script src="/static/build/js/custom.min.js"></script>
-    
+   <script src="/static/build/js/custom.min.js"></script>    
+<script type="text/javascript">
+app.service("profileData", function(){
+        var staffArray = [
+            {
+                name: "{{user.first_name}}",
+                technexId: "{{techProfile.technexId}}",
+                college: "{{techProfile.college.collegeName}}",
+                year: "{{techProfile.year}}",
+                city: "{{techProfile.city}}",
+                email: "{{techProfile.email}}",
+                mobile: "{{techProfile.mobileNumber}}"
+            }
 
+        ];
+
+        this.getStaffArray = function(){
+            return staffArray;
+        };
+
+        //updating person
+        this.updateInfo = function(personIndex, obj){
+            staffArray.splice(personIndex, 1, obj)
+        }
+    });
+</script>
   </body>
 </html>

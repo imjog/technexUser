@@ -51,10 +51,15 @@ def eventRegistration(request):
 				
 			users = list(set(users))
 			try:
-			    team = Team.objects.get(teamLeader = teamLeader,event = event)
-			    response['status'] = 0
-			    response['error'] = 'You have Already registered for this event!!'
-			    return JsonResponse(response)
+				try:
+					team = Team.objects.get(teamLeader = teamLeader,event = event)
+					response['status'] = 0
+					response['error'] = 'You have Already registered for this event!!'
+					return JsonResponse(response)
+				except:
+					team = Team.objects.get(event = event, members = teamLeader)
+					response['status'] = 0
+					response['error'] = 'You have Already registered for this event !!'
 			except:
 				for u in users: 
 					try:
