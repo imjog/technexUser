@@ -537,3 +537,6 @@ def resetPass(request,forgotPassKey):
         except:
             raise Http404('Not allowed')
 '''
+
+def cdncheck(request):
+    return render(request, 'cdn_check.html', {})
