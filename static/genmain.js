@@ -41,6 +41,7 @@ app.config(function ($routeProvider) {
             }).when('/profile/', {
                
                                templateUrl:'/static/profile.html',
+                               controller:'profileEdit',
                 
             }).otherwise({
                 redirectTo: "/"
@@ -143,5 +144,145 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
 
 
   }]);
+
+app.controller("profileEdit",function($scope, profileData,$http){
+
+        $scope.editIndex = -1;
+        $scope.editObject =   {
+            name: "",
+                technexId: "",
+                college: "",
+                year: "",
+                city: "",
+                email: "",
+                mobile: ""
+        };
+
+        $scope.employeeArray = profileData.getStaffArray();
+        $scope.position = function(data){
+          var x=parseInt(data);
+          switch(x)
+          {
+            case 1:
+            return "Freshmen";
+            case 2:
+            return "Sophomore";
+            case 3:
+            return "Junior";
+            case 4:
+            return "Senior";
+            case 5:
+            return "Senior";
+            default:
+            return "Student";
+          }
+        }
+
+        //edit button click
+        $scope.editingPerson = function(personIndex){
+            $scope.editObject = angular.copy($scope.employeeArray[personIndex]);
+            $scope.editIndex = personIndex;
+        };
+        $scope.rmcls = function(){
+          $("input").removeClass("parsley-error");
+          $(".parsley-errors-list").hide();
+          $("errormsg").hide();
+
+        } 
+
+        //cancelEdit
+        $scope.cancelEdit = function(){
+            $scope.editIndex = -1;
+
+        };
+
+        //saveEdit
+        $scope.saveEdit = function(personIndex){
+          console.log(personIndex);
+          var cdata = JSON.stringify($scope.editObject);
+          console.log(cdata);
+          var y=true;
+             if(y)
+             {
+              if($("#forname").val()=="")
+              {
+                $("#forname").addClass("parsley-error");
+                y=false;
+              }
+                if($("#forcollege").val()=="")
+                {
+                   $("#forcollege").addClass("parsley-error");
+                y=false;
+                }
+                if($("#forcollegeyear").val()=="" || (isNaN(parseInt($("#forcollegeyear").val()))))
+                {
+                  $("#forcollegeyear").addClass("parsley-error");
+                  y=false;  
+                }
+                if(!(isNaN(parseInt($("#forcollegeyear").val()))))
+                {
+                   var x=parseInt($("#forcollegeyear").val());
+                  if(x>5 || x<1)
+                  {
+                    $("#forcollegeyear").addClass("parsley-error");
+                    $("#collegeyearerr").show();
+                    y=false;
+                  }
+                }
+                if($("#forcity").val()=="")
+                {
+                  $("#forcity").addClass("parsley-error");
+                  y=false;
+                }
+                if($("#formobile").val()=="")
+                {
+                  $("#formobile").addClass("parsley-error");
+                  y=false;
+                }
+                if($("#formobile").val()!="")
+                {
+                  num=$("#formobile").val();
+                  if((num.length!==10) || (isNaN(parseInt(num))) || (parseInt(num).toString().length  != num.length))
+                   {
+                       
+                       $("#formobile").addClass("parsley-error");
+                       $("#mobileerr").show();
+                       y=false;
+                   }
+
+                }
+
+
+
+             }
+              
+           if(y)
+           {   
+              $http({
+      method: 'POST',
+      url : '/updateProfile/',
+      data : cdata
+    })
+    .success(function(data){
+        console.log(data);
+        if(data.status==1)
+        {
+            profileData.updateInfo(personIndex, $scope.editObject);
+            $scope.editIndex = -1;   
+        }
+        if(data.status==0)
+        {
+           console.log('Could not save Data!!!');
+        }
+    });
+            
+         }   
+        };
+    });
+
+$(document).ready(function(){
+
+
+});
 
 

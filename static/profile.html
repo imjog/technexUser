@@ -1,3 +1,6 @@
+                     <section ng-switch on="(editIndex == $index)"
+                     ng-repeat="person in employeeArray track by $index"
+                     class="clearfix">
 <div class="right_col" role="main" style="min-height: 1164px;">
           <div class="">
             <div class="page-title">
@@ -22,19 +25,14 @@
                           <img class="img-responsive avatar-view" src="/static/profile.png" alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
-                      <h3>Samuel Doe</h3>
+                      <h3>{{person.name}}</h3>
 
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                        <li style="text-transform: capitalize;"><i class="fa fa-map-marker user-profile-icon"></i> {{person.city}}
                         </li>
 
                         <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
-                        </li>
-
-                        <li class="m-top-xs">
-                          <i class="fa fa-external-link user-profile-icon"></i>
-                          <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                          <i class="fa fa-briefcase user-profile-icon"></i> {{position(person.year)}},{{person.college}}
                         </li>
                       </ul>
 
@@ -82,7 +80,7 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-init='tab1="active"'>
                           <!-- <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
                           </li> -->
-                          <li role="presentation" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;tab1="active";tab2=""' >Projects Worked on</a>
+                          <li role="presentation" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;tab1="active";tab2=""' >Teams</a>
                           </li>
                           <li role="presentation" ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;tab2="active";tab1=""'>Profile</a>
                           </li>
@@ -180,7 +178,7 @@
 
                           </div>
                           <div class="tab-pane fade" id="tab_content3" style="display: inline;" ng-show="showDetails">
-                     
+
                       <div class="details-display">
                           <div class="x_title" style="border-bottom: 3px solid #E6E9ED;">
                     <h2>Personal Info</h2>
@@ -189,65 +187,112 @@
                            
                     <div style="display: -webkit-box"; class="x_title">
                     <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
-                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>
+                      {{person.name}} 
+                    </h2>
+                    <h2 style="font-weight: 30px" ng-switch-when="true">
+                       <input ng-focus="rmcls(this)" ng-model="editObject.name" placeholder="First Name"  id="forname" type="text"/>
+                     
+                    </h2>
+                    </div>
+                    <div class="clearfix"></div>
+                    </div>  
+                                        <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">TechnexId:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">{{person.technexId}}</h2>
+                    </div>
                     <div class="clearfix"></div>
                     </div>
                                         <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
-                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">College Name:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>{{person.college}}</h2>
+                      <h2 style="font-weight: 30px" ng-switch-when="true">
+                       <input ng-focus="rmcls(this)" ng-model="editObject.college" placeholder="College" id="forcollege" type="text"/>
+                    </h2>
+                    </div>
                     <div class="clearfix"></div>
                     </div>
                                         <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
-                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">College Year(1-5):</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>{{person.year}}</h2>
+                      <h2 style="font-weight: 30px" ng-switch-when="true">
+                       <input ng-focus="rmcls(this)" ng-model="editObject.year" placeholder="College Year" id="forcollegeyear" type="text" maxlength="1"/>
+                    </h2>
+                       <ul class="parsley-errors-list filled" id="collegeyearerr" style="display: none;margin-top: 7px"><li class="parsley-required">College Year between 1 to 5</li></ul>
+                    </div>
                     <div class="clearfix"></div>
                     </div>
-                                        <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
-                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+
+                    <div style="display: -webkit-box"; class="x_title">
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">City:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>{{person.city}}</h2>
+                      <h2 style="font-weight: 30px" ng-switch-when="true">
+                       <input ng-focus="rmcls(this)" ng-model="editObject.city" placeholder="City" id="forcity" type="text"/>
+                    </h2>
+                    </div>
                     <div class="clearfix"></div>
                     </div>
 
                     <div class="x_title" style="border-bottom: 3px solid #E6E9ED;">
-                    <h2>Personal Info</h2>
+                    <h2>Contact Info</h2>
                     <div class="clearfix"></div>
                   </div>
                            
                     <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
-                    <!-- <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div> -->
-                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Email:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px">{{person.email}}</h2>
+                    </div>
                     <div class="clearfix"></div>
                     </div>
                                         <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
-                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
-                    <div class="clearfix"></div>
-                    </div>
-                                        <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
-                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
-                    <div class="clearfix"></div>
-                    </div>
-                                        <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
-                    <div style="width: 70%"><h2 style="font-weight: 30px">DISHA PATANI</h2></div>
-                    <div class="clearfix"></div>
-                    </div>
-                                         
-                         <div style="display: -webkit-box"; class="x_title">
-                         <div style="width: 30%;align-items: center;"></div>
-                         <div style="width: 30%;align-items: center;"></div>
-                    <div style="width: 40%"><h2 style="font-weight: 30px;align-items:center;"><a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a></h2></div>
-                     
-                    <div class="clearfix"></div>
-                    </div>
-                    </div>
-                    <div class="display-edit">
-                    </div>
-                     
-
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Mobile Number:</h2></div>
+                    <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>{{person.mobile}}</h2>
+                      <h2 style="font-weight: 30px" ng-switch-when="true">
+                       <input type="text" ng-focus="rmcls(this)" ng-model="editObject.mobile" id="formobile" placeholder="Mobile Number" /></h2>
+                              <ul class="parsley-errors-list filled" id="mobileerr" style="display: none;margin-top: 7px"><li class="parsley-required"> Invalid Mobile Number</li></ul>
                     
+                    </div>
+                    <div class="clearfix"></div>
+                    </div> 
+                    <div ng-switch-default class="x_title" style="display: -webkit-box";>
+                     <div style="width: 50%"></div>
+                     <div style="width: 50%">     
+                    <button ng-click="editingPerson($index)" class="btn btn-success">EDIT</button>
+                    </div>
+                    </div>
+                      <div ng-switch-when="true" class="x_title" style="display: -webkit-box";>
+                    <div style="width: 50%">
+                    <button ng-click="saveEdit($index)" class="btn btn-primary savechanges" id="">SAVE</button>
+                    </div>
+                    <div style="width: 50%;">
+                    <button ng-click="cancelEdit()" class="btn btn-danger">CANCEL</button>
+                    </div>
+                    </div>
+                               
+                                     <script type="text/javascript">
+          $(document).ready(function(){
+              console.log("hi");
+            function phnvalidation(num)
+            {
+              if((num.length!==10) || (isNaN(parseInt(num))) || (parseInt(num).toString().length  != num.length))
+              { 
+                return false;
+              }
+                else
+                {
+                  return true;
+                  }
+                 }
+           
+            $("input").on("focus",function(){
+               $(this).removeClass("parsley-error");
+            });
+             
+            
+          });
+        </script>
+                          
+                    </section>
              
                           </div>
                         </div>
@@ -259,3 +304,4 @@
             </div>
           </div>
         </div>
+  

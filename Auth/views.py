@@ -31,9 +31,39 @@ def profileValidation(request):
     else:
         return JsonResponse(response)
 
+@csrf_exempt
+@login_required(login_url='/register/')
+def profileData(request):
+    response =  {}
+    print "hi"
+    if request.method == 'POST':
+        post = json.loads(request.body)#request.POST
+        print post
+        user = request.user
+        techProfile = user.techprofile
+        user.first_name = post['name']
+        user.save()
+        techProfile.mobileNumber = post['mobile']
+        collegeName = post['college'].strip()
+        try:
+            college = College.objects.get(collegeName = collegeName)
+        except:
+            college = College(collegeName = collegeName)
+            college.save()
+        techProfile.college = college
+        techProfile.city = post['city']
+        techProfile.year = post['year']
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        response['error'] = 'Invalid Request!!'
+        return JsonResponse(response)
+
 @login_required(login_url='/register/')
 def genetella(request):
-    return render(request, 'dash.html')
+    response = contextCall(request)
+    return render(request, 'dash.html',response)
     
 
 def ca(request):
@@ -536,10 +566,8 @@ def resetPass(request,forgotPassKey):
                 return redirect(request, url)
         except:
             raise Http404('Not allowed')
-<<<<<<< HEAD
+
 '''
-=======
 
 def cdncheck(request):
     return render(request, 'cdn_check.html', {})
->>>>>>> d3b3c4022c062ebb2e01c1081cd1fc4e392f5ae6
