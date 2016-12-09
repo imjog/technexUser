@@ -157,7 +157,20 @@ app.service("profileData", function(){
             }
 
         ];
-
+        var teamsData = [
+        {% for team in teams %}
+        {
+          teamName: "{{team.teamName}}",
+          leader: "{{team.leader}}",
+          memberUrls: {{team.memberUrls|safe}},
+          event: "{{team.event}}",
+          parentEvent: "{{team.parentEvent}}"
+        },
+        {% endfor %}
+        ];
+        this.getTeamData = function(){
+          return teamsData;
+        }
         this.getStaffArray = function(){
             return staffArray;
         };

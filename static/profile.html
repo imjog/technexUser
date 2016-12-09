@@ -104,73 +104,32 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>#</td>
+                        <tr ng-repeat='team in teamArray track by $index'>
+                          <td>{{$index+1}}</td>
                           <td>
-                            <a>Pesamakini Backend UI</a>
+                            <a>{{team.teamName}}</a>
                             <br>
-                            <small>Robonex/maze-explorer</small>
+                            <small>{{team.parentEvent}}/{{team.event}}</small>
                           </td>
                           <td>
                             <ul class="list-inline">
-                              <li>
-                                <img src="images/user.png" class="avatar" alt="Avatar">
+                              <li ng-repeat='memberUrl in team.memberUrls'>
+                                <img src="{{memberUrl}}" class="avatar" alt="Avatar">
                               </li>
-                              <li>
-                                <img src="images/user.png" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="images/user.png" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="images/user.png" class="avatar" alt="Avatar">
-                              </li>
+                              
                             </ul>
                           </td>
                           <td class="project_progress">
-                            <h4>ijfkjfjkkjf</h4>
+                            <h4>{{team.leader}}</h4>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-success btn-xs">Success</button>
+                            <button type="button" class="btn btn-success btn-xs">Later</button>
                           </td>
                           <td>
-                          <a> 01.01.2017 </a>
+                          <a> Later</a>
                           </td>
                         </tr>
-                                                <tr>
-                          <td>#</td>
-                          <td>
-                            <a>Pesamakini Backend UI</a>
-                            <br>
-                            <small>Ascension/drone-tech</small>
-                          </td>
-                          <td>
-                            <ul class="list-inline">
-                              <li>
-                                <img src="images/user.png" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="images/user.png" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="images/user.png" class="avatar" alt="Avatar">
-                              </li>
-                              <li>
-                                <img src="images/user.png" class="avatar" alt="Avatar">
-                              </li>
-                            </ul>
-                          </td>
-                          <td class="project_progress">
-                            <h4>ijfkjfjkkjf</h4>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-danger btn-xs">Pending</button>
-                          </td>
-                          <td>
-                          <a> 01.01.2017 </a>
-                          </td>
-                        </tr>
-                       
+                                                
                       </tbody>
                     </table>
                     <!-- end project list -->

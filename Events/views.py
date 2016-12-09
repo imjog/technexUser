@@ -77,6 +77,7 @@ def eventRegistration(request):
 						pass
 				team = Team(teamLeader = teamLeader,event = event, teamName = data['teamName'])
 				team.save()
+				team.technexTeamId = "TM"+str(1000+team.teamId)
 			for user in users:
 			    team.members.add(user)
 			response['status'] = 1

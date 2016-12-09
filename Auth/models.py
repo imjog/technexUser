@@ -71,6 +71,7 @@ class Event(models.Model):
 class Team(models.Model):
     teamName = models.CharField(max_length=50, null=True, blank=True)
     teamId = models.AutoField(primary_key = True)
+    technexTeamId = models.CharField(max_length = 10, null = True, blank = True)
     event = models.ForeignKey(Event)
     teamLeader = models.ForeignKey(TechProfile,related_name = 'teamLeader')
     members = models.ManyToManyField(TechProfile,related_name = 'members',null = True)

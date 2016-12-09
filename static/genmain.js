@@ -1,4 +1,4 @@
-var data = [
+/*var data = [
 {
 parentEvent : 'robonex',
 events:[
@@ -18,6 +18,53 @@ events:[
 max:[
 2,3
 ]
+}
+];*/
+var data = [
+{
+parentEvent: 'ascension',
+events:['momentum', 'la-trajectoire', 'daeroglisseur', 'drone-tech'],
+max:[5,5,5,5]
+},
+{
+parentEvent: 'modex',
+events:['open-simulation', 'open-hardware', 'open-software'],
+max:[5,5,5,]
+},
+{
+parentEvent: 'pahal',
+events:['greenx', 'vision', 'swachch', 'sampann', 'aagaz'],
+max:[5,5,5,5,5]
+},
+{
+parentEvent: 'supernova',
+events:['scientists-utopia', 'astrophotography', 'astroquiz', 'exploring-interstellar',],
+max:[5,5,5,5,]
+},
+{
+parentEvent: 'creatrix',
+events:['minimize', 'iso', 'collage', 'avant-garde', 'animaze', '2d'],
+max:[5,5,5,5,5,5]
+},
+{
+parentEvent: 'riqueza',
+events:['analiticity', 'bulls-floor', 'krackat', 'manthan', 'conundrum'],
+max:[5,5,5,5,5,5]
+},
+{
+parentEvent: 'byte-the-bits',
+events:['mlware', 'international-coding-marathon', 'appathon', 'capture-the-flag'],
+max:[5,5,5,1]
+},
+{
+parentEvent: 'extreme-engineering',
+events:['bridgeit', 'goldbergs-alley', 'axelerate', 'hydracs'],
+max:[5,5,5,5]
+},
+{
+parentEvent: 'robonex',
+events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
+max:[5,5,5,5]
 }
 ];
 function findWithAttr(array, attr, value) {
@@ -157,7 +204,7 @@ app.controller("profileEdit",function($scope, profileData,$http){
                 email: "",
                 mobile: ""
         };
-
+        $scope.teamArray = profileData.getTeamData();
         $scope.employeeArray = profileData.getStaffArray();
         $scope.position = function(data){
           var x=parseInt(data);

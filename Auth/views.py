@@ -12,9 +12,11 @@ import facebook
 from Auth.models import *
 from django_mobile import get_flavour
 from user_agents import parse
+from django.db.models import Q
 #from Auth.forms import *
 # Create your views here.
 server = 'http://localhost:8000/'
+
 
 @csrf_exempt
 def profileValidation(request):
@@ -90,6 +92,32 @@ def contextCall(request):
         techprofile = user.techprofile
         response['user'] = user
         response['techProfile'] = techprofile
+        teams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile))
+        teamsData = []
+
+        for team in teams:
+            teamData = {}
+
+            teamData['teamName'] = team.teamName
+            teamData['event'] = team.event.eventName
+            teamData['parentEvent'] = team.event.parentEvent.categoryName
+            
+            teamData['leader'] = team.teamLeader.user.first_name
+            teamMemberUrl = []
+            
+            for member in team.members.all():
+                
+                try:
+                    teamMemberUrl.append(member.fb.profileImage)
+                except:
+                    url = "/static/profile.png"
+                    teamMemberUrl.append(url)
+            
+            teamData['memberUrls'] = teamMemberUrl
+            teamsData.append(teamData)
+            
+        print teamsData
+        response['teams'] = teamsData
     except:
         pass
     return response
@@ -143,7 +171,7 @@ def register(request):
         except:
             college = College(collegeName = data.get('college'))
             college.save()
-        
+        techprofile.technexId = "TX"+str(10000+user.id)
         techprofile.college = college
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.city = data.get('city')
