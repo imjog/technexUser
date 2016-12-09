@@ -118,6 +118,7 @@ def contextCall(request):
             
         print teamsData
         response['teams'] = teamsData
+        response['notificationArray'] = notificationData(request)
     except:
         pass
     return response
@@ -598,3 +599,108 @@ def resetPass(request,forgotPassKey):
 
 def cdncheck(request):
     return render(request, 'cdn_check.html', {})
+'''
+def read(request):
+    response = {}
+    if request.method == 'POST':
+        readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile,status = True)
+        for status in readerStatus:
+            status.status = False
+            status.save()
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        response['error'] = 'Invalid Request!!'
+        return JsonResponse(response)
+
+def notificationData(request):
+    readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile)[:5]
+    
+    notificationArray = []
+    for notification in readerStatus:
+        notificationObject = {}
+        notificationObject['title'] = notification.notification.title  
+        notificationObject['notificationId'] = notification.notification.notificationId
+        notificationObject['description'] = notification.notification.description
+        notificationObject['deadLine'] = notification.notification.time
+        notificationObject['photo'] = notification.notification.photo
+        notificationObject['status'] = notification.status
+        notificationArray.append(notificationObject)
+    return notificationArray
+'''
+@login_required(login_url='/register')
+def startUpRegistration(request):
+    response = {}
+    if request.method == 'POST':
+        post = json.loads(request.body)
+        try:
+            StartUpFair.objects.get(teamLeader = request.user.techprofile)
+            response['status'] = 0
+            response['error'] = 'Already registered !!'
+            return JsonResponse(response)
+        except:
+            startUpFair = StartUpFair(idea = post['idea'], teamLeader = request.user.techprofile, teamName = post['teamName'])
+            for email in post['memberMails']:
+                s = StartUpMails(email = email,team = startUpFair)
+                s.save()
+            response['status'] = 1
+            return JsonResponse(response)
+    else:
+        response['status'] = 0
+        response['error'] = 'Invalid Request!!'
+        return JsonResponse(response)
+
+
+@login_required(login_url = '/register')
+def startUpData(request):
+    response = {}
+    try:
+        startUp = StartUpFair.objects.get(teamLeader = request.user.techprofile)
+    except:
+        response['status'] = 0
+        response['error'] = 'Not registered for Start Up Fair !'
+    response['idea'] = startUp.idea
+    response['teamName'] = startUp.teamName
+    memberMails = StartUpMails.objects.filter(team = startUp)
+    response['memberMails'] = []
+    for memberMail in memberMails:
+        response['memberMails'].append(memberMail)
+    response['status'] = 1
+    return JsonResponse(response)
+
+
+@login_required(login_url = '/register')
+def startUpData(request):
+    response = {}
+    try:
+        startUp = StartUpFair.objects.get(teamLeader = request.user.techprofile)
+    except:
+        response['status'] = 0
+        response['error'] = 'Not registered for Start Up Fair !'
+    startUp.delete()
+    response['status'] = 1
+    return JsonResponse(response)
+
+
+@login_required(login_url = '/register')
+def changePass(request):
+    response = {}
+    if request.method == 'POST':
+        post = json.loads(request.body)
+        user = authenticate(username=request.user.username,password=post['oldPass'])
+        if user is not None:
+            request.user.set_password(post['newPass'])
+            request.user.save()
+            user = authenticate(username=request.user.email,password=post['newPass'])
+            login(request,user)
+            response['status'] = 1
+            return JsonResponse(response)
+        else:
+            response['status'] = 0
+            response['error'] = 'Password Entered is Incorrect !!'
+            return JsonResponse(response)
+    else:
+        response['status'] = 0
+        response['error'] = 'Invalid Request!!'
+        return JsonResponse(response)
