@@ -158,3 +158,24 @@ class TeamMembers(models.Model):
     order = models.SmallIntegerField(default = 0)
     def __unicode__(self):
         return '%s %s'%(self.name,self.team.teamName)
+
+class Notification(models.Model):
+    notificationId = models.AutoField(primary_key = True)
+    title = models.CharField(max_length = 20)
+    description = RichTextField()
+    time = models.DateTimeField(auto_now = True)
+    photo = models.TextField(validators=[URLValidator()],blank=True)
+
+class ReaderStatus(models.Model):
+    reader = models.ForeignKey(TechProfile)
+    notification = models.ForeignKey(Notification)
+    status = models.BooleanField(default = True)
+
+class StartUpFair(models.Model):
+    idea = models.CharField(max_length = 250)
+    teamLeader = models.OneToOneField(TechProfile)
+    teamName = models.CharField(max_length = 35)
+
+class StartUpMails(models.Model):
+    email = models.EmailField(max_length = 65,unique = True)
+    team = models.ForeignKey(StartUpFair)
