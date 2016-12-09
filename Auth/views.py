@@ -671,7 +671,7 @@ def startUpData(request):
 
 
 @login_required(login_url = '/register')
-def startUpData(request):
+def startUpDelete(request):
     response = {}
     try:
         startUp = StartUpFair.objects.get(teamLeader = request.user.techprofile)
