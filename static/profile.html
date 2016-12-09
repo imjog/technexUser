@@ -1,7 +1,8 @@
-                     <section ng-switch on="(editIndex == $index)"
+                    
+<div class="right_col" role="main" style="min-height: 1164px;">
+ <section ng-switch on="(editIndex == $index)"
                      ng-repeat="person in employeeArray track by $index"
                      class="clearfix">
-<div class="right_col" role="main" style="min-height: 1164px;">
           <div class="">
             <div class="page-title">
               <div class="title_left">
@@ -32,66 +33,64 @@
                         </li>
 
                         <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> {{position(person.year)}},{{person.college}}
+                          <i class="glyphicon glyphicon-education user-profile-icon"></i> {{position(person.year)}},{{person.college}}
+                        </li>
+                        <li>
+                          <i class="fa user-profile-icon"><img src="/static/favicon.ico"/></i> {{person.technexId}}
                         </li>
                       </ul>
 
                       <br>
-
-                      <!-- start skills -->
-                      <h4>Skills</h4>
+                      <h3>Important Links</h3>
                       <ul class="list-unstyled user_data">
                         <li>
-                          <p>Web Applications</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50" aria-valuenow="49" style="width: 50%;"></div>
-                          </div>
+                          <p><a href="/" target="_blank">Technex '17 | Home</a></p>
                         </li>
                         <li>
-                          <p>Website Design</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70" aria-valuenow="69" style="width: 70%;"></div>
-                          </div>
+                          <p><a href="/events/" target="_blank">Events</a></p>
                         </li>
                         <li>
-                          <p>Automation &amp; Testing</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30" aria-valuenow="29" style="width: 30%;"></div>
-                          </div>
+                          <p><a href="/talks/" target="_blank">Talks</a></p>
                         </li>
                         <li>
-                          <p>UI / UX</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50" aria-valuenow="49" style="width: 50%;"></div>
-                          </div>
+                          <p><a href="/startupfair/" target="_blank">Startup Fair</a></p>
                         </li>
                       </ul>
-                      <!-- end of skills -->
+                      <h3>Technex '17 Coming in</h3>
+                      <ul class="list-unstyled user_data">
+<div id="clockdiv" style="display: -webkit-box">
+  <div style="width: 25%">
+    <span class="days"></span>
+    <div class="smalltext">Days</div>
+  </div>
+  <div style="width: 25%">
+    <span class="hours"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div style="width: 25%">
+    <span class="minutes"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div style="width: 25%">
+    <span class="seconds"></span>
+    <div class="smalltext">Seconds</div>
+  </div>
+</div>
 
+                      </ul>
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-12">
 
-                      
-                      <!-- start of user-activity-graph -->
-                      
-                      <!-- end of user-activity-graph -->
-
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-init='tab1="active"'>
-                          <!-- <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
-                          </li> -->
                           <li role="presentation" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;tab1="active";tab2=""' >Teams</a>
                           </li>
                           <li role="presentation" ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;tab2="active";tab1=""'>Profile</a>
                           </li>
                         </ul>
+                        </div>
                         <div id="myTabContent" class="tab-content">
                           <div class="tab-pane fade" id="tab_content2" style="display: inline;" ng-hide="showDetails">
-
-                            <!-- start user projects -->
-          
-
-                    <!-- start project list -->
                     <table class="table table-striped projects">
                       <thead>
                         <tr>
@@ -99,8 +98,8 @@
                           <th style="width: 20%">Team Name</th>
                           <th>Team Members</th>
                           <th>Team Leader</th>
-                          <th>Abstract Submission</th>
-                          <th style="width: 20%">Deadline</th>
+                          <th>Actions</th>
+                          <!-- <th style="width: 20%">Deadline</th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -116,42 +115,35 @@
                               <li ng-repeat='memberUrl in team.memberUrls'>
                                 <img src="{{memberUrl}}" class="avatar" alt="Avatar">
                               </li>
-                              
                             </ul>
                           </td>
                           <td class="project_progress">
                             <h4>{{team.leader}}</h4>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-success btn-xs">Later</button>
+                            <button type="button" class="btn btn-danger btn-xs">Delete</button>
                           </td>
-                          <td>
+                         <!--  <td>
                           <a> Later</a>
-                          </td>
+                          </td> -->
                         </tr>
                                                 
                       </tbody>
                     </table>
-                    <!-- end project list -->
-                            <!-- end user projects -->
-
                           </div>
-                          <div class="tab-pane fade" id="tab_content3" style="display: inline;" ng-show="showDetails">
-
+                  <div class="tab-pane fade" id="tab_content3" style="display: inline;" ng-show="showDetails">
                       <div class="details-display">
                           <div class="x_title" style="border-bottom: 3px solid #E6E9ED;">
                     <h2>Personal Info</h2>
                     <div class="clearfix"></div>
-                  </div>
-                           
+                  </div>    
                     <div style="display: -webkit-box"; class="x_title">
                     <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
                     <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>
                       {{person.name}} 
                     </h2>
                     <h2 style="font-weight: 30px" ng-switch-when="true">
-                       <input ng-focus="rmcls(this)" ng-model="editObject.name" placeholder="First Name"  id="forname" type="text"/>
-                     
+                       <input ng-focus="rmcls(this)" ng-model="editObject.name" placeholder="First Name"  id="forname" type="text"/>  
                     </h2>
                     </div>
                     <div class="clearfix"></div>
@@ -227,40 +219,64 @@
                     <button ng-click="cancelEdit()" class="btn btn-danger">CANCEL</button>
                     </div>
                     </div>
+                    </div>
+                    </div>
                                
-                                     <script type="text/javascript">
-          $(document).ready(function(){
-              console.log("hi");
-            function phnvalidation(num)
-            {
-              if((num.length!==10) || (isNaN(parseInt(num))) || (parseInt(num).toString().length  != num.length))
-              { 
-                return false;
-              }
-                else
-                {
-                  return true;
-                  }
-                 }
-           
-            $("input").on("focus",function(){
-               $(this).removeClass("parsley-error");
-            });
-             
-            
-          });
+<script type="text/javascript">
+          function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+var deadline = "Fri Feb 24 2017 00:00:00 GMT+0530 (IST)";
+console.log(deadline);
+initializeClock('clockdiv', deadline);
         </script>
                           
-                    </section>
-             
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+</div>
+</div>                   
+       </div>
+       </div>
+       </div>
+       </div>
+        </section>
+       </div>
+
+                   
   

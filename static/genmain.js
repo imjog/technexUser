@@ -1,25 +1,3 @@
-/*var data = [
-{
-parentEvent : 'robonex',
-events:[
-'chut',
-'land'
-],
-max:[
-4,5
-]
-},
-{
-parentEvent : 'chutkeChantre',
-events:[
-'bhanseKeLund',
-'ghodeKeTatte'
-],
-max:[
-2,3
-]
-}
-];*/
 var data = [
 {
 parentEvent: 'ascension',
@@ -90,6 +68,8 @@ app.config(function ($routeProvider) {
                                templateUrl:'/static/profile.html',
                                controller:'profileEdit',
                 
+            }).when('/changepassword/',{
+              templateUrl:'/static/changepassword.html',
             }).otherwise({
                 redirectTo: "/"
             });
@@ -126,7 +106,7 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
      var y=document.getElementsByClassName("parsley-errors-list");
      $(x[z]).removeClass("parsley-error");
      $(x[z]).removeClass("input-error");
-     $(y[z]).hide();
+     $(y[z+1]).hide();
    };
   $scope.update = function(){
 
