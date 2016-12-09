@@ -71,7 +71,10 @@ app.config(function ($routeProvider) {
             }).when('/changepassword/',{
               templateUrl:'/static/changepassword.html',
               controller:'changepass'
-            }).otherwise({
+            }).when('/startupreg/',{
+                   templateUrl:'/static/startupreg.html'
+            }).
+            otherwise({
                 redirectTo: "/"
             });
 
@@ -310,8 +313,12 @@ app.controller("profileEdit",function($scope, profileData,$http){
 
 app.controller("changepass",function($scope,$http){
 
+  $scope.oldpass="";
+  $scope.newpass="";
+  $scope.cnewpass="";
+
    $scope.submit = function(){
-    var x=true;
+    var y=true;
     if($scope.oldpass=="")
     {
       $("#old-pass").addClass("input-error"); 
@@ -338,17 +345,35 @@ app.controller("changepass",function($scope,$http){
       if($scope.cnewpass!=$scope.newpass)
       {
         $("#confirm-new-pass").addClass("parsley-error");
-        $("#pass-error-match").show();
+        $("#pass-match-error").show();
         y=false;
       }
      }
      if(y)
      {
-       data=
-       
+       data={
+        "oldPass":$scope.oldpass,
+       "newPass":$scope.newpass
+     };
+       $http({
+        method: 'POST',
+        url: '/resetpassword/',
+        data: data
+       }).success(function(data){
+        if(data.status==1)
+        {
+          
+        }
+        if(data.status==0)
+          {
+
+            $("#resetpasserr").html(data.error);
+            $("#resetpasserrmsg").show();
+          }
+       });
+
      }
 
     }
-   }
 });
 

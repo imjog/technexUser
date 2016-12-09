@@ -682,17 +682,18 @@ def startUpDelete(request):
     response['status'] = 1
     return JsonResponse(response)
 
-
+@csrf_exempt
 @login_required(login_url = '/register')
 def changePass(request):
     response = {}
+    print request
     if request.method == 'POST':
         post = json.loads(request.body)
         user = authenticate(username=request.user.username,password=post['oldPass'])
         if user is not None:
             request.user.set_password(post['newPass'])
             request.user.save()
-            user = authenticate(username=request.user.email,password=post['newPass'])
+            user = authenticate(username=request.user.username,password=post['newPass'])
             login(request,user)
             response['status'] = 1
             return JsonResponse(response)
