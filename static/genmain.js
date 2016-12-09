@@ -70,6 +70,7 @@ app.config(function ($routeProvider) {
                 
             }).when('/changepassword/',{
               templateUrl:'/static/changepassword.html',
+              controller:'changepass'
             }).otherwise({
                 redirectTo: "/"
             });
@@ -307,9 +308,47 @@ app.controller("profileEdit",function($scope, profileData,$http){
         };
     });
 
-$(document).ready(function(){
+app.controller("changepass",function($scope,$http){
 
+   $scope.submit = function(){
+    var x=true;
+    if($scope.oldpass=="")
+    {
+      $("#old-pass").addClass("input-error"); 
+      y=false; 
+    }
+    if(y)
+    {
+      if($scope.newpass=="")
+      {
+        $("#new-pass").addClass("input-error");
+        y=false;
+      }
+     }
+     if(y)
+     {
+      if($scope.cpass=="")
+      {
+        $("#confirm-new-pass").addClass("input-error");
+        y=false;
+      }
+     }
+     if(y)
+     {
+      if($scope.cnewpass!=$scope.newpass)
+      {
+        $("#confirm-new-pass").addClass("parsley-error");
+        $("#pass-error-match").show();
+        y=false;
+      }
+     }
+     if(y)
+     {
+       data=
+       
+     }
 
+    }
+   }
 });
-
 
