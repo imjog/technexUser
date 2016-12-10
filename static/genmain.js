@@ -72,7 +72,8 @@ app.config(function ($routeProvider) {
               templateUrl:'/static/changepassword.html',
               controller:'changepass'
             }).when('/startupreg/',{
-                   templateUrl:'/static/startupreg.html'
+                   templateUrl:'/static/startupreg.html',
+                   controller:'startup-cont'
             }).
             otherwise({
                 redirectTo: "/"
@@ -162,6 +163,8 @@ app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, 
           $("#error-message").css('background','green')
           $("#error-message-display").html("Team successfully Registered");
           $("#error-message").show();
+          location.reload(true);
+          window.location.assign("#profile");
         }
         if(data.status==0)
         {
@@ -299,7 +302,9 @@ app.controller("profileEdit",function($scope, profileData,$http){
         if(data.status==1)
         {
             profileData.updateInfo(personIndex, $scope.editObject);
-            $scope.editIndex = -1;   
+            $scope.editIndex = -1; 
+            location.reload(true);
+            window.location.assign("#profile");  
         }
         if(data.status==0)
         {
@@ -362,7 +367,8 @@ app.controller("changepass",function($scope,$http){
        }).success(function(data){
         if(data.status==1)
         {
-          
+           location.reload(true);
+           window.location.assign("#profile");
         }
         if(data.status==0)
           {
@@ -376,4 +382,167 @@ app.controller("changepass",function($scope,$http){
 
     }
 });
+
+
+
+app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, $window,$http) {
+  $scope.a = [];
+  $scope.options = $window.data;
+  $scope.counter = 0;
+  $scope.members = [];
+  $scope.user;
+  $scope.ideas="";
+  $scope.teamName="";
+  $scope.leader = document.getElementById('userEmail').value;
+  $scope.parentEventIndex = function(){
+    return findWithAttr($scope.options,'events',$scope.parentEvent);
+  };
+  $scope.addMember = function(){
+    $scope.members.push($scope.counter++);
+    };
+  $scope.removeMember = function(z){
+    $scope.members.splice(z,1);
+    $scope.a.splice(z,1);
+    $scope.counter--;
+  };
+   
+   $scope.removeerror = function(z){
+     var x=document.getElementsByClassName("abcd");
+     var y=document.getElementsByClassName("parsley-errors-list");
+     $(x[z]).removeClass("parsley-error");
+     $(x[z]).removeClass("input-error");
+     $(y[z+1]).hide();
+   };
+  $scope.update = function(){
+
+    try{ 
+    $scope.max = $scope.options[$scope.parentEventIndex()].max[$scope.parentEvent.indexOf($scope.selectedevent)];
+    $scope.a  = new Array($scope.max);
+        while($scope.members.length!=0)
+    {
+        $scope.members.pop();    
+    }
+    $scope.members=[];
+    $scope.counter=0;
+    return false;
+  }
+  catch(err){
+    $scope.max = 0;$scope.counter = 0;
+    return false;
+  }
+  };
+   $scope.membervalid= function(data)
+   {
+     var id=data.trim();
+    var tid=id.length==7 && id.substring(0,2)=="TX" && !isNaN(parseInt(id.substring(2)));
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       console.log("////");
+       console.log(tid);
+      var email=re.test(id)
+       return (email || tid);  
+   }
+  $scope.submitForm = function(event)
+  {
+
+     var x=true;
+     console.log($scope.teamName);
+     if($scope.teamName=="")
+     {
+      $("#teamName").addClass("input-error");
+      x=false;
+      console.log("empty");
+     }
+     if(x)
+     {
+       if($scope.ideas=="")
+       {
+        $("#ideas").addClass("input-error");
+        x=false;
+       }
+     }
+     if(x)
+     {
+      if($scope.leader=="")
+      {
+        $("#team-leader").addClass("input-error");
+        x=false;
+      }
+     }
+     if(x)
+     {
+      if(!$scope.membervalid($("#team-leader").val()))
+      {
+        $("#team-leader").addClass("parsley-error");
+        $("#team-leader-invalid").show();
+        x=false;
+      }
+     }
+     var z=$(".abcd");
+     var z1=$(".parsley-errors-list");
+     if(x)
+     {
+       var i;
+       
+       for(i=0;i<z.length;i++)
+       {
+          if($(z[i]).val()=="")
+          {
+            $(z[i]).addClass("input-error")
+            x=false;
+          }
+
+       }
+     }
+     if(x)
+     {
+       var i;
+       for(i=0;i<z.length;i++)
+       {
+        if(!$scope.membervalid($(z[i]).val()))
+        {
+          $(z[i]).addClass("parsley-error");
+          $(z1[i+1]).show();
+          x=false;
+        }
+       }
+     }
+      
+      if(x)
+      {
+             $(".team-reg-submit").html("Submitting. Please Wait!");
+             data={
+              "idea": $scope.ideas,
+              "teamName":$scope.teamName,
+              "memberMails":$scope.a,
+              "teamLeader":$scope.leader
+             }
+             $http({
+              method:'POST',
+              url:'/startupregister/',
+              data: data
+             }).success(function(data){
+              $(".team-reg-submit").html("Submit");
+              console.log(data);
+                if(data.status==0)
+                {
+                   $("#error-message-display").html(data.error);
+                   $("#error-message").show();
+                   
+                }
+                if(data.status==1)
+                {
+                   
+                   window.location.assign("#profile");
+                   location.reload(true);
+                }
+             });
+      }
+  };
+
+
+  }]);
+
+
+
+
 

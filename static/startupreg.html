@@ -1,23 +1,82 @@
 <div class="right_col" role="main" style="min-height: 1164px;">
           <div class="">
             <div class="page-title">
-              <div class="title_left">
+                  <div class="title_left">
                 <h3>StartupFair Registeration</h3>
               </div>
-
-              
-            </div>
-            
-            <div class="clearfix"></div>
-<div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
+              </div>
+               <div class="clearfix"></div>
+               <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                    <div class="form-group" id="error-message" style="display: none;">
+                    <h3 style="text-align: center;" id="error-message-display">ERROR MESSAGE</h3>
+                    </div>                             
                   <div class="x_content">
-                  
                     <br>
-                   </div>
+                    <div  class="col-sm-6 col-sm-offset-3 form-box">
+ <form role="form" action="" method="post" class="event-registration-form">
+<fieldset>
+                                  <div class="form-bottom" style="padding-bottom: 35px;">
+<div class="form-group">
+<input type='text' ng-model="teamName" class="form-control" id="teamName" placeholder="TeamName" style="margin-bottom: 10px;"/>
+</div>
+<div class="form-group">
+<textarea type="textbox" name="ideas" class="form-control" ng-model="ideas" id="ideas" placeholder="Idea"/>
+</div>
+<div class="form-group has-feedback">
+<input type="text" class="form-control" id="team-leader" placeholder="Team leader" ng-model="leader">
+<ul class="parsley-errors-list filled" id="team-leader-invalid" style="display: none;"><li class="parsley-required">Invalid Email or TechnexID</li></ul>
+<span class="glyphicon glyphicon-king form-control-feedback right" style="right: 0px" aria-hidden="true"></span>
+</div>
+<div>
+<div data-ng-repeat="field in members track by $index" class="form-group ">
+  <div class="col-md-6 col-sm-6 col-xs-12 has-feedback member-input">
+<input type="text" ng-model="a[$index]" class="form-control col-md-7 col-xs-12 abcd" ng-focus="removeerror($index)" required placeholder="Member Email or TechnexID" />
+<ul class="parsley-errors-list filled" style="display: none;"><li class="parsley-required">Invalid Email or TechnexID</li></ul>
+<span class="glyphicon glyphicon-pawn form-control-feedback right" style="right: 10px" aria-hidden="true"></span>
+</div>
+
+<button type="button" ng-click='removeMember($index)' class="btn btn-danger">Remove</button>
+</div>
+</div>
+<br/>
+<div>
+<button type="button" ng-click="addMember()" class="btn btn-primary">Add Member</button>
+<button type="button" class="btn btn-success team-reg-submit" ng-click="submitForm()">SUBMIT</button>
+</div>
+</div>
+</fieldset>
+
+</form>
+
+</div>
                   </div>
-                 </div>
-                 </div>
-                 </div>
-                 </div>   
+                </div>
+              </div>
+               </div>
+            
+
+
+          <br >
+
+
+
+    
+            </div>
+          </div>
+          <script type="text/javascript">
+          $(document).ready(function(){
+            $("input").on("focus",function(){
+              $(this).removeClass("input-error");
+              if(this.id=="team-leader")
+              {
+                $(this).removeClass("parsley-error");
+                $("#team-leader-invalid").hide();
+              }
+            });
+            $("textarea").on("focus",function(){
+              $(this).removeClass("input-error");
+            })
+          });
+          </script>
