@@ -175,7 +175,11 @@ class StartUpFair(models.Model):
     idea = models.CharField(max_length = 250)
     teamLeader = models.OneToOneField(TechProfile)
     teamName = models.CharField(max_length = 35)
+    def __unicode__(self):
+        return self.teamName
 
 class StartUpMails(models.Model):
     email = models.EmailField(max_length = 65,unique = True)
     team = models.ForeignKey(StartUpFair)
+    def __unicode__(self):
+        return self.email        

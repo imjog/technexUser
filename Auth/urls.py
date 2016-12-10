@@ -39,7 +39,8 @@ urlpatterns = [
 	url(r'^resetPass/(?P<forgotPassKey>[\w\-]+)/$', resetPass, name='resetPass'),
 	url(r'^cdncheck/$', cdncheck, name='cdncheck'),
 	url(r'^updateProfile/',profileData,name='profile edit'),
-
+    url(r'^resetpassword/',changePass,name='change password'),
+    url(r'^startupregister/',startUpRegistration,name='startup registeration'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),

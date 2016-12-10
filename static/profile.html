@@ -1,4 +1,42 @@
-                    
+<style type="text/css">
+.tooltip-nameDrama {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-nameDrama .tooltiptext-nameDrama {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip-nameDrama .tooltiptext-nameDrama::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip-nameDrama:hover .tooltiptext-nameDrama {
+    visibility: visible;
+    opacity: 1;
+}
+</style>                    
 <div class="right_col" role="main" style="min-height: 1164px;">
  <section ng-switch on="(editIndex == $index)"
                      ng-repeat="person in employeeArray track by $index"
@@ -112,8 +150,11 @@
                           </td>
                           <td>
                             <ul class="list-inline">
-                              <li ng-repeat='memberUrl in team.memberUrls'>
-                                <img src="{{memberUrl}}" class="avatar" alt="Avatar">
+                              <li ng-repeat='memberUrl in team.memberUrls track by $index'>
+                                <span class="tooltip-nameDrama">
+                                <img src="{{memberUrl}}" class="avatar" alt="Avatar" />
+                                <span class="tooltiptext-nameDrama">{{team.memberNames[$index]}}</span>
+                                </span>                                
                               </li>
                             </ul>
                           </td>
@@ -121,7 +162,8 @@
                             <h4>{{team.leader}}</h4>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                            <button type="button" class="btn btn-danger btn-xs" ng-click='deleteTeam($index)' ng-disabled='team.leaderEmail != profileEmail'>Delete</button>
+                          
                           </td>
                          <!--  <td>
                           <a> Later</a>
@@ -265,6 +307,11 @@ function initializeClock(id, endtime) {
 var deadline = "Fri Feb 24 2017 00:00:00 GMT+0530 (IST)";
 console.log(deadline);
 initializeClock('clockdiv', deadline);
+
+/*$(document).ready(function(){
+   $('a[data-toggle="tooltip"]').tooltip();   
+});
+*/
         </script>
                           
                           </div>

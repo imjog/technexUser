@@ -11,7 +11,8 @@ import os
 import facebook
 from Auth.models import *
 from Auth.views import contextCall
-server = "https://technexuser.herokuapp.com/"
+
+server = "https://immense-cliffs-95646.herokuapp.com/"
 
 
 @csrf_exempt
@@ -30,9 +31,9 @@ def eventRegistration(request):
 			response['error'] = "TeamName Already exists"
 			return JsonResponse(response)
 		except:
-			if 'teamLeaderTechnexId' in data:
-				teamLeader = TechProfile.objects.get(technexId = data['teamLeaderTechnexId'])
-			else:
+			try:
+				teamLeader = TechProfile.objects.get(technexId = data['teamLeaderEmail'])
+			except:
 				teamLeader = TechProfile.objects.get(email = data['teamLeaderEmail'])
 			users = []
 			# print "here"
@@ -74,10 +75,15 @@ def eventRegistration(request):
 							response['error'] = u.email+' Already registered !!!'
 							return JsonResponse(response)
 					except:
-						pass
+						try:
+							if teamLeader == u:
+								users.remove(u)
+						except:
+							pass
 				team = Team(teamLeader = teamLeader,event = event, teamName = data['teamName'])
 				team.save()
 				team.technexTeamId = "TM"+str(1000+team.teamId)
+				team.save()
 			for user in users:
 			    team.members.add(user)
 			response['status'] = 1
@@ -105,13 +111,14 @@ def teamLeave(request):
 		response['error'] = 'Invalid request'
 		return JsonResponse(response)
 
-
+@csrf_exempt
 def teamDelete(request):
 	response = {}
 	if request.method == 'POST':
-		data = request.POST
+		data = json.loads(request.body)
 		try:
-			team = Team.objects.get(teamLeader = request.user.techprofile, teamId = data['identifier']).delete()
+			print data['identifier']
+			team = Team.objects.get(teamLeader = request.user.techprofile,technexTeamId = data['identifier']).delete()
 			response['status'] = 1
 		except:
 			response['status'] = 0

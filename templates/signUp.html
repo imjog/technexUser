@@ -19,6 +19,10 @@
         <![endif]-->
         <link rel="shortcut icon" href="/static/favicon.ico">
         <style type="text/css">
+        .input-error
+        {
+        border-color: #e45d5d;
+        }
         </style>
        <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -110,7 +114,8 @@ function navFunction() {
          
 
                             <div class="form-group">
-                            <a href="#" id="not-registered">Not Registered? Register Here</a>
+                            <a href="#" id="not-registered" class="pull-left">Not Registered? Register Here</a>
+                            <a href="#" id="forgot-pass" data-toggle="modal" data-target="#myModal" class="pull-right">Forgot Password?</a>
                             </div>
                                                             </div>
                             </fieldset>
@@ -324,28 +329,27 @@ function navFunction() {
       <div class="modal-content" style="top: 70px;">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Login to Technex'17</h4>
+          <h4 class="modal-title">Enter your email to send verification link</h4>
         </div>
         <div class="modal-body">
-         <form role="form" method="post" class="login-form">
+        <div id="reset-message" style="display: none;"><p id="error-resetemail">ERROR</div>
          <div class="form-group">
-         <input type="text" class="form-control" name="login-id" id="login-id" placeholder="TechnexID or email" />
+         <input type="text" class="form-control" name="reset-pass" id="reset-email" placeholder="Registered email address"/>
+                                     <div class="alert-message reset-emailerr" id="reset-emailerr" style="display: none;">
+                                          <button type="button" id="close-reset-emailerr" class="close-btna close-btn">
+                                             <span aria-hidden="true">&times;</span>
+                                           </button>
+  <!-- <strong>Sorry!</strong> -->Invalid Email
+</div>
          </div>
-         <div class="form-group">
-         <input type="password" placeholder="Password" class="form-control" id="login-pass"/>
          </div>
-          <div class="form-group" style="margin-top: 6%;margin: 0 auto;">
-                          <button type="button" class="form-control btn">LOGIN</button>
-                          </div>
-                                               <div class="form-group" style="display: table;margin: 0 auto;">
-                             <h3 style="color: black;"> ----- OR ----- </h3>
-                            </div>
-                                         <div class="form-group" style="margin: 0 auto;">
-                            <button type="button" id="btn-next-page-fb" class="form-control" onclick="fb_login()" style="width: 100%">LOGIN WITH FACEBOOK</button>
-                            </div>
-
-         </form>
-        </div>
+        <div class="modal-footer">
+      <button type="button" class="btn pull-left" id="forgot-pass-submit">SUBMIT</button>
+      <button type="button" class="btn pull-right" data-dismiss="modal">CANCEL</button>
+      
+      </div>
+         
+        
       </div>
       
     </div>

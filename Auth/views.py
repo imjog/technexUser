@@ -15,7 +15,7 @@ from user_agents import parse
 from django.db.models import Q
 #from Auth.forms import *
 # Create your views here.
-server = 'http://localhost:8000/'
+server = 'https://immense-cliffs-95646.herokuapp.com/'
 
 
 @csrf_exempt
@@ -55,6 +55,7 @@ def profileData(request):
         techProfile.college = college
         techProfile.city = post['city']
         techProfile.year = post['year']
+        techProfile.save()
         response['status'] = 1
         return JsonResponse(response)
     else:
@@ -93,32 +94,32 @@ def contextCall(request):
         response['user'] = user
         response['techProfile'] = techprofile
         teams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile))
-        teamsData = []
-
+        teamsData = []        
         for team in teams:
             teamData = {}
 
             teamData['teamName'] = team.teamName
             teamData['event'] = team.event.eventName
             teamData['parentEvent'] = team.event.parentEvent.categoryName
-            
+            teamData['teamId'] = team.technexTeamId
             teamData['leader'] = team.teamLeader.user.first_name
+            teamData['leaderEmail'] = team.teamLeader.email
             teamMemberUrl = []
-            
+            teamMemberNames = []
             for member in team.members.all():
-                
+                teamMemberNames.append(member.user.first_name.encode("utf-8"))
                 try:
                     teamMemberUrl.append(member.fb.profileImage)
                 except:
                     url = "/static/profile.png"
                     teamMemberUrl.append(url)
-            
+            teamData['memberNames'] = teamMemberNames
             teamData['memberUrls'] = teamMemberUrl
             teamsData.append(teamData)
             
         print teamsData
         response['teams'] = teamsData
-        response['notificationArray'] = notificationData(request)
+        #response['notificationArray'] = notificationData(request)
     except:
         pass
     return response
@@ -629,11 +630,14 @@ def notificationData(request):
         notificationArray.append(notificationObject)
     return notificationArray
 '''
+@csrf_exempt
 @login_required(login_url='/register')
 def startUpRegistration(request):
     response = {}
+    print request
     if request.method == 'POST':
         post = json.loads(request.body)
+        print post
         try:
             StartUpFair.objects.get(teamLeader = request.user.techprofile)
             response['status'] = 0
@@ -641,9 +645,15 @@ def startUpRegistration(request):
             return JsonResponse(response)
         except:
             startUpFair = StartUpFair(idea = post['idea'], teamLeader = request.user.techprofile, teamName = post['teamName'])
+            startUpFair.save()
             for email in post['memberMails']:
-                s = StartUpMails(email = email,team = startUpFair)
-                s.save()
+                if checkunique(email):
+                    s=StartUpMails(email=email,team=startUpFair)
+                    s.save()
+            # for email in post['memberMails']:
+            #     s = StartUpMails(email = email,team = startUpFair)
+            #     print s
+            #     s.save()
             response['status'] = 1
             return JsonResponse(response)
     else:
@@ -682,17 +692,18 @@ def startUpDelete(request):
     response['status'] = 1
     return JsonResponse(response)
 
-
+@csrf_exempt
 @login_required(login_url = '/register')
 def changePass(request):
     response = {}
+    print request
     if request.method == 'POST':
         post = json.loads(request.body)
         user = authenticate(username=request.user.username,password=post['oldPass'])
         if user is not None:
             request.user.set_password(post['newPass'])
             request.user.save()
-            user = authenticate(username=request.user.email,password=post['newPass'])
+            user = authenticate(username=request.user.username,password=post['newPass'])
             login(request,user)
             response['status'] = 1
             return JsonResponse(response)
@@ -704,3 +715,10 @@ def changePass(request):
         response['status'] = 0
         response['error'] = 'Invalid Request!!'
         return JsonResponse(response)
+
+def checkunique(request):
+    try:
+        StartUpMails.objects.get(email = request)
+        return False
+    except:
+        return True    

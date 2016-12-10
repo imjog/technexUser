@@ -25,7 +25,54 @@ jQuery(document).ready(function() {
    
     });
 
+   $("#forgot-pass-submit").on("click",function(){
+    var x=true;
+    
+      if($("#reset-email").val()=="")
+      {
 
+        $("#reset-email").css("border-color","#e45d5d");
+        x=false;
+      }     
+      if(x)
+      {
+         console.log("forgot");
+        x=membervalid($("#reset-email").val());
+        console.log(x);
+        if(!x)
+        {
+          $("#reset-emailerr").show();
+        }  
+      }
+      if(x)
+      {
+        $("#forgot-pass-submit").html("Submitting...");
+        data={
+          "email" : $("#reset-email").val()
+        }
+        theAjax('/forgotPassword/',data)
+        .done(function(response){
+          console.log(response);
+          if(response.status==0)
+          {
+           $("#forgot-pass-submit").html("Submit");
+           $("#error-resetemail").html(response.error);
+           $("#reset-message").show();
+          }
+          if(response.status==1)
+          {
+           $("#forgot-pass-submit").html("Submit");
+           $("#error-resetemail").html("Reset link successfully sent"); 
+           $("#reset-message").show();
+          }
+        })
+      }
+
+   });
+  $("#reset-email").on("focus",function(){
+    $("#reset-email").css("border-color","#ddd");
+    $("#reset-message").hide();
+  })
 
   $("#login-btn").on("click",function(){
     var x=true;
@@ -60,7 +107,7 @@ jQuery(document).ready(function() {
             console.log(response);
             if(response.status==1)
             {
-              window.location.assign("/register");
+              window.location.assign("/dashboard/#/profile/");
             }
             if(response.status==0)
             {
@@ -90,7 +137,8 @@ jQuery(document).ready(function() {
 
 
 
-
+    
+     $(".reset-emailerr").hide();
 
     $(".login-error").hide();
 
@@ -123,6 +171,9 @@ jQuery(document).ready(function() {
       $('.login-error').hide();
 
     })
+    $("#close-reset-emailerr").on("click",function(){
+      $(".reset-emailerr").hide();
+    })
 
 
 
@@ -150,12 +201,18 @@ function phnvalidation()
     $('#top-navbar-1').on('hidden.bs.collapse', function(){
         $.backstretch("resize");
     });
-
+function membervalid(data){
+   var id=data.trim();
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var email=re.test(id)
+       return (email);  
+        
+    }
 
 function technexIdValidation()
 {
    var id=$("#login-id").val().trim();
-    return id.length==9 && id.substring(0,4)=="TX17" && !isNaN(parseInt(id.substring(4)));
+    return id.length==7 && id.substring(0,2)=="TX" && !isNaN(parseInt(id.substring(2)));
 
 }
 
@@ -334,6 +391,13 @@ function validatePassword(){
           $(".login-error").hide();
          }  
 
+    });
+    $("#reset-email").keyup(function(e){
+         var code= (e.keyCode ? e.keyCode : e.which);
+         if(code!=13)
+         {
+          $(".reset-emailerr").hide();
+         }
     });
 
 $("#login-pass").keyup(function(e){
