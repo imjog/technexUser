@@ -70,18 +70,34 @@ app.config(function ($routeProvider) {
                 
             }).when('/changepassword/',{
               templateUrl:'/static/changepassword.html',
-            }).otherwise({
+            }).when('/eventReg/:param1/:param2',
+              {
+                templateUrl: '/static/dash/teamregister.html',
+                controller: 'evnt-control',
+              }
+
+            )
+            .otherwise({
                 redirectTo: "/"
             });
 
     });
 
-app.controller('evnt-control', ['$scope', '$window', '$http' , function($scope, $window,$http) {
+app.controller('evnt-control', ['$scope', '$window', '$http' ,'$routeParams', function($scope, $window,$http,$routeParams) {
    console.log("hi");
+   var param1 = $routeParams.param1;
+   var param2 = $routeParams.param2;
+
+   console.log(param1+'  '+param2);
   $scope.parentEvent = '';
+
   $scope.max=0;
   $scope.a = [];
   $scope.options = $window.data;
+  if (param1){
+    $scope.parentEvent = $.grep($scope.options,function(n,i){ return n.parentEvent == param1})[0].events;
+    $scope.selectedevent = param2;
+  }
   $scope.counter = 0;
   $scope.members = [];
   $scope.user;

@@ -23,11 +23,13 @@
 <div class="form-group">                                  
 <select ng-options='f.events as f.parentEvent for f in options' ng-model="parentEvent" ng-change="update()" class="form-control" id="parentevent">
   <option value="">-- Select Parent Event --</option>
+
   </select>
   </div>
   <div class="form-group">
 <select ng-options="p as p for p in parentEvent" ng-model="selectedevent" ng-change="update()" class="form-control" id="childevent">
 <option value="">-- Select Event --</option>
+
 </select>
 </div>
 <div class="form-group">
