@@ -149,7 +149,7 @@ button:focus {
   max-width: 100%;
   height: 100%;
   height: 100vh;
-  top: 80px;
+  top: 64px;
   left: 0;
   padding: 0em 1em;
  border-right: 1px solid white;
@@ -1444,13 +1444,6 @@ hr{
     padding-top: 0px;
     }
 }
-.events-hr{
-    border: 1px solid rgba(255,255,255,.4);
-    position: relative;
-    z-index: 980;
-    width: 60%;
-    top: 0px;
-}
 
 big{
     line-height: 20px;
@@ -1485,19 +1478,19 @@ ul.topnav li a {
   display: inline-block;
   color: white;
   text-align: center;
-  padding: 14px 8px;
+  padding: 14px 10px;
   text-decoration: none;
   transition: 0.3s;
-  font-size: 16px;
+  font-size: 14px;
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
 @media (max-width:1320px){
     ul.topnav li a{
-        padding: 10px 10px;
+/*        padding: 10px 10px;*/
     }
 }
-@media (min-width:1320px){
+@media (min-width:1386px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);
     }
@@ -1514,7 +1507,7 @@ ul.topnav li a:hover {
 
 ul.topnav li.icon {display: none;}
 
-@media screen and (max-width:1320px) {
+@media screen and (max-width:1386px) {
   ul.topnav li:not(:first-child){display: none;}
     ul.topnav li:nth-child(10){display: block; float: right;}
   ul.topnav li.icon {
@@ -1524,7 +1517,7 @@ ul.topnav li.icon {display: none;}
     ul.topnav li a{border:1px solid white;margin-right: 8px;}
 }
 
-@media screen and (max-width:1320px) {
+@media screen and (max-width:1386px) {
   ul.topnav.responsive {position: relative;}
   ul.topnav.responsive li.icon {
     position: absolute;
@@ -1604,4 +1597,40 @@ hr {
     color: white;
         display: block;
     }
+}
+
+/*-------- Register button----------*/
+.eventRegister{
+    padding: 10px;
+    font-size: 14px;
+    color: white;
+    background: #0084FF;
+    border: 2px solid white;
+    float: left;
+}
+@media screen and (min-width:768px){
+    .eventRegister{
+    padding: 15px;
+    font-size: 20px;
+    color: white;
+    background: #0084FF;
+    border: 2px solid white;
+    float: left;
+}
+}
+.events-hr{
+    border: 1px solid rgba(255,255,255,.4);
+    position: relative;
+    z-index: 980;
+    width: 40%;
+    top: 0;
+    left: 10%;
+}
+.content__item h2{
+    text-align: right;
+}
+@media screen and (min-width:768px){
+    .content__item h2{
+    text-align: center;
+}
 }

@@ -76,7 +76,7 @@ function navFunction() {
   <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER / LOGIN</a></li>
   <li class="icon">
     <a href="javascript:void(0);" style="font-size:15px;" onclick="navFunction()">☰</a>
   </li>
@@ -159,7 +159,7 @@ $("nav a").each(function() {
 
 	for(i=0;i<data.events.length;i++)
 	{
-		out+='<article class="content__item"><h2 class="title title--full">'+data.events[i].eventName+'</h2><p style="text-align:center;">'+data.events[i].description+'</p><hr class="events-hr"><br><br><div class="meta meta--full"><h1 style="text-align:center">'+data.name+'</h1>\
+		out+='<article class="content__item"><h2 class="title title--full"><button class="eventRegister">REGISTER TEAM</button>'+data.events[i].eventName+'</h2><p style="text-align:center;">'+data.events[i].description+'</p><hr class="events-hr"><br><br><div class="meta meta--full"><h1 style="text-align:center">'+data.name+'</h1>\
 		<div class="events-name">';
 		// for(j=0;j<data.events.length;j++)
 		// {

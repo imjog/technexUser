@@ -2099,13 +2099,14 @@ ul.topnav li a {
   padding: 14px 8px;
   text-decoration: none;
   transition: 0.3s;
-  font-size: 16px;
+  font-size: 13px;
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
 @media (min-width:1330px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);
+        font-size: 15px;
     }
 ul.topnav li a:hover {
 /*    background-color:white; color: black;*/
