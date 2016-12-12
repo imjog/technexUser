@@ -455,6 +455,7 @@ def event(request, key):
             eventData['prizeMoney'] = event.prizeMoney
             eventData['maxMembers'] = event.maxMembers
             eventData['eventOrder'] = event.eventOrder
+            eventData['eventSlug']=event.nameSlug
             eventData['eventOptions'] = []
             eventOptions = EventOption.objects.filter(event = event)
             for eventOption in eventOptions:

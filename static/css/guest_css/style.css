@@ -38,7 +38,10 @@ Patterns - reusable parts of our design
 
 
 /*----------------------------NAVBAR--------------------------*/
-
+.jnavbar{
+    margin: 0 auto;
+    display: table;
+}
 ul.topnav {
   list-style-type: none;
   margin: 0;

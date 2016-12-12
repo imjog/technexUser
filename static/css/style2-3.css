@@ -1481,13 +1481,14 @@ ul.topnav li a {
   padding: 14px 10px;
   text-decoration: none;
   transition: 0.3s;
-  font-size: 14px;
+  font-size: 13px;
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
-@media (max-width:1320px){
+@media (min-width:1320px){
     ul.topnav li a{
 /*        padding: 10px 10px;*/
+        font-size: 15px;
     }
 }
 @media (min-width:1386px){
@@ -1544,7 +1545,8 @@ ul.topnav li.icon {display: none;}
 .jnavbar{
     z-index: 2000000;
     position: relative;
-    
+    margin: 0 auto;
+    display: table;
 }
 /*
 

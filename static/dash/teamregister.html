@@ -22,7 +22,7 @@
                                   <div class="form-bottom" style="padding-bottom: 35px;">
 <div class="form-group">                                  
 <select ng-options='f.events as f.parentEvent for f in options' ng-model="parentEvent" ng-change="update()" class="form-control" id="parentevent">
-  <option value="">-- Select Parent Event --</option>
+  <option value="">-- Select Category --</option>
 
   </select>
   </div>
@@ -105,7 +105,7 @@ console.log("hi");
       console.log(y);
       if(y)
       {
-      	if($("#parentevent option:selected").text()=="-- Select Parent Event --")
+      	if($("#parentevent option:selected").text()=="-- Select Category --")
       	{y=false;
       		$("#parentevent").addClass("input-error");
       	}

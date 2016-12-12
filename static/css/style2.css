@@ -1105,6 +1105,10 @@ body {
 /*# sourceMappingURL=style2.css.map */
 /*----------------------------NAVBAR--------------------------*/
 
+.jnavbar{
+    margin: 0 auto;
+    display: table;
+}
 ul.topnav {
   list-style-type: none;
   margin: 0;
@@ -1124,16 +1128,17 @@ ul.topnav li a {
   padding: 14px 8px;
   text-decoration: none;
   transition: 0.3s;
-  font-size: 16px;
+  font-size: 15px;
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
-@media (max-width:1320px){
+@media (max-width:1380px){
     ul.topnav li a{
-        padding: 10px 10px;
+/*        padding: 10px 10px;*/
+        font-size: 13px;
     }
 }
-@media (min-width:1350px){
+@media (min-width:1380px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);
     }
@@ -1150,7 +1155,7 @@ ul.topnav li a:hover {
 
 ul.topnav li.icon {display: none;}
 
-@media screen and (max-width:1350px) {
+@media screen and (max-width:1380px) {
   ul.topnav li:not(:first-child){display: none;}
     ul.topnav li:nth-child(10){display: block; float: right;}
   ul.topnav li.icon {
@@ -1160,7 +1165,7 @@ ul.topnav li.icon {display: none;}
     ul.topnav li a{border:1px solid white;margin-right: 8px;}
 }
 
-@media screen and (max-width:1350px) {
+@media screen and (max-width:1380px) {
   ul.topnav.responsive {position: relative;}
   ul.topnav.responsive li.icon {
     position: absolute;
