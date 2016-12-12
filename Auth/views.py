@@ -602,6 +602,10 @@ def resetPass(request,forgotPassKey):
 
 def cdncheck(request):
     return render(request, 'cdn_check.html', {})
+
+def startupFair(request):
+    return render(request, 'startupfair.html', {})
+
 '''
 def read(request):
     response = {}
