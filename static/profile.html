@@ -36,6 +36,9 @@
     visibility: visible;
     opacity: 1;
 }
+#eventParentEvent{
+  text-transform: capitalize;
+}
 </style>                    
 <div class="right_col" role="main" style="min-height: 1164px;">
  <section ng-switch on="(editIndex == $index)"
@@ -125,7 +128,7 @@
                           <td>
                             <a>{{team.teamName}}</a>
                             <br>
-                            <small><a href='/events/{{team.parentEvent}}' onmouseover="this.style.textDecoration='underline';" 
+                            <small id='eventParentEvent'><a href='/events/{{team.parentEvent}}' onmouseover="this.style.textDecoration='underline';" 
     onmouseout="this.style.textDecoration='none';">{{team.parentEvent}}</a>/{{team.event}}</small>
                           </td>
                           <td>
