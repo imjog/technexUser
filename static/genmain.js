@@ -107,17 +107,18 @@ app.controller('evnt-control', ['$scope', '$window', '$http' ,'$routeParams', fu
   $scope.max=0;
   $scope.a = [];
   $scope.options = $window.data;
+  $scope.parentEventIndex = function(){
+    return findWithAttr($scope.options,'events',$scope.parentEvent);
+  };
   if (param1){
     $scope.parentEvent = $.grep($scope.options,function(n,i){ return n.parentEvent == param1})[0].events;
     $scope.selectedevent = param2;
+    $scope.max = $scope.options[$scope.parentEventIndex()].max[$scope.parentEvent.indexOf($scope.selectedevent)];
   }
   $scope.counter = 0;
   $scope.members = [];
   $scope.user;
   $scope.leader = document.getElementById('userEmail').value;
-  $scope.parentEventIndex = function(){
-  	return findWithAttr($scope.options,'events',$scope.parentEvent);
-  };
   $scope.addMember = function(){
   	if($scope.counter < $scope.max)
   	$scope.members.push($scope.counter++);
