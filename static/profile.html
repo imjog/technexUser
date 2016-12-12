@@ -146,7 +146,8 @@
                           <td>
                             <a>{{team.teamName}}</a>
                             <br>
-                            <small>{{team.parentEvent}}/{{team.event}}</small>
+                            <small><a href='/events/{{team.parentEvent}}' onmouseover="this.style.textDecoration='underline';" 
+    onmouseout="this.style.textDecoration='none';">{{team.parentEvent}}</a>/{{team.event}}</small>
                           </td>
                           <td>
                             <ul class="list-inline">

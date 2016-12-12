@@ -93,7 +93,8 @@ def contextCall(request):
         techprofile = user.techprofile
         response['user'] = user
         response['techProfile'] = techprofile
-        teams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile))
+        teams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
+        print teams
         teamsData = []        
         for team in teams:
             teamData = {}
