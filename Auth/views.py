@@ -216,7 +216,8 @@ Team Technex.'''
         send_email(email,subject,body)
         #newUser = authenticate(username=email, password=password)
         #print 'code base 3'
-        #login(request, newUser)
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        login(request, user)
         return HttpResponse('1')
     else:
         context= {}
