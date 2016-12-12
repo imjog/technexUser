@@ -43,11 +43,11 @@
             <div class="clearfix"></div>
             <div class="profile">
               <div class="profile_pic">
-                <img src="/static/profile.png" alt="..." class="img-circle profile_img">
+                <img src={% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %} alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>{{user.first_name}}</h2>
+                <h2 id="user_name">{{user.first_name}}</h2>
               </div>
             </div>
             <br />
@@ -86,7 +86,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/static/profile.png" alt="">{{user.first_name}}
+                    <img src={% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %} alt="">{{user.first_name}}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -148,7 +148,8 @@ app.service("profileData", function(){
                 year: "{{techProfile.year}}",
                 city: "{{techProfile.city}}",
                 email: "{{techProfile.email}}",
-                mobile: "{{techProfile.mobileNumber}}"
+                mobile: "{{techProfile.mobileNumber}}",
+                profileImage: {% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %}
             }
 
         ];
