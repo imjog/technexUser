@@ -12,7 +12,7 @@ import facebook
 from Auth.models import *
 from Auth.views import contextCall
 
-server = "https://immense-cliffs-95646.herokuapp.com/"
+server = "http://www.technex.in/"
 
 
 @csrf_exempt
@@ -86,6 +86,7 @@ def eventRegistration(request):
 				team.save()
 			for user in users:
 			    team.members.add(user)
+
 			response['status'] = 1
 			return JsonResponse(response)
 	else:

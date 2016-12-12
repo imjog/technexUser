@@ -15,7 +15,7 @@ from user_agents import parse
 from django.db.models import Q
 #from Auth.forms import *
 # Create your views here.
-server = 'https://immense-cliffs-95646.herokuapp.com/'
+server = 'http://www.technex.in/'
 
 
 @csrf_exempt
