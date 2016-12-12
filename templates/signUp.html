@@ -369,7 +369,10 @@ function navFunction() {
 
        <script type="text/javascript">
 $(document).ready(function(){var token = {{status}};
-if(token) $("#btn-next-page-email").trigger( "click" );
+if(token){ 
+  $("#btn-next-page-email").trigger( "click" );
+  $("#not-registered").trigger("click");
+}
 });
 var csrfmiddlewaretoken = '{{ csrf_token }}';
 
