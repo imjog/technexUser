@@ -149,7 +149,7 @@ app.service("profileData", function(){
                 city: "{{techProfile.city}}",
                 email: "{{techProfile.email}}",
                 mobile: "{{techProfile.mobileNumber}}",
-                profileImage: {% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %}
+                profileImage: {% if techProfile.fb %}"/static/profile.png"{% else %} "/static/profile.png"{% endif %}
             }
 
         ];
