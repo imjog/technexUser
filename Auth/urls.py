@@ -41,6 +41,7 @@ urlpatterns = [
 	url(r'^updateProfile/',profileData,name='profile edit'),
     url(r'^resetpassword/',changePass,name='change password'),
     url(r'^startupregister/',startUpRegistration,name='startup registeration'),
+    url(r'^startupfair/',startupFair,name='startup Fair'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),

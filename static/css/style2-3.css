@@ -1542,12 +1542,12 @@ ul.topnav li.icon {display: none;}
     }
 }
 
-.jnavbar{
+/*.jnavbar{
     z-index: 2000000;
     position: relative;
     margin: 0 auto;
     display: table;
-}
+}*/
 /*
 
 .topnav-li:after {
