@@ -195,7 +195,7 @@ def register(request):
         subject = "[Technex'17] Confirmation of Registration"
         body = "Dear "+ data.get('name',None) +''',
 
-You have successfully registered for Technex 2017. Team Technex welcomes you aboard!
+You have successfully registered for Technex 2017 with Technex Id %s . Team Technex welcomes you aboard!
 
 An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
 
@@ -212,7 +212,7 @@ All the best!
 
 Regards
 
-Team Technex.'''
+Team Technex.'''%(techprofile.technexId)
         send_email(email,subject,body)
         #newUser = authenticate(username=email, password=password)
         #print 'code base 3'
@@ -553,7 +553,7 @@ def forgotPassword(request):
             key = ForgotPass(user = user,key = forgotPassKey)
             key.save()
 
-        body = "Please Cick on the following link to reset your Technex CA Portal Password.\n\n"
+        body = "Please Cick on the following link to reset your Technex Acount Password.\n\n"
         body += server + "resetPass/" + forgotPassKey
 
         if send_email(email, subject, body):
