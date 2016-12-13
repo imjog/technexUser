@@ -85,9 +85,8 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src={% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %} alt="">{{user.first_name}}
-                    <span class=" fa fa-angle-down"></span>
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"  id="chhota_user">
+                    <img src={% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %} alt=""><span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="#profile"> Profile</a></li>
@@ -149,7 +148,7 @@ app.service("profileData", function(){
                 city: "{{techProfile.city}}",
                 email: "{{techProfile.email}}",
                 mobile: "{{techProfile.mobileNumber}}",
-                profileImage: {% if techProfile.fb %}"/static/profile.png"{% else %} "/static/profile.png"{% endif %}
+                profileImage: ({% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %}).replace("&amp;","&a")
             }
 
         ];
@@ -180,6 +179,42 @@ app.service("profileData", function(){
             staffArray.splice(personIndex, 1, obj)
         }
     });
+function makeimg(name){
+   console.log(name);
+    nameSplit = name.split(" ");
+    var i,initials="";
+
+    for(i=0;i<nameSplit.length;i++)
+    {
+    initials += nameSplit[i].charAt(0).toUpperCase();
+  }
+
+var charIndex = initials.charCodeAt(0) - 65,
+    colourIndex = charIndex % 19;
+
+var canvas = document.getElementById("user-icon");
+var context = canvas.getContext("2d");
+
+var canvasWidth = $(canvas).attr("width"),
+    canvasHeight = $(canvas).attr("height"),
+    canvasCssWidth = canvasWidth,
+    canvasCssHeight = canvasHeight;
+
+// if (window.devicePixelRatio) {
+//     $(canvas).attr("width", canvasWidth * window.devicePixelRatio);
+//     $(canvas).attr("height", canvasHeight * window.devicePixelRatio);
+//     $(canvas).css("width", canvasCssWidth);
+//     $(canvas).css("height", canvasCssHeight);
+//     context.scale(window.devicePixelRatio, window.devicePixelRatio);
+// }
+
+context.fillStyle = colours[colourIndex];
+context.fillRect (0, 0, canvas.width, canvas.height);
+context.font = "128px Arial";
+context.textAlign = "center";
+context.fillStyle = "#FFF";
+context.fillText(initials, canvasCssWidth / 2, canvasCssHeight / 1.5);
+}
 </script>
   </body>
 </html>

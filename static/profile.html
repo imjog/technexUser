@@ -64,10 +64,12 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" ng-src="{{person.profileImage}}" alt="Avatar" title="{{person.name}}">
+                          <canvas id="user-icon" height="200" width="200"></canvas>
+                         <!--  <img class="img-responsive avatar-view" src="{{person.profileImage}}" alt="Avatar" title="{{person.name}}"> -->
+      
                         </div>
                       </div>
-                      <h3>{{person.name}}</h3>
+                      <h3 id="username">{{person.name}}</h3>
 
                       <ul class="list-unstyled user_data">
                         <li style="text-transform: capitalize;"><i class="fa fa-map-marker user-profile-icon"></i> {{person.city}}
@@ -109,8 +111,8 @@
                           </li>
                         </ul>
                         </div>
-                        <div id="myTabContent" class="tab-content">
-                          <div class="tab-pane fade" id="tab_content2" style="display: inline;" ng-hide="showDetails">
+                        <div id="myTabContent" class="tab-content" style="overflow: auto">
+                          <div class="tab-pane fade" id="tab_content2" style="display: inline;" ng-hide="showDetails" >
                     <table class="table table-striped projects">
                       <thead>
                         <tr>
@@ -255,8 +257,21 @@
        </div>
        </div>
        </div>
+
+              <script type="text/javascript">
+         var colours = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"];
+
+$(document).ready(function(){
+  
+
+makeimg($("#user_name").html());
+});
+
+       </script>
         </section>
+
        </div>
+
 
                    
   
