@@ -10,7 +10,7 @@ import json
 import os
 import facebook
 from Auth.models import *
-from Auth.views import contextCall
+from Auth.views import contextCall,send_email
 
 server = "http://www.technex.in/"
 
@@ -84,9 +84,41 @@ def eventRegistration(request):
 				team.save()
 				team.technexTeamId = "TM"+str(1000+team.teamId)
 				team.save()
-			for user in users:
-			    team.members.add(user)
+			subject = "[Technex'17] Successful Registration"
+			body = '''
+Dear %s,
 
+Thanks for registering for %s Technex'17.
+
+Your Team Details Are
+Team Name- %s
+Team Leader- %s
+Team Members- %s
+
+
+An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+
+
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
+              
+
+Looking forward to seeing you soon at Technex 2017.
+
+All the best!
+
+
+Regards
+
+Team Technex
+Regards
+			'''
+			memberEmails = ""
+			for user in users:
+				memberEmails += user.email+'  ' 
+				team.members.add(user)
+			send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
+			for user in users:
+				send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			response['status'] = 1
 			return JsonResponse(response)
 	else:

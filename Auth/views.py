@@ -110,7 +110,7 @@ def contextCall(request):
             for member in team.members.all():
                 teamMemberNames.append(member.user.first_name.encode("utf-8"))
                 try:
-                    teamMemberUrl.append(member.fb.profileImage)
+                    teamMemberUrl.append(member.fb.profileImage.encode("utf-8"))
                 except:
                     url = "/static/profile.png"
                     teamMemberUrl.append(url)
