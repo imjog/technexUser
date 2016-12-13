@@ -355,7 +355,6 @@ app.controller("profileEdit",function($scope, profileData,$http){
             console.log($scope.editObject.name);
             makeimg($scope.editObject.name);
             $("#user_name").html($scope.editObject.name);
-            $("#chhota_user").html($scope.editObject.name);
            // location.reload(true);
            // window.location.assign("#profile");  
         }
