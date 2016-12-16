@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -33,11 +33,11 @@ function navFunction() {
 	</head>
 	<body id="top">
 
-        <header id="navigation" class="navbar-fixed-top animated-header">
+        <header id="navigation" class="navbar-fixed-top animated-header" style="position: initial;">
             <!----------NAVBAR-------->
 <div class="jnavbar" id="abcde">
 		<ul class="topnav" id="myTopnav" style="width:100%">
-  <li class="topnav-li"><a href="/" style="padding:7px 0px;border:none;"><img src="/static/startupfair/img/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
+  <li class="topnav-li"><a href="/" style="padding:7px 0px;border:none;"><img src="/static/startupfair/img/logo-technex-nav.png" height="40px" style="padding-left:2px;"></a></li>
   <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
   <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
@@ -46,14 +46,14 @@ function navFunction() {
   <li class="topnav-li"><a href="#">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER / LOGIN</a></li>
   <li class="icon">
-    <a href="javascript:void(0);" style="font-size:18px;padding:10px;" onclick="navFunction()">☰</a>
+    <a href="javascript:void(0);" onclick="navFunction()">☰</a>
   </li>
 </ul>
 </div>
 <!----------/NAVBAR-------->
-            <div class="container">
+            <div class="container" style="display:none;">
                 <div class="navbar-header">
                     <!-- responsive nav button -->
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -83,7 +83,7 @@ function navFunction() {
                         <li><a href="#team">Contact</a></li>
                         <li><a href="#pricing-table">Schedule</a></li>
                         <li><a href="#play-video">Register</a></li>
-                        <li><a href="#client-logo">Sponsers</a></li>
+<!--                        <li><a href="#client-logo">Sponsers</a></li>-->
                     </ul>
                 </nav>
 				<!-- /main nav -->
@@ -108,8 +108,8 @@ function navFunction() {
                               </a>
                             </h1>
 							<div class="buttons">
-								<a href="#" class="btn btn-learn">Register Now</a>
-								<a href="#features" class="btn btn-learn">Still Not Convinced</a>
+								<a href="#" class="btn btn-learn" id="jk">Register Now</a>
+								<a href="#jk" class="btn btn-learn">Still Not Convinced</a>
 							</div>
 						</div>
 					</div>
@@ -119,16 +119,21 @@ function navFunction() {
 	            <a id="scroll" href="#features" class="scroll"></a>
 	        </div>
 		</section>
+        
 		<section id="features">
-			<div class="container">
+			<div class="container" id="introd">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="title">
 							<h2>INTRODUCTION</h2>
-							<p style="letter-spacing:1px;">Startup Fair is the biggest national convention for young entrepreneurs being organized by IIT (BHU) Varanasi in association with MCIIE. It features a plethora of events including guest lectures, elevator pitch, workshops, Networking Meet and panel discussions.</p>
+							<p class="wow fadeInUp" data-wow-delay=".5s" style="letter-spacing:1px;">Startup Fair is the biggest national convention for young entrepreneurs being organized by IIT (BHU) Varanasi in association with MCIIE. It features a plethora of events including guest lectures, elevator pitch, workshops, Networking Meet and panel discussions.</p>
 						</div>
 					</div>
 				</div>
+                
+                
+<!--         comment out when content        -->
+<!--
 				<div class="row">
 					<div class="col-md-4 col-xs-6 col-sm-6">
 						<div class="feature-block text-center">
@@ -158,6 +163,53 @@ function navFunction() {
 						</div>
 					</div>
 				</div>
+-->
+			</div>
+		</section>
+        <section id="features">
+			<div class="container" id="introd">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title">
+							<h2>VISION</h2>
+							<p class="wow fadeInUp" data-wow-delay=".5s" style="letter-spacing:1px;">Our goal is to give something to the startup community by introducing emerging startups to resources, mentorship, and investment opportunities. We are most interested in working with entrepreneurs using data management to solve public policy, human development, and business challenges. Architecting, analyzing, and managing data in an effective manner is a great challenge and a tremendous area of opportunity for new business innovation.</p>
+						</div>
+					</div>
+				</div>
+                
+                
+<!--         comment out when content        -->
+<!--
+				<div class="row">
+					<div class="col-md-4 col-xs-6 col-sm-6">
+						<div class="feature-block text-center">
+							<div class="icon-box">
+								<i class="ion-easel"></i>
+							</div>
+							<h4 class="wow fadeInUp" data-wow-delay=".3s">VISION</h4>
+							<p class="wow fadeInUp" data-wow-delay=".5s">Our goal is to give something to the startup community by introducing emerging startups to resources, mentorship, and investment opportunities. We are most interested in working with entrepreneurs using data management to solve public policy, human development, and business challenges. Architecting, analyzing, and managing data in an effective manner is a great challenge and a tremendous area of opportunity for new business innovation.</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-6 col-sm-6">
+						<div class="feature-block text-center">
+							<div class="icon-box">
+								<i class="ion-paintbucket"></i>
+							</div>
+							<h4 class="wow fadeInUp" data-wow-delay=".3s">Outstanding Animation</h4>
+							<p class="wow fadeInUp" data-wow-delay=".5s">Lorem ipsum dolor sit amet, consectetur adipisic-<br>ing elit, sed do eiusmod tempor incididunt ut <br> labore et dolore magna aliqua. Ut enim ad minim</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-6 col-sm-6">
+						<div class="feature-block text-center">
+							<div class="icon-box">
+								<i class="ion-paintbrush"></i>
+							</div>
+							<h4 class="wow fadeInUp" data-wow-delay=".3s">Unlimited Colors</h4>
+							<p class="wow fadeInUp" data-wow-delay=".5s">Lorem ipsum dolor sit amet, consectetur adipisic-<br>ing elit, sed do eiusmod tempor incididunt ut <br> labore et dolore magna aliqua. Ut enim ad minim</p>
+						</div>
+					</div>
+				</div>
+-->
 			</div>
 		</section>
 		<section id="counter">
@@ -236,8 +288,8 @@ function navFunction() {
 							<div class="recent-work-pic">
 								<ul id="mixed-items">
 									<li class="mix category-1 col-md-4 col-xs-6" data-my-order="1">
-										<a class="example-image-link" href="/static/startupfair/img/work1.jpg" data-lightbox="example-set">
-											<img class="img-responsive" src="/static/startupfair/img/work1.jpg" alt="">
+										<a class="example-image-link" href="img/work1.jpg" data-lightbox="example-set">
+											<img class="img-responsive" src="img/work1.jpg" alt="">
 											<div class="overlay">
 													<h3>Web design</h3>
 													<i class="ion-ios-plus-empty"></i>
@@ -245,8 +297,8 @@ function navFunction() {
 										</a>
 									</li>
 									<li class="mix category-2 col-md-4 col-xs-6" data-my-order="2">
-										<a class="example-image-link" href="/static/startupfair/img/work2.jpg" data-lightbox="example-set">
-											<img class="img-responsive" src="/static/startupfair/img/work2.jpg" alt="">
+										<a class="example-image-link" href="img/work2.jpg" data-lightbox="example-set">
+											<img class="img-responsive" src="img/work2.jpg" alt="">
 											<div class="overlay">
 												<h3>Web design</h3>
 												<i class="ion-ios-plus-empty"></i>
@@ -254,8 +306,8 @@ function navFunction() {
 										</a>
 									</li>
 									<li class="mix category-1 col-md-4 col-xs-6" data-my-order="3">
-										<a class="example-image-link" href="/static/startupfair/img/work3.jpg" data-lightbox="example-set">
-											<img class="img-responsive" src="/static/startupfair/img/work3.jpg" alt="">
+										<a class="example-image-link" href="img/work3.jpg" data-lightbox="example-set">
+											<img class="img-responsive" src="img/work3.jpg" alt="">
 											<div class="overlay">
 												<h3>Web design</h3>
 												<i class="ion-ios-plus-empty"></i>
@@ -263,8 +315,8 @@ function navFunction() {
 										</a>
 									</li>
 									<li class="mix category-2 col-md-4 col-xs-6" data-my-order="4">
-										<a class="example-image-link" href="/static/startupfair/img/work4.jpg" data-lightbox="example-set">
-											<img class="img-responsive" src="/static/startupfair/img/work4.jpg" alt="">
+										<a class="example-image-link" href="img/work4.jpg" data-lightbox="example-set">
+											<img class="img-responsive" src="img/work4.jpg" alt="">
 											<div class="overlay">
 												<h3>Web design</h3>
 												<i class="ion-ios-plus-empty"></i>
@@ -272,8 +324,8 @@ function navFunction() {
 										</a>
 									</li>
 									<li class="mix category-1 col-md-4 col-xs-6" data-my-order="5">
-										<a class="example-image-link" href="/static/startupfair/img/work5.jpg" data-lightbox="example-set">
-											<img class="img-responsive" src="/static/startupfair/img/work5.jpg" alt="">
+										<a class="example-image-link" href="img/work5.jpg" data-lightbox="example-set">
+											<img class="img-responsive" src="img/work5.jpg" alt="">
 											<div class="overlay">
 												<h3>Web design</h3>
 												<i class="ion-ios-plus-empty"></i>
@@ -281,8 +333,8 @@ function navFunction() {
 										</a>
 									</li>
 									<li class="mix category-2 col-md-4 col-xs-6" data-my-order="6">
-										<a class="example-image-link" href="/static/startupfair/img/work6.jpg" data-lightbox="example-set">
-											<img class="img-responsive" src="/static/startupfair/img/work6.jpg" alt="">
+										<a class="example-image-link" href="img/work6.jpg" data-lightbox="example-set">
+											<img class="img-responsive" src="img/work6.jpg" alt="">
 											<div class="overlay">
 												<h3>Web design</h3>
 												<i class="ion-ios-plus-empty"></i>
@@ -305,42 +357,43 @@ function navFunction() {
             <div class="container">
                <div class="row">
                    <div class="title">
-							<h2 style="margin-top:5%;">FREQUENTLY ASKED QUESTIONS</h2>
+							<h2 style="margin-top:5%;" id="problemproblem">FREQUENTLY ASKED QUESTIONS</h2>
+							<h2 style="margin-top:5%;" id="problem">FAQ's</h2>
 						</div>
                    <div class="queans">
-                       <h3>1. Who is eligible to participate in Startup Fair?</h3>
-                       <h4>The contest is open to students, corporate professionals, entrepreneurs, as well as other independent individuals (employed or unemployed)</h4><br>
-                       <h3>2. Do all the team members have to be from the same University / Business School / Organization?
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">1. Who is eligible to participate in Startup Fair?</h3>
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">The contest is open to students, corporate professionals, entrepreneurs, as well as other independent individuals (employed or unemployed)</h4><br>
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">2. Do all the team members have to be from the same University / Business School / Organization?
                        </h3>
-                       <h4>No. All the team members need not be from the same University / Business School / Organization.
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">No. All the team members need not be from the same University / Business School / Organization.
                        </h4><br>
-                       <h3>3. Can corporate participants from different companies form a Team?
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">3. Can corporate participants from different companies form a Team?
                        </h3>
-                       <h4>Yes. Corporate professionals from different companies can form a team together.
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">Yes. Corporate professionals from different companies can form a team together.
                        </h4><br>
-                       <h3>4. Can the team have a mix of Business school students/undergraduate students/corporate professionals/entrepreneurs/other individuals?
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">4. Can the team have a mix of Business school students/undergraduate students/corporate professionals/entrepreneurs/other individuals?
                        </h3>
-                       <h4>Yes, the team can have any mix of participants.
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">Yes, the team can have any mix of participants.
                        </h4><br>
-                       <h3>5. Is the team composition mentioned at the time of registration final?
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">5. Is the team composition mentioned at the time of registration final?
                        </h3>
-                       <h4>Yes. No changes will be allowed in the team composition after registration. Therefore, please enter the team details after proper deliberation.
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">Yes. No changes will be allowed in the team composition after registration. Therefore, please enter the team details after proper deliberation.
                        </h4><br>
-                       <h3>6. What if a person gets registered as part of more than one team?</h3>
-                       <h4>Both the teams will become ineligible to participate. Therefore, please check with the proposed team members before registering.
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">6. What if a person gets registered as part of more than one team?</h3>
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">Both the teams will become ineligible to participate. Therefore, please check with the proposed team members before registering.
                        </h4><br>
-                       <h3>7. What is the registration fee for participation?
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">7. What is the registration fee for participation?
                        </h3>
-                       <h4>coming soon!! stay await</h4><br>
-                       <h3>8. Where will the final round of the event be held?</h3>
-                       <h4>The Grand Finale will be held on the campus of Indian Institute of Technology, (BHU) Varanasi on 25th February and 26th February, 2017 during Technex 2017.
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">coming soon!! stay await</h4><br>
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">8. Where will the final round of the event be held?</h3>
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">The Grand Finale will be held on the campus of Indian Institute of Technology, (BHU) Varanasi on 25th February and 26th February, 2017 during Technex 2017.
                        </h4><br>
-                       <h3>9. Can we consult non-team members such as professors or industry experts?</h3>
-                       <h4>The interaction with non-team members should be restricted to interviews and surveys, and proper reference should be made to the same in the business plan document. Similarly, any other information source including published studies may be used, but the document submitted should contain proper references.
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">9. Can we consult non-team members such as professors or industry experts?</h3>
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">The interaction with non-team members should be restricted to interviews and surveys, and proper reference should be made to the same in the business plan document. Similarly, any other information source including published studies may be used, but the document submitted should contain proper references.
                        </h4><br>
-                       <h3>10. Should the business plans strictly adhere to a structure?
+                       <h3 class="wow fadeInUp" data-wow-delay=".5s">10. Should the business plans strictly adhere to a structure?
                        </h3>
-                       <h4>While adherence to any structure is not compulsory, all the relevant aspects such as business concept, vision, market opportunity, competitive advantage, detailed competitive analysis and the resources and finances required to implement the idea can be included. Relevant financial projections including expected cash flows, pro-forma balance sheets and 'P and L' statements can be included. Proposed management structure and relevant assumptions may also be included
+                       <h4 class="wow fadeInUp" data-wow-delay=".5s">While adherence to any structure is not compulsory, all the relevant aspects such as business concept, vision, market opportunity, competitive advantage, detailed competitive analysis and the resources and finances required to implement the idea can be included. Relevant financial projections including expected cash flows, pro-forma balance sheets and 'P and L' statements can be included. Proposed management structure and relevant assumptions may also be included
                        </h4><br>
                    </div>
                 </div> 
@@ -395,19 +448,19 @@ function navFunction() {
 						<h2>CONTACT US</h2>
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-6" id="jcontact">
-						<div class="block wow fadeInLeft" data-wow-delay=".3s">
+						<div class="block wow fadeInLeft" data-wow-delay=".3s" style="display:none;">
                             <img src="/static/startupfair/img/team-img1.jpg" alt="">
 							<div class="team-overlay">
                                 <span class="icon"><a href=""><i class="ion-social-facebook"></i></a></span>
-								<h3>ARUN KUMAR</h3>
+								<h3>Arun Kumar</h3>
                                 <span class="icon"><a><i class="ion-social-whatsapp"></i></a></span>
                                 <span style="color:white">+919695806384</span>
 							</div>
 						</div>
-                        <div class="name_post"><h2>Arun Kumar</h2><h3>Organiser</h3><h3 class="email">jogendra.kumar.phy15@iitbhu.ac.in</h3></div>
+                        <div class="name_post" ><h2>Arun Kumar</h2><h3>Organiser</h3><h3 class="email">karun.kumarcd.mec14@itbhu.ac.in</h3><h3>+917200007691</h3></div>
 					</div>
 					<div class="col-md-4  col-sm-4 col-xs-6" id="jcontact">
-						<div class="block wow fadeInLeft" data-wow-delay=".6s">
+						<div class="block wow fadeInLeft" data-wow-delay=".6s" style="display:none;">
 							<img src="/static/startupfair/img/team-img2.jpg" alt="">
 							<div class="team-overlay">
                                 <span class="icon"><a href=""><i class="ion-social-facebook"></i></a></span>
@@ -416,10 +469,10 @@ function navFunction() {
                                 <span style="color:white">+919695806384</span>
 							</div>
 						</div>
-                        <div class="name_post"><h2>Arun Kumar</h2><h3>Organiser</h3><h3 class="email">jogendra.kumar.phy15@iitbhu.ac.in</h3></div>
+                        <div class="name_post"><h2>Bharat Kumar</h2><h3>Organiser</h3><h3 class="email">bharat.bharat.min14@itbhu.ac.in</h3><h3>+917052378758</h3></div>
 					</div>
 					<div class="col-md-4  col-sm-4 col-xs-6" id="jcontact">
-						<div class="block wow fadeInLeft" data-wow-delay=".9s">
+						<div class="block wow fadeInLeft" data-wow-delay=".9s" style="display:none;">
 							<img src="/static/startupfair/img/team-img3.jpg" alt="">
 							<div class="team-overlay">
                                 <span class="icon"><a href=""><i class="ion-social-facebook"></i></a></span>
@@ -428,7 +481,7 @@ function navFunction() {
                                 <span style="color:white">+919695806384</span>
 							</div>
 						</div>
-                        <div class="name_post"><h2>Arun Kumar</h2><h3>Organiser</h3><h3 class="email">jogendra.kumar.phy15@iitbhu.ac.in</h3></div>
+                        <div class="name_post"><h2>Arun Kumar</h2><h3>Organiser</h3><h3 class="email">karun.kumarcd.mec14@itbhu.ac.in</h3><h3>+917200007691</h3></div>
 					</div>
 				</div>
 			</div>
@@ -446,7 +499,7 @@ function navFunction() {
 						<div id="blog-post" class="owl-carousel">
 							<div>
 								<div class="block">
-									<img src="/static/startupfair/img/blog/blog-1.jpg" alt="" class="img-responsive">
+									<img src="img/blog/blog-1.jpg" alt="" class="img-responsive">
 									<div class="content">
 										<h4><a href="blog.html">Hey,This is a blog title</a></h4>
 										<small>By admin / Sept 18, 2014</small>
@@ -460,7 +513,7 @@ function navFunction() {
 							</div>
 							<div>
 								<div class="block">
-									<img src="/static/startupfair/img/blog/blog-2.jpg" alt="" class="img-responsive">
+									<img src="img/blog/blog-2.jpg" alt="" class="img-responsive">
 									<div class="content">
 										<h4><a href="blog.html">Hey,This is a blog title</a></h4>
 										<small>By admin / Sept 18, 2014</small>
@@ -474,7 +527,7 @@ function navFunction() {
 							</div>
 							<div>
 								<div class="block">
-									<img src="/static/startupfair/img/blog/blog-3.jpg" alt="" class="img-responsive">
+									<img src="img/blog/blog-3.jpg" alt="" class="img-responsive">
 									<div class="content">
 										<h4><a href="blog.html">Hey,This is a blog title</a></h4>
 										<small>By admin / Sept 18, 2014</small>
@@ -488,7 +541,7 @@ function navFunction() {
 							</div>
 							<div>
 								<div class="block">
-									<img src="/static/startupfair/img/blog/blog-4.jpg" alt="" class="img-responsive">
+									<img src="img/blog/blog-4.jpg" alt="" class="img-responsive">
 									<div class="content">
 										<h4><a href="blog.html">Hey,This is a blog title</a></h4>
 										<small>By admin / Sept 18, 2014</small>
@@ -502,7 +555,7 @@ function navFunction() {
 							</div>
 							<div>
 								<div class="block">
-									<img src="/static/startupfair/img/blog/blog-1.jpg" alt="" class="img-responsive">
+									<img src="img/blog/blog-1.jpg" alt="" class="img-responsive">
 									<div class="content">
 										<h4><a href="blog.html">Hey,This is a blog title</a></h4>
 										<small>By admin / Sept 18, 2014</small>
@@ -537,7 +590,7 @@ function navFunction() {
 						<div class="media wow fadeInLeft" data-wow-delay=".3s">
 						  <div class="media-left">
 						    <a href="#">
-						      <img src="/static/startupfair/img/service-img.png" alt="">
+						      <img src="img/service-img.png" alt="">
 						    </a>
 						  </div>
 						  <div class="media-body">
@@ -550,7 +603,7 @@ function navFunction() {
 						<div class="media wow fadeInRight" data-wow-delay=".3s">
 						  <div class="media-left">
 						    <a href="#">
-						      <img src="/static/startupfair/img/service-img.png" alt="">
+						      <img src="img/service-img.png" alt="">
 						    </a>
 						  </div>
 						  <div class="media-body">
@@ -563,7 +616,7 @@ function navFunction() {
 						<div class="media wow fadeInLeft" data-wow-delay=".3s">
 						  <div class="media-left">
 						    <a href="#">
-						      <img src="/static/startupfair/img/service-img.png" alt="">
+						      <img src="img/service-img.png" alt="">
 						    </a>
 						  </div>
 						  <div class="media-body">
@@ -576,7 +629,7 @@ function navFunction() {
 						<div class="media wow fadeInRight" data-wow-delay=".3s">
 						  <div class="media-left">
 						    <a href="#">
-						      <img src="/static/startupfair/img/service-img.png" alt="">
+						      <img src="img/service-img.png" alt="">
 						    </a>
 						  </div>
 						  <div class="media-body">
@@ -613,6 +666,10 @@ function navFunction() {
 				</div>
 			</div>
 		</section>
+        
+        
+<!--     SPONSERS   -->
+<!--
 		<section id="client-logo">
 			<div class="container">
 				<div class="row">
@@ -621,40 +678,40 @@ function navFunction() {
 						<div class="block">
 							<div id="Client_Logo" class="owl-carousel">
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo1.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo1.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo2.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo2.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo3.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo3.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo4.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo4.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo5.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo5.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo6.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo6.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo1.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo1.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo2.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo2.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo3.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo3.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo4.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo4.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo5.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo5.jpg" alt=""></a>
 								</div>
 								<div>
-									<a href="#"><img class="img-responsive" src="/static/startupfair/img/clientLogo/client-logo6.jpg" alt=""></a>
+									<a href="#"><img class="img-responsive" src="img/clientLogo/client-logo6.jpg" alt=""></a>
 								</div>
 							</div>
 						</div>
@@ -662,10 +719,11 @@ function navFunction() {
 				</div>
 			</div>
 		</section>
+-->
 	</div>
 
 		<!-- load Js -->
-		<script src="//static/startupfair/js/jquery-1.11.3.min.js"></script>
+		<script src="/static/startupfair/js/jquery-1.11.3.min.js"></script>
 		<script src="/static/startupfair/js/bootstrap.min.js"></script>
 		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&amp;sensor=false"></script>
 		<script src="/static/startupfair/js/waypoints.min.js"></script>

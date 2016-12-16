@@ -31,7 +31,7 @@ body {
 }
 @media screen and (max-width:786px){
     body{
-        width: 101%;
+        width: 107%;
     }
 }
 
@@ -112,6 +112,25 @@ a:active {
     position: absolute;
     top: 12px;
     right: -60px;
+}
+#problem
+{
+  display: none;
+}
+#problemproblem
+{
+  display: inline-block;
+}
+@media screen and (max-width: 786px)
+{
+  #problemproblem
+  {
+    display: none;
+  }
+  #problem
+  {
+    display: inline-block;
+  }
 }
 .title p {
   font-size: 16px;
@@ -337,6 +356,7 @@ header .navbar {
   display: inline-block;
   border: 1px solid #fff;
   z-index: 99;
+    display: none;
 }
 @media screen and (max-width:768px){
     #banner .scrolldown .scroll{
@@ -360,7 +380,8 @@ header .navbar {
   animation: wiggle 0.5s linear 0s infinite alternate;
 }
 #features {
-  padding: 100px 0 0;
+  padding: 30px 0 30px;
+    box-shadow: inset 0 0 1px black;
 }
 #features .feature-block {
   padding-bottom: 35px;
@@ -1397,9 +1418,19 @@ footer p {
 .name_post{
     text-align: center;
     padding-top: 10%;
+    border: 1px solid black;
+    background: rgba(0,0,0,.03);
+    box-shadow: inset 0 0 5px black;
+    border-radius: 5px;
+}
+.name_post:hover{
+    transform: translateY(20px);
+    transition-duration: 0.3s;
+    box-shadow: 0 -3px 0 green;
 }
 .name_post h3{
     font-weight: 400;
+    margin-bottom: 10%;
 }
 .email{
     padding-top: 5%;
@@ -1530,6 +1561,14 @@ button:hover .button__border--right {
 }
 
 /*----------------------------NAVBAR--------------------------*/
+@media screen and (min-width:1380px){
+    .jnavbar{
+    margin: 0 auto;
+    display: table;
+        background: black;
+        width: 100%;
+}
+}
 
 ul.topnav {
   list-style-type: none;
@@ -1547,17 +1586,28 @@ ul.topnav li a {
   display: inline-block;
   color: white;
   text-align: center;
-  padding: 10px 10px;
+  padding: 14px 8px;
   text-decoration: none;
   transition: 0.3s;
-  font-size: 16px;
+  font-size: 15px;
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
-@media (min-width:1350px){
+@media (max-width:1380px){
+    ul.topnav li a{
+        padding: 10px 10px;
+        font-size: 10px;
+    }
+}
+@media screen and (width:320px){
+    ul.topnav li a{
+        font-size: 7px;
+    }
+}
+
+@media (min-width:1380px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);
-        padding: 14px 10px;
     }
 ul.topnav li a:hover {
 /*    background-color:white; color: black;*/
@@ -1572,17 +1622,17 @@ ul.topnav li a:hover {
 
 ul.topnav li.icon {display: none;}
 
-@media screen and (max-width:1350px) {
+@media screen and (max-width:1380px) {
   ul.topnav li:not(:first-child){display: none;}
     ul.topnav li:nth-child(10){display: block; float: right;}
   ul.topnav li.icon {
     float: right;
     display: inline-block;
   }
-    ul.topnav li a{border:1px solid white;margin-right: 8px;}
+    ul.topnav li a{border:1px solid white;margin-right: 2px;}
 }
 
-@media screen and (max-width:1350px) {
+@media screen and (max-width:1380px) {
   ul.topnav.responsive {position: relative;}
   ul.topnav.responsive li.icon {
     position: absolute;
@@ -1600,24 +1650,10 @@ ul.topnav li.icon {display: none;}
   }
 }
 
-@media (min-width:1024px) and (max-width:1399px){
+@media (min-width:1024px) and (max-width:1380px){
     ul.topnav li a{
-        padding: 14px 8px;
-    }
-}
-@media (min-width: 1330px) {
-    .jnavbar
-    {
-    display: table;
-    margin: 0 auto;
-    width: 100%;
-    background: rgba(0,0,0,.7);
-    line-height: 16px;
-    }
-}
-@media screen and (max-width:786px){
-    .jnavbar{
-        width: 86%;
+        padding: 16px 21px;
+        font-size: 20px;
     }
 }
 /*
