@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title id="dashtitle">Technex '17 | Home</title>
+    <title id="dashtitle">Dashboard | Technex '17</title>
     <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="/static/vendors/nprogress/nprogress.css" rel="stylesheet">
@@ -22,6 +22,10 @@
     <script src="/static/angular-route.js"></script>
     <script src="/static/genmain.js"></script>
     <style>
+      @font-face {
+   font-family: codebold;
+   src: url(/static/fonts/code_BOLD.otf) format("opentype");
+  }
     .input-error 
     {
         border-color: red;
@@ -100,7 +104,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="/" class="site_title"><i class="fa"><img src="/static/favicon.ico"></i> <span>Technex '17</span></a>
+              <a href="/" class="site_title"><i class="fa"><img src="/static/favicon.ico"></i> <span style="font-family: codebold;">Technex '17</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -184,8 +188,8 @@
                         </a>
                       </div>
                     </li> -->
-                  </ul>
-                </li>
+                 <!--  </ul> -->
+                <!-- </li> -->
               </ul>
             </nav>
           </div>
@@ -194,7 +198,7 @@
     </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   <input type='hidden' id='userEmail' value="{{ request.user.techprofile.email }}" /> 
 
     <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -247,7 +251,7 @@ function makeimg(name){
     nameSplit = name.split(" ");
     var i,initials="";
 
-    for(i=0;i<nameSplit.length;i++)
+    for(i=0;i<Math.min(nameSplit.length,2);i++)
     {
     initials += nameSplit[i].charAt(0).toUpperCase();
   }
@@ -262,21 +266,15 @@ var canvasWidth = $(canvas).attr("width"),
     canvasHeight = $(canvas).attr("height"),
     canvasCssWidth = canvasWidth,
     canvasCssHeight = canvasHeight;
-
-// if (window.devicePixelRatio) {
-//     $(canvas).attr("width", canvasWidth * window.devicePixelRatio);
-//     $(canvas).attr("height", canvasHeight * window.devicePixelRatio);
-//     $(canvas).css("width", canvasCssWidth);
-//     $(canvas).css("height", canvasCssHeight);
-//     context.scale(window.devicePixelRatio, window.devicePixelRatio);
-// }
-
+console.log(canvasWidth);
+console.log(canvasHeight);
+$("#user-icon").css("border-radius", "200px");
 context.fillStyle = colours[colourIndex];
 context.fillRect (0, 0, canvas.width, canvas.height);
 context.font = "128px Arial";
 context.textAlign = "center";
 context.fillStyle = "#FFF";
-context.fillText(initials, canvasCssWidth / 2, canvasCssHeight / 1.5);
+context.fillText(initials, canvasCssWidth / 2, canvasCssHeight / 1.45);
 }
 </script>
   </body>
