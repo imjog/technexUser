@@ -88,6 +88,8 @@ app.config(function ($routeProvider) {
               .when("/",{
                   templateUrl:'/static/profile.html',
                   controller:'profileEdit',
+              }).when("/dashhome/",{
+                redirectTo: "/"
               })
 
             .otherwise({
