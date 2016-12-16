@@ -29,11 +29,6 @@ body {
   color: #444;
   font-family: 'Roboto', sans-serif;
 }
-@media screen and (max-width:786px){
-    body{
-        width: 107%;
-    }
-}
 
 h1 {
   font-size: 48px;
