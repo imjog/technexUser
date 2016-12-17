@@ -85,11 +85,12 @@ app.config(function ($routeProvider) {
                    templateUrl:'/static/startupreg.html',
                    controller:'startup-cont'
             })
-              .when("/",{
-                  templateUrl:'/static/profile.html',
-                  controller:'profileEdit',
-              }).when("/dashhome/",{
-                redirectTo: "/"
+              // .when("/",{
+              //     templateUrl:'/static/profile.html',
+              //     controller:'profileEdit',
+              // })
+              .when("/dashhome/",{
+                templateUrl: '/static/dashhome.html',
               })
 
             .otherwise({
