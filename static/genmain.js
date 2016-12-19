@@ -81,14 +81,14 @@ app.config(function ($routeProvider) {
 
             )
        
-              .when('/startupreg/',{
-                   templateUrl:'/static/startupreg.html',
-                   controller:'startup-cont'
-            })
-              // .when("/",{
-              //     templateUrl:'/static/profile.html',
-              //     controller:'profileEdit',
-              // })
+            //   .when('/startupreg/',{
+            //        templateUrl:'/static/startupreg.html',
+            //        controller:'startup-cont'
+            // })
+              .when("/",{
+                  templateUrl:'/static/profile.html',
+                  controller:'profileEdit',
+              })
               .when("/dashhome/",{
                 templateUrl: '/static/dashhome.html',
               })
