@@ -653,14 +653,42 @@ def startUpRegistration(request):
         except:
             startUpFair = StartUpFair(idea = post['idea'], teamLeader = request.user.techprofile, teamName = post['teamName'])
             startUpFair.save()
+            memberEmails = ""
             for email in post['memberMails']:
                 if checkunique(email):
                     s=StartUpMails(email=email,team=startUpFair)
+                    memberEmails += email+'  '
                     s.save()
-            # for email in post['memberMails']:
-            #     s = StartUpMails(email = email,team = startUpFair)
-            #     print s
-            #     s.save()
+            sf=StartUpFair.objects.get(teamLeader=request.user.techprofile)
+            subject = "[Technex'17] Successful Registration"
+            body = '''
+Dear %s,
+
+Thanks for registering for %s Technex'17.
+
+Your Team Details Are
+Team Name- %s
+Team Leader- %s
+Team Members- %s
+
+
+An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+
+
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in/startupfair. 
+              
+
+Looking forward to seeing you soon at Technex 2017.
+
+All the best!
+
+
+Regards
+
+Team Technex
+Regards
+            '''
+            send_email(sf.teamLeader.email,subject,body%(sf.teamLeader.user.first_name,"Startup Fair".capitalize(),sf.teamName,sf.teamLeader.email,memberEmails))
             response['status'] = 1
             return JsonResponse(response)
     else:
