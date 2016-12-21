@@ -12,7 +12,7 @@ $(document).ready(function() {
 
 	$("#Client_Logo").owlCarousel({
 		autoPlay : 5000,
-	    items : 6,
+	    items : 3,
 	    responsiveClass:true,
 	    responsive: {
             0:{
