@@ -146,7 +146,19 @@ def emailUnique(request):
         response = '1'
     return HttpResponse(response)
 
+def spreadsheetfill_register(techprofile):
+    dic = {
+    'name' : techprofile.user.first_name,
+    'email' : techprofile.email,
+    'college' : techprofile.college.collegeName,
+    'technexId' : techprofile.technexId,
+    'year' : techprofile.year,
+    'mobileNumber': techprofile.mobileNumber,
+    'city' : techprofile.city,
+    }
 
+    url = 'https://script.google.com/macros/s/AKfycbzYXljFklasr5Mx6wHtD_Jc2wONXuqumDTRJ1rM3oMR2MDySiAr/exec'
+    requests.post(url,data=dic)
 
 def register(request):
     if request.user.is_authenticated():
@@ -192,6 +204,9 @@ def register(request):
         except:
             techprofile.save()
         print "codeBaes 2"
+        techprofile =TechProfile.objects.get(email=email)
+        # print techprofile.user.first_name
+        spreadsheetfill_register(techprofile)
         subject = "[Technex'17] Confirmation of Registration"
         body = "Dear "+ data.get('name',None) +''',
 
