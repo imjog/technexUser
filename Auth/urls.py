@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^startupregister/',startUpRegistration,name='startup registeration'),
     url(r'^startupfair/',startupFair,name='startup Fair'),
     url(r'^workshopRegister/',workshopRegister,name='workshopRegister'),
+    url(r'^botTest/',botTest,name='bot Test'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),

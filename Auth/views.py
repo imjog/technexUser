@@ -880,3 +880,6 @@ Regards
         return render(request, 'eventRegistration.html',contextCall(request))
         #return JsonResponse(response)
         
+def botTest(request):
+    email = request.user.techprofile.email
+    return render(request,'thankyou.html',{'email':email})
