@@ -775,3 +775,6 @@ def checkunique(request):
 def botTest(request):
     email = request.user.techprofile.email
     return render(request,'thankyou.html',{'email':email})
+
+def gverify(request):
+    return render(request,'googlec0c9e6f96a842b6d.html',{})
