@@ -67,12 +67,12 @@ def eventRegistration(request):
 						try:
 							team = Team.objects.get(event = event, members = u)
 							response['status'] = 0
-							response['error'] = u.email+' Already registered !!!'
+							response['error'] = u.email+' Already registered for this event !!!'
 							return JsonResponse(response)
 						except:
 							team = Team.objects.get(event = event, teamLeader = u)
 							response['status'] = 0
-							response['error'] = u.email+' Already registered !!!'
+							response['error'] = u.email+' Already registered for this event !!!'
 							return JsonResponse(response)
 					except:
 						try:
@@ -185,3 +185,20 @@ def event(request):
 		return HttpResponse(request.body)
 	else:
 		return render(request, 'eventRegistration.html')
+
+'''
+def spreadsheetfill_register(team):
+	
+	dic = {
+	'name' : team.teamName,
+	'teamId' : team.technexTeamId,
+	'teamLeader' : techprofile.college.collegeName,
+	'technexId' : techprofile.technexId,
+	'year' : techprofile.year,
+	'mobileNumber': techprofile.mobileNumber,
+	'city' : techprofile.city,
+	}
+
+	url = 'https://script.google.com/macros/s/AKfycbzYXljFklasr5Mx6wHtD_Jc2wONXuqumDTRJ1rM3oMR2MDySiAr/exec'
+	requests.post(url,data=dic)
+'''
