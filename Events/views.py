@@ -120,6 +120,7 @@ Regards
 			for user in users:
 				send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			response['status'] = 1
+			#spreadsheetfill_register(team)
 			return JsonResponse(response)
 	else:
 		response['status'] = 0
@@ -186,19 +187,33 @@ def event(request):
 	else:
 		return render(request, 'eventRegistration.html')
 
-'''
-def spreadsheetfill_register(team):
-	
-	dic = {
-	'name' : team.teamName,
-	'teamId' : team.technexTeamId,
-	'teamLeader' : techprofile.college.collegeName,
-	'technexId' : techprofile.technexId,
-	'year' : techprofile.year,
-	'mobileNumber': techprofile.mobileNumber,
-	'city' : techprofile.city,
-	}
 
-	url = 'https://script.google.com/macros/s/AKfycbzYXljFklasr5Mx6wHtD_Jc2wONXuqumDTRJ1rM3oMR2MDySiAr/exec'
+def spreadsheetfill_register(team):
+	members = []
+	for m in team.members.all():
+		members.append(m.email.encode("utf-8"))
+	dic = {
+	"teamName":team.teamName,
+	"leaderEmail":team.teamLeader.email,
+	"leaderMobile":str(team.teamLeader.mobileNumber),
+	}
+	try:
+		dic['member1'] = members[0]
+	except:
+		dic['member1'] = None
+	try:
+		dic['member2'] = members[1]
+	except:
+		dic['member2'] = None
+	try:
+		dic['member3'] = members[2]
+	except:
+		dic['member3'] = None
+	try:
+		dic['member4'] = members[3]
+	except:
+		dic['member4'] = None
+
+	print dic
+	url = 'https://script.google.com/macros/s/AKfycbyIbAnsZyhZnf5TLkhdN1C8gAsZb1ucsrGTzwTp_fq8HIxH5kR_/exec'
 	requests.post(url,data=dic)
-'''

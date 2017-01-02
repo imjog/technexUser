@@ -257,6 +257,7 @@ def guestLectures(request):
             lectureData['lecturerBio'] = lecture.lecturerBio
             lectureData['designation'] = lecture.designation
             lectureData['lectureType'] = lecture.lectureType
+            lectureData['photo'] = lecture.photo
             response['lectures'].append(lectureData)
     except:
         response['status'] = 0 
