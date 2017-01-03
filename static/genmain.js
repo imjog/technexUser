@@ -45,6 +45,52 @@ events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
 max:[5,5,5,5]
 }
 ];
+var workdata=[
+{
+  workshop: 'Internet of things',
+  max: 3
+},
+{
+  workshop: 'Industrial Automation -PLC & SCADA',
+  max: 1
+},
+{
+  workshop: 'Data Mining',
+  max: 1
+},
+{
+  workshop: 'Digital Marketing',
+  max: 1
+},
+{
+  workshop: '3 D Printing',
+  max: 1
+},
+{
+  workshop: 'Swarm Robotics',
+  max: 1
+},
+{
+  workshop: 'Bridge Design',
+  max: 1
+},
+{
+  workshop: 'Android App Development',
+  max: 1
+},
+{
+  workshop: 'Sixth sense Technology',
+  max: 1
+},
+{
+  workshop: 'Automobiles',
+  max: 1
+},
+{
+  workshop: 'Ethical Hacking',
+  max: 1
+}
+];
 function findWithAttr(array, attr, value) {
 	
     for(var i = 0; i < array.length; i += 1) {
@@ -89,9 +135,12 @@ app.config(function ($routeProvider) {
                   templateUrl:'/static/profile.html',
                   controller:'profileEdit',
               })
-              // .when("/dashhome/",{
-              //   templateUrl: '/static/dashhome.html',
-              // })
+              .when("/dashhome/",{
+                templateUrl: '/static/dashhome.html',
+              }).when("/workshopreg/",{
+                templateUrl: '/static/workshopreg.html',
+                controller: 'workshop-cont',
+              })
 
             .otherwise({
                 redirectTo: "/"
@@ -591,11 +640,157 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
                    location.reload(true);
                 }
              });
+
+
       }
   };
-
+  
 
   }]);
+app.controller('workshop-cont', ['$scope', '$window', '$http' , function($scope, $window,$http) {
+  $scope.max=0;
+  $scope.a = [];
+  $scope.options = $window.workdata;
+  $scope.workshop='';
+  $scope.teamName="";
+  $scope.counter = 0;
+  $scope.members = [];
+  $scope.leader = document.getElementById('userEmail').value;
+    $scope.membervalid= function(data)
+   {
+     var id=data.trim();
+    var tid=id.length==7 && id.substring(0,2)=="TX" && !isNaN(parseInt(id.substring(2)));
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       console.log("////");
+       // console.log(tid);
+      var email=re.test(id)
+       return (email || tid);  
+   }
+    $scope.workshopIndex = function(){
+      console.log($scope.options);
+      console.log($scope.workshop);
+      // console.log($scope.options);
+    return findWithAttr($scope.options,'workshop',$scope.workshop);
+  };
+  $scope.addMember = function(){
+    if($scope.counter < $scope.max)
+    $scope.members.push($scope.counter++);
+  console.log($scope.a);
+    };
+  $scope.removeMember = function(z){
+    console.log(z);
+    $scope.members.splice(z,1);
+    $scope.a.splice(z,1);
+    $scope.counter--;
+  };
+  
+
+    $scope.update = function(){
+      console.log($scope.max);
+
+    try{ 
+    $scope.max = $scope.options[$scope.workshopIndex()].max;
+    console.log($scope.workshopIndex());
+    $scope.a  = new Array($scope.max);
+        while($scope.members.length!=0)
+    {
+        $scope.members.pop();    
+    }
+    $scope.members=[];
+    $scope.counter=0;
+    return false;
+  }
+  catch(err){
+    $scope.max = 0;$scope.counter = 0;
+    return false;
+  }
+  };
+  $scope.removeerror = function(z){
+     var x=document.getElementsByClassName("abcd");
+     var y=document.getElementsByClassName("parsley-errors-list");
+     $(x[z]).removeClass("parsley-error");
+     $(x[z]).removeClass("input-error");
+     $(y[z+1]).hide();
+   };
+  $scope.submitForm = function(event)
+  {
+    // console.log($scope.a);
+    console.log($scope.teamName);
+    var x=true;
+    if(x)
+    {
+       // console.log($scope.workshop);
+      if($scope.workshop =="" || $scope.workshop==null)
+        {x=false;
+          $("#parentevent").addClass("input-error");
+        }
+    }
+    if(x)
+    {
+       if($scope.max!=1)
+       {
+        if($scope.teamName=="")
+        {
+           x=false;
+          $("#teamName").addClass("input-error");
+           }
+       }
+
+    }
+     if(x)
+     {
+      if($scope.leader=="")
+      {
+        $("#team-leader").addClass("input-error");
+        x=false;
+      }
+     }
+     if(x)
+     {
+      if(!$scope.membervalid($("#team-leader").val()))
+      {
+        $("#team-leader").addClass("parsley-error");
+        $("#team-leader-invalid").show();
+        x=false;
+      }
+     }
+     var z=$(".abcd");
+     var z1=$(".parsley-errors-list");
+     if(x)
+     {
+       var i;
+       
+       for(i=0;i<z.length;i++)
+       {
+          if($(z[i]).val()=="")
+          {
+            $(z[i]).addClass("input-error")
+            x=false;
+          }
+
+       }
+     }
+     if(x)
+     {
+       var i;
+       for(i=0;i<z.length;i++)
+       {
+        if(!$scope.membervalid($(z[i]).val()))
+        {
+          $(z[i]).addClass("parsley-error");
+          $(z1[i+1]).show();
+          x=false;
+        }
+       }
+     }
+     if(x)
+     {
+       
+     }
+
+  }
+
+}]);
 
 
 

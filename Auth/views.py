@@ -533,7 +533,7 @@ def botApi(request):
     post = request.POST
     if post['passkey'] == 'Xs6vvZdLhsYHAEK':
         try:
-            techProfile = TechProfile.objects.get(email = post['email'])
+            techProfile = TechProfile.objects.get(id = post['email'])
             response['status'] = 1
         except:
             response['status'] = 0
@@ -773,5 +773,5 @@ def checkunique(request):
         return True    
 
 def botTest(request):
-    email = request.user.techprofile.email
-    return render(request,'thankyou.html',{'email':email})
+    email = request.user.techprofile.id
+    return render(request,'thankyou.html',{'id':email})

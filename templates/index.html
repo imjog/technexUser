@@ -16,8 +16,101 @@
   <link rel="stylesheet" href="/static/main.css">
   <link rel="stylesheet" type="text/css" href="/static/style.css">
   <link rel="stylesheet" type="text/css" href="/static/main1.css">
-  <style>
+      <style>
+      @font-face {
+   font-family: codebold;
+   src: url(/static/fonts/code_BOLD.otf) format("opentype");
+  }
+    .input-error 
+    {
+        border-color: red;
+    }
+  .member-input
+  {
+   margin-left: -10px;
+   width: 80%;
+  }
 
+  </style>
+  <style type="text/css">
+/*  body
+  {
+    background-image: url(/static/technex-loader-1.gif);
+    background-size: contain;
+  }*/
+#patanahi
+{
+  background: url(/static/nfdata/tech.jpg);
+  background-size: cover;
+      -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.clock {
+
+  /*color: #aaa;*/
+  height: 63px;
+  float: left;
+  font-size: 35px;
+  font-weight: 100;
+  line-height: 100%;
+  margin-left: 10px;
+  position: relative;
+  width: 75px;
+}
+.clock .digit_1 {
+  margin-right: 3.333333%;
+}
+.clock .digit_1,
+.clock .digit_2 {
+  float: left;
+  line-height: 50px;
+  position: relative;
+  text-align: center;
+  width: 48.3333%;
+}
+.clock .digit_1 .upper,
+.clock .digit_2 .upper {
+  /*height: 19px;*/
+  line-height: 100%;
+  overflow: hidden;
+  padding-top: 3px;
+  background: 50% 21px no-repeat #222;
+}
+.clock .digit_1 .lower,
+.clock .digit_2 .lower {
+  /*height: 23px;*/
+  line-height: 0px;
+  margin-top: 2px;
+  overflow: hidden;
+  background: 50% 0 no-repeat #222;
+}
+.clock .label {
+    display: block;
+  padding: 0;
+  bottom: 0px;
+  clear: both;
+  color: #fff;
+  font-family: 'Helvetica';
+  font-size: 12px;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  background: #444;
+}
+.clock .copy {
+  color: #fff;
+  font-family: 'DINBold';
+  font-size: 14px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+</style>
+  <style>
+    
   @font-face {
    font-family: codebold;
    src: url(/static/fonts/code_BOLD.otf) format("opentype");
@@ -126,8 +219,38 @@ function navFunction() {
              <use xlink:href="#s-text"
                class="text-copy"></use>     
             </g>
-           <p class="technex-dates">TOWARDS SUSTAINABILITY&nbsp;&nbsp; | &nbsp;&nbsp;24 - 26 FEBRUARY</p>
-
+           <div class="technex-dates" style="display: table;text-align: center;margin: 0 auto;MARGIN-TOP: -7%;">TOWARDS SUSTAINABILITY&nbsp;&nbsp; | &nbsp;&nbsp;24 - 26 FEBRUARY</div>
+             <div class="countdown" style="
+    display: table;
+    margin: 0 auto;
+    /* align-items: center; */
+    transform: scale(1.5);
+    /* margin-left: 37%; */
+    margin-top: 4%;
+">
+    <div data-time="1368630000" class="timerBrand clearfix">
+        <div class="clock days first">
+            <div class="digit_1"><div class="upper">0</div></div>
+            <div class="digit_2"><div class="upper">0</div></div>
+            <div class="label">DAYS</div>
+        </div>
+        <div class="clock hours">
+            <div class="digit_1"><div class="upper">0</div></div>
+            <div class="digit_2"><div class="upper">0</div></div>
+            <div class="label">HOURS</div>
+        </div>
+        <div class="clock minutes">
+            <div class="digit_1"><div class="upper">0</div></div>
+            <div class="digit_2"><div class="upper">0</div></div>
+            <div class="label">MINUTES</div>
+        </div>
+        <div class="clock seconds">
+            <div class="digit_1"><div class="upper">0</div></div>
+            <div class="digit_2"><div class="upper">0</div></div>
+            <div class="label">SECONDS</div>
+        </div>
+    </div>
+</div>
           </svg>
 
           </div>
@@ -363,6 +486,56 @@ function navFunction() {
      });
   });
   </script>
+  <script type="text/javascript">
+  eventTimer = function() {
+  eventTime = new Date(2017, 1, 24, 0, 0, 0, 0);
+  currentTime = new Date ();
+  timeToEvent = eventTime - currentTime;
+  timeToEventround = Math.floor( timeToEvent / 1000 );
+  daysToEvent = Math.floor(timeToEventround/(60*60*24)).toString().split("");
+  hoursToEvent = Math.floor((timeToEventround%(60*60*24))/(60*60)).toString().split("");
+  minutesToEvent = Math.floor((((timeToEventround%(60*60*24))%(60*60))/(60))).toString().split("");
+  secondsToEvent = Math.floor(((((timeToEventround%(60*60*24))%(60*60))%(60)))).toString().split("");
+  if (timeToEvent > 0){
+    if (daysToEvent.length == 1) {
+      $('.clock.days .digit_1 div').text(0);
+      $('.clock.days .digit_2 div').text(daysToEvent[0]); 
+    } else {
+      $('.clock.days .digit_1 div').text(daysToEvent[0]);
+      $('.clock.days .digit_2 div').text(daysToEvent[1]);
+    }
+  
+    if (hoursToEvent.length == 1) {
+      $('.clock.hours .digit_1 div').text(0);
+      $('.clock.hours .digit_2 div').text(hoursToEvent[0]); 
+    } else {
+      $('.clock.hours .digit_1 div').text(hoursToEvent[0]);
+      $('.clock.hours .digit_2 div').text(hoursToEvent[1]);
+    }
+  
+    if (minutesToEvent.length == 1) {
+      $('.clock.minutes .digit_1 div').text(0);
+      $('.clock.minutes .digit_2 div').text(minutesToEvent[0]); 
+    } else {
+      $('.clock.minutes .digit_1 div').text(minutesToEvent[0]);
+      $('.clock.minutes .digit_2 div').text(minutesToEvent[1]);
+    }
+  
+    if (secondsToEvent.length == 1) {
+      $('.clock.seconds .digit_1 div').text(0);
+      $('.clock.seconds .digit_2 div').text(secondsToEvent[0]); 
+    } else {
+      $('.clock.seconds .digit_1 div').text(secondsToEvent[0]);
+      $('.clock.seconds .digit_2 div').text(secondsToEvent[1]);
+    }
+  } else {
+    $('.clock .digit_1 div').text(0);
+    $('.clock .digit_2 div').text(0);
+  }
+}
+
+window.setInterval(eventTimer, 1000);
+</script>
 
 </body>
 </html>
