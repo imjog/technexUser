@@ -16,8 +16,8 @@ server = "http://www.technex.in/"
 sheetUrls = {
 	"robowars":"https://script.google.com/macros/s/AKfycbyIbAnsZyhZnf5TLkhdN1C8gAsZb1ucsrGTzwTp_fq8HIxH5kR_/exec",
 	"pixelate":"https://script.google.com/macros/s/AKfycbzRrPLuk16hrDOIh7AmQViE7sJmdTX7Vq-w1WShHJbDg1Cjylo/exec",
-	"hudrlemania":"https://script.google.com/macros/s/AKfycbwdqJGq0snCPSOL2vgRb0cxWUcTBOkBtp3Bk9zb2v615RxBb_k/exec",
-	"maze-xplorer":"https://script.google.com/macros/s/AKfycbyymc9N9q3oXwJThjON78Swa3fnKwD9bXbEEGdNT49XWdmBbYU/exec",
+	"hurdlemania":"https://script.google.com/macros/s/AKfycbwdqJGq0snCPSOL2vgRb0cxWUcTBOkBtp3Bk9zb2v615RxBb_k/exec",
+	"mazeXplorer":"https://script.google.com/macros/s/AKfycbyymc9N9q3oXwJThjON78Swa3fnKwD9bXbEEGdNT49XWdmBbYU/exec",
 	"open-software" : "https://script.google.com/macros/s/AKfycbxQeVLQzJ-l0HGdrovmvKRfStBmmrXzJlk5detmE6N037BzBAc6/exec",
 	"open-hardware": "https://script.google.com/macros/s/AKfycbwE6p7LyUHApX7oTnsmiR-Vk_Q2x1YJQd5fYcfn9bTjfLq35Wg/exec",
 	"green-tech": "https://script.google.com/macros/s/AKfycbxPWMx8KBwuNLcBeG23QCaZX7FJ5lOAjStMxQ15S4z57X2xEUQ/exec",
@@ -29,8 +29,8 @@ sheetUrls = {
 	"economists-enigma": "https://script.google.com/macros/s/AKfycbxMmy7yjzvDmLY83zkM--P86XVgnryuBkrJUuhM1C4XDY0qjm3z/exec",
 	"manthan": "https://script.google.com/macros/s/AKfycbwe6tPsgigg6-SX1WyUo00RQXM__tJh_01MNLBs5csQx2BC4HI/exec",
 	"krackat": "https://script.google.com/macros/s/AKfycbz6GS25vFDJsY02mX749TjC2YSnrXdvCcVZs5LWoaNbhGv_f6H0/exec",
-	"bulls-on-the-floor": "https://script.google.com/macros/s/AKfycbxucNiOHRGcshykqMiTgHdV7uCc3JkifXgsfPDReX-41-VkfAM/exec",
-	"analyticity": "https://script.google.com/macros/s/AKfycbxmDxWFuRA2PBu6e2GefsmeOPx4Q2inXbNHprheGUVn1XFa7h6A/exec",
+	"bulls-floor": "https://script.google.com/macros/s/AKfycbxucNiOHRGcshykqMiTgHdV7uCc3JkifXgsfPDReX-41-VkfAM/exec",
+	"analiticity": "https://script.google.com/macros/s/AKfycbxmDxWFuRA2PBu6e2GefsmeOPx4Q2inXbNHprheGUVn1XFa7h6A/exec",
 
 	"2d":"https://script.google.com/macros/s/AKfycbwf1qvqJwVLgRNnD_JhZROI2r2AIrlOrTlxRAzAWRccS5pQerY/exec",
 	"animaze":"https://script.google.com/macros/s/AKfycbxS-q0nnu3BfadEq-QWU_KuR8v2FMk5Ji40Y3gBDHGmZ_E9n_s/exec",
@@ -38,10 +38,10 @@ sheetUrls = {
 	"iso":"https://script.google.com/macros/s/AKfycbxM9pEcYkjnFKMVWoRCAy_HayzgLuxaXDDD-ccGGkCi_Qgz2xw/exec",
 	"collage":"https://script.google.com/macros/s/AKfycbx-ElC8fhlP5h2lZucFVF01BzdMaPMW6GrsHfotZGYg-SOs_4Gj/exec",
 	"minimize":"https://script.google.com/macros/s/AKfycbwYTV5c6Yw5MRy1OxII-U6A78YsWz_iNqFqIzlS_eb6NJ408tY/exec",
-	"exploring-the-interstellar":"https://script.google.com/macros/s/AKfycbywyOuIP8aGFaCXhrhAtP8bmhV6KIyfnIcwWjnBe6nmVsycAPA/exec",
+	"exploring-interstellar":"https://script.google.com/macros/s/AKfycbywyOuIP8aGFaCXhrhAtP8bmhV6KIyfnIcwWjnBe6nmVsycAPA/exec",
 	"astroquiz":"https://script.google.com/macros/s/AKfycbzAiILENMWurTcDePvF0_TRx3n57M7uGVOJ5lwMlMf48bQGQDmt/exec",
 	"astrophotography":"https://script.google.com/macros/s/AKfycbzrihE1zlcubi_u8Jk6sZryUgH1NCyBlktsdcL-zQUJqB4V158/exec",
-	"scientists-of-utopia":"https://script.google.com/macros/s/AKfycbwIPTv_aNfvOqn4EVi8LKJoOsI9xmGiv6fzU8hoNUekT1djVK5Z/exec",
+	"scientists-utopia":"https://script.google.com/macros/s/AKfycbwIPTv_aNfvOqn4EVi8LKJoOsI9xmGiv6fzU8hoNUekT1djVK5Z/exec",
 	"aagaz":"https://script.google.com/macros/s/AKfycbxnmQC1co_4hTsHYUlB2mhl0wVIG67hdGkIHTxUmtC6s4gpFSQi/exec",
 	"sampann":"https://script.google.com/macros/s/AKfycbza0JY7Zl1-1Rp7WhtpzMHRdiX4A0aaVUMY_Ly9dExcC2QZxi77/exec",
 	"swachch":"https://script.google.com/macros/s/AKfycbyiLuidIIPe8q1Cc2JRctAYg7GuTb0ilRdB2U288cC6kgQcGFQF/exec",
@@ -49,13 +49,13 @@ sheetUrls = {
 	"greenx":"https://script.google.com/macros/s/AKfycbzqPHVP19tDZaru1DBvp2GER_Ac9sXfwCKXakY2vj7ynwWZC_g/exec",
 
 	"drone-tech": "https://script.google.com/macros/s/AKfycbz6q2nFTvqrFky8ehK0H7Lavig-K9it8eky6r3o0g5W8Efc__F0/exec",
-	"dero-glisseur": "https://script.google.com/macros/s/AKfycbwNMPiqyEAMYJ2D9LEkpY35HOtx7CuoiLRL86vxSQkqRLFYbo/exec",
+	"daeroglisseur": "https://script.google.com/macros/s/AKfycbwNMPiqyEAMYJ2D9LEkpY35HOtx7CuoiLRL86vxSQkqRLFYbo/exec",
 	"la-trajectoire":"https://script.google.com/macros/s/AKfycbyA7f6YhOCEBxDas3pkKuVj7f_l-wqMwMl7reNJy3DpG3kR0mE/exec",
 	"momentum":"https://script.google.com/macros/s/AKfycbwhENBDBnaEWYTJw-3opilMvz6BPGi3H3rR4f28Okp1IYNBSbE/exec",
 
 	"axelerate": "https://script.google.com/macros/s/AKfycbyKHb2ZmZ1UF8LId4ICMveb2ygx5cojpvNre8I5lju8ACjhQBxI/exec",
 	"goldbergs-alley": "https://script.google.com/macros/s/AKfycbyFAD8X7_ePW5ficdgcWPZ_obpxuly-5UAX26W9lj5VCJMTxZw/exec",
-	"bridge-it": "https://script.google.com/macros/s/AKfycby99ACnseBDFL7y2cmarSNrhIvzcHllw4SfHr4ovh0iHoBId-M/exec",
+	"bridgeit": "https://script.google.com/macros/s/AKfycby99ACnseBDFL7y2cmarSNrhIvzcHllw4SfHr4ovh0iHoBId-M/exec",
 	"hydracs": "https://script.google.com/macros/s/AKfycbz8bZZxxjZVIqS9virOgox90WmLjvGz0RK3m8cr9fv9q6BbpbY/exec",
 
 
