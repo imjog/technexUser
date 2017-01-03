@@ -67,12 +67,12 @@ def eventRegistration(request):
 						try:
 							team = Team.objects.get(event = event, members = u)
 							response['status'] = 0
-							response['error'] = u.email+' Already registered !!!'
+							response['error'] = u.email+' Already registered for this event !!!'
 							return JsonResponse(response)
 						except:
 							team = Team.objects.get(event = event, teamLeader = u)
 							response['status'] = 0
-							response['error'] = u.email+' Already registered !!!'
+							response['error'] = u.email+' Already registered for this event !!!'
 							return JsonResponse(response)
 					except:
 						try:
@@ -120,6 +120,7 @@ Regards
 			for user in users:
 				send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			response['status'] = 1
+			#spreadsheetfill_register(team)
 			return JsonResponse(response)
 	else:
 		response['status'] = 0
@@ -185,3 +186,34 @@ def event(request):
 		return HttpResponse(request.body)
 	else:
 		return render(request, 'eventRegistration.html')
+
+
+def spreadsheetfill_register(team):
+	members = []
+	for m in team.members.all():
+		members.append(m.email.encode("utf-8"))
+	dic = {
+	"teamName":team.teamName,
+	"leaderEmail":team.teamLeader.email,
+	"leaderMobile":str(team.teamLeader.mobileNumber),
+	}
+	try:
+		dic['member1'] = members[0]
+	except:
+		dic['member1'] = None
+	try:
+		dic['member2'] = members[1]
+	except:
+		dic['member2'] = None
+	try:
+		dic['member3'] = members[2]
+	except:
+		dic['member3'] = None
+	try:
+		dic['member4'] = members[3]
+	except:
+		dic['member4'] = None
+
+	print dic
+	url = 'https://script.google.com/macros/s/AKfycbyIbAnsZyhZnf5TLkhdN1C8gAsZb1ucsrGTzwTp_fq8HIxH5kR_/exec'
+	requests.post(url,data=dic)
