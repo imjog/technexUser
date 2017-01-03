@@ -112,8 +112,9 @@ class Workshops(models.Model):
     dateTime = models.DateTimeField(null = True)
     workshopFees = models.IntegerField(null = True)
     maxMembers = models.SmallIntegerField(null = True)
+    slug = models.SlugField(null = True)
     def __unicode__(self):
-        return '%s %s'%(self.title,self.workshopFees)
+        return '%s'%(self.title)
 
 class WorkshopOptions(models.Model):
     optionName = models.CharField(max_length = 50, null = True)

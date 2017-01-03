@@ -28,7 +28,8 @@ summary {
     margin-right: 21%;
     margin-top: -7%;
     font-size: 27px;
-    float: right;
+    /*float: right;*/
+    align-items: center;
     letter-spacing: 2px;
     font-weight: 500;
 }

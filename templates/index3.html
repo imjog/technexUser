@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>{{data.name}} | Technex '17</title>
+		<title>{{parentEventname}} | Technex '17</title>
 		{% for metaTag in metaTags %}
    <meta name="{{metaTag.name}}" content="{{metaTag.content|safe}}">
    {% endfor %}
@@ -52,17 +52,6 @@ function navFunction() {
 </head>
   <body>
 <!--   NAVBAR   -->
-<!--
-      <div class="navbarr">
-          <di class="navbarr-item">chutiyap</di>
-          <di class="navbarr-item">bda chutiyap</di>
-          <di class="navbarr-item">gnda chutiyap</di>
-          <di class="navbarr-item">again chutiyap</di>
-          <di class="navbarr-item">technex</di>
-          <di class="navbarr-item">tech chutiyap</di>
-          <di class="navbarr-item">hdd chutiyap</di>
-      </div>
--->
 <!--   /NAVBAR   -->
       <!----------NAVBAR-------->
 <div class="jnavbar" id="abcde">
@@ -195,10 +184,8 @@ $("nav a").each(function() {
 
 	}
 	document.getElementById("event-descrip").innerHTML = out;
-  $("title").html(data.name + " | Technex '17");
   $(".event-dis h1").html(data.name);
   $(".event-dis h3").html(data.description);
-	// console.log(out); 
   out="";
   for(i=0;i<data.events.length;i++)
   {
@@ -213,7 +200,7 @@ $("nav a").each(function() {
 	
 	for(i=0;i<data.events.length;i++)
 	{
-		out +='<a class="grid__item" href="#"><h2 class="title title--preview">' + data.events[i].eventName + '</h2><div class="loader"></div></a>';
+		out +='<a class="grid__item" href="#"><h2 class="title title--preview">' + data.events[i].eventName + '</h2>'+'<div class="loader"></div><h3>Prizes worth</br> ₹ '+data.events[i].prizeMoney+'</h3></a>';
 		document.getElementById("event-grid").innerHTML = out;
 
 	}

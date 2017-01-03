@@ -13,7 +13,10 @@ from Auth.models import *
 from Auth.views import contextCall,send_email
 
 server = "http://www.technex.in/"
+sheetUrls = {
+	"robowars":"https://script.google.com/macros/s/AKfycbyIbAnsZyhZnf5TLkhdN1C8gAsZb1ucsrGTzwTp_fq8HIxH5kR_/exec",
 
+}
 
 @csrf_exempt
 def eventRegistration(request):
@@ -67,12 +70,12 @@ def eventRegistration(request):
 						try:
 							team = Team.objects.get(event = event, members = u)
 							response['status'] = 0
-							response['error'] = u.email+' Already registered !!!'
+							response['error'] = u.email+' Already registered for this event !!!'
 							return JsonResponse(response)
 						except:
 							team = Team.objects.get(event = event, teamLeader = u)
 							response['status'] = 0
-							response['error'] = u.email+' Already registered !!!'
+							response['error'] = u.email+' Already registered for this event !!!'
 							return JsonResponse(response)
 					except:
 						try:
@@ -120,6 +123,7 @@ Regards
 			for user in users:
 				send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			response['status'] = 1
+			#spreadsheetfill_register(team)
 			return JsonResponse(response)
 	else:
 		response['status'] = 0
@@ -185,3 +189,53 @@ def event(request):
 		return HttpResponse(request.body)
 	else:
 		return render(request, 'eventRegistration.html')
+
+
+def spreadsheetfill_register(team):
+	members = team.members.all()
+	print members[0].email.encode("utf-8")
+	print members[0].college.collegeName
+	#for m in team.members.all():
+	#	members.append(m.email.encode("utf-8"))
+	dic = {
+	"teamName":team.teamName,
+	"leaderEmail":team.teamLeader.email,
+	"leaderMobile":str(team.teamLeader.mobileNumber),
+	"leaderCollege":team.teamLeader.college.collegeName,
+	"teamId":team.technexTeamId
+	}
+	try:
+		dic['member1'] = members[0].email.encode("utf-8")
+		dic['college1'] = members[0].college.collegeName 
+		dic['mobile1'] = members[0].mobileNumber
+	except:
+		dic['member1'] = 0
+		dic['college1'] = 0
+		dic['mobile1'] = 0
+	try:
+		dic['member2'] = members[1].email.encode("utf-8")
+		dic['college2'] = members[1].college.collegeName
+		dic['mobile2'] = members[1].mobileNumber
+	except:
+		dic['member2'] = 0
+		dic['college2'] = 0
+		dic['mobile2'] = 0
+	try:
+		dic['member3'] = members[2].email.encode("utf-8")
+		dic['college3'] = members[2].college.collegeName
+		dic['mobile3'] = members[2].mobileNumber
+	except:
+		dic['member3'] = 0
+		dic['college3'] = 0
+		dic['mobile3'] = 0
+	try:
+		dic['member4'] = members[3].email.encode("utf-8")
+		dic['college4'] = members[3].college.collegeName
+		dic['mobile4'] = members[3].mobileNumber
+	except:
+		dic['member4'] = 0
+		dic['college4'] = 0
+		dic['mobile4'] = 0
+	print dic
+	url = "https://script.google.com/a/macros/technex.in/s/AKfycbzRrPLuk16hrDOIh7AmQViE7sJmdTX7Vq-w1WShHJbDg1Cjylo/exec"#sheetUrls['robowars']
+	requests.post(url,data=dic)

@@ -454,6 +454,7 @@ def event(request, key):
         
         try:
             parentEvent = ParentEvent.objects.get(nameSlug = key)
+            parentEventname = parentEvent.categoryName
         except:
             response['error'] = True
             response['status'] = 'Invalid Slug for Parent Event'
@@ -486,7 +487,7 @@ def event(request, key):
         response['events'].sort(key= lambda x: x['eventOrder'])  
         metaTags = MetaTags.objects.filter(event = parentEvent)
         #print json.dumps(response)
-        return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags})
+        return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags,'parentEventname':parentEventname})
     else:
         response['error'] = True
         response['status'] = 'Invalid Request'
@@ -533,7 +534,7 @@ def botApi(request):
     post = request.POST
     if post['passkey'] == 'Xs6vvZdLhsYHAEK':
         try:
-            techProfile = TechProfile.objects.get(email = post['email'])
+            techProfile = TechProfile.objects.get(id = post['email'])
             response['status'] = 1
         except:
             response['status'] = 0
@@ -772,9 +773,117 @@ def checkunique(request):
     except:
         return True    
 
+
+@csrf_exempt
+def workshopRegister(request):
+    response = {}
+     
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        workshop = Workshops.objects.get(slug = data['workshopSlug'])
+        try:
+            # print "here"
+            team = WorkshopTeam.objects.get(teamName = data['teamName'], workshop = workshop)
+            response['status'] = 0
+            response['error'] = "TeamName Already exists"
+            return JsonResponse(response)
+        except:
+            try:
+                teamLeader = TechProfile.objects.get(technexId = data['teamLeaderEmail'])
+            except:
+                teamLeader = TechProfile.objects.get(email = data['teamLeaderEmail'])
+            users = []
+            # print "here"
+            for member in data['members']:
+                try:    
+                    try:
+                        user = TechProfile.objects.get(email = member)
+                        users.append(user)
+                    except:
+                        user = TechProfile.objects.get(technexId = member)
+                        users.append(user)
+                except:
+                    response['status'] = 0
+                    response['error'] = 'Member not Registered('+str(member)+')'
+                    return JsonResponse(response)
+                
+            users = list(set(users))
+            try:
+                try:
+                    team = WorkshopTeam.objects.get(teamLeader = teamLeader,workshop = workshop)
+                    response['status'] = 0
+                    response['error'] = 'You have Already registered for this event!!'
+                    return JsonResponse(response)
+                except:
+                    team = Team.objects.get(workshop = workshop, members = teamLeader)
+                    response['status'] = 0
+                    response['error'] = 'You have Already registered for this event !!'
+            except:
+                for u in users: 
+                    try:
+                        try:
+                            team = WorkshopTeam.objects.get(workshop = workshop, members = u)
+                            response['status'] = 0
+                            response['error'] = u.email+' Already registered for this workshop !!!'
+                            return JsonResponse(response)
+                        except:
+                            team = WorkshopTeam.objects.get(workshop = workshop, teamLeader = u)
+                            response['status'] = 0
+                            response['error'] = u.email+' Already registered for this workshop !!!'
+                            return JsonResponse(response)
+                    except:
+                        try:
+                            if teamLeader == u:
+                                users.remove(u)
+                        except:
+                            pass
+                team = WorkshopTeam(teamLeader = teamLeader,workshop = workshop, teamName = data['teamName'])
+                team.save()
+            subject = "[Technex'17] Successful Registration"
+            body = '''
+Dear %s,
+
+Thanks for registering for %s Technex'17.
+
+Your Team Details Are
+Team Name- %s
+Team Leader- %s
+Team Members- %s
+
+
+An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+
+
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
+              
+
+Looking forward to seeing you soon at Technex 2017.
+
+All the best!
+
+
+Regards
+
+Team Technex
+Regards
+            '''
+            memberEmails = ""
+            for user in users:
+                memberEmails += user.email+'  ' 
+                team.members.add(user)
+            #send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            #for user in users:
+             #   send_email(user.email,subject,body%(user.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            response['status'] = 1
+            return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return render(request, 'eventRegistration.html',contextCall(request))
+        #return JsonResponse(response)
+        
 def botTest(request):
-    email = request.user.techprofile.email
-    return render(request,'thankyou.html',{'email':email})
+    email = request.user.techprofile.id
+    return render(request,'thankyou.html',{'id':email})
 
 def gverify(request):
     return render(request,'googlec0c9e6f96a842b6d.html',{})
