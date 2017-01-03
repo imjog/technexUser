@@ -887,3 +887,40 @@ def botTest(request):
 
 def gverify(request):
     return render(request,'googlec0c9e6f96a842b6d.html',{})
+
+def workshop(request):
+    return render(request,'workshop.html')
+
+'''
+def event(request, key):
+    response = {}
+    if request.method == 'GET':
+        events = Event.objects.filter(parentEvent = parentEvent)
+        for event in events:
+            eventData = {}
+            eventData['eventName'] = event.eventName
+            eventData['description'] = event.description
+            # eventData['deadLine'] = event.deadLine
+            eventData['prizeMoney'] = event.prizeMoney
+            eventData['maxMembers'] = event.maxMembers
+            eventData['eventOrder'] = event.eventOrder
+            eventData['eventSlug']=event.nameSlug
+            eventData['eventOptions'] = []
+            eventOptions = EventOption.objects.filter(event = event)
+            for eventOption in eventOptions:
+                eventOptionData = {}
+                eventOptionData['optionName'] = eventOption.optionName
+                eventOptionData['optionDescription'] = eventOption.optionDescription
+                eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
+                eventData['eventOptions'].append(eventOptionData)
+            eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
+            response['events'].append(eventData)
+        response['events'].sort(key= lambda x: x['eventOrder'])  
+        metaTags = MetaTags.objects.filter(event = parentEvent)
+        #print json.dumps(response)
+        return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags,'parentEventname':parentEventname})
+    else:
+        response['error'] = True
+        response['status'] = 'Invalid Request'
+        return JsonResponse(response)
+'''
