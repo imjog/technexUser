@@ -270,5 +270,5 @@ def spreadsheetfill_register(team):
 		dic['college4'] = 0
 		dic['mobile4'] = 0
 	print dic
-	url = sheetUrls[team.event.nameSlug]
+	url = sheetUrls[team.event.nameSlug.encode("utf-8")]
 	requests.post(url,data=dic)
