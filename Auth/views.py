@@ -803,7 +803,7 @@ def workshopRegister(request):
                         users.append(user)
                 except:
                     response['status'] = 0
-                    response['error'] = 'Member not Registered('+member+')'
+                    response['error'] = 'Member not Registered('+str(member)+')'
                     return JsonResponse(response)
                 
             users = list(set(users))

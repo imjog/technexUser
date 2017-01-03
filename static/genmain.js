@@ -83,7 +83,7 @@ var workdata=[
   max: 1
 },
 {
-  workshop: 'Automobiles',
+  workshop: 'automobiles',
   max: 1
 },
 {
@@ -649,7 +649,7 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
   }]);
 app.controller('workshop-cont', ['$scope', '$window', '$http' , function($scope, $window,$http) {
   $scope.max=0;
-  $scope.a = [];
+  $scope.a =[];
   $scope.options = $window.workdata;
   $scope.workshop='';
   $scope.teamName="";
@@ -691,7 +691,7 @@ app.controller('workshop-cont', ['$scope', '$window', '$http' , function($scope,
     try{ 
     $scope.max = $scope.options[$scope.workshopIndex()].max;
     console.log($scope.workshopIndex());
-    $scope.a  = new Array($scope.max);
+    $scope.a  = new Array($scope.max-1);
         while($scope.members.length!=0)
     {
         $scope.members.pop();    
@@ -785,7 +785,33 @@ app.controller('workshop-cont', ['$scope', '$window', '$http' , function($scope,
      }
      if(x)
      {
-       
+       console.log($scope.a);
+       data={
+        'workshopSlug':$scope.workshop,
+        'teamName': $scope.teamName,
+        'teamLeaderEmail': $scope.leader,
+        'members':$scope.a
+       }
+        $http({
+              method:'POST',
+              url:'/workshopRegister/',
+              data: data
+             }).success(function(data){
+              $(".team-reg-submit").html("Submit");
+              console.log(data);
+                if(data.status==0)
+                {
+                   $("#error-message-display").html(data.error);
+                   $("#error-message").show();
+                   
+                }
+                if(data.status==1)
+                {
+                   
+                   window.location.assign("#profile");
+                   location.reload(true);
+                }
+             });
      }
 
   }
