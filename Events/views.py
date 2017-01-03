@@ -123,7 +123,7 @@ Regards
 			for user in users:
 				send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			response['status'] = 1
-			spreadsheetfill_register(team)
+			#spreadsheetfill_register(team)
 			return JsonResponse(response)
 	else:
 		response['status'] = 0
