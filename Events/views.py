@@ -48,6 +48,16 @@ sheetUrls = {
 	"vision":"https://script.google.com/macros/s/AKfycbynUPef4u0AqxuGIaR_0_m35Ry6-KipzRkkQngaGjuTSuPupAU/exec",
 	"greenx":"https://script.google.com/macros/s/AKfycbzqPHVP19tDZaru1DBvp2GER_Ac9sXfwCKXakY2vj7ynwWZC_g/exec",
 
+	"drone-tech": "https://script.google.com/macros/s/AKfycbz6q2nFTvqrFky8ehK0H7Lavig-K9it8eky6r3o0g5W8Efc__F0/exec",
+	"dero-glisseur": "https://script.google.com/macros/s/AKfycbwNMPiqyEAMYJ2D9LEkpY35HOtx7CuoiLRL86vxSQkqRLFYbo/exec",
+	"la-trajectoire":"https://script.google.com/macros/s/AKfycbyA7f6YhOCEBxDas3pkKuVj7f_l-wqMwMl7reNJy3DpG3kR0mE/exec",
+	"momentum":"https://script.google.com/macros/s/AKfycbwhENBDBnaEWYTJw-3opilMvz6BPGi3H3rR4f28Okp1IYNBSbE/exec",
+
+	"axelerate": "https://script.google.com/macros/s/AKfycbyKHb2ZmZ1UF8LId4ICMveb2ygx5cojpvNre8I5lju8ACjhQBxI/exec",
+	"goldbergs-alley": "https://script.google.com/macros/s/AKfycbyFAD8X7_ePW5ficdgcWPZ_obpxuly-5UAX26W9lj5VCJMTxZw/exec",
+	"bridge-it": "https://script.google.com/macros/s/AKfycby99ACnseBDFL7y2cmarSNrhIvzcHllw4SfHr4ovh0iHoBId-M/exec",
+	"hydracs": "https://script.google.com/macros/s/AKfycbz8bZZxxjZVIqS9virOgox90WmLjvGz0RK3m8cr9fv9q6BbpbY/exec",
+
 
 }
 
