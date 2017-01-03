@@ -454,6 +454,7 @@ def event(request, key):
         
         try:
             parentEvent = ParentEvent.objects.get(nameSlug = key)
+            parentEventname = parentEvent.categoryName
         except:
             response['error'] = True
             response['status'] = 'Invalid Slug for Parent Event'
@@ -486,7 +487,7 @@ def event(request, key):
         response['events'].sort(key= lambda x: x['eventOrder'])  
         metaTags = MetaTags.objects.filter(event = parentEvent)
         #print json.dumps(response)
-        return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags})
+        return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags,'parentEventname':parentEventname})
     else:
         response['error'] = True
         response['status'] = 'Invalid Request'
