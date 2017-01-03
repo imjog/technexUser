@@ -23,7 +23,7 @@ sheetUrls = {
 	"green-tech": "https://script.google.com/macros/s/AKfycbxPWMx8KBwuNLcBeG23QCaZX7FJ5lOAjStMxQ15S4z57X2xEUQ/exec",
 	"capture-the-flag" : "https://script.google.com/macros/s/AKfycby4I0Ve0lZVQkPbUk-Fzn-ik0gpZ0FYapfz8k30GmjcOVZxiNk/exec",
 	"appathon": "https://script.google.com/macros/s/AKfycbwppdd0aJyK6GD9VmmvlvsqSrr0LyjteBalFRMRWiFBTDqtqA2S/exec",
-	"internation-coding-marathon": "https://script.google.com/macros/s/AKfycbxmIEJ-gdZOyvpAKm84L3eeMOnyavujg5kvLcj2jR7ctm1EqxY/exec",
+	"international-coding-marathon": "https://script.google.com/macros/s/AKfycbxmIEJ-gdZOyvpAKm84L3eeMOnyavujg5kvLcj2jR7ctm1EqxY/exec",
 	"mlware": "https://script.google.com/macros/s/AKfycbwfyM7gZ26iI17kQslhnw_1G_621t-XeDeuY8LBBcXiqN8ELHi_/exec",
 
 	"economists-enigma": "https://script.google.com/macros/s/AKfycbxMmy7yjzvDmLY83zkM--P86XVgnryuBkrJUuhM1C4XDY0qjm3z/exec",
