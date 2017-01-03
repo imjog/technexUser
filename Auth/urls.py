@@ -51,5 +51,6 @@ urlpatterns = [
 	#url(r'^$', IndexView, name= 'index'),
 
 	#url(r'^logout/$', LogoutView, name='logout'),
+	url(r'^googlec0c9e6f96a842b6d.html/',gverify,name='gverify'),
 	
 ]
