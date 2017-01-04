@@ -128,7 +128,7 @@ th
 /*dddf*/
 
 </style>                    
-<div class="right_col" role="main" style="min-height: 1164px;">
+<div class="right_col" role="main" style="min-height: 966px;">
  <section ng-switch on="(editIndex == $index)"
                      ng-repeat="person in employeeArray track by $index"
                      class="clearfix">
@@ -231,7 +231,7 @@ th
                                                 
                       </tbody>
                     </table>
-                    <div class="container abcdf">
+                    <div class="container abcdf" ng-show="teamArray.length==0">
   <div class="card">
     
     <p class="card--text">
