@@ -888,6 +888,7 @@ def botTest(request):
 def gverify(request):
     return render(request,'googlec0c9e6f96a842b6d.html',{})
 
+'''
 def workshop(request):
     response={}
     # print "HH"
@@ -910,7 +911,36 @@ def workshop(request):
         response['status']=0      
     print response         
     return render(request,'workshop.html',{'workshops':response})
-
+'''
+@csrf_exempt
+def workshop(request):
+    response = {}
+    if True:#try:
+        workshops = Workshops.objects.all()
+        response['status'] = 1
+        response['workshops'] = []
+        for workshop in workshops:
+            workshopData = {}
+            workshopData['title'] = workshop.title
+            workshopData['image'] = workshop.image
+            workshopData['description'] = workshop.description
+            workshopData['dateTime'] = workshop.dateTime
+            workshopData['workshopFees'] = workshop.workshopFees
+            workshopData['order'] = workshop.order
+            workshopData['workshopOptions'] = []
+            workshopOptions = WorkshopOptions.objects.filter(workshop = workshop)
+            for workshopOption in workshopOptions:
+                workshopOptionData = {}
+                workshopOptionData['optionName'] = workshopOption.optionName
+                workshopOptionData['optionDescription'] = workshopOption.optionDescription
+                workshopOptionData['optionOrder'] = workshopOption.optionOrder
+                workshopData['workshopOptions'].append(workshopOptionData)
+            workshopData['workshopOptions'].sort(key=lambda x: x['optionOrder'])
+            response['workshops'].append(workshopData)
+        response['workshops'].sort(key=lambda x: x['order'])
+    else:#except:
+        response['status'] = 0
+    return render(request,'workshop.html',{"workshops":response})
 '''
 def event(request, key):
     response = {}
