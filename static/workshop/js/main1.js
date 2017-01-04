@@ -237,6 +237,8 @@
 		// Toggle class on the main container.
 		mainContainer.classList.toggle('landing-layout--open');
         document.getElementById('abcde').classList.toggle('hide');
+        document.getElementById('cDetail').classList.toggle('hide');
+        document.getElementById('vWork').classList.toggle('hide');
 
 //		if( isOpen ) { // close it.
 			// Stop the bubbles canvas animation.
