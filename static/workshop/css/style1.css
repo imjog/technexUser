@@ -186,13 +186,15 @@ a:focus {
 }
 .landing-header__tagline {
 	font-size: 1.5em;
-	padding: 0 0.5em;
-	font-weight: 500;
-	line-height: 1.75;
-	max-width: 500px;
-	margin: 0 auto;
-	color: #84ff84;
-	background: #090d31;
+    padding: 0.1em 0.6em;
+    font-weight: 500;
+    line-height: 1.75;
+    max-width: 500px;
+    margin: 0 auto;
+    color: #84ff84;
+    outline: 1px solid #84ff84;
+    outline-offset: -6px;
+    background: #090d31;
 }
 
 .landing-header__title span {
@@ -679,6 +681,7 @@ a:focus {
 	}
 	.landing-header__tagline {
 		font-size: 0.85em;
+        outline-offset: -3px;
 	}
 	.featured-list {
 		width: 100%;
