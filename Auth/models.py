@@ -113,6 +113,7 @@ class Workshops(models.Model):
     workshopFees = models.IntegerField(null = True)
     maxMembers = models.SmallIntegerField(null = True)
     slug = models.SlugField(null = True)
+    image = models.TextField(blank=True,null=True)
     def __unicode__(self):
         return '%s'%(self.title)
 

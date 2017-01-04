@@ -266,13 +266,14 @@ def guestLectures(request):
 @csrf_exempt
 def workshopApi(request):
     response = {}
-    try:
+    if True:#try:
         workshops = Workshops.objects.all()
         response['status'] = 1
         response['workshops'] = []
         for workshop in workshops:
             workshopData = {}
             workshopData['title'] = workshop.title
+            workshopData['image'] = workshop.image
             workshopData['description'] = workshop.description
             workshopData['dateTime'] = workshop.dateTime
             workshopData['workshopFees'] = workshop.workshopFees
@@ -285,10 +286,12 @@ def workshopApi(request):
                 workshopOptionData['optionDescription'] = workshopOption.optionDescription
                 workshopOptionData['optionOrder'] = workshopOption.optionOrder
                 workshopData['workshopOptions'].append(workshopOptionData)
-            response['workshop'].append(workshopData)
-    except:
+            workshopData['workshopOptions'].sort(key=lambda x: x['optionOrder'])
+            response['workshops'].append(workshopData)
+        response['workshops'].sort(key=lambda x: x['order'])
+    else:#except:
         response['status'] = 0
-    return JsonResponse(response)
+    return render(request,'workshop.html',{"workshops":response})
 
 @csrf_exempt
 def caEmailCount(request):

@@ -1,8 +1,18 @@
 jQuery(document).ready(function($){
 	//open the lateral panel
+    var x=document.getElementsByClassName("cd-btn");
+    var y=document.getElementsByClassName("cd-panel");
+    
+
+
+
+
 	$('.cd-btn').on('click', function(event){
 		event.preventDefault();
-		$('.cd-panel').addClass('is-visible');
+		// console.log(indexOf(x));
+		var z=$.inArray(event.currentTarget,x);
+
+		$(y[z]).addClass('is-visible');
 	});
 	//clode the lateral panel
 	$('.cd-panel').on('click', function(event){

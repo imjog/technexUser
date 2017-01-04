@@ -1083,7 +1083,11 @@ html, body {
   margin: 2em 0;
 }
 .cd-panel-content p:first-of-type {
-  margin-top: 20%;
+  /*margin-top: 20%;*/
+}
+.cd-panel-content p
+{
+  margin-top: 14px;
 }
 @media only screen and (min-width: 768px) {
   .cd-panel-content p {
@@ -1092,7 +1096,7 @@ html, body {
     line-height: 1.6;
   }
     .cd-panel-content p:first-of-type {
-  margin-top: 15%;
+  /*margin-top: 15%;*/
 }
 }
 .featured-list__item:nth-child(12){

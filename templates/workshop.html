@@ -29,6 +29,12 @@ function navFunction() {
     }
 }
 </script>
+<style type="text/css">
+	p
+	{
+		margin-top: 10px;
+	}
+</style>
 <!----------/NAVBAR-------->
 	</head>
 	<body>
@@ -113,102 +119,35 @@ function navFunction() {
 			<!-- Featured content that gets shown after the layout opens -->
 			<section class="featured-content">
 				<ul class="featured-list">
+					{% for workshop in workshops.workshops %}
 					<li class="featured-list__item">
-						<a href="#0" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/iot.jpg" alt="Seaweed 1">
-							<h3 class="featured-list__title">Internet of Things</h3>
+						<a href="#" class="featured-list__link cd-btn {{workshop.order}}">
+		<img class="featured-list__img" src={{workshop.image}} alt="Seaweed 3">
+							<h3 class="featured-list__title">{{workshop.title}}</h3>
 						</a>
 					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/automation.jpg" alt="Seaweed 2">
-							<h3 class="featured-list__title">PLC & SCADA</h3>
-						</a>
-					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/data%20mining.jpg" alt="Seaweed 3">
-							<h3 class="featured-list__title">Data Mining</h3>
-						</a>
-					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/digital%20marketing.jpg" alt="Seaweed 4">
-							<h3 class="featured-list__title">Digital Marketing</h3>
-						</a>
-					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/3d%20print.jpg" alt="Seaweed 5">
-							<h3 class="featured-list__title">3D Printing</h3>
-						</a>
-					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/swarm.jpg" alt="Seaweed 6">
-							<h3 class="featured-list__title">Swarm Robotics</h3>
-						</a>
-					</li>
-                    <li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/bridge.jpg" alt="Seaweed 1">
-							<h3 class="featured-list__title">Bridge Design</h3>
-						</a>
-					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/android.jpg" alt="Seaweed 2">
-							<h3 class="featured-list__title">Android App Development</h3>
-						</a>
-					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/6th%20sense.jpg" alt="Seaweed 3">
-							<h3 class="featured-list__title">Sixth sense Technology</h3>
-						</a>
-					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/automobiles.jpg" alt="Seaweed 4">
-							<h3 class="featured-list__title">Automobiles</h3>
-						</a>
-					</li>
-					<li class="featured-list__item">
-						<a href="#" class="featured-list__link cd-btn">
-							<img class="featured-list__img" src="/static/workshop/img/workshop/ethical.jpg" alt="Seaweed 5">
-							<h3 class="featured-list__title">Ethical Hacking</h3>
-						</a>
-					</li>
-                    <li class="featured-list__item" id="notUsefullItem">
-						<a href="#" class="featured-list__link">
-<!--
-							<img class="featured-list__img" src="img/workshop/ethical.jpg" alt="Seaweed 5">
-							<h3 class="featured-list__title">Ethical Hacking</h3>
--->
-						</a>
-					</li>
+					{% endfor %}
 				</ul>
 			</section><!-- /featured-content -->
-				<div class="cd-panel from-right">
+				{% for workshop in workshops.workshops %}
+				<div class="cd-panel from-right {{workshop.order}}">
 		<header class="cd-panel-header">
-			<h1>Title Goes Here</h1>
+			<h1>{{workshop.title}}</h1>
 			<a href="#0" class="cd-panel-close">Close</a>
 		</header>
-
 		<div class="cd-panel-container">
-			<div class="cd-panel-content">
-                <div class="registerWorkshop" href="">REGISTER</div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam magnam accusamus obcaecati nisi eveniet quo veniam quibusdam veritatis autem accusantium doloribus nam mollitia maxime explicabo nemo quae aspernatur impedit cupiditate dicta molestias consectetur, sint reprehenderit maiores. Tempora, exercitationem, voluptate. Sapiente modi officiis nulla sed ullam, amet placeat, illum necessitatibus, eveniet dolorum et maiores earum tempora, quas iste perspiciatis quibusdam vero accusamus veritatis. Recusandae sunt, repellat incidunt impedit tempore iusto, nostrum eaque necessitatibus sint eos omnis! Beatae, itaque, in. Vel reiciendis consequatur saepe soluta itaque aliquam praesentium, neque tempora. Voluptatibus sit, totam rerum quo ex nemo pariatur tempora voluptatem est repudiandae iusto, architecto perferendis sequi, asperiores dolores doloremque odit. Libero, ipsum fuga repellat quae numquam cumque nobis ipsa voluptates pariatur, a rerum aspernatur aliquid maxime magnam vero dolorum omnis neque fugit laboriosam eveniet veniam explicabo, similique reprehenderit at. Iusto totam vitae blanditiis. Culpa, earum modi rerum velit voluptatum voluptatibus debitis, architecto aperiam vero tempora ratione sint ullam voluptas non! Odit sequi ipsa, voluptatem ratione illo ullam quaerat qui, vel dolorum eligendi similique inventore quisquam perferendis reprehenderit quos officia! Maxime aliquam, soluta reiciendis beatae quisquam. Alias porro facilis obcaecati et id, corporis accusamus? Ab porro fuga consequatur quisquam illo quae quas tenetur.</p>
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque similique, at excepturi adipisci repellat ut veritatis officia, saepe nemo soluta modi ducimus velit quam minus quis reiciendis culpa ullam quibusdam eveniet. Dolorum alias ducimus, ad, vitae delectus eligendi, possimus magni ipsam repudiandae iusto placeat repellat omnis veritatis adipisci aliquam hic ullam facere voluptatibus ratione laudantium perferendis quos ut. Beatae expedita, itaque assumenda libero voluptatem adipisci maiores voluptas accusantium, blanditiis saepe culpa laborum iusto maxime quae aperiam fugiat odit consequatur soluta hic. Sed quasi beatae quia repellendus, adipisci facilis ipsa vel, aperiam, consequatur eaque mollitia quaerat. Iusto fugit inventore eveniet velit.</p>
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque similique, at excepturi adipisci repellat ut veritatis officia, saepe nemo soluta modi ducimus velit quam minus quis reiciendis culpa ullam quibusdam eveniet. Dolorum alias ducimus, ad, vitae delectus eligendi, possimus magni ipsam repudiandae iusto placeat repellat omnis veritatis adipisci aliquam hic ullam facere voluptatibus ratione laudantium perferendis quos ut. Beatae expedita, itaque assumenda libero voluptatem adipisci maiores voluptas accusantium, blanditiis saepe culpa laborum iusto maxime quae aperiam fugiat odit consequatur soluta hic. Sed quasi beatae quia repellendus, adipisci facilis ipsa vel, aperiam, consequatur eaque mollitia quaerat. Iusto fugit inventore eveniet velit.</p>
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam magnam accusamus obcaecati nisi eveniet quo veniam quibusdam veritatis autem accusantium doloribus nam mollitia maxime explicabo nemo quae aspernatur impedit cupiditate dicta molestias consectetur, sint reprehenderit maiores. Tempora, exercitationem, voluptate. Sapiente modi officiis nulla sed ullam, amet placeat, illum necessitatibus, eveniet dolorum et maiores earum tempora, quas iste perspiciatis quibusdam vero accusamus veritatis. Recusandae sunt, repellat incidunt impedit tempore iusto, nostrum eaque necessitatibus sint eos omnis! Beatae, itaque, in. Vel reiciendis consequatur saepe soluta itaque aliquam praesentium, neque tempora. Voluptatibus sit, totam rerum quo ex nemo pariatur tempora voluptatem est repudiandae iusto, architecto perferendis sequi, asperiores dolores doloremque odit. Libero, ipsum fuga repellat quae numquam cumque nobis ipsa voluptates pariatur, a rerum aspernatur aliquid maxime magnam vero dolorum omnis neque fugit laboriosam eveniet veniam explicabo, similique reprehenderit at. Iusto totam vitae blanditiis. Culpa, earum modi rerum velit voluptatum voluptatibus debitis, architecto aperiam vero tempora ratione sint ullam voluptas non! Odit sequi ipsa, voluptatem ratione illo ullam quaerat qui, vel dolorum eligendi similique inventore quisquam perferendis reprehenderit quos officia! Maxime aliquam, soluta reiciendis beatae quisquam. Alias porro facilis obcaecati et id, corporis accusamus? Ab porro fuga consequatur quisquam illo quae quas tenetur.</p>
+			<div class="cd-panel-content" style="color: black;">
+			<div style="width: 100%;display: table;margin: 0 auto;">
+                <a class="registerWorkshop" href="/dashboard">REGISTER</a>
+                </div>
+                <br>
+                <div>
+                {{workshop.description | safe}}
+                </div>
 			</div> <!-- cd-panel-content -->
 		</div> <!-- cd-panel-container -->
 	</div> <!-- cd-panel -->
-			
+			{% endfor %}}
 			<!-- <div class="loader">
 				<svg class="loader__img" viewBox="0 0 100 100" width="100px" height="100px">
 					<circle class="loader__circle" cx="22.8" cy="77.6" r="16.5"/>
@@ -218,6 +157,9 @@ function navFunction() {
 			</div> -->
 		</main>
 		<!-- <script src="js/howler.min.js"></script> -->
+		<!-- <script type="text/javascript">
+          var x=document.getElementsByClassName("")
+		</script> -->
 		<script src="/static/workshop/js/jquery-2.1.1.js"></script>
 <script src="/static/workshop/js/main.js"></script>
 		<script src="/static/workshop/js/imagesloaded.pkgd.min.js"></script>

@@ -889,7 +889,27 @@ def gverify(request):
     return render(request,'googlec0c9e6f96a842b6d.html',{})
 
 def workshop(request):
-    return render(request,'workshop.html')
+    response={}
+    # print "HH"
+    try:
+        workshops=Workshops.objects.all()
+        # # print workshops
+        response['workshops']=[]
+        for workshop in workshops:
+            workshopData={}
+            workshopData['title']=workshop.title.encode('ascii','ignore')
+            workshopData['description']=workshop.description.encode('ascii','ignore')
+            workshopData['workshopfees']=workshop.workshopFees
+            workshopData['maxMembers']=workshop.maxMembers
+            workshopData['image']=workshop.image.encode('ascii','ignore')
+            workshopData['order']=workshop.order
+            response['workshops'].append(workshopData)
+            # print workshop.title
+            # print "HH"
+    except:
+        response['status']=0      
+    print response         
+    return render(request,'workshop.html',{'workshops':response})
 
 '''
 def event(request, key):
