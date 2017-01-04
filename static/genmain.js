@@ -126,22 +126,31 @@ app.config(function ($routeProvider) {
               }
 
             )
-       
-              .when('/startupreg/',{
+
+            
+
+           .when('/startupreg/',{
                    templateUrl:'/static/startupreg.html',
                    controller:'startup-cont'
             })
-              .when("/",{
+            .when("/",{
                   templateUrl:'/static/profile.html',
                   controller:'profileEdit',
               })
-              .when("/dashhome/",{
+            .when("/dashhome/",{
                 templateUrl: '/static/dashhome.html',
               }).when("/workshopreg/",{
                 templateUrl: '/static/workshopreg.html',
                 controller: 'workshop-cont',
               })
+            .when('/workshopreg/:param1/',
+              {
+                templateUrl: '/static/workshopreg.html',
+                controller: 'workshop-cont',
+              }
 
+            )
+            
             .otherwise({
                 redirectTo: "/"
             });
@@ -649,7 +658,9 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
   
 
   }]);
-app.controller('workshop-cont', ['$scope', '$window', '$http' , function($scope, $window,$http) {
+app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , function($scope, $window,$http,$routeParams) {
+   var param1 = $routeParams.param1;
+   //var param2 = $routeParams.param2;
   $scope.max=0;
   $scope.a =[];
   $scope.options = $window.workdata;
@@ -657,6 +668,11 @@ app.controller('workshop-cont', ['$scope', '$window', '$http' , function($scope,
   $scope.teamName="";
   $scope.counter = 0;
   $scope.members = [];
+  if (param1){
+    $scope.workshopObject = $.grep($scope.options,function(n,i){ return n.workshop == param1})[0];
+    $scope.workshop = param1;
+    $scope.max = $scope.workshopObject.max;
+  }
   $scope.leader = document.getElementById('userEmail').value;
     $scope.membervalid= function(data)
    {
