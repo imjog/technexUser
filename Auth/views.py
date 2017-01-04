@@ -781,12 +781,16 @@ def workshopRegister(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         workshop = Workshops.objects.get(slug = data['workshopSlug'])
+        
         try:
             # print "here"
-            team = WorkshopTeam.objects.get(teamName = data['teamName'], workshop = workshop)
-            response['status'] = 0
-            response['error'] = "TeamName Already exists"
-            return JsonResponse(response)
+            if data['teamName'] == '':
+                raise Exception('This is the exception you expect to handle')
+            else:
+                team = WorkshopTeam.objects.get(teamName = data['teamName'], workshop = workshop)
+                response['status'] = 0
+                response['error'] = "TeamName Already exists"
+                return JsonResponse(response)
         except:
             try:
                 teamLeader = TechProfile.objects.get(technexId = data['teamLeaderEmail'])

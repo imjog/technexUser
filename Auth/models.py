@@ -133,7 +133,7 @@ class WorkshopTeam(models.Model):
     members = models.ManyToManyField(TechProfile,related_name = 'members_for_workshop')
 
     def __unicode__(self):
-        return self.teamName
+        return '%s %s'%(self.teamName,self.teamLeader.user.first_name)
 
 class MetaTags(models.Model):
     name = models.CharField(max_length = 50)
