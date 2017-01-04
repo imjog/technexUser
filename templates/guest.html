@@ -49,7 +49,11 @@ function navFunction() {
   <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER / LOGIN</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
+  DASHBOARD
+  {% else %}
+  REGISTER / LOGIN
+  {% endif %}</a></li>
   <li class="icon">
     <a href="javascript:void(0);" style="font-size:15px;padding:14px;" onclick="navFunction()">☰</a>
   </li>
