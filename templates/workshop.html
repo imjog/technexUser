@@ -122,7 +122,7 @@ function navFunction() {
 					{% for workshop in workshops.workshops %}
 					<li class="featured-list__item">
 						<a href="#" class="featured-list__link cd-btn {{workshop.order}}">
-		<img class="featured-list__img" src={{workshop.image}} alt="Seaweed 3">
+		<img class="featured-list__img" src={{workshop.image}} alt="{{workshop.title}}">
 							<h3 class="featured-list__title">{{workshop.title}}</h3>
 						</a>
 					</li>

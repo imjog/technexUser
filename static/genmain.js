@@ -278,6 +278,8 @@ app.controller("profileEdit",function($scope, profileData,$http){
                 mobile: ""
         };
         $scope.teamArray = profileData.getTeamData();
+        console.log("skjdjfi");
+        console.log($scope.teamArray.length);
         $scope.employeeArray = profileData.getStaffArray();
         $scope.profileEmail = document.getElementById('userEmail').value;
         
