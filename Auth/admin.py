@@ -14,7 +14,14 @@ class EventAdmin(admin.ModelAdmin):
 class parentEventAdmin(admin.ModelAdmin):
     prepopulated_fields = {'nameSlug': ('categoryName',)}
 
+class workshopOption(admin.TabularInline):
+	model = WorkshopOptions
+	extra = 1
 
+@admin.register(Workshops)
+class workshopAdmin(admin.ModelAdmin):
+	inlines = [workshopOption]
+	prepopulated_fields = {'slug':('title',)}
     
 admin.site.register(TechProfile)
 admin.site.register(College)
@@ -25,8 +32,8 @@ admin.site.register(EventOption)
 admin.site.register(FbConnect)
 admin.site.register(ForgotPass)
 admin.site.register(GuestLecture)
-admin.site.register(Workshops)
-admin.site.register(WorkshopOptions)
+#admin.site.register(Workshops)
+#admin.site.register(WorkshopOptions)
 admin.site.register(WorkshopTeam)
 admin.site.register(MetaTags)
 admin.site.register(TeamList)

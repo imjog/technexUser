@@ -68,4 +68,6 @@
   -moz-transform: translate3d(0,0,0);
   -ms-transform: translate3d(0,0,0);
 }
-
+.owl-item:hover{
+    border: 1px solid black;
+}
