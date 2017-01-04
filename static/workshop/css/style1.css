@@ -6,7 +6,7 @@
 }
 
 body {
-	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Avenir Next',sans-serif, Avenir, 'Helvetica Neue', Helvetica, Arial;
 	background: #040c1d;
 	color: #fff;
 	-webkit-font-smoothing: antialiased;
@@ -99,7 +99,7 @@ a:focus {
 
 .button--trigger {
 	position: absolute;
-	left: 40%;
+	left: 45%;
     top: 88%;
 }
 @media screen and (min-width:768px){
@@ -916,8 +916,11 @@ html, body {
 }
 .cd-panel-header h1 {
   font-weight: bold;
-  color: #89ba2c;
+  color: #A9A9A9;
   padding-left: 5%;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 .from-right .cd-panel-header, .from-left .cd-panel-header {
   top: -50px;
@@ -1284,4 +1287,46 @@ ul.topnav li.icon {display: none;}
     font-family: sans-serif;
     margin: 0;
     }
+}
+
+.contactDetail{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 100%;
+    top: 62%;
+    left: 30%;
+    position: absolute;
+    line-height: 120%;
+}
+@media screen and (min-width:768px){
+    .contactDetail{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 158%;
+    top: 82%;
+    left: 75%;
+    position: absolute;
+    line-height: 120%;
+    letter-spacing: 2px;
+}
+}
+.viewWorkshop{
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 85%;
+    top: 85%;
+    left: 34%;
+    position: absolute;
+}
+@media screen and (min-width:768px){
+    .viewWorkshop{
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 120%;
+    top: 80%;
+    left: 43%;
+    position: absolute;
+}
 }
