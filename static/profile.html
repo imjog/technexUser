@@ -39,6 +39,94 @@
 #eventParentEvent{
   text-transform: capitalize;
 }
+th
+{
+      border: 2px solid white;
+      color: white;
+}
+@keyframes spin {
+  from {
+    transform: rotateX(0);
+  }
+  to {
+    transform: rotateX(1turn);
+  }
+}
+.card {
+  animation: spin 2s ease;
+  animation-iteration-count: 1;
+}
+
+.container {
+  perspective: 1000px;
+
+}
+.abcdf
+{
+  height: 100%;
+  padding: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+/*dsdf*/
+.card {
+  background-image: linear-gradient(-154deg, #FFFFFF 0%, #ECEFF2 100%);
+  border-radius: 8px;
+  width: 437px;
+  padding: 24px;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 12px 0;
+  min-height: 124px;
+  box-sizing: border-box;
+}
+.card.-small {
+  width: 320px;
+}
+
+.card--title {
+  color: #4A90E2;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.card--title:hover {
+  color: #FF4593;
+}
+
+.card--text {
+  color: #4A4A4A;
+  margin: 12px 0 0 0;
+}
+
+.-purple {
+  background-image: linear-gradient(-146deg, #9793FD 0%, #AA20A8 100%);
+}
+
+.-orange {
+  background-image: linear-gradient(-143deg, #FA61C2 0%, #F76B1C 100%);
+}
+
+.-green {
+  background-image: linear-gradient(-144deg, #6AEEC6 0%, #698D28 100%);
+}
+
+.-yellow {
+  background-image: linear-gradient(-134deg, #FFEA9D 0%, #FF9458 100%);
+}
+
+.-blue {
+  background-image: linear-gradient(-143deg, #6180FA 0%, #81C9CC 100%);
+}
+
+.-lilac {
+  background-image: linear-gradient(-144deg, #CCDAFF 0%, #C7B1FF 100%);
+}
+
+/*dddf*/
+
 </style>                    
 <div class="right_col" role="main" style="min-height: 1164px;">
  <section ng-switch on="(editIndex == $index)"
@@ -64,7 +152,7 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <canvas id="user-icon" height="200" width="200"></canvas>
+                          <canvas id="user-icon" height="200" width="200" style="border: 5px solid white;"></canvas>
                          <!--  <img class="img-responsive avatar-view" src="{{person.profileImage}}" alt="Avatar" title="{{person.name}}"> -->
       
                         </div>
@@ -72,33 +160,19 @@
                       <h3 id="username">{{person.name}}</h3>
 
                       <ul class="list-unstyled user_data">
+                                              <li>
+                          <i class="fa user-profile-icon"><img src="/static/favicon.ico"/></i> {{person.technexId}}
+                        </li>
                         <li style="text-transform: capitalize;"><i class="fa fa-map-marker user-profile-icon"></i> {{person.city}}
                         </li>
 
                         <li>
                           <i class="glyphicon glyphicon-education user-profile-icon"></i> {{position(person.year)}}, {{person.college}}
                         </li>
-                        <li>
-                          <i class="fa user-profile-icon"><img src="/static/favicon.ico"/></i> {{person.technexId}}
-                        </li>
+
                       </ul>
 
                       <br>
-                      <h3>Important Links</h3>
-                      <ul class="list-unstyled user_data">
-                        <li>
-                          <p><a href="/" target="_blank">Technex '17 | Home</a></p>
-                        </li>
-                        <li>
-                          <p><a href="/events/" target="_blank">Events</a></p>
-                        </li>
-                        <li>
-                          <p><a href="/talks/" target="_blank">Talks</a></p>
-                        </li>
-                        <li>
-                          <p><a href="/startupfair/" target="_blank">Startup Fair</a></p>
-                        </li>
-                      </ul>
                       
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-12">
@@ -111,10 +185,10 @@
                           </li>
                         </ul>
                         </div>
-                        <div id="myTabContent" class="tab-content" style="overflow: auto">
+                        <div id="myTabContent" class="tab-content" style="overflow: auto;border: 3px solid white;">
                           <div class="tab-pane fade" id="tab_content2" style="display: inline; opacity: 1;" ng-hide="showDetails" >
                     <table class="table table-striped projects">
-                      <thead>
+                      <thead style="    border: 2px solid white;">
                         <tr>
                           <th style="width: 1%">#</th>
                           <th style="width: 20%">Team Name</th>
@@ -157,15 +231,24 @@
                                                 
                       </tbody>
                     </table>
+                    <div class="container abcdf">
+  <div class="card">
+    
+    <p class="card--text">
+      Not Registered for any event??
+    </p>
+    <a class="card--title"1 href="#eventReg">Register Here</a>
+  </div>
+</div>
                           </div>
                   <div class="tab-pane fade" id="tab_content3" style="display: inline; opacity: 1;" ng-show="showDetails">
                       <div class="details-display">
-                          <div class="x_title" style="border-bottom: 3px solid #E6E9ED;">
-                    <h2>Personal Info</h2>
+                          <div class="x_title" style="background:white;padding-left: 20px;">
+                    <h2 style="color: black;text-transform: uppercase;">Personal Information</h2>
                     <div class="clearfix"></div>
                   </div>    
                     <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name:</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Name :</h2></div>
                     <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>
                       {{person.name}} 
                     </h2>
@@ -176,13 +259,13 @@
                     <div class="clearfix"></div>
                     </div>  
                                         <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">TechnexId:</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Technex ID :</h2></div>
                     <div style="width: 70%"><h2 style="font-weight: 30px">{{person.technexId}}</h2>
                     </div>
                     <div class="clearfix"></div>
                     </div>
                                         <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">College Name:</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">College Name :</h2></div>
                     <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>{{person.college}}</h2>
                       <h2 style="font-weight: 30px" ng-switch-when="true">
                        <input ng-focus="rmcls(this)" ng-model="editObject.college" placeholder="College" id="forcollege" type="text"/>
@@ -191,7 +274,7 @@
                     <div class="clearfix"></div>
                     </div>
                                         <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">College Year(1-5):</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">College Year (1-5) :</h2></div>
                     <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>{{person.year}}</h2>
                       <h2 style="font-weight: 30px" ng-switch-when="true">
                        <input ng-focus="rmcls(this)" ng-model="editObject.year" placeholder="College Year" id="forcollegeyear" type="text" maxlength="1"/>
@@ -202,7 +285,7 @@
                     </div>
 
                     <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">City:</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">City :</h2></div>
                     <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>{{person.city}}</h2>
                       <h2 style="font-weight: 30px" ng-switch-when="true">
                        <input ng-focus="rmcls(this)" ng-model="editObject.city" placeholder="City" id="forcity" type="text"/>
@@ -211,19 +294,19 @@
                     <div class="clearfix"></div>
                     </div>
 
-                    <div class="x_title" style="border-bottom: 3px solid #E6E9ED;">
-                    <h2>Contact Info</h2>
+                    <div class="x_title" style="background: white;padding-left: 20px;color: black;text-transform: uppercase;">
+                    <h2>Contact Information</h2>
                     <div class="clearfix"></div>
-                  </di  v>
+                  </div>
                            
                     <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Email:</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Email :</h2></div>
                     <div style="width: 70%"><h2 style="font-weight: 30px">{{person.email}}</h2>
                     </div>
                     <div class="clearfix"></div>
                     </div>
                                         <div style="display: -webkit-box"; class="x_title">
-                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Mobile Number:</h2></div>
+                    <div style="width: 30%;align-items: center;"><h2 style="font-weight: 30px">Mobile Number :</h2></div>
                     <div style="width: 70%"><h2 style="font-weight: 30px" ng-switch-default>{{person.mobile}}</h2>
                       <h2 style="font-weight: 30px" ng-switch-when="true">
                        <input type="text" ng-focus="rmcls(this)" ng-model="editObject.mobile" id="formobile" placeholder="Mobile Number" /></h2>

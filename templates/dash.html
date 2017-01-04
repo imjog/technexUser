@@ -56,7 +56,7 @@
   }*/
 #patanahi
 {
-  background: url(/static/nfdata/tech.jpg);
+  background: url(/static/images/logo-technex-nav.png);
   background-size: cover;
       -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
@@ -151,7 +151,7 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section" style="margin-top: 30px;">
 
-                <ul class="nav side-menu">
+                <ul class="nav side-menu" style="margin-bottom: 16px">
                 <li><a href="#profile"><i class="fa fa-user"></i> View Profile</a>
                   </li>
                   <li><a href="#eventReg"><i class="fa fa-plus-circle"></i>Event Registration</a>
@@ -165,6 +165,24 @@
                   </li>
                
                 </ul>
+               <div style="background-color: red;height: 3px;"></div>
+
+                <ul class="nav side-menu" style="margin-top: 16px">
+                <li><h2 style="color: white;text-align: center;font-size:16.5px">Important Links</h2></li>
+                <li>
+                          <a href="/" target="_blank">Technex '17 | Home</a>
+                        </li>
+                        <li>
+                          <a href="/events/" target="_blank">Events</a>
+                        </li>
+                        <li>
+                        <a href="/talks/" target="_blank">Talks</a>
+                        </li>
+                        <li>
+                         <a href="/startupfair/" target="_blank">Startup Fair</a>
+                        </li>
+               
+                </ul>
               </div>
             </div>
 
@@ -176,7 +194,7 @@
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                <a id="menu_toggle" style="color: black"><i class="fa fa-bars"></i></a>
               </div>
 
               <ul class="nav navbar-nav navbar-right">
@@ -298,11 +316,12 @@ var canvasWidth = $(canvas).attr("width"),
 console.log(canvasWidth);
 console.log(canvasHeight);
 $("#user-icon").css("border-radius", "200px");
-context.fillStyle = colours[colourIndex];
+context.fillStyle = "#ff0000"
 context.fillRect (0, 0, canvas.width, canvas.height);
 context.font = "128px Arial";
 context.textAlign = "center";
 context.fillStyle = "#FFF";
+context.border="3px solid white";
 context.fillText(initials, canvasCssWidth / 2, canvasCssHeight / 1.45);
 }
 </script>
