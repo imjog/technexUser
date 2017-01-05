@@ -14,7 +14,7 @@ from Auth.views import contextCall,send_email
 
 server = "http://www.technex.in/"
 sheetUrls = {
-	"robowars":"https://script.google.com/macros/s/AKfycbyIbAnsZyhZnf5TLkhdN1C8gAsZb1ucsrGTzwTp_fq8HIxH5kR_/exec",
+	"robowars":"https://script.google.com/macros/s/AKfycbx2vzxqBPhyG_107us9BAuESjk6vpKoCi1CMA5GIpdePy3oL04/exec",
 	"pixelate":"https://script.google.com/macros/s/AKfycbzRrPLuk16hrDOIh7AmQViE7sJmdTX7Vq-w1WShHJbDg1Cjylo/exec",
 	"hurdlemania":"https://script.google.com/macros/s/AKfycbwdqJGq0snCPSOL2vgRb0cxWUcTBOkBtp3Bk9zb2v615RxBb_k/exec",
 	"mazeXplorer":"https://script.google.com/macros/s/AKfycbyymc9N9q3oXwJThjON78Swa3fnKwD9bXbEEGdNT49XWdmBbYU/exec",
