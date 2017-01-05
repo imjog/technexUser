@@ -14,7 +14,7 @@ from Auth.views import contextCall,send_email
 
 server = "http://www.technex.in/"
 sheetUrls = {
-	"robowars":"https://script.google.com/macros/s/AKfycbyIbAnsZyhZnf5TLkhdN1C8gAsZb1ucsrGTzwTp_fq8HIxH5kR_/exec",
+	"robowars":"https://script.google.com/macros/s/AKfycbx2vzxqBPhyG_107us9BAuESjk6vpKoCi1CMA5GIpdePy3oL04/exec",
 	"pixelate":"https://script.google.com/macros/s/AKfycbzRrPLuk16hrDOIh7AmQViE7sJmdTX7Vq-w1WShHJbDg1Cjylo/exec",
 	"hurdlemania":"https://script.google.com/macros/s/AKfycbwdqJGq0snCPSOL2vgRb0cxWUcTBOkBtp3Bk9zb2v615RxBb_k/exec",
 	"mazeXplorer":"https://script.google.com/macros/s/AKfycbyymc9N9q3oXwJThjON78Swa3fnKwD9bXbEEGdNT49XWdmBbYU/exec",
@@ -49,7 +49,7 @@ sheetUrls = {
 	"greenx":"https://script.google.com/macros/s/AKfycbzqPHVP19tDZaru1DBvp2GER_Ac9sXfwCKXakY2vj7ynwWZC_g/exec",
 
 	"drone-tech": "https://script.google.com/macros/s/AKfycbz6q2nFTvqrFky8ehK0H7Lavig-K9it8eky6r3o0g5W8Efc__F0/exec",
-	"daeroglisseur": "https://script.google.com/macros/s/AKfycbwNMPiqyEAMYJ2D9LEkpY35HOtx7CuoiLRL86vxSQkqRLFYbo/exec",
+	"daeroglisseur": "https://script.google.com/macros/s/AKfycbwNMPiqyEAMYJ2D9LEkpY-35HOtx7CuoiLRL86vxSQkqRLFYbo/exec",
 	"la-trajectoire":"https://script.google.com/macros/s/AKfycbyA7f6YhOCEBxDas3pkKuVj7f_l-wqMwMl7reNJy3DpG3kR0mE/exec",
 	"momentum":"https://script.google.com/macros/s/AKfycbwhENBDBnaEWYTJw-3opilMvz6BPGi3H3rR4f28Okp1IYNBSbE/exec",
 
