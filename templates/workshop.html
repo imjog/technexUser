@@ -23,10 +23,12 @@ function navFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";
+        // $("#navlogin").html("REGISTER / LOGIN")
     } else {
         x.className = "topnav";
     }
 }
+
 </script>
 <style type="text/css">
 	p
@@ -63,10 +65,10 @@ function navFunction() {
   "@context": "http://schema.org",
   "@type": "Course",
   "name": "Internet of Things",
-  "description": "Innovians Technologies",
+  "description": "Certified workshop",
   "provider": {
     "@type": "Organization",
-    "name": "Technex IIT (BHU), Varanasi"
+    "name": "Innovians Technologies"
   }
 }
 </script>
@@ -75,10 +77,10 @@ function navFunction() {
   "@context": "http://schema.org",
   "@type": "Course",
   "name": "Industrial Automation - PLC & SCADA",
-  "description": "Innovians Technologies",
+  "description": "Certified workshop",
   "provider": {
     "@type": "Organization",
-    "name": "Technex IIT (BHU), Varanasi"
+    "name": "Innovians Technologies"
   }
 }
 </script>
@@ -99,10 +101,10 @@ function navFunction() {
   "@context": "http://schema.org",
   "@type": "Course",
   "name": "Digital Marketing",
-  "description": "HT India Labs",
+  "description": "Certified workshop",
   "provider": {
     "@type": "Organization",
-    "name": "Technex IIT (BHU), Varanasi"
+    "name": "HT India Labs"
   }
 }
 </script>
@@ -191,7 +193,13 @@ function navFunction() {
   <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER / LOGIN</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;" id="navlogin">
+  {% if user.is_authenticated %}
+  DASHBOARD
+  {% else %}
+  REGISTER / LOGIN
+  {% endif %}
+  <!-- <img src="/static/profile.png"/> --></a></li>
   <li class="icon">
     <a href="javascript:void(0);" style="font-size:11px;margin-right:2px;" onclick="navFunction()">☰</a>
   </li>
@@ -267,7 +275,7 @@ function navFunction() {
 					<li class="featured-list__item">
 						<a href="#" class="featured-list__link cd-btn {{workshop.order}}">
 		<img class="featured-list__img" src={{workshop.image}} alt="{{workshop.title}}">
-							<h3 class="featured-list__title">{{workshop.title}}</h3>
+							<h3 class="featured-list__title" style="text-transform: uppercase;">{{workshop.title}}</h3>
 						</a>
 					</li>
 					{% endfor %}
@@ -306,6 +314,19 @@ function navFunction() {
           var x=document.getElementsByClassName("")
 		</script> -->
 		<script src="/static/workshop/js/jquery-2.1.1.js"></script>
+		<script type="text/javascript">
+// 			$(document).ready(function(){
+// 	y=true;
+//    if(y)
+//    {
+//    	$("#navlogin").html("Dashboard");
+//    }
+//    else
+//    {
+//    	$("#navlogin").html("REGISTER / LOGIN")
+//    }
+// });
+		</script>
 <script src="/static/workshop/js/main.js"></script>
 		<script src="/static/workshop/js/imagesloaded.pkgd.min.js"></script>
 		<script src="/static/workshop/js/main1.js"></script>

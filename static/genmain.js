@@ -47,39 +47,39 @@ max:[5,5,5,5]
 ];
 var workdata=[
 {
-  workshop: 'Internet of things',
-  max: 3
-},
-{
-  workshop: 'Industrial Automation -PLC & SCADA',
+  workshop: 'internet-of-things',
   max: 1
 },
 {
-  workshop: 'Data Mining',
+  workshop: 'industrial-automation-plc-scada',
   max: 1
 },
 {
-  workshop: 'Digital Marketing',
+  workshop: 'data-mining',
   max: 1
 },
 {
-  workshop: '3 D Printing',
+  workshop: 'digital-marketing',
   max: 1
 },
 {
-  workshop: 'Swarm Robotics',
+  workshop: '3-d-printing',
   max: 1
 },
 {
-  workshop: 'Bridge Design',
+  workshop: 'swarm-robotics',
+  max: 5
+},
+{
+  workshop: 'bridge-design',
+  max: 2
+},
+{
+  workshop: 'android-app-development',
   max: 1
 },
 {
-  workshop: 'Android App Development',
-  max: 1
-},
-{
-  workshop: 'Sixth sense Technology',
+  workshop: 'sixth-sense-technology',
   max: 1
 },
 {
@@ -87,7 +87,7 @@ var workdata=[
   max: 1
 },
 {
-  workshop: 'Ethical Hacking',
+  workshop: 'ethical-hacking',
   max: 1
 }
 ];
@@ -803,6 +803,7 @@ app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , f
      }
      if(x)
      {
+      $(".team-reg-submit").html("Submitting. Please Wait!")
        console.log($scope.a);
        data={
         'workshopSlug':$scope.workshop,
@@ -821,7 +822,7 @@ app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , f
                 {
                    $("#error-message-display").html(data.error);
                    $("#error-message").show();
-                   
+                   $(".team-reg-submit").html("Submit");
                 }
                 if(data.status==1)
                 {

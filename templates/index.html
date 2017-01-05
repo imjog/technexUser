@@ -175,7 +175,11 @@ function navFunction() {
   <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">REGISTER / LOGIN</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
+  DASHBOARD
+  {% else %}
+  REGISTER / LOGIN
+  {% endif %}</a></li>
   <li class="icon">
     <a href="javascript:void(0);" style="font-size:15px;padding:14px;" onclick="navFunction()">☰</a>
   </li>
@@ -328,11 +332,12 @@ function navFunction() {
     </style>
       <div class="definition">
         <div class="definition-body">
-          <h2>TECHNEX</h2>
+          <!-- <h2>TECHNEX</h2>
           <span class="pronunciation">Annual Techno-Management Fest of IIT(BHU) Varanasi</span>
           <p style="text-align: justify;">
           A techno-managment fest organized every year within the dimensions of Indian Institute of Technology (BHU) located in the city of Varanasi, to satisfy the ever growing hunger for technological evolution and knowledge of the tech-savvy saints of innovation a.k.a the engineers. Discover the zest of giving life to ideas, discover the engineer in you.
-          </p>
+          </p> -->
+          <iframe width="650" height="360" src="https://www.youtube.com/embed/6R7JpCAOf7Y" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
       <div class="navigation navigation-initial">
