@@ -318,6 +318,7 @@ def caEmailInfo(request):
         response['status'] = 1
         for techProfile in techProfiles:
             info = {}
+            info['name'] = techprofile.user.first_name
             info['email'] = techProfile.email
             info['year'] = techProfile.year
             info['mobileNumber'] = techProfile.mobileNumber
