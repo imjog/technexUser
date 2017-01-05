@@ -49,7 +49,7 @@ sheetUrls = {
 	"greenx":"https://script.google.com/macros/s/AKfycbzqPHVP19tDZaru1DBvp2GER_Ac9sXfwCKXakY2vj7ynwWZC_g/exec",
 
 	"drone-tech": "https://script.google.com/macros/s/AKfycbz6q2nFTvqrFky8ehK0H7Lavig-K9it8eky6r3o0g5W8Efc__F0/exec",
-	"daeroglisseur": "https://script.google.com/macros/s/AKfycbwNMPiqyEAMYJ2D9LEkpY35HOtx7CuoiLRL86vxSQkqRLFYbo/exec",
+	"daeroglisseur": "https://script.google.com/macros/s/AKfycbwNMPiqyEAMYJ2D9LEkpY-35HOtx7CuoiLRL86vxSQkqRLFYbo/exec",
 	"la-trajectoire":"https://script.google.com/macros/s/AKfycbyA7f6YhOCEBxDas3pkKuVj7f_l-wqMwMl7reNJy3DpG3kR0mE/exec",
 	"momentum":"https://script.google.com/macros/s/AKfycbwhENBDBnaEWYTJw-3opilMvz6BPGi3H3rR4f28Okp1IYNBSbE/exec",
 
