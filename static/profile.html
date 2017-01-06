@@ -128,7 +128,7 @@ th
 /*dddf*/
 
 </style>                    
-<div class="right_col" role="main" style="min-height: 966px;">
+<div class="right_col" role="main" style="min-height: 917px;">
  <section ng-switch on="(editIndex == $index)"
                      ng-repeat="person in employeeArray track by $index"
                      class="clearfix">
@@ -179,9 +179,9 @@ th
 
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-init='tab1="active"'>
-                          <li role="presentation" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;tab1="active";tab2=""' >Teams</a>
+                          <li role="presentation" style="cursor: pointer;" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;tab1="active";tab2=""' >Teams</a>
                           </li>
-                          <li role="presentation" ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;tab2="active";tab1=""'>Profile</a>
+                          <li role="presentation" style="cursor: pointer;"  ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;tab2="active";tab1=""'>Profile</a>
                           </li>
                         </ul>
                         </div>
@@ -204,7 +204,7 @@ th
                           <td>
                             <a>{{team.teamName}}</a>
                             <br>
-                            <small id='eventParentEvent'><a href='/events/{{team.parentEvent}}' onmouseover="this.style.textDecoration='underline';" 
+                            <small id='eventParentEvent'><a href='/events/{{team.parentEventLink}}' onmouseover="this.style.textDecoration='underline';" 
     onmouseout="this.style.textDecoration='none';">{{team.parentEvent}}</a>/{{team.event}}</small>
                           </td>
                           <td>

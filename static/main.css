@@ -1386,10 +1386,10 @@ body {
     bottom: 0%;
 }
 .definition * {
-    max-width: 654px;
+    /*max-width: 654px;*/
     /* top: 50%; */
-    margin-left: 34.5vw;
-    margin-bottom: 37.5vh;
+    margin-left: 5.5vw;
+    margin-bottom: 16.5vh;
 }
 .definition.left {
     -webkit-transform: translateX(-120px);

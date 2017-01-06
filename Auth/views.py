@@ -102,6 +102,7 @@ def contextCall(request):
             teamData['teamName'] = team.teamName
             teamData['event'] = team.event.eventName
             teamData['parentEvent'] = team.event.parentEvent.categoryName
+            teamData['parentEventLink'] = team.event.parentEvent.nameSlug
             teamData['teamId'] = team.technexTeamId
             teamData['leader'] = team.teamLeader.user.first_name
             teamData['leaderEmail'] = team.teamLeader.email

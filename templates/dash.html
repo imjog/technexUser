@@ -123,6 +123,11 @@
   margin-bottom: 6px;
   text-transform: uppercase;
 }
+.glyphicon
+{
+  margin-left: 5px;
+    margin-right: 5px;
+}
 </style>
   </head>
   <body class="nav-md">
@@ -158,8 +163,8 @@
                   </li>
                    <li><a href="#startupreg"><i class="fa fa-plus-circle"></i>StartupFair Registration</a>
                   </li>
-                                     <!-- <li><a href="#workshopreg"><i class="fa fa-plus-circle"></i>Workshop Registration</a>
-                  </li> -->
+                                     <li><a href="#workshopreg"><i class="fa fa-plus-circle"></i>Workshop Registration</a>
+                  </li>
 
                   <li><a href="#changepassword"><i class="fa fa-cogs"></i> Change Password</a>
                   </li>
@@ -181,6 +186,11 @@
                         <li>
                          <a href="/startupfair/" target="_blank">Startup Fair</a>
                         </li>
+                                                </li>
+                        <li>
+                         <a href="/workshops/" target="_blank">Workshops</a>
+                        </li>
+
                
                 </ul>
               </div>
@@ -243,6 +253,19 @@
         </div>     
     <div ng-view>
     </div>
+    <footer style="background: #cccccc;">
+          <div class="pull-left" style="width: 100%;color: black;">
+          For any technical queries regarding Registration, Contact:
+          
+          <i class="glyphicon glyphicon-phone"></i>9935504188
+            <i class="glyphicon glyphicon-envelope"></i>ishantdeep.sgandhi.eee15@iitbhu.ac.in  |<i class="glyphicon glyphicon-phone"></i>7270975614
+          <i class="glyphicon glyphicon-envelope"></i>bikram.bharti.ece15@iitbhu.ac.in
+        
+          </div>
+          <div class="clearfix">
+          </div>
+         <!--  <div class="pull-left"></div> -->
+        </footer>
         </div>
       </div>
     <!-- </div> -->
@@ -276,7 +299,8 @@ app.service("profileData", function(){
           memberNames: {{team.memberNames|safe}},
           memberUrls: {{team.memberUrls|safe}},
           event: "{{team.event}}",
-          parentEvent: "{{team.parentEvent}}"
+          parentEvent: "{{team.parentEvent}}",
+          parentEventLink: "{{team.parentEventLink}}"
           
         },
         {% endfor %}
