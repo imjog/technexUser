@@ -13,17 +13,18 @@ class EventAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'nameSlug':('eventName',)}
 class parentEventAdmin(admin.ModelAdmin):
     prepopulated_fields = {'nameSlug': ('categoryName',)}
-
 class workshopOption(admin.TabularInline):
 	model = WorkshopOptions
-	extra = 1
+	extra = 1	
+class TechProfileAdmin(admin.ModelAdmin):
+	search_fields = ('email','technexId','mobileNumber','college__collegeName')
 
 @admin.register(Workshops)
 class workshopAdmin(admin.ModelAdmin):
 	inlines = [workshopOption]
 	prepopulated_fields = {'slug':('title',)}
     
-admin.site.register(TechProfile)
+admin.site.register(TechProfile, TechProfileAdmin)
 admin.site.register(College)
 #admin.site.register(Event,EventAdmin)
 admin.site.register(ParentEvent, parentEventAdmin)
