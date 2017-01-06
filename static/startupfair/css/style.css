@@ -5,13 +5,13 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 /* ==================
  *
- *google fonts 
+ *google fonts
  *
  *===================*/
 
 /* ==================
  *
- *var section 
+ *var section
  *
  *===================*/
 /*****  font size  ******/
@@ -27,7 +27,7 @@ body {
   color: #80d6a3;
   font-weight: 400;
   color: #444;
-  font-family: 'Roboto', sans-serif;
+  font-family:sans-serif;
 }
 
 h1 {
@@ -46,7 +46,7 @@ p {
   margin: 0px;
 }
 h1,h2,h3,h4,h5,h6,p {
-  font-family: 'Roboto', sans-serif;
+  font-family: sans-serif;
   margin: 0px;
 }
 ul {
@@ -62,7 +62,7 @@ a:active {
 }
 /* ==================
  *
- *  Global Class 
+ *  Global Class
  *
  *===================*/
 .btn {
@@ -171,7 +171,7 @@ a:active {
 }
 /* ==================
  *
- *  section Class 
+ *  section Class
  *
  *===================*/
 /* header style */
@@ -406,7 +406,7 @@ header .navbar {
   font-weight: 300;
   margin-top: 20px;
     text-align: left;
-  
+
 }
 #features .showcase-img {
   margin-top: 40px;
@@ -516,7 +516,7 @@ header .navbar {
 #portfolio .block .recent-work-pic ul li .overlay h3,
 #portfolio .block .recent-work-pic ul li .overlay i {
   color: #fff;
-  
+
 }
 #portfolio .block .recent-work-pic ul li .overlay h3 {
   bottom: 30%;
@@ -571,14 +571,14 @@ header .navbar {
   font-size: 24px;
   line-height: 30px;
   text-transform: uppercase;
-  font-family: 'Lato', sans-serif;
+  font-family:  sans-serif;
   font-weight: 600;
 }
 #play-video .block p {
   text-align: center;
   color: #dfdfdf;
   padding-bottom: 30px;
-  font-family: 'Lora', serif;
+  font-family:  sans-serif;
   font-size: 15px;
   line-height: 22px;
   margin-top: 10px;
@@ -644,7 +644,7 @@ header .navbar {
   width: 28px;
   height: 28px;
   border-radius: 100%;
-  font-family: "Ionicons";
+  font-family: sans-serif;;
   background: #80d6a3;
   text-align: center;
   color: #fff;
@@ -661,7 +661,7 @@ header .navbar {
 }
 #testimonial .media .media-body p {
   font-size: 14px;
-  font-family: 'Lora', serif;
+  font-family:  sans-serif;
   font-style: italic;
   color: #787878;
 }
@@ -735,7 +735,7 @@ header .navbar {
   font-size: 14px;
   line-height: 23px;
   color: #707a8a;
-  
+
 }
 #team .team-overlay .media {
   margin-top: 10px;
@@ -931,7 +931,7 @@ header .navbar {
 #global-header .block p {
   font-size: 15px;
   padding-top: 10px;
-  font-family: 'Lora', serif;
+  font-family: sans-serif;
 }
 
 /* ================ Contact end ========================= */
@@ -978,7 +978,7 @@ footer p {
 }
 
 #blog-post  .content {
-  padding:30px 25px; 
+  padding:30px 25px;
   text-align: center;
 }
 #blog-post .content h4 {
@@ -991,7 +991,7 @@ footer p {
   color: #333;
 }
 #blog-post .content h4 a:hover {
- color: #80d6a3; 
+ color: #80d6a3;
 }
 #blog-post .content h4::before {
     content: '';
@@ -1071,7 +1071,7 @@ footer p {
 #blog-left .block blockquote p{
   margin: 0 0 5.5% ;
   position: relative;
-  font-family: 'Montserrat', sans-serif;
+  font-family:  sans-serif;
   font-size: 15px;
   line-height: 22px;
   color: #626262;
@@ -1080,7 +1080,7 @@ footer p {
 #blog-left .block blockquote p:before{
     color: #333;
     content: "\f10d";
-    font-family: "FontAwesome";
+    font-family: sans-serif;;
     font-size: 50px;
     margin-right: 10px;
 }
@@ -1126,7 +1126,7 @@ footer p {
 #blog-left .block .blog-comment .comment-text a{
   color: #333;
   margin: 0 0 10px;
-  font-family: 'Montserrat', sans-serif;
+  font-family:  sans-serif;
   text-transform: uppercase;
   font-size: 15px;
   line-height: 22px;
@@ -1137,7 +1137,7 @@ footer p {
   font-size: 11px;
   line-height: 20px;
   display: inline-block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: sans-serif;
   color: #626262;
   margin: 0 0 10px;
 }
@@ -1179,7 +1179,7 @@ footer p {
   font-size: 14px;
   line-height: 24px;
   position: relative;
-  font-family: 'Montserrat', sans-serif;
+  font-family:  sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   padding: 0;
@@ -1209,7 +1209,7 @@ footer p {
   -webkit-transition-duration: .2s;
   -webkit-transition-timing-function: ease-in-out;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: sans-serif !important;
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -1310,7 +1310,7 @@ footer p {
     max-width: 100%;
     resize: none;
     transition: 0.8s;
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: sans-serif !important;
     letter-spacing: 1px;
     font-size: 11px;
 }
@@ -1329,7 +1329,7 @@ footer p {
   margin-bottom: 7%;
   padding-bottom: 7%;
   position: relative;
-  font-family: 'Montserrat', sans-serif;
+  font-family:  sans-serif;
   font-weight: 600;
 }
 #blog-left .widget span:before{
@@ -1355,7 +1355,7 @@ footer p {
   line-height: 20px;
   text-transform: uppercase;
   color: #333;
-  font-family: "Montserrat",sans-serif;
+  font-family: sans-serif;
   letter-spacing: 1px;
   font-weight: 500;
 }
@@ -1398,7 +1398,7 @@ footer p {
   text-transform: uppercase;
   font-size: 11px;
   line-height: 20px;
-  font-family: "Montserrat",sans-serif;
+  font-family: sans-serif;
   letter-spacing: 0.02em;
 }
 
@@ -1426,6 +1426,10 @@ footer p {
 .name_post h3{
     font-weight: 300;
     margin-bottom: 10%;
+}
+.name_post h2{
+  text-transform: uppercase;
+  font-weight: 600;
 }
 .email{
     padding-top: 5%;
@@ -1530,7 +1534,7 @@ button:hover .button__border--right {
 /* FAQ */
 .headingg{
     text-align: center;
-    
+
 }
 .queans{
     text-align: left;
@@ -1538,7 +1542,7 @@ button:hover .button__border--right {
     margin-left: 20px;
 }
 .queans h3{
-    
+
 }
 .queans h4{
         font-weight: 300;
@@ -1717,7 +1721,7 @@ ul.topnav li.icon {display: none;}
         margin-bottom: 5%;
     }
 }
-    
+
 
     a.button {
     -webkit-appearance: button;
