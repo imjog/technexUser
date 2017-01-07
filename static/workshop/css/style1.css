@@ -716,7 +716,7 @@ a:focus {
 
 
 
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -743,9 +743,9 @@ a {
   text-decoration: none;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main components 
+Main components
 
 -------------------------------- */
 html, body {
@@ -911,7 +911,7 @@ html, body {
 }
 .cd-panel-header h1 {
   font-weight: bold;
-  color: #A9A9A9;
+  color: black;
   padding-left: 5%;
     font-family: sans-serif;
     text-transform: uppercase;
@@ -1349,4 +1349,10 @@ ul.topnav li.icon {display: none;}
     border: 1px solid rgba(169,169,169,.5);
     color: rgba(0,0,0,.6);
 }
+}
+.workshopDescription{
+	font-family: sans-serif;
+	color: #424f5c;
+	font-size: 1rem;
+	line-height: 1.6;
 }
