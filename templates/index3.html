@@ -99,7 +99,7 @@ function navFunction() {
 					</div>
 			</div>
             <div class="event-dis">
-            <img style="max-height: 70px; max-width: 70px"/>
+           <a target="_blank"><img style="max-height: 70px; max-width: 70px"/></a>
             <h2 style="display: none;">presents</h2>
                 <h1></h1>
                 <h3>                </h3>
@@ -197,15 +197,17 @@ $("nav a").each(function() {
   {  
     $(".event-dis h1").html(data.name);
     $(".event-dis h3").html(data.description);
-    $(".event-dis img").hide();
+    $(".event-dis a img").hide();
+    $(".event-dis a").hide();
     $(".event-dis h2").hide();
   }
   else
   {
-     $(".event-dis img").attr("src",data.sponimage);
+     $(".event-dis a img").attr("src",data.sponimage);
     $(".event-dis h1").html(data.name);
     $(".event-dis h3").html(data.description);
     $(".event-dis h2").show();
+    $(".event-dis a").attr("href",data.sponlink);
   }
   out="";
   for(i=0;i<data.events.length;i++)

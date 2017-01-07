@@ -465,6 +465,7 @@ def event(request, key):
         response['order'] = parentEvent.order
         response['slug'] = parentEvent.nameSlug
         response['sponimage']=parentEvent.sponimage
+        response['sponlink']=parentEvent.sponlink
         print parentEvent.sponimage
         response['events'] = []
         events = Event.objects.filter(parentEvent = parentEvent)
