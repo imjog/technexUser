@@ -6,7 +6,7 @@ max:[5,5,5,5]
 },
 {
 parentEvent: 'modex',
-events:['open-simulation', 'open-hardware', 'open-software'],
+events:['green-tech', 'open-hardware', 'open-software'],
 max:[5,5,5,]
 },
 {
