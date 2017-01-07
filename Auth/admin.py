@@ -19,13 +19,16 @@ class workshopOption(admin.TabularInline):
 class TechProfileAdmin(admin.ModelAdmin):
 	search_fields = ('email','technexId','mobileNumber','college__collegeName')
 
+class CollegeAdmin(admin.ModelAdmin):
+	search_fields = ('collegeName','status')
+
 @admin.register(Workshops)
 class workshopAdmin(admin.ModelAdmin):
 	inlines = [workshopOption]
 	prepopulated_fields = {'slug':('title',)}
     
 admin.site.register(TechProfile, TechProfileAdmin)
-admin.site.register(College)
+admin.site.register(College, CollegeAdmin)
 #admin.site.register(Event,EventAdmin)
 admin.site.register(ParentEvent, parentEventAdmin)
 admin.site.register(Team)
