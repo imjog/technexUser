@@ -508,6 +508,13 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
   $scope.user;
   $scope.ideas="";
   $scope.teamName="";
+  $scope.angel="";
+  $scope.crunch="";
+  $scope.interests="";
+  $scope.description="";
+  $scope.year="Founding Year";
+  $scope.indlist = [];
+  $scope.bslist = [];
   $scope.leader = document.getElementById('userEmail').value;
   $scope.parentEventIndex = function(){
     return findWithAttr($scope.options,'events',$scope.parentEvent);
@@ -569,12 +576,76 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
      }
      if(x)
      {
-       if($scope.ideas=="")
+       if($scope.interests=="")
        {
-        $("#ideas").addClass("input-error");
+        $("#interests").addClass("input-error");
         x=false;
        }
      }
+     if(x)
+     {
+      if($scope.description=="")
+      {
+        $("#description").addClass("input-error");
+        x=false;
+      }
+     }
+     if(x)
+     {
+      if($scope.year=="Founding Year")
+        {
+          $("#year").addClass("input-error");
+          x=false;
+        }
+     }
+     if(x)
+      {
+        var z=$(".industrylist input");
+        for(var i=0;i<24;i++)
+        {
+          if($(z[i]).prop("checked")==true)
+          { 
+            console.log($(z[i]).value);
+            $scope.indlist.push($(z[i]).val());
+             
+        }
+      }
+        if($scope.indlist.length==0)
+        {
+            $("#error-message-display").html("Please, Select atleast 1 primary industry");
+            $("#error-message").show();
+            x=false;
+        }
+        if($scope.indlist.length>3)
+        {
+          $("#error-message-display").html("Please, Select atmost 3 primary industry");
+            $("#error-message").show();
+            x=false;
+            console.log($scope.indlist);
+            $scope.indlist=[];
+        }
+        
+      }
+      if(x)
+      {
+        var z=$(".businesslist input");
+        for(var i=0;i<4;i++)
+        {
+          if($(z[i]).prop("checked")==true)
+          {
+            $scope.bslist.push($(z[i]).val());
+             
+        }
+        }
+        if($scope.bslist.length==0)
+        {
+          $("#error-message-display").html("Please, Select atleast 1 business type");
+            $("#error-message").show();
+            x=false;
+        }
+      }
+
+
      if(x)
      {
       if($scope.leader=="")
@@ -782,7 +853,7 @@ app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , f
        {
           if($(z[i]).val()=="")
           {
-            $(z[i]).addClass("input-error")
+            $(z[i]).addClass("input-error");
             x=false;
           }
 
