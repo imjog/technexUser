@@ -464,6 +464,8 @@ def event(request, key):
         response['description'] = parentEvent.description
         response['order'] = parentEvent.order
         response['slug'] = parentEvent.nameSlug
+        response['sponimage']=parentEvent.sponimage
+        print parentEvent.sponimage
         response['events'] = []
         events = Event.objects.filter(parentEvent = parentEvent)
         for event in events:
@@ -622,7 +624,7 @@ def cdncheck(request):
 
 def startupFair(request):
     return render(request, 'startupfair.html', {})
-    
+
 def hospitality(request):
     return render(request, 'hospitality.html', {})    
 

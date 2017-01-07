@@ -99,6 +99,8 @@ function navFunction() {
 					</div>
 			</div>
             <div class="event-dis">
+            <img style="max-height: 70px; max-width: 70px"/>
+            <h2 style="display: none;">presents</h2>
                 <h1></h1>
                 <h3>                </h3>
                 <hr>
@@ -188,8 +190,23 @@ $("nav a").each(function() {
 
 	}
 	document.getElementById("event-descrip").innerHTML = out;
-  $(".event-dis h1").html(data.name);
-  $(".event-dis h3").html(data.description);
+  console.log("kodkldklfd");
+  console.log(data.sponimage);
+  console.log("djkdkjdljdkj");
+  if(data.sponimage =="")
+  {  
+    $(".event-dis h1").html(data.name);
+    $(".event-dis h3").html(data.description);
+    $(".event-dis img").hide();
+    $(".event-dis h2").hide();
+  }
+  else
+  {
+     $(".event-dis img").attr("src",data.sponimage);
+    $(".event-dis h1").html(data.name);
+    $(".event-dis h3").html(data.description);
+    $(".event-dis h2").show();
+  }
   out="";
   for(i=0;i<data.events.length;i++)
   {
@@ -395,6 +412,7 @@ $("nav a").each(function() {
           console.log(item); loadContent(item); }, 500);
         }, 1000);
                 $(".event-dis").hide();
+
       });
     });
 
