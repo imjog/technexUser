@@ -193,7 +193,7 @@ $("nav a").each(function() {
   console.log("kodkldklfd");
   console.log(data.sponimage);
   console.log("djkdkjdljdkj");
-  if(data.sponimage =="")
+  if(data.sponimage == "" || data.sponimage==null)
   {  
     $(".event-dis h1").html(data.name);
     $(".event-dis h3").html(data.description);
