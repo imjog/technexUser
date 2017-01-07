@@ -183,7 +183,7 @@ def register(request):
         user.save()
         print 'code base 1'
         try:
-            college = College.objects.get(collegeName = data.get('college'))
+            college = College.objects.filter(collegeName = data.get('college'))[0]
         except:
             college = College(collegeName = data.get('college'))
             college.save()
@@ -719,7 +719,7 @@ Regards
         return JsonResponse(response)
 
 
-@login_required(login_url = '/register')
+#@login_required(login_url = '/register')
 def startUpData(request):
     response = {}
     try:
@@ -985,3 +985,8 @@ def event(request, key):
         response['status'] = 'Invalid Request'
         return JsonResponse(response)
 '''
+
+def registrationData(request):
+    totalRegistrations = TechProfile.objects.all().count()
+    totalTeams = Team.objects.all()
+    localTeams = Team.objects
