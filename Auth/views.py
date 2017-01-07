@@ -622,6 +622,9 @@ def cdncheck(request):
 
 def startupFair(request):
     return render(request, 'startupfair.html', {})
+    
+def hospitality(request):
+    return render(request, 'hospitality.html', {})    
 
 '''
 def read(request):

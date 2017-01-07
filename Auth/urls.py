@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^resetpassword/',changePass,name='change password'),
     url(r'^startupregister/',startUpRegistration,name='startup registeration'),
     url(r'^startupfair/',startupFair,name='startup Fair'),
+    url(r'^hospitality/',hospitality, name='hospitality'),
     url(r'^workshopRegister/',workshopRegister,name='workshopRegister'),
     url(r'^botTest/',botTest,name='bot Test'),
     url(r'^workshops/',workshop,name='WorkShop'),
