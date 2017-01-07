@@ -36,26 +36,29 @@ function navFunction() {
   <body>
 <canvas id="c"></canvas>
 <div class="container" style="position: absolute;top: 0;left: 0;">
-    <!----------NAVBAR-------->
+  <!----------NAVBAR-------->
 <div class="jnavbar" id="abcde">
-		<ul class="topnav" id="myTopnav">
-  <li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
-  <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
-  <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
-  <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
-  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
-  
-  <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
-  <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
-  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
-  DASHBOARD
-  {% else %}
-  REGISTER / LOGIN
-  {% endif %}</a></li>
-  <li class="icon">
-    <a href="javascript:void(0);" style="font-size:15px;padding:11px;" onclick="navFunction()">☰</a>
-  </li>
+<ul class="topnav" id="myTopnav">
+<li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;">
+<img src="/static/images/logo-technex-nav.png" height="40px" class="desktopLogo" style="padding-left:8px;padding-right:8px;">
+<img src="/static/images/technexLogoMobile.png" height="40px" class="mobLogo" style="padding-left:8px;padding-right:8px;">
+</a></li>
+<li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+<li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
+<li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+<li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
+
+<li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
+<li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+<li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+<li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
+DASHBOARD
+{% else %}
+REGISTER / LOGIN
+{% endif %}</a></li>
+<li class="icon">
+<a href="javascript:void(0);" class="iconA" onclick="navFunction()">☰</a>
+</li>
 </ul>
 </div>
 <!----------/NAVBAR-------->
@@ -73,7 +76,7 @@ function navFunction() {
                    <img class="meta__avatar" src="/static/img/fwdicons/trophy.png" alt="robonex" />
                     <h2 class="title title--preview" style="font-size:1.3em;padding:4px;">Prizes Worth<br><br>2 Million</h2>
  					</a>
-            
+
 					<a class="grid__item" href="/events/robonex">
 						<img class="meta__avatar" src="/static/img/fwdicons/robonex.png" alt="robonex" />
                         <h2 class="title title--preview">Robonex</h2>
@@ -87,24 +90,24 @@ function navFunction() {
 						<h2 class="title title--preview">Ascension</h2>
 						 <div class="loader"></div>
 						<span class="category">Aero-modelling events</span>
-						<div class="meta meta--preview"> 
-							</div> 
+						<div class="meta meta--preview">
+							</div>
 					</a>
 					<a class="grid__item" href="/events/extreme-engineering">
-                        <img class="meta__avatar" src="/static/img/fwdicons/extreme-engineering.png" alt="extreme-engineering" /> 
+                        <img class="meta__avatar" src="/static/img/fwdicons/extreme-engineering.png" alt="extreme-engineering" />
 						<h2 class="title title--preview">Extreme Engineering</h2>
 						 <div class="loader"></div>
 						<span class="category">Core Engineering events</span>
 						<div class="meta meta--preview">
-							</div> 
+							</div>
 					</a>
 					<a class="grid__item" href="/events/modex">
                         <img class="meta__avatar" src="/static/img/fwdicons/modex.png" alt="modex" />
 						<h2 class="title title--preview">Modex</h2>
 						 <div class="loader"></div>
 						<span class="category">Showcase Innovative ideas</span>
-						<div class="meta meta--preview"> 
-							</div> 
+						<div class="meta meta--preview">
+							</div>
 					</a>
 					<a class="grid__item" href="/events/riqueza">
                         <img class="meta__avatar" src="/static/img/fwdicons/riqueza.png" alt="riqueza" />
@@ -112,15 +115,15 @@ function navFunction() {
 						 <div class="loader"></div>
 						<span class="category">Management events</span>
 						<div class="meta meta--preview">
-							</div> 
+							</div>
 					</a>
                     <a class="grid__item" href="/events/byte-the-bits">
-                        <img class="meta__avatar" src="/static/img/fwdicons/byte-the-bits.png" alt="byte-the-bits" /> 
+                        <img class="meta__avatar" src="/static/img/fwdicons/byte-the-bits.png" alt="byte-the-bits" />
 						<h2 class="title title--preview">Byte the Bits</h2>
 						 <div class="loader"></div>
 						<span class="category">Programming events</span>
 						<div class="meta meta--preview">
-						</div> 
+						</div>
 					</a>
 					<a class="grid__item" href="/events/creatrix">
                         <img class="meta__avatar" src="/static/img/fwdicons/creatrix.png" alt="creatrix" />
@@ -128,37 +131,37 @@ function navFunction() {
 						 <div class="loader"></div>
 						<span class="category">Film and media events</span>
 						<div class="meta meta--preview">
-							</div> 
+							</div>
 					</a>
 					<a class="grid__item" href="/events/supernova">
                         <img class="meta__avatar" src="/static/img/fwdicons/supernova.png" alt="supernova" />
 						<h2 class="title title--preview">Supernova</h2>
 						 <div class="loader"></div>
 						<span class="category">Astronomy based events</span>
-						<div class="meta meta--preview"> 
-							</div> 
+						<div class="meta meta--preview">
+							</div>
 					</a>
 					<a class="grid__item" href="/events/pahal">
                         <img class="meta__avatar" src="/static/img/fwdicons/pahal.png" alt="pahal" />
 						<h2 class="title title--preview">Pahal</h2>
 						 <div class="loader"></div>
 						<span class="category">Socio-environmental events</span>
-						<div class="meta meta--preview"> 
-							</div> 
+						<div class="meta meta--preview">
+							</div>
 					</a>
                     <a class="grid__item" style="cursor:default;">
-                        <img class="meta__avatar" src="/static/img/fwdicons/clutch.png" alt="Game Dungeon" /> 
+                        <img class="meta__avatar" src="/static/img/fwdicons/clutch.png" alt="Game Dungeon" />
 						<h2 class="title title--preview">Game Dungeon</h2>
 						 <div class="loader"></div>
 						<span class="category">Fun informals</span>
 						<div class="meta meta--preview">
-							</div> 
+							</div>
 					</a>
-					
+
 				</section>
 					</div>
 			</div>
-    
+
 			<link rel="stylesheet" type="text/css" href="/static/css/style2.css" />
 			<link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
              <script src='/static/js/kzymdn.js'></script>

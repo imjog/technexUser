@@ -56,12 +56,15 @@ function navFunction() {
       <!----------NAVBAR-------->
 <div class="jnavbar" id="abcde">
 		<ul class="topnav" id="myTopnav">
-  <li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
+  <li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;">
+    <img src="/static/images/logo-technex-nav.png" height="40px" class="desktopLogo" style="padding-left:8px;padding-right:8px;">
+    <img src="/static/images/technexLogoMobile.png" height="40px" class="mobLogo" style="padding-left:8px;padding-right:8px;">
+  </a></li>
   <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
   <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
   <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
-  
+
   <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
@@ -71,7 +74,7 @@ function navFunction() {
   REGISTER / LOGIN
   {% endif %}</a></li>
   <li class="icon">
-    <a href="javascript:void(0);" style="font-size:15px;" onclick="navFunction()">☰</a>
+    <a href="javascript:void(0);" class="iconA" onclick="navFunction()">☰</a>
   </li>
 </ul>
 </div>
@@ -82,7 +85,7 @@ function navFunction() {
 			<div id="theSidebar" class="sidebar">
 				<button class="close-button fa fa-fw fa-close"></button>
                 <a href="/events"><h1 class="category-name" style="color:white;letter-spacing:5px;">Events</h1></a>
-                <div class="loader"></div> 
+                <div class="loader"></div>
 				<div class="related" id="menu-bar">
                     			<a  href="/events/robonex"><h2 class="solid-border">Robonex</h2></a>
 					<a href="/events/ascension"><h2>Ascension</h2></a>
@@ -100,7 +103,7 @@ function navFunction() {
 			</div>
             <div class="event-dis">
            <a target="_blank"><img style="max-height: 70px; max-width: 70px"/></a>
-            <h2 style="display: none;">presents</h2>
+            <h2 style="display: none;margin:1px;font-weight:100;letter-spacing:1px;">presents</h2>
                 <h1></h1>
                 <h3>                </h3>
                 <hr>
@@ -111,7 +114,7 @@ function navFunction() {
 				</section>
 				<section class="content">
 					<div class="scroll-wrap" id="event-descrip">
-						
+
 
 					</div>
 					<button class="close-button"><i class="fa fa-close"></i><span>Close</span></button>
@@ -141,7 +144,7 @@ $("nav a").each(function() {
 </script>
 		</div><!-- /container -->
 <!-- 		<script src='js/data.js'></script>	 -->
-		
+
 	</body>
 <script type="text/javascript">
 		var data= {{ parentEvent|safe}}
@@ -154,7 +157,7 @@ $("nav a").each(function() {
 
 	for(i=0;i<data.events.length;i++)
 	{
-		out+='<article class="content__item"><h2 class="title title--full"><a href="/dashboard/#/eventReg/'+ data.slug +'/' + data.events[i].eventSlug +'"><button class="eventRegister">REGISTER TEAM</button></a>'+data.events[i].eventName+'</h2><p style="text-align:center;">'+data.events[i].description+'</p><hr class="events-hr"><br><br><div class="meta meta--full"><h1 style="text-align:center">'+data.name+'</h1>\
+		out+='<article class="content__item"><h2 class="title title--full"><a href="/dashboard/#/eventReg/'+ data.slug +'/' + data.events[i].eventSlug +'"><button class="eventRegister">REGISTER TEAM</button></a>'+data.events[i].eventName+'</h2><p style="text-align:center;">'+data.events[i].description+'</p><hr class="events-hr"><br><br><div class="meta meta--full">\
 		<div class="events-name">';
 		// for(j=0;j<data.events.length;j++)
 		// {
@@ -194,7 +197,7 @@ $("nav a").each(function() {
   console.log(data.sponimage);
   console.log("djkdkjdljdkj");
   if(data.sponimage == "" || data.sponimage==null)
-  {  
+  {
     $(".event-dis h1").html(data.name);
     $(".event-dis h3").html(data.description);
     $(".event-dis a img").hide();
@@ -220,7 +223,7 @@ $("nav a").each(function() {
 	function myfunction(data){
 	var i;
 	var out='';
-	
+
 	for(i=0;i<data.events.length;i++)
 	{
 		out +='<a class="grid__item" href="#"><h2 class="title title--preview">' + data.events[i].eventName + '</h2>'+'<div class="loader"></div><h3>Prizes worth</br> ₹ '+data.events[i].prizeMoney+'</h3></a>';
@@ -276,16 +279,16 @@ $("nav a").each(function() {
     closeCtrl = contentItemsContainer.querySelector('.close-button'),
     e1 = document.getElementById('event-descrip'),
     e2 = e1.querySelectorAll('.event-info'),
-  
 
-      
+
+
     current = -1,
     lockScroll = false, xscroll, yscroll,
     isAnimating = false,
     menuCtrl = document.getElementById('menu-toggle'),
     menuCloseCtrl = sidebarEl.querySelector('.close-button');
     var ji;
-    
+
     // console.log(e2.length);
     var e3=[];
     var e4=[];
@@ -306,7 +309,7 @@ $("nav a").each(function() {
     //      // {
     //       console.log(e3[ji]);
     //      // }
-        
+
     // }
 
 
@@ -327,7 +330,7 @@ $("nav a").each(function() {
       client = docElem['clientHeight'];
       inner = window['innerHeight'];
     }
-    
+
     return client < inner ? inner : client;
   }
   function scrollX() { return window.pageXOffset || docElem.scrollLeft; }
@@ -353,16 +356,16 @@ $("nav a").each(function() {
               if(k!=position)
               {
               e4[pos][k].style.display='none';
-             classie.remove(e3[pos][k],'event-nav-active'); 
+             classie.remove(e3[pos][k],'event-nav-active');
             }
               // else
-              // e4[pos][k].style.dispaly=''; 
+              // e4[pos][k].style.dispaly='';
              }
              e4[pos][position].style.display='';
              classie.add(e3[pos][position],'event-nav-active');
-                
+
           });
-                                               
+
          });
             // }
      });
@@ -378,15 +381,15 @@ $("nav a").each(function() {
        console.log($(this));
       var i;
           for(i=0;i<contentItems.length;i++)
-          { 
+          {
             contentItem = contentItems[i];
             console.log(contentItems[i]);
           classie.remove(contentItem, 'content__item--show');
-          } 
+          }
            loadcontentwa(gridItems[pos]);
       });
     });
-    
+
 
     // l,flfv,lg,lg,lth,lgh
     [].slice.call(gridItems).forEach(function(item, pos) {
@@ -441,7 +444,7 @@ $("nav a").each(function() {
     // hamburger menu button (mobile) and close cross
     menuCtrl.addEventListener('click', function() {
       if( !classie.has(sidebarEl, 'sidebar--open') ) {
-        classie.add(sidebarEl, 'sidebar--open');  
+        classie.add(sidebarEl, 'sidebar--open');
       }
     });
 
@@ -468,7 +471,7 @@ $("nav a").each(function() {
       isAnimating = false;
    }
   function loadContent(item) {
-    // add expanding element/placeholder 
+    // add expanding element/placeholder
     var dummy = document.createElement('div');
     dummy.className = 'placeholder';
 
@@ -476,12 +479,12 @@ $("nav a").each(function() {
     dummy.style.WebkitTransform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth/gridItemsContainer.offsetWidth + ',' + item.offsetHeight/getViewport('y') + ',1)';
     dummy.style.transform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth/gridItemsContainer.offsetWidth + ',' + item.offsetHeight/getViewport('y') + ',1)';
 
-    // add transition class 
+    // add transition class
     classie.add(dummy, 'placeholder--trans-in');
 
     // insert it after all the grid items
     gridItemsContainer.appendChild(dummy);
-    
+
     // body overlay
     // classie.add(bodyEl, 'view-single');
 
@@ -494,7 +497,7 @@ $("nav a").each(function() {
     }, 25);
 
     onEndTransition(dummy, function() {
-      // add transition class 
+      // add transition class
       classie.remove(dummy, 'placeholder--trans-in');
       classie.add(dummy, 'placeholder--trans-out');
       // position the content container
@@ -560,7 +563,7 @@ $("nav a").each(function() {
         lockScroll = false;
         window.removeEventListener( 'scroll', noscroll );
       });
-      
+
       // reset current
       current = -1;
     }, 25);
@@ -580,7 +583,7 @@ $("nav a").each(function() {
 
 	});
 </script>
-    
+
 <!--    navbar   -->
     <script>
 function myFunction() {
@@ -591,5 +594,5 @@ function myFunction() {
         x.className = "topnav";
     }
 }
-	
+
 </html>

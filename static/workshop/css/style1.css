@@ -245,9 +245,10 @@ a:focus {
 	width: 24.7%;
 	padding: 4% 0 0;
 /*    border: 1px solid rgba(255,255,255,.3);*/
-    outline: 1px solid rgba(255,255,255,.3);
+    outline: 1px solid rgba(255,255,255,1);
     outline-offset: -5px;
     font-family: sans-serif;
+		    background: rgba(0,0,0,.5);
 }
 @media screen and (min-width:768px){
     .featured-list__item{
@@ -716,7 +717,7 @@ a:focus {
 
 
 
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -743,9 +744,9 @@ a {
   text-decoration: none;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main components 
+Main components
 
 -------------------------------- */
 html, body {
@@ -911,7 +912,7 @@ html, body {
 }
 .cd-panel-header h1 {
   font-weight: bold;
-  color: #A9A9A9;
+  color: black;
   padding-left: 5%;
     font-family: sans-serif;
     text-transform: uppercase;
@@ -1109,10 +1110,18 @@ html, body {
 }
 }
 li.featured-list__item:hover{
-    background: rgba(0,0,0,.8);
-    transition: 0.3s;
+	background: white;
+	transition: 0.3s;
+	outline: 1px solid black;
+	outline-offset: -4px;
 }
-
+li.featured-list__item:hover .featured-list__title{
+	color: black;
+}
+li.featured-list__item:hover .featured-list__item{
+	outline: 1px solid black;
+	outline-offset: -5px;
+}
 /*----------------------------NAVBAR--------------------------*/
 
 /*.jnavbar{
@@ -1349,4 +1358,18 @@ ul.topnav li.icon {display: none;}
     border: 1px solid rgba(169,169,169,.5);
     color: rgba(0,0,0,.6);
 }
+}
+.workshopDescription{
+	font-family: sans-serif;
+	color: #424f5c;
+	font-size: 1rem;
+	line-height: 1.6;
+}
+.workshopDescription u{
+	text-decoration: none;
+	font-weight: bold;
+}
+.workshopDescription h3{
+	text-transform: uppercase;
+  font-size: 110%;
 }
