@@ -22,6 +22,24 @@
 	}
 
 	</script>
+
+	<style type="text/css">
+	video
+	{
+			position: fixed;
+	    top: 50%;
+	    left: 50%;
+	    min-width: 100%;
+	    min-height: 100%;
+	    width: auto;
+	    height: auto;
+	    z-index: -100;
+	    transform: translateX(-50%) translateY(-50%);
+	 background: url('/static/hospitality/css/varanasi.jpg') no-repeat;
+	  /*background-size: cover;*/
+	  transition: 1s opacity;
+	}
+	</style>
 	<!----------/NAVBAR-------->
 	<title>Hospitality | Technex '17'</title>
 </head>
@@ -39,6 +57,10 @@
 <button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
 
 <section id="section1" class="cd-section">
+<video poster="/static/hospitality/css/varanasi.jpg" id="bgvid" playsinline autoplay loop>
+  <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+<source src="/static/hospitality/css/abc.mp4" type="video/mp4">
+</video>
 	<div class="content-wrapper">
 		<! ---------- NAVBAR-------->
 	<div class="jnavbar" id="abcde">
@@ -66,6 +88,7 @@
 	</div>
 	<!----------/NAVBAR-------->
 		<h1>HOSPITALITY</h1>
+		<p>Page Under Construction</p>
 		<a href="#section2" class="cd-scroll-down cd-image-replace">scroll down</a>
 	</div>
 </section><!-- cd-section -->
@@ -82,6 +105,7 @@ Hope to see you soon at Technex ’17!</p>
 </section><!-- cd-section -->
 
 <section id="section3" class="cd-section">
+
 	<div class="content-wrapper">
 		<h2 style="margin-top:5%;">INSTRUCTIONS</h2>
 		<ul class="instUL">
