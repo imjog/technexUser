@@ -1356,3 +1356,11 @@ ul.topnav li.icon {display: none;}
 	font-size: 1rem;
 	line-height: 1.6;
 }
+.workshopDescription u{
+	text-decoration: none;
+	font-weight: bold;
+}
+.workshopDescription h3{
+	text-transform: uppercase;
+  font-size: 110%;
+}
