@@ -284,7 +284,7 @@ a:focus {
 .featured-list__title {
 	font-weight: 500;
 	display: inline-block;
-	padding: 5px 0.5em;
+	padding: 14px 0.5em;
 	line-height: 1.5;
     margin-top: 1%;
     font-size: 1em;
@@ -1110,7 +1110,8 @@ html, body {
 }
 @media screen and (min-width:768px){
     .featured-list__item{
-    height: 40%;
+    /*height: 40%;*/
+		height: auto;
 }
 }
 li.featured-list__item:hover{
