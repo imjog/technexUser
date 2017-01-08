@@ -13,6 +13,7 @@ from Auth.models import *
 from django_mobile import get_flavour
 from user_agents import parse
 from django.db.models import Q
+from django.contrib.auth.decorators import user_passes_test
 #from Auth.forms import *
 # Create your views here.
 server = 'http://www.technex.in/'
@@ -985,8 +986,17 @@ def event(request, key):
         response['status'] = 'Invalid Request'
         return JsonResponse(response)
 '''
-
+@user_passes_test(lambda u: u.is_superuser)
 def registrationData(request):
+    try:
+        iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
+    except:
+        iitBHU = College.objects.filter(collegeName = 'IIT BHU')[0]
     totalRegistrations = TechProfile.objects.all().count()
+    localRegistrations = TechProfile.objects.filter(college = iitBHU).count()
     totalTeams = Team.objects.all().count()
-    localTeams = Team.objects.all()
+    localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
+    workshopTeamsTotal = WorkshopTeam.objects.all().count()
+    return render(request,'data.html',{'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal})
+
+
