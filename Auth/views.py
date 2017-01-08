@@ -679,19 +679,29 @@ def startUpRegistration(request):
             memberEmails = ""
             pindustry = []
             btypes = []
+            # print post['pindustry']
             for industry in post['pindustry']:
-                pind = PrimaryIndustry.objects.get(name = industry)
-                pindustry.append(pind)
+                try:     
+                    pind = PrimaryIndustry.objects.get(name = industry)
+                    pindustry.append(pind)
+                except:
+                    response['status'] = 0
+                    response['error'] = 'Some Error Occured'
+                      
             for btype in post['btype']:
                 bty = BusinessType.objects.get(name = btype)
                 btypes.append(bty)    
             for email in post['memberMails']:
                 if checkunique(email):
-                    s=StartUpMails(email=email,team=startUpFair)
+                    s=StartUpMails(email=email,team=startUpFair,)
                     memberEmails += email+'  '
                     s.save()
             pindustry = list(set(pindustry)) 
-            btypes = list(set(btypes))       
+            btypes = list(set(btypes))      
+            for pind in pindustry:
+                startUpFair.pindusry.add(pind)
+            for bty in btypes:
+                startUpFair.bType.add(bty)    
             sf=StartUpFair.objects.get(teamLeader=request.user.techprofile)
             subject = "[Technex'17] Successful Registration"
             body = '''
