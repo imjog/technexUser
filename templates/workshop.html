@@ -247,7 +247,7 @@ function navFunction() {
 			<!-- Landing wrap with sections -->
 			<div class="landing-wrap">
 				<section class="landing landing--above" style="background-image: url(/static/workshop/img/bcgimgfinal.jpg);background-color:rgba(0,0,0,.6);background-blend-mode: multiply;"></section>
-				<section class="landing landing--beneath" style="background-image: url(/static/workshop/img/12344.jpg);background-color:rgba(0,0,0,.8);background-blend-mode:multiply;">
+				<section class="landing landing--beneath" style="background-image: url(/static/workshop/img/12344.jpg);background-color:rgba(0,0,0,.8 );background-blend-mode:multiply;">
 					<canvas id="bubbles"></canvas>
 				</section>
 			</div>
@@ -260,7 +260,7 @@ function navFunction() {
 				<p class="landing-header__tagline">Professsional and Certified</p>
 
 			</header><!-- /landing-header -->
-
+						<div class="registerButton" id="registerbtn"><a href="/dashboard/#/workshopreg">REGISTER</a></div>
             <div class="contactDetail" id="cDetail"><span style="font-weight:600;">CONTACT:</span><br>Raushan Kumar<br>+91-919-851-7176</div>
             <div class="viewWorkshop" id="vWork">View workshops</div>
 			<!-- Trigger button for layout change -->
@@ -290,7 +290,7 @@ function navFunction() {
 		<div class="cd-panel-container">
 			<div class="cd-panel-content" style="color: black;">
 			<div style="width: 100%;display: table;margin: 0 auto;">
-                <a class="registerWorkshop" href="/dashboard">REGISTER</a>
+                <a class="registerWorkshop" href="/dashboard/#/workshopreg/{{workshop.link}}">REGISTER</a>
                 </div>
                 <div class="cost"><span>COST: </span><span>₹{{workshop.workshopFees}}/ per person</span></div>
                 <br>

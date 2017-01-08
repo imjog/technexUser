@@ -128,7 +128,7 @@
 		// 	}],
 		// 	load : function(callback) {
 		// 		this.totalFiles = Object.size(this.sources[0]);
-				
+
 		// 		for(var key in this.sources[0]) {
 		// 			var sound = new Howl({ src: [this.sources[0][key]] }), self = this;
 		// 			sound.once('load', function(key) {
@@ -239,6 +239,7 @@
         document.getElementById('abcde').classList.toggle('hide');
         document.getElementById('cDetail').classList.toggle('hide');
         document.getElementById('vWork').classList.toggle('hide');
+				document.getElementById('registerbtn').classList.toggle('hide');
 
 //		if( isOpen ) { // close it.
 			// Stop the bubbles canvas animation.
