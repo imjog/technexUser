@@ -674,7 +674,7 @@ def startUpRegistration(request):
             response['error'] = 'Already registered !!'
             return JsonResponse(response)
         except:
-            startUpFair = StartUpFair(interests= post['interests'],description= post['description'],year=post['year'],teamLeader = request.user.techprofile, teamName = post['teamName'])
+            startUpFair = StartUpFair(interests= post['interests'],description= post['description'],year=post['year'],teamLeader = request.user.techprofile, teamName = post['teamName'],angelListUrl = post['angel'],crunchBaseUrl = post['crunch'])
             startUpFair.save()
             memberEmails = ""
             pindustry = []

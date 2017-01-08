@@ -704,7 +704,9 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
               "description":$scope.description,
               "year": $scope.year,
               "pindustry": $scope.indlist,
-              "btype": $scope.bslist
+              "btype": $scope.bslist,
+              "angel": $scope.angel,
+              "crunch": $scope.crunch
 
              }
              $scope.indlist=[];

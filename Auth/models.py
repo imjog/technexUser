@@ -196,6 +196,8 @@ class StartUpFair(models.Model):
     interests = models.CharField(max_length = 500, null=True, blank = True)
     description = models.CharField(max_length = 1000, null=True, blank=True)
     year = models.SmallIntegerField(default = 0)
+    angelListUrl = models.CharField(max_length = 200, null = True, blank = True)
+    crunchBaseUrl = models.CharField(max_length = 200, null = True, blank = True)
     pindusry = models.ManyToManyField(PrimaryIndustry,related_name="primary_industry",null = True)
     bType = models.ManyToManyField(BusinessType,related_name="btype",null = True)  
     teamLeader = models.OneToOneField(TechProfile)
