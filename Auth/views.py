@@ -1042,8 +1042,11 @@ def publicity(request):
             eventsData.append(events)
             print eventsData
         referral = list(set(referral))
-        referral.remove(None)
-        referral.remove('')
+        try:
+            referral.remove(None)
+            referral.remove('')
+        except:
+            pass
         return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData),'referral':referral})
     else:
         return render(request,'publicity.html',{'colleges':colleges})
