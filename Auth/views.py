@@ -674,14 +674,34 @@ def startUpRegistration(request):
             response['error'] = 'Already registered !!'
             return JsonResponse(response)
         except:
-            startUpFair = StartUpFair(idea = post['idea'], teamLeader = request.user.techprofile, teamName = post['teamName'])
+            startUpFair = StartUpFair(interests= post['interests'],description= post['description'],year=post['year'],teamLeader = request.user.techprofile, teamName = post['teamName'],angelListUrl = post['angel'],crunchBaseUrl = post['crunch'])
             startUpFair.save()
             memberEmails = ""
+            pindustry = []
+            btypes = []
+            # print post['pindustry']
+            for industry in post['pindustry']:
+                try:     
+                    pind = PrimaryIndustry.objects.get(name = industry)
+                    pindustry.append(pind)
+                except:
+                    response['status'] = 0
+                    response['error'] = 'Some Error Occured'
+                      
+            for btype in post['btype']:
+                bty = BusinessType.objects.get(name = btype)
+                btypes.append(bty)    
             for email in post['memberMails']:
                 if checkunique(email):
-                    s=StartUpMails(email=email,team=startUpFair)
+                    s=StartUpMails(email=email,team=startUpFair,)
                     memberEmails += email+'  '
                     s.save()
+            pindustry = list(set(pindustry)) 
+            btypes = list(set(btypes))      
+            for pind in pindustry:
+                startUpFair.pindusry.add(pind)
+            for bty in btypes:
+                startUpFair.bType.add(bty)    
             sf=StartUpFair.objects.get(teamLeader=request.user.techprofile)
             subject = "[Technex'17] Successful Registration"
             body = '''
@@ -728,7 +748,6 @@ def startUpData(request):
     except:
         response['status'] = 0
         response['error'] = 'Not registered for Start Up Fair !'
-    response['idea'] = startUp.idea
     response['teamName'] = startUp.teamName
     memberMails = StartUpMails.objects.filter(team = startUp)
     response['memberMails'] = []

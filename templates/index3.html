@@ -417,6 +417,7 @@ $("nav a").each(function() {
           console.log(item); loadContent(item); }, 500);
         }, 1000);
                 $(".event-dis").hide();
+                // $(".grid__item").hide();
 
       });
     });
@@ -426,6 +427,7 @@ $("nav a").each(function() {
       console.log("abcd");
       hideContent();
               $(".event-dis").show();
+              $(".grid__item").show();
     });
 
     // keyboard esc - hide content
@@ -467,6 +469,7 @@ $("nav a").each(function() {
 
       // sets overflow hidden to the body and allows the switch to the content scroll
       classie.addClass(bodyEl, 'noscroll');
+      $(".grid__item").hide();
 
       isAnimating = false;
    }
@@ -510,6 +513,7 @@ $("nav a").each(function() {
       classie.add(closeCtrl, 'close-button--show');
       // sets overflow hidden to the body and allows the switch to the content scroll
       classie.addClass(bodyEl, 'noscroll');
+      $(".grid__item").hide();
 
       isAnimating = false;
     });

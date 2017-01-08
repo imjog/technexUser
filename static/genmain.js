@@ -2,47 +2,47 @@ var data = [
 {
 parentEvent: 'ascension',
 events:['momentum', 'la-trajectoire', 'daeroglisseur', 'drone-tech'],
-max:[5,5,5,5]
+max:[4,4,4,4]
 },
 {
 parentEvent: 'modex',
 events:['green-tech', 'open-hardware', 'open-software'],
-max:[5,5,5,]
+max:[4,4,4,]
 },
 {
 parentEvent: 'pahal',
 events:['greenx', 'vision', 'swachch', 'sampann', 'aagaz'],
-max:[5,5,5,5,5]
+max:[4,4,4,4,4]
 },
 {
 parentEvent: 'supernova',
 events:['scientists-utopia', 'astrophotography', 'astroquiz', 'exploring-interstellar',],
-max:[5,5,5,5,]
+max:[4,4,4,4]
 },
 {
 parentEvent: 'creatrix',
 events:['minimize', 'iso', 'collage', 'avant-garde', 'animaze', '2d'],
-max:[5,5,5,5,5,5]
+max:[4,4,4,4,4,4]
 },
 {
 parentEvent: 'riqueza',
-events:['analiticity', 'bulls-floor', 'krackat', 'manthan', 'conundrum'],
-max:[5,5,5,5,5,5]
+events:['analiticity', 'bulls-floor', 'krackat', 'manthan'],
+max:[4,0,0,4]
 },
 {
 parentEvent: 'byte-the-bits',
 events:['mlware', 'international-coding-marathon', 'appathon', 'capture-the-flag'],
-max:[5,5,5,1]
+max:[4,4,4,0]
 },
 {
 parentEvent: 'extreme-engineering',
 events:['bridgeit', 'goldbergs-alley', 'axelerate', 'hydracs'],
-max:[5,5,5,5]
+max:[4,4,4,4]
 },
 {
 parentEvent: 'robonex',
 events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
-max:[5,5,5,5]
+max:[4,4,4,4]
 }
 ];
 var workdata=[
@@ -508,6 +508,13 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
   $scope.user;
   $scope.ideas="";
   $scope.teamName="";
+  $scope.angel="";
+  $scope.crunch="";
+  $scope.interests="";
+  $scope.description="";
+  $scope.year="Founding Year";
+  $scope.indlist = [];
+  $scope.bslist = [];
   $scope.leader = document.getElementById('userEmail').value;
   $scope.parentEventIndex = function(){
     return findWithAttr($scope.options,'events',$scope.parentEvent);
@@ -569,12 +576,76 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
      }
      if(x)
      {
-       if($scope.ideas=="")
+       if($scope.interests=="")
        {
-        $("#ideas").addClass("input-error");
+        $("#interests").addClass("input-error");
         x=false;
        }
      }
+     if(x)
+     {
+      if($scope.description=="")
+      {
+        $("#description").addClass("input-error");
+        x=false;
+      }
+     }
+     if(x)
+     {
+      if($scope.year=="Founding Year")
+        {
+          $("#year").addClass("input-error");
+          x=false;
+        }
+     }
+     if(x)
+      {
+        var z=$(".industrylist input");
+        for(var i=0;i<24;i++)
+        {
+          if($(z[i]).prop("checked")==true)
+          { 
+            console.log($(z[i]).value);
+            $scope.indlist.push($(z[i]).val());
+             
+        }
+      }
+        if($scope.indlist.length==0)
+        {
+            $("#error-message-display").html("Please, Select atleast 1 primary industry");
+            $("#error-message").show();
+            x=false;
+        }
+        if($scope.indlist.length>3)
+        {
+          $("#error-message-display").html("Please, Select atmost 3 primary industry");
+            $("#error-message").show();
+            x=false;
+            console.log($scope.indlist);
+            $scope.indlist=[];
+        }
+        
+      }
+      if(x)
+      {
+        var z=$(".businesslist input");
+        for(var i=0;i<4;i++)
+        {
+          if($(z[i]).prop("checked")==true)
+          {
+            $scope.bslist.push($(z[i]).val());
+             
+        }
+        }
+        if($scope.bslist.length==0)
+        {
+          $("#error-message-display").html("Please, Select atleast 1 business type");
+            $("#error-message").show();
+            x=false;
+        }
+      }
+
+
      if(x)
      {
       if($scope.leader=="")
@@ -626,11 +697,20 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
       {
              $(".team-reg-submit").html("Submitting. Please Wait!");
              data={
-              "idea": $scope.ideas,
               "teamName":$scope.teamName,
               "memberMails":$scope.a,
-              "teamLeader":$scope.leader
+              "teamLeader":$scope.leader,
+              "interests":$scope.interests,
+              "description":$scope.description,
+              "year": $scope.year,
+              "pindustry": $scope.indlist,
+              "btype": $scope.bslist,
+              "angel": $scope.angel,
+              "crunch": $scope.crunch
+
              }
+             $scope.indlist=[];
+             $scope.bslist=[];
              $http({
               method:'POST',
               url:'/startupregister/',
@@ -782,7 +862,7 @@ app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , f
        {
           if($(z[i]).val()=="")
           {
-            $(z[i]).addClass("input-error")
+            $(z[i]).addClass("input-error");
             x=false;
           }
 

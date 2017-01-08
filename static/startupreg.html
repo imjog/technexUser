@@ -1,3 +1,12 @@
+<style type="text/css">
+  label
+  {
+    width: 49%;
+  }
+</style>
+
+
+
 <div class="right_col" role="main" style="min-height: 917px;">
           <div class="">
             <div class="page-title">
@@ -21,8 +30,136 @@
 <div class="form-group">
 <input type='text' ng-model="teamName" class="form-control" id="teamName" placeholder="TeamName" style="margin-bottom: 10px;"/>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
 <textarea type="textbox" name="ideas" class="form-control" ng-model="ideas" id="ideas" placeholder="Idea Domain"/>
+</div> -->
+<div class="form-group">
+<textarea type="textbox" name="interests" class="form-control" ng-model="interests" id="interests" placeholder="Describe in one line what you do. Like a tag line to wake interest"/>
+
+</div>
+<div class="form-group">
+<textarea type="textbox" name="description" class="form-control" ng-model="description" id="description" placeholder="Long description. Include any solution you are developing, problem you are solving, target customers/market."/>
+</div>
+<div class="form-group">
+<select id="year" class="form-control" ng-model="year">
+  <option value="Founding Year" disabled="true">Founding Year</option>
+  <option value="2017">2017</option>
+  <option value="2016">2016</option>
+  <option value="2015">2015</option>
+  <option value="2014">2014</option>
+  <option value="2013">2013</option>
+  <option value="2012">2012</option>
+  <option value="2011">2011</option>
+  <option value="2010">2010</option>
+  <option value="2009">2009</option>
+  <option value="2008">2008</option>
+  <option value="2007">2007</option>
+</select>
+</div>
+<div class="form-group">
+<h2>SELECT PRIMARY INDUSTRY (1-3)</h2>
+<div class="checkbox industrylist">
+<!-- <label>
+<input type="checkbox" value=""></label> -->
+<label>
+<input type="checkbox" value="Analytics & Big Data">Analytics & Big Data
+</label>
+<label>
+<input type="checkbox" value="Artificial Intelligence">Artificial Intelligence
+</label>
+<label>
+<input type="checkbox" value="Augmented Reality"> Augmented Reality
+</label>
+<label>
+<input type="checkbox" value="Biotechnology"> Biotechnology
+</label>
+<label>
+<input type="checkbox" value="Blockchain"> Blockchain
+</label>
+<label>
+<input type="checkbox" value="Cryptocurrencies"> Cryptocurrencies
+</label>
+<label>
+<input type="checkbox" value="Cleantech"> Cleantech </label>
+<label>
+<input type="checkbox" value="Clothing & Fashion"> Clothing & Fashion
+</label>
+<label>
+<input type="checkbox" value="Communications & Media"> Communications & Media
+</label>
+<label>
+<input type="checkbox" value="Consumer Electronics"> Consumer Electronics
+</label>
+<label>
+<input type="checkbox" value="Cyber Security"> Cyber Security
+</label>
+<label>
+<input type="checkbox" value="E-commerce & Online marketplaces"> E-commerce & Online marketplaces
+</label>
+<label>
+<input type="checkbox" value="Education"> Education
+</label>
+<label>
+<input type="checkbox" value="Energy"> Energy
+</label>
+<label>
+<input type="checkbox" value="Enterprise Software"> Enterprise Software
+</label>
+<label>
+<input type="checkbox" value="Financial & Insurance"> Financial & Insurance
+</label>
+<label>
+<input type="checkbox" value="Food & Nutrition"> Food & Nutrition
+</label>
+<label>
+<input type="checkbox" value="Gaming"> Gaming
+</label>
+<label>
+<input type="checkbox" value="Health & Wellbeing"> Health & Wellbeing
+</label>
+<label>
+<input type="checkbox" value="Industrial Internet & IoT"> Industrial Internet & IoT
+</label>
+<label>
+<input type="checkbox" value="Manufacturing tech & Materials"> Manufacturing tech & Materials
+</label>
+<label>
+<input type="checkbox" value="Med tech & Pharma"> Med tech & Pharma
+</label>
+<label>
+<input type="checkbox" value="Mobile"> Mobile
+</label>
+
+<label>
+<input type="checkbox" value="Music & Entertainment"> Music & Entertainment
+</label>
+<!-- <label>
+<input type="checkbox" value=""> Option one. select more than one options
+</label> -->
+</div>
+</div>
+<div class="form-group">
+<h2>SELECT BUSINESS TYPE</h2>
+<div class="checkbox businesslist">
+<label>
+<input type="checkbox" value="B2B"> B2B
+</label>
+<label>
+<input type="checkbox" value="B2C"> B2C
+</label>
+<label>
+<input type="checkbox" value="B2G"> B2G
+</label>
+<label>
+<input type="checkbox" value="C2C"> C2C
+</label>
+</div>
+</div>
+<div class="form-group">
+<input type="text" class="form-control" id="angel" placeholder=" Angel list URL(not mandatory)" ng-model="angel">
+</div>
+<div class="form-group">
+<input type="text" class="form-control" id="crunch" placeholder="Crunch base URL (not mandatory)" ng-model="crunch">
 </div>
 <div class="form-group has-feedback">
 <input type="text" class="form-control" id="team-leader" placeholder="Team leader" ng-model="leader">
@@ -36,6 +173,7 @@
 <ul class="parsley-errors-list filled" style="display: none;"><li class="parsley-required">Invalid Email or TechnexID</li></ul>
 <span class="glyphicon glyphicon-pawn form-control-feedback right" style="right: 10px" aria-hidden="true"></span>
 </div>
+
 
 <button type="button" ng-click='removeMember($index)' class="btn btn-danger">Remove</button>
 </div>
@@ -51,24 +189,18 @@
 </form>
 
 </div>
-                  </div>
-                </div>
-              </div>
-               </div>
-            
-
-
-          <br >
-
-
-
-    
-            </div>
-          </div>
-          <script type="text/javascript">
+</div>
+</div>
+</div>
+</div>
+<br>
+</div>
+</div>
+<script type="text/javascript">
           $(document).ready(function(){
             $("input").on("focus",function(){
               $(this).removeClass("input-error");
+              $("#error-message").hide();
               if(this.id=="team-leader")
               {
                 $(this).removeClass("parsley-error");
@@ -77,6 +209,13 @@
             });
             $("textarea").on("focus",function(){
               $(this).removeClass("input-error");
-            })
+            });
+//             var start = 2010;
+// var end = new Date().getFullYear();
+// var options = "<option disabled selected>Founding year</option>";
+// for(var year = start ; year <=end; year++){
+//   options += "<option>"+ year +"</option>";
+// }
+// document.getElementById("year").innerHTML = options;
           });
-          </script>
+          </script>   

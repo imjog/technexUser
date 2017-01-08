@@ -115,6 +115,18 @@ class GuestLecture(models.Model):
     def __unicode__(self):
         return '%s %s'%(self.title,self.lecturerName)
 
+
+class PrimaryIndustry(models.Model):
+    name = models.CharField(max_length = 100)
+    def __unicode__(self):
+        return '%s'%(self.name)
+
+class BusinessType(models.Model):
+    name = models.CharField(max_length = 3)
+    def __unicode__(self):
+        return '%s'%(self.name)
+         
+
 class Workshops(models.Model):
     workshopId = models.AutoField(primary_key = True)
     order  = models.SmallIntegerField(null = True)
@@ -185,10 +197,16 @@ class ReaderStatus(models.Model):
     status = models.BooleanField(default = True)
 
 class StartUpFair(models.Model):
-    idea = models.CharField(max_length = 250)
+    idea = models.CharField(max_length = 250, blank = True)
+    interests = models.CharField(max_length = 500, null=True, blank = True)
+    description = models.CharField(max_length = 1000, null=True, blank=True)
+    year = models.SmallIntegerField(default = 0)
+    angelListUrl = models.CharField(max_length = 200, null = True, blank = True)
+    crunchBaseUrl = models.CharField(max_length = 200, null = True, blank = True)
+    pindusry = models.ManyToManyField(PrimaryIndustry,related_name="primary_industry",null = True)
+    bType = models.ManyToManyField(BusinessType,related_name="btype",null = True)  
     teamLeader = models.OneToOneField(TechProfile)
     teamName = models.CharField(max_length = 35)
-    
     def __unicode__(self):
         return self.teamName
 
@@ -196,4 +214,4 @@ class StartUpMails(models.Model):
     email = models.EmailField(max_length = 65,unique = True)
     team = models.ForeignKey(StartUpFair)
     def __unicode__(self):
-        return self.email        
+        return self.email    
