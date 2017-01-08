@@ -469,6 +469,7 @@ $("nav a").each(function() {
 
       // sets overflow hidden to the body and allows the switch to the content scroll
       classie.addClass(bodyEl, 'noscroll');
+      $(".grid__item").hide();
 
       isAnimating = false;
    }
@@ -512,6 +513,7 @@ $("nav a").each(function() {
       classie.add(closeCtrl, 'close-button--show');
       // sets overflow hidden to the body and allows the switch to the content scroll
       classie.addClass(bodyEl, 'noscroll');
+      $(".grid__item").hide();
 
       isAnimating = false;
     });
