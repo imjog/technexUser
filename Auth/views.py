@@ -999,3 +999,22 @@ def registrationData(request):
     localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
     return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal})
+
+def publicity(request):
+    colleges = College.objects.all()
+    if request.method == 'POST':
+        college = College.objects.filter(collegeName = str(request.POST['college']).strip())
+        print college[0].collegeName
+        collegeWale = list(TechProfile.objects.filter(college = college))
+        eventsData = []
+        collegeWaleCount = len(collegeWale)
+        for collegeWala in collegeWale:
+            teams = Team.objects.filter(Q(members = collegeWala) | Q(teamLeader = collegeWala)).distinct()
+            events = []
+            for team in teams:
+                events.append(team.event.eventName)
+            eventsData.append(events)
+            print eventsData
+        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData)})
+    else:
+        return render(request,'publicity.html',{'colleges':colleges})

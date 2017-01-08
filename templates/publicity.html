@@ -1,0 +1,18 @@
+<form method='post' action='/publicity/'>
+{% csrf_token %}
+<select name='college'>
+{%for college in colleges %}
+<option value='{{college.collegeName}}'>{{college.collegeName}}</option>
+{% endfor %}
+</select>
+<button type='submit'>Get Data</button>
+</form>
+{% if collegeWaleCount %}
+Number Of Students Registered: {{collegeWaleCount}}
+{% endif %}<br><br><br>
+{% for collegeWala in collegeWale %}
+#########{{collegeWala.0.email}},  {{collegeWala.0.user.first_name}}, <br> 
+Events Registered: {% for event in collegeWala.1 %} {{event}}
+{% endfor %}<br>
+<br>
+{% endfor %}
