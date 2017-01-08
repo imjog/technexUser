@@ -1041,7 +1041,7 @@ def publicity(request):
 
 
 def regtrack(request):
-    if request.POST['passkey']!="njoefvoafjoadfjodcjocsjo"
+    if request.POST['passkey']!="njoefvoafjoadfjodcjocsjo":
         return render(request, '404.html')
     response={}
     try:
