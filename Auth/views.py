@@ -183,9 +183,9 @@ def register(request):
         user.save()
         print 'code base 1'
         try:
-            college = College.objects.filter(collegeName = data.get('college'))[0]
+            college = College.objects.filter(collegeName = str(data.get('college')).strip())[0]
         except:
-            college = College(collegeName = data.get('college'))
+            college = College(collegeName = str(data.get('college')).strip())
             college.save()
         techprofile.technexId = "TX"+str(10000+user.id)
         techprofile.college = college
