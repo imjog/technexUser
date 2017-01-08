@@ -2,47 +2,47 @@ var data = [
 {
 parentEvent: 'ascension',
 events:['momentum', 'la-trajectoire', 'daeroglisseur', 'drone-tech'],
-max:[5,5,5,5]
+max:[4,4,4,4]
 },
 {
 parentEvent: 'modex',
 events:['green-tech', 'open-hardware', 'open-software'],
-max:[5,5,5,]
+max:[4,4,4,]
 },
 {
 parentEvent: 'pahal',
 events:['greenx', 'vision', 'swachch', 'sampann', 'aagaz'],
-max:[5,5,5,5,5]
+max:[4,4,4,4,4]
 },
 {
 parentEvent: 'supernova',
 events:['scientists-utopia', 'astrophotography', 'astroquiz', 'exploring-interstellar',],
-max:[5,5,5,5,]
+max:[4,4,4,4]
 },
 {
 parentEvent: 'creatrix',
 events:['minimize', 'iso', 'collage', 'avant-garde', 'animaze', '2d'],
-max:[5,5,5,5,5,5]
+max:[4,4,4,4,4,4]
 },
 {
 parentEvent: 'riqueza',
 events:['analiticity', 'bulls-floor', 'krackat', 'manthan'],
-max:[5,1,1,5]
+max:[4,0,0,4]
 },
 {
 parentEvent: 'byte-the-bits',
 events:['mlware', 'international-coding-marathon', 'appathon', 'capture-the-flag'],
-max:[5,5,5,1]
+max:[4,4,4,0]
 },
 {
 parentEvent: 'extreme-engineering',
 events:['bridgeit', 'goldbergs-alley', 'axelerate', 'hydracs'],
-max:[5,5,5,5]
+max:[4,4,4,4]
 },
 {
 parentEvent: 'robonex',
 events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
-max:[5,5,5,5]
+max:[4,4,4,4]
 }
 ];
 var workdata=[
