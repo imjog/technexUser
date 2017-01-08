@@ -26,8 +26,8 @@ max:[5,5,5,5,5,5]
 },
 {
 parentEvent: 'riqueza',
-events:['analiticity', 'bulls-floor', 'krackat', 'manthan', 'conundrum'],
-max:[5,5,5,5,5,5]
+events:['analiticity', 'bulls-floor', 'krackat', 'manthan'],
+max:[5,1,1,5]
 },
 {
 parentEvent: 'byte-the-bits',
