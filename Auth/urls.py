@@ -48,6 +48,7 @@ urlpatterns = [
     url(r'^workshops/',workshop,name='WorkShop'),
     url(r'^data/',registrationData,name='data'),
     url(r'^publicity/',publicity,name='publicity'),
+    url(r'^regtrack/', regtrack , name='regtrack'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
