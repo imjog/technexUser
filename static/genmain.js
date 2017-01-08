@@ -697,11 +697,18 @@ app.controller('startup-cont', ['$scope', '$window', '$http' , function($scope, 
       {
              $(".team-reg-submit").html("Submitting. Please Wait!");
              data={
-              "idea": $scope.ideas,
               "teamName":$scope.teamName,
               "memberMails":$scope.a,
-              "teamLeader":$scope.leader
+              "teamLeader":$scope.leader,
+              "interests":$scope.interests,
+              "description":$scope.description,
+              "year": $scope.year,
+              "pindustry": $scope.indlist,
+              "btype": $scope.bslist
+
              }
+             $scope.indlist=[];
+             $scope.bslist=[];
              $http({
               method:'POST',
               url:'/startupregister/',
