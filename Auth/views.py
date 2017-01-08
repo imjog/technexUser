@@ -1037,3 +1037,23 @@ def publicity(request):
         return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData)})
     else:
         return render(request,'publicity.html',{'colleges':colleges})
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def regtrack(request):
+    response={}
+    try:
+        iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
+    except:
+        iitBHU = College.objects.filter(collegeName = 'IIT BHU')[0]
+    totalRegistrations = TechProfile.objects.all().count()
+    localRegistrations = TechProfile.objects.filter(college = iitBHU).count()
+    totalTeams = Team.objects.all().count()
+    localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
+    workshopTeamsTotal = WorkshopTeam.objects.all().count()
+    response['totalTeams']=totalTeams
+    response['totalRegistrations']=totalRegistrations
+    response['localRegistrations']=localRegistrations
+    response['localTeams']=localTeams
+    response['workshopTeamsTotal']=workshopTeamsTotal
+    return render(request,'data.html',{'response':response})           
