@@ -1039,9 +1039,12 @@ def publicity(request):
         return render(request,'publicity.html',{'colleges':colleges})
 
 
-
+@csrf_exempt
 def regtrack(request):
+    print request.POST
+    
     if request.POST['passkey']!="njoefvoafjoadfjodcjocsjo":
+        print "error in passkey"
         return render(request, '404.html')
     response={}
     try:
