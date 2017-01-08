@@ -13,6 +13,7 @@ from Auth.models import *
 from django_mobile import get_flavour
 from user_agents import parse
 from django.db.models import Q
+from django.contrib.auth.decorators import user_passes_test
 #from Auth.forms import *
 # Create your views here.
 server = 'http://www.technex.in/'
@@ -67,11 +68,11 @@ def profileData(request):
 def genetella(request):
     response = contextCall(request)
     return render(request, 'dash.html',response)
-    
+
 
 def ca(request):
     return redirect("http://ca.technex.in")
-    
+
 def sponsors(request):
     return redirect("http://16.technex.in/sponsors")
 
@@ -95,7 +96,7 @@ def contextCall(request):
         response['techProfile'] = techprofile
         teams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
         print teams
-        teamsData = []        
+        teamsData = []
         for team in teams:
             teamData = {}
 
@@ -118,7 +119,7 @@ def contextCall(request):
             teamData['memberNames'] = teamMemberNames
             teamData['memberUrls'] = teamMemberUrl
             teamsData.append(teamData)
-            
+
         print teamsData
         response['teams'] = teamsData
         #response['notificationArray'] = notificationData(request)
@@ -129,7 +130,7 @@ def contextCall(request):
 @login_required(login_url = '/register')
 def dummyDashboard(request):
     context = contextCall(request)
-    
+
     context['teamsAsMember'] = Team.objects.filter(members = context['techProfile'])
     context['teamsAsLeader'] = Team.objects.filter(teamLeader = context['techProfile'])
     print context
@@ -183,9 +184,9 @@ def register(request):
         user.save()
         print 'code base 1'
         try:
-            college = College.objects.get(collegeName = data.get('college'))
+            college = College.objects.filter(collegeName = str(data.get('college')).strip())[0]
         except:
-            college = College(collegeName = data.get('college'))
+            college = College(collegeName = str(data.get('college')).strip())
             college.save()
         techprofile.technexId = "TX"+str(10000+user.id)
         techprofile.college = college
@@ -218,8 +219,8 @@ An important note to ensure that the team can contact you further:  If you find 
        Our team will be at the task of updating you from time to time, the  information regarding the festival. Please keep visiting the website and the facebook page of Technex '17 to stay up-to-date with the latest happenings at Technex '17.
 
 
-Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
-              
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in.
+
 
 Looking forward to seeing you soon at Technex 2017.
 
@@ -241,7 +242,7 @@ Team Technex.'''%(techprofile.technexId)
         try:
             get = request.GET
             context['name'] = get['name']
-            context['uid'] = get['uid']            
+            context['uid'] = get['uid']
             if 'email' in get:
                 context['email'] = get['email']
 
@@ -258,7 +259,7 @@ def loginView(request):
         response['error'] = 'Already logged In'
         return JsonResponse(response)
     if request.method == 'POST':
-        
+
         post = request.POST
         try:
             try:
@@ -272,7 +273,7 @@ def loginView(request):
         #user = authenticate(username = post['email'], email= post['email'], password = post['password'])
         kUser = techProfile.user
         user = authenticate(username = kUser.username, password = post['password'])
-        
+
         if user is not None:
             login(request, user)
             response['status'] = 1
@@ -333,12 +334,12 @@ def fbConnect(request):
             response['context'] = context
             response['status'] = 0 #status signup prepopulation of data
         return JsonResponse(response)
-                
 
-        
-        
-        
-            
+
+
+
+
+
 '''
 
 def get_fb_token(app_id, app_secret):
@@ -349,7 +350,7 @@ def get_fb_token(app_id, app_secret):
     #secret_code = raw_input("Secret Code: ")
     payload = {'grant_type': 'client_credentials', 'scope':'user_likes,publish_actions', 'client_id': app_id, 'client_secret': app_secret,'redirect_uri':'http://localhost:8000/'}
     file = requests.post('https://graph.facebook.com/oauth/access_token?', params = payload)
-    
+
     print file.text #to test what the FB api responded with
     #result = file.text.split("=")[1]
     #print file.text #to test the TOKEN
@@ -372,7 +373,7 @@ def resetPass(request,key):
 
         try:
             forgotPass = ForgotPass.objects.get(key = int(key))
-            
+
             return render(request,"reset.html")
         except:
             messages.warning(request,'Invalid Url !')
@@ -451,8 +452,8 @@ def event2api(request):
 def event(request, key):
     response = {}
     if request.method == 'GET':
-        
-        
+
+
         try:
             parentEvent = ParentEvent.objects.get(nameSlug = key)
             parentEventname = parentEvent.categoryName
@@ -488,14 +489,14 @@ def event(request, key):
                 eventData['eventOptions'].append(eventOptionData)
             eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
             response['events'].append(eventData)
-        response['events'].sort(key= lambda x: x['eventOrder'])  
+        response['events'].sort(key= lambda x: x['eventOrder'])
         metaTags = MetaTags.objects.filter(event = parentEvent)
         #print json.dumps(response)
         return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags,'parentEventname':parentEventname})
     else:
         response['error'] = True
         response['status'] = 'Invalid Request'
-        return JsonResponse(response)    
+        return JsonResponse(response)
 
 def guestLecture(request):
     response = {}
@@ -514,7 +515,7 @@ def guestLecture(request):
             lectureData['photo'] = lecture.photo.encode('ascii','ignore')
             response['lectures'].append(lectureData)
     except:
-        response['status'] = 0  
+        response['status'] = 0
     return render(request, 'guest.html', {'lectures':response})
 
 def error404(request):
@@ -524,7 +525,7 @@ def error500(request):
     return render(request, '500.html')
 
 def send_email(recipient, subject, body):
-    
+
     return requests.post(
         "https://api.mailgun.net/v3/mg.technex.in/messages",
         auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),
@@ -544,7 +545,7 @@ def botApi(request):
             response['status'] = 0
         techProfile.botInfo = post['uid']
         techProfile.save()
-        
+
         return JsonResponse(response)
     return HttpResponse("Invalid Request!")
 
@@ -588,7 +589,7 @@ def forgotPassword(request):
         response['error'] = 'Invalid Request'
         return JsonResponse(response)
 
-        
+
 '''
 @csrf_exempt
 def resetPass(request,forgotPassKey):
@@ -627,7 +628,7 @@ def startupFair(request):
     return render(request, 'startupfair.html', {})
 
 def hospitality(request):
-    return render(request, 'hospitality.html', {})    
+    return render(request, 'hospitality.html', {})
 
 '''
 def read(request):
@@ -646,11 +647,11 @@ def read(request):
 
 def notificationData(request):
     readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile)[:5]
-    
+
     notificationArray = []
     for notification in readerStatus:
         notificationObject = {}
-        notificationObject['title'] = notification.notification.title  
+        notificationObject['title'] = notification.notification.title
         notificationObject['notificationId'] = notification.notification.notificationId
         notificationObject['description'] = notification.notification.description
         notificationObject['deadLine'] = notification.notification.time
@@ -697,8 +698,8 @@ Team Members- %s
 An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
 
 
-Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in/startupfair. 
-              
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in/startupfair.
+
 
 Looking forward to seeing you soon at Technex 2017.
 
@@ -719,7 +720,7 @@ Regards
         return JsonResponse(response)
 
 
-@login_required(login_url = '/register')
+#@login_required(login_url = '/register')
 def startUpData(request):
     response = {}
     try:
@@ -778,17 +779,17 @@ def checkunique(request):
         StartUpMails.objects.get(email = request)
         return False
     except:
-        return True    
+        return True
 
 
 @csrf_exempt
 def workshopRegister(request):
     response = {}
-     
+
     if request.method == 'POST':
         data = json.loads(request.body)
         workshop = Workshops.objects.get(slug = data['workshopSlug'])
-        
+
         try:
             # print "here"
             if data['teamName'] == '':
@@ -806,7 +807,7 @@ def workshopRegister(request):
             users = []
             # print "here"
             for member in data['members']:
-                try:    
+                try:
                     try:
                         user = TechProfile.objects.get(email = member)
                         users.append(user)
@@ -817,7 +818,7 @@ def workshopRegister(request):
                     response['status'] = 0
                     response['error'] = 'Member not Registered('+str(member)+')'
                     return JsonResponse(response)
-                
+
             users = list(set(users))
             try:
                 try:
@@ -830,7 +831,7 @@ def workshopRegister(request):
                     response['status'] = 0
                     response['error'] = 'You have Already registered for this event !!'
             except:
-                for u in users: 
+                for u in users:
                     try:
                         try:
                             team = WorkshopTeam.objects.get(workshop = workshop, members = u)
@@ -865,8 +866,8 @@ Team Members- %s
 An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
 
 
-Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
-              
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in.
+
 
 Looking forward to seeing you soon at Technex 2017.
 
@@ -880,7 +881,7 @@ Regards
             '''
             memberEmails = ""
             for user in users:
-                memberEmails += user.email+'  ' 
+                memberEmails += user.email+'  '
                 team.members.add(user)
             #send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
             #for user in users:
@@ -891,7 +892,7 @@ Regards
         response['status'] = 0
         return render(request, 'eventRegistration.html',contextCall(request))
         #return JsonResponse(response)
-        
+
 def botTest(request):
     email = request.user.techprofile.id
     return render(request,'thankyou.html',{'id':email})
@@ -919,8 +920,8 @@ def workshop(request):
             # print workshop.title
             # print "HH"
     except:
-        response['status']=0      
-    print response         
+        response['status']=0
+    print response
     return render(request,'workshop.html',{'workshops':response})
 '''
 @csrf_exempt
@@ -938,6 +939,7 @@ def workshop(request):
             workshopData['dateTime'] = workshop.dateTime
             workshopData['workshopFees'] = workshop.workshopFees
             workshopData['order'] = workshop.order
+            workshopData['link'] = workshop.slug
             workshopData['workshopOptions'] = []
             workshopOptions = WorkshopOptions.objects.filter(workshop = workshop)
             for workshopOption in workshopOptions:
@@ -976,7 +978,7 @@ def event(request, key):
                 eventData['eventOptions'].append(eventOptionData)
             eventData['eventOptions'].sort(key=lambda x: x['eventOptionOrder'])
             response['events'].append(eventData)
-        response['events'].sort(key= lambda x: x['eventOrder'])  
+        response['events'].sort(key= lambda x: x['eventOrder'])
         metaTags = MetaTags.objects.filter(event = parentEvent)
         #print json.dumps(response)
         return render(request,'index3.html',{'parentEvent':json.dumps(response), 'metaTags': metaTags,'parentEventname':parentEventname})
@@ -985,3 +987,33 @@ def event(request, key):
         response['status'] = 'Invalid Request'
         return JsonResponse(response)
 '''
+@user_passes_test(lambda u: u.is_superuser)
+def registrationData(request):
+    try:
+        iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
+    except:
+        iitBHU = College.objects.filter(collegeName = 'IIT BHU')[0]
+    totalRegistrations = TechProfile.objects.all().count()
+    localRegistrations = TechProfile.objects.filter(college = iitBHU).count()
+    totalTeams = Team.objects.all().count()
+    localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
+    workshopTeamsTotal = WorkshopTeam.objects.all().count()
+    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal})
+
+def publicity(request):
+    colleges = College.objects.all().order_by('collegeName')
+    if request.method == 'POST':
+        college = College.objects.filter(collegeName = request.POST['college'])
+        collegeWale = list(TechProfile.objects.filter(college = college))
+        eventsData = []
+        collegeWaleCount = len(collegeWale)
+        for collegeWala in collegeWale:
+            teams = Team.objects.filter(Q(members = collegeWala) | Q(teamLeader = collegeWala)).distinct()
+            events = []
+            for team in teams:
+                events.append(team.event.eventName)
+            eventsData.append(events)
+            print eventsData
+        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData)})
+    else:
+        return render(request,'publicity.html',{'colleges':colleges})

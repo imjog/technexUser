@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Workshops | Technex '17</title>
 		<meta name="description" content="Professsional certified workshops by experts on modern technologies at IIT (BHU)" />
-		<meta name="keywords" content="workshops, iit workshops, workshop in iit, iit bhu workshop, technex, technex 2017, technex 17, iit bhu, events, techfest, iot, android app, plc, scada, automation, data mining, 3D printing, digital marketing, bridge design" />
+		<meta name="keywords" content="workshops, iit workshops, workshop in iit, iit bhu workshop, technex, technex 2017, technex 17, iit bhu, events, techfest, iot, android app, plc, scada, automation, data mining, 3D printing, digital marketing, bridge design, workshop IIT, workshop IIT BHU, workshop IIT Varanasi, workshop BHU" />
 		<link rel="shortcut icon" href="/static/images/favicon.ico">
 		<link href="https://fonts.googleapis.com/css?family=Vidaloka" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/static/workshop/css/normalize.css" />
@@ -189,7 +189,7 @@ function navFunction() {
   <li class="topnav-li"><a href="#">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
   <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
-  
+
   <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
@@ -247,7 +247,7 @@ function navFunction() {
 			<!-- Landing wrap with sections -->
 			<div class="landing-wrap">
 				<section class="landing landing--above" style="background-image: url(/static/workshop/img/bcgimgfinal.jpg);background-color:rgba(0,0,0,.6);background-blend-mode: multiply;"></section>
-				<section class="landing landing--beneath" style="background-image: url(/static/workshop/img/2.jpg);">
+				<section class="landing landing--beneath" style="background-image: url(/static/workshop/img/12344.jpg);background-color:rgba(0,0,0,.8 );background-blend-mode:multiply;">
 					<canvas id="bubbles"></canvas>
 				</section>
 			</div>
@@ -258,9 +258,9 @@ function navFunction() {
 				<h1 class="landing-header__title" aria-label="Workshops" id="workshops">WORKSHOPS
                 </h1>
 				<p class="landing-header__tagline">Professsional and Certified</p>
-                
+
 			</header><!-- /landing-header -->
-            
+						<div class="registerButton" id="registerbtn"><a href="/dashboard/#/workshopreg">REGISTER</a></div>
             <div class="contactDetail" id="cDetail"><span style="font-weight:600;">CONTACT:</span><br>Raushan Kumar<br>+91-919-851-7176</div>
             <div class="viewWorkshop" id="vWork">View workshops</div>
 			<!-- Trigger button for layout change -->
@@ -284,17 +284,17 @@ function navFunction() {
 				{% for workshop in workshops.workshops %}
 				<div class="cd-panel from-right {{workshop.order}}">
 		<header class="cd-panel-header">
-			<h1>{{workshop.title}}</h1>
+			<h1 style="overflow:auto;">{{workshop.title}}</h1>
 			<a href="#0" class="cd-panel-close">Close</a>
 		</header>
 		<div class="cd-panel-container">
 			<div class="cd-panel-content" style="color: black;">
 			<div style="width: 100%;display: table;margin: 0 auto;">
-                <a class="registerWorkshop" href="/dashboard">REGISTER</a>
+                <a class="registerWorkshop" href="/dashboard/#/workshopreg/{{workshop.link}}">REGISTER</a>
                 </div>
                 <div class="cost"><span>COST: </span><span>₹{{workshop.workshopFees}}/ per person</span></div>
                 <br>
-                <div>
+                <div class="workshopDescription">
                 {{workshop.description | safe}}
                 </div>
 			</div> <!-- cd-panel-content -->

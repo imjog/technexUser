@@ -38,7 +38,7 @@ body {
     float: left;
 }
 ul{
- 
+
 }
 
 .abcd
@@ -1211,6 +1211,7 @@ body {
     font-size: 0.85em;
     padding: 15px 30px;
       border-right: 1px solid white;
+      display: none;
   }
 
   .article-nav {
@@ -1219,6 +1220,7 @@ body {
     left: 0;
     right: 0;
     border-top: 1px solid #f5f5f5;
+    display: none;
   }
 
   .article-nav button {
@@ -1306,7 +1308,7 @@ ul.topnav li.icon {display: none;}
     float: right;
     display: inline-block;
   }
-    ul.topnav li a{border:1px solid white;margin-right: 8px;}
+    ul.topnav li a{border:1px solid white;margin-right: 2px;}
 }
 
 @media screen and (max-width:680px) {
@@ -1332,28 +1334,28 @@ ul.topnav li.icon {display: none;}
     color: rgba(255,255,255,.9);
     position: relative;
     text-align: center;
-    z-index: 980; 
+    z-index: 980;
     right: -8%;
-    display: none;
+    display: block;
 }
 @media screen and (min-width:768px){
     .event-dis{
-        display: block; 
+        display: block;
     }
 }
 @media screen and (max-width:1024px){
     .event-dis{
-        right:-16%; 
+        right:-16%;
     }
 }
 @media screen and (min-width:1024px) and (max-width:1200px){
     .event-dis{
-        right:-12%; 
+        right:-12%;
     }
 }
 @media screen and (min-width:1500px){
      .event-dis{
-        right:-8%; 
+        right:-8%;
     }
 }
 .event-dis h3{
@@ -1375,6 +1377,7 @@ ul.topnav li.icon {display: none;}
 @media screen and (max-width:768px){
     .event-dis{
         right:-8%;
+        margin-top: 3%;
     }
 }
 
@@ -1404,10 +1407,10 @@ hr{
 .mob-event-content{
     margin-top: 0%;
     margin-left: -8%;
-    
+
 }
 .content-ul{
-    
+
 }
 .content-li{
     text-align: left;
@@ -1462,6 +1465,7 @@ big{
 }
 /*----------------------------NAVBAR--------------------------*/
 
+
 ul.topnav {
   list-style-type: none;
   margin: 0;
@@ -1478,17 +1482,26 @@ ul.topnav li a {
   display: inline-block;
   color: white;
   text-align: center;
-  padding: 14px 10px;
+  padding: 14px 9px;
   text-decoration: none;
   transition: 0.3s;
-  font-size: 13px;
+  font-size: 10px;
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
+}
+@media screen and (width:320px){
+    ul.topnav li a{
+        font-size: 12px;
+        padding: 14px 14px;
+    }
+    .icon a{
+      padding: 11px 6px;
+    }
 }
 @media (min-width:1320px){
     ul.topnav li a{
 /*        padding: 10px 10px;*/
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 @media (min-width:1386px){
@@ -1515,7 +1528,7 @@ ul.topnav li.icon {display: none;}
     float: right;
     display: inline-block;
   }
-    ul.topnav li a{border:1px solid white;margin-right: 8px;}
+    ul.topnav li a{border:1px solid white;margin-right: 2px;font-size: 15px;padding: 14px 14px;}
 }
 
 @media screen and (max-width:1386px) {
@@ -1542,53 +1555,31 @@ ul.topnav li.icon {display: none;}
     }
 }
 
-/*.jnavbar{
+.jnavbar{
     z-index: 2000000;
     position: relative;
+}
+@media screen and (max-width:1386px){
+    jnavbar{
     margin: 0 auto;
     display: table;
-}*/
-/*
-
-.topnav-li:after {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: red;
 }
-.topnav-li:before {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: yellow;
 }
-.topnav-li:after {
-  right: 0;
-  left: auto;
+.desktopLogo{
+  display: none;
 }
-.topnav-li:before {
-  left: 0;
+.mobLogo{
+  display: block;
+  margin-top: 2%;
 }
-.topnav-li:hover:after {
-  width: 100%;
-  left: 0;
+@media screen and (min-width:768px){
+  .desktopLogo{
+    display: block;
+  }
+  .mobLogo{
+    display: none;
+  }
 }
-.topnav-li:hover:before {
-  width: 100%;
-  right: 0;
-    left: auto;
-}
-*/
 /*-------------------/NAVBAR-------------------*/
 hr {
     display: none;
