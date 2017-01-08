@@ -30,6 +30,10 @@ class FbConnect(models.Model):
     def __unicode__(self):
         return self.uid
 class TechProfile(models.Model):
+    class Meta:
+        permissions = (
+            ('permission_code', 'Publicity portal'),
+        )
     user = models.OneToOneField(User)
     email = models.EmailField(max_length = 60,null = True, blank = True)
     technexId = models.CharField(max_length = 30,null = True,blank = True)

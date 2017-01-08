@@ -1009,6 +1009,7 @@ def registrationData(request):
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
     return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal})
 
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def publicity(request):
     colleges = College.objects.all().order_by('collegeName')
     if request.method == 'POST':
