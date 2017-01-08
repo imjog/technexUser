@@ -1106,7 +1106,8 @@ html, body {
     outline: none;
 }
 .featured-list__item{
-    height: 33%;
+    /*height: 33%;*/
+		height: auto;
 }
 @media screen and (min-width:768px){
     .featured-list__item{
