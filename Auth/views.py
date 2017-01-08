@@ -1024,7 +1024,12 @@ def publicity(request):
     colleges = College.objects.all().order_by('collegeName')
     if request.method == 'POST':
         college = College.objects.filter(collegeName = request.POST['college'])
-        collegeWale = list(TechProfile.objects.filter(college = college))
+        college = College.objects.filter(collegeWebsite = college[0].collegeWebsite).exclude(collegeWebsite = '0')
+        if college.count() == 0:
+            college = College.objects.filter(collegeName = request.POST['college'])
+        collegeWale = []
+        for col in college:
+            collegeWale.extend(TechProfile.objects.filter(college = col)) 
         eventsData = []
         collegeWaleCount = len(collegeWale)
         for collegeWala in collegeWale:

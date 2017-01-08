@@ -26,6 +26,7 @@ class College(models.Model):
     status = models.BooleanField(default = False)
     city = models.CharField(max_length=250,null = True, blank = True)
     state = models.CharField(max_length=250,null = True, blank = True,choices=state_choices)
+    collegeWebsite = models.CharField(max_length = 250, default = '0')
     def __unicode__(self):
         return self.collegeName
 class FbConnect(models.Model):
