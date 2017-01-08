@@ -1039,8 +1039,10 @@ def publicity(request):
         return render(request,'publicity.html',{'colleges':colleges})
 
 
-@user_passes_test(lambda u: u.is_superuser)
+
 def regtrack(request):
+    if request.POST['passkey']!="njoefvoafjoadfjodcjocsjo"
+        return render(request, '404.html')
     response={}
     try:
         iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
@@ -1056,4 +1058,4 @@ def regtrack(request):
     response['localRegistrations']=localRegistrations
     response['localTeams']=localTeams
     response['workshopTeamsTotal']=workshopTeamsTotal
-    return render(request,'data.html',{'response':response})           
+    return JsonResponse(response)           
