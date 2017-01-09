@@ -283,8 +283,8 @@ function navFunction() {
 			</section><!-- /featured-content -->
 				{% for workshop in workshops.workshops %}
 				<div class="cd-panel from-right {{workshop.order}}">
-		<header class="cd-panel-header">
-			<h1 style="overflow:auto;">{{workshop.title}}</h1>
+		<header class="cd-panel-header" style="overflow:hidden;">
+			<h1>{{workshop.title}}</h1>
 			<a href="#0" class="cd-panel-close">Close</a>
 		</header>
 		<div class="cd-panel-container">
