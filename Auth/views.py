@@ -674,14 +674,34 @@ def startUpRegistration(request):
             response['error'] = 'Already registered !!'
             return JsonResponse(response)
         except:
-            startUpFair = StartUpFair(idea = post['idea'], teamLeader = request.user.techprofile, teamName = post['teamName'])
+            startUpFair = StartUpFair(interests= post['interests'],description= post['description'],year=post['year'],teamLeader = request.user.techprofile, teamName = post['teamName'],angelListUrl = post['angel'],crunchBaseUrl = post['crunch'])
             startUpFair.save()
             memberEmails = ""
+            pindustry = []
+            btypes = []
+            # print post['pindustry']
+            for industry in post['pindustry']:
+                try:     
+                    pind = PrimaryIndustry.objects.get(name = industry)
+                    pindustry.append(pind)
+                except:
+                    response['status'] = 0
+                    response['error'] = 'Some Error Occured'
+                      
+            for btype in post['btype']:
+                bty = BusinessType.objects.get(name = btype)
+                btypes.append(bty)    
             for email in post['memberMails']:
                 if checkunique(email):
-                    s=StartUpMails(email=email,team=startUpFair)
+                    s=StartUpMails(email=email,team=startUpFair,)
                     memberEmails += email+'  '
                     s.save()
+            pindustry = list(set(pindustry)) 
+            btypes = list(set(btypes))      
+            for pind in pindustry:
+                startUpFair.pindusry.add(pind)
+            for bty in btypes:
+                startUpFair.bType.add(bty)    
             sf=StartUpFair.objects.get(teamLeader=request.user.techprofile)
             subject = "[Technex'17] Successful Registration"
             body = '''
@@ -728,7 +748,6 @@ def startUpData(request):
     except:
         response['status'] = 0
         response['error'] = 'Not registered for Start Up Fair !'
-    response['idea'] = startUp.idea
     response['teamName'] = startUp.teamName
     memberMails = StartUpMails.objects.filter(team = startUp)
     response['memberMails'] = []
@@ -999,3 +1018,59 @@ def registrationData(request):
     localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
     return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal})
+
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
+def publicity(request):
+    colleges = College.objects.all().order_by('collegeName')
+    if request.method == 'POST':
+        college = College.objects.filter(collegeName = request.POST['college'])
+        college = College.objects.filter(collegeWebsite = college[0].collegeWebsite).exclude(collegeWebsite = '0')
+        if college.count() == 0:
+            college = College.objects.filter(collegeName = request.POST['college'])
+        collegeWale = []
+        for col in college:
+            collegeWale.extend(TechProfile.objects.filter(college = col)) 
+        eventsData = []
+        collegeWaleCount = len(collegeWale)
+        referral = []
+        for collegeWala in collegeWale:
+            teams = Team.objects.filter(Q(members = collegeWala) | Q(teamLeader = collegeWala)).distinct()
+            referral.append(collegeWala.referral)
+            events = []
+            for team in teams:
+                events.append(team.event.eventName)
+            eventsData.append(events)
+            print eventsData
+        referral = list(set(referral))
+        try:
+            referral.remove(None)
+            referral.remove('')
+        except:
+            pass
+        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData),'referral':referral})
+    else:
+        return render(request,'publicity.html',{'colleges':colleges})
+
+@csrf_exempt
+def regtrack(request):
+    print request.POST
+    
+    if request.POST['passkey']!="njoefvoafjoadfjodcjocsjo":
+        print "error in passkey"
+        return render(request, '404.html')
+    response={}
+    try:
+        iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
+    except:
+        iitBHU = College.objects.filter(collegeName = 'IIT BHU')[0]
+    totalRegistrations = TechProfile.objects.all().count()
+    localRegistrations = TechProfile.objects.filter(college = iitBHU).count()
+    totalTeams = Team.objects.all().count()
+    localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
+    workshopTeamsTotal = WorkshopTeam.objects.all().count()
+    response['totalTeams']=totalTeams
+    response['totalRegistrations']=totalRegistrations
+    response['localRegistrations']=localRegistrations
+    response['localTeams']=localTeams
+    response['workshopTeamsTotal']=workshopTeamsTotal
+    return JsonResponse(response)           

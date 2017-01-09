@@ -13,6 +13,9 @@ year_choices = [
         (5,'Fifth'),
     ]
 
+state_choices = [
+    ('KA', 'Karnataka'), ('AP', 'Andhra Pradesh'), ('KL', 'Kerala'), ('TN', 'Tamil Nadu'), ('MH', 'Maharashtra'), ('UP', 'Uttar Pradesh'), ('GA', 'Goa'), ('GJ', 'Gujarat'), ('RJ', 'Rajasthan'), ('HP', 'Himachal Pradesh'), ('JK', 'Jammu and Kashmir'), ('TG', 'Telangana'), ('AR', 'Arunachal Pradesh'), ('AS', 'Assam'), ('BR', 'Bihar'), ('CG', 'Chattisgarh'), ('HR', 'Haryana'), ('JH', 'Jharkhand'), ('MP', 'Madhya Pradesh'), ('MN', 'Manipur'), ('ML', 'Meghalaya'), ('MZ', 'Mizoram'), ('NL', 'Nagaland'), ('OR', 'Orissa'), ('PB', 'Punjab'), ('SK', 'Sikkim'), ('TR', 'Tripura'), ('UA', 'Uttarakhand'), ('WB', 'West Bengal'), ('AN', 'Andaman and Nicobar'), ('CH', 'Chandigarh'), ('DN', 'Dadra and Nagar Haveli'), ('DD', 'Daman and Diu'), ('DL', 'Delhi'), ('LD', 'Lakshadweep'), ('PY', 'Pondicherry')
+]
 def get_user_image_folder(instance, filename):
     return "technexusers/%s-%s/%s" %(instance.user.first_name,instance.user.last_name, filename)
 
@@ -21,6 +24,9 @@ class College(models.Model):
     collegeId = models.AutoField(primary_key = True)
     collegeName = models.CharField(max_length=250)
     status = models.BooleanField(default = False)
+    city = models.CharField(max_length=250,null = True, blank = True)
+    state = models.CharField(max_length=250,null = True, blank = True,choices=state_choices)
+    collegeWebsite = models.CharField(max_length = 250, default = '0')
     def __unicode__(self):
         return self.collegeName
 class FbConnect(models.Model):
@@ -30,6 +36,10 @@ class FbConnect(models.Model):
     def __unicode__(self):
         return self.uid
 class TechProfile(models.Model):
+    class Meta:
+        permissions = (
+            ('permission_code', 'Publicity portal'),
+        )
     user = models.OneToOneField(User)
     email = models.EmailField(max_length = 60,null = True, blank = True)
     technexId = models.CharField(max_length = 30,null = True,blank = True)
@@ -106,6 +116,18 @@ class GuestLecture(models.Model):
     def __unicode__(self):
         return '%s %s'%(self.title,self.lecturerName)
 
+
+class PrimaryIndustry(models.Model):
+    name = models.CharField(max_length = 100)
+    def __unicode__(self):
+        return '%s'%(self.name)
+
+class BusinessType(models.Model):
+    name = models.CharField(max_length = 3)
+    def __unicode__(self):
+        return '%s'%(self.name)
+         
+
 class Workshops(models.Model):
     workshopId = models.AutoField(primary_key = True)
     order  = models.SmallIntegerField(null = True)
@@ -176,10 +198,16 @@ class ReaderStatus(models.Model):
     status = models.BooleanField(default = True)
 
 class StartUpFair(models.Model):
-    idea = models.CharField(max_length = 250)
+    idea = models.CharField(max_length = 250, blank = True)
+    interests = models.CharField(max_length = 500, null=True, blank = True)
+    description = models.CharField(max_length = 1000, null=True, blank=True)
+    year = models.SmallIntegerField(default = 0)
+    angelListUrl = models.CharField(max_length = 200, null = True, blank = True)
+    crunchBaseUrl = models.CharField(max_length = 200, null = True, blank = True)
+    pindusry = models.ManyToManyField(PrimaryIndustry,related_name="primary_industry",null = True)
+    bType = models.ManyToManyField(BusinessType,related_name="btype",null = True)  
     teamLeader = models.OneToOneField(TechProfile)
     teamName = models.CharField(max_length = 35)
-    
     def __unicode__(self):
         return self.teamName
 
@@ -187,4 +215,4 @@ class StartUpMails(models.Model):
     email = models.EmailField(max_length = 65,unique = True)
     team = models.ForeignKey(StartUpFair)
     def __unicode__(self):
-        return self.email        
+        return self.email    

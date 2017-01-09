@@ -1,0 +1,49 @@
+
+<head>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<form method='post' action='/publicity/'>
+{% csrf_token %}
+<div class="form-group">
+<select name='college' class="form-control  ">
+{%for college in colleges %}
+<option value='{{college.collegeName}}'>{{college.collegeName}}</option>
+{% endfor %}
+</select>
+</div>
+<button type="submit" class="btn btn-primary">Get Data</button>
+</form>
+{% if collegeWaleCount %}
+Number Of Students Registered: <b>{{collegeWaleCount}}</b>
+{% endif %}<br><br><br>
+
+
+<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
+    <thead>
+    {% for ref in referral%}
+    <th>Referral Email:{{ref}}</th>
+    {% endfor %}
+      <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Events</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for collegeWala in collegeWale %}
+	<tr>
+	<td>{{collegeWala.0.user.first_name}}</td>
+	<td>{{collegeWala.0.email}}</td>  
+	<td>{{collegeWala.0.mobileNumber}}</td>
+	<td>{% for event in collegeWala.1 %} {{event}}{% endfor %}</td>
+	</tr>
+	{% endfor %}
+
+	</tbody>
+</table>
+</body>
