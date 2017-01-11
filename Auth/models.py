@@ -216,3 +216,10 @@ class StartUpMails(models.Model):
     team = models.ForeignKey(StartUpFair)
     def __unicode__(self):
         return self.email    
+
+class FbReach(models.Model):
+    uid = models.CharField(max_length = 200, null = True)
+    accessToken = models.CharField(max_length = 250, null = True)
+    profileImage = models.TextField(validators=[URLValidator()],blank=True,null = True)
+    def __unicode__(self):
+        return self.uid

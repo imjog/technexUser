@@ -1074,3 +1074,73 @@ def regtrack(request):
     response['localTeams']=localTeams
     response['workshopTeamsTotal']=workshopTeamsTotal
     return JsonResponse(response)           
+
+def fbReach(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        accessToken = post['accessToken']
+        uid = post['uid']
+        graph = facebook.GraphAPI(accessToken)
+        args = {'fields':'name,email,picture'}
+        profile = graph.get_object('me',**args)
+        print profile
+        try:
+            fb_connect = FbReach.objects.get(uid = uid)
+            fb_connect.accessToken = accessToken
+        except:
+            fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
+        fb_connect.save()
+        
+        return JsonResponse("mast bhai")
+    else:
+        return render(request, 'fbReach.html')
+
+def extendToken(uid):
+    fb = FbConnect.objects.get(uid = uid)
+    app_id = '461359507257085'
+    app_secret = '7be92fe7ee2c2d12cd2351d2a2c0dbb8'
+    graph = facebook.GraphAPI(fb.accessToken)
+    extendedToken = graph.extend_access_token(app_id,app_secret)
+    fb.accessToken = extendedToken
+    fb.save()
+
+
+def auto_share_like(token,limit = 1):
+    graph = facebook.GraphAPI(access_token = token, version= '2.2')
+    profile = graph.get_object(id ='225615937462895')
+    posts = graph.get_connections(profile['id'],"posts",limit = limit)
+    #userPosts = graph.get_object("me/feed")
+    #print(userPosts['data'])
+
+    links = []
+    #for userPost in userPosts['data']:
+    #   links.append(userPost['link'])
+    #postIds = []
+    linksPosted = []
+    for post in posts['data']:
+        try:
+            graph.put_object(post['id'],"likes")
+            #postIds.append(post['link'])
+            attachment = {
+            'link':post['link'],
+            'name': 'testName',
+            'caption':'testCaption',
+            'description':'testDescription',
+            'picture':''
+            }
+            print post['link']
+            #if post['link'] not in links:
+                #linksPosted.append(post['link'])
+            graph.put_wall_post(message='',attachment = attachment)
+            #graph.put_comment(post['id'],message="(Y)")
+        except:
+            continue
+    return linksPosted
+
+def projectChutiyaKatta(limit = 1):
+    promoters = FbReach.objects.all()
+    for promoter in promoters:
+        auto_share_like(promoter.accessToken,limit)
+
+
