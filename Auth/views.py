@@ -1222,7 +1222,8 @@ def paymentApi(request):
         response['status'] = 0 
     return JsonResponse(response)
 
-def phoneNumberSepartion(request,number):
+def phoneNumberSepartion(request):
+    number = request.GET['number']
     lengthNumber = len(str(number))
     print number
     numberS = str(number)
@@ -1233,3 +1234,5 @@ def phoneNumberSepartion(request,number):
     noRa = str(h)
     return HttpResponse(noRa)
 
+def phoneSep(request):
+    return render(request, 'numberS.html')

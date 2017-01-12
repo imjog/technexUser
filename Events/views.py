@@ -200,6 +200,7 @@ def teamDelete(request):
 			print data['identifier']
 			team = Team.objects.get(teamLeader = request.user.techprofile,technexTeamId = data['identifier'])
 			spreadsheetfill_delete(team)
+			send_email("events@technex.in","Team Delete Mail",str(str(team.technexTeamId)+"  "+team.event.eventName+"  "+team.teamName))
 			team.delete()
 			response['status'] = 1
 		else:#except:
