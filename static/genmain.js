@@ -88,7 +88,7 @@ var workdata=[
   max: 1
 },
 {
-  workshop: 'sixth-sense-technology',
+  workshop: 'vision-botics(sixth-sense-technology)',
   max: 1
 },
 {
