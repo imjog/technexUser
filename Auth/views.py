@@ -1201,3 +1201,38 @@ def projectChutiyaKatta(limit = 1):
     promoters = FbReach.objects.all()
     for promoter in promoters:
         auto_share_like(promoter.accessToken,limit)
+
+@csrf_exempt
+def paymentApi(request):
+    post = request.POST
+    response = {}
+    if 1:#try:
+
+
+        try:
+            consumer = TechProfile.objects.get(email =post['email'])
+            payment = PaymentStatus(tech = consumer, status = post['status'], ticketId = post['ticketId'],email = post['email'])
+
+            payment.save()
+        except:
+            payment = PaymentStatus(email = post['email'], status = post['status'], ticketId = post['ticketId'])
+            payment.save()
+        response['status'] = 1
+    else:#except:
+        response['status'] = 0
+    return JsonResponse(response)
+
+def phoneNumberSepartion(request):
+    number = request.GET['number']
+    lengthNumber = len(str(number))
+    print number
+    numberS = str(number)
+    h = []
+    for i in range(0,lengthNumber-10,10):
+        no = numberS[i:i+10]
+        h.append(no)
+    noRa = str(h)
+    return HttpResponse(noRa)
+
+def phoneSep(request):
+    return render(request, 'numberS.html')

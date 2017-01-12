@@ -196,11 +196,14 @@ def teamDelete(request):
 	response = {}
 	if request.method == 'POST':
 		data = json.loads(request.body)
-		try:
+		if 1:#try:
 			print data['identifier']
-			team = Team.objects.get(teamLeader = request.user.techprofile,technexTeamId = data['identifier']).delete()
+			team = Team.objects.get(teamLeader = request.user.techprofile,technexTeamId = data['identifier'])
+			spreadsheetfill_delete(team)
+			send_email("events@technex.in","Team Delete Mail",str(str(team.technexTeamId)+"  "+team.event.eventName+"  "+team.teamName))
+			team.delete()
 			response['status'] = 1
-		except:
+		else:#except:
 			response['status'] = 0
 		return JsonResponse(response)
 	else:
@@ -283,3 +286,20 @@ def spreadsheetfill_register(team):
 	url = sheetUrls[team.event.nameSlug.encode("utf-8")]
 	requests.post(url,data=dic)
 	
+def spreadsheetfill_delete(team):
+	#members = team.members.all()
+	#print members[0].email.encode("utf-8")
+	#print members[0].college.collegeName
+	#for m in team.members.all():
+	#	members.append(m.email.encode("utf-8"))
+	dic = {
+	"teamName":team.teamName,
+	"leaderEmail":team.teamLeader.email,
+	"leaderMobile":str(team.teamLeader.mobileNumber),
+	"leaderCollege":team.teamLeader.college.collegeName,
+	"teamId":team.technexTeamId,
+	"teamDelete":1
+	}
+	print dic
+	url = sheetUrls[team.event.nameSlug.encode("utf-8")]
+	requests.post(url,data=dic)

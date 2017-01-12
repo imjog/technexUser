@@ -221,7 +221,7 @@ th
                             <h4>{{team.leader}}</h4>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-danger btn-xs" ng-click='deleteTeam($index)' ng-disabled='1'>Delete</button>
+                            <button type="button" class="btn btn-danger btn-xs" ng-click='deleteTeam($index)' ng-disabled='team.leaderEmail != profileEmail'>Delete</button>
                           <!-- ng-disabled='team.leaderEmail != profileEmail' -->
                           </td>
                          <!--  <td>
