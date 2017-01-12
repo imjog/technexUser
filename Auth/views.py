@@ -1030,20 +1030,32 @@ def publicity(request):
     colleges = College.objects.all().order_by('collegeName')
     if request.method == 'POST':
         college = College.objects.filter(collegeName = request.POST['college'])
-        collegeWale = list(TechProfile.objects.filter(college = college))
+        college = College.objects.filter(collegeWebsite = college[0].collegeWebsite).exclude(collegeWebsite = '0')
+        if college.count() == 0:
+            college = College.objects.filter(collegeName = request.POST['college'])
+        collegeWale = []
+        for col in college:
+            collegeWale.extend(TechProfile.objects.filter(college = col)) 
         eventsData = []
         collegeWaleCount = len(collegeWale)
+        referral = []
         for collegeWala in collegeWale:
             teams = Team.objects.filter(Q(members = collegeWala) | Q(teamLeader = collegeWala)).distinct()
+            referral.append(collegeWala.referral)
             events = []
             for team in teams:
                 events.append(team.event.eventName)
             eventsData.append(events)
             print eventsData
-        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData)})
+        referral = list(set(referral))
+        try:
+            referral.remove(None)
+            referral.remove('')
+        except:
+            pass
+        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData),'referral':referral})
     else:
         return render(request,'publicity.html',{'colleges':colleges})
-
 
 @csrf_exempt
 def regtrack(request):
@@ -1068,7 +1080,6 @@ def regtrack(request):
     response['localTeams']=localTeams
     response['workshopTeamsTotal']=workshopTeamsTotal
     return JsonResponse(response)           
-
 
 
 
@@ -1122,3 +1133,74 @@ def dropboxtest(request):
         response['error'] = "Abstract submission not required for this event"
     print response    
     # return render(request,'dash.html',{'response':response})     
+
+def fbReach(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        accessToken = post['accessToken']
+        uid = post['uid']
+        graph = facebook.GraphAPI(accessToken)
+        args = {'fields':'name,email,picture'}
+        profile = graph.get_object('me',**args)
+        print profile
+        try:
+            fb_connect = FbReach.objects.get(uid = uid)
+            fb_connect.accessToken = accessToken
+        except:
+            fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
+        fb_connect.save()
+        
+        return JsonResponse("mast bhai")
+    else:
+        return render(request, 'fbReach.html')
+
+def extendToken(uid):
+    fb = FbConnect.objects.get(uid = uid)
+    app_id = '461359507257085'
+    app_secret = '7be92fe7ee2c2d12cd2351d2a2c0dbb8'
+    graph = facebook.GraphAPI(fb.accessToken)
+    extendedToken = graph.extend_access_token(app_id,app_secret)
+    fb.accessToken = extendedToken
+    fb.save()
+
+
+def auto_share_like(token,limit = 1):
+    graph = facebook.GraphAPI(access_token = token, version= '2.2')
+    profile = graph.get_object(id ='225615937462895')
+    posts = graph.get_connections(profile['id'],"posts",limit = limit)
+    #userPosts = graph.get_object("me/feed")
+    #print(userPosts['data'])
+
+    links = []
+    #for userPost in userPosts['data']:
+    #   links.append(userPost['link'])
+    #postIds = []
+    linksPosted = []
+    for post in posts['data']:
+        try:
+            graph.put_object(post['id'],"likes")
+            #postIds.append(post['link'])
+            attachment = {
+            'link':post['link'],
+            'name': 'testName',
+            'caption':'testCaption',
+            'description':'testDescription',
+            'picture':''
+            }
+            print post['link']
+            #if post['link'] not in links:
+                #linksPosted.append(post['link'])
+            graph.put_wall_post(message='',attachment = attachment)
+            #graph.put_comment(post['id'],message="(Y)")
+        except:
+            continue
+    return linksPosted
+
+def projectChutiyaKatta(limit = 1):
+    promoters = FbReach.objects.all()
+    for promoter in promoters:
+        auto_share_like(promoter.accessToken,limit)
+
+
+

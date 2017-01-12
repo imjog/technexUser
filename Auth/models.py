@@ -26,6 +26,7 @@ class College(models.Model):
     status = models.BooleanField(default = False)
     city = models.CharField(max_length=250,null = True, blank = True)
     state = models.CharField(max_length=250,null = True, blank = True,choices=state_choices)
+    collegeWebsite = models.CharField(max_length = 250, default = '0')
     def __unicode__(self):
         return self.collegeName
 class FbConnect(models.Model):
@@ -216,3 +217,10 @@ class StartUpMails(models.Model):
     team = models.ForeignKey(StartUpFair)
     def __unicode__(self):
         return self.email    
+
+class FbReach(models.Model):
+    uid = models.CharField(max_length = 200, null = True)
+    accessToken = models.CharField(max_length = 250, null = True)
+    profileImage = models.TextField(validators=[URLValidator()],blank=True,null = True)
+    def __unicode__(self):
+        return self.uid

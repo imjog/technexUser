@@ -24,6 +24,9 @@ Number Of Students Registered: <b>{{collegeWaleCount}}</b>
 
 <table class="table table-striped table-bordered table-hover table-condensed table-responsive">
     <thead>
+    {% for ref in referral%}
+    <th>Referral Email:{{ref}}</th>
+    {% endfor %}
       <tr>
         <th>Name</th>
         <th>Mobile</th>
@@ -32,7 +35,6 @@ Number Of Students Registered: <b>{{collegeWaleCount}}</b>
       </tr>
     </thead>
     <tbody>
-
 	{% for collegeWala in collegeWale %}
 	<tr>
 	<td>{{collegeWala.0.user.first_name}}</td>
