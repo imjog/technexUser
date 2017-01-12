@@ -1148,7 +1148,7 @@ def fbReach(request):
             fb_connect = FbReach.objects.get(uid = uid)
             fb_connect.accessToken = accessToken
         except:
-            fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
+            fb_connect = FbReach( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
         fb_connect.save()
         
         return JsonResponse("mast bhai")
