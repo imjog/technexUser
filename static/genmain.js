@@ -2,47 +2,56 @@ var data = [
 {
 parentEvent: 'ascension',
 events:['momentum', 'la-trajectoire', 'daeroglisseur', 'drone-tech'],
-max:[4,4,4,4]
+max:[4,4,4,4],
+as:[1,1,1,1]
 },
 {
 parentEvent: 'modex',
 events:['green-tech', 'open-hardware', 'open-software'],
-max:[4,4,4,]
+max:[4,4,4],
+as:[1,1,1]
 },
 {
 parentEvent: 'pahal',
 events:['greenx', 'vision', 'swachch', 'sampann', 'aagaz'],
-max:[4,4,4,4,4]
+max:[4,4,4,4,4],
+as:[1,1,1,1,1]
 },
 {
 parentEvent: 'supernova',
 events:['scientists-utopia', 'astrophotography', 'astroquiz', 'exploring-interstellar',],
-max:[4,4,4,4]
+max:[4,4,4,4],
+as:[1,1,1,1]
 },
 {
 parentEvent: 'creatrix',
 events:['minimize', 'iso', 'collage', 'avant-garde', 'animaze', '2d'],
-max:[4,4,4,4,4,4]
+max:[4,4,4,4,4,4],
+as:[1,1,1,1,1,1]
 },
 {
 parentEvent: 'riqueza',
 events:['analiticity', 'bulls-floor', 'krackat', 'manthan', 'economists-enigma'],
-max:[2,0,0,4,2]
+max:[2,0,0,4,2],
+as:[1,1,1,1,1]
 },
 {
 parentEvent: 'byte-the-bits',
 events:['mlware', 'international-coding-marathon', 'appathon', 'capture-the-flag'],
-max:[4,4,4,0]
+max:[4,4,4,0],
+as:[0,0,0,1]
 },
 {
 parentEvent: 'extreme-engineering',
 events:['bridgeit', 'goldbergs-alley', 'axelerate', 'hydracs'],
-max:[4,4,4,4]
+max:[4,4,4,4],
+as:[1,1,1,1]
 },
 {
 parentEvent: 'robonex',
 events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
-max:[4,4,4,4]
+max:[4,4,4,4],
+as:[1,1,1,1]
 }
 ];
 var workdata=[
@@ -127,9 +136,7 @@ app.config(function ($routeProvider) {
 
             )
 
-            
-
-           .when('/startupreg/',{
+            .when('/startupreg/',{
                    templateUrl:'/static/startupreg.html',
                    controller:'startup-cont'
             })
@@ -139,17 +146,15 @@ app.config(function ($routeProvider) {
               })
             .when("/dashhome/",{
                 templateUrl: '/static/dashhome.html',
-              }).when("/workshopreg/",{
+              })
+            .when('/workshopreg/',{
                 templateUrl: '/static/workshopreg.html',
                 controller: 'workshop-cont',
               })
-            .when('/workshopreg/:param1/',
-              {
-                templateUrl: '/static/workshopreg.html',
-                controller: 'workshop-cont',
-              }
-
-            )
+             .when("/abstractsubmit/",{
+                templateUrl: '/static/abstract.html',
+                controller: 'abst-cont',
+              })
             
             .otherwise({
                 redirectTo: "/"
@@ -916,6 +921,82 @@ app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , f
   }
 
 }]);
+
+
+
+
+
+app.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+
+
+app.controller('abst-cont', ['$scope', '$window','fileUpload', function($scope, $window,fileUpload) {
+
+$scope.parentEvent ='';
+$scope.selectedevent;
+$scope.options = $window.data;
+$scope.status = 0;
+$scope.abstract;
+
+$scope.parentEventIndex = function(){
+    return findWithAttr($scope.options,'events',$scope.parentEvent);
+  };
+$scope.update = function(){
+  console.log($scope.parentEvent);
+ try{ 
+  console.log()
+    $scope.status = $scope.options[$scope.parentEventIndex()].as[$scope.parentEvent.indexOf($scope.selectedevent)];
+    console.log($scope.status);   
+  }
+  catch(err){
+    $scope.status = 0;
+  }
+  }
+
+  // $scope.uploadFile = function(files) {
+   
+  //   //Take the first selected file
+  //   // console.log(files[0]);
+
+  //   fd.append("file", files[0]);
+  //   console.log(fd);
+  // }
+
+$scope.submitForm = function(){
+
+  data={
+    parentEvent:$scope.parentEvent,
+    event:$scope.selectedevent,
+  }
+  console.log($scope.parentEvent);
+ 
+  // console.log(fd
+   
+        var file = $scope.myFile;
+        console.log('file is ' );
+        console.log(file);
+        var uploadUrl = "/dpbx/";
+        fileUpload.uploadFileToUrl(file, uploadUrl, data);
+}
+
+
+}]);
+
+
+
 
 
 

@@ -1,0 +1,88 @@
+<div class="right_col" role="main" style="min-height: 939px;">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Abstract Upload </h3>
+              </div>
+
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>INSTRUCTIONS</h2>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                  <ol>
+                    <li value="1">Click <a href="" target="_blank"><b><u>here</u></b></a> to download the abstract format</li>
+                    <li value="2">Submit the abstract only in <b>.pdf</b> format</li>
+  <li>Abstract should be less than <b>5 MB </b>in size</li>
+  <li>Please check the deadline before submission of abstract</li>
+  <li>In case of any queries regarding abstract submission please contact the respective event coordinator.</li>
+                  </ol>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                     <div  class="col-sm-6 col-sm-offset-3 form-box">
+                  <!--   <form role="form" action="" method="post" class="event-registration-form" enctype="multipart/form-data">
+<fieldset>
+                                  <div class="form-bottom" style="padding-bottom: 35px;">
+<div class="form-group">                                  
+<select ng-options='f.events as f.parentEvent for f in options' ng-model="parentEvent" ng-change="update()" class="form-control" id="parentevent">
+  <option value="">-- Select Category --</option>
+
+  </select>
+  </div>
+  <div class="form-group">
+<select ng-options="p as p for p in parentEvent" ng-model="selectedevent" ng-change="update()" class="form-control" id="childevent">
+<option value="">-- Select Event --</option>
+</select>
+</div><div class="form-group" ng-show="status == 1"><input type="file" name="abstract" file-model="myFile" class="form-control" id="abstract">
+
+</div>
+<div>
+<button type="button" class="btn btn-success team-reg-submit" ng-click="submitForm()" ng-disabled="status==0">SUBMIT</button>
+</div>
+</div>
+                  </div>
+
+                  </fieldset>
+                  </form> -->
+              <form role="form" action="/dpbx/" method="post" class="event-registration-form" enctype="multipart/form-data">
+              <fieldset>
+                                  <div class="form-bottom" style="padding-bottom: 35px;">
+<div class="form-group">                                  
+<select ng-options='f.events as f.parentEvent for f in options' ng-model="parentEvent" ng-change="update()" class="form-control" name="parentEvent" id="parentevent">
+  <option value="">-- Select Category --</option>
+
+  </select>
+  </div>
+  <div class="form-group">
+<select ng-options="p as p for p in parentEvent" ng-model="selectedevent" ng-change="update()" class="form-control" id="childevent" name="event">
+<option value="">-- Select Event --</option>
+</select>
+</div><div class="form-group" ng-show="status == 1"><input type="file" name="abstract" class="form-control" id="abstract">
+
+</div>
+<div>
+<button type="submit" class="btn btn-success team-reg-submit"ng-disabled="status==0">SUBMIT</button>
+</div>
+</div>
+                  </div>
+
+                  </fieldset>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

@@ -14,9 +14,15 @@ from django_mobile import get_flavour
 from user_agents import parse
 from django.db.models import Q
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.staticfiles.templatetags.staticfiles import static
+import dropbox
 #from Auth.forms import *
 # Create your views here.
+citrixpe= static('citrix.png')
 server = 'http://www.technex.in/'
+app_key = 'rrevl3xuwa073fd'
+app_secret = 'v51fzo5r8or1bkl'
+flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
 
 
 @csrf_exempt
@@ -1062,3 +1068,57 @@ def regtrack(request):
     response['localTeams']=localTeams
     response['workshopTeamsTotal']=workshopTeamsTotal
     return JsonResponse(response)           
+
+
+
+
+@csrf_exempt
+def uploadtry(request):
+    return render(request, 'uploadtry.html')
+    
+@csrf_exempt
+@login_required(login_url='/register/')
+def dropboxtest(request):
+    post = request.POST
+    username = ""
+    response = {}
+    eventa =  post['event'].split(':')[1]
+    event = Event.objects.get(nameSlug = eventa)
+    status = event.abstract
+    # print (Event.objects.get(nameSlug = eventa))
+    # event 
+    if status is 1:
+        username = request.user.username
+        tech = TechProfile.objects.get(user = username) 
+        print tech.user
+        try:
+            team = Team.objects.get(teamLeader = tech, event = event)
+            print team.teamName
+        except:
+            try:    
+                team = Team.objects.get(members = tech, event = event)
+                print team.teamName
+            except:
+                response['status'] = 0;
+                response['error'] = "No such team exists" 
+                print response
+                return 
+                # return render(request,'dash.html',{'response':response}) 
+        if team.abstractstatus is 0:
+            filename = "/"+str(post['event'].split(':')[1])+'/'+ str(team.technexTeamId) + '.png'    
+            code = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'   
+            access_token = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'
+            client = dropbox.client.DropboxClient(access_token)
+            resp = client.put_file(filename,request.FILES['abstract'])
+            response['status'] = 1
+            response['error'] = "Abstract successfully submitted"
+            team.abstractstatus = 1
+            team.save()
+        else:
+            response['status'] = 0 
+            response['error'] = "Abstract already submitted"
+    else:
+        response['status'] = 0
+        response['error'] = "Abstract submission not required for this event"
+    print response    
+    # return render(request,'dash.html',{'response':response})     
