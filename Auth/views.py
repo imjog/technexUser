@@ -1150,8 +1150,8 @@ def fbReach(request):
         except:
             fb_connect = FbReach( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
         fb_connect.save()
-        
-        return JsonResponse("mast bhai")
+        response['status'] = 1
+        return JsonResponse(response)
     else:
         return render(request, 'fbReach.html')
 
