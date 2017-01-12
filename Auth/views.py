@@ -1222,3 +1222,14 @@ def paymentApi(request):
         response['status'] = 0 
     return JsonResponse(response)
 
+def phoneNumberSepartion(request,number):
+    lengthNumber = len(str(number))
+    print number
+    numberS = str(number)
+    h = []
+    for i in range(0,lengthNumber-10,10):
+        no = numberS[i:i+10]
+        h.append(no)
+    noRa = str(h)
+    return HttpResponse(noRa)
+

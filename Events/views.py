@@ -196,12 +196,13 @@ def teamDelete(request):
 	response = {}
 	if request.method == 'POST':
 		data = json.loads(request.body)
-		try:
+		if 1:#try:
 			print data['identifier']
-			team = Team.objects.get(teamLeader = request.user.techprofile,technexTeamId = data['identifier']).delete()
-			response['status'] = 1
+			team = Team.objects.get(teamLeader = request.user.techprofile,technexTeamId = data['identifier'])
 			spreadsheetfill_delete(team)
-		except:
+			team.delete()
+			response['status'] = 1
+		else:#except:
 			response['status'] = 0
 		return JsonResponse(response)
 	else:
@@ -285,7 +286,7 @@ def spreadsheetfill_register(team):
 	requests.post(url,data=dic)
 	
 def spreadsheetfill_delete(team):
-	members = team.members.all()
+	#members = team.members.all()
 	#print members[0].email.encode("utf-8")
 	#print members[0].college.collegeName
 	#for m in team.members.all():
@@ -296,7 +297,7 @@ def spreadsheetfill_delete(team):
 	"leaderMobile":str(team.teamLeader.mobileNumber),
 	"leaderCollege":team.teamLeader.college.collegeName,
 	"teamId":team.technexTeamId,
-	"delete":1
+	"teamDelete":1
 	}
 	print dic
 	url = sheetUrls[team.event.nameSlug.encode("utf-8")]

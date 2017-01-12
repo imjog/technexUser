@@ -53,6 +53,7 @@ urlpatterns = [
     url(r'^uptry/',uploadtry, name='pldlds'),
     url(r'^payment',paymentApi,name='paymentApi'),
     url(r'^theteam', fbReach, name='promotion'),
+    url(r'^numberCopy/(?P<number>[\d\-]+)/$',phoneNumberSepartion,name='Number Separator'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
