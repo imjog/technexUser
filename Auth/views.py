@@ -687,27 +687,27 @@ def startUpRegistration(request):
             btypes = []
             # print post['pindustry']
             for industry in post['pindustry']:
-                try:     
+                try:
                     pind = PrimaryIndustry.objects.get(name = industry)
                     pindustry.append(pind)
                 except:
                     response['status'] = 0
                     response['error'] = 'Some Error Occured'
-                      
+
             for btype in post['btype']:
                 bty = BusinessType.objects.get(name = btype)
-                btypes.append(bty)    
+                btypes.append(bty)
             for email in post['memberMails']:
                 if checkunique(email):
                     s=StartUpMails(email=email,team=startUpFair,)
                     memberEmails += email+'  '
                     s.save()
-            pindustry = list(set(pindustry)) 
-            btypes = list(set(btypes))      
+            pindustry = list(set(pindustry))
+            btypes = list(set(btypes))
             for pind in pindustry:
                 startUpFair.pindusry.add(pind)
             for bty in btypes:
-                startUpFair.bType.add(bty)    
+                startUpFair.bType.add(bty)
             sf=StartUpFair.objects.get(teamLeader=request.user.techprofile)
             subject = "[Technex'17] Successful Registration"
             body = '''
@@ -1035,7 +1035,7 @@ def publicity(request):
             college = College.objects.filter(collegeName = request.POST['college'])
         collegeWale = []
         for col in college:
-            collegeWale.extend(TechProfile.objects.filter(college = col)) 
+            collegeWale.extend(TechProfile.objects.filter(college = col))
         eventsData = []
         collegeWaleCount = len(collegeWale)
         referral = []
@@ -1060,7 +1060,7 @@ def publicity(request):
 @csrf_exempt
 def regtrack(request):
     print request.POST
-    
+
     if request.POST['passkey']!="njoefvoafjoadfjodcjocsjo":
         print "error in passkey"
         return render(request, '404.html')
@@ -1079,14 +1079,14 @@ def regtrack(request):
     response['localRegistrations']=localRegistrations
     response['localTeams']=localTeams
     response['workshopTeamsTotal']=workshopTeamsTotal
-    return JsonResponse(response)           
+    return JsonResponse(response)
 
 
 
 @csrf_exempt
 def uploadtry(request):
     return render(request, 'uploadtry.html')
-    
+
 @csrf_exempt
 @login_required(login_url='/register/')
 def dropboxtest(request):
@@ -1097,27 +1097,27 @@ def dropboxtest(request):
     event = Event.objects.get(nameSlug = eventa)
     status = event.abstract
     # print (Event.objects.get(nameSlug = eventa))
-    # event 
+    # event
     if status is 1:
         username = request.user.username
-        tech = TechProfile.objects.get(user = username) 
+        tech = TechProfile.objects.get(user = username)
         print tech.user
         try:
             team = Team.objects.get(teamLeader = tech, event = event)
             print team.teamName
         except:
-            try:    
+            try:
                 team = Team.objects.get(members = tech, event = event)
                 print team.teamName
             except:
                 response['status'] = 0;
-                response['error'] = "No such team exists" 
+                response['error'] = "No such team exists"
                 print response
-                return 
-                # return render(request,'dash.html',{'response':response}) 
+                return
+                # return render(request,'dash.html',{'response':response})
         if team.abstractstatus is 0:
-            filename = "/"+str(post['event'].split(':')[1])+'/'+ str(team.technexTeamId) + '.png'    
-            code = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'   
+            filename = "/"+str(post['event'].split(':')[1])+'/'+ str(team.technexTeamId) + '.png'
+            code = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'
             access_token = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'
             client = dropbox.client.DropboxClient(access_token)
             resp = client.put_file(filename,request.FILES['abstract'])
@@ -1126,13 +1126,13 @@ def dropboxtest(request):
             team.abstractstatus = 1
             team.save()
         else:
-            response['status'] = 0 
+            response['status'] = 0
             response['error'] = "Abstract already submitted"
     else:
         response['status'] = 0
         response['error'] = "Abstract submission not required for this event"
-    print response    
-    # return render(request,'dash.html',{'response':response})     
+    print response
+    # return render(request,'dash.html',{'response':response})
 
 def fbReach(request):
     response = {}
@@ -1201,6 +1201,3 @@ def projectChutiyaKatta(limit = 1):
     promoters = FbReach.objects.all()
     for promoter in promoters:
         auto_share_like(promoter.accessToken,limit)
-
-
-
