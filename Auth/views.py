@@ -1144,3 +1144,14 @@ def projectChutiyaKatta(limit = 1):
         auto_share_like(promoter.accessToken,limit)
 
 
+def paymentApi(request):
+    post = request.POST
+    response = {}
+    consumer = TechProfile.objects.get(post['email'])
+    try:
+        payment = PaymentStatus(tech = consumer, status = post['status'], ticketId = post['ticketId'])
+        response['status'] = 1
+        return JsonResponse(response)
+    except:
+        response['status'] = 0
+        return JsonResponse(response)
