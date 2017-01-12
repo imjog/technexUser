@@ -1228,11 +1228,11 @@ def phoneNumberSepartion(request):
     print number
     numberS = str(number)
     h = []
-    for i in range(0,lengthNumber-10,10):
-        no = numberS[i:i+10]
+    for i in range(0,lengthNumber-9,10):
+        no = int(numberS[i:i+10])
         h.append(no)
-    noRa = str(h)
-    return HttpResponse(noRa)
+    
+    return HttpResponse(str(h))
 
 def phoneSep(request):
     return render(request, 'numberS.html')
