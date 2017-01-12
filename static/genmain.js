@@ -155,6 +155,9 @@ app.config(function ($routeProvider) {
                 templateUrl: '/static/abstract.html',
                 controller: 'abst-cont',
               })
+             .when("/payment/",{
+              templateUrl: '/static/payments.html', 
+             })
             
             .otherwise({
                 redirectTo: "/"
