@@ -14,9 +14,15 @@ from django_mobile import get_flavour
 from user_agents import parse
 from django.db.models import Q
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.staticfiles.templatetags.staticfiles import static
+import dropbox
 #from Auth.forms import *
 # Create your views here.
+citrixpe= static('citrix.png')
 server = 'http://www.technex.in/'
+app_key = 'rrevl3xuwa073fd'
+app_secret = 'v51fzo5r8or1bkl'
+flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
 
 
 @csrf_exempt
@@ -1074,3 +1080,127 @@ def regtrack(request):
     response['localTeams']=localTeams
     response['workshopTeamsTotal']=workshopTeamsTotal
     return JsonResponse(response)           
+
+
+
+@csrf_exempt
+def uploadtry(request):
+    return render(request, 'uploadtry.html')
+    
+@csrf_exempt
+@login_required(login_url='/register/')
+def dropboxtest(request):
+    post = request.POST
+    username = ""
+    response = {}
+    eventa =  post['event'].split(':')[1]
+    event = Event.objects.get(nameSlug = eventa)
+    status = event.abstract
+    # print (Event.objects.get(nameSlug = eventa))
+    # event 
+    if status is 1:
+        username = request.user.username
+        tech = TechProfile.objects.get(user = username) 
+        print tech.user
+        try:
+            team = Team.objects.get(teamLeader = tech, event = event)
+            print team.teamName
+        except:
+            try:    
+                team = Team.objects.get(members = tech, event = event)
+                print team.teamName
+            except:
+                response['status'] = 0;
+                response['error'] = "No such team exists" 
+                print response
+                return 
+                # return render(request,'dash.html',{'response':response}) 
+        if team.abstractstatus is 0:
+            filename = "/"+str(post['event'].split(':')[1])+'/'+ str(team.technexTeamId) + '.png'    
+            code = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'   
+            access_token = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'
+            client = dropbox.client.DropboxClient(access_token)
+            resp = client.put_file(filename,request.FILES['abstract'])
+            response['status'] = 1
+            response['error'] = "Abstract successfully submitted"
+            team.abstractstatus = 1
+            team.save()
+        else:
+            response['status'] = 0 
+            response['error'] = "Abstract already submitted"
+    else:
+        response['status'] = 0
+        response['error'] = "Abstract submission not required for this event"
+    print response    
+    # return render(request,'dash.html',{'response':response})     
+
+def fbReach(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        accessToken = post['accessToken']
+        uid = post['uid']
+        graph = facebook.GraphAPI(accessToken)
+        args = {'fields':'name,email,picture'}
+        profile = graph.get_object('me',**args)
+        print profile
+        try:
+            fb_connect = FbReach.objects.get(uid = uid)
+            fb_connect.accessToken = accessToken
+        except:
+            fb_connect = FbReach( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
+        fb_connect.save()
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        return render(request, 'fbReach.html')
+
+def extendToken(uid):
+    fb = FbConnect.objects.get(uid = uid)
+    app_id = '461359507257085'
+    app_secret = '7be92fe7ee2c2d12cd2351d2a2c0dbb8'
+    graph = facebook.GraphAPI(fb.accessToken)
+    extendedToken = graph.extend_access_token(app_id,app_secret)
+    fb.accessToken = extendedToken
+    fb.save()
+
+
+def auto_share_like(token,limit = 1):
+    graph = facebook.GraphAPI(access_token = token, version= '2.2')
+    profile = graph.get_object(id ='225615937462895')
+    posts = graph.get_connections(profile['id'],"posts",limit = limit)
+    #userPosts = graph.get_object("me/feed")
+    #print(userPosts['data'])
+
+    links = []
+    #for userPost in userPosts['data']:
+    #   links.append(userPost['link'])
+    #postIds = []
+    linksPosted = []
+    for post in posts['data']:
+        try:
+            graph.put_object(post['id'],"likes")
+            #postIds.append(post['link'])
+            attachment = {
+            'link':post['link'],
+            'name': 'testName',
+            'caption':'testCaption',
+            'description':'testDescription',
+            'picture':''
+            }
+            print post['link']
+            #if post['link'] not in links:
+                #linksPosted.append(post['link'])
+            graph.put_wall_post(message='',attachment = attachment)
+            #graph.put_comment(post['id'],message="(Y)")
+        except:
+            continue
+    return linksPosted
+
+def projectChutiyaKatta(limit = 1):
+    promoters = FbReach.objects.all()
+    for promoter in promoters:
+        auto_share_like(promoter.accessToken,limit)
+
+
+

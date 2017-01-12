@@ -325,6 +325,24 @@ app.service("profileData", function(){
             staffArray.splice(personIndex, 1, obj)
         }
     });
+app.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl,data){
+        var fd = new FormData();
+        fd.append('file', file);
+        fd.append('parentEvent', data['parentEvent']);
+        fd.append('event',data['event']);
+        $http.post(uploadUrl,fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(){
+          console.log("jdjdj");
+        })
+        .error(function(){
+          console.log("loose");
+        });
+    }
+}]);
 function makeimg(name){
    console.log(name);
     nameSplit = name.split(" ");

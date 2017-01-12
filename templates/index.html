@@ -199,10 +199,11 @@ function navFunction() {
 
     <section>
      
-<div class="logo">
+
+ {% if browser != 'Firefox' %}
+ <div class="logo">
 <img src="/static/assets/images/logo-footer.png">
   </div>
- {% if browser != 'Firefox' %}
 
                    <div style="margin-top: -11%"> 
                      <svg viewBox="0 0 1500 400">
@@ -269,8 +270,71 @@ function navFunction() {
 {% else %}
 
 <!-- MOZILLA STARTS -->
-<div class="technex-mozila">TECHNEX'17</div>
-        <p class="technex-dates">TOWARDS SUSTAINABILITY&nbsp;&nbsp; | &nbsp;&nbsp;24 - 26 FEBRUARY</p>
+<div class="logo">
+<img src="/static/assets/images/logo-footer.png" style="width: 78%">
+  </div>
+                   <div style="margin-top: -11%"> 
+                     <svg viewBox="0 0 1500 400" style="font-size: 1em">
+            <symbol id="s-text">
+            
+             <text text-anchor="middle"
+                   x="50%"
+                   y="68%"
+                   class="text-line2"
+                   style="font-family:codebold;
+                   letter-spacing: 15px;"
+                   >
+               TECHNEX'17
+             </text>
+            </symbol>
+
+            <g class="g-ants">
+             <use xlink:href="#s-text"
+               class="text-copy"></use>     
+             <use xlink:href="#s-text"
+               class="text-copy"></use>     
+             <use xlink:href="#s-text"
+               class="text-copy"></use>     
+             <use xlink:href="#s-text"
+               class="text-copy"></use>     
+             <use xlink:href="#s-text"
+               class="text-copy"></use>     
+            </g>
+           <div class="technex-dates" style="display: table;text-align: center;margin: 0 auto;MARGIN-TOP: -7%;">TOWARDS SUSTAINABILITY&nbsp;&nbsp; | &nbsp;&nbsp;24 - 26 FEBRUARY</div>
+             <div class="countdown" style="
+    display: table;
+    margin: 0 auto;
+    /* align-items: center; */
+    transform: scale(1.5);
+    /* margin-left: 37%; */
+    margin-top: 4%;
+">
+    <div data-time="1368630000" class="timerBrand clearfix">
+        <div class="clock days first">
+            <div class="digit_1"><div class="upper">0</div></div>
+            <div class="digit_2"><div class="upper">0</div></div>
+            <div class="label">DAYS</div>
+        </div>
+        <div class="clock hours">
+            <div class="digit_1"><div class="upper">0</div></div>
+            <div class="digit_2"><div class="upper">0</div></div>
+            <div class="label">HOURS</div>
+        </div>
+        <div class="clock minutes">
+            <div class="digit_1"><div class="upper">0</div></div>
+            <div class="digit_2"><div class="upper">0</div></div>
+            <div class="label">MINUTES</div>
+        </div>
+        <div class="clock seconds">
+            <div class="digit_1"><div class="upper">0</div></div>
+            <div class="digit_2"><div class="upper">0</div></div>
+            <div class="label">SECONDS</div>
+        </div>
+    </div>
+</div>
+          </svg>
+
+          </div>
 <!-- MOZILLA ENDS -->   
 {% endif %}
       <div class="navigation navigation-initial">
