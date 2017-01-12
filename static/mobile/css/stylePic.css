@@ -7,6 +7,11 @@
     border: none;
     box-sizing: border-box;
 }
+@media screen and (min-width:768px){
+  *{
+    margin-top: 0;
+  }
+}
 *:before,
 *:after{
 	box-sizing: border-box;
@@ -60,7 +65,7 @@ body{
 	overflow: hidden;
 	border: solid 5px gray;
     border-radius: 5px;
-}	
+}
 /*}*/
 
 #carousel figure:nth-child(1){transform: rotateY(0deg) translateZ(288px);}
