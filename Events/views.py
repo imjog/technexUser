@@ -282,3 +282,4 @@ def spreadsheetfill_register(team):
 	print dic
 	url = sheetUrls[team.event.nameSlug.encode("utf-8")]
 	requests.post(url,data=dic)
+	

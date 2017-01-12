@@ -14,9 +14,15 @@ from django_mobile import get_flavour
 from user_agents import parse
 from django.db.models import Q
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.staticfiles.templatetags.staticfiles import static
+import dropbox
 #from Auth.forms import *
 # Create your views here.
+citrixpe= static('citrix.png')
 server = 'http://www.technex.in/'
+app_key = 'rrevl3xuwa073fd'
+app_secret = 'v51fzo5r8or1bkl'
+flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
 
 
 @csrf_exempt
@@ -1075,6 +1081,59 @@ def regtrack(request):
     response['workshopTeamsTotal']=workshopTeamsTotal
     return JsonResponse(response)           
 
+
+
+@csrf_exempt
+def uploadtry(request):
+    return render(request, 'uploadtry.html')
+    
+@csrf_exempt
+@login_required(login_url='/register/')
+def dropboxtest(request):
+    post = request.POST
+    username = ""
+    response = {}
+    eventa =  post['event'].split(':')[1]
+    event = Event.objects.get(nameSlug = eventa)
+    status = event.abstract
+    # print (Event.objects.get(nameSlug = eventa))
+    # event 
+    if status is 1:
+        username = request.user.username
+        tech = TechProfile.objects.get(user = username) 
+        print tech.user
+        try:
+            team = Team.objects.get(teamLeader = tech, event = event)
+            print team.teamName
+        except:
+            try:    
+                team = Team.objects.get(members = tech, event = event)
+                print team.teamName
+            except:
+                response['status'] = 0;
+                response['error'] = "No such team exists" 
+                print response
+                return 
+                # return render(request,'dash.html',{'response':response}) 
+        if team.abstractstatus is 0:
+            filename = "/"+str(post['event'].split(':')[1])+'/'+ str(team.technexTeamId) + '.png'    
+            code = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'   
+            access_token = 'Jfu-UCbHKFAAAAAAAAAADg2rnPqxU34KZq5hcmosIIxjsO8H4LNNjm4P6JJa16hF'
+            client = dropbox.client.DropboxClient(access_token)
+            resp = client.put_file(filename,request.FILES['abstract'])
+            response['status'] = 1
+            response['error'] = "Abstract successfully submitted"
+            team.abstractstatus = 1
+            team.save()
+        else:
+            response['status'] = 0 
+            response['error'] = "Abstract already submitted"
+    else:
+        response['status'] = 0
+        response['error'] = "Abstract submission not required for this event"
+    print response    
+    # return render(request,'dash.html',{'response':response})     
+
 def fbReach(request):
     response = {}
     if request.method == 'POST':
@@ -1089,10 +1148,10 @@ def fbReach(request):
             fb_connect = FbReach.objects.get(uid = uid)
             fb_connect.accessToken = accessToken
         except:
-            fb_connect = FbConnect( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
+            fb_connect = FbReach( accessToken = accessToken, uid = uid,profileImage = profile['picture']['data']['url'])
         fb_connect.save()
-        
-        return JsonResponse("mast bhai")
+        response['status'] = 1
+        return JsonResponse(response)
     else:
         return render(request, 'fbReach.html')
 
@@ -1143,15 +1202,22 @@ def projectChutiyaKatta(limit = 1):
     for promoter in promoters:
         auto_share_like(promoter.accessToken,limit)
 
-
+@csrf_exempt
 def paymentApi(request):
     post = request.POST
     response = {}
-    consumer = TechProfile.objects.get(post['email'])
-    try:
-        payment = PaymentStatus(tech = consumer, status = post['status'], ticketId = post['ticketId'])
+    if 1:#try:
+        
+    
+        try:
+            consumer = TechProfile.objects.get(email =post['email'])
+            payment = PaymentStatus(tech = consumer, status = post['status'], ticketId = post['ticketId'],email = post['email'])
+            
+            payment.save()
+        except:
+            payment = PaymentStatus(email = post['email'], status = post['status'], ticketId = post['ticketId'])
+            payment.save()
         response['status'] = 1
-        return JsonResponse(response)
-    except:
-        response['status'] = 0
-        return JsonResponse(response)
+    else:#except:
+        response['status'] = 0 
+    return JsonResponse(response)

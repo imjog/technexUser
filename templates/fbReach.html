@@ -1,3 +1,5 @@
+
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
 <script>
  function theAjax(uri,data){
  return $.ajax({
@@ -41,7 +43,8 @@ function fb_login() {
             console.log(access_token);
             data = {}
             data['accessToken'] = response.authResponse.accessToken;
-    data['uid'] = response.authResponse.userID;
+            data['uid'] = response.authResponse.userID;
+            data['csrfmiddlewaretoken'] = "{{ csrf_token }}";
     //data['csrfmiddlewaretoken']= csrfmiddlewaretoken;
     theAjax('/promoteTechnex/',data).done(function(response){
       console.log(response);
@@ -63,7 +66,7 @@ function fb_login() {
 
         }
     }, {
-        scope: 'public_profile,publish_'
+        scope: 'public_profile,publish_actions'
     });
 }
 

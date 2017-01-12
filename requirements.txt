@@ -21,4 +21,5 @@ django_mobile==0.7.0
 user_agents==0.3.2
 ua-parser==0.3.6
 pyyaml
+dropbox
 

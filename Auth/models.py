@@ -76,6 +76,7 @@ class Event(models.Model):
     prizeMoney = models.IntegerField(null=True, blank=True)
     maxMembers = models.SmallIntegerField(null=True,blank=True)
     nameSlug = models.SlugField(null = True)
+    abstract = models.SmallIntegerField(default = 0)
     def __unicode__(self):
         return self.eventName
 
@@ -87,7 +88,7 @@ class Team(models.Model):
     event = models.ForeignKey(Event)
     teamLeader = models.ForeignKey(TechProfile,related_name = 'teamLeader')
     members = models.ManyToManyField(TechProfile,related_name = 'members',null = True)
-
+    abstractstatus = models.SmallIntegerField(default = 0)
     def __unicode__(self):
         return self.teamName
 
@@ -225,6 +226,9 @@ class FbReach(models.Model):
         return self.uid
 
 class PaymentStatus(models.Model):
-    tech = models.ForeignKey(TechProfile)
-    status = models.BooleanField(default = False)
+    tech = models.ForeignKey(TechProfile, null = True, blank = True)
+    email = models.EmailField(max_length = 50, null = True, blank = True)
+    status = models.CharField(max_length = 15)
     ticketId = models.CharField(max_length = 100)
+    def __unicode__(self):
+        return self.email
