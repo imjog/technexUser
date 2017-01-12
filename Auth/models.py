@@ -224,3 +224,11 @@ class FbReach(models.Model):
     profileImage = models.TextField(validators=[URLValidator()],blank=True,null = True)
     def __unicode__(self):
         return self.uid
+
+class PaymentStatus(models.Model):
+    tech = models.ForeignKey(TechProfile, null = True, blank = True)
+    email = models.EmailField(max_length = 50, null = True, blank = True)
+    status = models.CharField(max_length = 15)
+    ticketId = models.CharField(max_length = 100)
+    def __unicode__(self):
+        return self.email
