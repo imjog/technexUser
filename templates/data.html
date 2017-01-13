@@ -3,3 +3,9 @@ Local Event Teams: {{localTeams}}<br>
 Total Events Team: {{totalTeams}}<br>
 Local User Registrations:{{localRegistrations}}<br>
 Total User Registrations:{{totalRegistrations}}<br>
+
+{% for data in eventcount.eventdata %}
+<div style="width: 100%">
+{{data.event}} --------->  {{data.count}}
+</div>
+{% endfor %}

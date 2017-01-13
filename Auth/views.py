@@ -1014,6 +1014,8 @@ def event(request, key):
 '''
 @user_passes_test(lambda u: u.is_superuser)
 def registrationData(request):
+    eventcount = {}
+    eventcount['eventdata'] = []
     try:
         iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
     except:
@@ -1023,7 +1025,16 @@ def registrationData(request):
     totalTeams = Team.objects.all().count()
     localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
-    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal})
+    events = Event.objects.all()
+    print events
+    for event in events:
+        eventcountobj = {}
+        eventcountobj['event'] = event.eventName
+        eventcountobj['count'] = Team.objects.filter(event = event).count()
+        eventcount['eventdata'].append(eventcountobj)
+        print eventcount
+    print eventcount    
+    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount})
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def publicity(request):
@@ -1236,3 +1247,10 @@ def phoneNumberSepartion(request):
 
 def phoneSep(request):
     return render(request, 'numberS.html')
+
+
+def eventRegistrationView(request):
+    response = {}
+    events = Events.objects.all();
+    print events
+
