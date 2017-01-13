@@ -1016,6 +1016,8 @@ def event(request, key):
 def registrationData(request):
     eventcount = {}
     eventcount['eventdata'] = []
+    workshopcount = {}
+    workshopcount['workshopdata'] = []
     try:
         iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
     except:
@@ -1026,6 +1028,7 @@ def registrationData(request):
     localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
     events = Event.objects.all()
+    workshops = Workshops.objects.all()
     print events
     for event in events:
         eventcountobj = {}
@@ -1033,8 +1036,13 @@ def registrationData(request):
         eventcountobj['count'] = Team.objects.filter(event = event).count()
         eventcount['eventdata'].append(eventcountobj)
         print eventcount
-    print eventcount    
-    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount})
+    for workshop in workshops:
+        workshopcountobj = {}
+        workshopcountobj['workshop'] = workshop.title
+        workshopcountobj['count'] = (WorkshopTeam.objects.filter(workshop = workshop)).count()
+        workshopcount['workshopdata'].append(workshopcountobj)
+        print workshopcount
+    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount, 'workshopcount':workshopcount})
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def publicity(request):

@@ -3,9 +3,24 @@ Local Event Teams: {{localTeams}}<br>
 Total Events Team: {{totalTeams}}<br>
 Local User Registrations:{{localRegistrations}}<br>
 Total User Registrations:{{totalRegistrations}}<br>
-
+<hr>
+<hr>
+<div style="width: 100%">
+<h1>Event wise Team Count</h1>
+</div>
 {% for data in eventcount.eventdata %}
 <div style="width: 100%">
 {{data.event}} --------->  {{data.count}}
 </div>
 {% endfor %}
+<hr>
+<hr>
+
+<div style="width: 100%">
+<h1>Workshop wise Teams</h1>
+</div>
+{% for data in workshopcount.workshopdata %}
+<div style="width: 100%">
+{{data.workshop}} --------->  {{data.count}}
+</div>
+{% endfor %}	
