@@ -1034,6 +1034,7 @@ def registrationData(request):
         eventcountobj = {}
         eventcountobj['event'] = event.eventName
         eventcountobj['count'] = Team.objects.filter(event = event).count()
+        eventcountobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
         eventcount['eventdata'].append(eventcountobj)
         print eventcount
     for workshop in workshops:

@@ -10,8 +10,12 @@ Total User Registrations:{{totalRegistrations}}<br>
 </div>
 {% for data in eventcount.eventdata %}
 <div style="width: 100%">
-{{data.event}} --------->  {{data.count}}
+{{data.event}}
+<br>
+  Total : {{data.count}}
+  Local : {{data.localcount}}
 </div>
+<hr>
 {% endfor %}
 <hr>
 <hr>
