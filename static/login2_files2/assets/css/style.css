@@ -379,46 +379,20 @@ ul.topnav li.icon {display: none;}
     line-height: 16px;
     }
 }
+.desktopLogo{
+  display: none;
+}
+.mobLogo{
+  display: block;
+  margin-top: 2%;
+}
+@media screen and (min-width:768px){
+  .desktopLogo{
+    display: block;
+  }
+  .mobLogo{
+    display: none;
+  }
+}
 
-/*
-
-.topnav-li:after {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: red;
-}
-.topnav-li:before {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: yellow;
-}
-.topnav-li:after {
-  right: 0;
-  left: auto;
-}
-.topnav-li:before {
-  left: 0;
-}
-.topnav-li:hover:after {
-  width: 100%;
-  left: 0;
-}
-.topnav-li:hover:before {
-  width: 100%;
-  right: 0;
-    left: auto;
-}
-*/
 /*-------------------/NAVBAR-------------------*/
