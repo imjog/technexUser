@@ -85,8 +85,10 @@ def sponsors(request):
 def team(request):
     teams = TeamList.objects.all()
     return render(request,"teamPage.html",{"teams":teams})
-
+@csrf_exempt
 def IndexView(request):
+    if request.method == 'POST':
+        return render(request, "mobile.html")
     agent = parse(request.META['HTTP_USER_AGENT'])
 
     if(get_flavour(request) == 'full'):
