@@ -1251,7 +1251,7 @@ def phoneNumberSepartion(request):
     for i in range(0,lengthNumber-9,10):
         no = int(numberS[i:i+10])
         h.append(no)
-    
+
     return HttpResponse(str(h))
 
 def phoneSep(request):
@@ -1263,3 +1263,5 @@ def eventRegistrationView(request):
     events = Events.objects.all();
     print events
 
+def exhibitions(request):
+    return render(request,'exhibitions.html')

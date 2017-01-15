@@ -65,8 +65,8 @@ function navFunction() {
 					{% for team in teams|dictsort:"order"  %}
 					<li class="filter" data-filter=".color-{{forloop.counter}}"><a href="#0" data-type="color-{{forloop.counter}}">{{team.teamName}}</a></li>
 					{% endfor %}
-				</ul>			</div> 
-		</div> 
+				</ul>			</div>
+		</div>
 
 		<section class="cd-gallery">
 
@@ -81,18 +81,18 @@ function navFunction() {
 			{% endfor %}
 			{% endwith %}
 			{% endfor %}
-			
+
 				<li class="gap"></li>
 				<li class="gap"></li>
 				<li class="gap"></li>
 			</ul>
 			<div class="cd-fail-message" style="color: white;">Will be displayed soon</div>
 		</section>
-	</main> 
+	</main>
 <script src="/static/team/js/jquery-2.1.1.js"></script>
 <script src="/static/team/js/jquery.mixitup.min.js"></script>
 <script src="/static/team/js/main.js"></script>
-    
+
 <script>
 
 $(document).ready(function() {
