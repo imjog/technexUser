@@ -1166,41 +1166,45 @@ def extendToken(uid):
 
 
 def auto_share_like(token,limit = 1):
-    graph = facebook.GraphAPI(access_token = token, version= '2.2')
-    profile = graph.get_object(id ='225615937462895')
-    posts = graph.get_connections(profile['id'],"posts",limit = limit)
-    #userPosts = graph.get_object("me/feed")
-    #print(userPosts['data'])
-
-    links = []
-    #for userPost in userPosts['data']:
-    #   links.append(userPost['link'])
-    #postIds = []
-    linksPosted = []
-    for post in posts['data']:
-        try:
-            graph.put_object(post['id'],"likes")
-            #postIds.append(post['link'])
-            attachment = {
-            'link':post['link'],
-            'name': 'testName',
-            'caption':'testCaption',
-            'description':'testDescription',
-            'picture':''
-            }
-            print post['link']
-            #if post['link'] not in links:
-                #linksPosted.append(post['link'])
-            graph.put_wall_post(message='',attachment = attachment)
-            #graph.put_comment(post['id'],message="(Y)")
-        except:
-            continue
-    return linksPosted
+    try:
+        graph = facebook.GraphAPI(access_token = token, version= '2.2')
+        profile = graph.get_object(id ='225615937462895')
+        posts = graph.get_connections(profile['id'],"posts",limit = limit)
+        #userPosts = graph.get_object("me/feed")
+        #print(userPosts['data'])
+        '''
+        links = []
+        for userPost in userPosts['data']:
+            links.append(userPost['link'])
+        '''
+        #postIds = []
+        linksPosted = []
+        for post in posts['data']:
+            try:
+                #graph.put_object(post['id'],"likes")
+                #postIds.append(post['link'])
+                attachment = {
+                'link':post['link'],
+                'name': '',
+                'caption':'',
+                'description':'',
+                'picture':''
+                }
+                print post['link']
+                #if post['link'] not in links:
+                linksPosted.append(post['link'])
+                graph.put_wall_post(message='',attachment = attachment)
+                #graph.put_comment(post['id'],message="(Y)")
+            except:
+                continue
+        return linksPosted
+    except:
+        return "gand PHat gayi"
 
 def projectChutiyaKatta(limit = 1):
     promoters = FbReach.objects.all()
     for promoter in promoters:
-        auto_share_like(promoter.accessToken,limit)
+        print auto_share_like(promoter.accessToken,limit)
 
 @csrf_exempt
 def paymentApi(request):
