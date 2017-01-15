@@ -4,7 +4,7 @@
 body{
 	background: #fff;
 	color: #000;
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family:sans-serif;
 	font-size: 13px;
 }
 a{
@@ -42,14 +42,14 @@ h1{
 	text-align: center;
 }
 h1 span{
-	font-family: 'Playfair Display', serif;
+	font-family: sans-serif;
 	font-style: italic;
 	text-transform: none;
 	font-size: 20px;
 }
 /* Header Style */
 .header{
-	font-family:"Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+	font-family:sans-serif;
 	font-size: 10px;
 	padding: 3px 5px;
 	background: #000;

@@ -46,14 +46,14 @@
 .ei-title h2{
 	font-size: 40px;
 	line-height: 50px;
-	font-family: 'Playfair Display', serif;
+	font-family:sans-serif;
 	font-style: italic;
 	color: #b5b5b5;
 }
 .ei-title h3{
 	font-size: 70px;
 	line-height: 70px;
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family: sans-serif;
 	text-transform: uppercase;
 	color: #000;
 }
@@ -196,7 +196,7 @@ ul.topnav li a {
         font-size: 16px;
     }
 }
-@media (min-width:1386px){
+@media (min-width:1320px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);
     }
@@ -208,12 +208,14 @@ ul.topnav li a:hover {
 }
     ul.topnav{
         display: inline-block;
-    }
-}
+				margin: 0 auto;
+				display: table;
+			}
+		}
 
 ul.topnav li.icon {display: none;}
 
-@media screen and (max-width:1386px) {
+@media screen and (max-width:1320px) {
   ul.topnav li:not(:first-child){display: none;}
     ul.topnav li:nth-child(10){display: block; float: right;}
   ul.topnav li.icon {
@@ -223,7 +225,7 @@ ul.topnav li.icon {display: none;}
     ul.topnav li a{border:1px solid white;margin-right: 2px;font-size: 15px;padding: 14px 14px;}
 }
 
-@media screen and (max-width:1386px) {
+@media screen and (max-width:1320px) {
   ul.topnav.responsive {position: relative;}
   ul.topnav.responsive li.icon {
     position: absolute;
@@ -250,6 +252,7 @@ ul.topnav li.icon {display: none;}
 .jnavbar{
     z-index: 2000000;
     position: relative;
+		background: black;
 }
 @media screen and (max-width:1386px){
     jnavbar{
