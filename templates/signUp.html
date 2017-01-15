@@ -61,7 +61,7 @@ function navFunction() {
   <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
   <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
-  
+
   <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
   <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
@@ -71,18 +71,18 @@ function navFunction() {
   REGISTER / LOGIN
   {% endif %}</a></li>
   <li class="icon">
-    <a href="javascript:void(0);" style="font-size:18px;padding:10px;" onclick="navFunction()">☰</a>
+    <a href="javascript:void(0);" onclick="navFunction()">☰</a>
   </li>
 </ul>
 </div>
 <!----------/NAVBAR-------->
      <body>
-   
+
         <div class="top-content">
-             	
+
             <div class="inner-bg">
                 <div class="container" style="margin-top: -50px;">
-                  
+
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                                  <form role="form" method="post" class="login-form">
@@ -123,7 +123,7 @@ function navFunction() {
                         <div class="form-group" style="margin-top: 6%;margin: 0 auto;">
                           <button type="button" class="form-control btn" id="login-btn">LOGIN</button>
                           </div>
-         
+
 
                             <div class="form-group">
                             <a href="#" id="not-registered" class="pull-left">Not Registered? Register Here</a>
@@ -133,9 +133,9 @@ function navFunction() {
                             </fieldset>
 
                           </form>
-                        	
+
                         	<form role="form" action="" method="post" class="registration-form" style="display: none;">
-                        		
+
                           {% csrf_token %}
 
 
@@ -181,7 +181,7 @@ function navFunction() {
                                   <input type="text" name="name" placeholder="Name" class="form-first-name form-control" id="form-first-name" value='{% if name %}{{name}}{% endif %}'>
 
                                 </div>
-                              
+
                                          <div class="form-group">
                                   <label class="sr-only" for="form-email">Email</label>
                                   <input name="email" placeholder="Email" class="form-email form-control" id="laluram" type="text" value='{% if email %}{{email}}{% endif %}'>
@@ -222,8 +222,8 @@ function navFunction() {
                             </div>
                           </fieldset>
                           <fieldset>
-                          
-                          
+
+
                               <div class="form-top">
                                 <div class="form-top-left">
                                   <h3>Step 2 / 2</h3>
@@ -249,7 +249,7 @@ function navFunction() {
                         <option value="3">Third</option>
                     <option value="4">Fourth</option>
                         <option value="5">Fifth</option>
-                            </select> 
+                            </select>
                             </div>
                                <div class="form-group">
                                   <label class="sr-only" for="form-mobilenumber">MOBILE NUMBER</label>
@@ -264,9 +264,9 @@ function navFunction() {
                                 <div class="form-group">
                                   <label class="sr-only" for="form-city">City</label>
                                   <input type="text" list="citylist" name="form-city" placeholder="City (current)" class="form-city form-control" id="form-city">
-                            
-                                            
-                               
+
+
+
                             </div>
                             <div class="form-group" style="color: white;">
                             HAVE A CA REFERRAL ID?
@@ -277,7 +277,7 @@ function navFunction() {
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="form-ca-email">CA-Email</label>
-                             <input name="ca-email" placeholder="Referral Email" class="form-ca-email form-control" id="referral-email" type="text" disabled="true"/> 
+                             <input name="ca-email" placeholder="Referral Email" class="form-ca-email form-control" id="referral-email" type="text" disabled="true"/>
                                                            <div class="alert-message alert-email" id="invalid-referral">
                                    <button type="button" id="close-invalid-referral" class="close-btn close-btna">
     <span aria-hidden="true">&times;</span>
@@ -290,21 +290,21 @@ function navFunction() {
                 </button>
                  No Such CA Email
           </div>
-                              
+
 
                             </div>
-                          
+
                           <button type="button" class="btn  btna btn-previous">PREVIOUS</button>
 
                            <button type="button" id="btn-next-page" class="btn btna btn-next page-2">NEXT</button>
-                               
+
                             </div>
-                          
-                          
+
+
 
                         </fieldset>
                         <fieldset>
-                          
+
                           <div class="form-top" style="padding-bottom: 0px;">
                                 <div class="form-top-left">
                                   <h3><b style="font-size: 26px;padding-bottom: 0px;" id='thankYou'></b></h3>
@@ -319,24 +319,24 @@ function navFunction() {
                              <b id='personal'></b>
 
                            </h3>
-                           
+
                             </div>
 
                         </fieldset>
 		                    </form>
-		                    
+
                         </div>
                     </div>
                 </div>
 
             </div>
-            
+
         </div>
 
           <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content" style="top: 70px;">
         <div class="modal-header">
@@ -358,17 +358,17 @@ function navFunction() {
         <div class="modal-footer">
       <button type="button" class="btn pull-left" id="forgot-pass-submit">SUBMIT</button>
       <button type="button" class="btn pull-right" data-dismiss="modal">CANCEL</button>
-      
+
       </div>
-         
-        
+
+
       </div>
-      
+
     </div>
   </div>
 
 
-     
+
 
 
 
@@ -381,7 +381,7 @@ function navFunction() {
 
        <script type="text/javascript">
 $(document).ready(function(){var token = {{status}};
-if(token){ 
+if(token){
   $("#btn-next-page-email").trigger( "click" );
   $("#not-registered").trigger("click");
 }
@@ -442,7 +442,7 @@ function fb_login() {
         getData += '&uid='+response['context']['uid'];
         window.location = '/register/?'+getData;
 
-      } 
+      }
     });
 
         } else {
@@ -474,4 +474,4 @@ $("#form-college").autocomplete({
      });
    };
 </script>
-</body></html> 
+</body></html>
