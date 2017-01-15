@@ -116,47 +116,21 @@ ul.topnav li.icon {display: none;}
         padding: 14px 8px;
     }
 }
-/*
-
-.topnav-li:after {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: red;
+.desktopLogo{
+  display: none;
 }
-.topnav-li:before {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: yellow;
+.mobLogo{
+  display: block;
+  margin-top: 2%;
 }
-.topnav-li:after {
-  right: 0;
-  left: auto;
+@media screen and (min-width:768px){
+  .desktopLogo{
+    display: block;
+  }
+  .mobLogo{
+    display: none;
+  }
 }
-.topnav-li:before {
-  left: 0;
-}
-.topnav-li:hover:after {
-  width: 100%;
-  left: 0;
-}
-.topnav-li:hover:before {
-  width: 100%;
-  right: 0;
-    left: auto;
-}
-*/
 /*-------------------/NAVBAR-------------------*/
 .bottom-border{
     border: 1px solid rgba(255,255,255,.6);

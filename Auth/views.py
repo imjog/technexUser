@@ -85,8 +85,10 @@ def sponsors(request):
 def team(request):
     teams = TeamList.objects.all()
     return render(request,"teamPage.html",{"teams":teams})
-
+@csrf_exempt
 def IndexView(request):
+    if request.method == 'POST':
+        return render(request, "mobile.html")
     agent = parse(request.META['HTTP_USER_AGENT'])
 
     if(get_flavour(request) == 'full'):
@@ -1014,6 +1016,10 @@ def event(request, key):
 '''
 @user_passes_test(lambda u: u.is_superuser)
 def registrationData(request):
+    eventcount = {}
+    eventcount['eventdata'] = []
+    workshopcount = {}
+    workshopcount['workshopdata'] = []
     try:
         iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
     except:
@@ -1023,7 +1029,23 @@ def registrationData(request):
     totalTeams = Team.objects.all().count()
     localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
-    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal})
+    events = Event.objects.all()
+    workshops = Workshops.objects.all()
+    print events
+    for event in events:
+        eventcountobj = {}
+        eventcountobj['event'] = event.eventName
+        eventcountobj['count'] = Team.objects.filter(event = event).count()
+        eventcountobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
+        eventcount['eventdata'].append(eventcountobj)
+        print eventcount
+    for workshop in workshops:
+        workshopcountobj = {}
+        workshopcountobj['workshop'] = workshop.title
+        workshopcountobj['count'] = (WorkshopTeam.objects.filter(workshop = workshop)).count()
+        workshopcount['workshopdata'].append(workshopcountobj)
+        print workshopcount
+    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount, 'workshopcount':workshopcount})
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def publicity(request):
@@ -1240,3 +1262,10 @@ def phoneNumberSepartion(request):
 
 def phoneSep(request):
     return render(request, 'numberS.html')
+
+
+def eventRegistrationView(request):
+    response = {}
+    events = Events.objects.all();
+    print events
+
