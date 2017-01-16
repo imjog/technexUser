@@ -554,7 +554,7 @@ no-js
 }
 @media screen and (min-width:768px) {
   .cd-section h2, .cd-section h2, .cd-section h2, .cd-section h2{
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }
 #section1, #section2, #section3, #section4, #section5{
@@ -711,10 +711,19 @@ ul.topnav li.icon {display: none;}
 */
 /*-------------------/NAVBAR-------------------*/
 .contactUs{
-  font-size: 160%;
-  margin-top: 2%;
-  color: rgba(234, 242, 227, 0.6);
+    font-size: 150%;
+    margin-top: 2%;
+    color: rgba(234, 242, 227, 0.6);
+    float: left;
+    margin-left: 25%;
 }
 .name{
-  padding: 1%;
+    text-align: center;
+    padding: 1%;
+    float: right;
+    border: 1px solid rgba(255,255,255,.3);
+    width: 100%;
+}
+.name p{
+  text-align: center;
 }
