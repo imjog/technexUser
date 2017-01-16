@@ -76,9 +76,9 @@ function navFunction() {
 			 {% with forloop.counter as outer_counter %}
 			{% for member in team.teammembers_set.all|dictsort:"order" %}
 			<li class="mix color-{{outer_counter}}"><img src="{{member.photo}}" alt="Image 1">
-                    <div class="num-mail"><p style="color:white">+91{{member.number}}</p></div>
+                    <div class="num-mail"><p style="color:rgba(255,255,255,.8);">+91{{member.number}}</p></div>
                     <p class="jname">{{member.name}}</p>
-                    <p class="post">{{member.designation}}</p><p style="color:white">{{member.email}}</p></li>
+                    <p class="post">{{member.designation}}</p><p class="membermail">{{member.email}}</p></li>
 			{% endfor %}
 			{% endwith %}
 			{% endfor %}

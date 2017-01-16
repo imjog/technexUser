@@ -372,7 +372,9 @@ xgallery
   margin-bottom: 1.6em;
 /*  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);*/
   display: none;
-  outline: 1px solid rgba(255,255,255,.8);
+  /*outline: 1px solid rgba(255,255,255,.8);*/
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 0 20px rgba(255,255,255,.5);
 }
 .cd-gallery li.gap {
   /* used in combination with text-align: justify to align gallery elements */
@@ -382,7 +384,7 @@ xgallery
 }
 .cd-gallery img {
   display: block;
-  width: 85%;
+  width: 75%;
   margin: 5% auto;
 }
 
@@ -767,22 +769,27 @@ xcustom form elements
     letter-spacing: 1px;
 }
 .cd-gallery li:hover{
-    outline: 1px solid rgba(255,255,255,.6);
-    outline-offset: -5px;
+    /*outline: 1px solid rgba(255,255,255,.6);
+    outline-offset: -5px;*/
 /*    border: 1px solid white;*/
+border-radius: 5%;
     transition: .2s;
 }
 .jname{
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1.1em;
     border-bottom: 1px dotted rgba(255,255,255,.2);
+    border-top:  1px dotted rgba(255,255,255,.2);
+    box-shadow: inset 0 0 14px rgba(255,255,255,.3);
+    -moz-box-shadow:   inset 0 0 14px rgba(255,255,255,.3);
+   -webkit-box-shadow: inset 0 0 14px rgba(255,255,255,.3);
 }
 .post{
     color: rgba(255,255,255,.7);
 }
 .cd-gallery li p{
-    color: white;
+    /*color: white;*/
 }
 @media screen and (max-width:768px){
 .team-ul{
@@ -820,3 +827,21 @@ xcustom form elements
     margin-left: 47%;
     margin-top: 22px;
 }*/
+.membermail{
+  font-size: 90%;
+  font-weight: 300;
+  color: #F5DEB3;
+}
+@@media screen and (min-width:768px) {
+    .membermail{
+      font-size: 100%;
+    }
+}
+.fbLink{
+  display: none;
+}
+#imgM:hover .fbLink{
+  display: block;
+  transform: translateY(-200%);
+  color: white;
+}
