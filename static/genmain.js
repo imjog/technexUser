@@ -88,11 +88,11 @@ var workdata=[
   max: 1
 },
 {
-  workshop: 'vision-botics(sixth-sense-technology)',
+  workshop: 'vision-botics',
   max: 1
 },
 {
-  workshop: 'automobiles',
+  workshop: 'automobile',
   max: 1
 },
 {
