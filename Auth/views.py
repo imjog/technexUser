@@ -1271,3 +1271,6 @@ def eventRegistrationView(request):
 
 def exhibitions(request):
     return render(request,'exhibitions.html')
+
+def liteversion(request):
+    return render(request,'mobile.html')

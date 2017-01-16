@@ -27,6 +27,7 @@ urlpatterns = [
 	url(r'^fbConnect/$', fbConnect,name='fbConnect'),
 	url(r'^resetPass/(?P<key>[\w\-]+)/$', resetPass, name='resetPass'),
 	url(r'^$',IndexView,name='home'),
+	url(r'^lite/$',liteversion,name = 'liteversion'),
 	url(r'^talks/', guestLecture, name='guestLecture'),
 	url(r'^contacts/',team,name='teamPage'),
 	url(r'^checkEmail/',emailUnique,name='emailUnique'),
