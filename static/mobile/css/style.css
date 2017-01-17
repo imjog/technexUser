@@ -236,7 +236,8 @@ ul.topnav li.icon {display: none;}
   margin-left: 33%;
   height: 35px;
 }
-@@media screen and (min-width:768px) {
+
+@media screen and (min-width:768px) {
   .samsungLogo{
     margin-top: -25%;
   }
