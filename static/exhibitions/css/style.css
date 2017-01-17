@@ -73,7 +73,7 @@
 	position: absolute;
 	height: 300%;
 	z-index: 10;
-	background: white;
+	background: rgba(255,255,255,.4);
 }
 .ei-slider-thumbs li a{
 	display: block;
@@ -251,6 +251,7 @@ ul.topnav li.icon {display: none;}
     z-index: 2000000;
     position: relative;
 		background: black;
+		border-bottom: 1px solid rgba(255,255,255,.6);
 }
 @media screen and (max-width:1386px){
     jnavbar{
@@ -288,7 +289,10 @@ padding: 5%;
 }
 @media screen and (min-width:768px){
 	.excontant p{
-		padding: 3%;
+		padding: 3% 20%;
+		font-size: 190%;
+		letter-spacing: 1px;
+		font-weight: 200;
 	}
 }
 .imgorder{
