@@ -73,9 +73,7 @@
 	position: absolute;
 	height: 300%;
 	z-index: 10;
-	/*text-indent: -9000px;*/
-	background: #000;
-	background: rgba(0,0,0,0.9);
+	background: white;
 }
 .ei-slider-thumbs li a{
 	display: block;
