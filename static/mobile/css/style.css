@@ -189,7 +189,7 @@ ul.topnav li.icon {display: none;}
 }
 @media screen and (min-width:768px){
   .prize-tech{
-      margin-top: 15%;
+      margin-top: 11%;
   }
 }
 .prize-tech img {
@@ -239,7 +239,7 @@ ul.topnav li.icon {display: none;}
 
 @media screen and (min-width:768px) {
   .samsungLogo{
-    margin-top: -25%;
+    margin-top: -20%;
   }
   .samsungLogo h3{
       font-size: 16px;
