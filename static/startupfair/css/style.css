@@ -274,7 +274,7 @@ header .navbar {
 @media screen and (min-width:768px){
     #banner .block h1{
         font-size: 55px;
-        letter-spacing: 5px;
+        letter-spacing: 2px;
     }
 }
 #banner .block h2 {
@@ -435,6 +435,8 @@ header .navbar {
   font-weight: 300;
   color: #fff;
   padding-top: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 #portfolio {
   padding: 100px 0;
@@ -744,6 +746,7 @@ header .navbar {
 #pricing-table .block ul {
   border: 1px solid #fff;
   padding: 35px 0;
+  border-radius: 2%;
 }
 #pricing-table .block ul li {
   padding: 10px 0;
@@ -1415,7 +1418,7 @@ footer p {
 }
 .typewrite{
     color:rgba(255,255,255,.8);
-    font-weight: 600;
+    font-weight: 300;
 }
 .typewrite:hover{
     color: white;
@@ -1687,6 +1690,8 @@ ul.topnav li.icon {display: none;}
 .datesPlace{
     letter-spacing: 1px;
     color: #6BCAE2;
+    padding: 2px;
+    background: rgba(0,0,0,.2);
 }
 .datesPlace h2{
     font-size: 1.6em;
