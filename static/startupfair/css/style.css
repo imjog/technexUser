@@ -1,24 +1,6 @@
 
-/* ==================
- *
- *google fonts
- *
- *===================*/
 
-/* ==================
- *
- *var section
- *
- *===================*/
-/*****  font size  ******/
-/*****  Colors  ******/
-/* ==================
- *
- *	Reset Class Css
- *
- *===================*/
 body {
-  line-height: 24px;
   font-size: 14px;
   color: #80d6a3;
   font-weight: 400;
@@ -269,7 +251,7 @@ header .navbar {
 #banner:before {
   position: absolute;
   z-index: 99;
-  background: rgba(0, 0, 0, 0.73);
+  background: rgba(0, 0, 0, 0.6);
   top: 0;
   left: 0;
   right: 0;
@@ -1612,6 +1594,7 @@ ul.topnav li a:hover {
 }
     ul.topnav{
         display: inline-block;
+        padding: 0;
     }
 }
 
@@ -1700,4 +1683,17 @@ ul.topnav li.icon {display: none;}
 
     text-decoration: none;
     color: initial;
+}
+.datesPlace{
+    letter-spacing: 1px;
+    color: #6BCAE2;
+}
+.datesPlace h2{
+    font-size: 1.6em;
+    padding-top: 1%;
+    font-weight: 300;
+}
+.datesPlace h3{
+  font-size: 1.6em;
+  font-weight: 300;
 }
