@@ -528,7 +528,7 @@ header .navbar {
 }
 #play-video {
   padding: 105px 0;
-  background: url("../img/new-latter.jpg") no-repeat;
+  background: url("../img/subscribe-bg.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -1405,8 +1405,9 @@ footer p {
     box-shadow: 0 -3px 0 green;
 }
 .name_post h3{
-    font-weight: 300;
-    margin-bottom: 10%;
+  padding-top: 5%;
+  font-weight: 300;
+  margin-bottom: 7%;
 }
 .name_post h2{
   text-transform: uppercase;
@@ -1439,7 +1440,7 @@ button {
   font-size: 1.3em;
   letter-spacing: 0.3em;
   color: rgba(255,255,255,.7);
-  background: rgba(0,0,0,.2);
+  background: rgba(0,0,0,.5);
   border: none;
   outline: none;
   webkit-tap-highlight-color: transparent;
