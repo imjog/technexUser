@@ -269,7 +269,7 @@ header .navbar {
   font-weight: 500;
   color: white;
     letter-spacing: 3px;
-    text-shadow: -4px -2px 2px black;
+    text-shadow: -2px -2px 2px black;
 }
 @media screen and (min-width:768px){
     #banner .block h1{
