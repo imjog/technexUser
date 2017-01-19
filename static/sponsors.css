@@ -3,8 +3,8 @@ body
 	
 
 background: #000000; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #000000 , #434343); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: -webkit-linear-gradient(to left, #000000 , #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #000000 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         
 }
 .main-heading
@@ -48,6 +48,7 @@ background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, F
     max-width: 230px;
 }
 @media only screen and (min-width: 601px)
+{
 .container {
     width: 85%;
 }
@@ -94,5 +95,173 @@ background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, F
     -moz-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+}
+}
+
+.jnavbar {
+    z-index: 2000000;
+    position: relative;
+}
+
+@media (min-width: 1386px)
+ul.topnav {
+    display: inline-block;
+}
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    overflow: hidden;
+    background-color: black;
+}
+@media (min-width: 1386px)
+ul.topnav {
+    display: inline-block;
+}
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    overflow: hidden;
+    background-color: black;
+}
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+@media (min-width: 1386px)
+ul.topnav li a {
+    color: rgba(255,255,255,.8);
+}
+@media (min-width: 1386px)
+ul.topnav li a {
+    color: rgba(255,255,255,.8);
+}
+@media (min-width: 1320px)
+ul.topnav li a {
+    font-size: 16px;
+}
+@media (max-width: 1320px)
+ul.topnav li a {
+    font-size: 16px;
+}
+ul.topnav li {
+    float: left;
+}
+ul.topnav li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 9px;
+    text-decoration: none;
+    transition: 0.3s;
+    /*font-size: 10px;*/
+    letter-spacing: 1px;
+    border-right: 1px solid rgba(255,255,255,.3);
+}
+
+ul.topnav li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 9px;
+    text-decoration: none;
+    transition: 0.3s;
+    /*font-size: 10px;*/
+    letter-spacing: 1px;
+    border-right: 1px solid rgba(255,255,255,.3);
+}
+a {
+    outline: none;
+    color: white;
+    text-decoration: none;
+}
+a {
+    outline: none;
+    color: white;
+    text-decoration: none;
+}
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul.topnav li.icon {
+    display: none;
+}
+
+
+ul.topnav li {
+    float: left;
+}
+@media screen and (max-width: 768px)
+{
+.desktopLogo {
+    display: none;
+}
+.mobLogo {
+    display: block;
+}
+}
+@media screen and (min-width: 768px)
+{
+.desktopLogo {
+    display: block;
+}
+.mobLogo {
+    display: none;
+}
+}
+
+
+@media screen and (max-width: 1386px)
+{
+
+ul.topnav li:not(:first-child) {
+    display: none;
+}
+ ul.topnav li:nth-child(10) {
+    display: block;
+    float: right;
+}
+ul.topnav li a {
+    border: 1px solid white;
+    margin-right: 2px;
+    font-size: 15px;
+    padding: 14px 14px;
+}
+ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+}
+ul.topnav.responsive {
+    position: relative;
+}
+ul.topnav.responsive li {
+    float: none;
+    display: inline;
+}
+ul.topnav.responsive li a {
+    display: block;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,.2);
+}
+ul.topnav li a {
+    border: 1px solid white;
+    margin-right: 2px;
+    font-size: 15px;
+    padding: 14px 14px;
 }
 }

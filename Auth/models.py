@@ -244,4 +244,6 @@ class Sponsors(models.Model):
     imageLink = models.TextField(validators=[URLValidator()],blank=True,null = True)
     websiteLink = models.TextField(validators=[URLValidator()],blank=True,null = True)
     def __unicode__(self):
-        return self.name                
+        return self.name 
+
+                       
