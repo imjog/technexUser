@@ -40,9 +40,13 @@ admin.site.register(GuestLecture)
 #admin.site.register(WorkshopOptions)
 admin.site.register(WorkshopTeam)
 admin.site.register(MetaTags)
+admin.site.register(SponsorshipType)
+admin.site.register(Sponsors)
+
 admin.site.register(TeamList)
 admin.site.register(TeamMembers)
 admin.site.register(StartUpFair)
+
 admin.site.register(StartUpMails)
 admin.site.register(PrimaryIndustry)
 admin.site.register(BusinessType)

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sponsors | Technex '17</title>
+	<link rel="stylesheet" type="text/css" href="/static/sponsors.css"/>
+</head>
+<body>
+
+<div class="container">
+<div class="main">
+   <div class="main-heading">
+   <div class="heading">
+   <h1>Our Sponsors</h1>
+   </div>
+   </div>
+   {% for data in response.data %}
+   <div class="sec-heading">
+   <div class="heading">
+   <h2>{{data.type}}</h2>
+   </div>
+   </div>
+   {% for spon in data.sponsors %}
+   <div class="spon"><a class="spon-link" href="{{spon.websiteLink}}" target="_blank"><img src="{{spon.imageLink}}" class="spon-img"></a>
+   <h2>{{spon.name}}</h2>
+   </div>
+   {% endfor %}
+   {% endfor %}
+   <!--  -->
+   
+  
+   </div>
+   </div>
+</body>
+</html>
