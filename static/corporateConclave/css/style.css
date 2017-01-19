@@ -431,6 +431,14 @@ ul.topnav li.icon {display: none;}
     display: table;
 }
 }
+@media screen and (min-width:1386px){
+  .jnavbar{
+    z-index: 2000000;
+  position: relative;
+  display: table;
+  margin: 0 auto;
+  }
+}
 .desktopLogo{
   display: none;
 }
