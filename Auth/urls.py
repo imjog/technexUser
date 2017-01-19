@@ -57,6 +57,7 @@ urlpatterns = [
     url(r'^numberCopy/$',phoneNumberSepartion,name='Number Separator'),
     url(r'^separate/',phoneSep,name='phoneSep'),
 	url(r'^exhibitions/$',exhibitions,name='exhibitions'),
+	url(r'^corporateConclave/$',corporateConclave, name='corporateConclave'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),

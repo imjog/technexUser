@@ -101,7 +101,7 @@ def sponsors(request):
         sponsorArray = []
         for sponsor in sponsors:
             sponsorObject = {}
-            # sponsorObject['category'] 
+            # sponsorObject['category']
             sponsorObject['name'] = sponsor.name
             sponsorObject['imageLink'] = sponsor.imageLink
             sponsorObject['websiteLink'] =  sponsor.websiteLink
@@ -1369,4 +1369,7 @@ def worshopdataFill(request):
     for team in teams:
         workshop_spreadsheet(team)
 
+
+def corporateConclave(request):
+    return render(request,'corporateConclave.html')
 
