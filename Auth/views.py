@@ -24,8 +24,18 @@ app_key = 'rrevl3xuwa073fd'
 app_secret = 'v51fzo5r8or1bkl'
 flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
 sheetUrls = {
-    
-}
+    "internet-of-things": "https://script.google.com/macros/s/AKfycbwLtFRKGpWk9ZxvvAoq409JqHMiykh2wWYHte6k6DUd94q7zLak/exec",
+    "data-mining" : "https://script.google.com/macros/s/AKfycbzLegitbfINZp8Ygu2aGBwLHMXaB-aQOW__B-lr6ZCD34NfliqM/exec",
+    "digital-marketing" : "https://script.google.com/macros/s/AKfycby1EOzmNiEpW5ddEbTwTIugmCidIf5H05GmMdDSxTZn15PD60c/exec",
+    "3-d-printing" : "https://script.google.com/macros/s/AKfycbz3LcIF1VOg-EJsDueeKU6Ncpl3velEbiu4D7dwCDzuVtLhGmKJ/exec",
+    "swarm-robotics" : "https://script.google.com/macros/s/AKfycbxEATq42TerLuSWCpA_mGf7meRLU5I_vNCz6HedPcsA70zTapw/exec",
+    "bridge-design" : "https://script.google.com/macros/s/AKfycbzYPXl8JSLaLt0Ih5H3YzE97o6AT1n139B-3RyUPC75pp3SYo-v/exec",
+    "android-app-development" : "https://script.google.com/macros/s/AKfycbyUauzei8mhLXoxTtGI7_8sfIVP_7RuIeRCbV9jMjiJiA6rYdg/exec",
+    "vision-botics" : "https://script.google.com/macros/s/AKfycbwqOaFMVHeePAC_gYSCvXLSjqEhn5KcnbLkCOUQx-gHs3wgVFfp/exec",
+    "automobile" : "https://script.google.com/macros/s/AKfycbxJVGyMPPT1Aa9DjPDqqcaw0ZbWC8dYqTuZPc50iwaMISf8MNg-/exec",
+    "ethical-hacking" : "https://script.google.com/macros/s/AKfycbw_oQ_7Mxc-NpPeipvTlGYIt5Jau5PzVCYqcgMpuelCs37cVRuA/exec",
+    "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec"
+    }
 
 @csrf_exempt
 def profileValidation(request):
@@ -936,6 +946,7 @@ Regards
             #for user in users:
              #   send_email(user.email,subject,body%(user.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
             response['status'] = 1
+            workshop_spreadsheet(team)
             return JsonResponse(response)
     else:
         response['status'] = 0
@@ -1297,3 +1308,65 @@ def exhibitions(request):
 
 def liteversion(request):
     return render(request,'mobile.html')
+
+def workshop_spreadsheet(team):
+    members = team.members.all()           
+    dic = {
+    "teamName": team.teamName.encode("utf-8"),
+    "leaderName" : team.teamLeader.user.first_name.encode("utf-8"),
+    "leaderEmail" : team.teamLeader.email.encode("utf-8"),
+    "leaderMobile":str(team.teamLeader.mobileNumber),
+    "leaderCollege":team.teamLeader.college.collegeName.encode("utf-8"),
+    "teamId":team.teamId
+    }
+    try:
+        dic['name1'] = members[0].user.first_name.encode("utf-8")
+        dic['member1'] = members[0].email.encode("utf-8")
+        dic['college1'] = members[0].college.collegeName.encode("utf-8") 
+        dic['mobile1'] = members[0].mobileNumber
+    except:
+        dic['name1'] = 0
+        dic['member1'] = 0
+        dic['college1'] = 0
+        dic['mobile1'] = 0
+    try:
+        dic['name2'] = members[0].user.first_name.encode("utf-8")
+        dic['member2'] = members[1].email.encode("utf-8")
+        dic['college2'] = members[1].college.collegeName.encode("utf-8")
+        dic['mobile2'] = members[1].mobileNumber
+    except:
+        dic['name2'] = 0
+        dic['member2'] = 0
+        dic['college2'] = 0
+        dic['mobile2'] = 0
+    try:
+        dic['name3'] = members[0].user.first_name.encode("utf-8")
+        dic['member3'] = members[2].email.encode("utf-8")
+        dic['college3'] = members[2].college.collegeName.encode("utf-8")
+        dic['mobile3'] = members[2].mobileNumber
+    except:
+        dic['name3'] = 0
+        dic['member3'] = 0
+        dic['college3'] = 0
+        dic['mobile3'] = 0
+    try:
+        dic['name4'] = members[0].user.first_name.encode("utf-8")
+        dic['member4'] = members[3].email.encode("utf-8")
+        dic['college4'] = members[3].college.collegeName.encode("utf-8")
+        dic['mobile4'] = members[3].mobileNumber
+    except:
+        dic['name4'] = 0
+        dic['member4'] = 0
+        dic['college4'] = 0
+        dic['mobile4'] = 0
+    print dic
+    url = sheetUrls[team.workshop.slug.encode("utf-8")]
+    requests.post(url, data = dic)
+
+
+def worshopdataFill(request):
+    teams = WorkshopTeam.objects.all()
+    for team in teams:
+        workshop_spreadsheet(team)
+
+
