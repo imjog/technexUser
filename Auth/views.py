@@ -1365,7 +1365,7 @@ def workshop_spreadsheet(team):
     requests.post(url, data = dic)
 
 
-def worshopdataFill(request):
+def worshopdataFill():
     teams = WorkshopTeam.objects.all()
     for team in teams:
         workshop_spreadsheet(team)
