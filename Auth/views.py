@@ -24,7 +24,7 @@ app_key = 'rrevl3xuwa073fd'
 app_secret = 'v51fzo5r8or1bkl'
 flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
 sheetUrls = {
-    
+
 }
 
 @csrf_exempt
@@ -91,7 +91,7 @@ def sponsors(request):
         sponsorArray = []
         for sponsor in sponsors:
             sponsorObject = {}
-            # sponsorObject['category'] 
+            # sponsorObject['category']
             sponsorObject['name'] = sponsor.name
             sponsorObject['imageLink'] = sponsor.imageLink
             sponsorObject['websiteLink'] =  sponsor.websiteLink
@@ -1297,3 +1297,6 @@ def exhibitions(request):
 
 def liteversion(request):
     return render(request,'mobile.html')
+
+def corporateConclave(request):
+    return render(request,'corporateConclave.html')

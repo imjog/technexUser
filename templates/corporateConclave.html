@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<!-- <link rel="shortcut icon" href="/static/images/favicon.ico"> -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/static/favicon/manifest.json">
+<link rel="shortcut icon" href="/static/favicon/favicon.ico">
+	<link rel="stylesheet" href="/static/corporateConclave/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="/static/corporateConclave/css/style.css"> <!-- Resource style -->
+	<script src="/static/corporateConclave/js/modernizr.js"></script><!-- Modernizr -->
+	<script>
+function navFunction() {
+	 var x = document.getElementById("myTopnav");
+	 if (x.className === "topnav") {
+			 x.className += " responsive";
+	 } else {
+			 x.className = "topnav";
+	 }
+}
+</script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68539305-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	<title>Corporate Conclave | Technex '17</title>
+</head>
+<body>
+	<!----------NAVBAR-------->
+<div class="jnavbar" id="abcde">
+<ul class="topnav" id="myTopnav">
+<li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;">
+<img src="/static/images/logo-technex-nav.png" height="40px" class="desktopLogo" style="padding-left:8px;padding-right:8px;">
+<img src="/static/images/technexLogoMobile.png" height="40px" class="mobLogo" style="padding-left:8px;padding-right:8px;">
+</a></li>
+<li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+<li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
+<li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+<li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
+
+<li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
+<li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+<li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+<li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
+DASHBOARD
+{% else %}
+REGISTER / LOGIN
+{% endif %}</a></li>
+<li class="icon">
+<a href="javascript:void(0);" class="iconA" onclick="navFunction()">☰</a>
+</li>
+</ul>
+</div>
+<!----------/NAVBAR-------->
+	<div class="cd-slider-wrapper">
+		<ul class="cd-slider">
+			<li class="is-visible">
+				<div class="cd-half-block image"></div>
+
+				<div class="cd-half-block content">
+					<h1 class="headingcorp">CORPORATE CONCLAVE</h1>
+					<div>
+						<h2>Pointy Slider</h2>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugit ullam voluptatum tenetur ab, non beatae.
+						</p>
+					</div>
+				</div>
+			</li> <!-- .cd-half-block.content -->
+
+			<li>
+				<div class="cd-half-block image"></div>
+
+				<div class="cd-half-block content light-bg">
+					<h1 class="headingcorp">CORPORATE CONCLAVE</h1>
+					<div>
+						<h2>Slide Number 2</h2>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugit ullam voluptatum tenetur ab, non beatae, impedit dolorem itaque voluptates facilis necessitatibus suscipit dolor rerum dolores dignissimos alias facere sunt aliquid.
+						</p>
+					</div>
+				</div> <!-- .cd-half-block.content -->
+			</li>
+
+			<li>
+				<div class="cd-half-block image"></div>
+
+				<div class="cd-half-block content">
+					<h1 class="headingcorp">CORPORATE CONCLAVE</h1>
+					<div>
+						<h2>Slide Number 3</h2>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugit ullam voluptatum tenetur ab, non beatae, impedit dolorem itaque voluptates facilis necessitatibus suscipit dolor rerum dolores dignissimos alias facere sunt aliquid.
+						</p>
+					</div>
+				</div> <!-- .cd-half-block.content -->
+			</li>
+		</ul> <!-- .cd-slider -->
+	</div> <!-- .cd-slider-wrapper -->
+<script src="/static/corporateConclave/js/jquery-2.1.4.js"></script>
+<script src="/static/corporateConclave/js/jquery.mobile.custom.min.js"></script>
+<script src="/static/corporateConclave/js/main.js"></script> <!-- Resource jQuery -->
+</body>
+</html>
