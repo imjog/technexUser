@@ -847,6 +847,7 @@ def workshopRegister(request):
 
     if request.method == 'POST':
         data = json.loads(request.body)
+        print data
         workshop = Workshops.objects.get(slug = data['workshopSlug'])
 
         try:
