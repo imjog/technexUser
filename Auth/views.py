@@ -23,7 +23,9 @@ server = 'http://www.technex.in/'
 app_key = 'rrevl3xuwa073fd'
 app_secret = 'v51fzo5r8or1bkl'
 flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
-
+sheetUrls = {
+    
+}
 
 @csrf_exempt
 def profileValidation(request):
@@ -80,28 +82,27 @@ def ca(request):
     return redirect("http://ca.technex.in")
 
 def sponsors(request):
-    # response = {}
-    # sponsorTypes = SponsorshipType.objects.all()
-    # sponsorTypeArray = []
-    # for sponsorType in sponsorTypes:
-    #     sponsorTypeObject = {}
-    #     sponsors = Sponsors.objects.filter(sponsorType = sponsorType)
-    #     sponsorArray = []
-    #     for sponsor in sponsors:
-    #         sponsorObject = {}
-    #         # sponsorObject['category'] 
-    #         sponsorObject['name'] = sponsor.name
-    #         sponsorObject['imageLink'] = sponsor.imageLink
-    #         sponsorObject['websiteLink'] =  sponsor.websiteLink
-    #         sponsorArray.append(sponsorObject)
-    #     sponsorTypeObject['type'] = sponsorType.title
-    #     sponsorTypeObject['sponsors'] = sponsorArray
-    #     sponsorTypeArray.append(sponsorTypeObject)
-    # response['data'] = sponsorTypeArray
-    # print response
-
-    # return render(request, 'sponsors.html',{'response':response})
-    return redirect("http://16.technex.in/sponsors")
+    response = {}
+    sponsorTypes = SponsorshipType.objects.all()
+    sponsorTypeArray = []
+    for sponsorType in sponsorTypes:
+        sponsorTypeObject = {}
+        sponsors = Sponsors.objects.filter(sponsorType = sponsorType)
+        sponsorArray = []
+        for sponsor in sponsors:
+            sponsorObject = {}
+            # sponsorObject['category'] 
+            sponsorObject['name'] = sponsor.name
+            sponsorObject['imageLink'] = sponsor.imageLink
+            sponsorObject['websiteLink'] =  sponsor.websiteLink
+            sponsorArray.append(sponsorObject)
+        sponsorTypeObject['type'] = sponsorType.title
+        sponsorTypeObject['sponsors'] = sponsorArray
+        sponsorTypeArray.append(sponsorTypeObject)
+    response['data'] = sponsorTypeArray
+    print response
+    return render(request, 'sponsors.html',{'response':response})
+    # return redirect("http://16.technex.in/sponsors")
 
 def team(request):
     teams = TeamList.objects.all()
