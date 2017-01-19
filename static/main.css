@@ -2203,13 +2203,10 @@ a:hover{
 
 /* SAMSUNG LOGO */
 .samsungLogo{
-
+display: table;
+margin: 0 auto;
 }
 .samsungLogo h3{
   text-align: center;
     color: wheat;
-}
-.samsungLogo img{
-  margin-left: 40%;
-  height: 10%;
 }
