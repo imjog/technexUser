@@ -17,8 +17,9 @@ urlpatterns = [
 	url(r'^eventApi/$', eventApi, name='eventApi'),
 	url(r'^logout/$', logoutApi, name='logoutApi'),
 	url(r'^guestLecture/$', guestLectures, name='guestLectures'),
-	#url(r'^eventRegistration/$', eventRegistration, name='eventRegistration'),
+	url(r'^eventRegistration/$', eventRegistration, name='eventRegistration'),
 	url(r'^workshops/$', workshopApi, name='workshop'),
 	url(r'^caEmailCount/$',caEmailCount,name='caEmailCount'),
 	url(r'^caEmailInfo/$',caEmailInfo,name='caEmailInfo'),
+
 ]

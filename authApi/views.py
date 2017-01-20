@@ -10,6 +10,7 @@ import json
 import os
 import facebook
 from Auth.models import *
+from Auth.views import spreadsheetfill_register
 server = "https://technexuser.herokuapp.com/"
 #from Auth.forms import *
 # Create your views here.
@@ -326,6 +327,118 @@ def caEmailInfo(request):
             info['city'] = techProfile.city
             response['info'].append(info)
         return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return JsonResponse(response)
+
+
+@csrf_exempt
+def eventRegistration(request):
+    response = {}
+     
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print data
+        event = Event.objects.get(nameSlug = data['eventSlug'])
+        print "here"
+        try:
+            # print "here"
+            team = Team.objects.get(teamName = data['teamName'], event = event)
+            response['status'] = 0
+            response['error'] = "TeamName Already exists"
+            return JsonResponse(response)
+        except:
+            try:
+                teamLeader = TechProfile.objects.get(technexId = data['teamLeaderEmail'])
+            except:
+                teamLeader = TechProfile.objects.get(email = data['teamLeaderEmail'])
+            users = []
+            # print "here"
+            for member in data['members']:
+                try:    
+                    try:
+                        user = TechProfile.objects.get(email = member)
+                        users.append(user)
+                    except:
+                        user = TechProfile.objects.get(technexId = member)
+                        users.append(user)
+                except:
+                    response['status'] = 0
+                    response['error'] = 'Member not Registered('+member+')'
+                    return JsonResponse(response)
+                
+            users = list(set(users))
+            try:
+                try:
+                    team = Team.objects.get(teamLeader = teamLeader,event = event)
+                    response['status'] = 0
+                    response['error'] = 'You have Already registered for this event!!'
+                    return JsonResponse(response)
+                except:
+                    team = Team.objects.get(event = event, members = teamLeader)
+                    response['status'] = 0
+                    response['error'] = 'You have Already registered for this event !!'
+            except:
+                for u in users: 
+                    try:
+                        try:
+                            team = Team.objects.get(event = event, members = u)
+                            response['status'] = 0
+                            response['error'] = u.email+' Already registered for this event !!!'
+                            return JsonResponse(response)
+                        except:
+                            team = Team.objects.get(event = event, teamLeader = u)
+                            response['status'] = 0
+                            response['error'] = u.email+' Already registered for this event !!!'
+                            return JsonResponse(response)
+                    except:
+                        try:
+                            if teamLeader == u:
+                                users.remove(u)
+                        except:
+                            pass
+                team = Team(teamLeader = teamLeader,event = event, teamName = data['teamName'])
+                team.save()
+                team.technexTeamId = "TM"+str(1000+team.teamId)
+                team.save()
+            subject = "[Technex'17] Successful Registration"
+            body = '''
+Dear %s,
+
+Thanks for registering for %s Technex'17.
+
+Your Team Details Are
+Team Name- %s
+Team Leader- %s
+Team Members- %s
+
+
+An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+
+
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
+              
+
+Looking forward to seeing you soon at Technex 2017.
+
+All the best!
+
+
+Regards
+
+Team Technex
+Regards
+            '''
+            memberEmails = ""
+            for user in users:
+                memberEmails += user.email+'  ' 
+                team.members.add(user)
+            send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            for user in users:
+                send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            response['status'] = 1
+            spreadsheetfill_register(team)
+            return JsonResponse(response)
     else:
         response['status'] = 0
         return JsonResponse(response)
