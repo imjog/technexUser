@@ -1001,6 +1001,8 @@ def workshop(request):
             workshopData['workshopFees'] = workshop.workshopFees
             workshopData['order'] = workshop.order
             workshopData['link'] = workshop.slug
+            workshopData['sponlink'] = workshop.sponlink
+            workshopData['sponimage'] = workshop.sponimage
             workshopData['workshopOptions'] = []
             workshopOptions = WorkshopOptions.objects.filter(workshop = workshop)
             for workshopOption in workshopOptions:

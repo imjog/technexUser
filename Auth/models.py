@@ -139,6 +139,9 @@ class Workshops(models.Model):
     maxMembers = models.SmallIntegerField(null = True)
     slug = models.SlugField(null = True)
     image = models.TextField(blank=True,null=True)
+    sponimage=models.TextField(blank=True,null=True)
+    sponlink=models.TextField(validators=[URLValidator()],blank=True,null = True)    
+
     def __unicode__(self):
         return '%s'%(self.title)
 

@@ -291,7 +291,16 @@ function navFunction() {
 				{% for workshop in workshops.workshops %}
 				<div class="cd-panel from-right {{workshop.order}}">
 		<header class="cd-panel-header" style="overflow:hidden;">
-			<h1>{{workshop.title}}</h1>
+    <div style="width: 100%" class="header_head">
+    <div style="width: 50%">
+			<h1>{{workshop.title}} </h1>
+      </div>
+      <div style="width: 50%">
+      <a href="{{workshop.sponlink}}">
+      <img src="{{workshop.sponimage}}" class="header_img"/>
+      </a>
+      </div>
+    </div>
 			<a href="#0" class="cd-panel-close">Close</a>
 		</header>
 		<div class="cd-panel-container">
