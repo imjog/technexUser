@@ -1072,7 +1072,12 @@ def registrationData(request):
         for event in events:
             eventobj = {}
             eventobj['event'] = event.eventName
+            countmem = Team.objects.filter(event = event)
+            f = 0
+            for coun in countmem:
+                 f = f + 1 + coun.members.count()
             eventobj['count'] = Team.objects.filter(event = event).count()
+            eventobj['participantCount'] = f
             eventobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
             eventArray.append(eventobj)
         eventtypeobj['parentEvent'] = pevent.categoryName 

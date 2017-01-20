@@ -15,7 +15,7 @@ Total User Registrations:{{totalRegistrations}}<br>
 {% for even in data.events %}
 <div style="width: 100%">
 <h2>{{even.event}}</h2>
-TOTAL: {{even.count}} || LOCAL : {{even.localcount}}
+TOTAL: {{even.count}} || LOCAL : {{even.localcount}} || TOTAL PARTICIPANTS: {{even.participantCount}}
 </div>
 <hr>
 {% endfor %}
