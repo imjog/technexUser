@@ -10,7 +10,7 @@ import json
 import os
 import facebook
 from Auth.models import *
-from Auth.views import spreadsheetfill_register
+from Events.views import spreadsheetfill_register
 server = "https://technexuser.herokuapp.com/"
 #from Auth.forms import *
 # Create your views here.
@@ -267,7 +267,7 @@ def guestLectures(request):
 @csrf_exempt
 def workshopApi(request):
     response = {}
-    if True:#try:
+    try:
         workshops = Workshops.objects.all()
         response['status'] = 1
         response['workshops'] = []
@@ -290,9 +290,9 @@ def workshopApi(request):
             workshopData['workshopOptions'].sort(key=lambda x: x['optionOrder'])
             response['workshops'].append(workshopData)
         response['workshops'].sort(key=lambda x: x['order'])
-    else:#except:
+    except:
         response['status'] = 0
-    return render(request,'workshop.html',{"workshops":response})
+    return JsonResponse(response)
 
 @csrf_exempt
 def caEmailCount(request):
