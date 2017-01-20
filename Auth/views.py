@@ -1399,6 +1399,7 @@ def worshopdataFill():
 
 
 def corporateConclave(request):
+    print request
     return render(request,'corporateConclave.html')
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
