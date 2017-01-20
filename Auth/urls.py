@@ -27,6 +27,7 @@ urlpatterns = [
 	url(r'^fbConnect/$', fbConnect,name='fbConnect'),
 	url(r'^resetPass/(?P<key>[\w\-]+)/$', resetPass, name='resetPass'),
 	url(r'^$',IndexView,name='home'),
+	url(r'^lite/$',liteversion,name = 'liteversion'),
 	url(r'^talks/', guestLecture, name='guestLecture'),
 	url(r'^contacts/',team,name='teamPage'),
 	url(r'^checkEmail/',emailUnique,name='emailUnique'),
@@ -42,7 +43,7 @@ urlpatterns = [
     url(r'^resetpassword/',changePass,name='change password'),
     url(r'^startupregister/',startUpRegistration,name='startup registeration'),
     url(r'^startupfair/',startupFair,name='startup Fair'),
-    url(r'^hospitality/',hospitality, name='hospitality'),	
+    url(r'^hospitality/',hospitality, name='hospitality'),
     url(r'^workshopRegister/',workshopRegister,name='workshopRegister'),
     url(r'^botTest/',botTest,name='bot Test'),
     url(r'^workshops/',workshop,name='WorkShop'),
@@ -55,6 +56,8 @@ urlpatterns = [
     url(r'^theteam', fbReach, name='promotion'),
     url(r'^numberCopy/$',phoneNumberSepartion,name='Number Separator'),
     url(r'^separate/',phoneSep,name='phoneSep'),
+	url(r'^exhibitions/$',exhibitions,name='exhibitions'),
+	url(r'^corporateConclave/$',corporateConclave, name='corporateConclave'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
 	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
@@ -63,5 +66,5 @@ urlpatterns = [
 
 	#url(r'^logout/$', LogoutView, name='logout'),
 	url(r'^googlec0c9e6f96a842b6d.html/',gverify,name='gverify'),
-	
+
 ]

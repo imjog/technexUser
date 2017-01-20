@@ -88,11 +88,11 @@ var workdata=[
   max: 1
 },
 {
-  workshop: 'vision-botics(sixth-sense-technology)',
+  workshop: 'vision-botics',
   max: 1
 },
 {
-  workshop: 'automobiles',
+  workshop: 'automobile',
   max: 1
 },
 {
@@ -797,7 +797,7 @@ app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , f
     try{ 
     $scope.max = $scope.options[$scope.workshopIndex()].max;
     console.log($scope.workshopIndex());
-    $scope.a  = new Array($scope.max-1);
+    $scope.a  = [];
         while($scope.members.length!=0)
     {
         $scope.members.pop();    

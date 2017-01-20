@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sponsors | Technex '17</title>
+	<link rel="stylesheet" type="text/css" href="/static/sponsors.css"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/static/favicon/manifest.json">
+<link rel="shortcut icon" href="/static/favicon/favicon.ico">
+<meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+</head>
+<body>
+<script>
+function navFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+<div class="jnavbar" id="abcde">
+<ul class="topnav" id="myTopnav">
+<li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;">
+<img src="/static/images/logo-technex-nav.png" height="40px" class="desktopLogo" style="padding-left:8px;padding-right:8px;">
+<img src="/static/images/technexLogoMobile.png" height="40px" class="mobLogo" style="padding-left:8px;padding-right:8px;">
+</a></li>
+<li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+<li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
+<li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+<li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
+
+<li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
+<li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+<li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+<li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> 
+ {% if user.is_authenticated %}
+  DASHBOARD
+  {% else %}
+  REGISTER / LOGIN
+  {% endif %}
+</a></li>
+<li class="icon">
+<a href="javascript:void(0);" class="iconA" onclick="navFunction()">☰</a>
+</li>
+</ul>
+</div>
+
+<div class="container">
+
+<div class="main">
+   <div class="main-heading">
+   <div class="heading">
+   <h1>Our Sponsors</h1>
+   </div>
+   </div>
+   {% for data in response.data %}
+   <div class="sec-heading">
+   <div class="heading">
+   <h2>{{data.type}}</h2>
+   </div>
+   </div>
+   {% for spon in data.sponsors %}
+   <div class="spon"><a class="spon-link" href="{{spon.websiteLink}}" target="_blank"><img src="{{spon.imageLink}}" class="spon-img"></a>
+   </div>
+   {% endfor %}
+   {% endfor %}
+
+   <!--  -->
+   
+  
+   </div>
+   </div>
+</body>
+</html>

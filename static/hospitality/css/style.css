@@ -554,7 +554,7 @@ no-js
 }
 @media screen and (min-width:768px) {
   .cd-section h2, .cd-section h2, .cd-section h2, .cd-section h2{
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }
 #section1, #section2, #section3, #section4, #section5{
@@ -668,53 +668,22 @@ ul.topnav li.icon {display: none;}
 {
     display: none;
 }
-/*
-
-.topnav-li:after {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: red;
-}
-.topnav-li:before {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: yellow;
-}
-.topnav-li:after {
-  right: 0;
-  left: auto;
-}
-.topnav-li:before {
-  left: 0;
-}
-.topnav-li:hover:after {
-  width: 100%;
-  left: 0;
-}
-.topnav-li:hover:before {
-  width: 100%;
-  right: 0;
-    left: auto;
-}
-*/
 /*-------------------/NAVBAR-------------------*/
 .contactUs{
-  font-size: 160%;
-  margin-top: 2%;
-  color: rgba(234, 242, 227, 0.6);
+    font-size: 150%;
+    margin-top: 2%;
+    color: rgba(234, 242, 227, 0.6);
+    float: left;
+    margin-left: 25%;
 }
 .name{
-  padding: 1%;
+    text-align: center;
+    padding: 1%;
+    float: right;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 25px;
+    width: 100%;
+}
+.name p{
+  text-align: center;
 }

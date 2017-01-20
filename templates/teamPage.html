@@ -37,7 +37,8 @@ function navFunction() {
 <!----------NAVBAR-------->
 <div class="jnavbar">
 		<ul class="topnav" id="myTopnav">
-  <li class="topnav-li"><a href='/' style="padding:0px;border:none;"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding:0px;border:none;"></a></li>
+  <li class="topnav-li"><a href='/' style="padding:0px;border:none;"><img src="/static/images/logo-technex-nav.png" height="40px" class="desktopLogo" style="padding-left:8px;padding-right:8px;">
+	<img src="/static/images/technexLogoMobile.png" height="40px" class="mobLogo" style="padding-left:8px;padding-right:8px;"></a></li>
   <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
   <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
@@ -65,8 +66,8 @@ function navFunction() {
 					{% for team in teams|dictsort:"order"  %}
 					<li class="filter" data-filter=".color-{{forloop.counter}}"><a href="#0" data-type="color-{{forloop.counter}}">{{team.teamName}}</a></li>
 					{% endfor %}
-				</ul>			</div> 
-		</div> 
+				</ul>			</div>
+		</div>
 
 		<section class="cd-gallery">
 
@@ -75,24 +76,24 @@ function navFunction() {
 			 {% with forloop.counter as outer_counter %}
 			{% for member in team.teammembers_set.all|dictsort:"order" %}
 			<li class="mix color-{{outer_counter}}"><img src="{{member.photo}}" alt="Image 1">
-                    <div class="num-mail"><p style="color:white">{{member.number}}</p></div>
+                    <div class="num-mail"><p style="color:rgba(255,255,255,.8);">+91{{member.number}}</p></div>
                     <p class="jname">{{member.name}}</p>
-                    <p class="post">{{member.designation}}</p><p style="color:white">{{member.email}}</p></li>
+                    <p class="post">{{member.designation}}</p><p class="membermail">{{member.email}}</p></li>
 			{% endfor %}
 			{% endwith %}
 			{% endfor %}
-			
+
 				<li class="gap"></li>
 				<li class="gap"></li>
 				<li class="gap"></li>
 			</ul>
 			<div class="cd-fail-message" style="color: white;">Will be displayed soon</div>
 		</section>
-	</main> 
+	</main>
 <script src="/static/team/js/jquery-2.1.1.js"></script>
 <script src="/static/team/js/jquery.mixitup.min.js"></script>
 <script src="/static/team/js/main.js"></script>
-    
+
 <script>
 
 $(document).ready(function() {

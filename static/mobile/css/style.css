@@ -185,11 +185,11 @@ ul.topnav li.icon {display: none;}
 .prize-tech{
     text-align: center;
     margin-left: 0%;
-    margin-top: 8%;
+    margin-top: 30%;
 }
 @media screen and (min-width:768px){
   .prize-tech{
-
+      margin-top: 11%;
   }
 }
 .prize-tech img {
@@ -201,7 +201,7 @@ ul.topnav li.icon {display: none;}
 }
 .logo-img{
     width: 90%;
-    margin-bottom: -85%;
+    margin-bottom: -30%;
     margin-left: 5%;
 }
 @media screen and (min-width:768px){
@@ -221,4 +221,31 @@ ul.topnav li.icon {display: none;}
   .text-technex{
     margin-top: : -3%;
   }
+}
+.samsungLogo{
+  margin-top:-70%;
+}
+.samsungLogo h3{
+        text-align: center;
+        color: wheat;
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin-bottom: 1px;
+}
+.samsungLogo img{
+  margin-left: 33%;
+  height: 35px;
+}
+
+@media screen and (min-width:768px) {
+  .samsungLogo{
+    margin-top: -20%;
+  }
+  .samsungLogo h3{
+      font-size: 16px;
+  }
+  .samsungLogo img{
+      margin-left: 38%;
+      height: 90px;
+    }
 }
