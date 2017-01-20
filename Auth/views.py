@@ -1051,7 +1051,7 @@ def event(request, key):
 @user_passes_test(lambda u: u.is_superuser)
 def registrationData(request):
     eventcount = {}
-    eventcount['eventdata'] = []
+    # eventcount['eventdata'] = []
     workshopcount = {}
     workshopcount['workshopdata'] = []
     try:
@@ -1063,16 +1063,36 @@ def registrationData(request):
     totalTeams = Team.objects.all().count()
     localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
-    events = Event.objects.all()
+    pevents = ParentEvent.objects.all()
+    eventtypeArray = []
+    for pevent in pevents:
+        eventtypeobj = {}
+        events = Event.objects.filter(parentEvent = pevent)
+        eventArray = []
+        for event in events:
+            eventobj = {}
+            eventobj['event'] = event.eventName
+            eventobj['count'] = Team.objects.filter(event = event).count()
+            eventobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
+            eventArray.append(eventobj)
+        eventtypeobj['parentEvent'] = pevent.categoryName 
+        eventtypeobj['events'] = eventArray
+        eventtypeArray.append(eventtypeobj)
+    eventcount['data'] =  eventtypeArray   
+
+    print eventcount   
+            
+    # pevents = ParentEvent.objects.all()
+
     workshops = Workshops.objects.all()
-    print events
-    for event in events:
-        eventcountobj = {}
-        eventcountobj['event'] = event.eventName
-        eventcountobj['count'] = Team.objects.filter(event = event).count()
-        eventcountobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
-        eventcount['eventdata'].append(eventcountobj)
-        print eventcount
+    # print events
+    # for event in events:
+    #     eventcountobj = {}
+    #     eventcountobj['event'] = event.eventName
+    #     eventcountobj['count'] = Team.objects.filter(event = event).count()
+    #     eventcountobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
+    #     eventcount['eventdata'].append(eventcountobj)
+    #     print eventcount
     for workshop in workshops:
         workshopcountobj = {}
         workshopcountobj['workshop'] = workshop.title
@@ -1373,4 +1393,12 @@ def worshopdataFill():
 
 def corporateConclave(request):
     return render(request,'corporateConclave.html')
+
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
+def publitry(request):
+    response = {}
+    parentevents = ParentEvent.objects.all()
+
+
+    
 
