@@ -1050,7 +1050,7 @@ def event(request, key):
         response['status'] = 'Invalid Request'
         return JsonResponse(response)
 '''
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def registrationData(request):
     eventcount = {}
     # eventcount['eventdata'] = []
