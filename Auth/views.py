@@ -1056,14 +1056,14 @@ def registrationData(request):
     # eventcount['eventdata'] = []
     workshopcount = {}
     workshopcount['workshopdata'] = []
-    try:
-        iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
-    except:
-        iitBHU = College.objects.filter(collegeName = 'IIT BHU')[0]
+    iitBHUs = College.objects.filter(Q(collegeName = 'IIT (BHU) Varanasi') | Q(collegeName = 'IITBHU') | Q(collegeName = 'IIT-BHU') | Q(collegeName = 'IIT BHU') | Q(collegeName = 'IIT Varanasi') | Q(collegeName = 'Indian Institute Of Technology BHU') | Q(collegeName = 'Indian Institute Of Technology Varanasi') | Q(collegeName = 'Indian Institute of Technology BHU Varanasi') | Q(collegeName = 'Indian Institute of Technology (BHU) Varanasi') | Q(collegeName = 'IIT(BHU)') | Q(collegeName = 'IIT Indian Institute of Technology BHU'))
     totalRegistrations = TechProfile.objects.all().count()
-    localRegistrations = TechProfile.objects.filter(college = iitBHU).count()
+    localRegistrations = 0
+    localTeams = 0
+    for iitBHU in iitBHUs:
+        localRegistrations += TechProfile.objects.filter(college = iitBHU).count()
+        localTeams += Team.objects.filter(teamLeader__college = iitBHU).count()
     totalTeams = Team.objects.all().count()
-    localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
     pevents = ParentEvent.objects.all()
     eventtypeArray = []
@@ -1080,7 +1080,9 @@ def registrationData(request):
                  f = f + 1 + coun.members.count()
             eventobj['count'] = Team.objects.filter(event = event).count()
             eventobj['participantCount'] = f
-            eventobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
+            eventobj['localcount'] = 0
+            for iitBHU in iitBHUs:
+                eventobj['localcount'] += Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
             eventArray.append(eventobj)
         eventtypeobj['parentEvent'] = pevent.categoryName 
         eventtypeobj['events'] = eventArray
