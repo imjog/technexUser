@@ -1148,12 +1148,11 @@ def regtrack(request):
         print "error in passkey"
         return render(request, '404.html')
     response={}
-    try:
-        iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
-    except:
-        iitBHU = College.objects.filter(collegeName = 'IIT BHU')[0]
+    iitBHUs = College.objects.filter(Q(collegeName = 'IIT (BHU) Varanasi') | Q(collegeName = 'IITBHU') | Q(collegeName = 'IIT-BHU') | Q(collegeName = 'IIT BHU') | Q(collegeName = 'IIT Varanasi') | Q(collegeName = 'Indian Institute Of Technology BHU') | Q(collegeName = 'Indian Institute Of Technology Varanasi') | Q(collegeName = 'Indian Institute of Technology BHU Varanasi') | Q(collegeName = 'Indian Institute of Technology (BHU) Varanasi') | Q(collegeName = 'IIT(BHU)') | Q(collegeName = 'IIT Indian Institute of Technology BHU'))
     totalRegistrations = TechProfile.objects.all().count()
-    localRegistrations = TechProfile.objects.filter(college = iitBHU).count()
+    localRegistrations = 0
+    for iitBHU in iitBHUs:
+        localRegistrations += TechProfile.objects.filter(college = iitBHU).count()
     totalTeams = Team.objects.all().count()
     localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
