@@ -503,6 +503,10 @@ $('#btn-next-page').on('click', function(e) {
                   if( response == '1') {
           //$(".fb-send-to-messenger").attr(
             //"data-ref",$("#laluram").val());
+                      fbq('track', 'CompleteRegistration', {
+                          value: 1.00,
+                        currency: 'INR'
+                                      });
           window.location = '/dashboard';
           $("#personal").html('THANK YOU '+ $("#form-first-name").val() +' FOR REGISTERING<br>Checkout the <a href="/events"><u>Events</u></a> we have in store for you :) <br> (Confirmation Mail sent to your Email)');
            parent_fieldset.fadeOut(400, function() {
