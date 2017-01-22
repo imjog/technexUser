@@ -1056,7 +1056,7 @@ def registrationData(request):
     # eventcount['eventdata'] = []
     workshopcount = {}
     workshopcount['workshopdata'] = []
-    iitBHUs = College.objects.filter(Q(collegeName = 'IIT (BHU) Varanasi') | Q(collegeName = 'IITBHU') | Q(collegeName = 'IIT-BHU') | Q(collegeName = 'IIT BHU') | Q(collegeName = 'IIT Varanasi') | Q(collegeName = 'Indian Institute Of Technology BHU') | Q(collegeName = 'Indian Institute Of Technology Varanasi') | Q(collegeName = 'Indian Institute of Technology BHU Varanasi') | Q(collegeName = 'Indian Institute of Technology (BHU) Varanasi') | Q(collegeName = 'IIT(BHU)') | Q(collegeName = 'IIT Indian Institute of Technology BHU'))
+    iitBHUs = College.objects.filter(Q(collegeName = 'IIT (BHU) Varanasi') | Q(collegeName = 'IITBHU') | Q(collegeName = 'IIT-BHU') | Q(collegeName = 'IIT BHU') | Q(collegeName = 'IIT Varanasi') | Q(collegeName = 'Indian Institute Of Technology BHU') | Q(collegeName = 'Indian Institute Of Technology Varanasi') | Q(collegeName = 'Indian Institute of Technology BHU Varanasi') | Q(collegeName = 'Indian Institute of Technology (BHU) Varanasi') | Q(collegeName = 'IIT(BHU)') | Q(collegeName = 'IIT Indian Institute of Technology BHU') | Q(collegeName = 'IIT VARANASI') | Q(collegeName = 'IIT BHU(VARANASI)') | Q(collegeName = 'iit bhu') | Q(collegeName = 'IIT( BHU) VARANASI') | Q(collegeName = 'indian institute of technology BHU') | Q(collegeName = 'iit(bhu)'))
     totalRegistrations = TechProfile.objects.all().count()
     localRegistrations = 0
     localTeams = 0
@@ -1108,7 +1108,7 @@ def registrationData(request):
         workshopcountobj['count'] = (WorkshopTeam.objects.filter(workshop = workshop)).count()
         workshopcount['workshopdata'].append(workshopcountobj)
         print workshopcount
-    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount, 'workshopcount':workshopcount})
+    return render(request,'data.html',{'externalTeams':totalTeams-localTeams,'externalParticipation':totalRegistrations-localRegistrations,'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount, 'workshopcount':workshopcount})
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def publicity(request):
