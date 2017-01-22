@@ -1151,10 +1151,11 @@ def regtrack(request):
     iitBHUs = College.objects.filter(Q(collegeName = 'IIT (BHU) Varanasi') | Q(collegeName = 'IITBHU') | Q(collegeName = 'IIT-BHU') | Q(collegeName = 'IIT BHU') | Q(collegeName = 'IIT Varanasi') | Q(collegeName = 'Indian Institute Of Technology BHU') | Q(collegeName = 'Indian Institute Of Technology Varanasi') | Q(collegeName = 'Indian Institute of Technology BHU Varanasi') | Q(collegeName = 'Indian Institute of Technology (BHU) Varanasi') | Q(collegeName = 'IIT(BHU)') | Q(collegeName = 'IIT Indian Institute of Technology BHU'))
     totalRegistrations = TechProfile.objects.all().count()
     localRegistrations = 0
+    localTeams = 0
     for iitBHU in iitBHUs:
         localRegistrations += TechProfile.objects.filter(college = iitBHU).count()
+        localTeams += Team.objects.filter(teamLeader__college = iitBHU).count()
     totalTeams = Team.objects.all().count()
-    localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
     response['totalTeams']=totalTeams
     response['totalRegistrations']=totalRegistrations
