@@ -16,6 +16,9 @@ from django.db.models import Q
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.staticfiles.templatetags.staticfiles import static
 import dropbox
+from django.db.models import Sum,Max
+import urllib2
+import cookielib
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -1409,6 +1412,72 @@ def publitry(request):
     response = {}
     parentevents = ParentEvent.objects.all()
 
+def send_sms(username,passwd,message,number):
+    url = 'http://site24.way2sms.com/Login1.action?'
+    data = 'username='+username+'&password='+passwd+'&Submit=Sign+in'
 
-    
+    #For Cookies:
+    cj = cookielib.CookieJar()
+    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+
+    # Adding Header detail:
+    opener.addheaders = [('User-Agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36')]
+
+    try:
+        usock = opener.open(url, data)
+    except IOError:
+        return 0
+
+
+    jession_id = str(cj).split('~')[1].split(' ')[0]
+    send_sms_url = 'http://site24.way2sms.com/smstoss.action?'
+    send_sms_data = 'ssaction=ss&Token='+jession_id+'&mobile='+number+'&message='+message+'&msgLen=136'
+    opener.addheaders = [('Referer', 'http://site25.way2sms.com/sendSMS?Token='+jession_id)]
+
+    try:
+        sms_sent_page = opener.open(send_sms_url,send_sms_data)
+    except IOError:
+        return 0
+    return 1
+
+
+def sendSms(request):
+    if request.method=="POST":
+        messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
+        if(messages_left==0):
+            return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Limit up man, bring some more accounts :D"})
+        data = request.POST
+        mobile_data = data.get('data',None)
+        message=data.get('message',None)
+        mobile_list=mobile_data.split('\n')
+        # print len(mobile_list)
+        if len(mobile_list)>messages_left:
+            return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Sorry! I can send "+messages_left+" mesaages only!"})
+        
+        current_possible=0
+        username=None
+        password=None
+        sent_numbers=[]
+
+        for m in mobile_list:
+            number=m.replace('\n','')
+            print number
+            if current_possible==0:
+                up_max=Way2smsAccount.objects.all().aggregate(Max('messages_left'))['messages_left__max']
+                up=Way2smsAccount.objects.filter(messages_left=up_max)[0]
+                current_possible=up_max
+                username=up.username
+                password=up.password
+            sent=send_sms(username,password,message,number)
+            if sent:
+                sent_numbers.append(number)
+                current_possible-=1
+                up.messages_left-=1
+                up.save()
+        messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
+        return render(request, 'send_sms_successful.html',{'messages_left':messages_left,'sent_numbers':sent_numbers,'count':len(sent_numbers)})
+    else:
+        messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
+        # print messages_left
+        return render(request, 'send_sms.html',{'messages_left':messages_left})
 
