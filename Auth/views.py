@@ -1449,7 +1449,7 @@ def sendSms(request):
         data = request.POST
         mobile_data = data.get('data',None)
         message=data.get('message',None)
-        mobile_list=mobile_data.split('\n')
+        mobile_list=mobile_data.splitlines()
         # print len(mobile_list)
         if len(mobile_list)>messages_left:
             return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Sorry! I can send "+messages_left+" mesaages only!"})
@@ -1460,8 +1460,7 @@ def sendSms(request):
         sent_numbers=[]
 
         for m in mobile_list:
-            number=m.replace('\n','')
-            print number
+            number =m
             if current_possible==0:
                 up_max=Way2smsAccount.objects.all().aggregate(Max('messages_left'))['messages_left__max']
                 up=Way2smsAccount.objects.filter(messages_left=up_max)[0]
@@ -1469,6 +1468,7 @@ def sendSms(request):
                 username=up.username
                 password=up.password
             sent=send_sms(username,password,message,number)
+            # print number+username
             if sent:
                 sent_numbers.append(number)
                 current_possible-=1
