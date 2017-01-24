@@ -266,13 +266,13 @@ class quiz(models.Model):
 class questions(models.Model):
     questionID = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quiz, null = True)
-    question = models.TextField(blank = True)
-    option1 = models.TextField(blank = True)
-    option2 = models.TextField(blank = True)
-    option3 = models.TextField(blank = True)
-    option4 = models.TextField(blank = True)
+    question = models.TextField(blank = True , null =True)
+    option1 = models.TextField(blank = True , null =True)
+    option2 = models.TextField(blank = True , null =True)
+    option3 = models.TextField(blank = True , null =True)
+    option4 = models.TextField(blank = True , null =True)
     def __unicode__(self):
-        return self.questionID            
+        return '%s'%(self.questionID)            
 
 class optionResponses(models.Model):
     team = models.ForeignKey(Team)
