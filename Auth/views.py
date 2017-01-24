@@ -1407,10 +1407,6 @@ def corporateConclave(request):
     print request
     return render(request,'corporateConclave.html')
 
-@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
-def publitry(request):
-    response = {}
-    parentevents = ParentEvent.objects.all()
 
 def send_sms(username,passwd,message,number):
     url = 'http://site24.way2sms.com/Login1.action?'
@@ -1480,4 +1476,58 @@ def sendSms(request):
         messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
         # print messages_left
         return render(request, 'send_sms.html',{'messages_left':messages_left})
+
+
+def quiz(request):
+    response = {}
+    event = event.objects.get(eventName = 'Krackat')
+    if user.is_authenticated:
+        user = request.user
+        try:    
+            team = Team.objects.filter(teamLeader = user, event = event)
+            optionresp = optionResponse.objects.filter(team = team)
+            if optionresp.attemptStatus is 1:
+                response['status'] = 0
+                response['message'] = "You have already finished you quiz"
+                return render(request, 'dash.html' , response)
+            else:
+                quiz = optionresp.quiz
+                if quiz.activeStatus is 0:
+                    response['status'] = 0
+                    response['message'] = "Your quiz has already ended"
+                    return render(request , 'dash.html' , response)
+                elif quiz.activeStatus is 2:
+                    response['status'] = 0
+                    response['message'] = "Your quiz has not yet started"
+                else:
+                    response['status'] = 1
+                    questions = questions.objects.filter(quiz = quiz)
+                    questionArrayObject = []
+                    for question in questions:
+                        questionArray = {}
+                        questionArray['question'] = question.question
+                        questionArray['option1'] = question.option1
+                        questionArray['option1'] = question.option2
+                        questionArray['option1'] = question.option3
+                        questionArray['option1'] = question.option4
+                        questionArrayObject.append(questionArray)
+                    response['questions'] = questionArrayObject
+                    finalResponse['data'] = response
+                    return render(request , 'quiz.html', finalResponse)
+        except:
+            response['status'] = 0
+            response['message'] = "You have not registered for this event"
+            return render(request, 'dash.html', response)
+    else:
+        return redirect('/register')                        
+
+
+
+
+
+
+                                    
+
+
+
 
