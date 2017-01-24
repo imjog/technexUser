@@ -1,30 +1,104 @@
-Total Workshop Teams: {{workshopTeamsTotal}}<br>
-Local Event Teams: {{localTeams}}<br>
-Total Events Team: {{totalTeams}}<br>
-Local User Registrations:{{localRegistrations}}<br>
-Total User Registrations:{{totalRegistrations}}<br>
-<hr>
-<hr>
-<div style="width: 100%">
-<h1>Event wise Team Count</h1>
-</div>
-{% for data in eventcount.eventdata %}
-<div style="width: 100%">
-{{data.event}}
-<br>
-  Total : {{data.count}}
-  Local : {{data.localcount}}
-</div>
-<hr>
-{% endfor %}
-<hr>
-<hr>
+<head>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
+<body>
+<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
+	<thead>
+      <tr>
+        <th>Type</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+	
+	<tr>
+	<td>Total User Registrations</td>
+	<td>{{totalRegistrations}}</td>  
+	</tr><tr>
+	<td>External Registrations</td>
+	<td>{{externalParticipation}}</td>
+	</tr><tr>
+	<td>Local User Registrations</td>
+	<td>{{localRegistrations}}</td>
+	</tr><tr>
+	<td>Total Events Team</td>
+	<td>{{totalTeams}}</td>
+	</tr><tr>
+	<td>External Event Teams</td>
+	<td>{{externalTeams}}</td>
+	</tr><tr>
+	<td>Local Event Teams</td>
+	<td>{{localTeams}}</td>
+	</tr><tr>
+	<td>Total Workshop Teams</td>
+	<td>{{workshopTeamsTotal}}</td>
+	</tr>
+	</tbody>
+</table>
+<hr>
+<hr>
+<div style="width: 100%">
+<h1>Event wise Teams</h1>
+</div>
+
+{% for data in eventcount.data %}
+<div style="width: 100%">
+<h1><u>{{data.parentEvent}}</u></h1>
+</div>
+<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
+	<thead>
+      <tr>
+      	<th>Event</th>
+        <th>Total event counts</th>
+        <th>Local teams</th>
+        <th>Total participants</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for even in data.events %}
+	<tr>
+	<td>{{even.event}}</td>
+	<td>{{even.count}}</td>
+	<td>{{even.localcount}}</td>
+	<td>{{even.participantCount}}</td>  
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endfor %}
+
+
+
+
+
+
+<hr>
+<hr>
 <div style="width: 100%">
 <h1>Workshop wise Teams</h1>
 </div>
-{% for data in workshopcount.workshopdata %}
+
 <div style="width: 100%">
-{{data.workshop}} --------->  {{data.count}}
+<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
+	<thead>
+      <tr>
+        <th>Workshop</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for data in workshopcount.workshopdata %}
+	<tr>
+	<td>{{data.workshop}}</td>
+	<td>{{data.count}}</td>  
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
 </div>
-{% endfor %}	
+	
+</body>

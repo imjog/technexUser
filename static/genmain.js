@@ -797,7 +797,7 @@ app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , f
     try{ 
     $scope.max = $scope.options[$scope.workshopIndex()].max;
     console.log($scope.workshopIndex());
-    $scope.a  = new Array($scope.max-1);
+    $scope.a  = [];
         while($scope.members.length!=0)
     {
         $scope.members.pop();    

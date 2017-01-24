@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Send_sms</title>
+</head>
+<body>
+<p> You can send {{messages_left}} sms today </p>
+<form action="/send_sms/" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+  Mobile Numbers-
+  <br/>
+  <textarea name="data" rows="20" cols="50"></textarea>
+  <br/>
+  Message-
+  <br/>
+  <textarea name="message" rows="5" cols="50"></textarea>
+  <br/>
+  {% if error_msg %}
+  	{{error_msg}}
+  {% endif %}
+  <button type="submit">SUBMIT</button>
+</form>
+</body>
+</html>

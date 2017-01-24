@@ -16,6 +16,9 @@ from django.db.models import Q
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.staticfiles.templatetags.staticfiles import static
 import dropbox
+from django.db.models import Sum,Max
+import urllib2
+import cookielib
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -24,8 +27,18 @@ app_key = 'rrevl3xuwa073fd'
 app_secret = 'v51fzo5r8or1bkl'
 flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
 sheetUrls = {
-
-}
+    "internet-of-things": "https://script.google.com/macros/s/AKfycbwLtFRKGpWk9ZxvvAoq409JqHMiykh2wWYHte6k6DUd94q7zLak/exec",
+    "data-mining" : "https://script.google.com/macros/s/AKfycbzLegitbfINZp8Ygu2aGBwLHMXaB-aQOW__B-lr6ZCD34NfliqM/exec",
+    "digital-marketing" : "https://script.google.com/macros/s/AKfycby1EOzmNiEpW5ddEbTwTIugmCidIf5H05GmMdDSxTZn15PD60c/exec",
+    "3-d-printing" : "https://script.google.com/macros/s/AKfycbz3LcIF1VOg-EJsDueeKU6Ncpl3velEbiu4D7dwCDzuVtLhGmKJ/exec",
+    "swarm-robotics" : "https://script.google.com/macros/s/AKfycbxEATq42TerLuSWCpA_mGf7meRLU5I_vNCz6HedPcsA70zTapw/exec",
+    "bridge-design" : "https://script.google.com/macros/s/AKfycbzYPXl8JSLaLt0Ih5H3YzE97o6AT1n139B-3RyUPC75pp3SYo-v/exec",
+    "android-app-development" : "https://script.google.com/macros/s/AKfycbyUauzei8mhLXoxTtGI7_8sfIVP_7RuIeRCbV9jMjiJiA6rYdg/exec",
+    "vision-botics" : "https://script.google.com/macros/s/AKfycbwqOaFMVHeePAC_gYSCvXLSjqEhn5KcnbLkCOUQx-gHs3wgVFfp/exec",
+    "automobile" : "https://script.google.com/macros/s/AKfycbxJVGyMPPT1Aa9DjPDqqcaw0ZbWC8dYqTuZPc50iwaMISf8MNg-/exec",
+    "ethical-hacking" : "https://script.google.com/macros/s/AKfycbw_oQ_7Mxc-NpPeipvTlGYIt5Jau5PzVCYqcgMpuelCs37cVRuA/exec",
+    "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec"
+    }
 
 @csrf_exempt
 def profileValidation(request):
@@ -837,6 +850,7 @@ def workshopRegister(request):
 
     if request.method == 'POST':
         data = json.loads(request.body)
+        print data
         workshop = Workshops.objects.get(slug = data['workshopSlug'])
 
         try:
@@ -936,6 +950,7 @@ Regards
             #for user in users:
              #   send_email(user.email,subject,body%(user.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
             response['status'] = 1
+            workshop_spreadsheet(team)
             return JsonResponse(response)
     else:
         response['status'] = 0
@@ -989,6 +1004,8 @@ def workshop(request):
             workshopData['workshopFees'] = workshop.workshopFees
             workshopData['order'] = workshop.order
             workshopData['link'] = workshop.slug
+            workshopData['sponlink'] = workshop.sponlink
+            workshopData['sponimage'] = workshop.sponimage
             workshopData['workshopOptions'] = []
             workshopOptions = WorkshopOptions.objects.filter(workshop = workshop)
             for workshopOption in workshopOptions:
@@ -1036,38 +1053,65 @@ def event(request, key):
         response['status'] = 'Invalid Request'
         return JsonResponse(response)
 '''
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def registrationData(request):
     eventcount = {}
-    eventcount['eventdata'] = []
+    # eventcount['eventdata'] = []
     workshopcount = {}
     workshopcount['workshopdata'] = []
-    try:
-        iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
-    except:
-        iitBHU = College.objects.filter(collegeName = 'IIT BHU')[0]
+    iitBHUs = College.objects.filter(Q(collegeName = 'IIT (BHU) Varanasi') | Q(collegeName = 'IITBHU') | Q(collegeName = 'IIT-BHU') | Q(collegeName = 'IIT BHU') | Q(collegeName = 'IIT Varanasi') | Q(collegeName = 'Indian Institute Of Technology BHU') | Q(collegeName = 'Indian Institute Of Technology Varanasi') | Q(collegeName = 'Indian Institute of Technology BHU Varanasi') | Q(collegeName = 'Indian Institute of Technology (BHU) Varanasi') | Q(collegeName = 'IIT(BHU)') | Q(collegeName = 'IIT Indian Institute of Technology BHU') | Q(collegeName = 'IIT VARANASI') | Q(collegeName = 'IIT BHU(VARANASI)') | Q(collegeName = 'iit bhu') | Q(collegeName = 'IIT( BHU) VARANASI') | Q(collegeName = 'indian institute of technology BHU') | Q(collegeName = 'iit(bhu)') | Q(collegeName = 'Indian Institute of Technology, BHU, Varanasi'))
     totalRegistrations = TechProfile.objects.all().count()
-    localRegistrations = TechProfile.objects.filter(college = iitBHU).count()
+    localRegistrations = 0
+    localTeams = 0
+    for iitBHU in iitBHUs:
+        localRegistrations += TechProfile.objects.filter(college = iitBHU).count()
+        localTeams += Team.objects.filter(teamLeader__college = iitBHU).count()
     totalTeams = Team.objects.all().count()
-    localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
-    events = Event.objects.all()
+    pevents = ParentEvent.objects.all()
+    eventtypeArray = []
+    for pevent in pevents:
+        eventtypeobj = {}
+        events = Event.objects.filter(parentEvent = pevent)
+        eventArray = []
+        for event in events:
+            eventobj = {}
+            eventobj['event'] = event.eventName
+            countmem = Team.objects.filter(event = event)
+            f = 0
+            for coun in countmem:
+                 f = f + 1 + coun.members.count()
+            eventobj['count'] = Team.objects.filter(event = event).count()
+            eventobj['participantCount'] = f
+            eventobj['localcount'] = 0
+            for iitBHU in iitBHUs:
+                eventobj['localcount'] += Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
+            eventArray.append(eventobj)
+        eventtypeobj['parentEvent'] = pevent.categoryName 
+        eventtypeobj['events'] = eventArray
+        eventtypeArray.append(eventtypeobj)
+    eventcount['data'] =  eventtypeArray   
+
+    print eventcount   
+            
+    # pevents = ParentEvent.objects.all()
+
     workshops = Workshops.objects.all()
-    print events
-    for event in events:
-        eventcountobj = {}
-        eventcountobj['event'] = event.eventName
-        eventcountobj['count'] = Team.objects.filter(event = event).count()
-        eventcountobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
-        eventcount['eventdata'].append(eventcountobj)
-        print eventcount
+    # print events
+    # for event in events:
+    #     eventcountobj = {}
+    #     eventcountobj['event'] = event.eventName
+    #     eventcountobj['count'] = Team.objects.filter(event = event).count()
+    #     eventcountobj['localcount'] = Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
+    #     eventcount['eventdata'].append(eventcountobj)
+    #     print eventcount
     for workshop in workshops:
         workshopcountobj = {}
         workshopcountobj['workshop'] = workshop.title
         workshopcountobj['count'] = (WorkshopTeam.objects.filter(workshop = workshop)).count()
         workshopcount['workshopdata'].append(workshopcountobj)
         print workshopcount
-    return render(request,'data.html',{'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount, 'workshopcount':workshopcount})
+    return render(request,'data.html',{'externalTeams':totalTeams-localTeams,'externalParticipation':totalRegistrations-localRegistrations,'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount, 'workshopcount':workshopcount})
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def publicity(request):
@@ -1109,14 +1153,14 @@ def regtrack(request):
         print "error in passkey"
         return render(request, '404.html')
     response={}
-    try:
-        iitBHU = College.objects.filter(collegeName = 'IIT (BHU) Varanasi')[0]
-    except:
-        iitBHU = College.objects.filter(collegeName = 'IIT BHU')[0]
+    iitBHUs = College.objects.filter(Q(collegeName = 'IIT (BHU) Varanasi') | Q(collegeName = 'IITBHU') | Q(collegeName = 'IIT-BHU') | Q(collegeName = 'IIT BHU') | Q(collegeName = 'IIT Varanasi') | Q(collegeName = 'Indian Institute Of Technology BHU') | Q(collegeName = 'Indian Institute Of Technology Varanasi') | Q(collegeName = 'Indian Institute of Technology BHU Varanasi') | Q(collegeName = 'Indian Institute of Technology (BHU) Varanasi') | Q(collegeName = 'IIT(BHU)') | Q(collegeName = 'IIT Indian Institute of Technology BHU'))
     totalRegistrations = TechProfile.objects.all().count()
-    localRegistrations = TechProfile.objects.filter(college = iitBHU).count()
+    localRegistrations = 0
+    localTeams = 0
+    for iitBHU in iitBHUs:
+        localRegistrations += TechProfile.objects.filter(college = iitBHU).count()
+        localTeams += Team.objects.filter(teamLeader__college = iitBHU).count()
     totalTeams = Team.objects.all().count()
-    localTeams = Team.objects.filter(teamLeader__college = iitBHU).count()
     workshopTeamsTotal = WorkshopTeam.objects.all().count()
     response['totalTeams']=totalTeams
     response['totalRegistrations']=totalRegistrations
@@ -1298,5 +1342,142 @@ def exhibitions(request):
 def liteversion(request):
     return render(request,'mobile.html')
 
+def workshop_spreadsheet(team):
+    members = team.members.all()           
+    dic = {
+    "teamName": team.teamName.encode("utf-8"),
+    "leaderName" : team.teamLeader.user.first_name.encode("utf-8"),
+    "leaderEmail" : team.teamLeader.email.encode("utf-8"),
+    "leaderMobile":str(team.teamLeader.mobileNumber),
+    "leaderCollege":team.teamLeader.college.collegeName.encode("utf-8"),
+    "teamId":team.teamId
+    }
+    try:
+        dic['name1'] = members[0].user.first_name.encode("utf-8")
+        dic['member1'] = members[0].email.encode("utf-8")
+        dic['college1'] = members[0].college.collegeName.encode("utf-8") 
+        dic['mobile1'] = members[0].mobileNumber
+    except:
+        dic['name1'] = 0
+        dic['member1'] = 0
+        dic['college1'] = 0
+        dic['mobile1'] = 0
+    try:
+        dic['name2'] = members[0].user.first_name.encode("utf-8")
+        dic['member2'] = members[1].email.encode("utf-8")
+        dic['college2'] = members[1].college.collegeName.encode("utf-8")
+        dic['mobile2'] = members[1].mobileNumber
+    except:
+        dic['name2'] = 0
+        dic['member2'] = 0
+        dic['college2'] = 0
+        dic['mobile2'] = 0
+    try:
+        dic['name3'] = members[0].user.first_name.encode("utf-8")
+        dic['member3'] = members[2].email.encode("utf-8")
+        dic['college3'] = members[2].college.collegeName.encode("utf-8")
+        dic['mobile3'] = members[2].mobileNumber
+    except:
+        dic['name3'] = 0
+        dic['member3'] = 0
+        dic['college3'] = 0
+        dic['mobile3'] = 0
+    try:
+        dic['name4'] = members[0].user.first_name.encode("utf-8")
+        dic['member4'] = members[3].email.encode("utf-8")
+        dic['college4'] = members[3].college.collegeName.encode("utf-8")
+        dic['mobile4'] = members[3].mobileNumber
+    except:
+        dic['name4'] = 0
+        dic['member4'] = 0
+        dic['college4'] = 0
+        dic['mobile4'] = 0
+    print dic
+    url = sheetUrls[team.workshop.slug.encode("utf-8")]
+    requests.post(url, data = dic)
+
+
+def worshopdataFill():
+    teams = WorkshopTeam.objects.all()
+    for team in teams:
+        workshop_spreadsheet(team)
+
+
 def corporateConclave(request):
+    print request
     return render(request,'corporateConclave.html')
+
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
+def publitry(request):
+    response = {}
+    parentevents = ParentEvent.objects.all()
+
+def send_sms(username,passwd,message,number):
+    url = 'http://site24.way2sms.com/Login1.action?'
+    data = 'username='+username+'&password='+passwd+'&Submit=Sign+in'
+
+    #For Cookies:
+    cj = cookielib.CookieJar()
+    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+
+    # Adding Header detail:
+    opener.addheaders = [('User-Agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36')]
+
+    try:
+        usock = opener.open(url, data)
+    except IOError:
+        return 0
+
+
+    jession_id = str(cj).split('~')[1].split(' ')[0]
+    send_sms_url = 'http://site24.way2sms.com/smstoss.action?'
+    send_sms_data = 'ssaction=ss&Token='+jession_id+'&mobile='+number+'&message='+message+'&msgLen=136'
+    opener.addheaders = [('Referer', 'http://site25.way2sms.com/sendSMS?Token='+jession_id)]
+
+    try:
+        sms_sent_page = opener.open(send_sms_url,send_sms_data)
+    except IOError:
+        return 0
+    return 1
+
+
+def sendSms(request):
+    if request.method=="POST":
+        messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
+        if(messages_left==0):
+            return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Limit up man, bring some more accounts :D"})
+        data = request.POST
+        mobile_data = data.get('data',None)
+        message=data.get('message',None)
+        mobile_list=mobile_data.splitlines()
+        # print len(mobile_list)
+        if len(mobile_list)>messages_left:
+            return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Sorry! I can send "+messages_left+" mesaages only!"})
+        
+        current_possible=0
+        username=None
+        password=None
+        sent_numbers=[]
+
+        for m in mobile_list:
+            number =m
+            if current_possible==0:
+                up_max=Way2smsAccount.objects.all().aggregate(Max('messages_left'))['messages_left__max']
+                up=Way2smsAccount.objects.filter(messages_left=up_max)[0]
+                current_possible=up_max
+                username=up.username
+                password=up.password
+            sent=send_sms(username,password,message,number)
+            # print number+username
+            if sent:
+                sent_numbers.append(number)
+                current_possible-=1
+                up.messages_left-=1
+                up.save()
+        messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
+        return render(request, 'send_sms_successful.html',{'messages_left':messages_left,'sent_numbers':sent_numbers,'count':len(sent_numbers)})
+    else:
+        messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
+        # print messages_left
+        return render(request, 'send_sms.html',{'messages_left':messages_left})
+
