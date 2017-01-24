@@ -109,7 +109,7 @@ a:active {
   font-size: 16px;
   line-height: 24px;
   font-weight: 300;
-  color: #817C7C;
+  /*color: #817C7C;*/
 }
 #mixed-items .mix {
   display: none;
@@ -1801,7 +1801,7 @@ Main components
   width: 100%;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   text-align: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -2209,4 +2209,17 @@ Main components
   #snc{
     display: block;
   }
+}
+
+.vcpost{
+  display: none;
+  background: black;
+  color: white;
+  transition: 0.3s;
+  height: 110px;
+}
+.cd-item:hover .vcpost{
+  display: block;
+  transform: translateY(-136%);
+  transition: 0.3s;
 }
