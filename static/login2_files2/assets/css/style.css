@@ -322,6 +322,7 @@ ul.topnav li a {
     ul.topnav li a{
         color: rgba(255,255,255,.8);
         font-size: 15px;
+        padding: 20px 8px;
     }
 ul.topnav li a:hover {
 /*    background-color:white; color: black;*/
