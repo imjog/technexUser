@@ -926,11 +926,15 @@ header .navbar {
 }
 #client-logo a {
   padding: 14px 24px;
-  display: block;
+    display: list-item;
+    float: left;
+    margin: 0 auto;
+    list-style: none;
 }
 #client-logo a img {
   transition: 0.3s;
   margin: 0 auto;
+  height: 100px;
 }
 #client-logo a:hover img {
   transform: scale(1.2);
