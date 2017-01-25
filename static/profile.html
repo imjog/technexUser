@@ -159,15 +159,12 @@ th
                       </div>
                       <h3 id="username">{{person.name}}</h3>
 
-                      <ul class="list-unstyled user_data">
-                                              <li>
-                          <i class="fa user-profile-icon"><img src="/static/favicon.ico"/></i> {{person.technexId}}
-                        </li>
-                        <li style="text-transform: capitalize;"><i class="fa fa-map-marker user-profile-icon"></i> {{person.city}}
-                        </li>
-
-                        <li>
-                          <i class="glyphicon glyphicon-education user-profile-icon"></i> {{position(person.year)}}, {{person.college}}
+                      <ul class="list-unstyled user_data" style="font-size: 19px">
+                                              <li><i class="fa user-profile-icon"><img src="/static/favicon.ico"/></i> {{person.technexId}}
+                        </li><li style="text-transform: capitalize;"><i class="fa fa-map-marker user-profile-icon"></i>
+                        {{person.city}}
+                        </li><li><i class="glyphicon glyphicon-education user-profile-icon"></i>
+                          {{position(person.year)}}, {{person.college}}
                         </li>
 
                       </ul>
