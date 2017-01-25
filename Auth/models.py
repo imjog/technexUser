@@ -255,3 +255,42 @@ class Way2smsAccount(models.Model):
     messages_left=models.IntegerField(default=100)
     def __unicode__(self):
         return self.username
+
+class quiz(models.Model):
+    quizId = models.AutoField(primary_key = True)
+    name = models.CharField(max_length = 50)
+    activeStatus = models.SmallIntegerField(default = 0)
+    def __unicode__(self):
+        return self.name
+
+class questions(models.Model):
+    questionID = models.AutoField(primary_key = True)
+    quiz = models.ForeignKey(quiz, null = True)
+    question = models.TextField(blank = True , null =True)
+    option1 = models.TextField(blank = True , null =True)
+    option2 = models.TextField(blank = True , null =True)
+    option3 = models.TextField(blank = True , null =True)
+    option4 = models.TextField(blank = True , null =True)
+    def __unicode__(self):
+        return '%s'%(self.questionID)            
+
+class optionResponses(models.Model):
+    team = models.ForeignKey(Team)
+    quiz = models.ForeignKey(quiz, null = True)
+    answer1 = models.CharField(max_length = 50)
+    answer2 = models.CharField(max_length = 50)
+    answer3 = models.CharField(max_length = 50)
+    answer4 = models.CharField(max_length = 50)
+    answer5 = models.CharField(max_length = 50)
+    answer6 = models.CharField(max_length = 50)
+    answer7 = models.CharField(max_length = 50)
+    answer8 = models.CharField(max_length = 50)
+    answer9 = models.CharField(max_length = 50)
+    answer10 = models.CharField(max_length = 50)
+    attemptStatus = models.SmallIntegerField(default = 0)
+    def __unicode__(self):
+        return self.team.teamName
+
+
+
+

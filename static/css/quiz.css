@@ -1,0 +1,63 @@
+body {
+	background-color:#2c3e50;
+}
+
+.navbar {
+	background:#3498db;
+	border-color:transparent;
+	color:#fff;
+	font-family: Ubuntu;
+	padding:10px;
+}
+
+.navbar-brand {
+	font-family: Ubuntu;
+	font-size: 50px;
+}
+
+.navbar-default .navbar-nav > li > a{
+	color:#fff;
+	font-size:20px;
+}
+
+#circleContainer {
+	padding:30px;
+}
+
+.full-circle {
+	background-color: #3498db;
+	height: 100px;
+	-moz-border-radius:75px;
+	-webkit-border-radius:75px;
+	border-radius:75px;
+	width: 100px;
+	margin:20px 30px;
+	float:left;
+}
+
+.ih-item.circle {
+	width:150px;
+	height:150px;
+}
+
+.ih-item.circle.effect15 .info h3  {
+	font-size:16px;
+}
+
+#questionMark {
+	padding-top:20px;
+	margin:auto;
+	font-family:Ubuntu; 
+	text-align:center;
+	font-size:100px;
+	color:#fff;
+}
+
+#footer {
+	text-align: center;
+	margin:auto;
+}
+
+a {
+	text-decoration: none;
+}

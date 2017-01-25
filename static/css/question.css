@@ -1,0 +1,14 @@
+body {
+	background-color:#494C43;
+}
+.jumbotron {
+	background:transparent;
+	border-color: transparent;
+	font-family: Ubuntu;
+	color:#fff;
+}
+
+.btn-lg {
+	border:0;
+	margin:auto;
+}
