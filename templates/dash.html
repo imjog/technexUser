@@ -136,6 +136,9 @@
   margin-left: 5px;
     margin-right: 5px;
 }
+.modal-backdrop {
+z-index: -90;
+  }
 </style>
   </head>
   <body class="nav-md">
@@ -177,7 +180,8 @@
                                      <li><a href="#payment"><i class="fa fa-inr"></i>Payments <span class="label label-success pull-right">New</span></a>
                   </li>
 
-
+               <li><a data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-users"></i> Contacts</a>
+                  </li>
                   <li><a href="#changepassword"><i class="fa fa-cogs"></i> Change Password</a>
                   </li>
                
@@ -265,6 +269,32 @@
         </div>     
     <div ng-view>
     </div>
+
+    <div class="modal fade bs-example-modal-md in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 21px;">
+                    <div class="modal-dialog modal-md">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel">CONTACTS</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h4>For any technical queries, Contact:</h4>
+                          <p><i class="glyphicon glyphicon-phone"></i> +91-9935504188</p>
+                          <p><i class="glyphicon glyphicon-phone"></i> +91-7270975614</p> 
+                          <p><i class="glyphicon glyphicon-envelope"></i> 
+                           ishantdeep.sgandhi.eee15@itbhu.ac.in</p>
+                          <p><i class="glyphicon glyphicon-envelope"></i>
+                           bikram.bharti.ece15@itbhu.ac.in</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
     <!-- <footer style="background: #cccccc;">
           <div class="pull-left" style="width: 100%;color: black;">
           For any technical queries regarding Registration, Contact:
@@ -282,6 +312,8 @@
       </div>
     <!-- </div> -->
   <input type='hidden' id='userEmail' value="{{ request.user.techprofile.email }}" /> 
+
+
 
     <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/static/vendors/nprogress/nprogress.js"></script>
