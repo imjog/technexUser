@@ -285,7 +285,12 @@ app.controller("profileEdit",function($scope, profileData,$http){
                 email: "",
                 mobile: ""
         };
+        $scope.showteams = true;
+        $scope.showDetails = false;
+        $scope.showWorkshops = false;
         $scope.teamArray = profileData.getTeamData();
+        $scope.workshopArray = profileData.getWorkshopData();
+        console.log($scope.workshopArray);
         console.log("skjdjfi");
         console.log($scope.teamArray.length);
         $scope.employeeArray = profileData.getStaffArray();

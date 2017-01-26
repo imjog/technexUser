@@ -176,14 +176,16 @@ th
 
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-init='tab1="active"'>
-                          <li role="presentation" style="cursor: pointer;" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;tab1="active";tab2=""' >Teams</a>
+                          <li role="presentation" style="cursor: pointer;" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;showteams=true;showWorkshops=false;tab1="active";tab2="";tab3=""' >Teams</a>
                           </li>
-                          <li role="presentation" style="cursor: pointer;"  ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;tab2="active";tab1=""'>Profile</a>
+                          <li role="presentation" style="cursor: pointer;"  ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;showteams=false;tab2="active";tab1="";tab3="";showWorkshops=false'>Profile</a>
+                          </li>
+                                                   <li role="presentation" style="cursor: pointer;"  ng-class="tab3"><a id="profile-tab3" ng-click='showDetails =false;tab3="active";tab1="";tab2="";showteams=false;showWorkshops=true'>Workshops</a>
                           </li>
                         </ul>
                         </div>
                         <div id="myTabContent" class="tab-content" style="min-height:350px;overflow: auto;border: 3px solid white;">
-                          <div class="tab-pane fade" id="tab_content2" style="display: inline; opacity: 1;" ng-hide="showDetails" >
+                          <div class="tab-pane fade" id="tab_content2" style="display: inline; opacity: 1;" ng-show="showteams" >
                     <table class="table table-striped projects">
                       <thead style="    border: 2px solid white;">
                         <tr>
@@ -328,6 +330,33 @@ th
                     </div>
                     </div>
                     </div>
+
+              
+                          <div class="tab-pane fade" id="tab_content4" style="display: inline; opacity: 1;" ng-show="showWorkshops" >
+                    <table class="table table-striped projects">
+                      <thead style="    border: 2px solid white;">
+                        <tr>
+                          <th style="width: 1%">#</th>
+                          <th style="width: 20%">TeamId</th>
+                          
+                          <th>Workshop</th>
+                          <!-- <th style="width: 20%">Deadline</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat='team in workshopArray track by $index'>
+                          <td>{{$index+1}}</td>
+                         <td class="project_progress">{{team.teamId}}</td>
+                          <td class="project_progress">
+                            <h4>{{team.workshop}}</h4>
+                          </td>
+                         <!--  <td>
+                          <a> Later</a>
+                          </td> -->
+                        </tr>
+                                                
+                      </tbody>
+                    </table>
                           
                           </div>
 

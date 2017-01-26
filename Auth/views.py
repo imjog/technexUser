@@ -166,6 +166,18 @@ def contextCall(request):
         print teamsData
         response['teams'] = teamsData
         #response['notificationArray'] = notificationData(request)
+        try:   
+            workshops = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
+            workshopsData = []
+            for workshop in workshops:
+                workshopData = {}
+                workshopData['workshop'] = workshop.workshop.title
+                workshopData['teamId'] = workshop.teamId
+                workshopsData.append(workshopData) 
+            response['workshops'] = workshopsData
+            print workshopsData   
+        except:
+            pass    
     except:
         pass
     return response

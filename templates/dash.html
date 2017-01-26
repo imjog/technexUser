@@ -301,6 +301,14 @@ app.service("profileData", function(){
             }
 
         ];
+        var workshopData = [
+             {% for workshop in workshops %}
+             {
+           workshop: "{{workshop.workshop}}",
+           teamId : "{{workshop.teamId}}",
+      },
+           {% endfor %}
+        ];
         var teamsData = [
         {% for team in teams %}
         {
@@ -323,7 +331,9 @@ app.service("profileData", function(){
         this.getStaffArray = function(){
             return staffArray;
         };
-
+        this.getWorkshopData = function(){
+              return workshopData
+        };
         //updating person
         this.updateInfo = function(personIndex, obj){
             staffArray.splice(personIndex, 1, obj)
