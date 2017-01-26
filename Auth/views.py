@@ -37,7 +37,8 @@ sheetUrls = {
     "vision-botics" : "https://script.google.com/macros/s/AKfycbwqOaFMVHeePAC_gYSCvXLSjqEhn5KcnbLkCOUQx-gHs3wgVFfp/exec",
     "automobile" : "https://script.google.com/macros/s/AKfycbxJVGyMPPT1Aa9DjPDqqcaw0ZbWC8dYqTuZPc50iwaMISf8MNg-/exec",
     "ethical-hacking" : "https://script.google.com/macros/s/AKfycbw_oQ_7Mxc-NpPeipvTlGYIt5Jau5PzVCYqcgMpuelCs37cVRuA/exec",
-    "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec"
+    "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec",
+    "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec"
     }
 
 @csrf_exempt
@@ -788,6 +789,7 @@ Regards
             '''
             send_email(sf.teamLeader.email,subject,body%(sf.teamLeader.user.first_name,"Startup Fair".capitalize(),sf.teamName,sf.teamLeader.email,memberEmails))
             response['status'] = 1
+            startupfair_spreadsheet(sf)
             return JsonResponse(response)
     else:
         response['status'] = 0
@@ -1531,7 +1533,44 @@ def quiz(request):
             response['message'] = "You have not registered for this event"
             return render(request, 'dash.html', response)
     else:
-        return redirect('/register')                        
+        return redirect('/register')     
+
+
+
+def startupfair_spreadsheet(team):
+    dic = {
+    "interests" : team.interests.encode("utf-8"),
+    "description" : team.description.encode("utf-8"),
+    "year" : team.year,
+    "angelListUrl" : team.angelListUrl.encode("utf-8"),
+    "crunchBaseUrl" : team.crunchBaseUrl.encode("utf-8"),
+    "leaderName" :  team.teamLeader.user.first_name.encode("utf-8"),
+    "leaderEmail" : team.teamLeader.email.encode("utf-8"),
+    "leaderMobile" : str(team.teamLeader.mobileNumber),
+    "leaderCollege" : team.teamLeader.college.collegeName.encode("utf-8")
+    }
+    primaryindustry = team.pindusry.all()
+    businesstype = team.bType.all()
+    pindustry = ""
+    btypes = ""
+    for p in primaryindustry:
+        pindustry = pindustry + str(p.name) + ","
+    for p in businesstype:
+        btypes = btypes + str(p.name) + ","
+    dic['pindustry'] = pindustry
+    dic['btypes'] = btypes   
+    url = sheetUrls["startup-fair"]
+    print url
+    requests.post(url,data=dic)
+
+def startupdatafill():
+    teams = StartUpFair.objects.all()
+    for team in teams:
+        startupfair_spreadsheet(team)
+
+
+
+
 
 
 
