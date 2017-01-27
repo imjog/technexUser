@@ -1560,7 +1560,7 @@ def startupfair_spreadsheet(team):
     dic['pindustry'] = pindustry
     dic['btypes'] = btypes   
     url = sheetUrls["startup-fair"]
-    print url
+    print dic
     requests.post(url,data=dic)
 
 def startupdatafill():
