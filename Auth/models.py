@@ -256,6 +256,13 @@ class Way2smsAccount(models.Model):
     def __unicode__(self):
         return self.username
 
+class Way2smsAccount_Premium(models.Model):
+    username=models.CharField(max_length=12)
+    password=models.CharField(max_length=20)
+    messages_left=models.IntegerField(default=100)
+    def __unicode__(self):
+        return self.username
+
 class quiz(models.Model):
     quizId = models.AutoField(primary_key = True)
     name = models.CharField(max_length = 50)

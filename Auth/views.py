@@ -274,6 +274,8 @@ Regards
 
 Team Technex.'''%(techprofile.technexId)
         send_email(email,subject,body)
+        message="Registration successful. Your registration ID is "+ str(techprofile.technexId) + " . Visit www.fb.com/technex for updates. \nRegards\nTeam Technex"
+        send_sms_single(message,str(techprofile.mobileNumber))
         #newUser = authenticate(username=email, password=password)
         #print 'code base 3'
         user.backend = 'django.contrib.auth.backends.ModelBackend'
@@ -1436,7 +1438,17 @@ def send_sms(username,passwd,message,number):
         return 0
     return 1
 
+def send_sms_single(message,number):
+    ups=Way2smsAccount_Premium.objects.all()
+    for up in ups:
+        if up.messages_left!=0:
+            break
+    send_sms(up.username,up.password,message,number)
+    up.messages_left-=1
+    up.save()
+    return 1
 
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def sendSms(request):
     if request.method=="POST":
         messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
