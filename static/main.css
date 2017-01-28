@@ -23,6 +23,12 @@ section,
 summary {
     display: block
 }
+
+.updates
+{
+    width: 100%;
+    
+}
 .technex-dates{
     color: white;
     margin-right: 21%;
