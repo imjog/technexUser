@@ -1763,6 +1763,31 @@ def collegesClassification():
                 print i
         except:
             print collegeName
+def collegesStateCity():
+    rb = open_workbook('college-list.xlsx')
+    s = rb.sheet_by_index(0)
+    colleges = College.objects.all()
+    for college in colleges:
+        college.status = False
+    
+    for i in range(0,543):
+        collegeid = str(int(str(str(s.cell(i,2)).split(':')[1]).split(".")[0]))
+        # print collegeName   
+        try:
+            colleges = College.objects.filter(collegeWebsite = collegeid)
+            college = colleges[0]
+            college.status = True
+            college.collegeName = literal_eval(str(s.cell(i,1)).split(':')[1])
+            # print colleges
+            for college in colleges:
+                print college.collegeName
+                college.state = literal_eval(str(s.cell(i,5)).split(':')[1])
+                college.city = literal_eval(str(s.cell(i,5)).split(':')[1])
+                # college.collegeWebsite = int(str(str(s.cell(i,7)).split(':')[1]).split(".")[0])
+                college.save()
+                print i
+        except:
+            print collegeid
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def statewise(request):
