@@ -154,7 +154,7 @@ app.config(function ($routeProvider) {
              .when("/payment/",{
               templateUrl: '/static/payments.html', 
              })
-              .when("/intelle/",{
+              .when("/intellecx/",{
               templateUrl: '/static/quizreg.html',
               controller: 'quiz-cont', 
              })
