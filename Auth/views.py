@@ -1778,6 +1778,7 @@ def collegesStateCity():
             college = colleges[0]
             college.status = True
             college.collegeName = literal_eval(str(s.cell(i,1)).split(':')[1])
+            college.save()
             # print colleges
             for college in colleges:
                 print college.collegeName
