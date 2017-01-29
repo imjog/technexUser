@@ -1555,8 +1555,8 @@ def startupfair_spreadsheet(team):
     "interests" : team.interests.encode("utf-8"),
     "description" : team.description.encode("utf-8"),
     "year" : team.year,
-    "angelListUrl" : team.angelListUrl.encode("utf-8"),
-    "crunchBaseUrl" : team.crunchBaseUrl.encode("utf-8"),
+    "angelListUrl" : team.angelListUrl,
+    "crunchBaseUrl" : team.crunchBaseUrl,
     "leaderName" :  team.teamLeader.user.first_name.encode("utf-8"),
     "leaderEmail" : team.teamLeader.email.encode("utf-8"),
     "leaderMobile" : str(team.teamLeader.mobileNumber),
@@ -1695,7 +1695,7 @@ def quiz_spreadsheetfill(team):
 
 
 def intellecx(request):
-    HttpResponseRedirect('/dashboard/#/intellecx/')    
+    return HttpResponseRedirect('/dashboard/#/intellecx/')    
 
 
 
