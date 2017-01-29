@@ -1744,30 +1744,25 @@ def intellecx(request):
 
 
 def collegesClassification():
-    rb = open_workbook('college-list.xlsx')
+    rb = open_workbook('technex-regisstration.xlsx')
     s = rb.sheet_by_index(0)
     # colleges = College.objects.all()
     # for college in colleges:
     #     print college.collegeName
 
-    for i in range(0,537):
-        collegeid = int(str(str(s.cell(i,2)).split(':')[1]).split(".")[0])
-        # print collegeName
+    for i in range(1,3437):
+        collegeName = literal_eval(str(s.cell(i,6)).split(':')[1])
+        # print collegeName   
         try:
-            colleges = College.objects.filter(collegeWebsite = str(collegeid))
+            colleges = College.objects.filter(collegeName = collegeName)
             # print colleges
-            college = colleges[0]
-            college.collegeName = literal_eval(str(s.cell(i,1)).split(':')[1])
-            college.status = True
-            college.save()
             for college in colleges:
-                # print college.collegeName
-                college.state = literal_eval(str(s.cell(i,5)).split(':')[1])
-                college.city = literal_eval(str(s.cell(i,4)).split(':')[1])
+                print college.collegeName
+                college.collegeWebsite = int(str(str(s.cell(i,7)).split(':')[1]).split(".")[0])
                 college.save()
                 print i
         except:
-            print collegeid
+            print collegeName
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def statewise(request):
