@@ -1744,21 +1744,21 @@ def intellecx(request):
 
 
 def collegesClassification():
-    rb = open_workbook('technex-regisstration.xlsx')
+    rb = open_workbook('colleges.xlsx')
     s = rb.sheet_by_index(0)
     # colleges = College.objects.all()
     # for college in colleges:
     #     print college.collegeName
 
-    for i in range(1,3438):
-        collegeName = literal_eval(str(s.cell(i,6)).split(':')[1])
+    for i in range(0,139):
+        collegeName = literal_eval(str(s.cell(i,1)).split(':')[1])
         # print collegeName
         try:
             colleges = College.objects.filter(collegeName =collegeName)
             # print colleges
             for college in colleges:
                 # print college.collegeName
-                college.collegeWebsite = int(str(str(s.cell(i,7)).split(':')[1]).split(".")[0])
+                college.collegeWebsite = int(str(str(s.cell(i,0)).split(':')[1]).split(".")[0])
                 college.save()
                 print i
         except:
