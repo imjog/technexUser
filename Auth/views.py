@@ -1731,11 +1731,71 @@ def collegesClassification():
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def statewise(request):
     if request.method == 'POST':
-        print request.POST['state']
+        print request.POST['state']        
         response = {}
         colleges = College.objects.filter(state = request.POST['state']).order_by('city')
+        citylist = []
         for college in colleges:
-            print college.collegeName
+            citylist.append(college.city)    
+        citylist = list(set(citylist))
+        citydataArray =  []
+        for city in citylist:
+            citydata = {}
+            citydata['city'] = city
+            collegesincity = College.objects.filter(city = city)
+            users = 0
+            citydata['colleges'] = []
+            collegeCityArray = []
+            for collegeincity in collegesincity:
+                collegeCityArrayObject = {}
+                collegeCityArrayObject['collegeName'] = collegeincity.collegeName
+                try:
+                    collegeCityArrayObject['count'] = TechProfile.objects.filter(college = collegeincity).count()             
+                    users += collegeCityArrayObject['count']
+                except:
+                    pass
+                collegeCityArray.append(collegeCityArrayObject)
+                   
+            citydata['count'] = users
+            citydata['colleges'] = collegeCityArray
+            citydataArray.append(citydata)
+        response['data'] = citydataArray
+        states = [
+               "Andhra Pradesh",
+               "Arunachal Pradesh",
+               "Assam",
+               "Bihar",
+               "Chhattisgarh",
+               "Chandigarh",
+               "Dadra and Nagar Haveli",
+               "Daman and Diu",
+               "Delhi",
+               "Goa",
+               "Gujarat",
+               "Haryana",
+               "Himachal Pradesh",
+               "Jammu and Kashmir",
+               "Jharkhand",
+               "Karnataka",
+               "Kerala",
+               "Madhya Pradesh",
+               "Maharashtra",
+               "Manipur",
+               "Meghalaya",
+               "Mizoram",
+               "Nagaland",
+               "Orissa",
+               "Punjab",
+               "Pondicherry",
+               "Rajasthan",
+               "Sikkim",
+               "Tamil Nadu",
+               "Tripura",
+               "Uttar Pradesh",
+               "Uttarakhand",
+               "West Bengal"
+        ]
+        response['states'] = states
         return render(request,'statewise.html',{'response':response})        
 
     else:    
