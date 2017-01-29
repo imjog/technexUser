@@ -19,6 +19,8 @@ import dropbox
 from django.db.models import Sum,Max
 import urllib2
 import cookielib
+from ast import literal_eval
+from xlrd import open_workbook
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -1696,6 +1698,33 @@ def quiz_spreadsheetfill(team):
 
 def intellecx(request):
     return HttpResponseRedirect('/dashboard/#/intellecx/')    
+
+
+def collegesClassification():
+    rb = open_workbook('try2.xlsx')
+    s = rb.sheet_by_index(0)
+    # colleges = College.objects.all()
+    # for college in colleges:
+    #     print college.collegeName
+
+    for i in range(1,3438):
+        collegeName = literal_eval(str(s.cell(i,6)).split(':')[1])
+        # print collegeName
+        try:
+            colleges = College.objects.filter(collegeName =collegeName)
+            # print colleges
+            for college in colleges:
+                # print college.collegeName
+                college.collegeWebsite = int(str(str(s.cell(i,7)).split(':')[1]).split(".")[0])
+                college.save()
+                print "Done"
+        except:
+            print collegeName
+
+                  
+
+
+
 
 
 
