@@ -13,9 +13,6 @@ year_choices = [
         (5,'Fifth'),
     ]
 
-state_choices = [
-    ('KA', 'Karnataka'), ('AP', 'Andhra Pradesh'), ('KL', 'Kerala'), ('TN', 'Tamil Nadu'), ('MH', 'Maharashtra'), ('UP', 'Uttar Pradesh'), ('GA', 'Goa'), ('GJ', 'Gujarat'), ('RJ', 'Rajasthan'), ('HP', 'Himachal Pradesh'), ('JK', 'Jammu and Kashmir'), ('TG', 'Telangana'), ('AR', 'Arunachal Pradesh'), ('AS', 'Assam'), ('BR', 'Bihar'), ('CG', 'Chattisgarh'), ('HR', 'Haryana'), ('JH', 'Jharkhand'), ('MP', 'Madhya Pradesh'), ('MN', 'Manipur'), ('ML', 'Meghalaya'), ('MZ', 'Mizoram'), ('NL', 'Nagaland'), ('OR', 'Orissa'), ('PB', 'Punjab'), ('SK', 'Sikkim'), ('TR', 'Tripura'), ('UA', 'Uttarakhand'), ('WB', 'West Bengal'), ('AN', 'Andaman and Nicobar'), ('CH', 'Chandigarh'), ('DN', 'Dadra and Nagar Haveli'), ('DD', 'Daman and Diu'), ('DL', 'Delhi'), ('LD', 'Lakshadweep'), ('PY', 'Pondicherry')
-]
 def get_user_image_folder(instance, filename):
     return "technexusers/%s-%s/%s" %(instance.user.first_name,instance.user.last_name, filename)
 
@@ -25,7 +22,7 @@ class College(models.Model):
     collegeName = models.CharField(max_length=250)
     status = models.BooleanField(default = False)
     city = models.CharField(max_length=250,null = True, blank = True)
-    state = models.CharField(max_length=250,null = True, blank = True,choices=state_choices)
+    state = models.CharField(max_length=250,null = True, blank = True)
     collegeWebsite = models.CharField(max_length = 250, default = '0')
     def __unicode__(self):
         return self.collegeName

@@ -1,0 +1,22 @@
+<head>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<form method='post' action='/statewise/'>
+{% csrf_token %}
+<div class="form-group">
+
+<select name='state' class="form-control  ">
+{% for state in response.states %}
+<option value='{{state}}'>{{state}}</option>
+{% endfor %}
+</select>
+</div>
+<button type="submit" class="btn btn-primary">Get Data</button>
+</form>
+<div>
+	{{response}}
+</div>

@@ -1728,6 +1728,70 @@ def collegesClassification():
         except:
             print collegeName
 
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
+def statewise(request):
+    if request.method == 'POST':
+        print request.POST['state']
+        response = {}
+        colleges = College.objects.filter(state = request.POST['state']).order_by('city')
+        for college in colleges:
+            print college.collegeName
+        return render(request,'statewise.html',{'response':response})        
+
+    else:    
+        states = [
+               "Andhra Pradesh",
+               "Arunachal Pradesh",
+               "Assam",
+               "Bihar",
+               "Chhattisgarh",
+               "Chandigarh",
+               "Dadra and Nagar Haveli",
+               "Daman and Diu",
+               "Delhi",
+               "Goa",
+               "Gujarat",
+               "Haryana",
+               "Himachal Pradesh",
+               "Jammu and Kashmir",
+               "Jharkhand",
+               "Karnataka",
+               "Kerala",
+               "Madhya Pradesh",
+               "Maharashtra",
+               "Manipur",
+               "Meghalaya",
+               "Mizoram",
+               "Nagaland",
+               "Orissa",
+               "Punjab",
+               "Pondicherry",
+               "Rajasthan",
+               "Sikkim",
+               "Tamil Nadu",
+               "Tripura",
+               "Uttar Pradesh",
+               "Uttarakhand",
+               "West Bengal"
+        ]
+        response = {}
+        response['states'] = states
+        print response
+
+        return render(request,'statewise.html',{'response':response})
+
+def collegestatus():
+    colleges = College.objects.all()
+    for college in colleges:
+        college.collegeWebsite = '0'
+        college.save()
+        print college.collegeName
+
+
+
+
+         
+
                   
 
 
