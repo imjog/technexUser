@@ -1144,23 +1144,30 @@ def publicity(request):
         for col in college:
             collegeWale.extend(TechProfile.objects.filter(college = col))
         eventsData = []
+        workshopsData = []
         collegeWaleCount = len(collegeWale)
         referral = []
         for collegeWala in collegeWale:
             teams = Team.objects.filter(Q(members = collegeWala) | Q(teamLeader = collegeWala)).distinct()
+            workshopTeams = WorkshopTeam.objects.filter(Q(members = collegeWala) | Q(teamLeader = collegeWala)).distinct()
             referral.append(collegeWala.referral)
             events = []
+            workshops = []
+            for workshopteam in workshopTeams:
+                workshops.append(workshopteam.workshop.title)
+            workshopsData.append(workshops)    
             for team in teams:
                 events.append(team.event.eventName)
             eventsData.append(events)
             print eventsData
+            print workshopsData
         referral = list(set(referral))
         try:
             referral.remove(None)
             referral.remove('')
         except:
             pass
-        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData),'referral':referral})
+        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData,workshopsData),'referral':referral})
     else:
         return render(request,'publicity.html',{'colleges':colleges})
 
