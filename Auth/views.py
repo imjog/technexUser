@@ -38,7 +38,8 @@ sheetUrls = {
     "automobile" : "https://script.google.com/macros/s/AKfycbxJVGyMPPT1Aa9DjPDqqcaw0ZbWC8dYqTuZPc50iwaMISf8MNg-/exec",
     "ethical-hacking" : "https://script.google.com/macros/s/AKfycbw_oQ_7Mxc-NpPeipvTlGYIt5Jau5PzVCYqcgMpuelCs37cVRuA/exec",
     "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec",
-    "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec"
+    "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec",
+    "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec"
     }
 
 @csrf_exempt
@@ -1567,6 +1568,131 @@ def startupdatafill():
     teams = StartUpFair.objects.all()
     for team in teams:
         startupfair_spreadsheet(team)
+
+
+
+@csrf_exempt
+@login_required(login_url='/register/')
+def quizRegister(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        users = []
+        print data
+        for user in data['members']:
+            try:
+                try:
+                    member = TechProfile.objects.get(email = user)
+                    users.append(member)
+                except:
+                    member = TechProfile.objects.get(technexId = user)
+                    users.append(member)
+            except:
+                response['status'] = 0
+                response['error'] = 'Member not Registered('+user+')'
+                return JsonResponse(response)
+        users = list(set(users))
+        for u in users:
+            try:
+                quizteam = quizTeam.objects.get(members = u )
+                response['status'] = 0
+                response['error'] = u.email+' Already registered for this event !!!'
+                return JsonResponse(response)
+            except:
+                pass
+
+        quizteam = quizTeam(slot = data['slot'])
+        quizteam.save()
+        slot = ""
+        if data['slot'] is 1: 
+            slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
+        else:
+            slot = "SUNDAY 5/02/2017 22:00 - 22:40"         
+        quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
+        quizteam.save()
+        subject = "[Technex'17] Successful Registration for Intellecx"
+        body = '''
+Dear %s,
+
+Thanks for registering for Intellecx Technex'17.
+
+Your Team Details Are
+TeamId- %s
+Team Members- %s
+Time Slot- %s
+
+For any queries, Contact - 
+Kuljeet Keshav +918009596212
+Kumar Anunay +919935009220
+
+An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+
+
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
+              
+
+Looking forward to seeing you soon at Technex 2017.
+
+All the best!
+
+
+Regards
+
+Team Technex
+Regards
+            '''
+        memberEmails = ""
+        for user in users:
+            memberEmails += user.email+'  ' 
+            quizteam.members.add(user)
+        for user in users:
+            send_email(user.email,subject,body%(user.user.first_name,quizteam.quizTeamId,memberEmails,slot))
+
+        quiz_spreadsheetfill(quizteam)    
+
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return render(request, '500.html',contextCall(request))
+
+
+def quiz_spreadsheetfill(team):
+    members = team.members.all()
+    dic = {
+    "quizTeamId" : team.quizTeamId
+    }
+    
+    dic['member1Name'] = members[0].user.first_name.encode("utf-8")
+    dic['member1Email'] = members[0].email.encode("utf-8")
+    dic['member1College'] = members[0].college.collegeName.encode("utf-8")
+    dic['member1Mobile'] = members[0].mobileNumber    
+    try:
+        dic['member2Name'] = members[1].user.first_name.encode("utf-8")
+        dic['member2Email'] = members[1].email.encode("utf-8")
+        dic['member2College'] = members[1].college.collegeName.encode("utf-8")
+        dic['member2Mobile'] = members[1].mobileNumber
+    except:
+        dic['member2Name'] = 0
+        dic['member2Email'] = 0
+        dic['member2College'] = 0
+        dic['member2Mobile'] = 0    
+    url = sheetUrls["quiz-registartion"]
+    print dic
+    requests.post(url,data=dic)
+
+
+
+                    
+                        
+
+
+
+                        
+
+
+
+
 
 
 

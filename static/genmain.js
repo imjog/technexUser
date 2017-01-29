@@ -38,7 +38,7 @@ as:[1,1,1,1,1]
 {
 parentEvent: 'byte-the-bits',
 events:['mlware', 'international-coding-marathon', 'appathon', 'capture-the-flag'],
-max:[4,4,4,0],
+max:[1,0,3,0],
 as:[0,0,0,1]
 },
 {
@@ -151,12 +151,12 @@ app.config(function ($routeProvider) {
                 templateUrl: '/static/workshopreg.html',
                 controller: 'workshop-cont',
               })
-             .when("/abstractsubmit/",{
-                templateUrl: '/static/abstract.html',
-                controller: 'abst-cont',
-              })
              .when("/payment/",{
               templateUrl: '/static/payments.html', 
+             })
+              .when("/intellecx/",{
+              templateUrl: '/static/quizreg.html',
+              controller: 'quiz-cont', 
              })
              
             
@@ -932,77 +932,104 @@ app.controller('workshop-cont', ['$scope', '$window', '$http','$routeParams' , f
 }]);
 
 
+app.controller('quiz-cont', ['$scope', '$window', '$http' , function($scope, $window,$http) {
+
+  $scope.firstMember = document.getElementById('first-member').value; 
+  $scope.secondMember = document.getElementById('second-member').value;
+   $scope.membervalid= function(data)
+   {
+     var id=data.trim();
+    var tid=id.length==7 && id.substring(0,2)=="TX" && !isNaN(parseInt(id.substring(2)));
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       console.log("////");
+       // console.log(tid);
+      var email=re.test(id)
+       return (email || tid);  
+   }
+  $scope.submitForm = function()
+  {
+     console.log($scope.firstMember);
+     console.log($scope.secondMember);
+    var x=true;
+    if(x)
+    {
+      if($scope.firstMember == "")
+      {
+        x = false;
+        $("#first-member").addClass('input-error');
+      }
+    }
+    if(x)
+    {
+      if(!$scope.membervalid($("#first-member").val()))
+      {
+        $("#first-member").addClass("parsley-error");
+        $("#first-member-invalid").show();
+        x=false;
+      }
+    }
+    if(x && $scope.secondMember!="" )
+    {
+      if(!$scope.membervalid($("#second-member").val()))
+      {
+        $("#second-member").addClass("parsley-error");
+        $("#second-member-invalid").show();
+        x=false;
+      }
+
+    }
+     if(x)
+     {
+      if($("#quiz-slot").val() == "")
+      {
+        $("#quiz-slot").addClass('input-error');
+        x = false;
+      }
+     }
+    if(x)
+    {
+      $(".team-reg-submit").html("Submitting. Please Wait!");
+      var a = []
+      a[0] = $("#first-member").val()
+      if($("#second-member").val() != "")
+      {
+        a[1] = $("#second-member").val(); 
+      }
+      data = {
+        'members' : a,
+        'slot' : parseInt($("#quiz-slot").val())
+      }
+      $http({
+        method: 'POST',
+        url : '/quizRegister/',
+        data:data
+      }).success(function(data){
+        $(".team-reg-submit").html("Submit");
+        console.log(data);
+                if(data.status==0)
+                {
+                   $("#error-message-display").html(data.error);
+                   $("#error-message").show();
+                   $(".team-reg-submit").html("Submit");
+                }
+                if(data.status==1)
+                {
+                   
+                   window.location.assign("#profile");
+                   location.reload(true);
+                }
+      });
+
+    }
+
+  }
 
 
-
-app.directive('fileModel', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
-            
-            element.bind('change', function(){
-                scope.$apply(function(){
-                    modelSetter(scope, element[0].files[0]);
-                });
-            });
-        }
-    };
 }]);
 
 
-app.controller('abst-cont', ['$scope', '$window','fileUpload', function($scope, $window,fileUpload) {
-
-$scope.parentEvent ='';
-$scope.selectedevent;
-$scope.options = $window.data;
-$scope.status = 0;
-$scope.abstract;
-
-$scope.parentEventIndex = function(){
-    return findWithAttr($scope.options,'events',$scope.parentEvent);
-  };
-$scope.update = function(){
-  console.log($scope.parentEvent);
- try{ 
-  console.log()
-    $scope.status = $scope.options[$scope.parentEventIndex()].as[$scope.parentEvent.indexOf($scope.selectedevent)];
-    console.log($scope.status);   
-  }
-  catch(err){
-    $scope.status = 0;
-  }
-  }
-
-  // $scope.uploadFile = function(files) {
-   
-  //   //Take the first selected file
-  //   // console.log(files[0]);
-
-  //   fd.append("file", files[0]);
-  //   console.log(fd);
-  // }
-
-$scope.submitForm = function(){
-
-  data={
-    parentEvent:$scope.parentEvent,
-    event:$scope.selectedevent,
-  }
-  console.log($scope.parentEvent);
- 
-  // console.log(fd
-   
-        var file = $scope.myFile;
-        console.log('file is ' );
-        console.log(file);
-        var uploadUrl = "/dpbx/";
-        fileUpload.uploadFileToUrl(file, uploadUrl, data);
-}
 
 
-}]);
 
 
 

@@ -46,7 +46,7 @@ admin.site.register(Sponsors)
 admin.site.register(TeamList)
 admin.site.register(TeamMembers)
 admin.site.register(StartUpFair)
-
+admin.site.register(quizTeam)
 admin.site.register(StartUpMails)
 admin.site.register(PrimaryIndustry)
 admin.site.register(BusinessType)
