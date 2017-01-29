@@ -1782,7 +1782,7 @@ def collegesStateCity():
             for college in colleges:
                 print college.collegeName
                 college.state = literal_eval(str(s.cell(i,5)).split(':')[1])
-                college.city = literal_eval(str(s.cell(i,5)).split(':')[1])
+                college.city = literal_eval(str(s.cell(i,4)).split(':')[1])
                 # college.collegeWebsite = int(str(str(s.cell(i,7)).split(':')[1]).split(".")[0])
                 college.save()
                 print i
