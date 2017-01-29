@@ -60,6 +60,7 @@ urlpatterns = [
 	url(r'^corporateConclave/$',corporateConclave, name='corporateConclave'),
 	url(r'^send_sms/$',sendSms, name='sendSms'),
 	url(r'^quizRegister/$',quizRegister,name = 'quizRegistration'),
+	url(r'^intellecx/$',intellecx,name = 'intellecx'),
 	# url(r'^quiz/$',quiz, name='quiz'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),

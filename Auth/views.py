@@ -1682,6 +1682,10 @@ def quiz_spreadsheetfill(team):
     requests.post(url,data=dic)
 
 
+def intellecx(request):
+    HttpResponseRedirect('/dashboard/#/intellecx/')    
+
+
 
                     
                         
