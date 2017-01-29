@@ -1708,7 +1708,7 @@ def intellecx(request):
 
 
 def collegesClassification():
-    rb = open_workbook('try2.xlsx')
+    rb = open_workbook('technex-regisstration.xlsx')
     s = rb.sheet_by_index(0)
     # colleges = College.objects.all()
     # for college in colleges:
@@ -1724,7 +1724,7 @@ def collegesClassification():
                 # print college.collegeName
                 college.collegeWebsite = int(str(str(s.cell(i,7)).split(':')[1]).split(".")[0])
                 college.save()
-                print "Done"
+                print i
         except:
             print collegeName
 
