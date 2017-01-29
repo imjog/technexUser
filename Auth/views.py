@@ -1879,8 +1879,7 @@ def statewise(request):
 def collegestatus():
     colleges = College.objects.all()
     for college in colleges:
-        college.state = ""
-        college.city = ""
+        college.status = False
         college.save()
         print college.collegeName
 
