@@ -168,7 +168,7 @@ def contextCall(request):
             teamsData.append(teamData)
 
         print teamsData
-        response['teams'] = teamsData
+        
         #response['notificationArray'] = notificationData(request)
         try:   
             workshops = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
@@ -181,7 +181,43 @@ def contextCall(request):
             response['workshops'] = workshopsData
             print workshopsData   
         except:
-            pass    
+            pass
+        try:
+            qteams = quizTeam.objects.filter(Q(members = techprofile))
+            teamData = {}
+            for qteam in qteams:
+                teamData['teamName'] = qteam.quizTeamId
+                teamData['event'] = ""
+                teamData['parentEvent'] = "Intellecx"
+                teamData['parentEventLink'] = "/intellecx"
+                teamData['teamId'] = qteam.quizTeamId
+                teamData['leaderEmail'] = ""
+                teamMemberNames = []
+                teamMemberUrl = []
+                for member in qteam.members.all():
+                    teamMemberNames.append(member.user.first_name.encode("utf-8"))
+                    print teamMemberNames
+                    try:
+                        teamMemberUrl.append(member.fb.profileImage.encode("utf-8"))
+                    except:
+                        url = "/static/profile.png"
+                        print url
+                        teamMemberUrl.append(url)
+                print teamData         
+                teamData['memberNames'] = teamMemberNames
+                teamData['memberUrls'] = teamMemberUrl
+                print teamData
+                teamsData.append(teamData)
+                print teamsData     
+            response['teams'] = teamsData       
+        except:
+            pass                
+
+
+
+
+
+                    
     except:
         pass
     return response
