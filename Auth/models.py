@@ -301,7 +301,7 @@ class quizTeam(models.Model):
     quizTeamId = models.CharField(max_length = 10, null = True, blank = True)
     members = models.ManyToManyField(TechProfile , related_name = "quizMembers" , null = True)
     quizAttemptStatus = models.SmallIntegerField(default = 0)
-    quiz = models.ForeignKey(quiz , null = True)
+    quiz = models.ForeignKey(quiz , null = True , blank = True)
     slot = models.SmallIntegerField(default = 0)
     def __unicode__(self):
         return self.quizTeamId

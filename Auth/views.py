@@ -1537,13 +1537,14 @@ def send_sms_single(message,number):
 def sendSms(request):
     if request.method=="POST":
         messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
+        print messages_left
         if(messages_left==0):
             return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Limit up man, bring some more accounts :D"})
         data = request.POST
         mobile_data = data.get('data',None)
         message=data.get('message',None)
         mobile_list=mobile_data.splitlines()
-        # print len(mobile_list)
+        print len(mobile_list)
         if len(mobile_list)>messages_left:
             return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Sorry! I can send "+messages_left+" mesaages only!"})
         
@@ -1551,9 +1552,12 @@ def sendSms(request):
         username=None
         password=None
         sent_numbers=[]
+        count=0
 
         for m in mobile_list:
-            number =m
+            number = m
+            count+=1
+            print m,count
             if current_possible==0:
                 up_max=Way2smsAccount.objects.all().aggregate(Max('messages_left'))['messages_left__max']
                 up=Way2smsAccount.objects.filter(messages_left=up_max)[0]
@@ -1690,7 +1694,7 @@ def quizRegister(request):
             slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
         else:
             slot = "SUNDAY 5/02/2017 22:00 - 22:40"         
-        quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
+        quizteam.quizTeamId = "INX" + str(1096+quizteam.teamId)
         quizteam.save()
         subject = "[Technex'17] Successful Registration for Intellecx"
         body = '''
@@ -1742,7 +1746,8 @@ Regards
 def quiz_spreadsheetfill(team):
     members = team.members.all()
     dic = {
-    "quizTeamId" : team.quizTeamId
+    "quizTeamId" : team.quizTeamId,
+    "Slot" : team.slot
     }
     
     dic['member1Name'] = members[0].user.first_name.encode("utf-8")
@@ -1951,37 +1956,43 @@ def collegestatus():
         college.save()
         print college.collegeName
 
+def quizteamdata():
+    rb = open_workbook('QUIZ REGISTRATION.xlsx')
+    s = rb.sheet_by_index(0)
+    for i in range(0,93):
+        quizteam = quizTeam(slot = 0)
+        # quizteam.quizTeamId = literal_eval(str(s.cell(i,0)).split(':')[1])
+        member1Email = literal_eval(str(s.cell(i,1)).split(':')[1])
+        try:
+            user1 = TechProfile.objects.get(email = member1Email)
+            member2Email = literal_eval(str(s.cell(i,2)).split(':')[1])
+            quizteam.quizTeamId = literal_eval(str(s.cell(i,0)).split(':')[1])
+            quizteam.save()
+            quizteam.members.add(user1)
+            print member2Email
+            try:
+                user2 = TechProfile.objects.get(email= member2Email)
+                quizteam.members.add(user2)
+            except Exception as e:
+                print e
+        except:
+            pass    
+        print member1Email
+        # print i      
+           
+
+                
+
+
 
 
 
          
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
 bodyM = '''
-Hello,
+Register for the event http://www.technex.in/intellecx .
 
-Greetings from Team Technex,
-
-“Wisdom is not to a gift to be received, but a prize to be earned through experience and toils.”
-
-TECHNEX '17 gives you an opportunity to test your aptitude and reasoning skills in INTELLECX, an event where you push your intellectual limits to the fullest. With prizes of ₹ 90,000 and Internship opportunities up for grabs, INTELLECX is a two-stage event, the first round of which is an online round. Following are the rules for the first round:-
-
-1. The online round consists of 10 aptitude questions to be answered in 40 minutes.
-
-2. You can participate individually or, in a team of two members.
-
-3. The timings for the event slots are
-
-        Ø  6:00 pm-6:40 pm, Sat 4 Feb, 2017
-
-        Ø  10:00 pm -10:40 pm, Sun 5 Feb, 2017
-
-You can register in either of the slots for the event as per your convenience.
-
-4. The winners of the online round get prizes worth ₹ 15000 and will be called for the next (GD/PI) round of INTELLECX in TECHNEX '17
-
-Register for the event here.
-
-For more information and latest updates follow the facebook event.
+For more information and latest updates follow the<a href="https://www.facebook.com/events/365382803833825/">facebook event</a>.
 
 For any queries contact:
 Kuljeet Keshav +918009596212
@@ -1997,7 +2008,7 @@ Team Technex '17
 Visit our website: www.technex.in
 Follow us on Facebook: www.facebook.com/technex
 Follow us on Instagram: www.instagram.com/technexiitbhu
-                  
+
 '''
 
 
