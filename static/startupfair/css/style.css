@@ -1569,7 +1569,7 @@ ul.topnav {
   margin: 0;
   padding: 0;
   padding-top: 2px;
-  padding-bottom: 2px;
+  /*padding-bottom: 2px;*/
   overflow: hidden;
   background-color: black;
 }
@@ -1647,8 +1647,8 @@ ul.topnav li.icon {display: none;}
 
 @media (min-width:1024px) and (max-width:1380px){
     ul.topnav li a{
-        padding: 16px 21px;
-        font-size: 20px;
+        padding: 14px 21px;
+        font-size: 14px;
     }
 }
 .desktopLogo{
