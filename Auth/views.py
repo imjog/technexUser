@@ -1975,9 +1975,6 @@ def quizteamdata():
                 quizteam.members.add(user2)
             except Exception as e:
                 print e
-            
-
-            
         except:
             pass    
         print member1Email
