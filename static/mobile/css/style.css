@@ -249,3 +249,39 @@ ul.topnav li.icon {display: none;}
       height: 90px;
     }
 }
+@media screen and (min-width:1600px){
+  .samsungLogo h3{
+      font-size: 16px;
+      margin-top:4%;
+  }
+  .samsungLogo img{
+      margin-left: 40%;
+      height: 90px;
+    }
+}
+@media screen and (min-width:1920px){
+  .samsungLogo h3{
+      font-size: 16px;
+      margin-top:4%;
+  }
+  .samsungLogo img{
+      margin-left: 40%;
+      height: 90px;
+    }
+}
+
+.desktopLogo{
+  display: none;
+}
+.mobLogo{
+  display: block;
+  margin-top: 2%;
+}
+@media screen and (min-width:768px){
+  .desktopLogo{
+    display: block;
+  }
+  .mobLogo{
+    display: none;
+  }
+}
