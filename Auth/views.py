@@ -1832,7 +1832,7 @@ def statewise(request):
                "Arunachal Pradesh",
                "Assam",
                "Bihar",
-               "Chhattisgarh",
+               "Chattisgarh",
                "Chandigarh",
                "Dadra and Nagar Haveli",
                "Daman and Diu",
