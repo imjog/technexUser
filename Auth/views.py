@@ -1801,6 +1801,7 @@ def statewise(request):
             citylist.append(college.city)    
         citylist = list(set(citylist))
         citydataArray =  []
+        statetotal = 0
         for city in citylist:
             citydata = {}
             citydata['city'] = city
@@ -1826,7 +1827,13 @@ def statewise(request):
             citydata['count'] = users
             citydata['colleges'] = collegeCityArray
             citydataArray.append(citydata)
+            statetotal += citydata['count']
+            
+        # for x in citydataArray:
+        #     statetotal += citydata['count']
+                    
         response['data'] = citydataArray
+        response['statetotal'] = statetotal
         states = [
                "Andhra Pradesh",
                "Arunachal Pradesh",
@@ -1841,6 +1848,8 @@ def statewise(request):
                "Gujarat",
                "Haryana",
                "Himachal Pradesh",
+               "Hyderabad",
+               "Telangana",
                "Jammu and Kashmir",
                "Jharkhand",
                "Karnataka",
@@ -1881,6 +1890,7 @@ def statewise(request):
                "Gujarat",
                "Haryana",
                "Himachal Pradesh",
+               "Hyderabad",
                "Jammu and Kashmir",
                "Jharkhand",
                "Karnataka",
@@ -1897,6 +1907,7 @@ def statewise(request):
                "Rajasthan",
                "Sikkim",
                "Tamil Nadu",
+               "Telangana",
                "Tripura",
                "Uttar Pradesh",
                "Uttarakhand",
