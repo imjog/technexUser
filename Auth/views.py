@@ -1747,6 +1747,7 @@ def quiz_spreadsheetfill(team):
     members = team.members.all()
     dic = {
     "quizTeamId" : team.quizTeamId
+    "Slot" : team.slot
     }
     
     dic['member1Name'] = members[0].user.first_name.encode("utf-8")
