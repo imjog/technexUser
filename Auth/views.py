@@ -925,7 +925,7 @@ def workshopRegister(request):
         except:
             try:
                 teamLeader = TechProfile.objects.get(technexId = data['teamLeaderEmail'])
-                if teamLeader.college.collegeWebsite = "190":
+                if teamLeader.college.collegeWebsite is "190":
                     response['status'] = 0
                     response['error'] = "Registration not Successfull!!"
                     return JsonResponse(response)
@@ -937,14 +937,14 @@ def workshopRegister(request):
                 try:
                     try:
                         user = TechProfile.objects.get(email = member)
-                        if user.college.collegeWebsite = "190":
+                        if user.college.collegeWebsite is "190":
                             response['status'] = 0
                             response['error'] = "Registration not Successfull!!"
                             return JsonResponse(response)
                         users.append(user)
                     except:
                         user = TechProfile.objects.get(technexId = member)
-                        if user.college.collegeWebsite = "190":
+                        if user.college.collegeWebsite is "190":
                             response['status'] = 0
                             response['error'] = "Registration not Successfull!!"
                             return JsonResponse(response)
