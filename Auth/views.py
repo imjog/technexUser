@@ -633,7 +633,7 @@ def send_email(recipient, subject, body):
               "text": body})
 
 def send_email2(r,s,b):
-    return requests.post("https://api.mailgun.net/v3/mg.technex.in/messages",auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),data={"from":"Technex 2017, IIT(BHU), Varanasi, India<technex@iitbhu.ac.in>","to":r,"subject":s,"text":b})
+    return requests.post("https://api.mailgun.net/v3/mg.technex.in/messages",auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),data={"from":"Technex 2017 IIT(BHU) Varanasi India <technex@iitbhu.ac.in>","to":r,"subject":s,"text":b})
 
 @csrf_exempt
 def botApi(request):
@@ -1968,6 +1968,15 @@ Kuljeet Keshav +918009596212
 Kumar Anunay +919935009220
 
 So, this spring, be prepared for a brainstorming ride into the mental domain at TECHNEX '17
+
+
+-- 
+Regards
+Team Technex '17
+
+Visit our website: www.technex.in
+Follow us on Facebook: www.facebook.com/technex
+Follow us on Instagram: www.instagram.com/technexiitbhu
                   
 '''
 
