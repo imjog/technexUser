@@ -1804,7 +1804,7 @@ def statewise(request):
         for city in citylist:
             citydata = {}
             citydata['city'] = city
-            collegesincity = College.objects.filter(city = city)
+            collegesincity = colleges.filter(city = city)
             users = 0
             citydata['colleges'] = []
             collegeCityArray = []
