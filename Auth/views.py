@@ -1956,6 +1956,37 @@ def collegestatus():
         college.save()
         print college.collegeName
 
+def quizteamdata():
+    rb = open_workbook('QUIZ REGISTRATION.xlsx')
+    s = rb.sheet_by_index(0)
+    for i in range(0,93):
+        quizteam = quizTeam(slot = 0)
+        # quizteam.quizTeamId = literal_eval(str(s.cell(i,0)).split(':')[1])
+        member1Email = literal_eval(str(s.cell(i,1)).split(':')[1])
+        try:
+            user1 = TechProfile.objects.get(email = member1Email)
+            member2Email = literal_eval(str(s.cell(i,2)).split(':')[1])
+            quizteam.quizTeamId = literal_eval(str(s.cell(i,0)).split(':')[1])
+            quizteam.save()
+            quizteam.members.add(user1)
+            print member2Email
+            try:
+                user2 = TechProfile.objects.get(email= member2Email)
+                quizteam.members.add(user2)
+            except Exception as e:
+                print e
+            
+
+            
+        except:
+            pass    
+        print member1Email
+        # print i      
+           
+
+                
+
+
 
 
 
