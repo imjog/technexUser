@@ -1793,7 +1793,7 @@ def collegesStateCity():
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def statewise(request):
     if request.method == 'POST':
-        print request.POST['state']        
+        # print request.POST['state']        
         response = {}
         colleges = College.objects.filter(state = request.POST['state']).order_by('city')
         citylist = []
@@ -1810,13 +1810,18 @@ def statewise(request):
             collegeCityArray = []
             for collegeincity in collegesincity:
                 collegeCityArrayObject = {}
-                collegeCityArrayObject['collegeName'] = collegeincity.collegeName
-                try:
-                    collegeCityArrayObject['count'] = TechProfile.objects.filter(college = collegeincity).count()             
-                    users += collegeCityArrayObject['count']
-                except:
-                    pass
-                collegeCityArray.append(collegeCityArrayObject)
+                collegeCityArrayObject['count'] = 0
+                if collegeincity.status is True:
+                    collegeswithId = colleges.filter(collegeWebsite = collegeincity.collegeWebsite)
+                    for collegewithId in collegeswithId:               
+                        # collegeCityArrayObject['collegeName'] = collegeincity.collegeName
+                        try:
+                            collegeCityArrayObject['count'] += TechProfile.objects.filter(college = collegewithId).count()
+                        except:
+                            pass
+                    collegeCityArrayObject['collegeName'] = collegeincity.collegeName       
+                    users += collegeCityArrayObject['count'] 
+                    collegeCityArray.append(collegeCityArrayObject)
                    
             citydata['count'] = users
             citydata['colleges'] = collegeCityArray
@@ -1858,6 +1863,7 @@ def statewise(request):
                "West Bengal"
         ]
         response['states'] = states
+        print response
         return render(request,'statewise.html',{'response':response})        
 
     else:    
@@ -1898,7 +1904,7 @@ def statewise(request):
         ]
         response = {}
         response['states'] = states
-        print response
+        # print response
 
         return render(request,'statewise.html',{'response':response})
 
