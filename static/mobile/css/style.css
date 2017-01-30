@@ -4,7 +4,7 @@ HTML, BODY {
 }
 
 BODY {
-  background: #082330;
+  background: black;
   color: #aaa;
   /*background-size: .12em 100%;*/
   /*font: 16rem/1 "Lato";*/
@@ -46,7 +46,7 @@ section{
           animation: stroke-offset 2s linear;
 }
 .text-copy:nth-child(1) {
-  stroke: #360745;
+  stroke: white;
   stroke-dashoffset: 7%;
 }
 .text-copy:nth-child(2) {
@@ -54,15 +54,15 @@ section{
   stroke-dashoffset: 14%;
 }
 .text-copy:nth-child(3) {
-  stroke: #E7D84B;
+  stroke: white;
   stroke-dashoffset: 21%;
 }
 .text-copy:nth-child(4) {
-  stroke: #EFEAC5;
+  stroke: white;
   stroke-dashoffset: 28%;
 }
 .text-copy:nth-child(5) {
-  stroke:aqua;
+  stroke:white;
   stroke-dashoffset: 35%;
 }
 
@@ -84,7 +84,7 @@ section{
     text-align: center;
     margin-top: -12%;
     margin-left: 0%;
-    color: #ff7f7f;
+    color: #f5deb3;
     font-size: 97%;
 }
 @media screen and (min-width:768px){
@@ -94,7 +94,7 @@ section{
   }
 }
 /*----------------------------NAVBAR--------------------------*/
-@media screen and (min-width:1362px){
+@media screen and (min-width:1386px){
   .jnavbar{
       margin: 0 auto;
       display: table;
@@ -124,7 +124,7 @@ ul.topnav li a {
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
-@media (min-width:1362px){
+@media (min-width:1386px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);
     }
@@ -141,7 +141,7 @@ ul.topnav li a:hover {
 
 ul.topnav li.icon {display: none;}
 
-@media screen and (max-width:1362px) {
+@media screen and (max-width:1386px) {
   ul.topnav li:not(:first-child){display: none;}
     ul.topnav li:nth-child(10){display: block; float: right;}
   ul.topnav li.icon {
@@ -151,7 +151,7 @@ ul.topnav li.icon {display: none;}
     ul.topnav li a{border:1px solid white;margin-right: 8px;}
 }
 
-@media screen and (max-width:1362px) {
+@media screen and (max-width:1386px) {
   ul.topnav.responsive {position: relative;}
   ul.topnav.responsive li.icon {
     position: absolute;
@@ -227,7 +227,7 @@ ul.topnav li.icon {display: none;}
 }
 .samsungLogo h3{
         text-align: center;
-        color: wheat;
+        color: #f5deb3;
         font-size: 12px;
         letter-spacing: 1px;
         margin-bottom: 1px;
@@ -245,7 +245,7 @@ ul.topnav li.icon {display: none;}
       font-size: 16px;
   }
   .samsungLogo img{
-      margin-left: 38%;
+      margin-left: 35%;
       height: 90px;
     }
 }
