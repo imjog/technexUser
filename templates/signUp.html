@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="/static/login2_files2/font-awesome.min.css">
 		<link rel="stylesheet" href="/static/login2_files2/form-elements.css">
         <link rel="stylesheet" href="/static/login2_files2/assets/css/style.css">
+          <link href="/static/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/static/css/jquery-ui.css" type="text/css" media="all" />
         <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
@@ -249,8 +250,23 @@ fbq('track', 'PageView');
                                 <div class="form-bottom">
                                  <div class="form-group">
                                   <label class="sr-only" for="form-college">College</label>
-                                  <input type="text" name="college" placeholder="College name" class="form-last-name form-control" id="form-college">
+                                <!--   <input type="text" name="college" placeholder="College name" class="form-last-name form-control" id="form-college"> -->
+                                 <select class="select2_single form-control form-last-name" tabindex="-1" id="form-college"></select>
+
                                 </div>
+                                  <div class="form-group" style="color: white;">
+                            COLLEGE NOT IN THE ABOVE LIST
+                            <div class="material-switch pull-right">
+                            <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionInfo" class="label-info"></label>
+                            </div>
+                            </div>
+                                 <div class="form-group">
+                                  <label class="sr-only" for="form-college">College</label>
+                                  <input type="text" name="college" placeholder="COLLEGE NAME..." class="form-last-name form-control" id="form-new-college" disabled="true"/>
+
+                                </div>
+
 
                                      <div class="form-group">
                                      <label class="sr-only" for="form-college">YEAR</label>
@@ -388,11 +404,30 @@ fbq('track', 'PageView');
         <script src="/static/login2_files2/bootstrap.min.js"></script>
         <script src="/static/login2_files2/jquery.backstretch.min.js"></script>
         <script src="/static/login2_files2/retina-1.1.0.min.js"></script>
+             <script src="/static/vendors/select2/dist/js/select2.full.min.js"></script>
         <script src="/static/login2_files2/scripts.js"></script>
           <script src="/static/js/1.12.0jquery-ui.min.js"></script>
 
        <script type="text/javascript">
-$(document).ready(function(){var token = {{status}};
+$(document).ready(function(){
+
+
+out = '<option></option>';
+  {% for clg in all_colleges %}
+  out += '<option value="{{clg}}">{{clg}}</option>'
+  {% endfor %}
+
+  $("#form-college").html(out);
+
+  $(".select2_single").select2({
+          placeholder: "Select your college",
+          allowClear: true
+        });
+
+  $("span.select2").css("width" , "100%");
+
+
+  var token = {{status}};
 if(token){
   $("#btn-next-page-email").trigger( "click" );
   $("#not-registered").trigger("click");
@@ -467,23 +502,23 @@ function fb_login() {
     });
 }
 
-$(function(){
-  var availableTags = [
-       {% for clg in all_colleges %}
-           "{{clg}}",
-       {%endfor%}
-     ];
+// $(function(){
+//   var availableTags = [
+//        {% for clg in all_colleges %}
+//            "{{clg}}",
+//        {%endfor%}
+//      ];
 
-$("#form-college").autocomplete({
-       source: availableTags
-     });
-   });
-   // over write the default autocomplete function to match the option starting with term
-   $.ui.autocomplete.filter = function (array, term) {
-     var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
-     return $.grep(array, function (value) {
-       return matcher.test(value.label || value.value || value);
-     });
-   };
+// $("#form-college").autocomplete({
+//        source: availableTags
+//      });
+//    });
+//    // over write the default autocomplete function to match the option starting with term
+//    $.ui.autocomplete.filter = function (array, term) {
+//      var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
+//      return $.grep(array, function (value) {
+//        return matcher.test(value.label || value.value || value);
+//      });
+//    };
 </script>
 </body></html>
