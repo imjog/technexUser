@@ -137,6 +137,9 @@ th
               <div class="title_left">
                 <h3>User Profile</h3>
               </div>
+              <div class="title_right">
+                <h3 style="float: right;">{{person.technexId}}</h3>
+              </div>
 
               
             </div>
@@ -159,18 +162,31 @@ th
                       </div>
                       <h3 id="username">{{person.name}}</h3>
 
-                      <ul class="list-unstyled user_data">
-                                              <li>
-                          <i class="fa user-profile-icon"><img src="/static/favicon.ico"/></i> {{person.technexId}}
-                        </li>
-                        <li style="text-transform: capitalize;"><i class="fa fa-map-marker user-profile-icon"></i> {{person.city}}
+                      <ul class="list-unstyled user_data" style="font-size: 19px">
+                                              <li><i class="fa user-profile-icon"><img src="/static/favicon.ico"/></i> {{person.technexId}}
+                        </li><li style="text-transform: capitalize;"><i class="fa fa-map-marker user-profile-icon"></i>
+                        {{person.city}}
+                        </li><li><i class="glyphicon glyphicon-education user-profile-icon"></i>
+                          {{position(person.year)}}, {{person.college}}
                         </li>
 
-                        <li>
-                          <i class="glyphicon glyphicon-education user-profile-icon"></i> {{position(person.year)}}, {{person.college}}
-                        </li>
 
                       </ul>
+                      <hr>
+                      <div class="product_social" style="font-size: 35px;">
+                      <h3>Follow us on social media</h3>
+                        <ul class="list-inline">
+                          <li><a href="https://www.facebook.com/Technex"  target="_blank"><i class="fa fa-facebook-square"></i></a>
+                          </li>
+                                                    <li><a href="https://www.instagram.com/technexiitbhu"  target="_blank"><i class="fa fa-instagram"></i></a>
+                          </li>
+
+                          <li><a href="https://www.twitter.com/technexiitbhu"  target="_blank"><i class="fa fa-twitter-square"></i></a>
+                          </li>
+                          <li><a href="https://www.youtube.com/user/technexiitbhu"  target="_blank"><i class="fa fa-youtube-square"></i></a>
+                          </li>
+                        </ul>
+                      </div>
 
                       <br>
                       
@@ -179,14 +195,16 @@ th
 
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-init='tab1="active"'>
-                          <li role="presentation" style="cursor: pointer;" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;tab1="active";tab2=""' >Teams</a>
+                          <li role="presentation" style="cursor: pointer;" ng-class="tab1"><a id="profile-tab" ng-click='showDetails =false;showteams=true;showWorkshops=false;tab1="active";tab2="";tab3=""' >Teams</a>
                           </li>
-                          <li role="presentation" style="cursor: pointer;"  ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;tab2="active";tab1=""'>Profile</a>
+                          <li role="presentation" style="cursor: pointer;"  ng-class="tab2"><a id="profile-tab2" ng-click='showDetails =true;showteams=false;tab2="active";tab1="";tab3="";showWorkshops=false'>Profile</a>
+                          </li>
+                                                   <li role="presentation" style="cursor: pointer;"  ng-class="tab3"><a id="profile-tab3" ng-click='showDetails =false;tab3="active";tab1="";tab2="";showteams=false;showWorkshops=true'>Workshops</a>
                           </li>
                         </ul>
                         </div>
                         <div id="myTabContent" class="tab-content" style="min-height:350px;overflow: auto;border: 3px solid white;">
-                          <div class="tab-pane fade" id="tab_content2" style="display: inline; opacity: 1;" ng-hide="showDetails" >
+                          <div class="tab-pane fade" id="tab_content2" style="display: inline; opacity: 1;" ng-show="showteams" >
                     <table class="table table-striped projects">
                       <thead style="    border: 2px solid white;">
                         <tr>
@@ -204,7 +222,7 @@ th
                           <td>
                             <a>{{team.teamName}}</a>
                             <br>
-                            <small id='eventParentEvent'><a href='/events/{{team.parentEventLink}}' onmouseover="this.style.textDecoration='underline';" 
+                            <small id='eventParentEvent'><a href='#' onmouseover="this.style.textDecoration='underline';" 
     onmouseout="this.style.textDecoration='none';">{{team.parentEvent}}</a>/{{team.event}}</small>
                           </td>
                           <td>
@@ -271,6 +289,7 @@ th
                        <input ng-focus="rmcls(this)" ng-model="editObject.college" placeholder="College" id="forcollege" type="text"/>
                     </h2>
                     </div>
+
                     <div class="clearfix"></div>
                     </div>
                                         <div style="display: -webkit-box"; class="x_title">
@@ -331,6 +350,33 @@ th
                     </div>
                     </div>
                     </div>
+
+              
+                          <div class="tab-pane fade" id="tab_content4" style="display: inline; opacity: 1;" ng-show="showWorkshops" >
+                    <table class="table table-striped projects">
+                      <thead style="    border: 2px solid white;">
+                        <tr>
+                          <th style="width: 1%">#</th>
+                          <th style="width: 20%">TeamId</th>
+                          
+                          <th>Workshop</th>
+                          <!-- <th style="width: 20%">Deadline</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat='team in workshopArray track by $index'>
+                          <td>{{$index+1}}</td>
+                         <td class="project_progress">{{team.teamId}}</td>
+                          <td class="project_progress">
+                            <h4>{{team.workshop}}</h4>
+                          </td>
+                         <!--  <td>
+                          <a> Later</a>
+                          </td> -->
+                        </tr>
+                                                
+                      </tbody>
+                    </table>
                           
                           </div>
 
