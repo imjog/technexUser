@@ -1191,9 +1191,9 @@ def registrationData(request):
 
         workshopteams = WorkshopTeam.objects.filter(workshop = workshop)
         workshopteams = workshopteams.filter(~Q(teamLeader__college__collegeWebsite = "190"))
-        number = 1
+        number = 0
         for workshopteam in workshopteams:
-            number += workshopteam.members.count() 
+            number += workshopteam.members.count() + 1
         workshopcountobj['count'] = workshopteams.count()
         if workshopcountobj['count'] is 0:
             number = 0
