@@ -1155,7 +1155,11 @@ ul.topnav li a:hover {
     color: white;
 }
     ul.topnav{
-        display: inline-block;
+        display: table;
+    }
+    .jnavbar{
+      margin: 0 auto;
+      display: table;
     }
 }
 

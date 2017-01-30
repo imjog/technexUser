@@ -340,7 +340,6 @@ function validatePassword(){
                 {
                 $(this).removeClass('input-error');   
                });
-
             });
         }
   });
@@ -441,6 +440,22 @@ $('#referral-email').keyup(function(e){
           $('#invalid-referral').hide();
         $('#no-referral').hide();
     });
+$("input[type=checkbox]").on("click", function()
+    {
+
+         if($('#someSwitchOptionInfo').is(":checked"))
+        {
+          $("#form-new-college").attr("disabled",false);
+          $("#form-college").attr("disabled",true);
+
+        }
+        else
+        {
+          $("#form-new-college").attr("disabled",true);
+          $("#form-college").attr("disabled",false);
+        }
+    });       
+
 $('#btn-next-page').on('click', function(e) {
 
         var parent_fieldset = $(this).parents('fieldset');
@@ -454,6 +469,15 @@ $('#btn-next-page').on('click', function(e) {
                 {
                     $("#id_year").removeClass('input-error');
                 }   
+        if($("#form-college").val() == "" && !($('#someSwitchOptionInfo').is(":checked")))
+        {
+          $(".select2-selection").addClass("input-error");
+          next_step = false;
+        }
+        else
+        {
+          $(".select2-selection").removeClass("input-error");
+        }        
         
        parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
             if( $(this).val() == "" && $(this).prop('disabled') != true) {
@@ -467,25 +491,23 @@ $('#btn-next-page').on('click', function(e) {
                 var mb=phnvalidation();
                 next_step = mb;
                }
-               if(next_step && $("#referral-email").prop('disabled')==false)
-               {
-                next_step = referralemailvalidation();
-               } 
-               if(next_step && $("#referral-email").prop('disabled')==false)
-                {
-                  if($("#referral-email").val()=="ishandeepgandhi@gmail.com")
-                  {
-                    next_step=false;
-                    //$("#no-referral").show();
-                  }
-                }
                if(next_step)
                {
+                  if($('#someSwitchOptionInfo').is(":checked"))
+        {
+          college = $("#form-new-college").val();
+
+        }
+        else
+        {
+          college = $("#form-college").val();
+        }
+                
                 data = {
                   "name":$("#form-first-name").val(),
                   "email":$("#laluram").val(),
                   "password":$("#password").val(),
-                  "college":$("#form-college").val(),
+                  "college":college,
                   "year":$("#id_year").val(),
                   "city":$("#form-city").val(),
                   "mobileNumber":$("#form-mobile").val(),
