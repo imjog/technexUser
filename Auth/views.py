@@ -1188,7 +1188,16 @@ def registrationData(request):
     for workshop in workshops:
         workshopcountobj = {}
         workshopcountobj['workshop'] = workshop.title
-        workshopcountobj['count'] = (WorkshopTeam.objects.filter(workshop = workshop)).count()
+
+        workshopteams = WorkshopTeam.objects.filter(workshop = workshop)
+        workshopteams = workshopteams.filter(~Q(teamLeader__college__collegeWebsite = "190"))
+        number = 1
+        for workshopteam in workshopteams:
+            number += workshopteam.members.count() 
+        workshopcountobj['count'] = workshopteams.count()
+        if workshopcountobj['count'] is 0:
+            number = 0
+        workshopcountobj['participantcount'] = number
         workshopcount['workshopdata'].append(workshopcountobj)
         print workshopcount
     return render(request,'data.html',{'externalTeams':totalTeams-localTeams,'externalParticipation':totalRegistrations-localRegistrations,'totalTeams':totalTeams,'totalRegistrations':totalRegistrations,'localRegistrations':localRegistrations,'localTeams':localTeams,'workshopTeamsTotal':workshopTeamsTotal,'eventcount': eventcount, 'workshopcount':workshopcount})
