@@ -1512,13 +1512,14 @@ def send_sms_single(message,number):
 def sendSms(request):
     if request.method=="POST":
         messages_left=Way2smsAccount.objects.all().aggregate(Sum('messages_left'))['messages_left__sum']
+        print messages_left
         if(messages_left==0):
             return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Limit up man, bring some more accounts :D"})
         data = request.POST
         mobile_data = data.get('data',None)
         message=data.get('message',None)
         mobile_list=mobile_data.splitlines()
-        # print len(mobile_list)
+        print len(mobile_list)
         if len(mobile_list)>messages_left:
             return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Sorry! I can send "+messages_left+" mesaages only!"})
         
@@ -1526,9 +1527,12 @@ def sendSms(request):
         username=None
         password=None
         sent_numbers=[]
+        count=0
 
         for m in mobile_list:
-            number =m
+            number = m
+            count+=1
+            print m,count
             if current_possible==0:
                 up_max=Way2smsAccount.objects.all().aggregate(Max('messages_left'))['messages_left__max']
                 up=Way2smsAccount.objects.filter(messages_left=up_max)[0]
