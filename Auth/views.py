@@ -925,26 +925,34 @@ def workshopRegister(request):
         except:
             try:
                 teamLeader = TechProfile.objects.get(technexId = data['teamLeaderEmail'])
-                if teamLeader.college.collegeWebsite is "190":
+                print teamLeader.college.collegeWebsite
+                print type(teamLeader.college.collegeWebsite)
+                if teamLeader.college.collegeWebsite == "190":
                     response['status'] = 0
                     response['error'] = "Registration not Successfull!!"
                     return JsonResponse(response)
             except:
                 teamLeader = TechProfile.objects.get(email = data['teamLeaderEmail'])
+                print teamLeader.college.collegeWebsite
+                print type(teamLeader.college.collegeWebsite)
+                if teamLeader.college.collegeWebsite == "190":
+                    response['status'] = 0
+                    response['error'] = "Registration not Successfull!!"
+                    return JsonResponse(response)
             users = []
             # print "here"
             for member in data['members']:
                 try:
                     try:
                         user = TechProfile.objects.get(email = member)
-                        if user.college.collegeWebsite is "190":
+                        if user.college.collegeWebsite == "190":
                             response['status'] = 0
                             response['error'] = "Registration not Successfull!!"
                             return JsonResponse(response)
                         users.append(user)
                     except:
                         user = TechProfile.objects.get(technexId = member)
-                        if user.college.collegeWebsite is "190":
+                        if user.college.collegeWebsite == "190":
                             response['status'] = 0
                             response['error'] = "Registration not Successfull!!"
                             return JsonResponse(response)
