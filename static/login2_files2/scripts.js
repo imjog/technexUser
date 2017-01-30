@@ -340,7 +340,6 @@ function validatePassword(){
                 {
                 $(this).removeClass('input-error');   
                });
-
             });
         }
   });
