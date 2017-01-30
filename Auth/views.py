@@ -19,6 +19,8 @@ import dropbox
 from django.db.models import Sum,Max
 import urllib2
 import cookielib
+from ast import literal_eval
+from xlrd import open_workbook
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -38,7 +40,8 @@ sheetUrls = {
     "automobile" : "https://script.google.com/macros/s/AKfycbxJVGyMPPT1Aa9DjPDqqcaw0ZbWC8dYqTuZPc50iwaMISf8MNg-/exec",
     "ethical-hacking" : "https://script.google.com/macros/s/AKfycbw_oQ_7Mxc-NpPeipvTlGYIt5Jau5PzVCYqcgMpuelCs37cVRuA/exec",
     "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec",
-    "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec"
+    "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec",
+    "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec"
     }
 
 @csrf_exempt
@@ -165,7 +168,7 @@ def contextCall(request):
             teamsData.append(teamData)
 
         print teamsData
-        response['teams'] = teamsData
+        
         #response['notificationArray'] = notificationData(request)
         try:   
             workshops = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
@@ -178,7 +181,43 @@ def contextCall(request):
             response['workshops'] = workshopsData
             print workshopsData   
         except:
-            pass    
+            pass
+        try:
+            qteams = quizTeam.objects.filter(Q(members = techprofile))
+            teamData = {}
+            for qteam in qteams:
+                teamData['teamName'] = qteam.quizTeamId
+                teamData['event'] = ""
+                teamData['parentEvent'] = "Intellecx"
+                teamData['parentEventLink'] = "/intellecx"
+                teamData['teamId'] = qteam.quizTeamId
+                teamData['leaderEmail'] = ""
+                teamMemberNames = []
+                teamMemberUrl = []
+                for member in qteam.members.all():
+                    teamMemberNames.append(member.user.first_name.encode("utf-8"))
+                    print teamMemberNames
+                    try:
+                        teamMemberUrl.append(member.fb.profileImage.encode("utf-8"))
+                    except:
+                        url = "/static/profile.png"
+                        print url
+                        teamMemberUrl.append(url)
+                print teamData         
+                teamData['memberNames'] = teamMemberNames
+                teamData['memberUrls'] = teamMemberUrl
+                print teamData
+                teamsData.append(teamData)
+                print teamsData     
+            response['teams'] = teamsData       
+        except:
+            pass                
+
+
+
+
+
+                    
     except:
         pass
     return response
@@ -1075,7 +1114,7 @@ def registrationData(request):
     # eventcount['eventdata'] = []
     workshopcount = {}
     workshopcount['workshopdata'] = []
-    iitBHUs = College.objects.filter(Q(collegeName = 'IIT (BHU) Varanasi') | Q(collegeName = 'IITBHU') | Q(collegeName = 'IIT-BHU') | Q(collegeName = 'IIT BHU') | Q(collegeName = 'IIT Varanasi') | Q(collegeName = 'Indian Institute Of Technology BHU') | Q(collegeName = 'Indian Institute Of Technology Varanasi') | Q(collegeName = 'Indian Institute of Technology BHU Varanasi') | Q(collegeName = 'Indian Institute of Technology (BHU) Varanasi') | Q(collegeName = 'IIT(BHU)') | Q(collegeName = 'IIT Indian Institute of Technology BHU') | Q(collegeName = 'IIT VARANASI') | Q(collegeName = 'IIT BHU(VARANASI)') | Q(collegeName = 'iit bhu') | Q(collegeName = 'IIT( BHU) VARANASI') | Q(collegeName = 'indian institute of technology BHU') | Q(collegeName = 'iit(bhu)') | Q(collegeName = 'Indian Institute of Technology, BHU, Varanasi'))
+    iitBHUs = College.objects.filter(collegeWebsite = "190")
     totalRegistrations = TechProfile.objects.all().count()
     localRegistrations = 0
     localTeams = 0
@@ -1141,23 +1180,30 @@ def publicity(request):
         for col in college:
             collegeWale.extend(TechProfile.objects.filter(college = col))
         eventsData = []
+        workshopsData = []
         collegeWaleCount = len(collegeWale)
         referral = []
         for collegeWala in collegeWale:
             teams = Team.objects.filter(Q(members = collegeWala) | Q(teamLeader = collegeWala)).distinct()
+            workshopTeams = WorkshopTeam.objects.filter(Q(members = collegeWala) | Q(teamLeader = collegeWala)).distinct()
             referral.append(collegeWala.referral)
             events = []
+            workshops = []
+            for workshopteam in workshopTeams:
+                workshops.append(workshopteam.workshop.title)
+            workshopsData.append(workshops)    
             for team in teams:
                 events.append(team.event.eventName)
             eventsData.append(events)
             print eventsData
+            print workshopsData
         referral = list(set(referral))
         try:
             referral.remove(None)
             referral.remove('')
         except:
             pass
-        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData),'referral':referral})
+        return render(request,'publicity.html',{'colleges':colleges,'collegeWaleCount':collegeWaleCount,'collegeWale':zip(collegeWale,eventsData,workshopsData),'referral':referral})
     else:
         return render(request,'publicity.html',{'colleges':colleges})
 
@@ -1554,8 +1600,8 @@ def startupfair_spreadsheet(team):
     "interests" : team.interests.encode("utf-8"),
     "description" : team.description.encode("utf-8"),
     "year" : team.year,
-    "angelListUrl" : team.angelListUrl.encode("utf-8"),
-    "crunchBaseUrl" : team.crunchBaseUrl.encode("utf-8"),
+    "angelListUrl" : team.angelListUrl,
+    "crunchBaseUrl" : team.crunchBaseUrl,
     "leaderName" :  team.teamLeader.user.first_name.encode("utf-8"),
     "leaderEmail" : team.teamLeader.email.encode("utf-8"),
     "leaderMobile" : str(team.teamLeader.mobileNumber),
@@ -1579,6 +1625,318 @@ def startupdatafill():
     teams = StartUpFair.objects.all()
     for team in teams:
         startupfair_spreadsheet(team)
+
+
+
+@csrf_exempt
+@login_required(login_url='/register/')
+def quizRegister(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        users = []
+        print data
+        for user in data['members']:
+            try:
+                try:
+                    member = TechProfile.objects.get(email = user)
+                    users.append(member)
+                except:
+                    member = TechProfile.objects.get(technexId = user)
+                    users.append(member)
+            except:
+                response['status'] = 0
+                response['error'] = 'Member not Registered('+user+')'
+                return JsonResponse(response)
+        users = list(set(users))
+        for u in users:
+            try:
+                quizteam = quizTeam.objects.get(members = u )
+                response['status'] = 0
+                response['error'] = u.email+' Already registered for this event !!!'
+                return JsonResponse(response)
+            except:
+                pass
+
+        quizteam = quizTeam(slot = data['slot'])
+        quizteam.save()
+        slot = ""
+        if data['slot'] is 1: 
+            slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
+        else:
+            slot = "SUNDAY 5/02/2017 22:00 - 22:40"         
+        quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
+        quizteam.save()
+        subject = "[Technex'17] Successful Registration for Intellecx"
+        body = '''
+Dear %s,
+
+Thanks for registering for Intellecx Technex'17.
+
+Your Team Details Are
+TeamId- %s
+Team Members- %s
+Time Slot- %s
+
+For any queries, Contact - 
+Kuljeet Keshav +918009596212
+Kumar Anunay +919935009220
+
+An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+
+
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
+              
+
+Looking forward to seeing you soon at Technex 2017.
+
+All the best!
+
+
+Regards
+
+Team Technex
+Regards
+            '''
+        memberEmails = ""
+        for user in users:
+            memberEmails += user.email+'  ' 
+            quizteam.members.add(user)
+        for user in users:
+            send_email(user.email,subject,body%(user.user.first_name,quizteam.quizTeamId,memberEmails,slot))
+
+        quiz_spreadsheetfill(quizteam)    
+
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return render(request, '500.html',contextCall(request))
+
+
+def quiz_spreadsheetfill(team):
+    members = team.members.all()
+    dic = {
+    "quizTeamId" : team.quizTeamId
+    }
+    
+    dic['member1Name'] = members[0].user.first_name.encode("utf-8")
+    dic['member1Email'] = members[0].email.encode("utf-8")
+    dic['member1College'] = members[0].college.collegeName.encode("utf-8")
+    dic['member1Mobile'] = members[0].mobileNumber    
+    try:
+        dic['member2Name'] = members[1].user.first_name.encode("utf-8")
+        dic['member2Email'] = members[1].email.encode("utf-8")
+        dic['member2College'] = members[1].college.collegeName.encode("utf-8")
+        dic['member2Mobile'] = members[1].mobileNumber
+    except:
+        dic['member2Name'] = 0
+        dic['member2Email'] = 0
+        dic['member2College'] = 0
+        dic['member2Mobile'] = 0    
+    url = sheetUrls["quiz-registartion"]
+    print dic
+    requests.post(url,data=dic)
+
+
+def intellecx(request):
+    return HttpResponseRedirect('/dashboard/#/intellecx/')    
+
+
+def collegesClassification():
+    rb = open_workbook('technex-regisstration.xlsx')
+    s = rb.sheet_by_index(0)
+    # colleges = College.objects.all()
+    # for college in colleges:
+    #     print college.collegeName
+
+    for i in range(1,3437):
+        collegeName = literal_eval(str(s.cell(i,6)).split(':')[1])
+        # print collegeName   
+        try:
+            colleges = College.objects.filter(collegeName = collegeName)
+            # print colleges
+            for college in colleges:
+                print college.collegeName
+                college.collegeWebsite = int(str(str(s.cell(i,7)).split(':')[1]).split(".")[0])
+                college.save()
+                print i
+        except:
+            print collegeName
+def collegesStateCity():
+    rb = open_workbook('college-list.xlsx')
+    s = rb.sheet_by_index(0)
+    colleges = College.objects.all()
+    for college in colleges:
+        college.status = False
+    
+    for i in range(0,543):
+        collegeid = str(int(str(str(s.cell(i,2)).split(':')[1]).split(".")[0]))
+        # print collegeName   
+        try:
+            colleges = College.objects.filter(collegeWebsite = collegeid)
+            college = colleges[0]
+            college.status = True
+            college.collegeName = literal_eval(str(s.cell(i,1)).split(':')[1])
+            college.save()
+            # print colleges
+            for college in colleges:
+                print college.collegeName
+                college.state = literal_eval(str(s.cell(i,5)).split(':')[1])
+                college.city = literal_eval(str(s.cell(i,4)).split(':')[1])
+                # college.collegeWebsite = int(str(str(s.cell(i,7)).split(':')[1]).split(".")[0])
+                college.save()
+                print i
+        except:
+            print collegeid
+
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
+def statewise(request):
+    if request.method == 'POST':
+        # print request.POST['state']        
+        response = {}
+        colleges = College.objects.filter(state = request.POST['state']).order_by('city')
+        citylist = []
+        for college in colleges:
+            citylist.append(college.city)    
+        citylist = list(set(citylist))
+        citydataArray =  []
+        for city in citylist:
+            citydata = {}
+            citydata['city'] = city
+            collegesincity = colleges.filter(city = city)
+            users = 0
+            citydata['colleges'] = []
+            collegeCityArray = []
+            for collegeincity in collegesincity:
+                collegeCityArrayObject = {}
+                collegeCityArrayObject['count'] = 0
+                if collegeincity.status is True:
+                    collegeswithId = colleges.filter(collegeWebsite = collegeincity.collegeWebsite)
+                    for collegewithId in collegeswithId:               
+                        # collegeCityArrayObject['collegeName'] = collegeincity.collegeName
+                        try:
+                            collegeCityArrayObject['count'] += TechProfile.objects.filter(college = collegewithId).count()
+                        except:
+                            pass
+                    collegeCityArrayObject['collegeName'] = collegeincity.collegeName       
+                    users += collegeCityArrayObject['count'] 
+                    collegeCityArray.append(collegeCityArrayObject)
+                   
+            citydata['count'] = users
+            citydata['colleges'] = collegeCityArray
+            citydataArray.append(citydata)
+        response['data'] = citydataArray
+        states = [
+               "Andhra Pradesh",
+               "Arunachal Pradesh",
+               "Assam",
+               "Bihar",
+               "Chattisgarh",
+               "Chandigarh",
+               "Dadra and Nagar Haveli",
+               "Daman and Diu",
+               "Delhi",
+               "Goa",
+               "Gujarat",
+               "Haryana",
+               "Himachal Pradesh",
+               "Jammu and Kashmir",
+               "Jharkhand",
+               "Karnataka",
+               "Kerala",
+               "Madhya Pradesh",
+               "Maharashtra",
+               "Manipur",
+               "Meghalaya",
+               "Mizoram",
+               "Nagaland",
+               "Orissa",
+               "Punjab",
+               "Pondicherry",
+               "Rajasthan",
+               "Sikkim",
+               "Tamil Nadu",
+               "Tripura",
+               "Uttar Pradesh",
+               "Uttarakhand",
+               "West Bengal"
+        ]
+        response['states'] = states
+        print response
+        return render(request,'statewise.html',{'response':response})        
+
+    else:    
+        states = [
+               "Andhra Pradesh",
+               "Arunachal Pradesh",
+               "Assam",
+               "Bihar",
+               "Chhattisgarh",
+               "Chandigarh",
+               "Dadra and Nagar Haveli",
+               "Daman and Diu",
+               "Delhi",
+               "Goa",
+               "Gujarat",
+               "Haryana",
+               "Himachal Pradesh",
+               "Jammu and Kashmir",
+               "Jharkhand",
+               "Karnataka",
+               "Kerala",
+               "Madhya Pradesh",
+               "Maharashtra",
+               "Manipur",
+               "Meghalaya",
+               "Mizoram",
+               "Nagaland",
+               "Orissa",
+               "Punjab",
+               "Pondicherry",
+               "Rajasthan",
+               "Sikkim",
+               "Tamil Nadu",
+               "Tripura",
+               "Uttar Pradesh",
+               "Uttarakhand",
+               "West Bengal"
+        ]
+        response = {}
+        response['states'] = states
+        # print response
+
+        return render(request,'statewise.html',{'response':response})
+
+def collegestatus():
+    colleges = College.objects.all()
+    for college in colleges:
+        college.status = False
+        college.save()
+        print college.collegeName
+
+
+
+
+         
+
+                  
+
+
+
+
+
+
+                    
+                        
+
+
+
+                        
+
+
+
+
 
 
 

@@ -1,0 +1,83 @@
+<div class="right_col" role="main" style="min-height: 1023px;">
+          <div class="">
+            <div class="page-title">
+                  <div class="title_left">
+                <h3 style="color: white;">Intellecx Registration</h3>
+              </div>
+              </div>
+              <br>
+              <br>
+              <hr/>
+               <h2 style="color: white;">INSTRUCTIONS</h2>
+                  <ol style="color: white;">
+                    <li value="1">Both the participants must be registered on Technex</li>
+                    <li value="2">You can also register individually for this event</li>
+                  </ol>
+               <div class="clearfix"></div>
+               <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="form-group" id="error-message" style="display: none;">
+                    <h3 style="text-align: center;" id="error-message-display">ERROR MESSAGE</h3>
+                    </div>                             
+                  <div class="x_content">
+                    <br>
+                    <div  class="col-sm-6 col-sm-offset-3 form-box">
+ <form role="form" action="" method="post" class="event-registration-form">
+<fieldset>
+                                  <div class="form-bottom" style="padding-bottom: 35px;">
+<div class="form-group has-feedback">
+<input type="text" class="form-control" id="first-member" placeholder="Member 1 email or TechnexID" ng-model="firstMember">
+<ul class="parsley-errors-list filled" id="first-member-invalid" style="display: none;"><li class="parsley-required">Invalid Email or TechnexID</li></ul>
+</div>
+<div class="form-group has-feedback">
+<input type="text" class="form-control" id="second-member" placeholder="Member 2 email or TechnexID (Optional)" ng-model="secondMember">
+<ul class="parsley-errors-list filled" id="second-member-invalid" style="display: none;"><li class="parsley-required">Invalid Email or TechnexID</li></ul>
+</div>
+<div class="form-group">                                  
+<select ng-model="slot" class="form-control" id="quiz-slot">
+  <option value="">-- Select Quiz Slot --</option>
+   <option value="1">SATURDAY 4/02/2017 18:00 - 18:40</option>
+   <option value="2">SUNDAY 5/02/2017 22:00 - 22:40</option>
+  </select>
+  </div>
+</div>
+<br/>
+<div>`
+<button type="button" class="btn btn-success team-reg-submit" ng-click="submitForm()">SUBMIT</button>
+</div>
+
+</fieldset>
+
+</form>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+            
+
+
+<br >
+
+
+
+    
+            </div>
+          </div>
+          <script type="text/javascript">
+            $("select, input").on('focus',function(){
+              $(this).removeClass("input-error");
+            
+           if(this.id=="first-member" || this.id=="second-member")
+         {
+           console.log("hua");
+           $("#first-member-invalid").hide();
+           $("#first-member").removeClass("parsley-error");
+           $("#second-member-invalid").hide();
+           $("#second-member").removeClass("parsley-error");
+
+         }
+            });    
+          </script>

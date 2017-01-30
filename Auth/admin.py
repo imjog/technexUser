@@ -20,7 +20,7 @@ class TechProfileAdmin(admin.ModelAdmin):
 	search_fields = ('email','technexId','mobileNumber','college__collegeName')
 
 class CollegeAdmin(admin.ModelAdmin):
-	search_fields = ('collegeName','status')
+	search_fields = ('collegeName','status' , 'state' , 'city' , 'collegeWebsite')
 
 @admin.register(Workshops)
 class workshopAdmin(admin.ModelAdmin):
@@ -46,7 +46,7 @@ admin.site.register(Sponsors)
 admin.site.register(TeamList)
 admin.site.register(TeamMembers)
 admin.site.register(StartUpFair)
-
+admin.site.register(quizTeam)
 admin.site.register(StartUpMails)
 admin.site.register(PrimaryIndustry)
 admin.site.register(BusinessType)
