@@ -1746,7 +1746,7 @@ Regards
 def quiz_spreadsheetfill(team):
     members = team.members.all()
     dic = {
-    "quizTeamId" : team.quizTeamId
+    "quizTeamId" : team.quizTeamId,
     "Slot" : team.slot
     }
     
