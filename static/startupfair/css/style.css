@@ -78,13 +78,18 @@ a:active {
     left: -60px;
 }
 .title h2:after {
-    content: '';
-    width: 40px;
-    height: 2px;
-    background: #80d6a3;
-    position: absolute;
-    top: 12px;
-    right: -60px;
+    display: none;
+}
+@media screen and (min-width:768px){
+  .title h2:after {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: #80d6a3;
+      position: absolute;
+      top: 12px;
+      right: -60px;
+  }
 }
 #problem
 {
@@ -1698,14 +1703,27 @@ ul.topnav li.icon {display: none;}
 }
 .datesPlace{
   text-align: center;
-  letter-spacing: 1px;
-  color: #6BCAE2;
-  padding: 10px;
-  background: rgba(0,0,0,.2);
-  width: 50%;
-  margin: 0 auto;
-  box-shadow: inset 0 0 3px black;
-  border-radius: 5px;
+    letter-spacing: 1px;
+    color: #f5deb3;
+    padding: 8px;
+    background: rgba(0,0,0,.2);
+    width: 50%;
+    margin: 1% auto;
+    box-shadow: inset 0 0 3px black;
+    border-radius: 5px;
+}
+@media screen and (min-width:768px) {
+  .datesPlace{
+    text-align: center;
+    letter-spacing: 1px;
+    color: #f5deb3;
+    padding: 10px;
+    background: rgba(0,0,0,.2);
+    width: 33%;
+    margin: 1% auto;
+    box-shadow: inset 0 0 3px black;
+    border-radius: 5px;
+  }
 }
 .datesPlace h2{
     font-size: 1.6em;
@@ -2199,11 +2217,23 @@ Main components
     float: left;
     display: block;
     letter-spacing: 1px;
+    border-radius: 5%;
+    padding: 2%;
+    background: rgba(0,0,0,.3);
   }
   .incubeimg{
     float: right;
     display: block;
     letter-spacing: 1px;
+    border-radius: 5%;
+    padding: 2%;
+    background: rgba(0,0,0,.3);
+  }
+  .prizeimg p{
+    padding-top: 5%;
+  }
+  .incubeimg p{
+    padding-top: 5%;
   }
 }
 #snc{
@@ -2223,7 +2253,17 @@ Main components
   height: 110px;
 }
 .cd-item:hover .vcpost{
-  display: block;
-  transform: translateY(-136%);
-  transition: 0.3s;
+    background: rgba(0,0,0,.5);
+    display: block;
+    transform: translateY(-46%);
+    transition: 0.3s;
+}
+
+.mainLogo img{
+  width: 75%;
+}
+@media screen and (min-width:768px){
+  .mainLogo img{
+    width: 50%;
+  }
 }
