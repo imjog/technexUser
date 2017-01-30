@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -630,6 +631,10 @@ def send_email(recipient, subject, body):
               "to": recipient,
               "subject": subject,
               "text": body})
+
+def send_email2(r,s,b):
+    return requests.post("https://api.mailgun.net/v3/mg.technex.in/messages",auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),data={"from":"Technex 2017 IIT(BHU) Varanasi India <technex@iitbhu.ac.in>","to":r,"subject":s,"text":b})
+
 @csrf_exempt
 def botApi(request):
     response = {}
@@ -1942,9 +1947,50 @@ def collegestatus():
 
 
          
+SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
+bodyM = '''
+Hello,
 
+Greetings from Team Technex,
+
+“Wisdom is not to a gift to be received, but a prize to be earned through experience and toils.”
+
+TECHNEX '17 gives you an opportunity to test your aptitude and reasoning skills in INTELLECX, an event where you push your intellectual limits to the fullest. With prizes of ₹ 90,000 and Internship opportunities up for grabs, INTELLECX is a two-stage event, the first round of which is an online round. Following are the rules for the first round:-
+
+1. The online round consists of 10 aptitude questions to be answered in 40 minutes.
+
+2. You can participate individually or, in a team of two members.
+
+3. The timings for the event slots are
+
+        Ø  6:00 pm-6:40 pm, Sat 4 Feb, 2017
+
+        Ø  10:00 pm -10:40 pm, Sun 5 Feb, 2017
+
+You can register in either of the slots for the event as per your convenience.
+
+4. The winners of the online round get prizes worth ₹ 15000 and will be called for the next (GD/PI) round of INTELLECX in TECHNEX '17
+
+Register for the event here.
+
+For more information and latest updates follow the facebook event.
+
+For any queries contact:
+Kuljeet Keshav +918009596212
+Kumar Anunay +919935009220
+
+So, this spring, be prepared for a brainstorming ride into the mental domain at TECHNEX '17
+
+
+-- 
+Regards
+Team Technex '17
+
+Visit our website: www.technex.in
+Follow us on Facebook: www.facebook.com/technex
+Follow us on Instagram: www.instagram.com/technexiitbhu
                   
-
+'''
 
 
 
