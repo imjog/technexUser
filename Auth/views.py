@@ -1831,7 +1831,7 @@ def statewise(request):
             
         # for x in citydataArray:
         #     statetotal += citydata['count']
-                    
+        response['state'] = request.POST['state']            
         response['data'] = citydataArray
         response['statetotal'] = statetotal
         states = [
