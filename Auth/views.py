@@ -1694,7 +1694,7 @@ def quizRegister(request):
             slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
         else:
             slot = "SUNDAY 5/02/2017 22:00 - 22:40"         
-        quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
+        quizteam.quizTeamId = "INX" + str(1096+quizteam.teamId)
         quizteam.save()
         subject = "[Technex'17] Successful Registration for Intellecx"
         body = '''
