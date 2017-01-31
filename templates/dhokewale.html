@@ -1,0 +1,5 @@
+<h3>Total Dhokebaaj : {{response.count}}</h3>
+{% for user in response.dhokewale %}
+<h3>{{user.name}} | {{user.technexId}} | {{user.college}} | {{user.mobileNumber}}</h3>
+<hr>
+{% endfor %}

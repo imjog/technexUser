@@ -1988,6 +1988,51 @@ def quizteamdata():
             pass    
         print member1Email
         # print i      
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
+def dhokebaaj(request):
+    response = {}
+    count = 0
+    response['dhokewale'] = []
+    users = TechProfile.objects.all()
+    for user in users:
+        try:
+            print user.user.first_name
+            print "TEAM CHECK"  
+            teams = Team.objects.filter(Q(members = user) | Q(teamLeader = user))
+            print teams[0]
+        except:
+            try:
+                print "WORKSHOP CHECK"
+                workshops = WorkshopTeam.objects.filter(Q(members = user) | Q(teamLeader = user))
+                print workshops[0]
+            except:
+                try:
+                    print "Quiz teams"
+                    qteams = quizTeam.objects.filter(Q(members = user))
+                    print qteams[0]
+                except:
+                    try:
+                        print "Startup check"
+                        startupteams = StartUpFair.objects.filter(teamLeader = user)
+                        print startupteams[0]
+                    except:
+                        dhokewala = {}
+                        count +=1
+                        dhokewala['name'] = user.user.first_name
+                        dhokewala['technexId'] = user.technexId
+                        dhokewala['college'] = user.college.collegeName
+                        dhokewala['mobileNumber'] = user.mobileNumber
+                        response['dhokewale'].append(dhokewala)
+    print response
+    response['count'] = count
+    print count
+    return render(request , 'dhokewale.html' , {'response' : response})                    
+
+
+                            
+
+
+
            
 
                 
