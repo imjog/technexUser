@@ -1537,9 +1537,9 @@ def send_sms_single(message,number):
     for up in ups:
         if up.messages_left!=0:
             break
-    send_sms(up.username,up.password,message,number)
-    up.messages_left-=1
-    up.save()
+        send_sms(up.username,up.password,message,number)
+        up.messages_left-=1
+        up.save()
     return 1
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
