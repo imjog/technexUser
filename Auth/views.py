@@ -43,7 +43,8 @@ sheetUrls = {
     "ethical-hacking" : "https://script.google.com/macros/s/AKfycbw_oQ_7Mxc-NpPeipvTlGYIt5Jau5PzVCYqcgMpuelCs37cVRuA/exec",
     "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec",
     "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec",
-    "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec"
+    "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec",
+    "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec"
     }
 
 @csrf_exempt
@@ -1995,10 +1996,7 @@ def dhokebaaj():
     count = 0
     response['dhokewale'] = []
     users = TechProfile.objects.all()
-    rb = open_workbook("dhokha.xlsx")
-    wb = copy(rb)
-    # wb = Workbook()
-    Sheet1 = wb.get_sheet(0)
+    url = sheetUrls["dhokebaaj"]
     for user in users:
         try:
             print user.user.first_name
@@ -2023,14 +2021,26 @@ def dhokebaaj():
                     except:
                         dhokewala = {}
                         count +=1
-                        # print count
-                        Sheet1.write(count,0,user.user.first_name)
-                        Sheet1.write(count,1,user.technexId)
-                        Sheet1.write(count,2,user.college.collegeName)
-                        Sheet1.write(count,3,user.mobileNumber)
+                        dic = {}
+                        dic = {
+                        "name" : user.user.first_name,
+                        "technexId" : user.technexId,
+                        "college" : user.college.collegeName,
+                        "mobileNumber" : user.mobileNumber
+                        }
+                        print dic
+                        requests.post(url,data=dic)
 
-    wb.save('dhokha.xlsx')                        
+
+                        # dhokewala['name'] = user.user.first_name
+                        # dhokewala['technexId'] = user.technexId
+                        # dhokewala['college'] = user.college.collegeName
+                        # dhokewala['mobileNumber'] = user.mobileNumber
+                        # response['dhokewale'].append(dhokewala)
+    # print response
+    # response['count'] = count
     print count
+    # return render(request , 'dhokewale.html' , {'response' : response})                    
 
 
                             
