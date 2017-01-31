@@ -1995,8 +1995,10 @@ def dhokebaaj():
     count = 0
     response['dhokewale'] = []
     users = TechProfile.objects.all()
-    wb = Workbook()
-    Sheet1 = wb.add_sheet('Sheet2')
+    rb = open_workbook("dhokha.xlsx")
+    wb = copy(rb)
+    # wb = Workbook()
+    Sheet1 = wb.get_sheet(0)
     for user in users:
         try:
             print user.user.first_name
