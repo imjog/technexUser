@@ -2029,7 +2029,8 @@ def dhokebaaj():
                         "mobileNumber" : user.mobileNumber
                         }
                         print dic
-                        requests.post(url,data=dic)
+                        if count > 2116:
+                            requests.post(url,data=dic)
 
 
                         # dhokewala['name'] = user.user.first_name
