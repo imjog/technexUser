@@ -33,7 +33,7 @@ svg {
 }
 
 section{
-  height: 100vh;
+  /*height: 110vh;*/
 }
 
 .text-copy {
@@ -245,7 +245,7 @@ ul.topnav li.icon {display: none;}
       font-size: 16px;
   }
   .samsungLogo img{
-      margin-left: 35%;
+      margin-left: 36%;
       height: 90px;
     }
 }
