@@ -2021,7 +2021,7 @@ def dhokebaaj():
                     except:
                         dhokewala = {}
                         count +=1
-                        print count
+                        # print count
                         Sheet1.write(count,0,user.user.first_name)
                         Sheet1.write(count,1,user.technexId)
                         Sheet1.write(count,2,user.college.collegeName)
