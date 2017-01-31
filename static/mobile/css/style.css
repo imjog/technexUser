@@ -5,7 +5,7 @@ HTML, BODY {
 
 BODY {
   background: black;
-  color: #aaa;
+  color:white;
   /*background-size: .12em 100%;*/
   /*font: 16rem/1 "Lato";*/
 }
@@ -33,7 +33,7 @@ svg {
 }
 
 section{
-  /*height: 110vh;*/
+  height: 100vh;
 }
 
 .text-copy {
