@@ -2027,7 +2027,7 @@ def dhokebaaj():
                         Sheet1.write(count,2,user.college.collegeName)
                         Sheet1.write(count,3,user.mobileNumber)
 
-    wb.save('dhoka.xlsx')                        
+    wb.save('dhokha.xlsx')                        
     print count
 
 
