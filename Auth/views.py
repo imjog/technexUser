@@ -1147,7 +1147,7 @@ def registrationData(request):
         localRegistrations += TechProfile.objects.filter(college = iitBHU).count()
         localTeams += Team.objects.filter(teamLeader__college = iitBHU).count()
     totalTeams = Team.objects.all().count()
-    workshopTeamsTotal = WorkshopTeam.objects.all().count()
+    workshopTeamsTotal = WorkshopTeam.objects.filter(~Q(teamLeader__college__collegeWebsite = "190")).count()
     pevents = ParentEvent.objects.all()
     eventtypeArray = []
     for pevent in pevents:
