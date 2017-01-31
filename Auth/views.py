@@ -22,6 +22,7 @@ import urllib2
 import cookielib
 from ast import literal_eval
 from xlrd import open_workbook
+from xlwt import Workbook
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -42,7 +43,8 @@ sheetUrls = {
     "ethical-hacking" : "https://script.google.com/macros/s/AKfycbw_oQ_7Mxc-NpPeipvTlGYIt5Jau5PzVCYqcgMpuelCs37cVRuA/exec",
     "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec",
     "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec",
-    "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec"
+    "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec",
+    "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec"
     }
 
 @csrf_exempt
@@ -1147,7 +1149,7 @@ def registrationData(request):
         localRegistrations += TechProfile.objects.filter(college = iitBHU).count()
         localTeams += Team.objects.filter(teamLeader__college = iitBHU).count()
     totalTeams = Team.objects.all().count()
-    workshopTeamsTotal = WorkshopTeam.objects.all().count()
+    workshopTeamsTotal = WorkshopTeam.objects.filter(~Q(teamLeader__college__collegeWebsite = "190")).count()
     pevents = ParentEvent.objects.all()
     eventtypeArray = []
     for pevent in pevents:
@@ -1191,9 +1193,9 @@ def registrationData(request):
 
         workshopteams = WorkshopTeam.objects.filter(workshop = workshop)
         workshopteams = workshopteams.filter(~Q(teamLeader__college__collegeWebsite = "190"))
-        number = 1
+        number = 0
         for workshopteam in workshopteams:
-            number += workshopteam.members.count() 
+            number += workshopteam.members.count() + 1
         workshopcountobj['count'] = workshopteams.count()
         if workshopcountobj['count'] is 0:
             number = 0
@@ -1537,9 +1539,9 @@ def send_sms_single(message,number):
     for up in ups:
         if up.messages_left!=0:
             break
-    send_sms(up.username,up.password,message,number)
-    up.messages_left-=1
-    up.save()
+        send_sms(up.username,up.password,message,number)
+        up.messages_left-=1
+        up.save()
     return 1
 
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
@@ -1988,6 +1990,63 @@ def quizteamdata():
             pass    
         print member1Email
         # print i      
+
+def dhokebaaj():
+    response = {}
+    count = 0
+    response['dhokewale'] = []
+    users = TechProfile.objects.all()
+    url = sheetUrls["dhokebaaj"]
+    for user in users:
+        try:
+            print user.user.first_name
+            print "TEAM CHECK"  
+            teams = Team.objects.filter(Q(members = user) | Q(teamLeader = user))
+            print teams[0]
+        except:
+            try:
+                print "WORKSHOP CHECK"
+                workshops = WorkshopTeam.objects.filter(Q(members = user) | Q(teamLeader = user))
+                print workshops[0]
+            except:
+                try:
+                    print "Quiz teams"
+                    qteams = quizTeam.objects.filter(Q(members = user))
+                    print qteams[0]
+                except:
+                    try:
+                        print "Startup check"
+                        startupteams = StartUpFair.objects.filter(teamLeader = user)
+                        print startupteams[0]
+                    except:
+                        dhokewala = {}
+                        count +=1
+                        dic = {}
+                        dic = {
+                        "name" : user.user.first_name,
+                        "technexId" : user.technexId,
+                        "college" : user.college.collegeName,
+                        "mobileNumber" : user.mobileNumber
+                        }
+                        print dic
+                        requests.post(url,data=dic)
+
+
+                        # dhokewala['name'] = user.user.first_name
+                        # dhokewala['technexId'] = user.technexId
+                        # dhokewala['college'] = user.college.collegeName
+                        # dhokewala['mobileNumber'] = user.mobileNumber
+                        # response['dhokewale'].append(dhokewala)
+    # print response
+    # response['count'] = count
+    print count
+    # return render(request , 'dhokewale.html' , {'response' : response})                    
+
+
+                            
+
+
+
            
 
                 

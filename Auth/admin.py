@@ -21,17 +21,22 @@ class TechProfileAdmin(admin.ModelAdmin):
 
 class CollegeAdmin(admin.ModelAdmin):
 	search_fields = ('collegeName','status' , 'state' , 'city' )
-
 @admin.register(Workshops)
 class workshopAdmin(admin.ModelAdmin):
 	inlines = [workshopOption]
 	prepopulated_fields = {'slug':('title',)}
+
+class TeamAdmin(admin.ModelAdmin):
+	search_fields = ('teamName' , 'event__eventName' , 'teamLeader__email')	
+
+
+
     
 admin.site.register(TechProfile, TechProfileAdmin)
 admin.site.register(College, CollegeAdmin)
 #admin.site.register(Event,EventAdmin)
 admin.site.register(ParentEvent, parentEventAdmin)
-admin.site.register(Team)
+admin.site.register(Team, TeamAdmin)
 admin.site.register(EventOption)
 admin.site.register(FbConnect)
 admin.site.register(ForgotPass)
