@@ -247,14 +247,14 @@ class Sponsors(models.Model):
         return self.name 
 
 class Way2smsAccount(models.Model):
-    username=models.CharField(max_length=12)
+    username=models.CharField(max_length=50)
     password=models.CharField(max_length=20)
     messages_left=models.IntegerField(default=100)
     def __unicode__(self):
         return self.username
 
 class Way2smsAccount_Premium(models.Model):
-    username=models.CharField(max_length=12)
+    username=models.CharField(max_length=50)
     password=models.CharField(max_length=20)
     messages_left=models.IntegerField(default=100)
     def __unicode__(self):
