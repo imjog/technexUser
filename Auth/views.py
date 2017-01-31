@@ -22,6 +22,7 @@ import urllib2
 import cookielib
 from ast import literal_eval
 from xlrd import open_workbook
+from xlwt import Workbook
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -1988,12 +1989,14 @@ def quizteamdata():
             pass    
         print member1Email
         # print i      
-@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
-def dhokebaaj(request):
+
+def dhokebaaj():
     response = {}
     count = 0
     response['dhokewale'] = []
     users = TechProfile.objects.all()
+    wb = Workbook()
+    Sheet1 = wb.add_sheet('Sheet1')
     for user in users:
         try:
             print user.user.first_name
@@ -2018,15 +2021,14 @@ def dhokebaaj(request):
                     except:
                         dhokewala = {}
                         count +=1
-                        dhokewala['name'] = user.user.first_name
-                        dhokewala['technexId'] = user.technexId
-                        dhokewala['college'] = user.college.collegeName
-                        dhokewala['mobileNumber'] = user.mobileNumber
-                        response['dhokewale'].append(dhokewala)
-    print response
-    response['count'] = count
+                        print count
+                        Sheet1.write(count,0,user.user.first_name)
+                        Sheet1.write(count,1,user.technexId)
+                        Sheet1.write(count,2,user.college.collegeName)
+                        Sheet1.write(count,3,user.mobileNumber)
+
+    wb.save('dhoka.xlsx')                        
     print count
-    return render(request , 'dhokewale.html' , {'response' : response})                    
 
 
                             

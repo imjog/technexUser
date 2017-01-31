@@ -23,4 +23,6 @@ ua-parser==0.3.6
 pyyaml
 dropbox
 xlrd
+xlwt
+
 

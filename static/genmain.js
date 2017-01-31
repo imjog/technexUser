@@ -50,7 +50,7 @@ as:[1,1,1,1]
 {
 parentEvent: 'robonex',
 events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
-max:[4,4,4,4],
+max:[5,4,4,4],
 as:[1,1,1,1]
 }
 ];
