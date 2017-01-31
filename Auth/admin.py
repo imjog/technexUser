@@ -27,7 +27,7 @@ class workshopAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug':('title',)}
 
 class TeamAdmin(admin.ModelAdmin):
-	search_fields = ('teamName' , 'event__eventName' , 'teamLeader__email')	
+	search_fields = ('teamName' , 'event__eventName' , 'teamLeader__email', 'teamLeader__technexId', 'teamLeader__college__collegeName')	
 
 
 
