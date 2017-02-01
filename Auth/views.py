@@ -171,18 +171,18 @@ def contextCall(request):
             teamsData.append(teamData)
 
         print teamsData
-        
+
         #response['notificationArray'] = notificationData(request)
-        try:   
+        try:
             workshops = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
             workshopsData = []
             for workshop in workshops:
                 workshopData = {}
                 workshopData['workshop'] = workshop.workshop.title
                 workshopData['teamId'] = workshop.teamId
-                workshopsData.append(workshopData) 
+                workshopsData.append(workshopData)
             response['workshops'] = workshopsData
-            print workshopsData   
+            print workshopsData
         except:
             pass
         try:
@@ -206,18 +206,18 @@ def contextCall(request):
                         url = "/static/profile.png"
                         print url
                         teamMemberUrl.append(url)
-                print teamData         
+                print teamData
                 teamData['memberNames'] = teamMemberNames
                 teamData['memberUrls'] = teamMemberUrl
                 print teamData
                 teamsData.append(teamData)
-                print teamsData            
+                print teamsData
         except:
-            pass 
+            pass
 
         try:
             startupteams = StartUpFair.objects.filter(teamLeader = techprofile)
-            for startupteam in startupteams:        
+            for startupteam in startupteams:
                 teamdata = {}
                 teamdata['event'] = ""
                 teamdata['teamName'] = startupteam.teamName
@@ -234,19 +234,19 @@ def contextCall(request):
                     url = "/static/profile.png"
                     teamMemberUrl.append(url)
                 teamdata['memberNames'] = teamMemberNames
-                teamdata['memberUrls'] = teamMemberUrl    
+                teamdata['memberUrls'] = teamMemberUrl
                 print teamdata
                 teamsData.append(teamdata)
-            response['teams'] = teamsData    
+            response['teams'] = teamsData
         except:
-            pass        
+            pass
 
 
 
 
 
 
-                    
+
     except:
         pass
     return response
@@ -1196,13 +1196,13 @@ def registrationData(request):
             for iitBHU in iitBHUs:
                 eventobj['localcount'] += Team.objects.filter(teamLeader__college = iitBHU , event = event).count()
             eventArray.append(eventobj)
-        eventtypeobj['parentEvent'] = pevent.categoryName 
+        eventtypeobj['parentEvent'] = pevent.categoryName
         eventtypeobj['events'] = eventArray
         eventtypeArray.append(eventtypeobj)
-    eventcount['data'] =  eventtypeArray   
+    eventcount['data'] =  eventtypeArray
 
-    print eventcount   
-            
+    print eventcount
+
     # pevents = ParentEvent.objects.all()
 
     workshops = Workshops.objects.all()
@@ -1254,7 +1254,7 @@ def publicity(request):
             workshops = []
             for workshopteam in workshopTeams:
                 workshops.append(workshopteam.workshop.title)
-            workshopsData.append(workshops)    
+            workshopsData.append(workshops)
             for team in teams:
                 events.append(team.event.eventName)
             eventsData.append(events)
@@ -1468,7 +1468,7 @@ def liteversion(request):
     return render(request,'mobile.html')
 
 def workshop_spreadsheet(team):
-    members = team.members.all()           
+    members = team.members.all()
     dic = {
     "teamName": team.teamName.encode("utf-8"),
     "leaderName" : team.teamLeader.user.first_name.encode("utf-8"),
@@ -1480,7 +1480,7 @@ def workshop_spreadsheet(team):
     try:
         dic['name1'] = members[0].user.first_name.encode("utf-8")
         dic['member1'] = members[0].email.encode("utf-8")
-        dic['college1'] = members[0].college.collegeName.encode("utf-8") 
+        dic['college1'] = members[0].college.collegeName.encode("utf-8")
         dic['mobile1'] = members[0].mobileNumber
     except:
         dic['name1'] = 0
@@ -1531,6 +1531,8 @@ def worshopdataFill():
 def corporateConclave(request):
     print request
     return render(request,'corporateConclave.html')
+def test(request):
+    return render(request,'intellecx.html')
 
 
 def send_sms(username,passwd,message,number):
@@ -1585,7 +1587,7 @@ def sendSms(request):
         print len(mobile_list)
         if len(mobile_list)>messages_left:
             return render(request, 'send_sms.html',{'messages_left':messages_left,'error_msg':"Sorry! I can send "+messages_left+" mesaages only!"})
-        
+
         current_possible=0
         username=None
         password=None
@@ -1622,7 +1624,7 @@ def quiz(request):
     event = event.objects.get(eventName = 'Krackat')
     if user.is_authenticated:
         user = request.user
-        try:    
+        try:
             team = Team.objects.filter(teamLeader = user, event = event)
             optionresp = optionResponse.objects.filter(team = team)
             if optionresp.attemptStatus is 1:
@@ -1658,7 +1660,7 @@ def quiz(request):
             response['message'] = "You have not registered for this event"
             return render(request, 'dash.html', response)
     else:
-        return redirect('/register')     
+        return redirect('/register')
 
 
 
@@ -1683,7 +1685,7 @@ def startupfair_spreadsheet(team):
     for p in businesstype:
         btypes = btypes + str(p.name) + ","
     dic['pindustry'] = pindustry
-    dic['btypes'] = btypes   
+    dic['btypes'] = btypes
     url = sheetUrls["startup-fair"]
     print dic
     requests.post(url,data=dic)
@@ -1728,10 +1730,10 @@ def quizRegister(request):
         quizteam = quizTeam(slot = data['slot'])
         quizteam.save()
         slot = ""
-        if data['slot'] is 1: 
+        if data['slot'] is 1:
             slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
         else:
-            slot = "SUNDAY 5/02/2017 22:00 - 22:40"         
+            slot = "SUNDAY 5/02/2017 22:00 - 22:40"
         quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
         quizteam.save()
         subject = "[Technex'17] Successful Registration for Intellecx"
@@ -1745,15 +1747,15 @@ TeamId- %s
 Team Members- %s
 Time Slot- %s
 
-For any queries, Contact - 
+For any queries, Contact -
 Kuljeet Keshav +918009596212
 Kumar Anunay +919935009220
 
 An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
 
 
-Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in. 
-              
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in.
+
 
 Looking forward to seeing you soon at Technex 2017.
 
@@ -1767,12 +1769,12 @@ Regards
             '''
         memberEmails = ""
         for user in users:
-            memberEmails += user.email+'  ' 
+            memberEmails += user.email+'  '
             quizteam.members.add(user)
         for user in users:
             send_email(user.email,subject,body%(user.user.first_name,quizteam.quizTeamId,memberEmails,slot))
 
-        quiz_spreadsheetfill(quizteam)    
+        quiz_spreadsheetfill(quizteam)
 
         response['status'] = 1
         return JsonResponse(response)
@@ -1787,11 +1789,11 @@ def quiz_spreadsheetfill(team):
     "quizTeamId" : team.quizTeamId,
     "Slot" : team.slot
     }
-    
+
     dic['member1Name'] = members[0].user.first_name.encode("utf-8")
     dic['member1Email'] = members[0].email.encode("utf-8")
     dic['member1College'] = members[0].college.collegeName.encode("utf-8")
-    dic['member1Mobile'] = members[0].mobileNumber    
+    dic['member1Mobile'] = members[0].mobileNumber
     try:
         dic['member2Name'] = members[1].user.first_name.encode("utf-8")
         dic['member2Email'] = members[1].email.encode("utf-8")
@@ -1801,14 +1803,14 @@ def quiz_spreadsheetfill(team):
         dic['member2Name'] = 0
         dic['member2Email'] = 0
         dic['member2College'] = 0
-        dic['member2Mobile'] = 0    
+        dic['member2Mobile'] = 0
     url = sheetUrls["quiz-registartion"]
     print dic
     requests.post(url,data=dic)
 
 
 def intellecx(request):
-    return HttpResponseRedirect('/dashboard/#/intellecx/')    
+    return HttpResponseRedirect('/dashboard/#/intellecx/')
 
 
 def collegesClassification():
@@ -1820,7 +1822,7 @@ def collegesClassification():
 
     for i in range(1,3437):
         collegeName = literal_eval(str(s.cell(i,6)).split(':')[1])
-        # print collegeName   
+        # print collegeName
         try:
             colleges = College.objects.filter(collegeName = collegeName)
             # print colleges
@@ -1837,10 +1839,10 @@ def collegesStateCity():
     colleges = College.objects.all()
     for college in colleges:
         college.status = False
-    
+
     for i in range(0,543):
         collegeid = str(int(str(str(s.cell(i,2)).split(':')[1]).split(".")[0]))
-        # print collegeName   
+        # print collegeName
         try:
             colleges = College.objects.filter(collegeWebsite = collegeid)
             college = colleges[0]
@@ -1861,12 +1863,12 @@ def collegesStateCity():
 @user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def statewise(request):
     if request.method == 'POST':
-        # print request.POST['state']        
+        # print request.POST['state']
         response = {}
         colleges = College.objects.filter(state = request.POST['state']).order_by('city')
         citylist = []
         for college in colleges:
-            citylist.append(college.city)    
+            citylist.append(college.city)
         citylist = list(set(citylist))
         citydataArray =  []
         statetotal = 0
@@ -1882,24 +1884,24 @@ def statewise(request):
                 collegeCityArrayObject['count'] = 0
                 if collegeincity.status is True:
                     collegeswithId = colleges.filter(collegeWebsite = collegeincity.collegeWebsite)
-                    for collegewithId in collegeswithId:               
+                    for collegewithId in collegeswithId:
                         # collegeCityArrayObject['collegeName'] = collegeincity.collegeName
                         try:
                             collegeCityArrayObject['count'] += TechProfile.objects.filter(college = collegewithId).count()
                         except:
                             pass
-                    collegeCityArrayObject['collegeName'] = collegeincity.collegeName       
-                    users += collegeCityArrayObject['count'] 
+                    collegeCityArrayObject['collegeName'] = collegeincity.collegeName
+                    users += collegeCityArrayObject['count']
                     collegeCityArray.append(collegeCityArrayObject)
-                   
+
             citydata['count'] = users
             citydata['colleges'] = collegeCityArray
             citydataArray.append(citydata)
             statetotal += citydata['count']
-            
+
         # for x in citydataArray:
         #     statetotal += citydata['count']
-        response['state'] = request.POST['state']            
+        response['state'] = request.POST['state']
         response['data'] = citydataArray
         response['statetotal'] = statetotal
         states = [
@@ -1941,9 +1943,9 @@ def statewise(request):
         ]
         response['states'] = states
         print response
-        return render(request,'statewise.html',{'response':response})        
+        return render(request,'statewise.html',{'response':response})
 
-    else:    
+    else:
         states = [
                "Andhra Pradesh",
                "Arunachal Pradesh",
@@ -2014,9 +2016,9 @@ def quizteamdata():
             except Exception as e:
                 print e
         except:
-            pass    
+            pass
         print member1Email
-        # print i      
+        # print i
 
 def dhokebaaj():
     response = {}
@@ -2027,7 +2029,7 @@ def dhokebaaj():
     for user in users:
         try:
             print user.user.first_name
-            print "TEAM CHECK"  
+            print "TEAM CHECK"
             teams = Team.objects.filter(Q(members = user) | Q(teamLeader = user))
             print teams[0]
         except:
@@ -2068,22 +2070,22 @@ def dhokebaaj():
     # print response
     # response['count'] = count
     print count
-    # return render(request , 'dhokewale.html' , {'response' : response})                    
-
-
-                            
-
-
-
-           
-
-                
+    # return render(request , 'dhokewale.html' , {'response' : response})
 
 
 
 
 
-         
+
+
+
+
+
+
+
+
+
+
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
 bodyM = '''
 Hello,
@@ -2120,7 +2122,7 @@ Kumar Anunay +919935009220
 So, this spring, be prepared for a brainstorming ride into the mental domain at TECHNEX '17
 
 
--- 
+--
 Regards
 Team Technex '17
 
@@ -2129,33 +2131,3 @@ Follow us on Facebook: www.facebook.com/technex
 Follow us on Instagram: www.instagram.com/technexiitbhu
 
 '''
-
-
-
-
-
-                    
-                        
-
-
-
-                        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    
-
-
-
-
