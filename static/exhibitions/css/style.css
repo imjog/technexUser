@@ -288,13 +288,11 @@ ul.topnav li.icon {display: none;}
 .excontant p{
 font-family: sans-serif;
 font-size: 120%;
-line-height: 150%;
 text-align: left;
 padding: 5%;
 }
 @media screen and (min-width:768px){
 	.excontant p{
-		padding: 3% 20%;
 		font-size: 190%;
 		letter-spacing: 1px;
 		font-weight: 200;
@@ -317,5 +315,36 @@ display: block;
 	}
 	.mpic{
 display: none;
+	}
+}
+.excontact{
+		/*border-left: 1px solid rgba(255,255,255,.5);*/
+    padding: 3%;
+		margin-left: 1%;
+		margin: auto;
+		width: 25%;
+		text-align: center;
+}
+.excontact h3{
+			font-weight: 300;
+	    letter-spacing: 1px;
+			color: rgba(255,255,255,.8);
+			font-size: 135%;
+			    padding-bottom: 5%;
+}
+.contWrap{
+	display: block;
+}
+@media screen and (min-width:768px){
+	.contWrap{
+display: inline-flex;
+	}
+	.excontact{
+		border-left: 1px solid rgba(255,255,255,.5);
+		padding: 3%;
+		margin-left: 1%;
+		margin: auto;
+		width: 25%;
+		text-align: center;
 	}
 }
