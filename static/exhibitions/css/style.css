@@ -332,6 +332,11 @@ display: none;
 			font-size: 135%;
 			    padding-bottom: 5%;
 }
+.excontact h2{
+		letter-spacing: 1px;
+    font-size: 125%;
+    padding-bottom: 5%;
+}
 .contWrap{
 	display: block;
 }
