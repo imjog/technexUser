@@ -1186,6 +1186,7 @@ def registrationData(request):
             eventobj = {}
             eventobj['event'] = event.eventName
             countmem = Team.objects.filter(event = event)
+            countmen = countmen.filter(~Q(teamLeader__college__collegeWebsite = "190"))
             f = 0
             for coun in countmem:
                  f = f + 1 + coun.members.count()
