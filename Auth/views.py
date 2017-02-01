@@ -211,10 +211,36 @@ def contextCall(request):
                 teamData['memberUrls'] = teamMemberUrl
                 print teamData
                 teamsData.append(teamData)
-                print teamsData     
-            response['teams'] = teamsData       
+                print teamsData            
         except:
-            pass                
+            pass 
+
+        try:
+            startupteams = StartUpFair.objects.filter(teamLeader = techprofile)
+            for startupteam in startupteams:        
+                teamdata = {}
+                teamdata['event'] = ""
+                teamdata['teamName'] = startupteam.teamName
+                teamdata['parentEvent'] = "StartupFair"
+                teamdata['parentEventLink'] = "/startupfair"
+                teamdata['teamId'] = ""
+                teamdata['leader'] = techprofile.user.first_name
+                teamdata['teamLeaderEmail'] = startupteam.teamLeader.email
+                teamMemberUrl = []
+                teamMemberNames = []
+                startupMails = StartUpMails.objects.filter(team = startupteams)
+                for startupmail in startupMails:
+                    teamMemberNames.append(startupmail.email.encode("utf-8"))
+                    url = "/static/profile.png"
+                    teamMemberUrl.append(url)
+                teamdata['memberNames'] = teamMemberNames
+                teamdata['memberUrls'] = teamMemberUrl    
+                print teamdata
+                teamsData.append(teamdata)
+            response['teams'] = teamsData    
+        except:
+            pass        
+
 
 
 
