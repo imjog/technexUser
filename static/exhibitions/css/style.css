@@ -305,3 +305,17 @@ padding: 5%;
     text-align: center;
     line-height: 300%;
 }
+.dpic{
+display: none;
+}
+.mpic{
+display: block;
+}
+@media screen and (min-width:768px){
+	.dpic{
+display: block;
+	}
+	.mpic{
+display: none;
+	}
+}
