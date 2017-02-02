@@ -138,7 +138,7 @@ ul.navbar-nav {
 }
 
 .form-box {
-	padding-top: 18%;
+	padding-top: 4%;
 }
 
 .form-top {
@@ -318,7 +318,7 @@ ul.topnav li a {
  letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
-@media (min-width:1350px){
+@media (min-width:1386px){
     ul.topnav li a{
         color: rgba(255,255,255,.8);
         font-size: 15px;
@@ -337,7 +337,7 @@ ul.topnav li a:hover {
 
 ul.topnav li.icon {display: none;}
 
-@media screen and (max-width:1350px) {
+@media screen and (max-width:1386px) {
   ul.topnav li:not(:first-child){display: none;}
     ul.topnav li:nth-child(10){display: block; float: right;}
   ul.topnav li.icon {
@@ -347,7 +347,7 @@ ul.topnav li.icon {display: none;}
     ul.topnav li a{border:1px solid white;margin-right: 8px;}
 }
 
-@media screen and (max-width:1350px) {
+@media screen and (max-width:1386px) {
   ul.topnav.responsive {position: relative;}
   ul.topnav.responsive li.icon {
     position: absolute;
@@ -370,7 +370,7 @@ ul.topnav li.icon {display: none;}
         padding: 14px 20px;
     }
 }
-@media (min-width: 1330px) {
+@media (min-width: 1386px) {
     .jnavbar
     {
     display: table;
@@ -397,3 +397,8 @@ ul.topnav li.icon {display: none;}
 }
 
 /*-------------------/NAVBAR-------------------*/
+@media screen and (min-width:768px) {
+  .top-content{
+position: fixed;
+  }
+}
