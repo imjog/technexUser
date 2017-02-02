@@ -2043,11 +2043,54 @@ def dhokebaaj():
     print count
     # return render(request , 'dhokewale.html' , {'response' : response})                    
 
+@csrf_exempt
+def startQuiz(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        Quiz = quiz.objects.get(quizId = post['quizId'])
+        QuizTeam = quizTeam.objects.get(quizTeamId = post['teamId'])
+        if Quiz.activeStatus == 1:
+            try:
+                QuizResponse = quizResponses.objects.get(quiz = Quiz, quizTeam = QuizTeam)
+                response['status'] = 4 # Quiz Already Started
+            except:
+                QuizResponse = quizResponses(quiz = Quiz,quizTeam = QuizTeam)
+                QuizResponse.save()
+                response['status'] = 1 # Successfully Quiz started
+        else:
+            if Quiz.activeStatus == 0:
+                response['status'] = 2 # Quiz is not active right now
+            else:
+                response['status'] = 3 # Quiz closed
+    else:
+        response['status'] = 0 # Invalid Request
+    return JsonResponse(response)
 
-                            
-
-
-
+@csrf_exempt
+def registerResponse(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        quizResponse = quizResponses.objects.get(responseId = post['responseId'])
+        optionSelected = options.objects.get(optionId = post['optionId'])       
+        question = optionSelected.question
+        if not quizResponse.validForSubmission(10):
+            response['status'] = 2 # Quiz Already Submitted
+            return JsonResponse(response)
+        elif quizResponse.status == 2:
+            response['status'] = 3 # Quiz Finished by the User
+            return JsonResponse(response)
+        try:
+            questionResponse = questionResponses.objects.get(quiz = quizResponse, option__question = question)    
+            questionResponse.option = optionSelected
+        except:
+            questionResponse = questionResponses(quiz = quizResponse, option = optionSelected)
+        questionResponse.save()
+        response['status'] = 1 # Successfully registered
+    else:
+        response['status'] = 0 # Invalid Request
+    return JsonResponse(response)
            
 
                 

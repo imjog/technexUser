@@ -74,6 +74,7 @@ class Event(models.Model):
     maxMembers = models.SmallIntegerField(null=True,blank=True)
     nameSlug = models.SlugField(null = True)
     abstract = models.SmallIntegerField(default = 0)
+    image = models.TextField(validators=[URLValidator()], null = True, blank = True)
     def __unicode__(self):
         return self.eventName
 
@@ -267,35 +268,6 @@ class quiz(models.Model):
     def __unicode__(self):
         return self.name
 
-class questions(models.Model):
-    questionID = models.AutoField(primary_key = True)
-    quiz = models.ForeignKey(quiz, null = True)
-    question = models.TextField(blank = True , null =True)
-    option1 = models.TextField(blank = True , null =True)
-    option2 = models.TextField(blank = True , null =True)
-    option3 = models.TextField(blank = True , null =True)
-    option4 = models.TextField(blank = True , null =True)
-    def __unicode__(self):
-        return '%s'%(self.questionID)            
-
-class optionResponses(models.Model):
-    team = models.ForeignKey(Team)
-    quiz = models.ForeignKey(quiz, null = True)
-    answer1 = models.CharField(max_length = 50)
-    answer2 = models.CharField(max_length = 50)
-    answer3 = models.CharField(max_length = 50)
-    answer4 = models.CharField(max_length = 50)
-    answer5 = models.CharField(max_length = 50)
-    answer6 = models.CharField(max_length = 50)
-    answer7 = models.CharField(max_length = 50)
-    answer8 = models.CharField(max_length = 50)
-    answer9 = models.CharField(max_length = 50)
-    answer10 = models.CharField(max_length = 50)
-    attemptStatus = models.SmallIntegerField(default = 0)
-    def __unicode__(self):
-        return self.team.teamName
-
-
 class quizTeam(models.Model):
     teamId = models.AutoField(primary_key= True)
     quizTeamId = models.CharField(max_length = 10, null = True, blank = True)
@@ -306,10 +278,79 @@ class quizTeam(models.Model):
     def __unicode__(self):
         return self.quizTeamId
 
-        
+class questions(models.Model):
+    questionId = models.AutoField(primary_key = True)
+    quiz = models.ForeignKey(quiz, null = True)
+    question = models.TextField(blank = True , null =True)
+    def __unicode__(self):
+        return '%s'%(self.questionID)            
+
+class options(models.Model):
+    optionId = models.AutoField
+    optionText = models.TextField(blank = True, null = True)
+    question = models.ForeignKey(questions)
+    status = models.SmallIntegerField(default = 0)
+    def __unicode__(self):
+        return '%s %s'%(self.optionText,self.question.question)
+
+class quizResponses(models.Model):
+    responseId = models.AutoField(primary_key = True)
+    quiz = models.ForeignKey(quiz, null = True)
+    quizTeam = models.ForeignKey(quizTeam)
+    status = models.SmallIntegerField(default = 1)
+    startTime = models.DateTimeField(auto_now = True,null = True, blank = True)
+    questions = models.ManyToManyField(questions)
+    def __unicode__(self):
+        return '%s %s'%(self.quizTeam.quizTeamId,self.quiz.name)
+    def validForSubmission(self,minutes):
+        now = datetime.datetime.utcnow().replace(tzinfo=utc)
+        timediff = now - self.startTime
+        if timediff.total_seconds() > minutes*60:
+            return False
+        else:
+            return True
 
 
+class questionResponses(models.Model):
+    responseId = models.AutoField(primary_key = True)
+    quiz = models.ForeignKey(quizResponses)
+    option = models.ForeignKey(options)
+    def __unicode__(self):
+        return '%s %s'%(self.quiz.name,self.option.optionId)
 
+class StartupFairData(models.Model):
+    introduction = models.CharField(max_length = 250, null = True, blank = True)
+    content = models.TextField(blank = True, null = True)
+    def __unicode__(self):
+        return '%s'%(self.introduction)
 
+class Exhibitions(models.Model):
+    introduction = models.CharField(max_length = 250, null = True, blank = True)
+    content = models.TextField(blank = True, null = True)
+    def __unicode__(self):
+        return '%s'%(self.introduction)
 
+class Pronites(models.Model):
+    introduction = models.CharField(max_length = 250, null = True, blank = True)
+    content = models.TextField(blank = True, null = True)
+    def __unicode__(self):
+        return '%s'%(self.introduction)
+
+class InstituteDay(models.Model):
+    introduction = models.CharField(max_length = 250, null = True, blank = True)
+    content = models.TextField(blank = True, null = True)
+    def __unicode__(self):
+        return '%s'%(self.introduction)
+
+class CorporateConclave(models.Model):
+    introduction = models.CharField(max_length = 250, null = True, blank = True)
+    content = models.TextField(blank = True, null = True)
+    def __unicode__(self):
+        return '%s'%(self.introduction)
+
+class Hospitality(models.Model):
+    introduction = models.CharField(max_length = 250, null = True, blank = True)
+    content = models.TextField(blank = True, null = True)
+    def __unicode__(self):
+        return '%s'%(self.introduction)
 

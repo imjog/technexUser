@@ -21,5 +21,11 @@ urlpatterns = [
 	url(r'^workshops/$', workshopApi, name='workshop'),
 	url(r'^caEmailCount/$',caEmailCount,name='caEmailCount'),
 	url(r'^caEmailInfo/$',caEmailInfo,name='caEmailInfo'),
+	url(r'^startUpFairApi/$',startUpFairApi,name='startUpFairApi'),
+	url(r'^exhibitionsApi/$',exhibitionsApi,name='exhibitionsApi'),
+	url(r'^pronitesApi/$',pronitesApi,name='pronitesApi'),
+	url(r'^instituteDayApi/$',instituteDayApi,name='instituteDayApi'),
+	url(r'^corporateConclaveApi/$',corporateConclaveApi,name='corporateConclave'),
+	url(r'^hospitalityApi/$',hospitalityApi,name='hospitality'),
 
 ]

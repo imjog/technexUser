@@ -63,6 +63,7 @@ urlpatterns = [
 	url(r'^intellecx/$',intellecx,name = 'intellecx'),
 	url(r'^statewise/',statewise,name = 'statewise'),
 	url(r'^dhoka/',dhokebaaj,name = 'dhokewale'),
+	url(r'^startquiz/',startQuiz,name='startquiz'),
 	# url(r'^quiz/$',quiz, name='quiz'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
