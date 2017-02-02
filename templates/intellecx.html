@@ -4244,7 +4244,7 @@ REGISTER / LOGIN
     </a>
     <p class="making">INTERNSHIP OPPORTUNIES</p>
     <p class="making">PRIZE WORTH &#8377;90,000</p>
-    <a class="btn" data-toggle="modal" data-target=".bs-example-modal-md">REGISTER</a>
+    <a class="btn" id='intellecxModal' data-toggle="modal" data-target=".bs-example-modal-md">REGISTER</a>
   </div>
   <div class="icontact making">
     <div class="con1"><p>Kuljeet Keshav</p><p>+918009596212</p></div><hr class="hrtag">
@@ -4257,6 +4257,22 @@ REGISTER / LOGIN
    <form method="post" action='/quizRegister2/' class="intellecx-registration-form"> 
   <div class="modal-body">
   <div class="modal-header">
+
+{% if messages %}
+<script type="text/javascript">
+  $(document).ready(function(){$("#intellecxModal").trigger("click")});
+</script>
+<div class="alert-message login-invalida" style="display: block;">
+<button type="button" class="close-btnas close-btn">
+<span aria-hidden="true">&times;</span>
+ </button>
+    {% for msg in messages %}
+                    {{msg.message}}
+          
+        {% endfor %}
+</div>
+{% endif %}
+
   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" style="color: white;">×</span>
   </button>
 <h1 style="font-size: 21px;color: white" class="modal-title" id="myModalLabel">Intellecx Registration</h1>
@@ -4331,7 +4347,10 @@ REGISTER / LOGIN
 <script type="text/javascript">
   $(document).ready(function(){
 
-
+     
+  $(".close-btnas").on("click", function(){
+   $(".login-invalida").hide();
+  });
     $("input[type=checkbox]").on("click", function()
     {
 
@@ -4397,6 +4416,7 @@ REGISTER / LOGIN
              if($("#quiz-slot").val() == "")
       {
         $("#quiz-slot").addClass('input-error');
+        e.preventDefault();
       next_step = false;
       }
       var x= $(".form-control");
