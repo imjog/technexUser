@@ -68,18 +68,15 @@ Slider
   background-repeat: no-repeat;
 }
 .cd-slider li:first-of-type .image {
-  background-image: url(/static/corporateConclave/img/air.jpg);
-}
-.cd-slider li:nth-of-type(2) .image {
-  background-image: url(/static/corporateConclave/img/cit.jpg);
-}
-.cd-slider li:nth-of-type(3) .image {
   background-image: url(/static/corporateConclave/img/lnt.jpg);
 }
-.cd-slider li:nth-of-type(4) .image {
+.cd-slider li:nth-of-type(2) .image {
   background-image: url(/static/corporateConclave/img/sam.jpg);
 }
-.cd-slider li:nth-of-type(5) .image {
+.cd-slider li:nth-of-type(3) .image {
+  background-image: url(/static/corporateConclave/img/cit.jpg);
+}
+.cd-slider li:nth-of-type(4) .image {
   background-image: url(/static/corporateConclave/img/citi.jpg);
 }
 .cd-slider .image {

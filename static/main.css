@@ -27,7 +27,7 @@ summary {
 .updates
 {
     width: 100%;
-    
+
 }
 .technex-dates{
     color: white;
@@ -912,7 +912,7 @@ body {
 }
 #sections-container .bottom-container {
     position: absolute;
-    bottom: 230px;
+    bottom: 275px;
     width: 100%;
     text-align: center
 }
@@ -923,7 +923,7 @@ body {
 #css3d-container .navigation,
 #sections-container .navigation {
     position: absolute;
-    /*bottom: 0;*/
+    bottom: 5%;
     width: 100%;
     text-align: center
 }
@@ -2313,3 +2313,33 @@ body {
     border: none;
 }
 /*kmdckmdcnkndckndckndcnkkdnckndvknvdkn*/
+/* -------- footer -----------*/
+.techfooter{
+  background: rgba(0,0,0,.5);
+  color: rgba(255,255,255,.8);
+  border: 0;
+  margin: 0;
+  width: 100%;
+    top: 94%;
+    position: fixed;
+    z-index: 200000000000;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 5px;
+}
+.techfooter ul{
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+.techfooter ul a {
+    padding: 1%;
+    font-size: 120%;
+    font-family: sans-serif;
+    margin: 0 auto;
+    color: rgba(255,255,255,.6);
+}
+.techfooter ul a:hover{
+  color: white;
+  transition: 0.3s;
+}
+/* ---------/footer ----------*/
