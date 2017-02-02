@@ -354,3 +354,18 @@ class Hospitality(models.Model):
     def __unicode__(self):
         return '%s'%(self.introduction)
 
+class quizTeam2(models.Model):
+    teamId = models.AutoField(primary_key= True)
+    quizTeamId = models.CharField(max_length = 10, null = True, blank = True)
+    quizAttemptStatus = models.SmallIntegerField(default = 0)
+    quiz = models.ForeignKey(quiz , null = True , blank = True)
+    slot = models.SmallIntegerField(default = 0)
+    member1Email = models.CharField(max_length = 65, null = True, blank = True)
+    member2Email = models.CharField(max_length = 65, null = True, blank = True)
+    member1Phone = models.CharField(max_length = 15, null = True, blank = True)
+    member2Phone = models.CharField(max_length = 15, null = True, blank = True)
+    name1 = models.CharField(max_length = 50, null = True, blank = True)
+    name2 = models.CharField(max_length = 50, null = True, blank = True)
+    status = models.BooleanField(default = False)
+    def __unicode__(self):
+        return self.quizTeamId

@@ -4251,10 +4251,21 @@ REGISTER / LOGIN
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel">CONTACTS</h4>
+                          <h4 class="modal-title" id="myModalLabel">Intellecx Registration</h4>
                         </div>
                         <div class="modal-body">
-                          <form method="post" role = "">  
+                          <form method="post" action='/quizRegister2/'>
+                          <input type='text' name='name1' placeholder="First Member Name" />
+                          <input type='text' name='member1Email' placeholder="First Member Email" />
+                          <input type='text' name='member1Phone' placeholder="First Member phone" />
+                          <input type='hidden' value=1 name='quizId' />
+                          <input type='radio' value=1 name='slot' />1
+                          <input type='radio' value=2 name='slot' />2
+                          <input type='radio' id='forEnablingMember2' />
+                          <input type='text' name='name2' placeholder="First Member Name" />
+                          <input type='text' name='member2Email' placeholder="First Member Email" />
+                          <input type='text' name='member2Phone' placeholder="First Member phone" />
+                          <input type='submit' value='Register' />
                           </form>
                         </div>
                         <div class="modal-footer">
@@ -4264,6 +4275,12 @@ REGISTER / LOGIN
                       </div>
                     </div>
                   </div>
+                   {% if messages %}
+        {% for msg in messages %}
+                    {{msg.message}}
+          
+        {% endfor %}
+        {% endif %}
   </body>
   <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
