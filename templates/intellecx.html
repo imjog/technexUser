@@ -11,8 +11,17 @@
 <link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
 <link rel="manifest" href="/static/favicon/manifest.json">
 <link rel="shortcut icon" href="/static/favicon/favicon.ico">
+<link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="/static/intellecx/css/reset.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/static/favicon/manifest.json">
+<link rel="shortcut icon" href="/static/favicon/favicon.ico">
+<meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
+<meta name="theme-color" content="#000000">
     <script>
 function navFunction() {
     var x = document.getElementById("myTopnav");
@@ -247,7 +256,7 @@ margin: 0;
   width: 420em;
   height: 70em;
   background-image:
- url(http://s.cdpn.io/1137/hori.png),url(http://s.cdpn.io/1137/stars_5.png);
+ url(/static/hori.png),url(/static/stars_5.png);
   background-repeat: repeat-x,repeat-x repeat-y;
   transform:translate3D(-5em, 0em, 0);
   animation: stars 2s ease;
@@ -4230,13 +4239,34 @@ REGISTER / LOGIN
     </a>
     <p class="making">INTERNSHIP OPPORTUNIES</p>
     <p class="making">PRIZE WORTH &#8377;90,000</p>
-    <a class="btn" href="/dashboard/#/intellecx/">REGISTER</a>
+    <a class="btn" href="/intellecx">REGISTER</a>
   </div>
   <div class="icontact making">
     <div class="con1"><p>Kuljeet Keshav</p><p>+918009596212</p></div><hr class="hrtag">
     <div class="con2"><p>Kumar Anunay</p><p>+919935009220</p></div>
 </div>
 </div>
+    <div class="modal fade bs-example-modal-md in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 21px;">
+                    <div class="modal-dialog modal-md">
+                      <div class="modal-content">
 
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel">CONTACTS</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form method="post" role = "">
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
   </body>
+  <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
 </html>
