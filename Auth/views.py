@@ -1517,7 +1517,7 @@ def send_sms(username,passwd,message,number):
 
     try:
         usock = opener.open(url, data)
-    except IOError:
+    except:
         return 0
 
 
@@ -1528,7 +1528,7 @@ def send_sms(username,passwd,message,number):
 
     try:
         sms_sent_page = opener.open(send_sms_url,send_sms_data)
-    except IOError:
+    except:
         return 0
     return 1
 
