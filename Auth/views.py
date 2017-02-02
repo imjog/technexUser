@@ -1531,7 +1531,8 @@ def worshopdataFill():
 def corporateConclave(request):
     print request
     return render(request,'corporateConclave.html')
-def test(request):
+
+def intellecx(request):
     return render(request,'intellecx.html')
 
 
@@ -1808,9 +1809,6 @@ def quiz_spreadsheetfill(team):
     print dic
     requests.post(url,data=dic)
 
-
-def intellecx(request):
-    return HttpResponseRedirect('/dashboard/#/intellecx/')
 
 
 def collegesClassification():
