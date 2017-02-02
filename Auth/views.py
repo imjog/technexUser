@@ -1531,6 +1531,8 @@ def worshopdataFill():
 def corporateConclave(request):
     print request
     return render(request,'corporateConclave.html')
+
+    
 def test(request):
     return render(request,'intellecx.html')
 
