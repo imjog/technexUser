@@ -1533,7 +1533,7 @@ def corporateConclave(request):
     return render(request,'corporateConclave.html')
 
 def intellecx(request):
-    return render(request,'intellecx.html')
+    return HttpResponseRedirect('/dashboard/#/intellecx/')
 
 
 def send_sms(username,passwd,message,number):
