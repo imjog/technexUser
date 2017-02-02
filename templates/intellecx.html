@@ -49,7 +49,7 @@ function navFunction() {
     color: white;
     position: relative;
     top: 65%;
-    margin-top: 5%;
+    /*margin-top: 5%;*/
 }
 .icontact p{
     text-align: center;
@@ -80,7 +80,7 @@ margin: 0;
       z-index: 3000000;
       color: white;
       position: relative;
-      top: 65%;
+      top: 60%;
   }
   .icontact p{
     text-align: center;
@@ -396,7 +396,7 @@ margin: 0;
   .build-with p {
       font-size: 120%;
       letter-spacing: 3px;
-      margin-bottom: 1em;
+      margin-bottom: 0.5em;
   }
   .build-with{
     top: 50%;
@@ -408,6 +408,7 @@ margin: 0;
 }
 
 .build-with .btn {
+  margin-top: 5%;
   border: 1px solid white;
   letter-spacing: 2px;
   opacity: 1;
@@ -422,6 +423,7 @@ margin: 0;
 }
 @media screen and (min-width:768px){
   .build-with .btn {
+    margin-top: 10%;
     border: 1px solid white;
     letter-spacing: 2px;
     opacity: 1;
@@ -4238,7 +4240,7 @@ REGISTER / LOGIN
   <div class="build-with">
     <p class="inthead">INTELLECX</p>
     <a>
-      <img src="/static/intellecx/img/intellecx.png" alt="intellecx"/>
+      <img src="/static/intellecx/img/intellecxnew.png" alt="intellecx"/>
     </a>
     <p class="making">INTERNSHIP OPPORTUNIES</p>
     <p class="making">PRIZE WORTH &#8377;90,000</p>
@@ -4255,9 +4257,9 @@ REGISTER / LOGIN
    <form method="post" action='/quizRegister2/' class="intellecx-registration-form"> 
   <div class="modal-body">
   <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" style="color: white;">×</span>
   </button>
-<h1 class="modal-title" id="myModalLabel">Intellecx Registration</h1>
+<h1 style="font-size: 21px;color: white" class="modal-title" id="myModalLabel">Intellecx Registration</h1>
 </div>
 <div class="form-group">
 <input type='text' name='name1' class="form-control" placeholder="First Member Name" value="{{response.name}}" />
@@ -4290,16 +4292,16 @@ REGISTER / LOGIN
   <option value="2">SUNDAY 5/02/2017 22:00 - 22:40</option>
 </select>
 </div>
-<div class="form-group">ADD SECOND MEMBER<div class="material-switch pull-right">
+<div class="form-group" style="color: white;">ADD SECOND MEMBER<div class="material-switch pull-right">
 <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox"/>
 <label for="someSwitchOptionInfo" class="label-info"></label>
 </div>
 </div>
 <div class="form-group">
-<input type='text' name='name2' placeholder="First Member Name" class="form-control second-member" disabled="true" />
+<input type='text' name='name2' placeholder="Second Member Name" class="form-control second-member" disabled="true" />
 </div>
 <div class="form-group">
-<input type='text' name='member2Email' id="second" placeholder="First Member Email" class="form-control second-member" disabled="true" />
+<input type='text' name='member2Email' id="second" placeholder="Second Member Email" class="form-control second-member" disabled="true" />
 <div class="alert-message login-invalid" style="display: none;">
 <button type="button" class="close-btna close-btn">
 <span aria-hidden="true">&times;</span>
@@ -4308,7 +4310,7 @@ REGISTER / LOGIN
 </div>
 </div>
 <div class="form-group">
-<input type='text' name='member2Phone' placeholder="First Member phone" class="form-control second-member" disabled="true" />
+<input type='text' name='member2Phone' placeholder="Second Member phone" class="form-control second-member" disabled="true" />
 <div class="alert-message login-invalid" style="display: none;">
 <button type="button" class="close-btna close-btn">
 <span aria-hidden="true">&times;</span>
@@ -4328,6 +4330,7 @@ REGISTER / LOGIN
 </body>
 <script type="text/javascript">
   $(document).ready(function(){
+
 
     $("input[type=checkbox]").on("click", function()
     {
@@ -4446,5 +4449,4 @@ REGISTER / LOGIN
   });
 </script>
 <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-
 </html>
