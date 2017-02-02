@@ -1534,7 +1534,20 @@ def corporateConclave(request):
 
     
 def test(request):
-    return render(request,'intellecx.html')
+    response = {}
+    try: 
+        user = request.user
+        techprofile = user.techprofile
+        response['name'] = techprofile.user.first_name
+        response['email'] = techprofile.email
+        response['phone'] = techprofile.mobileNumber
+    except:
+        response['name'] = ""
+        response['email'] = ""
+        response['phone'] = ""  
+
+
+    return render(request,'intellecx.html', {'response': response})
 
 
 def send_sms(username,passwd,message,number):
@@ -1842,10 +1855,6 @@ def quiz_spreadsheetfill(team):
     url = sheetUrls["quiz-registartion"]
     print dic
     requests.post(url,data=dic)
-
-
-def intellecx(request):
-    return HttpResponseRedirect('/dashboard/#/intellecx/')
 
 
 def collegesClassification():
