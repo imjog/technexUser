@@ -10,7 +10,11 @@ svg {
     margin-top: 30px;
   } 
 }
-
+a:active,
+a:hover {
+    outline: 0;
+    border: none;
+}
 section{
   height: 100vh;
   overflow: hidden;
@@ -64,7 +68,7 @@ section{
   height: auto;
   display: flex;
   justify-content: center;
-  margin-top: 10%; 
+  margin-top: 6%; 
 }
 
 .logo img{

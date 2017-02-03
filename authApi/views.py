@@ -11,6 +11,7 @@ import os
 import facebook
 from Auth.models import *
 from Events.views import spreadsheetfill_register
+from django.core import serializers
 server = "https://technexuser.herokuapp.com/"
 #from Auth.forms import *
 # Create your views here.
@@ -64,6 +65,7 @@ def ApiRegisterView(request):
         response['year'] = techprofile.year
         response['college'] = techprofile.college.collegeName
         response['email'] = newUser.email
+        response['technexId'] = newUser.technexId
         response['status'] = 1
         return JsonResponse(response)
     except:
@@ -89,6 +91,7 @@ def ApiLoginView(request):
             response_data['mobileNumber'] = techprofile.mobileNumber
             response_data['year'] = techprofile.year
             response_data['college'] = techprofile.college.collegeName
+            response_data['technexId'] = techprofile.technexId
             return JsonResponse(response_data)
         else:
             response_data['status'] = 0 #Invalid credentials
@@ -126,6 +129,7 @@ def eventApi(request):
                 eventData['prizeMoney'] = event.prizeMoney
                 eventData['maxMembers'] = event.maxMembers
                 eventData['eventOrder'] = event.eventOrder
+                eventData['image'] = event.image
                 eventData['eventOptions'] = []
                 eventOptions = EventOption.objects.filter(event = event)
                 for eventOption in eventOptions:
@@ -440,5 +444,114 @@ Regards
             spreadsheetfill_register(team)
             return JsonResponse(response)
     else:
+        response['status'] = 0
+        return JsonResponse(response)
+
+
+@csrf_exempt
+def startUpFairApi(request):
+    response = {}
+    try:
+        djangoArray = StartUpFairData.objects.all()
+        data = []
+        for djangoObject in djangoArray:
+            dataObject = {}
+            dataObject['introduction'] = djangoObject.introduction
+            dataObject['content'] = djangoObject.content
+            data.append(dataObject)
+        response['data'] = data
+        response['status'] = 1
+        return JsonResponse(response)
+    except:
+        response['status'] = 0
+        return JsonResponse(response)
+
+@csrf_exempt
+def exhibitionsApi(request):
+    response = {}
+    try:
+        djangoArray = Exhibitions.objects.all()
+        data = []
+        for djangoObject in djangoArray:
+            dataObject = {}
+            dataObject['introduction'] = djangoObject.introduction
+            dataObject['content'] = djangoObject.content
+            data.append(dataObject)
+        response['data'] = data
+        response['status'] = 1
+        return JsonResponse(response)
+    except:
+        response['status'] = 0
+        return JsonResponse(response)
+
+@csrf_exempt
+def pronitesApi(request):
+    response = {}
+    try:
+        djangoArray = Pronites.objects.all()
+        data = []
+        for djangoObject in djangoArray:
+            dataObject = {}
+            dataObject['introduction'] = djangoObject.introduction
+            dataObject['content'] = djangoObject.content
+            data.append(dataObject)
+        response['data'] = data
+        response['status'] = 1
+        return JsonResponse(response)
+    except:
+        response['status'] = 0
+        return JsonResponse(response)
+
+@csrf_exempt
+def instituteDayApi(request):
+    response = {}
+    try:
+        djangoArray = InstituteDay.objects.all()
+        data = []
+        for djangoObject in djangoArray:
+            dataObject = {}
+            dataObject['introduction'] = djangoObject.introduction
+            dataObject['content'] = djangoObject.content
+            data.append(dataObject)
+        response['data'] = data
+        response['status'] = 1
+        return JsonResponse(response)
+    except:
+        response['status'] = 0
+        return JsonResponse(response)
+
+@csrf_exempt
+def corporateConclaveApi(request):
+    response = {}
+    try:
+        djangoArray = CorporateConclave.objects.all()
+        data = []
+        for djangoObject in djangoArray:
+            dataObject = {}
+            dataObject['introduction'] = djangoObject.introduction
+            dataObject['content'] = djangoObject.content
+            data.append(dataObject)
+        response['data'] = data
+        response['status'] = 1
+        return JsonResponse(response)
+    except:
+        response['status'] = 0
+        return JsonResponse(response)
+
+@csrf_exempt
+def hospitalityApi(request):
+    response = {}
+    try:
+        djangoArray = Hospitality.objects.all()
+        data = []
+        for djangoObject in djangoArray:
+            dataObject = {}
+            dataObject['introduction'] = djangoObject.introduction
+            dataObject['content'] = djangoObject.content
+            data.append(dataObject)
+        response['data'] = data
+        response['status'] = 1
+        return JsonResponse(response)
+    except:
         response['status'] = 0
         return JsonResponse(response)

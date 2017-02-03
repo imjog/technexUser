@@ -1531,8 +1531,24 @@ def worshopdataFill():
 def corporateConclave(request):
     print request
     return render(request,'corporateConclave.html')
+
+    
 def test(request):
-    return render(request,'intellecx.html')
+    response = {}
+    try: 
+        user = request.user
+        techprofile = user.techprofile
+        response['name'] = techprofile.user.first_name
+        response['email'] = techprofile.email
+        response['phone'] = techprofile.mobileNumber
+    except:
+        response['name'] = ""
+        response['email'] = ""
+        response['phone'] = ""  
+
+
+    return render(request,'intellecx.html', {'response': response})
+
 
 
 def send_sms(username,passwd,message,number):
@@ -1619,7 +1635,7 @@ def sendSms(request):
         return render(request, 'send_sms.html',{'messages_left':messages_left})
 
 
-def quiz(request):
+def quizI(request):
     response = {}
     event = event.objects.get(eventName = 'Krackat')
     if user.is_authenticated:
@@ -1698,13 +1714,13 @@ def startupdatafill():
 
 
 @csrf_exempt
-@login_required(login_url='/register/')
-def quizRegister(request):
+def quizRegister2(request):
     response = {}
     if request.method == 'POST':
-        data = json.loads(request.body)
+        data = request.POST#json.loads(request.body)
         users = []
         print data
+        '''
         for user in data['members']:
             try:
                 try:
@@ -1726,8 +1742,40 @@ def quizRegister(request):
                 return JsonResponse(response)
             except:
                 pass
+        '''
 
-        quizteam = quizTeam(slot = data['slot'])
+
+        try:
+            quizteam = quizTeam2.objects.get(Q(member1Email = data['member1Email']) | Q(member2Email = data['member1Email']))
+            messages.warning(request,"Member with this Email already Registered %s !"%(data['member1Email']))
+            return render(request,"intellecx.html")
+        except:
+            try:
+                quizteam = quizTeam2.objects.get(Q(member1Phone = data['member1Phone']) | Q(member2Phone = data['member1Phone']))
+                messages.warning(request,"Member with this Phone Number already Registered %s !"%(data['member1Phone']))
+                return render(request,"intellecx.html")
+            except:
+                Quiz = quiz.objects.get(quizId = data['quizId'])
+                quizteam = quizTeam2(slot = data['slot'], quiz = Quiz, member1Email = data['member1Email'], name1 = data['name1'], member1Phone = data['member1Phone'])
+                try:
+                    t = TechProfile.objects.get(email = data['member1Email'])
+                    quizteam.status = True
+                except:
+                    quizteam.status = False
+        try:
+            quizteam = quizTeam2.objects.get(Q(member2Email = data['member2Email']) | Q(member2Email = data['member2Email']))
+            messages.warning(request,"Member with this Email already Registered %s !"%(data['member2Email']))
+            return render(request,"intellecx.html")
+        except:
+            try:
+                quizteam = quizTeam2.objects.get(Q(member2Phone = data['member2Phone']) | Q(member1Phone = data['member2Phone']))
+                messages.warning(request,"Member with this Phone Number already Registered %s !"%(data['member2Phone']))
+                return render(request,"intellecx.html")
+            except:
+                quizteam.member2Email = data.get('member2Email')
+                quizteam.member2Phone = data.get('member2Phone')
+                quizteam.name2 = data.get('name2')
+
         quizteam.save()
         slot = ""
         if data['slot'] is 1:
@@ -1744,7 +1792,7 @@ Thanks for registering for Intellecx Technex'17.
 
 Your Team Details Are
 TeamId- %s
-Team Members- %s
+Team Member- %s
 Time Slot- %s
 
 For any queries, Contact -
@@ -1767,21 +1815,30 @@ Regards
 Team Technex
 Regards
             '''
-        memberEmails = ""
-        for user in users:
-            memberEmails += user.email+'  '
-            quizteam.members.add(user)
-        for user in users:
-            send_email(user.email,subject,body%(user.user.first_name,quizteam.quizTeamId,memberEmails,slot))
+        memberEmails = data.get('member2Email',None)
 
-        quiz_spreadsheetfill(quizteam)
+        #for user in users:
+            #memberEmails += user.email+'  '
+            #quizteam.members.add(user)
+        #for user in users:
+        send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
 
-        response['status'] = 1
-        return JsonResponse(response)
+        #quiz_spreadsheetfill(quizteam)
+
+        return render(request,'intellecx.html',{"success":1})
     else:
-        response['status'] = 0
-        return render(request, '500.html',contextCall(request))
-
+        
+        try: 
+            user = request.user
+            techprofile = user.techprofile
+            response['name'] = techprofile.user.first_name
+            response['email'] = techprofile.email
+            response['phone'] = techprofile.mobileNumber
+        except:
+            response['name'] = ""
+            response['email'] = ""
+            response['phone'] = ""
+        return render(request,'intellecx.html',{'response':response})
 
 def quiz_spreadsheetfill(team):
     members = team.members.all()
@@ -1807,11 +1864,6 @@ def quiz_spreadsheetfill(team):
     url = sheetUrls["quiz-registartion"]
     print dic
     requests.post(url,data=dic)
-
-
-def intellecx(request):
-    return HttpResponseRedirect('/dashboard/#/intellecx/')
-
 
 def collegesClassification():
     rb = open_workbook('technex-regisstration.xlsx')
@@ -2076,9 +2128,54 @@ def dhokebaaj():
 
 
 
+@csrf_exempt
+def startQuiz(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        Quiz = quiz.objects.get(quizId = post['quizId'])
+        QuizTeam = quizTeam.objects.get(quizTeamId = post['teamId'])
+        if Quiz.activeStatus == 1:
+            try:
+                QuizResponse = quizResponses.objects.get(quiz = Quiz, quizTeam = QuizTeam)
+                response['status'] = 4 # Quiz Already Started
+            except:
+                QuizResponse = quizResponses(quiz = Quiz,quizTeam = QuizTeam)
+                QuizResponse.save()
+                response['status'] = 1 # Successfully Quiz started
+        else:
+            if Quiz.activeStatus == 0:
+                response['status'] = 2 # Quiz is not active right now
+            else:
+                response['status'] = 3 # Quiz closed
+    else:
+        response['status'] = 0 # Invalid Request
+    return JsonResponse(response)
 
-
-
+@csrf_exempt
+def registerResponse(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        quizResponse = quizResponses.objects.get(responseId = post['responseId'])
+        optionSelected = options.objects.get(optionId = post['optionId'])
+        question = optionSelected.question
+        if not quizResponse.validForSubmission(10):
+            response['status'] = 2 # Quiz Already Submitted
+            return JsonResponse(response)
+        elif quizResponse.status == 2:
+            response['status'] = 3 # Quiz Finished by the User
+            return JsonResponse(response)
+        try:
+            questionResponse = questionResponses.objects.get(quiz = quizResponse, option__question = question)
+            questionResponse.option = optionSelected
+        except:
+            questionResponse = questionResponses(quiz = quizResponse, option = optionSelected)
+        questionResponse.save()
+        response['status'] = 1 # Successfully registered
+    else:
+        response['status'] = 0 # Invalid Request
+    return JsonResponse(response)
 
 
 
@@ -2131,3 +2228,91 @@ Follow us on Facebook: www.facebook.com/technex
 Follow us on Instagram: www.instagram.com/technexiitbhu
 
 '''
+
+@csrf_exempt
+@login_required(login_url='/register/')
+def quizRegister(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        users = []
+        print data
+        for user in data['members']:
+            try:
+                try:
+                    member = TechProfile.objects.get(email = user)
+                    users.append(member)
+                except:
+                    member = TechProfile.objects.get(technexId = user)
+                    users.append(member)
+            except:
+                response['status'] = 0
+                response['error'] = 'Member not Registered('+user+')'
+                return JsonResponse(response)
+        users = list(set(users))
+        for u in users:
+            try:
+                quizteam = quizTeam.objects.get(members = u )
+                response['status'] = 0
+                response['error'] = u.email+' Already registered for this event !!!'
+                return JsonResponse(response)
+            except:
+                pass
+
+        quizteam = quizTeam(slot = data['slot'])
+        quizteam.save()
+        slot = ""
+        if data['slot'] is 1:
+            slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
+        else:
+            slot = "SUNDAY 5/02/2017 22:00 - 22:40"
+        quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
+        quizteam.save()
+        subject = "[Technex'17] Successful Registration for Intellecx"
+        body = '''
+Dear %s,
+
+Thanks for registering for Intellecx Technex'17.
+
+Your Team Details Are
+TeamId- %s
+Team Members- %s
+Time Slot- %s
+
+For any queries, Contact -
+Kuljeet Keshav +918009596212
+Kumar Anunay +919935009220
+
+An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+
+
+Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in.
+
+
+Looking forward to seeing you soon at Technex 2017.
+
+All the best!
+
+
+Regards
+
+Team Technex
+Regards
+            '''
+        memberEmails = ""
+        for user in users:
+            memberEmails += user.email+'  '
+            quizteam.members.add(user)
+        for user in users:
+            send_email(user.email,subject,body%(user.user.first_name,quizteam.quizTeamId,memberEmails,slot))
+
+        quiz_spreadsheetfill(quizteam)
+
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return render(request, '500.html',contextCall(request))
+
+# def test(request):
+#     return render(request,'intellecx.html')

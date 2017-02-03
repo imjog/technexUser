@@ -56,7 +56,8 @@ a {
 }
 a:active,
 a:hover {
-    outline: 0
+    outline: 0;
+    border: none;
 }
 abbr[title] {
     border-bottom: 1px dotted
@@ -2230,7 +2231,7 @@ body {
 
 #social-icons {
   position: fixed;
-  top: 30%;
+  top: 13%;
   margin-left: 10px;
 
 }

@@ -1374,13 +1374,13 @@ a.text-primary:focus,
 a.text-primary:hover {
     color: #286090
 }
-a:hover
+/*a:hover
 {
     
 	border: 2px solid white;
     text-decoration: none;
     outline-offset: none;
-}
+}*/
 
 .text-success {
     color: #3c763d
@@ -4125,7 +4125,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
     text-decoration: none;
 
     /*background-color: #eee*/
-    border: 2px, solid, white;
+   /* border: 2px, solid, white;*/
 }
           /* .nav>li>a::after {
               display:block;
