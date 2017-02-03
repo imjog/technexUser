@@ -1823,7 +1823,7 @@ Regards
         #for user in users:
         send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
 
-        #quiz_spreadsheetfill(quizteam)
+        quiz_spreadsheetfill(quizteam)
         return render(request,'intellecx.html',{"success":1})
     else:
         
