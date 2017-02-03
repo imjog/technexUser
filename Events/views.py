@@ -10,7 +10,7 @@ import json
 import os
 import facebook
 from Auth.models import *
-from Auth.views import contextCall,send_email
+from Auth.views import contextCall,send_email,send_sms_single
 
 server = "http://www.technex.in/"
 sheetUrls = {
@@ -163,6 +163,8 @@ Regards
 				memberEmails += user.email+'  ' 
 				team.members.add(user)
 			send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
+			message=" Team Registration successful for team name "+ str(team.teamName) + " . Visit www.fb.com/technex for updates. \nRegards\nTeam Technex"
+			send_sms_single(message,str(teamLeader.mobileNumber))
 			for user in users:
 				send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			response['status'] = 1

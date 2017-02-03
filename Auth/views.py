@@ -1564,7 +1564,7 @@ def send_sms(username,passwd,message,number):
 
     try:
         usock = opener.open(url, data)
-    except IOError:
+    except:
         return 0
 
 
@@ -1575,7 +1575,7 @@ def send_sms(username,passwd,message,number):
 
     try:
         sms_sent_page = opener.open(send_sms_url,send_sms_data)
-    except IOError:
+    except:
         return 0
     return 1
 
@@ -1824,7 +1824,8 @@ Regards
         #for user in users:
         send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
 
-        #quiz_spreadsheetfill(quizteam)
+        quiz_spreadsheetfill(quizteam)
+
         return render(request,'intellecx.html',{"success":1})
     else:
         
@@ -1841,25 +1842,22 @@ Regards
         return render(request,'intellecx.html',{'response':response})
 
 def quiz_spreadsheetfill(team):
-    members = team.members.all()
+    # members = team.members.all()
     dic = {
     "quizTeamId" : team.quizTeamId,
     "Slot" : team.slot
     }
 
-    dic['member1Name'] = members[0].user.first_name.encode("utf-8")
-    dic['member1Email'] = members[0].email.encode("utf-8")
-    dic['member1College'] = members[0].college.collegeName.encode("utf-8")
-    dic['member1Mobile'] = members[0].mobileNumber
+    dic['member1Name'] = team.name1.encode("utf-8")
+    dic['member1Email'] = team.member1Email.encode("utf-8")
+    dic['member1Mobile'] = team.member1Phone
     try:
-        dic['member2Name'] = members[1].user.first_name.encode("utf-8")
-        dic['member2Email'] = members[1].email.encode("utf-8")
-        dic['member2College'] = members[1].college.collegeName.encode("utf-8")
-        dic['member2Mobile'] = members[1].mobileNumber
+        dic['member2Name'] = team.name2.encode("utf-8")
+        dic['member2Email'] = team.member2Email.encode("utf-8")
+        dic['member2Mobile'] = team.member2Phone
     except:
         dic['member2Name'] = 0
         dic['member2Email'] = 0
-        dic['member2College'] = 0
         dic['member2Mobile'] = 0
     url = sheetUrls["quiz-registartion"]
     print dic

@@ -1,129 +1,159 @@
-<!doctype html>
-<html lang="en" class="no-js">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Team Technex constantly strives to make the festival a memorable experience for its participants. We have a team of dedicated individuals which will cater to your needs such as accommodation, registration and lodging after you arrive at the campus, and to help you out in any matters of concern." >
-	<link href='https://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
-	<!-- <link rel="shortcut icon" href="/static/images/favicon.ico"> -->
-	<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="/static/favicon/manifest.json">
-<link rel="shortcut icon" href="/static/favicon/favicon.ico">
-<meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
-<meta name="theme-color" content="#000000">
-	<link rel="stylesheet" href="/static/hospitality/css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="/static/hospitality/css/style.css"> <!-- Resource style -->
-	<script src="/static/hospitality/js/modernizr.js"></script> <!-- Modernizr -->
-	<!----------NAVBAR-------->
-	        <script>
-	function navFunction() {
-	    var x = document.getElementById("myTopnav");
-	    if (x.className === "topnav") {
-	        x.className += " responsive";
-	        // $("#navlogin").html("REGISTER / LOGIN")
-	    } else {
-	        x.className = "topnav";
-	    }
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Hospitality | Technex '17</title>
+		<!-- <link rel="shortcut icon" href="/static/images/favicon.ico"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="/static/favicon/manifest.json">
+		<link rel="shortcut icon" href="/static/favicon/favicon.ico">
+		<meta name="description" content="Team Technex welcomes you all to the spiritual capital of India. Hospitality plays an essential role in making your experience more amazing and thus it is of utmost importance to us. We at Technex put in our best efforts to make your visit to IIT (BHU), Varanasi most amiable and comfortable possible." />
+		<meta name="keywords" content="IIT, iit bhu,hospitality, technex,technex'17, technex 2017, technex 2017 hospitality,iit varanasi" />
+		<link rel="stylesheet" type="text/css" href="/static/hospitality/css/component.css" />
+		<script src="/static/hospitality/js/modernizr.custom.js"></script>
+		<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-68539305-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<script>
+function navFunction() {
+	var x = document.getElementById("myTopnav");
+	if (x.className === "topnav") {
+			x.className += " responsive";
+	} else {
+			x.className = "topnav";
 	}
+}
+</script>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '719194484921932'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+	</head>
+	<body>
+		<div class="container">
+			<!----------NAVBAR-------->
+<div class="jnavbar" id="abcde">
+<ul class="topnav" id="myTopnav">
+<li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;">
+<img src="/static/images/logo-technex-nav.png" height="40px" class="desktopLogo" style="padding-left:8px;padding-right:8px;">
+<img src="/static/images/technexLogoMobile.png" height="40px" class="mobLogo" style="padding-left:8px;padding-right:8px;">
+</a></li>
+<li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+<li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
+<li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+<li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
 
-	</script>
+<li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
+<li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+<li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+<li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
+DASHBOARD
+{% else %}
+REGISTER / LOGIN
+{% endif %}</a></li>
+<li class="icon">
+<a href="javascript:void(0);" class="iconA" onclick="navFunction()">☰</a>
+</li>
+</ul>
+</div>
+<!----------/NAVBAR-------->
+			<div id="bl-main" class="bl-main">
+				<section>
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-about">TECHNEX AND VARANASI</h2>
+					</div>
+					<div class="bl-content">
+						<h2 style="text-align:center;">|| हर हर महादेव ||</h2>
+						<p class="harhar">Team Technex welcomes you all to the spiritual capital of India. Hospitality plays an essential role in making your experience more amazing and thus it is of utmost importance to us. We at Technex put in our best efforts to make your visit to IIT (BHU), Varanasi most amiable and comfortable possible. Hospitality team of Technex comprises of dedicated individuals who will cater to your needs such as accommodation, registration and lodging when you arrive in the campus.</p>
 
-	<style type="text/css">
-	video
-	{
-			position: fixed;
-	    top: 50%;
-	    left: 50%;
-	    min-width: 100%;
-	    min-height: 100%;
-	    width: auto;
-	    height: auto;
-	    z-index: -100;
-	    transform: translateX(-50%) translateY(-50%);
-	 background: url('/static/hospitality/css/varanasi.jpg') no-repeat;
-	  /*background-size: cover;*/
-	  transition: 1s opacity;
-	}
-	</style>
-	<!----------/NAVBAR-------->
-	<title>Hospitality | Technex '17</title>
-</head>
-<body>
-<nav class="cd-vertical-nav">
-	<ul>
-		<li><a href="#section1" class="active"><span class="label">Top</span></a></li>
-		<li><a href="#section2"><span class="label">Introduction</span></a></li>
-		<li><a href="#section3"><span class="label">Instruction</span></a></li>
-		<li><a href="#section4"><span class="label">How to Reach</span></a></li>
-		<li><a href="#section5"><span class="label">Contact & Register</span></a></li>
-	</ul>
-</nav><!-- .cd-vertical-nav -->
+					</div>
+					<span class="bl-icon bl-icon-close" style="letter-spacing: 2px;font-weight: 600;">CLOSE</span>
+				</section>
+				<section id="bl-work-section">
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-works">PAYMENTS PROCEDURE</h2>
+					</div>
+					<div class="bl-content">
+						<h2>BENEFITS OF ONLINE PAYMENT <span style="font-weight: 500;font-size: 70%;font-style: italic;">(Valid Till 8 Feb)</span></h2>
+						<div>
+							<ul class="instUL">
+								<li>Free Technex T-shirt.</li>
+								<li>Hospitality in campus for 5 days.</li>
+								<li>Free Technex Hospitality Kit.</li>
+								<li>Free Technex official merchandise.</li>
+								<li>Free passes to Game Dungeon - the informal events.</li>
+							<p style="font-size:125%;">	NOTE: Participants who avail accommodation online only are eligible for benefits mentioned above</p>
+							</ul>
+						</div>
+						<h2>PAYMENT INSTRUCTIONS</h2>
+						<div>
+							<ul class="instUL">
+								<li>The link to pay for Technex is <a href="https://www.collegefever.com/events/technex-iit-bhu-varanasi" target="_blank" style="text-transform:lowercase;">www.collegefever.com/events/technex-iit-bhu-varanasi</a></li>
+								<li>You will be redirected to our partner site.</li>
+								<li>Click on 'GET EVENT TICKET' to view tickets and pay accordingly.</li>
+							</ul>
+						</div>
+						<div class="subp">
+						<h3>FOR EVENTS PARTICIPANTS</h3>
+						<div>
+							<ul class="instUL">
+								<li>Event participants who want to avail accommodation need to pay &#8377;1300</li>
+								<li>Event participants who just want to participate in events need to pay &#8377;800</li>
+							</ul>
+						</div>
+						<h3>FOR WORKSHOPS PARTICIPANTS</h3>
+						<div>
+							<ul class="instUL">
+								<li>Accommodation will be provided free of cost to workshop participants.</li>
+								<li>Workshop participants need to pay &#8377;800 as registration fees of Technex in addition to particular workshop fees.</li>
+							</ul>
+						</div>
+					</div>
 
-<button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
-
-<section id="section1" class="cd-section">
-<video poster="/static/hospitality/css/varanasi.jpg" id="bgvid" playsinline autoplay loop>
-  <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
-<!-- <source src="/static/hospitality/css/abc.mp4" type="video/mp4"> -->
-<!-- <source src="/static/hospitality/css/abc.webm" type="video/webm"> -->
-</video>
-	<div class="content-wrapper">
-		<! ---------- NAVBAR-------->
-	<div class="jnavbar" id="abcde">
-			<ul class="topnav" id="myTopnav" style="width: 100%">
-		<li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;"><img src="/static/workshop/img/logo-technex-nav.png" height="40px"></a></li>
-		<li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
-		<li class="topnav-li"><a href="#">WORKSHOPS</a></li>
-		<li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
-		<li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
-
-		<li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
-		<li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
-		<li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-		<li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;" id="navlogin">
-		{% if user.is_authenticated %}
-		DASHBOARD
-		{% else %}
-		REGISTER / LOGIN
-		{% endif %}
-		<!-- <img src="/static/profile.png"/> --></a></li>
-		<li class="icon">
-			<a href="javascript:void(0);" style="font-size:11px;margin-right:2px;" onclick="navFunction()">☰</a>
-		</li>
-	</ul>
-	</div>
-	<!----------/NAVBAR-------->
-		<h1>HOSPITALITY</h1>
-		<p style="text-align: center;">Page Under Construction</p>
-		<a href="#section2" class="cd-scroll-down cd-image-replace">scroll down</a>
-	</div>
-</section><!-- cd-section -->
-
-<section id="section2" class="cd-section">
-	<div class="content-wrapper">
-		<h2>INTRODUCTION</h2>
-		<p>Team Technex welcomes you all to the spiritual capital of India. Hospitality plays an essential role in making your experience more amazing and thus it is of utmost importance to us. We at Technex put in our best efforts to make your visit to IIT (BHU), Varanasi most amiable and comfortable possible. Hospitality team of Technex comprises of dedicated individuals who will cater to your needs such as accommodation, registration and lodging when you arrive in the campus.</p>
-	</div>
-</section><!-- cd-section -->
-
-<section id="section2" class="cd-section">
-	<div class="content-wrapper">
-		<h2>ABOUT VARANASI</h2>
-	</div>
-
-</section><!-- cd-section -->
-
-<section id="section3" class="cd-section">
-
-	<div class="content-wrapper">
-		<h2 style="margin-top:5%;">INSTRUCTIONS</h2>
-		<ul class="instUL">
+						<!-- <ul id="bl-work-items">
+							<li data-panel="panel-1"><a href="#"><img src="images/1.jpg" /></a></li>
+							<li data-panel="panel-2"><a href="#"><img src="images/2.jpg" /></a></li>
+							<li data-panel="panel-3"><a href="#"><img src="images/3.jpg" /></a></li>
+							<li data-panel="panel-4"><a href="#"><img src="images/4.jpg" /></a></li>
+						</ul> -->
+					<span class="bl-icon bl-icon-close" style="letter-spacing: 2px;font-weight: 600;">CLOSE</span>
+				</section>
+				<section>
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-blog">RULES AND ID CARD</h2>
+					</div>
+					<div class="bl-content">
+						<h2>HOW TO GET YOUR ID CARD</h2>
+						<div>
+							<ul class="instUL">
+							<li>The official Android App of Technex will be available soon.</li>
+							<li>You can obtain an e-ID Card on Android App.</li>
+							<li>Detailed procedure for the same will be updated soon.</li>
+						</ul>
+						</div>
+						<h2>INSTRUCTIONS</h2>
+						<div><ul class="instUL">
 		<li>Accommodation will be provided from 23rd of February, 4 p.m., for four days.</li>
-		<li>You’re required to report at the hospitality desk at <a href="https://goo.gl/maps/Aaeee2uEUwH2">Limbdi Hostel</a> as soon as you arrive at the campus.</li>
+		<li>You’re required to report at <a href="https://goo.gl/maps/Aaeee2uEUwH2" target="_blank">Registration Desk</a> as soon as you arrive at the campus.</li>
 		<li>All student participants must carry their valid College photo ID card. Others must bring their valid photo identity for the purpose of entry. People without valid photo identity card will not be allowed inside the campus during Technex 2017.</li>
-		<li>The fee for registration is INR 1300 + 200 (Security deposit) .The security deposit will be returned to you when you will be leaving the campus. Those who do not wish to opt for accommodation in the IIT(BHU) campus need to pay INR 800 + 200 (Security Deposit) only.</li>
+		<li>The fee for registration is INR 1300 + 200 (Security deposit). The security deposit will be returned to you when you will be leaving the campus. Those who do not wish to opt for accommodation in the IIT(BHU) campus need to pay INR 800 + 200 (Security Deposit) only.</li>
 		<li>Please bring 2 passport sized photographs.</li>
 		<li>Facilities provided:
 			<li class="subInst">1. Passes to all exhibitions</li>
@@ -136,55 +166,47 @@
 		<li>Kindly note that the accommodation is strictly on a shared basis and any requests for individual rooms or any complaints in this regard shall not be entertained.</li>
 		<li>Random checks would be made to avoid any illegal stay at the campus. Any team failing to produce their receipts of accommodation would be heavily fined and disqualified.</li>
 		<li>Alcohol, cigarettes, drugs, any intoxicants, sharp objects and explosives of any kind are strictly prohibited inside the campus. Any other item if deemed unsafe will be prohibited. The decision of Technex team will be final in case of any disputes.</li>
-		<li>There are SBI and Bank of Baroda ATMs inside the campus. There’s also an AXIS bank ATM just outside the campus, near Hyderabad Gate.</li>
-	</ul>
-	</div>
-</section><!-- cd-section -->
-
-<section id="section4" class="cd-section">
-	<div class="content-wrapper">
-		<h2>HOW TO REACH IIT(BHU)</h2>
-		<p><span class="from">From Airport to IIT(BHU):</span><br>
+		<li>There are SBI and Bank of Baroda ATMs inside the campus. There’s also an AXIS bank ATM just outside the campus, near <a href="https://www.google.com/maps/place/Hyderabad+Gate,+Banaras+Hindu+University+Campus,+Varanasi,+Uttar+Pradesh+221011,+India/@25.2619924,82.9804766,18z/data=!3m1!4b1!4m5!3m4!1s0x398e323289029ca7:0x514d6cfbb33b7f19!8m2!3d25.2617554!4d82.9816562" target="_blank">Hyderabad Gate.</a></li>
+	</ul></div>
+					</div>
+					<span class="bl-icon bl-icon-close" style="letter-spacing: 2px;font-weight: 600;">CLOSE</span>
+				</section>
+				<section>
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-contact">REACH IIT (BHU) & CONTACTs</h2>
+					</div>
+					<div class="bl-content">
+						<h2>WAY TO REACH IIT (BHU)</h2>
+						<p><span class="from"><a target="_blank" style="color:black;" href="https://www.google.com/maps/dir/Varanasi+Airport,+Babatpur,+Uttar+Pradesh,+India/Technex,+IIT+(BHU)+Varanasi,+Training+and+Placement+Office,+IIT+(BHU),+Banaras+Hindu+University+Campus,+Varanasi,+Uttar+Pradesh+221005,+India/@25.3478677,82.8503585,12z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x398fd5ae98d33961:0xe0a6882ef87ef5a7!2m2!1d82.8568054!2d25.4486988!1m5!1m1!1s0x398e322ce9aaa787:0xf833de79aeffffe3!2m2!1d82.9864451!2d25.2612245"><abbr title="Click to View Map">From Airport to IIT(BHU):</abbr></a></span><br>
 
 BHU Campus is about 35 kms. from Varanasi (Babatpur) Airport. The taxi charges from Airport to BHU Campus are about INR 600/-<br>
 
-<span class="from">From Varanasi Cantt. (Junction) Railway Station to IIT(BHU):</span><br>
+<span class="from"><a target="_blank" style="color:black;" href="https://www.google.com/maps/dir/Varanasi+Cantt,+Varanasi,+Uttar+Pradesh,+India/Technex,+IIT+(BHU)+Varanasi,+Training+and+Placement+Office,+IIT+(BHU),+Banaras+Hindu+University+Campus,+Varanasi,+Uttar+Pradesh+221005,+India/@25.2988502,82.9503368,13z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x398e2dbfc355d889:0xaa55a9ef2b061b79!2m2!1d82.9689738!2d25.3323527!1m5!1m1!1s0x398e322ce9aaa787:0xf833de79aeffffe3!2m2!1d82.9864451!2d25.2612245"><abbr title="Click to View Map">From Varanasi Cantt. (Junction) Railway Station to IIT(BHU):</abbr></a></span><br>
 
-BHU Campus is about 10 kms. from Varanasi Cantt. railway Station. Round the clock Auto/ Taxi services are available from Varanasi Cantt. Railway Station to BHU (Lanka). The tentative charges are: for reserve auto Rs. 120-150/-, shared auto Rs. 15/- and for Taxi Rs. 300/- to 350/-.<br>
+BHU Campus is about 10 kms. from Varanasi Cantt. railway Station. Round the clock Auto/ Taxi services are available from Varanasi Cantt. Railway Station to BHU (Lanka). The tentative charges are: for reserve auto Rs. 120-150/-, shared auto Rs. 20/- and for Taxi Rs. 300/- to 350/-.<br>
 
 
-<span class="from">From Mughalsarai Railway Station to IIT(BHU):</span><br>
+<span class="from"><a target="_blank" style="color:black;" href="https://www.google.com/maps/dir/Mughal+Sarai+Jn,+Mughal+Sarai,+Uttar+Pradesh,+India/Technex,+IIT+(BHU)+Varanasi,+Training+and+Placement+Office,+IIT+(BHU),+Banaras+Hindu+University+Campus,+Varanasi,+Uttar+Pradesh+221005,+India/@25.2878151,83.0266497,13z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x398e3ae2d9355229:0x9215de3e4e8f08a9!2m2!1d83.1197011!2d25.2783436!1m5!1m1!1s0x398e322ce9aaa787:0xf833de79aeffffe3!2m2!1d82.9864451!2d25.2612245"><abbr title="Click to View Map">From Mughalsarai Railway Station to IIT(BHU):</abbr></a></span><br>
 
 BHU Campus is about 20 kms. from Mughalsarai Railway Station. Round the clock Auto/ Taxi services are available from Mughalsarai Railway Station to BHU(Lanka). The tentative charges are: for reserve auto Rs. 200/-, shared auto Rs. 35/- and for Taxi Rs. 300/- to 350/-.</p>
-<div class="mapWrapD" style="padding:2%;">
-	<div class="tag-green">MAP</div>
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.2788083244823!2d82.98425131503498!3d25.261204835299647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e322ce9aaa787%3A0xf833de79aeffffe3!2sTechnex+Office%2C+IIT+(BHU)+Varanasi!5e0!3m2!1sen!2sin!4v1485890256748" width="800" height="600" frameborder="0" style="border:0;border-radius:2%;" allowfullscreen></iframe>
+<a href="https://www.google.com/maps/place/Technex,+IIT+(BHU)+Varanasi/@25.2617799,82.9868297,18z/data=!4m8!1m2!2m1!1sTechnex,+IIT+(BHU)+Varanasi!3m4!1s0x398e322ce9aaa787:0xf833de79aeffffe3!8m2!3d25.2612245!4d82.9864451" target="_blank"><div class="tag-green">VIEW MAP</div></a>
+<div class="hospycontact">
+	<span>CONTACTS</span>
+	<div class="indiv"><h3>Rohit Negi</h3><h3>+919459494009</h3></div>
+	<div class="indiv"><h3>Rahul Yadav</h3><h3>+919956443498</h3></div>
 </div>
-<div class="mapWrapM">
-	<div class="tag-green">MAP</div>
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.2788083244823!2d82.98425131503498!3d25.261204835299647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e322ce9aaa787%3A0xf833de79aeffffe3!2sTechnex+Office%2C+IIT+(BHU)+Varanasi!5e0!3m2!1sen!2sin!4v1485890256748" width="300" height="200" frameborder="0" style="border:0;border-radius: 2%;" allowfullscreen></iframe>
-</div>
-	</div>
-	<hr>
-</section><!-- cd-section -->
-
-<section id="section5" class="cd-section">
-	<div class="content-wrapper">
-		<h2>REGISTRATION</h2>
-		<p>To confirm your registration in Technex'17 and to avail hospitality services, <a href="" style="color:wheat;">click here</a> to pay online.</p>
-		<h2 style="margin-top:2%;">CONTACT US</h2>
-		<div class="contactUs">
-			<div class="name"><p>Rohit Negi</p>
-			<p> +91-945-949-4009 </p>
-			<p>rohit.negi.che14@iitbhu.ac.in</p></div>
-			<div class="name"><p>Rahul Yadav</p>
-			<p>+91-995-644-3498</p>
-			<p>rahul.yadav.ece14@iitbhu.ac.in</p></div>
-		</div>
-	</div>
-</section>
-
-<script src="/static/hospitality/js/jquery-2.1.4.js"></script>
-<script src="/static/hospitality/js/main.js"></script> <!-- Resource jQuery -->
-</body>
+					</div>
+					<span class="bl-icon bl-icon-close" style="letter-spacing: 2px;font-weight: 600;">CLOSE</span>
+				</section>
+				<!-- Panel items for the works -->
+			</div>
+		</div><!-- /container -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="/static/hospitality/js/boxlayout.js"></script>
+		<script>
+			$(function() {
+				Boxlayout.init();
+			});
+		</script>
+	</body>
 </html>
