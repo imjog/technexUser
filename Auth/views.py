@@ -1821,12 +1821,13 @@ Regards
             #memberEmails += user.email+'  '
             #quizteam.members.add(user)
         #for user in users:
-        #send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
+        send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
 
         #quiz_spreadsheetfill(quizteam)
 
         response['status'] = 1
-        return JsonResponse(response)
+        # return JsonResponse(response)
+        return render(request,"intellecx.html", {'status': response['status']})
     else:
         response['status'] = 0
         return render(request, '500.html',contextCall(request))

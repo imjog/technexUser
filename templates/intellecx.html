@@ -4257,6 +4257,17 @@ REGISTER / LOGIN
    <form method="post" action='/quizRegister2/' class="intellecx-registration-form"> 
   <div class="modal-body">
   <div class="modal-header">
+  {% if status %}
+  <script type="text/javascript">
+  $(document).ready(function(){$("#intellecxModal").trigger("click")});
+</script>
+<div class="alert-message login-invalida" style="display: block; background-color: #5cb85c">
+<button type="button" class="close-btnas close-btn" style="background-color:#ffc6c6;">
+<span aria-hidden="true">&times;</span>
+ </button>
+ Registration Successful!!
+   </div>
+  {% endif %}
 
 {% if messages %}
 <script type="text/javascript">
