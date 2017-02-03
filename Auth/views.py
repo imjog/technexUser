@@ -653,15 +653,15 @@ def error500(request):
 def send_email(recipient, subject, body):
 
     return requests.post(
-        "https://api.mailgun.net/v3/mg.technex.in/messages",
-        auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),
+        "https://api.mailgun.net/v3/mailgun2.technex.in/messages",
+        auth=("api", "key-c44b3156a4a09ba7d2e5e6c44df757e8"),
         data={"from": "Support Technex<support@technex.in>",
               "to": recipient,
               "subject": subject,
               "text": body})
 
 def send_email2(r,s,b):
-    return requests.post("https://api.mailgun.net/v3/mailgun.technex.in/messages",auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),data={"from":"Technex 2017 IIT(BHU) Varanasi India <technex@iitbhu.ac.in>","to":r,"subject":s,"text":b})
+    return requests.post("https://api.mailgun.net/v3/mailgun2.technex.in/messages",auth=("api", "key-c44b3156a4a09ba7d2e5e6c44df757e8"),data={"from":"Technex 2017 IIT(BHU) Varanasi India <technex@iitbhu.ac.in>","to":r,"subject":s,"text":b})
 
 @csrf_exempt
 def botApi(request):
@@ -1744,46 +1744,6 @@ def quizRegister2(request):
                 pass
         '''
 
-
-        try:
-            quizteam = quizTeam2.objects.get(Q(member1Email = data['member1Email']) | Q(member2Email = data['member1Email']))
-            messages.warning(request,"Member with this Email already Registered %s !"%(data['member1Email']))
-            return render(request,"intellecx.html")
-        except:
-            try:
-                quizteam = quizTeam2.objects.get(Q(member1Phone = data['member1Phone']) | Q(member2Phone = data['member1Phone']))
-                messages.warning(request,"Member with this Phone Number already Registered %s !"%(data['member1Phone']))
-                return render(request,"intellecx.html")
-            except:
-                Quiz = quiz.objects.get(quizId = data['quizId'])
-                quizteam = quizTeam2(slot = data['slot'], quiz = Quiz, member1Email = data['member1Email'], name1 = data['name1'], member1Phone = data['member1Phone'])
-                try:
-                    t = TechProfile.objects.get(email = data['member1Email'])
-                    quizteam.status = True
-                except:
-                    quizteam.status = False
-        try:
-            quizteam = quizTeam2.objects.get(Q(member2Email = data['member2Email']) | Q(member2Email = data['member2Email']))
-            messages.warning(request,"Member with this Email already Registered %s !"%(data['member2Email']))
-            return render(request,"intellecx.html")
-        except:
-            try:
-                quizteam = quizTeam2.objects.get(Q(member2Phone = data['member2Phone']) | Q(member1Phone = data['member2Phone']))
-                messages.warning(request,"Member with this Phone Number already Registered %s !"%(data['member2Phone']))
-                return render(request,"intellecx.html")
-            except:
-                quizteam.member2Email = data.get('member2Email')
-                quizteam.member2Phone = data.get('member2Phone')
-                quizteam.name2 = data.get('name2')
-
-        quizteam.save()
-        slot = ""
-        if data['slot'] is 1:
-            slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
-        else:
-            slot = "SUNDAY 5/02/2017 22:00 - 22:40"
-        quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
-        quizteam.save()
         subject = "[Technex'17] Successful Registration for Intellecx"
         body = '''
 Dear %s,
@@ -1815,6 +1775,47 @@ Regards
 Team Technex
 Regards
             '''
+        try:
+            quizteam = quizTeam2.objects.get(Q(member1Email = data['member1Email']) | Q(member2Email = data['member1Email']))
+            messages.warning(request,"Member with this Email already Registered %s !"%(data['member1Email']))
+            return render(request,"intellecx.html")
+        except:
+            try:
+                quizteam = quizTeam2.objects.get(Q(member1Phone = data['member1Phone']) | Q(member2Phone = data['member1Phone']))
+                messages.warning(request,"Member with this Phone Number already Registered %s !"%(data['member1Phone']))
+                return render(request,"intellecx.html")
+            except:
+                Quiz = quiz.objects.get(quizId = data['quizId'])
+                quizteam = quizTeam2(slot = data['slot'], quiz = Quiz, member1Email = data['member1Email'], name1 = data['name1'], member1Phone = data['member1Phone'])
+                try:
+                    t = TechProfile.objects.get(email = data['member1Email'])
+                    quizteam.status = True
+                except:
+                    quizteam.status = False
+        try:
+            quizteam = quizTeam2.objects.get(Q(member2Email = data['member2Email']) | Q(member2Email = data['member2Email']))
+            messages.warning(request,"Member with this Email already Registered %s !"%(data['member2Email']))
+            return render(request,"intellecx.html")
+        except:
+            try:
+                quizteam = quizTeam2.objects.get(Q(member2Phone = data['member2Phone']) | Q(member1Phone = data['member2Phone']))
+                messages.warning(request,"Member with this Phone Number already Registered %s !"%(data['member2Phone']))
+                return render(request,"intellecx.html")
+            except:
+                quizteam.member2Email = data.get('member2Email')
+                quizteam.member2Phone = data.get('member2Phone')
+                quizteam.name2 = data.get('name2')
+                send_email(data['member1Email'],subject,body%(data['name2'],quizteam.quizTeamId,data['member1Email'],slot))
+
+        quizteam.save()
+        slot = ""
+        if data['slot'] is 1:
+            slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
+        else:
+            slot = "SUNDAY 5/02/2017 22:00 - 22:40"
+        quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
+        quizteam.save()
+       
         memberEmails = data.get('member2Email',None)
 
         #for user in users:
