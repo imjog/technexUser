@@ -1534,7 +1534,21 @@ def corporateConclave(request):
 
     
 def test(request):
-    return render(request,'intellecx.html')
+    response = {}
+    try: 
+        user = request.user
+        techprofile = user.techprofile
+        response['name'] = techprofile.user.first_name
+        response['email'] = techprofile.email
+        response['phone'] = techprofile.mobileNumber
+    except:
+        response['name'] = ""
+        response['email'] = ""
+        response['phone'] = ""  
+
+
+    return render(request,'intellecx.html', {'response': response})
+
 
 
 def send_sms(username,passwd,message,number):
@@ -1729,7 +1743,7 @@ def quizRegister2(request):
             except:
                 pass
         '''
-        
+
 
         try:
             quizteam = quizTeam2.objects.get(Q(member1Email = data['member1Email']) | Q(member2Email = data['member1Email']))
@@ -1739,7 +1753,7 @@ def quizRegister2(request):
             try:
                 quizteam = quizTeam2.objects.get(Q(member1Phone = data['member1Phone']) | Q(member2Phone = data['member1Phone']))
                 messages.warning(request,"Member with this Phone Number already Registered %s !"%(data['member1Phone']))
-                return render(request,"intellecx.html")  
+                return render(request,"intellecx.html")
             except:
                 Quiz = quiz.objects.get(quizId = data['quizId'])
                 quizteam = quizTeam2(slot = data['slot'], quiz = Quiz, member1Email = data['member1Email'], name1 = data['name1'], member1Phone = data['member1Phone'])
@@ -1756,12 +1770,12 @@ def quizRegister2(request):
             try:
                 quizteam = quizTeam2.objects.get(Q(member2Phone = data['member2Phone']) | Q(member1Phone = data['member2Phone']))
                 messages.warning(request,"Member with this Phone Number already Registered %s !"%(data['member2Phone']))
-                return render(request,"intellecx.html")  
+                return render(request,"intellecx.html")
             except:
                 quizteam.member2Email = data.get('member2Email')
                 quizteam.member2Phone = data.get('member2Phone')
                 quizteam.name2 = data.get('name2')
-        
+
         quizteam.save()
         slot = ""
         if data['slot'] is 1:
@@ -1842,11 +1856,6 @@ def quiz_spreadsheetfill(team):
     url = sheetUrls["quiz-registartion"]
     print dic
     requests.post(url,data=dic)
-
-
-def intellecx(request):
-    return HttpResponseRedirect('/dashboard/#/intellecx/')
-
 
 def collegesClassification():
     rb = open_workbook('technex-regisstration.xlsx')
@@ -2141,7 +2150,7 @@ def registerResponse(request):
     if request.method == 'POST':
         post = request.POST
         quizResponse = quizResponses.objects.get(responseId = post['responseId'])
-        optionSelected = options.objects.get(optionId = post['optionId'])       
+        optionSelected = options.objects.get(optionId = post['optionId'])
         question = optionSelected.question
         if not quizResponse.validForSubmission(10):
             response['status'] = 2 # Quiz Already Submitted
@@ -2150,7 +2159,7 @@ def registerResponse(request):
             response['status'] = 3 # Quiz Finished by the User
             return JsonResponse(response)
         try:
-            questionResponse = questionResponses.objects.get(quiz = quizResponse, option__question = question)    
+            questionResponse = questionResponses.objects.get(quiz = quizResponse, option__question = question)
             questionResponse.option = optionSelected
         except:
             questionResponse = questionResponses(quiz = quizResponse, option = optionSelected)
@@ -2159,7 +2168,7 @@ def registerResponse(request):
     else:
         response['status'] = 0 # Invalid Request
     return JsonResponse(response)
-           
+
 
 
 
@@ -2296,3 +2305,6 @@ Regards
     else:
         response['status'] = 0
         return render(request, '500.html',contextCall(request))
+
+# def test(request):
+#     return render(request,'intellecx.html')

@@ -285,3 +285,10 @@ ul.topnav li.icon {display: none;}
     display: none;
   }
 }
+.inteleximg{
+  margin-left: 2%;
+  margin-top: -5%;
+}
+.inteleximg img{
+  width: 20%;
+}
