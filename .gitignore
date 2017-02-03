@@ -3,6 +3,6 @@ venv
 staticfiles
 /db.sqlite3
 .DS_Store
-latest.dump
+*.dump
 *.json
 
