@@ -38,7 +38,7 @@ jQuery(document).ready(function($){
 			var dotWrapper = (index == 0) ? $('<li class="selected"></li>') : $('<li></li>'),
 				dot = $('<a href="#0"></a>').appendTo(dotWrapper);
 			dotWrapper.appendTo(wrapper);
-			var dotText = ( index+1 < 10 ) ? '0'+ (index+1) : index+1;
+			var dotText = ( index+1 < 10 ) ?  (index+1) : index+1;
 			dot.text(dotText);
 		});
 		wrapper.appendTo(container);
