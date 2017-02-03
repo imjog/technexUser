@@ -1778,10 +1778,11 @@ def quizRegister2(request):
 
         quizteam.save()
         slot = ""
-        if data['slot'] is 1:
+        if int(data['slot']) is 1 :
             slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
         else:
             slot = "SUNDAY 5/02/2017 22:00 - 22:40"
+        print quizteam.slot,slot
         quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
         quizteam.save()
         subject = "[Technex'17] Successful Registration for Intellecx"
@@ -1840,25 +1841,22 @@ Regards
         return render(request,'intellecx.html',{'response':response})
 
 def quiz_spreadsheetfill(team):
-    members = team.members.all()
+    # members = team.members.all()
     dic = {
     "quizTeamId" : team.quizTeamId,
     "Slot" : team.slot
     }
 
-    dic['member1Name'] = members[0].user.first_name.encode("utf-8")
-    dic['member1Email'] = members[0].email.encode("utf-8")
-    dic['member1College'] = members[0].college.collegeName.encode("utf-8")
-    dic['member1Mobile'] = members[0].mobileNumber
+    dic['member1Name'] = team.name1.encode("utf-8")
+    dic['member1Email'] = team.member1Email.encode("utf-8")
+    dic['member1Mobile'] = team.member1Phone
     try:
-        dic['member2Name'] = members[1].user.first_name.encode("utf-8")
-        dic['member2Email'] = members[1].email.encode("utf-8")
-        dic['member2College'] = members[1].college.collegeName.encode("utf-8")
-        dic['member2Mobile'] = members[1].mobileNumber
+        dic['member2Name'] = team.name2.encode("utf-8")
+        dic['member2Email'] = team.member2Email.encode("utf-8")
+        dic['member2Mobile'] = team.member2Phone
     except:
         dic['member2Name'] = 0
         dic['member2Email'] = 0
-        dic['member2College'] = 0
         dic['member2Mobile'] = 0
     url = sheetUrls["quiz-registartion"]
     print dic
