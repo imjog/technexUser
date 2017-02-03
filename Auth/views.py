@@ -1821,16 +1821,23 @@ Regards
             #memberEmails += user.email+'  '
             #quizteam.members.add(user)
         #for user in users:
-        #send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
+        send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
 
         #quiz_spreadsheetfill(quizteam)
-
-        response['status'] = 1
-        return JsonResponse(response)
+        return render(request,'intellecx.html',{"success":1})
     else:
-        response['status'] = 0
-        return render(request, '500.html',contextCall(request))
-
+        
+        try: 
+            user = request.user
+            techprofile = user.techprofile
+            response['name'] = techprofile.user.first_name
+            response['email'] = techprofile.email
+            response['phone'] = techprofile.mobileNumber
+        except:
+            response['name'] = ""
+            response['email'] = ""
+            response['phone'] = ""
+        return render(request,'intellecx.html',{'response':response})
 
 def quiz_spreadsheetfill(team):
     members = team.members.all()

@@ -4242,6 +4242,15 @@ REGISTER / LOGIN
     <a>
       <img src="/static/intellecx/img/intellecxnew.png" alt="intellecx"/>
     </a>
+    {% if success %}
+<div class="login-invalida" style="display: block; background-color: rgb(13, 226, 95);">
+<button type="button" class="close-btnas close-btn">
+<span aria-hidden="true">&times;</span>
+ </button>
+    Successfully Registered for the Intellecx :)
+</div>
+{% endif %}
+
     <p class="making">INTERNSHIP OPPORTUNIES</p>
     <p class="making">PRIZE WORTH &#8377;90,000</p>
     <a class="btn" id='intellecxModal' data-toggle="modal" data-target=".bs-example-modal-md">REGISTER</a>
@@ -4254,7 +4263,7 @@ REGISTER / LOGIN
     <div class="modal fade bs-example-modal-md in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 21px;">
   <div class="modal-dialog modal-md">
     <div class="modal-content" style="padding: 25px;border-radius: 100px; background: rgba(0,0,0,1);">
-   <form method="post" action='/quizRegister2/' class="intellecx-registration-form"> 
+   <form method="post" class="intellecx-registration-form"> 
   <div class="modal-body">
   <div class="modal-header">
 
