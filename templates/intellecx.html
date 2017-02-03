@@ -4242,6 +4242,15 @@ REGISTER / LOGIN
     <a>
       <img src="/static/intellecx/img/intellecxnew.png" alt="intellecx"/>
     </a>
+    {% if success %}
+<div class="login-invalidas" style="display: block; background-color: rgb(13, 226, 95); height: 50px;padding: 15px;">
+<button type="button" class="close-btnasa close-btn" style="background: none;">
+<span aria-hidden="true">&times;</span>
+ </button>
+    <h2>Successfully Registered for the Intellecx </h2>
+</div>
+{% endif %}
+
     <p class="making">INTERNSHIP OPPORTUNIES</p>
     <p class="making">PRIZE WORTH &#8377;90,000</p>
     <a class="btn" id='intellecxModal' data-toggle="modal" data-target=".bs-example-modal-md">REGISTER</a>
@@ -4254,21 +4263,9 @@ REGISTER / LOGIN
     <div class="modal fade bs-example-modal-md in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 21px;">
   <div class="modal-dialog modal-md">
     <div class="modal-content" style="padding: 25px;border-radius: 100px; background: rgba(0,0,0,1);">
-   <form method="post" action='/quizRegister2/' class="intellecx-registration-form"> 
+   <form method="post" class="intellecx-registration-form"> 
   <div class="modal-body">
   <div class="modal-header">
-  {% if status %}
-  <script type="text/javascript">
-  $(document).ready(function(){$("#intellecxModal").trigger("click")});
-</script>
-<div class="alert-message login-invalida" style="display: block; background-color: #5cb85c">
-<button type="button" class="close-btnas close-btn" style="background-color:#ffc6c6;">
-<span aria-hidden="true">&times;</span>
- </button>
- Registration Successful!!
-   </div>
-  {% endif %}
-
 {% if messages %}
 <script type="text/javascript">
   $(document).ready(function(){$("#intellecxModal").trigger("click")});
@@ -4377,6 +4374,10 @@ REGISTER / LOGIN
     $(".close-btna").on("click",function(){
         $(".login-invalid").hide();
     });
+    $(".close-btnasa").on("click",function(){
+        $(".login-invalidas").hide();
+    });
+
     function emailvalidation(email)
     {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
