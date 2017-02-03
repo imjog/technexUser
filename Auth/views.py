@@ -653,8 +653,8 @@ def error500(request):
 def send_email(recipient, subject, body):
 
     return requests.post(
-        "https://api.mailgun.net/v3/mg.technex.in/messages",
-        auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),
+        "https://api.mailgun.net/v3/mailgun2.technex.in/messages",
+        auth=("api", "key-c44b3156a4a09ba7d2e5e6c44df757e8"),
         data={"from": "Support Technex<support@technex.in>",
               "to": recipient,
               "subject": subject,
@@ -1564,7 +1564,7 @@ def send_sms(username,passwd,message,number):
 
     try:
         usock = opener.open(url, data)
-    except IOError:
+    except:
         return 0
 
 
@@ -1575,7 +1575,7 @@ def send_sms(username,passwd,message,number):
 
     try:
         sms_sent_page = opener.open(send_sms_url,send_sms_data)
-    except IOError:
+    except:
         return 0
     return 1
 
