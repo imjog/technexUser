@@ -65,6 +65,7 @@ def ApiRegisterView(request):
         response['year'] = techprofile.year
         response['college'] = techprofile.college.collegeName
         response['email'] = newUser.email
+        response['technexId'] = newUser.technexId
         response['status'] = 1
         return JsonResponse(response)
     except:
@@ -90,6 +91,7 @@ def ApiLoginView(request):
             response_data['mobileNumber'] = techprofile.mobileNumber
             response_data['year'] = techprofile.year
             response_data['college'] = techprofile.college.collegeName
+            response_data['technexId'] = techprofile.technexId
             return JsonResponse(response_data)
         else:
             response_data['status'] = 0 #Invalid credentials

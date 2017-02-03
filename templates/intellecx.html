@@ -20,6 +20,7 @@
 <link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
 <link rel="manifest" href="/static/favicon/manifest.json">
 <link rel="shortcut icon" href="/static/favicon/favicon.ico">
+<link rel="stylesheet" href="/static/login2_files2/form-elements.css">
 <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
 <meta name="theme-color" content="#000000">
     <script>
@@ -38,9 +39,13 @@ function navFunction() {
         <style>
       /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
       /* Demo styles */
+      .input-error
+      {
+        border-color: #e45d5d;
+      }
 
 .icontact{
-    z-index: 3000000;
+    z-index: 30;
     color: white;
     position: relative;
     top: 65%;
@@ -2760,7 +2765,7 @@ margin: 0;
     </style>
 
 
-        <script src="js/prefixfree.min.js"></script>
+        <script src="/static/intellecx/js/prefixfree.min.js"></script>
 
 
   </head>
@@ -4237,9 +4242,18 @@ REGISTER / LOGIN
     <a>
       <img src="/static/intellecx/img/intellecxnew.png" alt="intellecx"/>
     </a>
+    {% if success %}
+<div class="login-invalidas" style="display: block; background-color: rgb(13, 226, 95); height: 50px;padding: 15px;">
+<button type="button" class="close-btnasa close-btn" style="background: none;">
+<span aria-hidden="true">&times;</span>
+ </button>
+    <h2>Successfully Registered for the Intellecx </h2>
+</div>
+{% endif %}
+
     <p class="making">INTERNSHIP OPPORTUNIES</p>
     <p class="making">PRIZE WORTH &#8377;90,000</p>
-    <a class="btn" href="/intellecx">REGISTER</a>
+    <a class="btn" id='intellecxModal' data-toggle="modal" data-target=".bs-example-modal-md">REGISTER</a>
   </div>
   <div class="icontact making">
     <div class="con1"><p>Kuljeet Keshav</p><p>+918009596212</p></div><hr class="hrtag">
@@ -4247,44 +4261,224 @@ REGISTER / LOGIN
 </div>
 </div>
     <div class="modal fade bs-example-modal-md in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 21px;">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title" id="myModalLabel">Intellecx Registration</h4>
-                        </div>
-                        <div class="modal-body">
-                          <form method="post" role = "">
-                          <form method="post" action='/quizRegister2/'>
-                          <input type='text' name='name1' placeholder="First Member Name" />
-                          <input type='text' name='member1Email' placeholder="First Member Email" />
-                          <input type='text' name='member1Phone' placeholder="First Member phone" />
-                          <input type='hidden' value=1 name='quizId' />
-                          <input type='radio' value=1 name='slot' />1
-                          <input type='radio' value=2 name='slot' />2
-                          <input type='radio' id='forEnablingMember2' />
-                          <input type='text' name='name2' placeholder="First Member Name" />
-                          <input type='text' name='member2Email' placeholder="First Member Email" />
-                          <input type='text' name='member2Phone' placeholder="First Member phone" />
-                          <input type='submit' value='Register' />
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                   {% if messages %}
-        {% for msg in messages %}
+  <div class="modal-dialog modal-md">
+    <div class="modal-content" style="padding: 25px;border-radius: 100px; background: rgba(0,0,0,1);">
+   <form method="post" class="intellecx-registration-form"> 
+  <div class="modal-body">
+  <div class="modal-header">
+{% if messages %}
+<script type="text/javascript">
+  $(document).ready(function(){$("#intellecxModal").trigger("click")});
+</script>
+<div class="alert-message login-invalida" style="display: block;">
+<button type="button" class="close-btnas close-btn">
+<span aria-hidden="true">&times;</span>
+ </button>
+    {% for msg in messages %}
                     {{msg.message}}
-
+          
         {% endfor %}
-        {% endif %}
-  </body>
-  <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+</div>
+{% endif %}
 
+  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" style="color: white;">×</span>
+  </button>
+<h1 style="font-size: 21px;color: white" class="modal-title" id="myModalLabel">Intellecx Registration</h1>
+</div>
+<div class="form-group">
+<input type='text' name='name1' class="form-control" placeholder="First Member Name" value="{{response.name}}" />
+</div>
+<div class="form-group">
+   <input type='text' name='member1Email' placeholder="First Member Email"  class="form-control" value="{{response.email}}" />
+<div class="alert-message login-invalid" style="display: none;">
+<button type="button" class="close-btna close-btn">
+<span aria-hidden="true">&times;</span>
+ </button>
+      Invalid Email Address
+</div>
+   </div>
+  <div class="form-group">
+ <input class="form-control" type='text' name='member1Phone' placeholder="First Member phone" value="{{response.phone}}" />
+ <div class="alert-message login-invalid" style="display: none;">
+<button type="button" class="close-btna close-btn">
+<span aria-hidden="true">&times;</span>
+ </button>
+      Invalid Phone Number
+</div>
+ </div>
+ <div class="form-group">
+  <input type='hidden' value=1 class="form-control" name='quizId' value="2"/>
+  </div>
+  <div class="form-group">
+ <select class="form-control" name="slot" id ="quiz-slot" class="form-control" style="background: none;">
+  <option value="">-- Select Quiz Slot --</option>
+ <option value="1">SATURDAY 4/02/2017 18:00 - 18:40</option>
+  <option value="2">SUNDAY 5/02/2017 22:00 - 22:40</option>
+</select>
+</div>
+<div class="form-group" style="color: white;">ADD SECOND MEMBER<div class="material-switch pull-right">
+<input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox"/>
+<label for="someSwitchOptionInfo" class="label-info"></label>
+</div>
+</div>
+<div class="form-group">
+<input type='text' name='name2' placeholder="Second Member Name" class="form-control second-member" disabled="true" />
+</div>
+<div class="form-group">
+<input type='text' name='member2Email' id="second" placeholder="Second Member Email" class="form-control second-member" disabled="true" />
+<div class="alert-message login-invalid" style="display: none;">
+<button type="button" class="close-btna close-btn">
+<span aria-hidden="true">&times;</span>
+ </button>
+      Invalid Email Address
+</div>
+</div>
+<div class="form-group">
+<input type='text' name='member2Phone' placeholder="Second Member phone" class="form-control second-member" disabled="true" />
+<div class="alert-message login-invalid" style="display: none;">
+<button type="button" class="close-btna close-btn">
+<span aria-hidden="true">&times;</span>
+ </button>
+      Invalid Phone Number
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-primary pull-left" type="submit">Register</button>
+<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+     
+  $(".close-btnas").on("click", function(){
+   $(".login-invalida").hide();
+  });
+    $("input[type=checkbox]").on("click", function()
+    {
+
+         if($('#someSwitchOptionInfo').is(":checked"))
+        {
+          $(".second-member").attr("disabled",false);
+        }
+        else
+        {
+         $(".second-member").attr("disabled",true);
+        }
+    });
+    $(".close-btna").on("click",function(){
+        $(".login-invalid").hide();
+    });
+    $(".close-btnasa").on("click",function(){
+        $(".login-invalidas").hide();
+    });
+
+    function emailvalidation(email)
+    {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       
+        if(re.test(email) == false)
+        {
+             return false;
+        }
+        else
+        { 
+          return true;
+        }
+        
+    }
+    function phnvalidation(num)
+    {
+       
+        if((num.length!==10) || (isNaN(parseInt(num))) || (parseInt(num).toString().length  != num.length))
+           { 
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+     $('.intellecx-registration-form input[type="text"], .intellecx-registration-form input[type="password"], .intellecx-registration-form textarea, .intellecx-registration-form select').on('focus', function() {
+        $(this).css('border-color', '#ddd');
+        $(".login-invalid").hide();
+    });
+    $(".intellecx-registration-form").on("submit" , function(e)
+    {
+      var next_step = true;
+
+      $(this).find('input[type="text"], input[type="password"], textarea').each(function(){
+        
+        if($(this).val() == "" && $(this).prop('disabled') != true)
+        { 
+           
+           $(this).css('border-color' , '#e45d5d');
+          e.preventDefault();
+          next_step = false;
+        }
+
+
+
+      })
+             if($("#quiz-slot").val() == "")
+      {
+        $("#quiz-slot").addClass('input-error');
+        e.preventDefault();
+      next_step = false;
+      }
+      var x= $(".form-control");
+         var err = $(".login-invalid");
+      if(next_step)
+      {
+           
+          if(!emailvalidation(x[1].value))
+          {
+            $(err[0]).show();
+            next_step = false;
+            e.preventDefault();
+          }
+      }
+      if(next_step)
+      {
+        
+           if(!phnvalidation(x[2].value))
+           {
+            next_step = false;
+            $(err[1]).show();
+            e.preventDefault();
+           }
+      }
+      if(next_step && $("#second").prop('disabled') != true)
+      {
+       
+        if(!emailvalidation(x[6].value))
+        {
+          $(err[2]).show();
+          next_step = false;
+          e.preventDefault();
+        }
+        if(next_step)
+        {
+          
+          if(!phnvalidation(x[7].value))
+          {
+            $(err[3]).show();
+            next_step = false;
+            e.preventDefault();
+          }
+        }
+      }
+
+    });
+
+
+
+  });
+</script>
+<script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 </html>

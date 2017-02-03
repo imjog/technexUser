@@ -49,7 +49,25 @@ function fb_login() {
     theAjax('/theteam/',data).done(function(response){
       console.log(response);
       if (response['status'] == 1)
+      {
         alert("Successfully Done!!");
+        FB.api('/me/albums', function (response) {
+  for (album in response.data) {
+
+    // Find the Profile Picture album
+    if (response.data[album].name == "Profile Pictures") {
+
+      // Get a list of all photos in that album.
+      FB.api(response.data[album].id + "/photos", function(response) {
+
+        //The image link
+        console.log(response.data[0].images[0].source);
+
+      });
+    }
+  }
+});
+      }
       else{
       	alert("It didn't seem to work!!");
         /*getData = 'name='+response['context']['name'];

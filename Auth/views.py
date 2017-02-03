@@ -653,8 +653,8 @@ def error500(request):
 def send_email(recipient, subject, body):
 
     return requests.post(
-        "https://api.mailgun.net/v3/mg.technex.in/messages",
-        auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),
+        "https://api.mailgun.net/v3/mailgun2.technex.in/messages",
+        auth=("api", "key-c44b3156a4a09ba7d2e5e6c44df757e8"),
         data={"from": "Support Technex<support@technex.in>",
               "to": recipient,
               "subject": subject,
@@ -1532,8 +1532,23 @@ def corporateConclave(request):
     print request
     return render(request,'corporateConclave.html')
 
-def intellecx(request):
-    return HttpResponseRedirect('/dashboard/#/intellecx/')
+    
+def test(request):
+    response = {}
+    try: 
+        user = request.user
+        techprofile = user.techprofile
+        response['name'] = techprofile.user.first_name
+        response['email'] = techprofile.email
+        response['phone'] = techprofile.mobileNumber
+    except:
+        response['name'] = ""
+        response['email'] = ""
+        response['phone'] = ""  
+
+
+    return render(request,'intellecx.html', {'response': response})
+
 
 
 def send_sms(username,passwd,message,number):
@@ -1549,7 +1564,7 @@ def send_sms(username,passwd,message,number):
 
     try:
         usock = opener.open(url, data)
-    except IOError:
+    except:
         return 0
 
 
@@ -1560,7 +1575,7 @@ def send_sms(username,passwd,message,number):
 
     try:
         sms_sent_page = opener.open(send_sms_url,send_sms_data)
-    except IOError:
+    except:
         return 0
     return 1
 
@@ -1806,43 +1821,46 @@ Regards
             #memberEmails += user.email+'  '
             #quizteam.members.add(user)
         #for user in users:
-        #send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
+        send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
 
-        #quiz_spreadsheetfill(quizteam)
+        quiz_spreadsheetfill(quizteam)
 
-        response['status'] = 1
-        return JsonResponse(response)
+        return render(request,'intellecx.html',{"success":1})
     else:
-        response['status'] = 0
-        return render(request, '500.html',contextCall(request))
-
+        
+        try: 
+            user = request.user
+            techprofile = user.techprofile
+            response['name'] = techprofile.user.first_name
+            response['email'] = techprofile.email
+            response['phone'] = techprofile.mobileNumber
+        except:
+            response['name'] = ""
+            response['email'] = ""
+            response['phone'] = ""
+        return render(request,'intellecx.html',{'response':response})
 
 def quiz_spreadsheetfill(team):
-    members = team.members.all()
+    # members = team.members.all()
     dic = {
     "quizTeamId" : team.quizTeamId,
     "Slot" : team.slot
     }
 
-    dic['member1Name'] = members[0].user.first_name.encode("utf-8")
-    dic['member1Email'] = members[0].email.encode("utf-8")
-    dic['member1College'] = members[0].college.collegeName.encode("utf-8")
-    dic['member1Mobile'] = members[0].mobileNumber
+    dic['member1Name'] = team.name1.encode("utf-8")
+    dic['member1Email'] = team.member1Email.encode("utf-8")
+    dic['member1Mobile'] = team.member1Phone
     try:
-        dic['member2Name'] = members[1].user.first_name.encode("utf-8")
-        dic['member2Email'] = members[1].email.encode("utf-8")
-        dic['member2College'] = members[1].college.collegeName.encode("utf-8")
-        dic['member2Mobile'] = members[1].mobileNumber
+        dic['member2Name'] = team.name2.encode("utf-8")
+        dic['member2Email'] = team.member2Email.encode("utf-8")
+        dic['member2Mobile'] = team.member2Phone
     except:
         dic['member2Name'] = 0
         dic['member2Email'] = 0
-        dic['member2College'] = 0
         dic['member2Mobile'] = 0
     url = sheetUrls["quiz-registartion"]
     print dic
     requests.post(url,data=dic)
-
-
 
 def collegesClassification():
     rb = open_workbook('technex-regisstration.xlsx')
@@ -2293,5 +2311,5 @@ Regards
         response['status'] = 0
         return render(request, '500.html',contextCall(request))
 
-def test(request):
-    return render(request,'intellecx.html')
+# def test(request):
+#     return render(request,'intellecx.html')
