@@ -2216,9 +2216,11 @@ def finishQuiz(request):
     return JsonResponse(response)
 
 def quizPlay(request,quizKey):
+    return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
+    '''
     response = {}
     if request.method == 'GET':
-        if 1:#try:
+        if 1:#try#kkfkfk:
             team = quizTeam2.objects.get(key = str(quizKey))
             try:
                 Questions = team.quizresponses.questions.all()
@@ -2245,10 +2247,10 @@ def quizPlay(request,quizKey):
             response['questions'] = questionArray
             response['responseId'] = QuizResponse.responseId
             print response
-        return HttpResponse("Quiz Postponed for tommorrow, new quiz links will be sent soon.")#render(request,'',response)
+        #render(request,'',response)
 
 
-
+'''
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
 bodyM = '''
 Hello,
