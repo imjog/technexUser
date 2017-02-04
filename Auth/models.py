@@ -306,14 +306,12 @@ class questions(models.Model):
     def __unicode__(self):
         return '%s'%(self.questionId)            
 '''
-class optionsC(models.Model):
+class grain(models.Model):
     optionId = models.AutoField(primary_key = True)
     optionText = models.TextField(blank = True, null = True)
     question = models.ForeignKey(questions)
     status = models.SmallIntegerField(default = 0)
-    def __unicode__(self):
-        return '%s %s'%(self.optionText,self.question.question)
-'''
+'''    
 class quizResponses(models.Model):
     responseId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quiz, null = True)
@@ -389,3 +387,9 @@ class questionResponsesChutiya(models.Model):
     def __unicode__(self):
         return '%s'%(self.quiz.quiz.name)
 '''
+
+class chutiyapa(models.Model):
+    responseId = models.AutoField(primary_key = True)
+    quiz = models.ForeignKey(quizResponses)
+    fieldChutiyap = models.CharField(max_length = 2, null = True, blank = True)
+    question = models.ForeignKey(questions, null = True, blank = True)
