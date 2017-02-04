@@ -177,7 +177,7 @@ def eventApi(request):
                         try:#if 1:
                             t = strOld.index("http")
                             subst1 = strOld[t:len(strOld)]
-                            t = subst1.index("&quot")
+                            t = subst1.index("\\")
                             strOld = subst1[0:t]
                         except:
                             pass
