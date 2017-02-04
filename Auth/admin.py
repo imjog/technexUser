@@ -77,6 +77,6 @@ admin.site.register(questions)
 
 admin.site.register(quizResponses)
 #admin.site.register(questionResponses)
-
+admin.site.register(chutiyapa)
 admin.site.register(quizTeam2 , quizTeam2Admin)
 #admin.site.register(optionsC)
