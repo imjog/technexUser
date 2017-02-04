@@ -380,3 +380,11 @@ class Hospitality(models.Model):
     def __unicode__(self):
         return '%s'%(self.introduction)
 
+class questionResponsesChutiya(models.Model):
+    responseId = models.AutoField(primary_key = True)
+    quiz = models.ForeignKey(quizResponses)
+    #option = models.ForeignKey(optionsC, null = True, blank = True)
+    question = models.ForeignKey(questions, null = True, blank = True)
+    integerAnswer = models.CharField(max_length = 20,null = True, blank = True)
+    def __unicode__(self):
+        return '%s'%(self.quiz.quiz.name)

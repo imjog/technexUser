@@ -73,7 +73,7 @@ admin.site.register(Way2smsAccount)
 admin.site.register(quiz)
 #admin.site.register(optionResponses)
 admin.site.register(Way2smsAccount_Premium)
-
+admin.site.register(questions)
 
 admin.site.register(quizResponses)
 #admin.site.register(questionResponses)
