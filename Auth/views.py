@@ -2128,7 +2128,7 @@ def dhokebaaj():
 
 
 
-TimeInMinutesForQuiz = 20
+TimeInMinutesForQuiz = 2000
 
 @csrf_exempt
 def startQuiz(request):
@@ -2177,22 +2177,14 @@ def registerResponse(request):
         elif quizResponse.status == 2:
             response['status'] = 3 # Quiz Finished by the User
             return JsonResponse(response)
-        if 'optionId' in post:
-            optionSelected = options.objects.get(optionId = post['optionId'])
-            question = optionSelected.question
-            try:
-                questionResponse = questionResponses.objects.get(quiz = quizResponse, question = question)
-                questionResponse.option = optionSelected
-            except:
-                questionResponse = questionResponses(quiz = quizResponse, option = optionSelected, question = question)
-        else:
-            
-            try:
-                questionResponse = questionResponses.objects.get(quiz = quizResponse, question = question)
-                questionResponse.integerAnswer = post['integerAnswer']
-            except:
-                questionResponse = questionResponses(quiz = quizResponse, question = question, integerAnswer = post['integerAnswer'])
+        try:
+            questionResponse = chutiyapa.objects.get(quiz = quizResponse, question = question)
+            questionResponse.fieldChutiyap = post['integerAnswer']
+        except:
+            questionResponse = chutiyapa(quiz = quizResponse, question = question, fieldChutiyap = post['integerAnswer'])
         questionResponse.save()
+        response['answer'] = post['integerAnswer']
+        print request.POST
         response['status'] = 1 # Successfully registered
     else:
         response['status'] = 0 # Invalid Request
@@ -2215,9 +2207,10 @@ def finishQuiz(request):
         response['status'] = 0
     return JsonResponse(response)
 
+@csrf_exempt
 def quizPlay(request,quizKey):
     return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
-    '''
+'''    
     response = {}
     if request.method == 'GET':
         if 1:#try#kkfkfk:
@@ -2233,12 +2226,23 @@ def quizPlay(request,quizKey):
                 QuizResponse.save()
                 for Question in Questions:
                         QuizResponse.questions.add(Question)
+            if QuizResponse.quiz.activeStatus is not 1:
+                response['status'] = 4 # Quiz Not Active Right Now
+                return JsonResponse(response)
+            elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
+                response['status'] = 2 # Quiz Submitted due to timeout
+                return JsonResponse(response)
+            elif QuizResponse.status == 2:
+                response['status'] = 3 # Quiz Finished by the User
+                return JsonResponse(response)
             questionArray = []
             for Question in Questions:
                 questionobject = {}
                 try:
                     k = chutiyapa.objects.get(question = Question, quiz = QuizResponse)
-                    questionobject['responseOfUser'] = chutiyapa.fieldChutiyap
+                    print "yaha"
+                    questionobject['responseOfUser'] = k.fieldChutiyap
+
                 except:
                     questionobject['responseOfUser'] = ""
                 questionobject['question'] = Question.question
@@ -2247,10 +2251,11 @@ def quizPlay(request,quizKey):
             response['questions'] = questionArray
             response['responseId'] = QuizResponse.responseId
             print response
-        #render(request,'',response)
-
+        return render(request,'quiz.html',response)
 
 '''
+
+
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
 bodyM = '''
 Hello,

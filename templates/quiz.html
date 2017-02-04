@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Krackcat | Questions</title>
+	<title>Intellecx | Online Round | Technex '17 IIT(BHU) Varanasi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="/static/css/quiz.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script>
       <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
@@ -18,7 +17,6 @@
 <link rel="shortcut icon" href="/static/favicon/favicon.ico">
 <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
 <meta name="theme-color" content="#000000">
-</script>
     <script type="text/javascript">
 	    $(window).load(function(){
 	        $('#myModal').modal('show');
@@ -67,7 +65,7 @@
 
 {% autoescape off %}
 
-<body onload="l({{dnow}})">
+<body>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid" id="navigationBar">
 	  <div class="navbar-header">
@@ -92,40 +90,37 @@
 
 	<div class="container">
 		<div class="container" id="circleContainer">
-			{% for question in totalQuestions %}
+			{% for question in questions %}
 				<div class="full-circle ih-item circle colored effect15 left_to_right">
 					<!-- <a href="question1"> -->
 					<a href="#questionModal{{question.questionId}}" data-toggle="modal" data-target="#questionModal{{question.questionId}}">
 						<h1 id="questionMark">{{ forloop.counter }}</h1>
-				        	<div class="info">
-				          		<h3>{{question.question}}</h3>
-				        	</div>
 		        	</a>
 				</div>
 			{% endfor %}	
 		</div>
-		{% for question in totalQuestions %}
-			<div id="questionModal{{question.tag}}" class="modal fade" role="dialog">
+		{% for question in questions %}
+			<div id="questionModal{{question.questionId}}" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">{{question.question}}</h4>
+							<h4 class="modal-title">Question {{ forloop.counter }}</h4>
 						</div>
 
-						<form method="post" id="form{{ question.questionId }}" action="/submit/" >{% csrf_token %}
+						<form method="post" id="form{{ question.questionId }}">
 
 							<div class="modal-body">
-								<p>{{question.problem}}</p>
+								<p>{{question.question}}</p>
 								
 								<input name="answername" value="{{question.questionId}}" type="hidden" id="input{{question.questionId}}">
 								<label >Answer: </label>
-								<input name="answer" type="number" style="width:90%;margin:auto;" required>
+								<input name="answer{{question.questionId}}" step="1" type="number" style="width:90%;margin:auto;" required>
 								
 							</div>
 							<div class="modal-footer">
-								<p>Submitted answer: <span  id="answer{{question.questionId}}"></span></p>
-								<button type="submit" id="button{{question.questionIdquestionId}}" class="btn btn-primary" >Submit</button>
+								<p>Submitted answer: <span id="answer{{question.questionId}}{{question.questionId}}"></span></p>
+								<button type="submit" id="button{{question.questionId}}" class="btn btn-primary" >Submit</button>
 								<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
 							</div>
 						</form>
@@ -180,8 +175,8 @@
 	          </div>
 	          <div class="modal-body" style="color:#888">
 	             <h4>For any queries contact<br><br> 
-	                <span style="color:#000;font-family:Ubuntu">Mail</span> : support@quriosity15.me<br><br>
-	                <span style="color:#000;font-family:Ubuntu">Mobile</span> : +91-775-295-7816; +91-727-509-9567</h4>
+	                <span style="color:#000;font-family:Ubuntu">Mail</span> : support@technex.in<br><br>
+	                <span style="color:#000;font-family:Ubuntu">Mobile</span> : +91-9935504188; +91-7270975614</h4>
 	          </div>
 	          <div class="modal-footer">
 	            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -193,19 +188,26 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container-fluid">
       <span id="timer" style="color:#FFF;font-size:30px;"></span>
-      <a href="/details/{{link}}"><button id="lock" class="btn btn-danger btn-lg" style="float:right;padding:10px 50px"><span class="glyphicon glyphicon-lock" style="padding:5px"></span>LOCK</button></a>
+      <a href="/finishQuiz/"><button id="lock" class="btn btn-danger btn-lg" style="float:right;padding:10px 50px"><span class="glyphicon glyphicon-lock" style="padding:5px"></span>LOCK</button></a>
   </div>
 </nav>
 </body>
 {% endautoescape %}
   <script type="text/javascript">
 
-  answers = {{answers}};
+ 
+
+ var answer = []
+ {% for question in questions  %}
+  answer["{{question.questionId}}"] = "{{question.responseOfUser}}"
+{% endfor %}
+
+
 
   {% for question in questions  %}
+  
 
-
-  $("#answer{{question.tag}}").html(answers["{{question.tag}}"]);
+  $("#answer{{question.questionId}}{{question.questionId}}").html(answer["{{question.questionId}}"]);
 
   {% endfor %}
 
@@ -215,28 +217,37 @@
 
   {% for question in questions %}	
 
-    $("#form{{ question.tag }}").submit(function() {
+    $("#form{{ question.questionId }}").on("submit", function(e) {
+      
+       e.preventDefault();
+      $('#button{{question.questionId}}').val( "Submitting...");
+      $('#button{{question.questionId}}').attr("disabled","disabled");
 
-      $('#button{{question.tag}}').val( "Submitting...");
-      $('#button{{question.tag}}').attr("disabled","disabled");
-
-    var url = "/submit/{{link}}"; // the script where you handle the form input.
+    var url = "/registerResponse/"; // the script where you handle the form input.
 
     $.ajax({
            type: "POST",
            url: url,
-           data: $("#form{{question.tag}}").serialize(), // serializes the form's elements.
+           data: {
+"questionId":"{{question.questionId}}",
+"responseId":"{{responseId}}",
+"integerAnswer":$("input[name='answer{{question.questionId}}'").val()
+},
+           //$("#form{{question.questionId}}").serialize(), // serializes the form's elements.
            success: function(data)
            {
-           	data = JSON.parse(data);
+           	// data = JSON.parse(data);
+           	console.log(data);
+
         
-            $('#button{{question.tag}}').val( "Submit");
-            $('#button{{question.tag}}').removeAttr("disabled");
+            $('#button{{question.questionId}}').val( "Submit");
+            $('#button{{question.questionId}}').removeAttr("disabled");
 
                
-               if (data.error == "false") {
-               	$("#answer{{question.tag}}").html(data.value);
-                text = 'Answer submitted for question '+"{{question.name}}" 
+               if (data.status == 1) {
+               	$("#answer{{question.questionId}}{{question.questionId}}").html(data.answer);
+                text = 'Answer submitted'
+                console.log("done")
                 alert(text);
                }
                else if (data.error=="true") {
