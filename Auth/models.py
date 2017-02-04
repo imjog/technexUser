@@ -307,7 +307,7 @@ class questions(models.Model):
         return '%s'%(self.questionId)            
 
 class options(models.Model):
-    optionId = models.AutoField(primary_key = True)
+    optionId = models.AutoField(primary_key = True, default = 0)
     optionText = models.TextField(blank = True, null = True)
     question = models.ForeignKey(questions)
     status = models.SmallIntegerField(default = 0)
