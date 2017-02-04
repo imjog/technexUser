@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Krackcat | Questions</title>
+	<title>Intellecx | Online Round | Technex '17 IIT(BHU) Varanasi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
@@ -67,7 +67,7 @@
 
 {% autoescape off %}
 
-<body onload="l({{dnow}})">
+<body>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid" id="navigationBar">
 	  <div class="navbar-header">
@@ -92,31 +92,28 @@
 
 	<div class="container">
 		<div class="container" id="circleContainer">
-			{% for question in totalQuestions %}
+			{% for question in questions %}
 				<div class="full-circle ih-item circle colored effect15 left_to_right">
 					<!-- <a href="question1"> -->
 					<a href="#questionModal{{question.questionId}}" data-toggle="modal" data-target="#questionModal{{question.questionId}}">
 						<h1 id="questionMark">{{ forloop.counter }}</h1>
-				        	<div class="info">
-				          		<h3>{{question.question}}</h3>
-				        	</div>
 		        	</a>
 				</div>
 			{% endfor %}	
 		</div>
-		{% for question in totalQuestions %}
-			<div id="questionModal{{question.tag}}" class="modal fade" role="dialog">
+		{% for question in questions %}
+			<div id="questionModal{{question.questionId}}" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">{{question.question}}</h4>
+							<h4 class="modal-title">Question {{ forloop.counter }}</h4>
 						</div>
 
 						<form method="post" id="form{{ question.questionId }}" action="/submit/" >{% csrf_token %}
 
 							<div class="modal-body">
-								<p>{{question.problem}}</p>
+								<p>{{question.question}}</p>
 								
 								<input name="answername" value="{{question.questionId}}" type="hidden" id="input{{question.questionId}}">
 								<label >Answer: </label>
@@ -180,8 +177,8 @@
 	          </div>
 	          <div class="modal-body" style="color:#888">
 	             <h4>For any queries contact<br><br> 
-	                <span style="color:#000;font-family:Ubuntu">Mail</span> : support@quriosity15.me<br><br>
-	                <span style="color:#000;font-family:Ubuntu">Mobile</span> : +91-775-295-7816; +91-727-509-9567</h4>
+	                <span style="color:#000;font-family:Ubuntu">Mail</span> : support@technex.in<br><br>
+	                <span style="color:#000;font-family:Ubuntu">Mobile</span> : +91-9935504188; +91-7270975614</h4>
 	          </div>
 	          <div class="modal-footer">
 	            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -200,12 +197,19 @@
 {% endautoescape %}
   <script type="text/javascript">
 
-  answers = {{answers}};
+ 
+
+  answer = []
+ {% for question in questions  %}
+  answer["{{question.questionId}}"] = question.responseOfUser
+{% endfor %}
+
+
 
   {% for question in questions  %}
+  
 
-
-  $("#answer{{question.tag}}").html(answers["{{question.tag}}"]);
+  $("#answer{{question.questionId}}").html(answers["{{question.questionId}}"]);
 
   {% endfor %}
 
@@ -225,18 +229,23 @@
     $.ajax({
            type: "POST",
            url: url,
-           data: $("#form{{question.tag}}").serialize(), // serializes the form's elements.
+           data: {
+"questionId":"{{question.questionId}}",
+"responseId":"{{responseId}}",
+"integerAnswer":$("input[name='answer'").val()
+};
+           //$("#form{{question.questionId}}").serialize(), // serializes the form's elements.
            success: function(data)
            {
            	data = JSON.parse(data);
         
-            $('#button{{question.tag}}').val( "Submit");
-            $('#button{{question.tag}}').removeAttr("disabled");
+            $('#button{{question.questionId}}').val( "Submit");
+            $('#button{{question.questionId}}').removeAttr("disabled");
 
                
                if (data.error == "false") {
-               	$("#answer{{question.tag}}").html(data.value);
-                text = 'Answer submitted for question '+"{{question.name}}" 
+               	$("#answer{{question.questionId}}").html(data.value);
+                text = 'Answer submitted'
                 alert(text);
                }
                else if (data.error=="true") {

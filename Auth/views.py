@@ -1059,7 +1059,7 @@ Regards
             for user in users:
                 memberEmails += user.email+'  '
                 team.members.add(user)
-            #send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
             #for user in users:
              #   send_email(user.email,subject,body%(user.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
             response['status'] = 1
@@ -2128,7 +2128,7 @@ def dhokebaaj():
 
 
 
-TimeInMinutesForQuiz = 20
+TimeInMinutesForQuiz = 2000
 
 @csrf_exempt
 def startQuiz(request):
@@ -2177,21 +2177,11 @@ def registerResponse(request):
         elif quizResponse.status == 2:
             response['status'] = 3 # Quiz Finished by the User
             return JsonResponse(response)
-        if 'optionId' in post:
-            optionSelected = options.objects.get(optionId = post['optionId'])
-            question = optionSelected.question
-            try:
-                questionResponse = questionResponses.objects.get(quiz = quizResponse, question = question)
-                questionResponse.option = optionSelected
-            except:
-                questionResponse = questionResponses(quiz = quizResponse, option = optionSelected, question = question)
-        else:
-            
-            try:
-                questionResponse = questionResponses.objects.get(quiz = quizResponse, question = question)
-                questionResponse.integerAnswer = post['integerAnswer']
-            except:
-                questionResponse = questionResponses(quiz = quizResponse, question = question, integerAnswer = post['integerAnswer'])
+        try:
+            questionResponse = chutiyapa.objects.get(quiz = quizResponse, question = question)
+            questionResponse.fieldChutiyap = post['integerAnswer']
+        except:
+            questionResponse = chutiyapa(quiz = quizResponse, question = question, fieldChutiyap = post['integerAnswer'])
         questionResponse.save()
         response['status'] = 1 # Successfully registered
     else:
@@ -2245,7 +2235,7 @@ def quizPlay(request,quizKey):
             response['questions'] = questionArray
             response['responseId'] = QuizResponse.responseId
             print response
-        return HttpResponse("Quiz Starting soon !!")#render(request,'',response)
+        return render(request,'quiz.html',response)
 
 
 

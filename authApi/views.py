@@ -172,7 +172,16 @@ def eventApi(request):
                 for eventOption in eventOptions:
                     eventOptionData = {}
                     eventOptionData['optionName'] = eventOption.optionName
-                    eventOptionData['optionDescription'] = eventOption.optionDescription
+                    strOld = str(eventOption.optionDescription)
+                    if eventOption.optionName == 'Problem Statement':
+                        try:#if 1:
+                            t = strOld.index("http")
+                            subst1 = strOld[t:len(strOld)]
+                            t = subst1.index("&quot")
+                            strOld = subst1[0:t]
+                        except:
+                            pass
+                    eventOptionData['optionDescription'] = strOld
                     eventOptionData['eventOptionOrder'] = eventOption.eventOptionOrder
                     eventData['eventOptions'].append(eventOptionData)
                 pEventData['events'].append(eventData)
