@@ -23,6 +23,7 @@ import cookielib
 from ast import literal_eval
 from xlrd import open_workbook
 from xlwt import Workbook
+import random
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -317,6 +318,7 @@ def register(request):
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.city = data.get('city')
         techprofile.year = data.get('year')
+
         if 'referral' in data:
             techprofile.referral = data['referral']
             print 'code base 1.5'
@@ -2126,7 +2128,7 @@ def dhokebaaj():
 
 
 
-
+TimeInMinutesForQuiz = 20
 
 @csrf_exempt
 def startQuiz(request):
@@ -2134,14 +2136,21 @@ def startQuiz(request):
     if request.method == 'POST':
         post = request.POST
         Quiz = quiz.objects.get(quizId = post['quizId'])
-        QuizTeam = quizTeam.objects.get(quizTeamId = post['teamId'])
+        QuizTeam = quizTeam2.objects.get(quizTeamId = post['teamId'])
         if Quiz.activeStatus == 1:
             try:
                 QuizResponse = quizResponses.objects.get(quiz = Quiz, quizTeam = QuizTeam)
                 response['status'] = 4 # Quiz Already Started
             except:
+                QuestionIds = questions.objects.filter(quiz = Quiz).values_list('questionId', flat=True)
+
+                QuestionsForTeam = random.sample(QuestionIds,3)
+                Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = Quiz,quizTeam = QuizTeam)
                 QuizResponse.save()
+                print Questions.count()
+                for Question in Questions:
+                    QuizResponse.questions.add(Question)
                 response['status'] = 1 # Successfully Quiz started
         else:
             if Quiz.activeStatus == 0:
@@ -2158,19 +2167,31 @@ def registerResponse(request):
     if request.method == 'POST':
         post = request.POST
         quizResponse = quizResponses.objects.get(responseId = post['responseId'])
-        optionSelected = options.objects.get(optionId = post['optionId'])
-        question = optionSelected.question
-        if not quizResponse.validForSubmission(10):
+        question = questions.objects.get(questionId = post['questionId'])
+        if quizResponse.quiz.activeStatus is not 1:
+            response['status'] = 4 # Quiz Not Active Right Now
+            return JsonResponse(response)
+        elif not quizResponse.validForSubmission(TimeInMinutesForQuiz):
             response['status'] = 2 # Quiz Already Submitted
             return JsonResponse(response)
         elif quizResponse.status == 2:
             response['status'] = 3 # Quiz Finished by the User
             return JsonResponse(response)
-        try:
-            questionResponse = questionResponses.objects.get(quiz = quizResponse, option__question = question)
-            questionResponse.option = optionSelected
-        except:
-            questionResponse = questionResponses(quiz = quizResponse, option = optionSelected)
+        if 'optionId' in post:
+            optionSelected = options.objects.get(optionId = post['optionId'])
+            question = optionSelected.question
+            try:
+                questionResponse = questionResponses.objects.get(quiz = quizResponse, question = question)
+                questionResponse.option = optionSelected
+            except:
+                questionResponse = questionResponses(quiz = quizResponse, option = optionSelected, question = question)
+        else:
+            
+            try:
+                questionResponse = questionResponses.objects.get(quiz = quizResponse, question = question)
+                questionResponse.integerAnswer = post['integerAnswer']
+            except:
+                questionResponse = questionResponses(quiz = quizResponse, question = question, integerAnswer = post['integerAnswer'])
         questionResponse.save()
         response['status'] = 1 # Successfully registered
     else:
@@ -2178,9 +2199,63 @@ def registerResponse(request):
     return JsonResponse(response)
 
 
+@csrf_exempt
+def finishQuiz(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        quizResponse = quizResponses.objects.get(responseId = post['responseId'])
+        if quizResponse.status == 2:
+            response['status'] = 2 # Quiz Already Finished
+            return JsonResponse(response)
+        quizResponse.status = 2
+        quizResponse.save()
+        response['status'] = 1
+    else:
+        response['status'] = 0
+    return JsonResponse(response)
 
-
-
+def quizPlay(request,quizKey):
+    response = {}
+    if request.method == 'GET':
+        if 1:#try:
+            if quizKey != None:
+                team = quizTeam2.objects.get(key = str(quizKey))
+                QuizResponse = team.quizresponses
+                questionArray = []
+                for questionDjangoObject in QuizResponse.questions.all():
+                    questionObject = {}
+                    if questionDjangoObject.integerAnswer is None:
+                        optionArray = []
+                        Options = options.objects.filter(question = questionDjangoObject)
+                        for Option in Options:
+                            optionObject = {}
+                            optionObject['optionId'] = Option.optionId
+                            optionObject['optionText'] = Option.optionText
+                            optionArray.append(optionObject)
+                        questionObject['options'] = optionArray
+                    questionObject['question'] = questionDjangoObject.question
+                    questionObject['questionId'] = questionDjangoObject.questionId
+                    questionArray.append(questionObject)
+                QuestionResponses = questionResponses.objects.filter(quiz = QuizResponse)
+                responseArray = []
+                for questionDjangoObject in QuestionResponses:
+                    questionObject = {}
+                    if questionDjangoObject.integerAnswer is None:
+                        questionObject['optionId'] = questionDjangoObject.option.optionId
+                        questionObject['optionText'] = questionDjangoObject.option.optionText
+                    else:
+                        questionObject['integerAnswer'] = questionDjangoObject.integerAnswer
+                    
+                    #if questionDjangoObject.question is not None:
+                    questionObject['question'] = questionDjangoObject.question.question
+                    questionObject['questionId'] = questionDjangoObject.question.questionId
+                    responseArray.append(questionObject)
+                response['responseId'] = QuizResponse.responseId
+                response['totalQuestions'] = questionArray
+                response['responseArray'] = responseArray
+                print response
+        return JsonResponse(response)
 
 
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"

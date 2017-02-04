@@ -29,6 +29,14 @@ class workshopAdmin(admin.ModelAdmin):
 class TeamAdmin(admin.ModelAdmin):
 	search_fields = ('teamName' , 'event__eventName' , 'teamLeader__email', 'teamLeader__technexId', 'teamLeader__college__collegeName')	
 
+
+class optionsInline(admin.TabularInline):
+	model = options
+	extra = 4
+@admin.register(questions)
+class questionsAdmin(admin.ModelAdmin):
+	inlines = [optionsInline]
+
 class quizTeam2Admin(admin.ModelAdmin):
 	search_fields = ('quizTeamId', 'member1Email' , 'member2Email' , 'member1Phone' , 'member2Phone' , 'name1' , 'name2' )
 
@@ -63,7 +71,12 @@ admin.site.register(FbReach)
 admin.site.register(PaymentStatus)
 admin.site.register(Way2smsAccount)
 admin.site.register(quiz)
-admin.site.register(questions)
 #admin.site.register(optionResponses)
 admin.site.register(Way2smsAccount_Premium)
+
+
+admin.site.register(quizResponses)
+admin.site.register(questionResponses)
+
 admin.site.register(quizTeam2 , quizTeam2Admin)
+

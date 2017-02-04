@@ -5,6 +5,7 @@ from django.core.validators import URLValidator
 from ckeditor.fields import RichTextField
 from django.template.defaultfilters import slugify
 from django.core.validators import URLValidator
+import datetime
 year_choices = [
         (1, 'First'),
         (2, 'Second'),
@@ -47,6 +48,8 @@ class TechProfile(models.Model):
     botInfo = models.CharField(max_length = 65,null = True, blank = True)
     city = models.CharField(max_length = 65,default = 'varanasi')
     referral = models.EmailField(max_length = 60, null = True, blank = True)
+    pin = models.CharField(max_length= 20,null = True,blank = True)
+    apploginStatus = models.BooleanField(default = False)
     #profile_photo = models.TextField(validators=[URLValidator()],blank=True)
 
     def __unicode__(self):
@@ -278,15 +281,33 @@ class quizTeam(models.Model):
     def __unicode__(self):
         return self.quizTeamId
 
+class quizTeam2(models.Model):
+    teamId = models.AutoField(primary_key= True)
+    quizTeamId = models.CharField(max_length = 10, null = True, blank = True)
+    quizAttemptStatus = models.SmallIntegerField(default = 0)
+    quiz = models.ForeignKey(quiz , null = True , blank = True)
+    slot = models.SmallIntegerField(default = 0)
+    member1Email = models.CharField(max_length = 65, null = True, blank = True)
+    member2Email = models.CharField(max_length = 65, null = True, blank = True)
+    member1Phone = models.CharField(max_length = 15, null = True, blank = True)
+    member2Phone = models.CharField(max_length = 15, null = True, blank = True)
+    name1 = models.CharField(max_length = 50, null = True, blank = True)
+    name2 = models.CharField(max_length = 50, null = True, blank = True)
+    status = models.BooleanField(default = False)
+    key = models.CharField(max_length = 120, null = True, blank = True)
+    def __unicode__(self):
+        return self.quizTeamId
+
 class questions(models.Model):
     questionId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quiz, null = True)
     question = models.TextField(blank = True , null =True)
+    integerAnswer = models.IntegerField(blank = True, null = True)
     def __unicode__(self):
-        return '%s'%(self.questionID)            
+        return '%s'%(self.questionId)            
 
 class options(models.Model):
-    optionId = models.AutoField
+    optionId = models.AutoField(primary_key = True)
     optionText = models.TextField(blank = True, null = True)
     question = models.ForeignKey(questions)
     status = models.SmallIntegerField(default = 0)
@@ -296,15 +317,18 @@ class options(models.Model):
 class quizResponses(models.Model):
     responseId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quiz, null = True)
-    quizTeam = models.ForeignKey(quizTeam)
+    quizTeam = models.OneToOneField(quizTeam2)
     status = models.SmallIntegerField(default = 1)
     startTime = models.DateTimeField(auto_now = True,null = True, blank = True)
     questions = models.ManyToManyField(questions)
     def __unicode__(self):
         return '%s %s'%(self.quizTeam.quizTeamId,self.quiz.name)
     def validForSubmission(self,minutes):
-        now = datetime.datetime.utcnow().replace(tzinfo=utc)
+        from django.utils import timezone
+
+        now = timezone.now()
         timediff = now - self.startTime
+        print timediff
         if timediff.total_seconds() > minutes*60:
             return False
         else:
@@ -314,9 +338,11 @@ class quizResponses(models.Model):
 class questionResponses(models.Model):
     responseId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quizResponses)
-    option = models.ForeignKey(options)
+    option = models.ForeignKey(options, null = True, blank = True)
+    question = models.ForeignKey(questions, null = True, blank = True)
+    integerAnswer = models.CharField(max_length = 20,null = True, blank = True)
     def __unicode__(self):
-        return '%s %s'%(self.quiz.name,self.option.optionId)
+        return '%s'%(self.quiz.quiz.name)
 
 class StartupFairData(models.Model):
     introduction = models.CharField(max_length = 250, null = True, blank = True)
@@ -354,18 +380,3 @@ class Hospitality(models.Model):
     def __unicode__(self):
         return '%s'%(self.introduction)
 
-class quizTeam2(models.Model):
-    teamId = models.AutoField(primary_key= True)
-    quizTeamId = models.CharField(max_length = 10, null = True, blank = True)
-    quizAttemptStatus = models.SmallIntegerField(default = 0)
-    quiz = models.ForeignKey(quiz , null = True , blank = True)
-    slot = models.SmallIntegerField(default = 0)
-    member1Email = models.CharField(max_length = 65, null = True, blank = True)
-    member2Email = models.CharField(max_length = 65, null = True, blank = True)
-    member1Phone = models.CharField(max_length = 15, null = True, blank = True)
-    member2Phone = models.CharField(max_length = 15, null = True, blank = True)
-    name1 = models.CharField(max_length = 50, null = True, blank = True)
-    name2 = models.CharField(max_length = 50, null = True, blank = True)
-    status = models.BooleanField(default = False)
-    def __unicode__(self):
-        return self.quizTeamId
