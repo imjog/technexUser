@@ -1059,9 +1059,9 @@ Regards
             for user in users:
                 memberEmails += user.email+'  '
                 team.members.add(user)
-            #send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
-            #for user in users:
-             #   send_email(user.email,subject,body%(user.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            for user in users:
+               send_email(user.email,subject,body%(user.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
             response['status'] = 1
             workshop_spreadsheet(team)
             return JsonResponse(response)
