@@ -301,7 +301,7 @@ class quizTeam2(models.Model):
 class questions(models.Model):
     questionId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quiz, null = True)
-    question = models.TextField(blank = True , null =True)
+    question = RichTextField(null = True,blank = True) #models.TextField(blank = True , null =True)
     integerAnswer = models.IntegerField(blank = True, null = True)
     def __unicode__(self):
         return '%s'%(self.questionId)            
