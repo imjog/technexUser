@@ -68,7 +68,7 @@ def ApiRegisterView(request):
 		#print "codeBaes 2"
         pins = TechProfile.objects.all().values_list("pin")
         while True:
-            stringR = get_random_string(3,allowed_chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+            stringR = get_random_string(3,allowed_chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
             if stringR not in pins:
                 techprofile.pin = stringR
                 techprofile.save()
@@ -504,7 +504,7 @@ Regards
 def startUpFairApi(request):
     response = {}
     try:
-        djangoArray = StartUpFairData.objects.all()
+        djangoArray = StartupFairData.objects.all()
         data = []
         for djangoObject in djangoArray:
             dataObject = {}
