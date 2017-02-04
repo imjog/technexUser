@@ -254,3 +254,23 @@ Resposne:
   ],
   "status": 1
 }
+
+
+
+## Short Apis
+Response:
+{"data":[{"introduction":"Intro",
+"content":"content"}]
+"status":1
+}
+
+Error Response:
+{"status":0}
+
+Urls:
+https://technexuser.herokuapp.com/api/http/startUpFairApi/
+https://technexuser.herokuapp.com/api/exhibitionsApi/
+https://technexuser.herokuapp.com/api/pronitesApi/
+https://technexuser.herokuapp.com/api/instituteDayApi/
+https://technexuser.herokuapp.com/api/corporateConclaveApi/
+https://technexuser.herokuapp.com/api/hospitalityApi/
