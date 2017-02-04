@@ -2245,7 +2245,7 @@ def quizPlay(request,quizKey):
             response['questions'] = questionArray
             response['responseId'] = QuizResponse.responseId
             print response
-        return HttpResponse("Quiz will start at 6:30 P.M. !!")#render(request,'',response)
+        return HttpResponse("Quiz Postponed for tommorrow, new quiz links will be sent soon.")#render(request,'',response)
 
 
 
