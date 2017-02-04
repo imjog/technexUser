@@ -183,7 +183,7 @@ def eventApi(request):
                                 try:
                                     t = subst1.index("&quot")
                                 except:
-                                    t = subst1.index("/")
+                                    t = subst1.index("\"")
                             strOld = subst1[0:t]
                         except:
                             pass
