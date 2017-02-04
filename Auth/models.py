@@ -305,7 +305,7 @@ class questions(models.Model):
     integerAnswer = models.IntegerField(blank = True, null = True)
     def __unicode__(self):
         return '%s'%(self.questionId)            
-
+'''
 class optionsC(models.Model):
     optionId = models.AutoField(primary_key = True)
     optionText = models.TextField(blank = True, null = True)
@@ -313,7 +313,7 @@ class optionsC(models.Model):
     status = models.SmallIntegerField(default = 0)
     def __unicode__(self):
         return '%s %s'%(self.optionText,self.question.question)
-
+'''
 class quizResponses(models.Model):
     responseId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quiz, null = True)
@@ -334,7 +334,7 @@ class quizResponses(models.Model):
         else:
             return True
 
-
+'''
 class questionResponses(models.Model):
     responseId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quizResponses)
@@ -343,7 +343,7 @@ class questionResponses(models.Model):
     integerAnswer = models.CharField(max_length = 20,null = True, blank = True)
     def __unicode__(self):
         return '%s'%(self.quiz.quiz.name)
-
+'''
 class StartupFairData(models.Model):
     introduction = models.CharField(max_length = 250, null = True, blank = True)
     content = models.TextField(blank = True, null = True)
