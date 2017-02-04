@@ -863,6 +863,9 @@ Regards
             '''
             send_email(sf.teamLeader.email,subject,body%(sf.teamLeader.user.first_name,"Startup Fair".capitalize(),sf.teamName,sf.teamLeader.email,memberEmails))
             response['status'] = 1
+            techprofile = request.user.techProfile
+            message = "Registration successful for StartupFair.\n TeamName:"+str(post['teamName'])+"\nVisit www.fb.com/technex for regular updates!  All the best, Team Technex"
+            send_sms_single(message,str(techprofile.mobileNumber))
             startupfair_spreadsheet(sf)
             return JsonResponse(response)
     else:
@@ -2313,3 +2316,5 @@ Regards
 
 # def test(request):
 #     return render(request,'intellecx.html')
+
+

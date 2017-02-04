@@ -68,8 +68,7 @@ urlpatterns = [
 	# url(r'^quiz/$',quizI, name='quiz'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
-	# url(r'^collegejson/$', CollegeSearch, name='api_register'),
-
+	# url(r'^collegejson/$', CollegeSearch, name='api_register'), 
 	#url(r'^$', IndexView, name= 'index'),
 
 	#url(r'^logout/$', LogoutView, name='logout'),
