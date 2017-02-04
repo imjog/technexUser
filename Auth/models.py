@@ -379,7 +379,7 @@ class Hospitality(models.Model):
     content = models.TextField(blank = True, null = True)
     def __unicode__(self):
         return '%s'%(self.introduction)
-
+'''
 class questionResponsesChutiya(models.Model):
     responseId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quizResponses)
@@ -388,3 +388,4 @@ class questionResponsesChutiya(models.Model):
     integerAnswer = models.CharField(max_length = 20,null = True, blank = True)
     def __unicode__(self):
         return '%s'%(self.quiz.quiz.name)
+'''
