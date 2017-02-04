@@ -92,40 +92,40 @@
 
 	<div class="container">
 		<div class="container" id="circleContainer">
-			{% for question in questions %}
+			{% for question in totalQuestions %}
 				<div class="full-circle ih-item circle colored effect15 left_to_right">
 					<!-- <a href="question1"> -->
-					<a href="#questionModal{{question.tag}}" data-toggle="modal" data-target="#questionModal{{question.tag}}">
+					<a href="#questionModal{{question.questionId}}" data-toggle="modal" data-target="#questionModal{{question.questionId}}">
 						<h1 id="questionMark">{{ forloop.counter }}</h1>
 				        	<div class="info">
-				          		<h3>{{question.name}}</h3>
+				          		<h3>{{question.question}}</h3>
 				        	</div>
 		        	</a>
 				</div>
 			{% endfor %}	
 		</div>
-		{% for question in questions %}
+		{% for question in totalQuestions %}
 			<div id="questionModal{{question.tag}}" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">{{question.name}}</h4>
+							<h4 class="modal-title">{{question.question}}</h4>
 						</div>
 
-						<form method="post" id="form{{ question.tag }}" action="/submit/" >{% csrf_token %}
+						<form method="post" id="form{{ question.questionId }}" action="/submit/" >{% csrf_token %}
 
 							<div class="modal-body">
 								<p>{{question.problem}}</p>
 								
-								<input name="answername" value="{{question.tag}}" type="hidden" id="input{{question.tag}}">
+								<input name="answername" value="{{question.questionId}}" type="hidden" id="input{{question.questionId}}">
 								<label >Answer: </label>
 								<input name="answer" type="number" style="width:90%;margin:auto;" required>
 								
 							</div>
 							<div class="modal-footer">
-								<p>Submitted answer: <span  id="answer{{question.tag}}"></span></p>
-								<button type="submit" id="button{{question.tag}}" class="btn btn-primary" >Submit</button>
+								<p>Submitted answer: <span  id="answer{{question.questionId}}"></span></p>
+								<button type="submit" id="button{{question.questionIdquestionId}}" class="btn btn-primary" >Submit</button>
 								<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
 							</div>
 						</form>

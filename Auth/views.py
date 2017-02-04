@@ -2255,7 +2255,7 @@ def quizPlay(request,quizKey):
                 response['totalQuestions'] = questionArray
                 response['responseArray'] = responseArray
                 print response
-        return JsonResponse(response)
+        return render(request,'quiz.html',response)
 
 
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
@@ -2303,6 +2303,17 @@ Follow us on Facebook: www.facebook.com/technex
 Follow us on Instagram: www.instagram.com/technexiitbhu
 
 '''
+
+def keyCreator():
+    quizes = quizTeam2.objects.all()
+    for quizz in quizes:
+        key = hash("technex"+quizz.quizTeamId+"livelong")
+        quizz.key = key
+        
+        print key
+        quizz.save()
+
+        
 
 @csrf_exempt
 @login_required(login_url='/register/')
