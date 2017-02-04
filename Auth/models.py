@@ -297,7 +297,7 @@ class quizTeam2(models.Model):
     key = models.CharField(max_length = 120, null = True, blank = True)
     def __unicode__(self):
         return self.quizTeamId
-
+'''
 class questions(models.Model):
     questionId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quiz, null = True)
@@ -307,7 +307,6 @@ class questions(models.Model):
         return '%s'%(self.questionId)            
 
 class options(models.Model):
-    id = models.AutoField(primary_key = True)
     optionText = models.TextField(blank = True, null = True)
     question = models.ForeignKey(questions)
     status = models.SmallIntegerField(default = 0)
@@ -343,7 +342,7 @@ class questionResponses(models.Model):
     integerAnswer = models.CharField(max_length = 20,null = True, blank = True)
     def __unicode__(self):
         return '%s'%(self.quiz.quiz.name)
-
+'''
 class StartupFairData(models.Model):
     introduction = models.CharField(max_length = 250, null = True, blank = True)
     content = models.TextField(blank = True, null = True)
