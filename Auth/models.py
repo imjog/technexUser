@@ -391,7 +391,7 @@ class questionResponsesChutiya(models.Model):
 class chutiyapa(models.Model):
     responseId = models.AutoField(primary_key = True)
     quiz = models.ForeignKey(quizResponses)
-    fieldChutiyap = models.CharField(max_length = 2, null = True, blank = True)
+    fieldChutiyap = models.CharField(max_length = 10, null = True, blank = True)
     question = models.ForeignKey(questions, null = True, blank = True)
     def __unicode__(self):
         return '%s %s'%(self.quiz.quiz.name,self.question.question)

@@ -68,7 +68,7 @@ def ApiRegisterView(request):
 		#print "codeBaes 2"
         pins = TechProfile.objects.all().values_list("pin")
         while True:
-            stringR = get_random_string(3,allowed_chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+            stringR = get_random_string(3,allowed_chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
             if stringR not in pins:
                 techprofile.pin = stringR
                 techprofile.save()
@@ -173,11 +173,17 @@ def eventApi(request):
                     eventOptionData = {}
                     eventOptionData['optionName'] = eventOption.optionName
                     strOld = str(eventOption.optionDescription)
-                    if eventOption.optionName == 'Problem Statement':
+                    if eventOption.optionName.lower() == 'problem statement':
                         try:#if 1:
                             t = strOld.index("http")
                             subst1 = strOld[t:len(strOld)]
-                            t = subst1.index("&quot")
+                            try:
+                                t = subst1.index("\\")
+                            except:
+                                try:
+                                    t = subst1.index("&quot")
+                                except:
+                                    t = subst1.index("\"")
                             strOld = subst1[0:t]
                         except:
                             pass
@@ -498,7 +504,7 @@ Regards
 def startUpFairApi(request):
     response = {}
     try:
-        djangoArray = StartUpFairData.objects.all()
+        djangoArray = StartupFairData.objects.all()
         data = []
         for djangoObject in djangoArray:
             dataObject = {}

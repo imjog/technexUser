@@ -24,6 +24,7 @@ from ast import literal_eval
 from xlrd import open_workbook
 from xlwt import Workbook
 import random
+from django.utils.crypto import get_random_string
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -318,7 +319,13 @@ def register(request):
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.city = data.get('city')
         techprofile.year = data.get('year')
-
+        pins = TechProfile.objects.all().values_list("pin")
+        while True:
+            stringR = get_random_string(3,allowed_chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+            if stringR not in pins:
+                techprofile.pin = stringR
+                techprofile.save()
+                break
         if 'referral' in data:
             techprofile.referral = data['referral']
             print 'code base 1.5'
