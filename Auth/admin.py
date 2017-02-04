@@ -32,6 +32,7 @@ class TeamAdmin(admin.ModelAdmin):
 
 class optionsInline(admin.TabularInline):
 	model = options
+	readonly_fields=('id',)
 	extra = 4
 @admin.register(questions)
 class questionsAdmin(admin.ModelAdmin):
@@ -79,4 +80,4 @@ admin.site.register(quizResponses)
 admin.site.register(questionResponses)
 
 admin.site.register(quizTeam2 , quizTeam2Admin)
-
+admin.site.register(options)
