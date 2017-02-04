@@ -260,7 +260,7 @@ Resposne:
 ## Short Apis
 Response:
 {"data":[{"introduction":"Intro",
-"content":"content"}]
+"content":"content"}],
 "status":1
 }
 
@@ -268,7 +268,7 @@ Error Response:
 {"status":0}
 
 Urls:
-https://technexuser.herokuapp.com/api/http/startUpFairApi/
+https://technexuser.herokuapp.com/api/startUpFairApi/
 https://technexuser.herokuapp.com/api/exhibitionsApi/
 https://technexuser.herokuapp.com/api/pronitesApi/
 https://technexuser.herokuapp.com/api/instituteDayApi/
