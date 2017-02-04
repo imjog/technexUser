@@ -180,7 +180,10 @@ def eventApi(request):
                             try:
                                 t = subst1.index("\\")
                             except:
-                                t = subst1.index("&quot")
+                                try:
+                                    t = subst1.index("&quot")
+                                except:
+                                    t = subst1.index("/")
                             strOld = subst1[0:t]
                         except:
                             pass
