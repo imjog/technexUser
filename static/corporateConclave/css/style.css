@@ -74,9 +74,6 @@ Slider
   background-image: url(/static/corporateConclave/img/sam.jpg);
 }
 .cd-slider li:nth-of-type(3) .image {
-  background-image: url(/static/corporateConclave/img/cit.jpg);
-}
-.cd-slider li:nth-of-type(4) .image {
   background-image: url(/static/corporateConclave/img/citi.jpg);
 }
 .cd-slider .image {

@@ -144,7 +144,7 @@ a:hover {
 }
 
 .bl-icon:before {
-	display: block;
+	display: none;
 	font-size: 2em;
 	margin-bottom: 10px;
 }

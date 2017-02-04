@@ -865,7 +865,7 @@ Regards
             '''
             send_email(sf.teamLeader.email,subject,body%(sf.teamLeader.user.first_name,"Startup Fair".capitalize(),sf.teamName,sf.teamLeader.email,memberEmails))
             response['status'] = 1
-            techprofile = request.user.techProfile
+            techprofile = request.user.techprofile
             # message = "Registration successful for StartupFair.\n TeamName:"+str(post['teamName'])+"\nVisit www.fb.com/technex for regular updates!  All the best, Team Technex"
             # send_sms_single(message,str(techprofile.mobileNumber))
             startupfair_spreadsheet(sf)
@@ -2206,9 +2206,11 @@ def finishQuiz(request):
     return JsonResponse(response)
 
 def quizPlay(request,quizKey):
+    return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
+    '''
     response = {}
     if request.method == 'GET':
-        if 1:#try:
+        if 1:#try#kkfkfk:
             team = quizTeam2.objects.get(key = str(quizKey))
             try:
                 Questions = team.quizresponses.questions.all()
@@ -2239,6 +2241,7 @@ def quizPlay(request,quizKey):
 
 
 
+'''
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
 bodyM = '''
 Hello,
