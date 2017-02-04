@@ -2219,43 +2219,34 @@ def quizPlay(request,quizKey):
     response = {}
     if request.method == 'GET':
         if 1:#try:
-            if quizKey != None:
-                team = quizTeam2.objects.get(key = str(quizKey))
+            team = quizTeam2.objects.get(key = str(quizKey))
+            try:
+                Questions = team.quizresponses.questions.all()
                 QuizResponse = team.quizresponses
-                questionArray = []
-                for questionDjangoObject in QuizResponse.questions.all():
-                    questionObject = {}
-                    if questionDjangoObject.integerAnswer is None:
-                        optionArray = []
-                        Options = options.objects.filter(question = questionDjangoObject)
-                        for Option in Options:
-                            optionObject = {}
-                            optionObject['optionId'] = Option.optionId
-                            optionObject['optionText'] = Option.optionText
-                            optionArray.append(optionObject)
-                        questionObject['options'] = optionArray
-                    questionObject['question'] = questionDjangoObject.question
-                    questionObject['questionId'] = questionDjangoObject.questionId
-                    questionArray.append(questionObject)
-                QuestionResponses = questionResponses.objects.filter(quiz = QuizResponse)
-                responseArray = []
-                for questionDjangoObject in QuestionResponses:
-                    questionObject = {}
-                    if questionDjangoObject.integerAnswer is None:
-                        questionObject['optionId'] = questionDjangoObject.option.optionId
-                        questionObject['optionText'] = questionDjangoObject.option.optionText
-                    else:
-                        questionObject['integerAnswer'] = questionDjangoObject.integerAnswer
-                    
-                    #if questionDjangoObject.question is not None:
-                    questionObject['question'] = questionDjangoObject.question.question
-                    questionObject['questionId'] = questionDjangoObject.question.questionId
-                    responseArray.append(questionObject)
-                response['responseId'] = QuizResponse.responseId
-                response['totalQuestions'] = questionArray
-                response['responseArray'] = responseArray
-                print response
-        return render(request,'quiz.html',response)
+            except:
+                QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
+                QuestionsForTeam = random.sample(QuestionIds,5)
+                Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
+                QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
+                QuizResponse.save()
+                for Question in Questions:
+                        QuizResponse.questions.add(Question)
+            questionArray = []
+            for Question in Questions:
+                questionobject = {}
+                try:
+                    k = chutiyapa.objects.get(question = Question, quiz = QuizResponse)
+                    questionobject['responseOfUser'] = chutiyapa.fieldChutiyap
+                except:
+                    questionobject['responseOfUser'] = ""
+                questionobject['question'] = Question.question
+                questionobject['questionId'] = Question.questionId
+                questionArray.append(questionobject)
+            response['questions'] = questionArray
+            response['responseId'] = QuizResponse.responseId
+            print response
+        return HttpResponse("Quiz Starting soon !!")#render(request,'',response)
+
 
 
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
@@ -2309,7 +2300,7 @@ def keyCreator():
     for quizz in quizes:
         key = hash("technex"+quizz.quizTeamId+"livelong")
         quizz.key = key
-        
+
         print key
         quizz.save()
 
