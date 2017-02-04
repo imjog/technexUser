@@ -70,6 +70,20 @@ Json Response for Error in processing:<br>
 						"status":2
 						}
 
+Json Response for Already Logged in User:<br>
+						{
+						 "status":3
+						 }
+						 
+		
+## Logout Api
+Url: https://technexuser.herokuapp.com/api/logout
+Method: POST
+Json Expected:
+{"email":"email of user"}
+Json on successful logout: {"status":1}
+Json on failure or wrong email: {"status":0}
+
 
 ## Event Api
 <br><br>
