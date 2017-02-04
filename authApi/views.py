@@ -12,6 +12,7 @@ import facebook
 from Auth.models import *
 from Events.views import spreadsheetfill_register
 from django.core import serializers
+from django.utils.crypto import get_random_string
 server = "https://technexuser.herokuapp.com/"
 #from Auth.forms import *
 # Create your views here.
@@ -29,83 +30,119 @@ def contextCall(request):
 @csrf_exempt
 def ApiRegisterView(request):
     response = {}
-    try:
+    if 1:#try:
         data =json.loads(request.body)
         #form = RegisterForm(data)
         email = data.get('email',None)
         try:
-            user = User.objects.get(email = email)
-            response['status'] = 2 #for already registered
+            techProfile = TechProfile.objects.get(email = email)
+            #user = User.objects.get(email = email)
+            #messages.warning(request,"Email Already Registered !")
+            #return HttpResponse("Email Already Registered!") #redirect('/register')
+            response['status'] = 2
             return JsonResponse(response)
         except:
-        	user = User.objects.create_user(username=email, email=email)
+            bugUsername = User.objects.latest('id').id
+            user = User.objects.create_user(username=str(bugUsername+1))
+            techprofile = TechProfile(user = user,email = email)
         user.first_name = data.get('name',None)
         password = data.get('password',None)
         user.set_password(password)
         user.save()
+        print 'code base 1'
         try:
-            college = College.objects.get(collegeName = data.get('college'))
+            college = College.objects.get(collegeName = data.get('college').strip())
         except:
-            college = College(collegeName = data.get('college'))
+            college = College(collegeName = data.get('college').strip())
             college.save()
         try:
         	techprofile = TechProfile.objects.get(user = user)
         except:
 			techprofile = TechProfile(user = user)
+        techprofile.email = email
+        techprofile.technexId = "TX"+str(10000+user.id)
         techprofile.college = college
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.year = data.get('year')
-        techprofile.save()
+        
 		#print "codeBaes 2"
-
-        newUser = authenticate(username=email, password=password)
-        login(request, newUser)
-        response['name'] = newUser.first_name
+        pins = TechProfile.objects.all().values_list("pin")
+        while True:
+            stringR = get_random_string(3,allowed_chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+            if stringR not in pins:
+                techprofile.pin = stringR
+                techprofile.save()
+                break
+        #range_start = 10**(n-1)
+        #range_end = (10**n)-1
+        #randint(range_start, range_end)
+        #pin
+        
+        response['name'] = user.first_name
         response['mobileNumber'] = techprofile.mobileNumber
         response['year'] = techprofile.year
         response['college'] = techprofile.college.collegeName
-        response['email'] = newUser.email
-        response['technexId'] = newUser.technexId
+        response['email'] = techprofile.email
+        response['technexId'] = techprofile.technexId
+        response['pin'] = stringR
         response['status'] = 1
         return JsonResponse(response)
-    except:
+    else:#except:
         response['status'] = 0 #For unknown error
         return JsonResponse(response)
 
 @csrf_exempt
 def ApiLoginView(request):
-    response_data = {}
-    try:
-        data = json.loads(request.body)
-        #form = LoginForm(data)
-        
-        email = data.get('email',None)
-        password = data.get('password',None)
-        user = authenticate(username=email, email=email, password=password)
+    response = {}
+    if request.method == 'POST':
+
+        post = json.loads(request.body)
+        try:
+            try:
+                techProfile = TechProfile.objects.get(email = post['email'])
+            except:
+                techProfile = TechProfile.objects.get(technexId = post['email'])
+        except:
+            response['status'] = 0
+            return JsonResponse(response)
+        #user = authenticate(username = post['email'], email= post['email'], password = post['password'])
+        kUser = techProfile.user
+        user = authenticate(username = kUser.username, password = post['password'])
+
         if user is not None:
-            login(request, user)
-            response_data['status'] = 1
-            response_data['name'] = user.first_name
-            response_data['email'] = user.email
-            techprofile = TechProfile.objects.get(user = user)
-            response_data['mobileNumber'] = techprofile.mobileNumber
-            response_data['year'] = techprofile.year
-            response_data['college'] = techprofile.college.collegeName
-            response_data['technexId'] = techprofile.technexId
-            return JsonResponse(response_data)
+            if techProfile.apploginStatus is True:
+                response['status'] = 3
+                return JsonResponse(response)
+            techProfile.apploginStatus = True
+            techProfile.save()
+            response['name'] = user.first_name
+            response['mobileNumber'] = techProfile.mobileNumber
+            response['year'] = techProfile.year
+            response['college'] = techProfile.college.collegeName
+            response['email'] = techProfile.email
+            response['technexId'] = techProfile.technexId
+            response['pin'] = techProfile.pin
+            response['status'] = 1
+            return JsonResponse(response)
         else:
-            response_data['status'] = 0 #Invalid credentials
-            return JsonResponse(response_data)
-    except:
-        response_data['status'] = 2 #email field not filled correctly
-        return JsonResponse(response_data)
+            response['status'] = 0
+            return JsonResponse(response)
+    else:
+        response['status'] = 2
+        return JsonResponse(response)
 
 @csrf_exempt
-@login_required(login_url='/api/eventApi') #not /login/
 def logoutApi(request):
-    logout(request)
+    
     response = {}
-    response['status'] = "logged Out"
+    try:
+        post = json.loads(request.body)
+        techProfile = TechProfile.objects.get(email = post['email'])
+        techProfile.apploginStatus = False
+        techProfile.save()
+        response['status'] = 1
+    except:
+        response['status'] = 0 
     return JsonResponse(response)
 
 @csrf_exempt
@@ -555,3 +592,4 @@ def hospitalityApi(request):
     except:
         response['status'] = 0
         return JsonResponse(response)
+
