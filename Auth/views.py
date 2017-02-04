@@ -2125,7 +2125,7 @@ def dhokebaaj():
 
 
 
-
+TimeInMinutesForQuiz = 20
 
 @csrf_exempt
 def startQuiz(request):
@@ -2168,7 +2168,7 @@ def registerResponse(request):
         if quizResponse.quiz.activeStatus is not 1:
             response['status'] = 4 # Quiz Not Active Right Now
             return JsonResponse(response)
-        elif not quizResponse.validForSubmission(100):
+        elif not quizResponse.validForSubmission(TimeInMinutesForQuiz):
             response['status'] = 2 # Quiz Already Submitted
             return JsonResponse(response)
         elif quizResponse.status == 2:

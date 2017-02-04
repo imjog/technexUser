@@ -30,7 +30,7 @@ def contextCall(request):
 @csrf_exempt
 def ApiRegisterView(request):
     response = {}
-    if 1:#try:
+    try:
         data =json.loads(request.body)
         #form = RegisterForm(data)
         email = data.get('email',None)
@@ -87,7 +87,7 @@ def ApiRegisterView(request):
         response['pin'] = stringR
         response['status'] = 1
         return JsonResponse(response)
-    else:#except:
+    except:
         response['status'] = 0 #For unknown error
         return JsonResponse(response)
 
