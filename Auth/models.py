@@ -393,3 +393,5 @@ class chutiyapa(models.Model):
     quiz = models.ForeignKey(quizResponses)
     fieldChutiyap = models.CharField(max_length = 2, null = True, blank = True)
     question = models.ForeignKey(questions, null = True, blank = True)
+    def __unicode__(self):
+        return '%s %s'%(self.quiz.quiz.name,self.question.question)
