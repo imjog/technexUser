@@ -43,7 +43,10 @@ function navFunction() {
       {
         border-color: #e45d5d;
       }
-
+.note{
+  color: red;
+  padding: 0 15%;
+}
 .icontact{
     z-index: 30;
     color: white;
@@ -4253,6 +4256,7 @@ REGISTER / LOGIN
 
     <p class="making">INTERNSHIP OPPORTUNIES</p>
     <p class="making">PRIZE WORTH &#8377;90,000</p>
+    <h3 class="note">NOTE: The first slot of Intellecx has been cancelled due to server overload. Follow <a href="https://www.facebook.com/events/365382803833825/" target="_blank">facebook event</a> for recent updates.</h3>
     <a class="btn" id='intellecxModal' data-toggle="modal" data-target=".bs-example-modal-md">REGISTER</a>
   </div>
   <div class="icontact making">
@@ -4263,7 +4267,7 @@ REGISTER / LOGIN
     <div class="modal fade bs-example-modal-md in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 21px;">
   <div class="modal-dialog modal-md">
     <div class="modal-content" style="padding: 25px;border-radius: 100px; background: rgba(0,0,0,1);">
-   <form method="post" class="intellecx-registration-form"> 
+   <form method="post" class="intellecx-registration-form">
   <div class="modal-body">
   <div class="modal-header">
 {% if messages %}
@@ -4276,7 +4280,7 @@ REGISTER / LOGIN
  </button>
     {% for msg in messages %}
                     {{msg.message}}
-          
+
         {% endfor %}
 </div>
 {% endif %}
@@ -4355,7 +4359,7 @@ REGISTER / LOGIN
 <script type="text/javascript">
   $(document).ready(function(){
 
-     
+
   $(".close-btnas").on("click", function(){
    $(".login-invalida").hide();
   });
@@ -4381,22 +4385,22 @@ REGISTER / LOGIN
     function emailvalidation(email)
     {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-       
+
         if(re.test(email) == false)
         {
              return false;
         }
         else
-        { 
+        {
           return true;
         }
-        
+
     }
     function phnvalidation(num)
     {
-       
+
         if((num.length!==10) || (isNaN(parseInt(num))) || (parseInt(num).toString().length  != num.length))
-           { 
+           {
             return false;
         }
         else
@@ -4413,10 +4417,10 @@ REGISTER / LOGIN
       var next_step = true;
 
       $(this).find('input[type="text"], input[type="password"], textarea').each(function(){
-        
+
         if($(this).val() == "" && $(this).prop('disabled') != true)
-        { 
-           
+        {
+
            $(this).css('border-color' , '#e45d5d');
           e.preventDefault();
           next_step = false;
@@ -4435,7 +4439,7 @@ REGISTER / LOGIN
          var err = $(".login-invalid");
       if(next_step)
       {
-           
+
           if(!emailvalidation(x[1].value))
           {
             $(err[0]).show();
@@ -4445,7 +4449,7 @@ REGISTER / LOGIN
       }
       if(next_step)
       {
-        
+
            if(!phnvalidation(x[2].value))
            {
             next_step = false;
@@ -4455,7 +4459,7 @@ REGISTER / LOGIN
       }
       if(next_step && $("#second").prop('disabled') != true)
       {
-       
+
         if(!emailvalidation(x[6].value))
         {
           $(err[2]).show();
@@ -4464,7 +4468,7 @@ REGISTER / LOGIN
         }
         if(next_step)
         {
-          
+
           if(!phnvalidation(x[7].value))
           {
             $(err[3]).show();
