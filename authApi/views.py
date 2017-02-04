@@ -173,7 +173,7 @@ def eventApi(request):
                     eventOptionData = {}
                     eventOptionData['optionName'] = eventOption.optionName
                     strOld = str(eventOption.optionDescription)
-                    if eventOption.optionName == 'Problem Statement':
+                    if eventOption.optionName.lower() == 'problem statement':
                         try:#if 1:
                             t = strOld.index("http")
                             subst1 = strOld[t:len(strOld)]
