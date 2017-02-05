@@ -1816,7 +1816,7 @@ Regards,
 Team Technex
             '''
         memberEmails = data.get('member2Email',None)
-        key = hash("technex"+quizteam.quizTeamId+"livelong")
+        key = hash("technex"+quizteam.quizTeamId+"livelong") + str(random.randint(1,11111))
         quizteam.key = key
         quizteam.save()
         #for user in users:
