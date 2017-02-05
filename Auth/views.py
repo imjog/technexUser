@@ -2210,7 +2210,7 @@ def finishQuiz(request,responseKey):
         quizResponse = quizResponses.objects.get(responseId = responseKey)
         if quizResponse.status == 2:
             response['status'] = 2 # Quiz Already Finished
-            return HttpResponse("Quiz has already been finished by the user!")
+            return render(request,'startquiz.html',{'response':"Quiz has already been finished by the user!"})#HttpResponse("Quiz has already been finished by the user!")
         quizResponse.status = 2
         quizResponse.save()
         response['status'] = 1
