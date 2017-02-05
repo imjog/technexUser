@@ -2318,8 +2318,24 @@ def keyCreator():
         print key
         quizz.save()
 
-        
 
+def shift():
+    quizd = quiz.objects.get(quizId = 3)
+    event = Event.objects.get(nameSlug = 'astroquiz')
+    teams = Team.objects.filter(event = event)
+    print teams.count()
+    counter=0;
+    for team in teams:
+        counter = counter +1
+        quizteama = quizTeam2(quiz = quizd,quizTeamId = 'ABS'+str(1000+counter),member1Email = team.teamLeader.email,member1Phone=team.teamLeader.mobileNumber,name1=team.teamLeader.user.first_name)      
+        try:
+            quizteama.member2Email = team.members.all()[0].email
+            quizteama.member2Phone = team.members.all()[0].mobileNumber
+            quizteama.name2 = team.members.all()[0].user.first_name
+        except:
+            print "###############################"
+        quizteama.save()
+        
 @csrf_exempt
 @login_required(login_url='/register/')
 def quizRegister(request):
