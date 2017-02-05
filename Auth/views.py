@@ -2223,7 +2223,7 @@ def quizPlay(request,quizKey):
             try:
                 team = quizTeam2.objects.get(key = str(quizKey))
             except:
-                return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
+                return render(request,'startquiz.html',{'response':'Invalid Link, please check your mail for the latest Link !!'})
             try:
                 if QuizResponse.status == 2:
                     return render(request,'startquiz.html',{'response':"You have already Submitted the Quiz!!"})
