@@ -2135,7 +2135,7 @@ def dhokebaaj():
 
 
 
-TimeInMinutesForQuiz = 2000
+TimeInMinutesForQuiz = 1
 
 @csrf_exempt
 def startQuiz(request):
@@ -2177,13 +2177,16 @@ def registerResponse(request):
         question = questions.objects.get(questionId = post['questionId'])
         if quizResponse.quiz.activeStatus is not 1:
             response['status'] = 4 # Quiz Not Active Right Now
-            return JsonResponse(response)
+            return HttpResponse("Quiz not active right now!!")
+            # return JsonResponse(response)
         elif not quizResponse.validForSubmission(TimeInMinutesForQuiz):
             response['status'] = 2 # Quiz Already Submitted
-            return JsonResponse(response)
+            return HttpResponse("Quiz has already been Submitted")
+            # return JsonResponse(response)
         elif quizResponse.status == 2:
             response['status'] = 3 # Quiz Finished by the User
-            return JsonResponse(response)
+            return HttpResponse("Quiz already finished by the user")
+            # return JsonResponse(response)
         try:
             questionResponse = chutiyapa.objects.get(quiz = quizResponse, question = question)
             questionResponse.fieldChutiyap = post['integerAnswer']
@@ -2199,25 +2202,27 @@ def registerResponse(request):
 
 
 @csrf_exempt
-def finishQuiz(request):
+def finishQuiz(request,responseKey):
     response = {}
-    if request.method == 'POST':
-        post = request.POST
-        quizResponse = quizResponses.objects.get(responseId = post['responseId'])
+    if request.method == 'GET':
+        post = request.GET
+        quizResponse = quizResponses.objects.get(responseId = responseKey)
         if quizResponse.status == 2:
             response['status'] = 2 # Quiz Already Finished
-            return JsonResponse(response)
+            return HttpResponse("Quiz has already been finished by the user!")
         quizResponse.status = 2
         quizResponse.save()
         response['status'] = 1
+        return HttpResponse("Quiz finished successfully!")
     else:
         response['status'] = 0
-    return JsonResponse(response)
+        return HttpResponse("Some error occurred! Please report at tech@technex.in")
+    # return JsonResponse(response)
 
 @csrf_exempt
 def quizPlay(request,quizKey):
-    return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
-'''    
+    # return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
+  
     response = {}
     if request.method == 'GET':
         if 1:#try#kkfkfk:
@@ -2235,13 +2240,14 @@ def quizPlay(request,quizKey):
                         QuizResponse.questions.add(Question)
             if QuizResponse.quiz.activeStatus is not 1:
                 response['status'] = 4 # Quiz Not Active Right Now
-                return JsonResponse(response)
+                return render(request , 'startquiz.html')
+                # return JsonResponse(response)
             elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
                 response['status'] = 2 # Quiz Submitted due to timeout
-                return JsonResponse(response)
+                return HttpResponse("Time over. Quiz Submitted!")
             elif QuizResponse.status == 2:
                 response['status'] = 3 # Quiz Finished by the User
-                return JsonResponse(response)
+                return HttpResponse("Quiz Responses have been submitted by the user")
             questionArray = []
             for Question in Questions:
                 questionobject = {}
@@ -2257,11 +2263,10 @@ def quizPlay(request,quizKey):
                 questionArray.append(questionobject)
             response['questions'] = questionArray
             response['responseId'] = QuizResponse.responseId
+            response['timer'] = TimeInMinutesForQuiz*60 - QuizResponse.timer()
+            print QuizResponse.timer()
             print response
         return render(request,'quiz.html',response)
-
-'''
-
 
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
 bodyM = '''

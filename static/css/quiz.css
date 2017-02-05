@@ -2,6 +2,8 @@ body {
 	background-color:#2c3e50;
 }
 
+
+
 .navbar {
 	background:#3498db;
 	border-color:transparent;
@@ -60,4 +62,70 @@ body {
 
 a {
 	text-decoration: none;
+}
+
+
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#timerul li {
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+#timerul li:nth-child(1) {
+  animation-duration: 1500s, 1500s;
+  animation-iteration-count: 1;
+  animation-name: height, color;
+  opacity: .6;
+}
+#timerul li:nth-child(2) {
+  animation-duration: 60s, 1500s, 60s;
+  animation-iteration-count: 25;
+  animation-name: height, color, opacity;
+  animation-timing-function: step-stop;
+  opacity: .2;
+}
+#timerul li:nth-child(3) {
+  animation-duration: 30s, 1500s, 30s;
+  animation-iteration-count: 50;
+  animation-name: height, color, opacity;
+  animation-timing-function: step-stop;
+  opacity: .2;
+}
+#timerul li:nth-child(4) {
+  animation-duration: 10s, 1500s, 10s;
+  animation-iteration-count: 150;
+  animation-name: height, color, opacity;
+  animation-timing-function: step-stop;
+  opacity: .2;
+}
+#timerul li:nth-child(5) {
+  animation-duration: 5s, 1500s, 5s;
+  animation-iteration-count: 300;
+  animation-name: height, color, opacity;
+  opacity: .1;
+}
+
+time {
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 4em;
+  font-weight: 300;
+  height: 100px;
+  left: 0;
+  line-height: 100px;
+  margin-top: -50px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 50%;
+  user-select: none;
+  z-index: 2;
 }
