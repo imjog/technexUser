@@ -255,6 +255,10 @@ var countdownTimer = setInterval('secondPassed()', 1000);
                 console.log("done")
                 alert(text);
                }
+               else if(data.status == 3)
+               {
+               	window.location.reload()
+               }
                else if (data.error=="true") {
                	if(data.type=="noanswer")
                 alert("Some error occured. Please refresh the page and try again.");

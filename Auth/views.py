@@ -2151,7 +2151,7 @@ def startQuiz(request):
             except:
                 QuestionIds = questions.objects.filter(quiz = Quiz).values_list('questionId', flat=True)
 
-                QuestionsForTeam = random.sample(QuestionIds,3)
+                QuestionsForTeam = random.sample(QuestionIds,5)
                 Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = Quiz,quizTeam = QuizTeam)
                 QuizResponse.save()
@@ -2233,7 +2233,7 @@ def quizPlay(request,quizKey):
                 QuizResponse = team.quizresponses
             except:
                 QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
-                QuestionsForTeam = random.sample(QuestionIds,20)
+                QuestionsForTeam = random.sample(QuestionIds,4)
                 Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
                 QuizResponse.save()
@@ -2245,10 +2245,12 @@ def quizPlay(request,quizKey):
                 # return JsonResponse(response)
             elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
                 response['status'] = 2 # Quiz Submitted due to timeout
+                # return JsonResponse(response)
                 return HttpResponse("Time over. Quiz Submitted!")
             elif QuizResponse.status == 2:
                 response['status'] = 3 # Quiz Finished by the User
-                return HttpResponse("Quiz Responses have been submitted by the user")
+                return JsonResponse(response)
+                # return HttpResponse("Quiz Responses have been submitted by the user")
             questionArray = []
             for Question in Questions:
                 questionobject = {}
