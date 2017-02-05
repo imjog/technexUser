@@ -2408,4 +2408,28 @@ Regards
 # def test(request):
 #     return render(request,'intellecx.html')
 
+'''
+def fbProfileUpdater(request):
+    if request.method == 'POST':
+        id_ = post['id']
+        accessToken = post['accessToken']
+        url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"
+        file1 = cStringIO.StringIO(urllib.urlopen(url).read())
+        background = Image.open(file1)
+        file2 = cStringIO.StringIO(urllib.urlopen("http://i.imgur.com/LYKTAY5.png").read())
+        overlay = Image.open(file2)
+        width = background.getbbox()[2]
+        height = background.getbbox()[3]
 
+        overlay = overlay.resize((width,height))
+        background.paste(overlay,(0,0),overlay)
+
+        background.save(id_ + ".png","PNG")
+        cloudinary.config(
+          cloud_name = "dpxbd37qm",
+          api_key = "484116559961356",
+          api_secret = "2bSWYpE5HUFHjImNyZkuCeepvYE"
+        )
+        x = cloudinary.uploader.upload(id_+".png")
+        os.remove(id_+".png")
+'''    
