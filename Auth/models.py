@@ -297,7 +297,7 @@ class quizTeam2(models.Model):
     status = models.BooleanField(default = False)
     key = models.CharField(max_length = 120, null = True, blank = True)
     def __unicode__(self):
-        return self.quizTeamId
+        return self.member1Email
 
 class questions(models.Model):
     questionId = models.AutoField(primary_key = True)
