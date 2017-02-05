@@ -2213,7 +2213,6 @@ def finishQuiz(request,responseKey):
     # return JsonResponse(response)
 
 @csrf_exempt
-#@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def quizPlay(request,quizKey):
     # return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
   
@@ -2247,13 +2246,13 @@ def quizPlay(request,quizKey):
             try:
                 Questions = team.quizresponses.questions.all()
                 QuizResponse = team.quizresponses
-                if QuizResponse.quiz.activeStatus is not 1:
+                if QuizResponse.status == 2:
                     response['status'] = 4 # Quiz Not Active Right Now
                     return render(request , 'startquiz.html',{'response':"Quiz Submitted !!!"})
             except:
 
                 QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
-                QuestionsForTeam = random.sample(QuestionIds,20)
+                QuestionsForTeam = random.sample(QuestionIds, 10)
                 Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
                 QuizResponse.save()
@@ -2261,7 +2260,7 @@ def quizPlay(request,quizKey):
                         QuizResponse.questions.add(Question)
             
                 #return JsonResponse(response)
-                return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
+                #return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
                 # return JsonResponse(response)
                 #return HttpResponse("Quiz Responses have been submitted by the user")
             questionArray = []
