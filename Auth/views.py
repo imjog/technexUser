@@ -2225,7 +2225,7 @@ def quizPlay(request,quizKey):
             except:
                 return render(request,'startquiz.html',{'response':'Invalid Link, please check your mail for the latest Link !!'})
             try:
-                if QuizResponse.status == 2:
+                if team.quiz.activeStatus == 2:
                     return render(request,'startquiz.html',{'response':"You have already Submitted the Quiz!!"})
                 elif QuizResponse.quiz.activeStatus is not 1:
                     response['status'] = 4 # Quiz Not Active Right Now
