@@ -1816,7 +1816,7 @@ Regards,
 Team Technex
             '''
         memberEmails = data.get('member2Email',None)
-        key = str(hash("technex"+str(quizteam.teamId)+"livelong")) + str(quizteam.member1Email)
+        key = str(hash("technex"+str(quizteam.teamId)+"livelong" + str(quizteam.member1Email)))  
         quizteam.key = key
         quizteam.save()
         #for user in users:
