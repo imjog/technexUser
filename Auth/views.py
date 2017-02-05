@@ -2230,7 +2230,10 @@ def quizPlay(request,quizKey):
     response = {}
     if request.method == 'GET':
         if 1:#try#kkfkfk:
-            team = quizTeam2.objects.get(key = str(quizKey))
+            try:
+                team = quizTeam2.objects.get(key = str(quizKey))
+            except:
+                return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
             try:
                 Questions = team.quizresponses.questions.all()
                 QuizResponse = team.quizresponses
