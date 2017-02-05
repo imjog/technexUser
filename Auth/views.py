@@ -2234,7 +2234,7 @@ def quizPlay(request,quizKey):
                 response['status'] = 2 # Quiz Submitted due to timeout
                 # return JsonResponse(response)
                 #return HttpResponse("Time over. Quiz Submitted!")
-                return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
+                return render(request,'startquiz.html',{'response':"Quiz Will Start Soon..!"})
             elif QuizResponse.status == 2:
                 return render(request,'startquiz.html',{'response':'Quiz Already Submitted by You!!'}) # Quiz Finished by the User
 
