@@ -608,3 +608,19 @@ def hospitalityApi(request):
         response['status'] = 0
         return JsonResponse(response)
 
+@csrf_exempt
+def notificationToken(request):
+    response = {}
+    if request.method == 'POST':
+        try:
+            post = json.loads(request.body)
+            techprofile = TechProfile.objects.get(email = post['email'])
+            techprofile.notificationToken = post['notificationToken']
+            techprofile.save()
+            response['status'] = 1
+        except:
+            response['status'] = 0
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return JsonResponse(response)

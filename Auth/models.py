@@ -52,7 +52,7 @@ class TechProfile(models.Model):
     pin = models.CharField(max_length= 20,null = True,blank = True)
     apploginStatus = models.BooleanField(default = False)
     #profile_photo = models.TextField(validators=[URLValidator()],blank=True)
-
+    notificationToken = models.TextField(null = True,blank = True)
     def __unicode__(self):
         return "%s -%s" %(self.user.first_name, self.college)
 
