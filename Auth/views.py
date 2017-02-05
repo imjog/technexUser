@@ -2226,7 +2226,7 @@ def quizPlay(request,quizKey):
                 return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
             try:
                 if QuizResponse.status == 2:
-                    return render(request,'startquiz.html',{'response':"Quiz Will Start Soon..!!"})
+                    return render(request,'startquiz.html',{'response':"You have already Submitted the Quiz!!"})
                 elif QuizResponse.quiz.activeStatus is not 1:
                     response['status'] = 4 # Quiz Not Active Right Now
                     return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
@@ -2235,7 +2235,7 @@ def quizPlay(request,quizKey):
                     response['status'] = 2 # Quiz Submitted due to timeout
                     # return JsonResponse(response)
                     #return HttpResponse("Time over. Quiz Submitted!")
-                    return render(request,'startquiz.html',{'response':"Quiz Will Start Soon..!"})
+                    return render(request,'startquiz.html',{'response':"Time Over..Quiz Automatically Submitted!"})
                 elif QuizResponse.status == 2:
                     return render(request,'startquiz.html',{'response':'Quiz Already Submitted by You!!'}) # Quiz Finished by the User
             except:
