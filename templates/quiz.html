@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Astroquiz | Online Round | Technex '17 IIT(BHU) Varanasi</title>
+	<title>Intellecx | Online Round | Technex '17 IIT(BHU) Varanasi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
@@ -77,7 +77,7 @@ var countdownTimer = setInterval('secondPassed()', 1000);
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand img-responsive" href="http://cesiitbhu.in/" id ="headernav" style="color:#fff;font-weight:bold;">ASTROQUIZ</a>
+	    <a class="navbar-brand img-responsive" href="http://cesiitbhu.in/" id ="headernav" style="color:#fff;font-weight:bold;">INTELLECX</a>
 	  </div>
 	  <div class="collapse navbar-collapse" id="myNavbar">
 	    <ul class="nav navbar-nav navbar-right">
@@ -115,9 +115,7 @@ var countdownTimer = setInterval('secondPassed()', 1000);
 						<form method="post" id="form{{ question.questionId }}">
 
 							<div class="modal-body">
-								<p>{{question.question}}</p>
-								<p>Input the correct option <b>"number"</b> in the given box</p>
-								
+								<p>{{question.question}}</p>								
 								<input name="answername" value="{{question.questionId}}" type="hidden" id="input{{question.questionId}}">
 								<label >Answer: </label>
 								<input name="answer{{question.questionId}}" step="1" type="number" style="width:90%;margin:auto;" min="1" max="4" required>
@@ -141,13 +139,14 @@ var countdownTimer = setInterval('secondPassed()', 1000);
 		        <h4 class="modal-title">Rules | Can be viewed again from top nav bar.</h4>
 		      </div>
 		      <div class="modal-body">
-		      <p>1) Please read the <b>INSTRUCTIONS</b> carefully. <b>2 </b>extra minutes are provided for reading instructions</p>
-		        <p>2) Quiz contains 20 questions with single correct answer.</p>
-	<p>3) Write the option number corresponding to correct answer in the box.</p>
-	<p>4) Quiz duration is of 30 minutes.</p>
-<p>5) A team can participate only one time.</p>
-<p>6) Multiple attempts are not allowed.</p>
-<p>7) In case of any difficulty, contact gaurav.somani.met14@itbhu.ac.in</p>
+<p>1. You have been provided with extra <b>2</b> minutes for reading the <b>instructions</b>. Please read them carefully.</p>		      
+<p>2. The online round consists of 10 logical reasoning questions</p>
+<p>3. Duration of the test is 40 minutes.</p>
+<p>4. There is NO provision for negative marking in the test.</p>
+<p>5. Only integer answers will be entertained. Only write the option number in the box or the integer answer.</p> 
+<p>6. If you are participating with a team member you can take the test together on a single system or you can take the test individually with your respective links but do remember that your answers are integrated.</p>
+<p>7. All the links in the mail are unique and you can access your test ID with your link only.</p>
+
 
 		      </div>
 		      <div class="modal-footer">
