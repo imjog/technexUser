@@ -2218,7 +2218,6 @@ def quizPlay(request,quizKey):
   
     response = {}
     if request.method == 'GET':
-        return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
         if 1:#try#kkfkfk:
             try:
                 team = quizTeam2.objects.get(key = str(quizKey))
