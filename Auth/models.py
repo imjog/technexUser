@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 from django.template.defaultfilters import slugify
 from django.core.validators import URLValidator
 import datetime
+from django.utils import timezone
 year_choices = [
         (1, 'First'),
         (2, 'Second'),
@@ -322,15 +323,19 @@ class quizResponses(models.Model):
     def __unicode__(self):
         return '%s %s'%(self.quizTeam.quizTeamId,self.quiz.name)
     def validForSubmission(self,minutes):
-        from django.utils import timezone
+        
 
         now = timezone.now()
         timediff = now - self.startTime
-        print timediff
+        print timediff.total_seconds()/60
         if timediff.total_seconds() > minutes*60:
             return False
         else:
             return True
+    def timer(self):
+        now = timezone.now()
+        timediff = now - self.startTime
+        return int(timediff.total_seconds())
 
 '''
 class questionResponses(models.Model):

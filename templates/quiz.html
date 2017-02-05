@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Intellecx | Online Round | Technex '17 IIT(BHU) Varanasi</title>
+	<title>Astroquiz | Online Round | Technex '17 IIT(BHU) Varanasi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
@@ -29,37 +29,30 @@
 	    $('#contModal').modal('show');
 	  }
 	</script>
-  <!-- <script language="javascript" type="text/javascript">
-  function l(mili){
-  	var date = new Date(mili)
-	  var eventDate = new Date('2015/11/11 23:00:00')
-	  milliseconds = eventDate - date
-	  clock();
+  <script language="javascript" type="text/javascript">
+  var seconds = {{timer}}
 
-  }
-  function clock() {
+function secondPassed() {
+  var minutes = Math.round((seconds - 30)/60),
+      remainingSeconds = seconds % 60;
   
-  var seconds = ~~(milliseconds / 1000);
-  var minutes = ~~(seconds / 60);
-  var seconds = seconds%60;
-  var hours = ~~(minutes / 60);
-  var minutes = minutes%60;
-  var days = ~~(hours / 24);
-  var hours = hours%24;
-  var days = days%365
-  if (milliseconds > 0){
-    timer = document.getElementById("timer");
-    if (minutes){
-      timer.innerHTML = '<b style="color:#fff;font-size:20px;font-family:Ubuntu">'+hours+"</b>"+'<span class=".blink" style="color:#fff;font-size:20px">:</span>'+'<b style="color:#fff;font-size:20px;font-family:Ubuntu">' +minutes+'</b>'+'<span class=".blink" style="color:#fff;font-size:20px">:</span>'+'<b style="color:#fff;font-size:20px;font-family:Ubuntu">' +seconds+'</b>';
-    }
-    milliseconds -= 1000;
-    setTimeout(clock, 1000);
+  if (remainingSeconds < 10) {
+    remainingSeconds = "0" + remainingSeconds;  
   }
-  else{
-  	// window.location.replace("/details/{{link}}")
+  
+  document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+  if (seconds == 0) {
+    clearInterval(countdownTimer);
+    document.getElementById('countdown').innerHTML = "00:00";
+    // $("#lock").tigger("click");
+    window.location = '/finishQuiz/{{responseId}}'
+  } else {
+    seconds--;
   }
-  }
-  </script> -->
+}
+ 
+var countdownTimer = setInterval('secondPassed()', 1000);
+  </script>
 </head>
 
 
@@ -74,7 +67,7 @@
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand img-responsive" href="http://cesiitbhu.in/" id ="headernav" style="color:#fff;font-weight:bold;">Quriosity</a>
+	    <a class="navbar-brand img-responsive" href="http://cesiitbhu.in/" id ="headernav" style="color:#fff;font-weight:bold;">ASTROQUIZ</a>
 	  </div>
 	  <div class="collapse navbar-collapse" id="myNavbar">
 	    <ul class="nav navbar-nav navbar-right">
@@ -82,6 +75,7 @@
 	      
 	      <li><a href="#myModal" onclick="help_modal()" style="color:#fff">Rules</a></li>
 	      <li><a href="#contModal" onclick="cont_modal()" style="color:#fff;">Contacts</a></li>
+	      <li><a href="/finishQuiz/{{responseId}}" id="lock" style="color:#fff; font-weight: 1000;">LOCK</a></li>
 	    </ul>
 	  </div>
 	</div>
@@ -136,12 +130,13 @@
 		        <h4 class="modal-title">Rules | Can be viewed again from top nav bar.</h4>
 		      </div>
 		      <div class="modal-body">
-		        <p>1. The event is of duration 40 minutes: 10:20 pm to 11:00 pm</p>
-		        <p>2. 10 questions are provided, each having an <b>INTEGER</b> answer. </p>
-		        <p>3. The answer to the question gets saved when team clicks the SUBMIT button on the question page. </p>
-		        <p>4. Answer to any question can be submitted multiple times while the test is going on.</p>
-		        <p>5. <b>BONUS:</b> You can submit the test before time, by clicking the LOCK button in the footer. Ties will be resolved on the basis of Lock time.</p>
-		        <p>6. After the time is over, you will be automatically redirected to details page where you can fill up your details.<br><b>IMP: If you are not automatically redirected or the page fails to load after the test, click the lock button to proceed. </b> </p>
+		        <p>1) Quiz contains 20 questions with single correct answer.</p>
+	<p>2) Write the option number corresponding to correct answer in the box.</p>
+	<p>3) Quiz duration is of 30 minutes.</p>
+<p>4) A team can participate only one time.</p>
+<p>5) Multiple attempts are not allowed.</p>
+<p>6) In case of any difficulty, contact gaurav.somani.met14@itbhu.ac.in</p>
+
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -187,8 +182,17 @@
 	</div> 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container-fluid">
-      <span id="timer" style="color:#FFF;font-size:30px;"></span>
-      <a href="/finishQuiz/"><button id="lock" class="btn btn-danger btn-lg" style="float:right;padding:10px 50px"><span class="glyphicon glyphicon-lock" style="padding:5px"></span>LOCK</button></a>
+       <div class="app">
+  <time id="countdown">25:00</time>
+  <ul id="timerul">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<!--       <a href="/finishQuiz/{{responseId}}"><button id="lock" class="btn btn-danger btn-lg" style="float:right;padding:10px 50px"><span class="glyphicon glyphicon-lock" style="padding:5px"></span>LOCK</button></a> -->
   </div>
 </nav>
 </body>
