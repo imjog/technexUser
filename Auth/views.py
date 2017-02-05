@@ -2227,6 +2227,9 @@ def quizPlay(request,quizKey):
             try:
                 if team.quiz.activeStatus == 2:
                     return render(request,'startquiz.html',{'response':"You have already Submitted the Quiz!!"})
+                else team.quiz.activeStatus == 0:
+                    return render(request,'startquiz.html',{'response':"Quiz will start soon ...!!!"})
+                '''
                 elif QuizResponse.quiz.activeStatus is not 1:
                     response['status'] = 4 # Quiz Not Active Right Now
                     return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
@@ -2238,6 +2241,7 @@ def quizPlay(request,quizKey):
                     return render(request,'startquiz.html',{'response':"Time Over..Quiz Automatically Submitted!"})
                 elif QuizResponse.status == 2:
                     return render(request,'startquiz.html',{'response':'Quiz Already Submitted by You!!'}) # Quiz Finished by the User
+            '''
             except:
                 return render(request,'startquiz.html',{'response':'Quiz will Start Soon ..!!'})
             try:
