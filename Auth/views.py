@@ -1787,7 +1787,8 @@ def quizRegister2(request):
                 quizteam.member2Email = data.get('member2Email')
                 quizteam.member2Phone = data.get('member2Phone')
                 quizteam.name2 = data.get('name2')
-
+        key = hash("technex"+quizz.quizTeamId+"livelong")
+        quizteam.key = key
         quizteam.save()
         slot = ""
         if int(data['slot']) is 1 :
@@ -1797,36 +1798,30 @@ def quizRegister2(request):
         print quizteam.slot,slot
         quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
         quizteam.save()
-        subject = "[Technex'17] Successful Registration for Intellecx"
+        subject = "INTELLECX | FINAL SLOT @10PM TODAY"
         body = '''
-Dear %s,
+Hello,
+Greetings from Team Technex,
 
-Thanks for registering for Intellecx Technex'17.
+The time has come to test your aptitude skills in one of the highly celebrated national level puzzle solving and logical reasoning contest. So, get ready to exercise all your wits as you battle it out to reach the top of the grid at INTELLECX.
 
-Your Team Details Are
-TeamId- %s
-Team Member- %s
-Time Slot- %s
+%s
 
-For any queries, Contact -
-Kuljeet Keshav +918009596212
-Kumar Anunay +919935009220
+This is the link to the final slot of INTELLECX online round. Don't share the link. Visit this link at the slot timing to get redirected to the test page. 
+Timing of the final slot : Today, 10:00 - 10:40 pm.
 
-An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+Following are the general rules of the online round :
+The online round consists of 10 logical reasoning questions
+Duration of the test is 40 minutes.
+There is NO provision for negative marking in the test.
+Contact the coordinators for any further queries.
+1. Kumar Anunay
+    +91-9935009220
+2. Kuljeet Keshav
+    +91-8009596212
 
-
-Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in.
-
-
-Looking forward to seeing you soon at Technex 2017.
-
-All the best!
-
-
-Regards
-
+Regards,
 Team Technex
-Regards
             '''
         memberEmails = data.get('member2Email',None)
 
@@ -1834,7 +1829,7 @@ Regards
             #memberEmails += user.email+'  '
             #quizteam.members.add(user)
         #for user in users:
-        send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
+        send_email(data['member1Email'],subject,body%quizteam.key)
 
         quiz_spreadsheetfill(quizteam)
         return render(request,'intellecx.html',{"success":1})
@@ -2235,7 +2230,9 @@ def quizPlay(request,quizKey):
                 team = quizTeam2.objects.get(key = str(quizKey))
             except:
                 return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
-            if QuizResponse.quiz.activeStatus is not 1:
+            if QuizResponsestatus == 2:
+                return render(request,'startquiz.html',{'response':"Quiz Already Ended !!"})
+            elif QuizResponse.quiz.activeStatus is not 1:
                 response['status'] = 4 # Quiz Not Active Right Now
                 return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
                 # return JsonResponse(response)
@@ -2245,7 +2242,7 @@ def quizPlay(request,quizKey):
                 #return HttpResponse("Time over. Quiz Submitted!")
                 return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
             elif QuizResponse.status == 2:
-                response['status'] = 3 # Quiz Finished by the User
+                return render(request,'startquiz.html',{'response':'Quiz Already Submitted by You!!'}) # Quiz Finished by the User
 
             try:
                 Questions = team.quizresponses.questions.all()
