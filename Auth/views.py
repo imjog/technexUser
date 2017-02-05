@@ -2214,7 +2214,8 @@ def finishQuiz(request,responseKey):
         quizResponse.status = 2
         quizResponse.save()
         response['status'] = 1
-        return HttpResponse("Quiz finished successfully!")
+        #return HttpResponse("Quiz finished successfully!")
+        return render(request,'startquiz.html',{'response':"Quiz finished successfully!"})
     else:
         response['status'] = 0
         return HttpResponse("Some error occurred! Please report at tech@technex.in")
