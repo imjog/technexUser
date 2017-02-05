@@ -2135,7 +2135,7 @@ def dhokebaaj():
 
 
 
-TimeInMinutesForQuiz = 8
+TimeInMinutesForQuiz = 30
 
 @csrf_exempt
 def startQuiz(request):
@@ -2241,16 +2241,17 @@ def quizPlay(request,quizKey):
                         QuizResponse.questions.add(Question)
             if QuizResponse.quiz.activeStatus is not 1:
                 response['status'] = 4 # Quiz Not Active Right Now
-                return render(request , 'startquiz.html')
+                return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
                 # return JsonResponse(response)
             elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
                 response['status'] = 2 # Quiz Submitted due to timeout
                 # return JsonResponse(response)
                 return HttpResponse("Time over. Quiz Submitted!")
+                return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
             elif QuizResponse.status == 2:
                 response['status'] = 3 # Quiz Finished by the User
-                return JsonResponse(response)
-                # return HttpResponse("Quiz Responses have been submitted by the user")
+                #return JsonResponse(response)
+                return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
             questionArray = []
             for Question in Questions:
                 questionobject = {}
