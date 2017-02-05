@@ -2257,7 +2257,7 @@ def quizPlay(request,quizKey):
                         QuizResponse.questions.add(Question)
             
                 #return JsonResponse(response)
-                return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
+                #return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
                 # return JsonResponse(response)
                 #return HttpResponse("Quiz Responses have been submitted by the user")
             questionArray = []
