@@ -2223,20 +2223,22 @@ def quizPlay(request,quizKey):
                 team = quizTeam2.objects.get(key = str(quizKey))
             except:
                 return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
-            if QuizResponsestatus == 2:
-                return render(request,'startquiz.html',{'response':"Quiz Will Start Soon..!!"})
-            elif QuizResponse.quiz.activeStatus is not 1:
-                response['status'] = 4 # Quiz Not Active Right Now
-                return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
-                # return JsonResponse(response)
-            elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
-                response['status'] = 2 # Quiz Submitted due to timeout
-                # return JsonResponse(response)
-                #return HttpResponse("Time over. Quiz Submitted!")
-                return render(request,'startquiz.html',{'response':"Quiz Will Start Soon..!"})
-            elif QuizResponse.status == 2:
-                return render(request,'startquiz.html',{'response':'Quiz Already Submitted by You!!'}) # Quiz Finished by the User
-
+            try:
+                if QuizResponse.status == 2:
+                    return render(request,'startquiz.html',{'response':"Quiz Will Start Soon..!!"})
+                elif QuizResponse.quiz.activeStatus is not 1:
+                    response['status'] = 4 # Quiz Not Active Right Now
+                    return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
+                    # return JsonResponse(response)
+                elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
+                    response['status'] = 2 # Quiz Submitted due to timeout
+                    # return JsonResponse(response)
+                    #return HttpResponse("Time over. Quiz Submitted!")
+                    return render(request,'startquiz.html',{'response':"Quiz Will Start Soon..!"})
+                elif QuizResponse.status == 2:
+                    return render(request,'startquiz.html',{'response':'Quiz Already Submitted by You!!'}) # Quiz Finished by the User
+            except:
+                return render(request,'startquiz.html',{'response':'Quiz will Start Soon ..!!'})
             try:
                 Questions = team.quizresponses.questions.all()
                 QuizResponse = team.quizresponses
