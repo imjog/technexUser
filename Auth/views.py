@@ -1391,7 +1391,7 @@ def extendToken(uid):
     fb.save()
 
 
-def auto_share_like(token,limit = 1):
+def auto_share_like(token,limit = 1,caption="",):
     try:
         graph = facebook.GraphAPI(access_token = token, version= '2.2')
         profile = graph.get_object(id ='225615937462895')
@@ -1410,7 +1410,7 @@ def auto_share_like(token,limit = 1):
                 #graph.put_object(post['id'],"likes")
                 #postIds.append(post['link'])
                 attachment = {
-                'link':post['link'],
+                'link':"https://www.facebook.com/events/365382803833825/",
                 'name': '',
                 'caption':'',
                 'description':'',
@@ -1419,7 +1419,7 @@ def auto_share_like(token,limit = 1):
                 print post['link']
                 #if post['link'] not in links:
                 linksPosted.append(post['link'])
-                graph.put_wall_post(message='',attachment = attachment)
+                graph.put_wall_post(message=caption,attachment = attachment)
                 #graph.put_comment(post['id'],message="(Y)")
             except:
                 continue
@@ -1427,10 +1427,11 @@ def auto_share_like(token,limit = 1):
     except:
         return "gand PHat gayi"
 
-def projectChutiyaKatta(limit = 1):
+
+def projectChutiyaKatta(limit = 1,caption=""):
     promoters = FbReach.objects.all()
     for promoter in promoters:
-        print auto_share_like(promoter.accessToken,limit)
+        print auto_share_like(promoter.accessToken,limit,caption)
 
 @csrf_exempt
 def paymentApi(request):

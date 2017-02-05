@@ -4443,12 +4443,12 @@ REGISTER / LOGIN
       if(next_step)
       {
 
-          if(!emailvalidation(x[1].value))
+          /*if(!emailvalidation(x[1].value))
           {
             $(err[0]).show();
-            next_step = false;
+            next_step = true;
             e.preventDefault();
-          }
+          }*/
       }
       if(next_step)
       {
@@ -4462,13 +4462,14 @@ REGISTER / LOGIN
       }
       if(next_step && $("#second").prop('disabled') != true)
       {
-
+/*
         if(!emailvalidation(x[6].value))
         {
           $(err[2]).show();
           next_step = false;
           e.preventDefault();
         }
+        */
         if(next_step)
         {
 
