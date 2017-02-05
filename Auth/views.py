@@ -2223,7 +2223,7 @@ def finishQuiz(request,responseKey):
     # return JsonResponse(response)
 
 @csrf_exempt
-@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
+#@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def quizPlay(request,quizKey):
     # return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
   
