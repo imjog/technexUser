@@ -2227,7 +2227,7 @@ def quizPlay(request,quizKey):
             try:
                 if team.quiz.activeStatus == 2:
                     return render(request,'startquiz.html',{'response':"You have already Submitted the Quiz!!"})
-                else team.quiz.activeStatus == 0:
+                elif team.quiz.activeStatus == 0:
                     return render(request,'startquiz.html',{'response':"Quiz will start soon ...!!!"})
                 '''
                 elif QuizResponse.quiz.activeStatus is not 1:
