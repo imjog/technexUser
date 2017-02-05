@@ -2185,7 +2185,8 @@ def registerResponse(request):
             # return JsonResponse(response)
         elif quizResponse.status == 2:
             response['status'] = 3 # Quiz Finished by the User
-            return HttpResponse("Quiz already finished by the user")
+            return JsonResponse(response)
+            # return HttpResponse("Quiz already finished by the user")
             # return JsonResponse(response)
         try:
             questionResponse = chutiyapa.objects.get(quiz = quizResponse, question = question)
@@ -2233,7 +2234,7 @@ def quizPlay(request,quizKey):
                 QuizResponse = team.quizresponses
             except:
                 QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
-                QuestionsForTeam = random.sample(QuestionIds,4)
+                QuestionsForTeam = random.sample(QuestionIds,20)
                 Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
                 QuizResponse.save()
@@ -2246,12 +2247,14 @@ def quizPlay(request,quizKey):
             elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
                 response['status'] = 2 # Quiz Submitted due to timeout
                 # return JsonResponse(response)
-                return HttpResponse("Time over. Quiz Submitted!")
+                #return HttpResponse("Time over. Quiz Submitted!")
                 return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
             elif QuizResponse.status == 2:
                 response['status'] = 3 # Quiz Finished by the User
                 #return JsonResponse(response)
                 return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
+                # return JsonResponse(response)
+                #return HttpResponse("Quiz Responses have been submitted by the user")
             questionArray = []
             for Question in Questions:
                 questionobject = {}
