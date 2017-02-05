@@ -2229,22 +2229,12 @@ def quizPlay(request,quizKey):
   
     response = {}
     if request.method == 'GET':
+        return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
         if 1:#try#kkfkfk:
             try:
                 team = quizTeam2.objects.get(key = str(quizKey))
             except:
                 return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
-            try:
-                Questions = team.quizresponses.questions.all()
-                QuizResponse = team.quizresponses
-            except:
-                QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
-                QuestionsForTeam = random.sample(QuestionIds,20)
-                Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
-                QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
-                QuizResponse.save()
-                for Question in Questions:
-                        QuizResponse.questions.add(Question)
             if QuizResponse.quiz.activeStatus is not 1:
                 response['status'] = 4 # Quiz Not Active Right Now
                 return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
@@ -2256,6 +2246,19 @@ def quizPlay(request,quizKey):
                 return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
             elif QuizResponse.status == 2:
                 response['status'] = 3 # Quiz Finished by the User
+
+            try:
+                Questions = team.quizresponses.questions.all()
+                QuizResponse = team.quizresponses
+            except:
+                QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
+                QuestionsForTeam = random.sample(QuestionIds,20)
+                Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
+                QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
+                QuizResponse.save()
+                for Question in Questions:
+                        QuizResponse.questions.add(Question)
+            
                 #return JsonResponse(response)
                 return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
                 # return JsonResponse(response)
