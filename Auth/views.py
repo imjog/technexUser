@@ -2135,7 +2135,7 @@ def dhokebaaj():
 
 
 
-TimeInMinutesForQuiz = 1
+TimeInMinutesForQuiz = 8
 
 @csrf_exempt
 def startQuiz(request):
@@ -2220,6 +2220,7 @@ def finishQuiz(request,responseKey):
     # return JsonResponse(response)
 
 @csrf_exempt
+@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def quizPlay(request,quizKey):
     # return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
   
@@ -2232,7 +2233,7 @@ def quizPlay(request,quizKey):
                 QuizResponse = team.quizresponses
             except:
                 QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
-                QuestionsForTeam = random.sample(QuestionIds,5)
+                QuestionsForTeam = random.sample(QuestionIds,20)
                 Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
                 QuizResponse.save()
