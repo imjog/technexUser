@@ -24,6 +24,7 @@ from ast import literal_eval
 from xlrd import open_workbook
 from xlwt import Workbook
 import random
+from django.utils.crypto import get_random_string
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -318,7 +319,13 @@ def register(request):
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.city = data.get('city')
         techprofile.year = data.get('year')
-
+        pins = TechProfile.objects.all().values_list("pin")
+        while True:
+            stringR = get_random_string(3,allowed_chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+            if stringR not in pins:
+                techprofile.pin = stringR
+                techprofile.save()
+                break
         if 'referral' in data:
             techprofile.referral = data['referral']
             print 'code base 1.5'
@@ -865,7 +872,7 @@ Regards
             '''
             send_email(sf.teamLeader.email,subject,body%(sf.teamLeader.user.first_name,"Startup Fair".capitalize(),sf.teamName,sf.teamLeader.email,memberEmails))
             response['status'] = 1
-            techprofile = request.user.techProfile
+            techprofile = request.user.techprofile
             # message = "Registration successful for StartupFair.\n TeamName:"+str(post['teamName'])+"\nVisit www.fb.com/technex for regular updates!  All the best, Team Technex"
             # send_sms_single(message,str(techprofile.mobileNumber))
             startupfair_spreadsheet(sf)
@@ -1059,9 +1066,9 @@ Regards
             for user in users:
                 memberEmails += user.email+'  '
                 team.members.add(user)
-            #send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
-            #for user in users:
-             #   send_email(user.email,subject,body%(user.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
+            for user in users:
+               send_email(user.email,subject,body%(user.user.first_name,workshop.title.capitalize(),team.teamName,teamLeader.email,memberEmails))
             response['status'] = 1
             workshop_spreadsheet(team)
             return JsonResponse(response)
@@ -2128,7 +2135,7 @@ def dhokebaaj():
 
 
 
-TimeInMinutesForQuiz = 20
+TimeInMinutesForQuiz = 32
 
 @csrf_exempt
 def startQuiz(request):
@@ -2144,7 +2151,7 @@ def startQuiz(request):
             except:
                 QuestionIds = questions.objects.filter(quiz = Quiz).values_list('questionId', flat=True)
 
-                QuestionsForTeam = random.sample(QuestionIds,3)
+                QuestionsForTeam = random.sample(QuestionIds,5)
                 Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = Quiz,quizTeam = QuizTeam)
                 QuizResponse.save()
@@ -2170,29 +2177,25 @@ def registerResponse(request):
         question = questions.objects.get(questionId = post['questionId'])
         if quizResponse.quiz.activeStatus is not 1:
             response['status'] = 4 # Quiz Not Active Right Now
-            return JsonResponse(response)
+            return HttpResponse("Quiz not active right now!!")
+            # return JsonResponse(response)
         elif not quizResponse.validForSubmission(TimeInMinutesForQuiz):
             response['status'] = 2 # Quiz Already Submitted
-            return JsonResponse(response)
+            return HttpResponse("Quiz has already been Submitted")
+            # return JsonResponse(response)
         elif quizResponse.status == 2:
             response['status'] = 3 # Quiz Finished by the User
             return JsonResponse(response)
-        if 'optionId' in post:
-            optionSelected = options.objects.get(optionId = post['optionId'])
-            question = optionSelected.question
-            try:
-                questionResponse = questionResponses.objects.get(quiz = quizResponse, question = question)
-                questionResponse.option = optionSelected
-            except:
-                questionResponse = questionResponses(quiz = quizResponse, option = optionSelected, question = question)
-        else:
-            
-            try:
-                questionResponse = questionResponses.objects.get(quiz = quizResponse, question = question)
-                questionResponse.integerAnswer = post['integerAnswer']
-            except:
-                questionResponse = questionResponses(quiz = quizResponse, question = question, integerAnswer = post['integerAnswer'])
+            # return HttpResponse("Quiz already finished by the user")
+            # return JsonResponse(response)
+        try:
+            questionResponse = chutiyapa.objects.get(quiz = quizResponse, question = question)
+            questionResponse.fieldChutiyap = post['integerAnswer']
+        except:
+            questionResponse = chutiyapa(quiz = quizResponse, question = question, fieldChutiyap = post['integerAnswer'])
         questionResponse.save()
+        response['answer'] = post['integerAnswer']
+        print request.POST
         response['status'] = 1 # Successfully registered
     else:
         response['status'] = 0 # Invalid Request
@@ -2200,45 +2203,74 @@ def registerResponse(request):
 
 
 @csrf_exempt
-def finishQuiz(request):
+def finishQuiz(request,responseKey):
     response = {}
-    if request.method == 'POST':
-        post = request.POST
-        quizResponse = quizResponses.objects.get(responseId = post['responseId'])
+    if request.method == 'GET':
+        post = request.GET
+        quizResponse = quizResponses.objects.get(responseId = responseKey)
         if quizResponse.status == 2:
             response['status'] = 2 # Quiz Already Finished
-            return JsonResponse(response)
+            return render(request,'startquiz.html',{'response':"Quiz has already been finished by the user!"})
+            #return HttpResponse("Quiz has already been finished by the user!")
         quizResponse.status = 2
         quizResponse.save()
         response['status'] = 1
+        return render(request,'startquiz.html',{'response':"Quiz finished successfully!"})
+        #return HttpResponse("Quiz finished successfully!")
     else:
         response['status'] = 0
-    return JsonResponse(response)
+        return HttpResponse("Some error occurred! Please report at tech@technex.in")
+    # return JsonResponse(response)
 
+@csrf_exempt
+#@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def quizPlay(request,quizKey):
-    return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
-    '''
+    # return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
+  
     response = {}
     if request.method == 'GET':
+        return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
         if 1:#try#kkfkfk:
-            team = quizTeam2.objects.get(key = str(quizKey))
+            try:
+                team = quizTeam2.objects.get(key = str(quizKey))
+            except:
+                return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
+            if QuizResponse.quiz.activeStatus is not 1:
+                response['status'] = 4 # Quiz Not Active Right Now
+                return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
+                # return JsonResponse(response)
+            elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
+                response['status'] = 2 # Quiz Submitted due to timeout
+                # return JsonResponse(response)
+                #return HttpResponse("Time over. Quiz Submitted!")
+                return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
+            elif QuizResponse.status == 2:
+                response['status'] = 3 # Quiz Finished by the User
+
             try:
                 Questions = team.quizresponses.questions.all()
                 QuizResponse = team.quizresponses
             except:
                 QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
-                QuestionsForTeam = random.sample(QuestionIds,5)
+                QuestionsForTeam = random.sample(QuestionIds,20)
                 Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
                 QuizResponse.save()
                 for Question in Questions:
                         QuizResponse.questions.add(Question)
+            
+                #return JsonResponse(response)
+                return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
+                # return JsonResponse(response)
+                #return HttpResponse("Quiz Responses have been submitted by the user")
             questionArray = []
             for Question in Questions:
                 questionobject = {}
                 try:
                     k = chutiyapa.objects.get(question = Question, quiz = QuizResponse)
-                    questionobject['responseOfUser'] = chutiyapa.fieldChutiyap
+                    print "yaha"
+                    questionobject['responseOfUser'] = k.fieldChutiyap
+
                 except:
                     questionobject['responseOfUser'] = ""
                 questionobject['question'] = Question.question
@@ -2246,11 +2278,11 @@ def quizPlay(request,quizKey):
                 questionArray.append(questionobject)
             response['questions'] = questionArray
             response['responseId'] = QuizResponse.responseId
+            response['timer'] = TimeInMinutesForQuiz*60 - QuizResponse.timer()
+            print QuizResponse.timer()
             print response
-        #render(request,'',response)
+        return render(request,'quiz.html',response)
 
-
-'''
 SubjectM = "Intellecx Online Round | Internship Opportunities | Prizes worth ₹ 90,000"
 bodyM = '''
 Hello,
@@ -2306,8 +2338,24 @@ def keyCreator():
         print key
         quizz.save()
 
-        
 
+def shift():
+    quizd = quiz.objects.get(quizId = 3)
+    event = Event.objects.get(nameSlug = 'astroquiz')
+    teams = Team.objects.filter(event = event)
+    print teams.count()
+    counter=0;
+    for team in teams:
+        counter = counter +1
+        quizteama = quizTeam2(quiz = quizd,quizTeamId = 'ABS'+str(1000+counter),member1Email = team.teamLeader.email,member1Phone=team.teamLeader.mobileNumber,name1=team.teamLeader.user.first_name)      
+        try:
+            quizteama.member2Email = team.members.all()[0].email
+            quizteama.member2Phone = team.members.all()[0].mobileNumber
+            quizteama.name2 = team.members.all()[0].user.first_name
+        except:
+            print "###############################"
+        quizteama.save()
+        
 @csrf_exempt
 @login_required(login_url='/register/')
 def quizRegister(request):
@@ -2396,4 +2444,28 @@ Regards
 # def test(request):
 #     return render(request,'intellecx.html')
 
+'''
+def fbProfileUpdater(request):
+    if request.method == 'POST':
+        id_ = post['id']
+        accessToken = post['accessToken']
+        url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"
+        file1 = cStringIO.StringIO(urllib.urlopen(url).read())
+        background = Image.open(file1)
+        file2 = cStringIO.StringIO(urllib.urlopen("http://i.imgur.com/LYKTAY5.png").read())
+        overlay = Image.open(file2)
+        width = background.getbbox()[2]
+        height = background.getbbox()[3]
 
+        overlay = overlay.resize((width,height))
+        background.paste(overlay,(0,0),overlay)
+
+        background.save(id_ + ".png","PNG")
+        cloudinary.config(
+          cloud_name = "dpxbd37qm",
+          api_key = "484116559961356",
+          api_secret = "2bSWYpE5HUFHjImNyZkuCeepvYE"
+        )
+        x = cloudinary.uploader.upload(id_+".png")
+        os.remove(id_+".png")
+'''    

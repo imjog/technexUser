@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Krackcat | Questions</title>
+	<title>Astroquiz | Online Round | Technex '17 IIT(BHU) Varanasi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="/static/css/quiz.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script>
       <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
@@ -18,6 +17,15 @@
 <link rel="shortcut icon" href="/static/favicon/favicon.ico">
 <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
 <meta name="theme-color" content="#000000">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68539305-2', 'auto');
+  ga('send', 'pageview');
+
 </script>
     <script type="text/javascript">
 	    $(window).load(function(){
@@ -31,43 +39,36 @@
 	    $('#contModal').modal('show');
 	  }
 	</script>
-  <!-- <script language="javascript" type="text/javascript">
-  function l(mili){
-  	var date = new Date(mili)
-	  var eventDate = new Date('2015/11/11 23:00:00')
-	  milliseconds = eventDate - date
-	  clock();
+  <script language="javascript" type="text/javascript">
+  var seconds = {{timer}}
 
-  }
-  function clock() {
+function secondPassed() {
+  var minutes = Math.round((seconds - 30)/60),
+      remainingSeconds = seconds % 60;
   
-  var seconds = ~~(milliseconds / 1000);
-  var minutes = ~~(seconds / 60);
-  var seconds = seconds%60;
-  var hours = ~~(minutes / 60);
-  var minutes = minutes%60;
-  var days = ~~(hours / 24);
-  var hours = hours%24;
-  var days = days%365
-  if (milliseconds > 0){
-    timer = document.getElementById("timer");
-    if (minutes){
-      timer.innerHTML = '<b style="color:#fff;font-size:20px;font-family:Ubuntu">'+hours+"</b>"+'<span class=".blink" style="color:#fff;font-size:20px">:</span>'+'<b style="color:#fff;font-size:20px;font-family:Ubuntu">' +minutes+'</b>'+'<span class=".blink" style="color:#fff;font-size:20px">:</span>'+'<b style="color:#fff;font-size:20px;font-family:Ubuntu">' +seconds+'</b>';
-    }
-    milliseconds -= 1000;
-    setTimeout(clock, 1000);
+  if (remainingSeconds < 10) {
+    remainingSeconds = "0" + remainingSeconds;  
   }
-  else{
-  	// window.location.replace("/details/{{link}}")
+  
+  document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+  if (seconds == 0) {
+    clearInterval(countdownTimer);
+    document.getElementById('countdown').innerHTML = "00:00";
+    // $("#lock").tigger("click");
+    window.location = '/finishQuiz/{{responseId}}'
+  } else {
+    seconds--;
   }
-  }
-  </script> -->
+}
+ 
+var countdownTimer = setInterval('secondPassed()', 1000);
+  </script>
 </head>
 
 
 {% autoescape off %}
 
-<body onload="l({{dnow}})">
+<body>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid" id="navigationBar">
 	  <div class="navbar-header">
@@ -76,7 +77,7 @@
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand img-responsive" href="http://cesiitbhu.in/" id ="headernav" style="color:#fff;font-weight:bold;">Quriosity</a>
+	    <a class="navbar-brand img-responsive" href="http://cesiitbhu.in/" id ="headernav" style="color:#fff;font-weight:bold;">ASTROQUIZ</a>
 	  </div>
 	  <div class="collapse navbar-collapse" id="myNavbar">
 	    <ul class="nav navbar-nav navbar-right">
@@ -84,6 +85,7 @@
 	      
 	      <li><a href="#myModal" onclick="help_modal()" style="color:#fff">Rules</a></li>
 	      <li><a href="#contModal" onclick="cont_modal()" style="color:#fff;">Contacts</a></li>
+	      <li><a href="/finishQuiz/{{responseId}}" id="lock" style="color:#fff; font-weight: 1000;">LOCK</a></li>
 	    </ul>
 	  </div>
 	</div>
@@ -92,40 +94,38 @@
 
 	<div class="container">
 		<div class="container" id="circleContainer">
-			{% for question in totalQuestions %}
+			{% for question in questions %}
 				<div class="full-circle ih-item circle colored effect15 left_to_right">
 					<!-- <a href="question1"> -->
 					<a href="#questionModal{{question.questionId}}" data-toggle="modal" data-target="#questionModal{{question.questionId}}">
 						<h1 id="questionMark">{{ forloop.counter }}</h1>
-				        	<div class="info">
-				          		<h3>{{question.question}}</h3>
-				        	</div>
 		        	</a>
 				</div>
 			{% endfor %}	
 		</div>
-		{% for question in totalQuestions %}
-			<div id="questionModal{{question.tag}}" class="modal fade" role="dialog">
+		{% for question in questions %}
+			<div id="questionModal{{question.questionId}}" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">{{question.question}}</h4>
+							<h4 class="modal-title">Question {{ forloop.counter }}</h4>
 						</div>
 
-						<form method="post" id="form{{ question.questionId }}" action="/submit/" >{% csrf_token %}
+						<form method="post" id="form{{ question.questionId }}">
 
 							<div class="modal-body">
-								<p>{{question.problem}}</p>
+								<p>{{question.question}}</p>
+								<p>Input the correct option <b>"number"</b> in the given box</p>
 								
 								<input name="answername" value="{{question.questionId}}" type="hidden" id="input{{question.questionId}}">
 								<label >Answer: </label>
-								<input name="answer" type="number" style="width:90%;margin:auto;" required>
+								<input name="answer{{question.questionId}}" step="1" type="number" style="width:90%;margin:auto;" min="1" max="4" required>
 								
 							</div>
 							<div class="modal-footer">
-								<p>Submitted answer: <span  id="answer{{question.questionId}}"></span></p>
-								<button type="submit" id="button{{question.questionIdquestionId}}" class="btn btn-primary" >Submit</button>
+								<p>Submitted answer: <span id="answer{{question.questionId}}{{question.questionId}}"></span></p>
+								<button type="submit" id="button{{question.questionId}}" class="btn btn-primary" >Submit</button>
 								<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
 							</div>
 						</form>
@@ -141,12 +141,14 @@
 		        <h4 class="modal-title">Rules | Can be viewed again from top nav bar.</h4>
 		      </div>
 		      <div class="modal-body">
-		        <p>1. The event is of duration 40 minutes: 10:20 pm to 11:00 pm</p>
-		        <p>2. 10 questions are provided, each having an <b>INTEGER</b> answer. </p>
-		        <p>3. The answer to the question gets saved when team clicks the SUBMIT button on the question page. </p>
-		        <p>4. Answer to any question can be submitted multiple times while the test is going on.</p>
-		        <p>5. <b>BONUS:</b> You can submit the test before time, by clicking the LOCK button in the footer. Ties will be resolved on the basis of Lock time.</p>
-		        <p>6. After the time is over, you will be automatically redirected to details page where you can fill up your details.<br><b>IMP: If you are not automatically redirected or the page fails to load after the test, click the lock button to proceed. </b> </p>
+		      <p>1) Please read the <b>INSTRUCTIONS</b> carefully. <b>2 </b>extra minutes are provided for reading instructions</p>
+		        <p>2) Quiz contains 20 questions with single correct answer.</p>
+	<p>3) Write the option number corresponding to correct answer in the box.</p>
+	<p>4) Quiz duration is of 30 minutes.</p>
+<p>5) A team can participate only one time.</p>
+<p>6) Multiple attempts are not allowed.</p>
+<p>7) In case of any difficulty, contact gaurav.somani.met14@itbhu.ac.in</p>
+
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -180,8 +182,8 @@
 	          </div>
 	          <div class="modal-body" style="color:#888">
 	             <h4>For any queries contact<br><br> 
-	                <span style="color:#000;font-family:Ubuntu">Mail</span> : support@quriosity15.me<br><br>
-	                <span style="color:#000;font-family:Ubuntu">Mobile</span> : +91-775-295-7816; +91-727-509-9567</h4>
+	                <span style="color:#000;font-family:Ubuntu">Mail</span> : support@technex.in<br><br>
+	                <span style="color:#000;font-family:Ubuntu">Mobile</span> : +91-9935504188; +91-7270975614</h4>
 	          </div>
 	          <div class="modal-footer">
 	            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -192,20 +194,36 @@
 	</div> 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container-fluid">
-      <span id="timer" style="color:#FFF;font-size:30px;"></span>
-      <a href="/details/{{link}}"><button id="lock" class="btn btn-danger btn-lg" style="float:right;padding:10px 50px"><span class="glyphicon glyphicon-lock" style="padding:5px"></span>LOCK</button></a>
+       <div class="app">
+  <time id="countdown">25:00</time>
+  <ul id="timerul">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<!--       <a href="/finishQuiz/{{responseId}}"><button id="lock" class="btn btn-danger btn-lg" style="float:right;padding:10px 50px"><span class="glyphicon glyphicon-lock" style="padding:5px"></span>LOCK</button></a> -->
   </div>
 </nav>
 </body>
 {% endautoescape %}
   <script type="text/javascript">
 
-  answers = {{answers}};
+ 
+
+ var answer = []
+ {% for question in questions  %}
+  answer["{{question.questionId}}"] = "{{question.responseOfUser}}"
+{% endfor %}
+
+
 
   {% for question in questions  %}
+  
 
-
-  $("#answer{{question.tag}}").html(answers["{{question.tag}}"]);
+  $("#answer{{question.questionId}}{{question.questionId}}").html(answer["{{question.questionId}}"]);
 
   {% endfor %}
 
@@ -215,29 +233,42 @@
 
   {% for question in questions %}	
 
-    $("#form{{ question.tag }}").submit(function() {
+    $("#form{{ question.questionId }}").on("submit", function(e) {
+      
+       e.preventDefault();
+      $('#button{{question.questionId}}').val( "Submitting...");
+      $('#button{{question.questionId}}').attr("disabled","disabled");
 
-      $('#button{{question.tag}}').val( "Submitting...");
-      $('#button{{question.tag}}').attr("disabled","disabled");
-
-    var url = "/submit/{{link}}"; // the script where you handle the form input.
+    var url = "/registerResponse/"; // the script where you handle the form input.
 
     $.ajax({
            type: "POST",
            url: url,
-           data: $("#form{{question.tag}}").serialize(), // serializes the form's elements.
+           data: {
+"questionId":"{{question.questionId}}",
+"responseId":"{{responseId}}",
+"integerAnswer":$("input[name='answer{{question.questionId}}'").val()
+},
+           //$("#form{{question.questionId}}").serialize(), // serializes the form's elements.
            success: function(data)
            {
-           	data = JSON.parse(data);
+           	// data = JSON.parse(data);
+           	console.log(data);
+
         
-            $('#button{{question.tag}}').val( "Submit");
-            $('#button{{question.tag}}').removeAttr("disabled");
+            $('#button{{question.questionId}}').val( "Submit");
+            $('#button{{question.questionId}}').removeAttr("disabled");
 
                
-               if (data.error == "false") {
-               	$("#answer{{question.tag}}").html(data.value);
-                text = 'Answer submitted for question '+"{{question.name}}" 
+               if (data.status == 1) {
+               	$("#answer{{question.questionId}}{{question.questionId}}").html(data.answer);
+                text = 'Answer submitted'
+                console.log("done")
                 alert(text);
+               }
+               else if(data.status == 3)
+               {
+               	window.location.reload()
                }
                else if (data.error=="true") {
                	if(data.type=="noanswer")

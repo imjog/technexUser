@@ -34,16 +34,25 @@ class optionsInline(admin.TabularInline):
 	model = options
 	extra = 4
 @admin.register(questions)
-class questionsAdmin(admin.ModelAdmin):
-	inlines = [optionsInline]
+
 '''
+
+@admin.register(quizTeam2)
 class quizTeam2Admin(admin.ModelAdmin):
 	search_fields = ('quizTeamId', 'member1Email' , 'member2Email' , 'member1Phone' , 'member2Phone' , 'name1' , 'name2' )
 
+@admin.register(quiz)
+class quizAdmin(admin.ModelAdmin):
+	readonly_fields=('quizId',)
 
+@admin.register(questions)
+class questionsAdmin(admin.ModelAdmin):
+	readonly_fields = ('questionId',) 
 
+@admin.register(quizResponses)
+class quizResponsesAdmin(admin.ModelAdmin):
+	readonly_fields = ('responseId',) 
 
-    
 admin.site.register(TechProfile, TechProfileAdmin)
 admin.site.register(College, CollegeAdmin)
 #admin.site.register(Event,EventAdmin)
@@ -70,13 +79,16 @@ admin.site.register(BusinessType)
 admin.site.register(FbReach)
 admin.site.register(PaymentStatus)
 admin.site.register(Way2smsAccount)
-admin.site.register(quiz)
+#admin.site.register(quiz)
 #admin.site.register(optionResponses)
 admin.site.register(Way2smsAccount_Premium)
-admin.site.register(questions)
 
-admin.site.register(quizResponses)
 #admin.site.register(questionResponses)
 admin.site.register(chutiyapa)
-admin.site.register(quizTeam2 , quizTeam2Admin)
 #admin.site.register(optionsC)
+admin.site.register(StartupFairData)
+admin.site.register(Exhibitions)
+admin.site.register(Pronites)
+admin.site.register(InstituteDay)
+admin.site.register(CorporateConclave)
+admin.site.register(Hospitality)
