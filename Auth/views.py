@@ -2135,7 +2135,7 @@ def dhokebaaj():
 
 
 
-TimeInMinutesForQuiz = 30
+TimeInMinutesForQuiz = 32
 
 @csrf_exempt
 def startQuiz(request):
