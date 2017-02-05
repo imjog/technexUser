@@ -2225,7 +2225,7 @@ def quizPlay(request,quizKey):
             except:
                 return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
             if QuizResponsestatus == 2:
-                return render(request,'startquiz.html',{'response':"Quiz Already Ended !!"})
+                return render(request,'startquiz.html',{'response':"Quiz Will Start Soon..!!"})
             elif QuizResponse.quiz.activeStatus is not 1:
                 response['status'] = 4 # Quiz Not Active Right Now
                 return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
