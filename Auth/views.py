@@ -1768,7 +1768,7 @@ def quizRegister2(request):
                 return render(request,"intellecx.html")
             except:
                 Quiz = quiz.objects.get(quizId = data['quizId'])
-                quizteam = quizTeam2(slot = data['slot'], quiz = Quiz, member1Email = data['member1Email'], name1 = data['name1'], member1Phone = data['member1Phone'])
+                quizteam = quizTeam2(quiz = Quiz, member1Email = data['member1Email'], name1 = data['name1'], member1Phone = data['member1Phone'])
                 try:
                     t = TechProfile.objects.get(email = data['member1Email'])
                     quizteam.status = True
@@ -1787,17 +1787,9 @@ def quizRegister2(request):
                 quizteam.member2Email = data.get('member2Email')
                 quizteam.member2Phone = data.get('member2Phone')
                 quizteam.name2 = data.get('name2')
-        key = hash("technex"+quizz.quizTeamId+"livelong")
-        quizteam.key = key
         quizteam.save()
-        slot = ""
-        if int(data['slot']) is 1 :
-            slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
-        else:
-            slot = "SUNDAY 5/02/2017 22:00 - 22:40"
-        print quizteam.slot,slot
         quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
-        quizteam.save()
+        
         subject = "INTELLECX | FINAL SLOT @10PM TODAY"
         body = '''
 Hello,
@@ -1824,12 +1816,14 @@ Regards,
 Team Technex
             '''
         memberEmails = data.get('member2Email',None)
-
+        key = hash("technex"+quizteam.quizTeamId+"livelong")
+        quizteam.key = key
+        quizteam.save()
         #for user in users:
             #memberEmails += user.email+'  '
             #quizteam.members.add(user)
         #for user in users:
-        send_email(data['member1Email'],subject,body%quizteam.key)
+        send_email(data['member1Email'],subject,body%("http://technex.in/playQuiz/"+str(quizteam.key)))
 
         quiz_spreadsheetfill(quizteam)
         return render(request,'intellecx.html',{"success":1})
@@ -1850,8 +1844,8 @@ Team Technex
 def quiz_spreadsheetfill(team):
     # members = team.members.all()
     dic = {
-    "quizTeamId" : team.quizTeamId,
-    "Slot" : team.slot
+    "quizTeamId" : team.quizTeamId
+    
     }
 
     dic['member1Name'] = team.name1.encode("utf-8")
