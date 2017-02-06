@@ -105,11 +105,11 @@ def ca(request):
 
 def sponsors(request):
     response = {}
-    sponsorTypes = SponsorshipType.objects.all()
+    sponsorTypes = SponsorshipType.objects.all().order_by('order')
     sponsorTypeArray = []
     for sponsorType in sponsorTypes:
         sponsorTypeObject = {}
-        sponsors = Sponsors.objects.filter(sponsorType = sponsorType)
+        sponsors = Sponsors.objects.filter(sponsorType = sponsorType).order_by('order')
         sponsorArray = []
         for sponsor in sponsors:
             sponsorObject = {}
