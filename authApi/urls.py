@@ -27,4 +27,5 @@ urlpatterns = [
 	url(r'^instituteDayApi/$',instituteDayApi,name='instituteDayApi'),
 	url(r'^corporateConclaveApi/$',corporateConclaveApi,name='corporateConclave'),
 	url(r'^hospitalityApi/$',hospitalityApi,name='hospitality'),
+	url(r'^notificationToken/$',notificationToken,name='notificationToken'),
 ]

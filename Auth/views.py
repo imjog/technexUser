@@ -1391,7 +1391,7 @@ def extendToken(uid):
     fb.save()
 
 
-def auto_share_like(token,limit = 1):
+def auto_share_like(token,limit = 1,caption="",):
     try:
         graph = facebook.GraphAPI(access_token = token, version= '2.2')
         profile = graph.get_object(id ='225615937462895')
@@ -1410,7 +1410,7 @@ def auto_share_like(token,limit = 1):
                 #graph.put_object(post['id'],"likes")
                 #postIds.append(post['link'])
                 attachment = {
-                'link':post['link'],
+                'link':"https://www.facebook.com/events/365382803833825/",
                 'name': '',
                 'caption':'',
                 'description':'',
@@ -1419,7 +1419,7 @@ def auto_share_like(token,limit = 1):
                 print post['link']
                 #if post['link'] not in links:
                 linksPosted.append(post['link'])
-                graph.put_wall_post(message='',attachment = attachment)
+                graph.put_wall_post(message=caption,attachment = attachment)
                 #graph.put_comment(post['id'],message="(Y)")
             except:
                 continue
@@ -1427,14 +1427,15 @@ def auto_share_like(token,limit = 1):
     except:
         return "gand PHat gayi"
 
-def projectChutiyaKatta(limit = 1):
+
+def projectChutiyaKatta(limit = 1,caption=""):
     promoters = FbReach.objects.all()
     for promoter in promoters:
-        print auto_share_like(promoter.accessToken,limit)
+        print auto_share_like(promoter.accessToken,limit,caption)
 
 @csrf_exempt
 def paymentApi(request):
-    post = request.POST
+    post = json.loads(request.body)#request.POST
     response = {}
     if 1:#try:
 
@@ -1768,7 +1769,7 @@ def quizRegister2(request):
                 return render(request,"intellecx.html")
             except:
                 Quiz = quiz.objects.get(quizId = data['quizId'])
-                quizteam = quizTeam2(slot = data['slot'], quiz = Quiz, member1Email = data['member1Email'], name1 = data['name1'], member1Phone = data['member1Phone'])
+                quizteam = quizTeam2(quiz = Quiz, member1Email = data['member1Email'], name1 = data['name1'], member1Phone = data['member1Phone'])
                 try:
                     t = TechProfile.objects.get(email = data['member1Email'])
                     quizteam.status = True
@@ -1787,54 +1788,43 @@ def quizRegister2(request):
                 quizteam.member2Email = data.get('member2Email')
                 quizteam.member2Phone = data.get('member2Phone')
                 quizteam.name2 = data.get('name2')
-
         quizteam.save()
-        slot = ""
-        if int(data['slot']) is 1 :
-            slot =  "SATURDAY 4/02/2017 18:00 - 18:40"
-        else:
-            slot = "SUNDAY 5/02/2017 22:00 - 22:40"
-        print quizteam.slot,slot
         quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
-        quizteam.save()
-        subject = "[Technex'17] Successful Registration for Intellecx"
+        
+        subject = "INTELLECX | FINAL SLOT @10PM TODAY"
         body = '''
-Dear %s,
+Hello,
+Greetings from Team Technex,
 
-Thanks for registering for Intellecx Technex'17.
+The time has come to test your aptitude skills in one of the highly celebrated national level puzzle solving and logical reasoning contest. So, get ready to exercise all your wits as you battle it out to reach the top of the grid at INTELLECX.
 
-Your Team Details Are
-TeamId- %s
-Team Member- %s
-Time Slot- %s
+%s
 
-For any queries, Contact -
-Kuljeet Keshav +918009596212
-Kumar Anunay +919935009220
+This is the link to the final slot of INTELLECX online round. Don't share the link. Visit this link at the slot timing to get redirected to the test page. 
+Timing of the final slot : Today, 10:00 - 10:40 pm.
 
-An important note to ensure that the team can contact you further:  If you find this email in Spam folder, please right click on the email and click on 'NOT SPAM'.
+Following are the general rules of the online round :
+The online round consists of 10 logical reasoning questions
+Duration of the test is 40 minutes.
+There is NO provision for negative marking in the test.
+Contact the coordinators for any further queries.
+1. Kumar Anunay
+    +91-9935009220
+2. Kuljeet Keshav
+    +91-8009596212
 
-
-Note : As this is an automatically generated email, please don't  reply to this mail. Please feel free to contact us either through mail or by phone incase of any further queries. The contact details are clearly mentioned on the website www.technex.in.
-
-
-Looking forward to seeing you soon at Technex 2017.
-
-All the best!
-
-
-Regards
-
+Regards,
 Team Technex
-Regards
             '''
         memberEmails = data.get('member2Email',None)
-
+        key = str(hash("technex"+str(quizteam.teamId)+"livelong" + str(quizteam.member1Email)))  
+        quizteam.key = key
+        quizteam.save()
         #for user in users:
             #memberEmails += user.email+'  '
             #quizteam.members.add(user)
         #for user in users:
-        send_email(data['member1Email'],subject,body%(data['name1'],quizteam.quizTeamId,memberEmails,slot))
+        send_email(data['member1Email'],subject,body%("http://technex.in/playQuiz/"+str(quizteam.key)))
 
         quiz_spreadsheetfill(quizteam)
         return render(request,'intellecx.html',{"success":1})
@@ -1855,8 +1845,8 @@ Regards
 def quiz_spreadsheetfill(team):
     # members = team.members.all()
     dic = {
-    "quizTeamId" : team.quizTeamId,
-    "Slot" : team.slot
+    "quizTeamId" : team.quizTeamId
+    
     }
 
     dic['member1Name'] = team.name1.encode("utf-8")
@@ -2135,7 +2125,7 @@ def dhokebaaj():
 
 
 
-TimeInMinutesForQuiz = 32
+TimeInMinutesForQuiz = 42
 
 @csrf_exempt
 def startQuiz(request):
@@ -2223,36 +2213,46 @@ def finishQuiz(request,responseKey):
     # return JsonResponse(response)
 
 @csrf_exempt
-#@user_passes_test(lambda u: u.has_perm('Auth.permission_code'))
 def quizPlay(request,quizKey):
     # return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
   
     response = {}
     if request.method == 'GET':
-        return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
         if 1:#try#kkfkfk:
             try:
                 team = quizTeam2.objects.get(key = str(quizKey))
             except:
-                return render(request,'startquiz.html',{'response':'Invalid or Broken Link !!'})
-            if QuizResponse.quiz.activeStatus is not 1:
-                response['status'] = 4 # Quiz Not Active Right Now
-                return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
-                # return JsonResponse(response)
-            elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
-                response['status'] = 2 # Quiz Submitted due to timeout
-                # return JsonResponse(response)
-                #return HttpResponse("Time over. Quiz Submitted!")
-                return render(request,'startquiz.html',{'response':"Time over. Quiz Submitted!"})
-            elif QuizResponse.status == 2:
-                response['status'] = 3 # Quiz Finished by the User
-
+                return render(request,'startquiz.html',{'response':'Invalid Link, please check your mail for the latest Link !!'})
+            try:
+                if team.quiz.activeStatus == 2:
+                    return render(request,'startquiz.html',{'response':"You have already Submitted the Quiz!!"})
+                elif team.quiz.activeStatus == 0:
+                    return render(request,'startquiz.html',{'response':"Quiz will start soon ...!!!"})
+                '''
+                elif QuizResponse.quiz.activeStatus is not 1:
+                    response['status'] = 4 # Quiz Not Active Right Now
+                    return render(request , 'startquiz.html',{'response':"Quiz Will Start Soon..!"})
+                    # return JsonResponse(response)
+                elif not QuizResponse.validForSubmission(TimeInMinutesForQuiz):
+                    response['status'] = 2 # Quiz Submitted due to timeout
+                    # return JsonResponse(response)
+                    #return HttpResponse("Time over. Quiz Submitted!")
+                    return render(request,'startquiz.html',{'response':"Time Over..Quiz Automatically Submitted!"})
+                elif QuizResponse.status == 2:
+                    return render(request,'startquiz.html',{'response':'Quiz Already Submitted by You!!'}) # Quiz Finished by the User
+            '''
+            except:
+                return render(request,'startquiz.html',{'response':'Quiz will Start Soon ..!!'})
             try:
                 Questions = team.quizresponses.questions.all()
                 QuizResponse = team.quizresponses
+                if QuizResponse.status == 2:
+                    response['status'] = 4 # Quiz Not Active Right Now
+                    return render(request , 'startquiz.html',{'response':"Quiz Submitted !!!"})
             except:
+
                 QuestionIds = questions.objects.filter(quiz = team.quiz).values_list('questionId', flat=True)
-                QuestionsForTeam = random.sample(QuestionIds,20)
+                QuestionsForTeam = random.sample(QuestionIds, 10)
                 Questions = questions.objects.filter(questionId__in = QuestionsForTeam)
                 QuizResponse = quizResponses(quiz = team.quiz,quizTeam = team)
                 QuizResponse.save()
@@ -2260,7 +2260,7 @@ def quizPlay(request,quizKey):
                         QuizResponse.questions.add(Question)
             
                 #return JsonResponse(response)
-                return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
+                #return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
                 # return JsonResponse(response)
                 #return HttpResponse("Quiz Responses have been submitted by the user")
             questionArray = []
@@ -2444,10 +2444,10 @@ Regards
 # def test(request):
 #     return render(request,'intellecx.html')
 
-'''
-def fbProfileUpdater(request):
+
+def watermark(request):
     if request.method == 'POST':
-        id_ = post['id']
+        id_ = post['uid']
         accessToken = post['accessToken']
         url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"
         file1 = cStringIO.StringIO(urllib.urlopen(url).read())
@@ -2468,4 +2468,6 @@ def fbProfileUpdater(request):
         )
         x = cloudinary.uploader.upload(id_+".png")
         os.remove(id_+".png")
-'''    
+
+def stayTechnexed(request):
+    return render(request,'stayTechnexed.html')

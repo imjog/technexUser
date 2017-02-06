@@ -52,7 +52,7 @@ class TechProfile(models.Model):
     pin = models.CharField(max_length= 20,null = True,blank = True)
     apploginStatus = models.BooleanField(default = False)
     #profile_photo = models.TextField(validators=[URLValidator()],blank=True)
-
+    notificationToken = models.TextField(null = True,blank = True)
     def __unicode__(self):
         return "%s -%s" %(self.user.first_name, self.college)
 
@@ -297,7 +297,7 @@ class quizTeam2(models.Model):
     status = models.BooleanField(default = False)
     key = models.CharField(max_length = 120, null = True, blank = True)
     def __unicode__(self):
-        return self.quizTeamId
+        return self.member1Email
 
 class questions(models.Model):
     questionId = models.AutoField(primary_key = True)

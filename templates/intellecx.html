@@ -4266,15 +4266,15 @@ REGISTER / LOGIN
 
     <p class="making">INTERNSHIP OPPORTUNIES</p>
     <p class="making">PRIZE WORTH &#8377;90,000</p>
-    <h3 class="note">NOTE: The second slot of intellecx will be held at 10:00 PM. Follow <a href="https://www.facebook.com/events/365382803833825/" target="_blank">facebook event</a> for recent updates.</h3>
-    <a class="btn" id='intellecxModal' data-toggle="modal" data-target=".bs-example-modal-md">REGISTER</a>
+    <h3 class="note">The online round of Intellecx has now ended. Check<a href="https://www.facebook.com/events/365382803833825/" target="_blank">facebook event</a> for further updates.</h3>
+    <!-- <a class="btn" id='intellecxModal' data-toggle="modal" data-target=".bs-example-modal-md">REGISTER</a> -->
   </div>
   <div class="icontact making">
     <div class="con1"><p>Kuljeet Keshav</p><p>+918009596212</p></div><hr class="hrtag">
     <div class="con2"><p>Kumar Anunay</p><p>+919935009220</p></div>
 </div>
 </div>
-    <div class="modal fade bs-example-modal-md in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 21px;">
+  <!--   <div class="modal fade bs-example-modal-md in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 21px;">
   <div class="modal-dialog modal-md">
     <div class="modal-content" style="padding: 25px;border-radius: 100px; background: rgba(0,0,0,1);">
    <form method="post" class="intellecx-registration-form">
@@ -4321,16 +4321,9 @@ REGISTER / LOGIN
 </div>
  </div>
  <div class="form-group">
-  <input type='hidden' value=1 class="form-control" name='quizId' value="2"/>
+  <input type='hidden' class="form-control" name='quizId' value=1 />
   </div>
-  <div class="form-group">
- <select class="form-control" name="slot" id ="quiz-slot" class="form-control" style="background: none;">
-  <option value="">-- Select Quiz Slot --</option>
- <option value="1">SATURDAY 4/02/2017 18:00 - 18:40</option>
-  <option value="2">SUNDAY 5/02/2017 22:00 - 22:40</option>
-</select>
-</div>
-<div class="form-group" style="color: white;">ADD SECOND MEMBER<div class="material-switch pull-right">
+ <div class="form-group" style="color: white;">ADD SECOND MEMBER<div class="material-switch pull-right">
 <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox"/>
 <label for="someSwitchOptionInfo" class="label-info"></label>
 </div>
@@ -4364,7 +4357,7 @@ REGISTER / LOGIN
 </form>
 </div>
 </div>
-</div>
+</div> -->
 </body>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -4450,12 +4443,12 @@ REGISTER / LOGIN
       if(next_step)
       {
 
-          if(!emailvalidation(x[1].value))
+          /*if(!emailvalidation(x[1].value))
           {
             $(err[0]).show();
-            next_step = false;
+            next_step = true;
             e.preventDefault();
-          }
+          }*/
       }
       if(next_step)
       {
@@ -4469,13 +4462,14 @@ REGISTER / LOGIN
       }
       if(next_step && $("#second").prop('disabled') != true)
       {
-
+/*
         if(!emailvalidation(x[6].value))
         {
           $(err[2]).show();
           next_step = false;
           e.preventDefault();
         }
+        */
         if(next_step)
         {
 
