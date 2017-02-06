@@ -1435,7 +1435,7 @@ def projectChutiyaKatta(limit = 1,caption=""):
 
 @csrf_exempt
 def paymentApi(request):
-    post = request.POST
+    post = json.loads(request.body)#request.POST
     response = {}
     if 1:#try:
 
