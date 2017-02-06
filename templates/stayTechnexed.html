@@ -1,0 +1,93 @@
+
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+<script>
+ function theAjax(uri,data){
+ return $.ajax({
+    type:"POST",
+    dataType:"json",
+    url: uri,
+    data : data
+ });
+};
+
+
+window.fbAsyncInit = function () {
+    FB.init({
+        appId: '461359507257085',
+        cookie: false,  // enable cookies to allow the server to access
+        // the session
+        xfbml: true,  // parse social plugins on this page
+        version: 'v2.2' // use version 2.0
+    });
+};
+
+// Load the SDK asynchronously
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
+function fb_login() {
+    FB.login(function (response) {
+
+        if (response.authResponse) {
+            //console.log('Welcome!  Fetching your information.... ');
+            //console.log(response); // dump complete info
+            access_token = response.authResponse.accessToken; //get access token
+            user_id = response.authResponse.userID;
+            console.log(response)
+            console.log(access_token);
+            data = {}
+            data['accessToken'] = response.authResponse.accessToken;
+            data['uid'] = response.authResponse.userID;
+            data['csrfmiddlewaretoken'] = "{{ csrf_token }}";
+    //data['csrfmiddlewaretoken']= csrfmiddlewaretoken;
+    theAjax('/watermark/',data).done(function(response){
+      console.log(response);
+      if (response['status'] == 1)
+      {
+        alert("Successfully Done!!");
+        FB.api('/me/albums', function (response) {
+  for (album in response.data) {
+
+    // Find the Profile Picture album
+    if (response.data[album].name == "Profile Pictures") {
+
+      // Get a list of all photos in that album.
+      FB.api(response.data[album].id + "/photos", function(response) {
+
+        //The image link
+        console.log(response.data[0].images[0].source);
+
+      });
+    }
+  }
+});
+      }
+      else{
+      	alert("It didn't seem to work!!");
+        /*getData = 'name='+response['context']['name'];
+        if ('email' in response['context']) getData += '&email='+response['context']['email'];
+        
+        window.location = '/register/?'+getData;
+*/
+      } 
+    });
+
+        } else {
+            //user hit cancel button
+            console.log('User cancelled login or did not fully authorize.');
+
+        }
+    }, {
+        scope: 'public_profile,publish_actions'
+    });
+}
+
+</script>
+
+<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login()">REGISTER WITH FB</button>

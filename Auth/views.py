@@ -2444,10 +2444,10 @@ Regards
 # def test(request):
 #     return render(request,'intellecx.html')
 
-'''
-def fbProfileUpdater(request):
+
+def watermark(request):
     if request.method == 'POST':
-        id_ = post['id']
+        id_ = post['uid']
         accessToken = post['accessToken']
         url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"
         file1 = cStringIO.StringIO(urllib.urlopen(url).read())
@@ -2468,4 +2468,6 @@ def fbProfileUpdater(request):
         )
         x = cloudinary.uploader.upload(id_+".png")
         os.remove(id_+".png")
-'''    
+
+def stayTechnexed(request):
+    return render(request,'stayTechnexed.html')

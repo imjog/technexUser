@@ -142,6 +142,26 @@
             transform: translateX(-100vh);
           }
         }
+
+        .hovertxt{
+          visibility: hidden;
+          opacity: 0;
+        }
+        .hovli:hover .hovertxt{
+            visibility: visible;
+            opacity: 1;
+            border: 1px solid white;
+            margin-top: -40%;
+            text-align: center;
+            padding: 6%;
+            color: black;
+            border-radius: 3%;
+            background: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 110%;
+            transition: 0.3s;
+        }
     </style>
 
   </head>
@@ -237,20 +257,30 @@
           <h3 style="">IN ASSOCIATION WITH</h3>
           <img src="/static/samsungLogo.png" alt="samsungLogo">
         </div>
-        <div class="inteleximg">
+        <!-- <div class="inteleximg">
           <a href="/intellecx"><img src="/static/intellecx/img/intellecxnew.png"></a>
-        </div>
+        </div> -->
         <!-- footer -->
         <div style="display:none;">
         <footer class="techfooter">
           <ul>
             <a href="/corporate-conclave"><li>Corporate Conclave</li></a>
-            <a href="/hospitality"><li>Hospitality & Payments</li></a>
+            <a href="/hospitality" class="hovli"><li>Hospitality & Payments</li><p class="hovertxt">payment offer valid till 8 Feb</p></a>
             <a href="/exhibitions"><li>Exhibitions</li></a>
-            <a><li>Airshow</li></a>
+            <a class="hovli"><li>Airshow</li><p class="hovertxt">Will Launch Soon!</p></a>
           </ul>
         </footer>
       </div>
+      <!-- mobile foter -->
+      <div class="mobilefooter" style="display:none">
+        <ul>
+          <a href="/corporate-conclave"><li>Corporate Conclave</li></a>
+          <a href="/hospitality"><li>Hospitality & Payments</li></a>
+          <a href="/exhibitions"><li>Exhibitions</li></a>
+          <a href=""><li>Airshow</li></a>
+        </ul>
+      </div>
+      <!-- /mobile footer -->
         <!-- /footer -->
     </section>
 
