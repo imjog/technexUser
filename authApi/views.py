@@ -64,7 +64,7 @@ def ApiRegisterView(request):
         techprofile.college = college
         techprofile.mobileNumber = data.get('mobileNumber')
         techprofile.year = data.get('year')
-        
+        techprofile.apploginStatus = True
 		#print "codeBaes 2"
         pins = TechProfile.objects.all().values_list("pin")
         while True:
@@ -614,9 +614,8 @@ def notificationToken(request):
     if request.method == 'POST':
         try:
             post = json.loads(request.body)
-            techprofile = TechProfile.objects.get(email = post['email'])
-            techprofile.notificationToken = post['notificationToken']
-            techprofile.save()
+            notification = Notifications(token =  post['notificationToken'])
+            notification.save()
             response['status'] = 1
         except:
             response['status'] = 0
