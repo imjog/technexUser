@@ -13,6 +13,7 @@ from Auth.models import *
 from Events.views import spreadsheetfill_register
 from django.core import serializers
 from django.utils.crypto import get_random_string
+from django.db.models import Q
 server = "https://technexuser.herokuapp.com/"
 #from Auth.forms import *
 # Create your views here.
@@ -624,3 +625,21 @@ def notificationToken(request):
         response['status'] = 0
         return JsonResponse(response)
 
+def assignPins():
+    techProfiles = TechProfile.objects.filter(Q(pin = None) | Q(pin = ""))
+    print techProfiles.count()
+    e = raw_input("y/n to proceed \n")
+    if e == 'y':
+
+        for techprofile in techProfiles:
+            pins = TechProfile.objects.all().values_list("pin")
+            print pins.count()
+            while True:
+                stringR = get_random_string(3,allowed_chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+                if stringR not in pins:
+                    print stringR
+                    techprofile.pin = stringR
+                    techprofile.save()
+                    break
+    else:
+        print "Process Cancelled"
