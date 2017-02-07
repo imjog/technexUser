@@ -240,11 +240,13 @@ class PaymentStatus(models.Model):
 
 class SponsorshipType(models.Model):
     title = models.CharField(max_length  = 100)
+    order = models.SmallIntegerField(default = 99)
     def __unicode__(self):
         return self.title
 
 class Sponsors(models.Model):
     sponsorType  = models.ForeignKey(SponsorshipType)
+    order = models.SmallIntegerField(default = 999)
     name = models.CharField(max_length = 100)
     imageLink = models.TextField(validators=[URLValidator()],blank=True,null = True)
     websiteLink = models.TextField(validators=[URLValidator()],blank=True,null = True)

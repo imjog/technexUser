@@ -353,9 +353,9 @@ function navFunction() {
           </div>
 <!-- MOZILLA ENDS -->
 {% endif %}
-<div class="intellecx-image">
+<!-- <div class="intellecx-image">
 <a href="/intellecx"><img style="transform:scale(0.5);margin-left: -120px; margin-top: -51px;" src="/static/intellecx/img/intellecxnew.png"></a>
-</div>
+</div> -->
 
       <div class="navigation navigation-initial">
         <button class="button-next mobile-hidden">NEXT</button>
@@ -428,6 +428,27 @@ function navFunction() {
     float: left;
     margin-right: 10px;
 }
+
+.hovertxt{
+  visibility: hidden;
+  opacity: 0;
+}
+.hovli:hover .hovertxt{
+    visibility: visible;
+    opacity: 1;
+    border: 1px solid white;
+    margin-top: -40%;
+    text-align: center;
+    padding: 6%;
+    color: black;
+    border-radius: 3%;
+    background: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 110%;
+    transition: 0.3s;
+}
+
     </style>
       <div class="definition">
         <div class="definition-body">
@@ -565,9 +586,9 @@ function navFunction() {
     <footer class="techfooter">
       <ul>
         <a href="/corporate-conclave"><li>Corporate Conclave</li></a>
-        <a href="/hospitality"><li>Hospitality & Payments</li></a>
+        <a href="/hospitality" class="hovli"><li>Hospitality & Payments</li><p class="hovertxt">payment offer valid till 8 Feb</p></a>
         <a href="/exhibitions"><li>Exhibitions</li></a>
-        <a><li>Airshow</li></a>
+        <a class="hovli"><li>Airshow</li><p class="hovertxt">Will Launch Soon!</p></a>
       </ul>
     </footer>
   </div>

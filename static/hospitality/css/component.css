@@ -707,3 +707,49 @@ text-align: center;
 		margin-right: 10%;
 	}
 }
+
+/* welcome gif */
+.overgif{
+		z-index: 9000;
+		position: relative;
+		background: rgba(0,0,0,.8);
+		top: 0;
+		left: 0;
+		height: 100%;
+		display: none;
+}
+.overgif img{
+	position: fixed;
+}
+.overgif button{
+	z-index: 9000000000;
+	position: absolute;
+	top: 65%;
+	left: 40%;
+	padding: 2%;
+	outline: 2px solid black;
+	font-size: 110%;
+	border: 2px solid white;
+	background: black;
+	color: white;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	cursor: pointer;
+	display: block;
+}
+@media screen and (min-width:768px){
+	.overgif{
+		z-index: 9000;
+		position: relative;
+		background: rgba(0,0,0,.8);
+		top: 0;
+		left: 0;
+		height: 100%;
+		display: block;
+	}
+}
+.bl-content h3{
+	letter-spacing: 1px;
+	font-size: 150%;
+	text-transform: uppercase;
+}
