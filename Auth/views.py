@@ -25,6 +25,10 @@ from xlrd import open_workbook
 from xlwt import Workbook
 import random
 from django.utils.crypto import get_random_string
+import cStringIO
+from PIL import Image
+import urllib
+import cloudinary
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -2444,9 +2448,10 @@ Regards
 # def test(request):
 #     return render(request,'intellecx.html')
 
-
+@csrf_exempt
 def watermark(request):
     if request.method == 'POST':
+        post = request.POST
         id_ = post['uid']
         accessToken = post['accessToken']
         url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"

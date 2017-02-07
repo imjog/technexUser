@@ -400,3 +400,6 @@ class chutiyapa(models.Model):
     question = models.ForeignKey(questions, null = True, blank = True)
     def __unicode__(self):
         return '%s %s'%(self.quiz.quiz.name,self.question.question)
+
+class Notifications(models.Model):
+    token = models.TextField()
