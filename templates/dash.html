@@ -54,6 +54,13 @@
    margin-left: -10px;
    width: 80%;
   }
+  @media (max-width: 1110px)
+  {
+    .imp-links
+    {
+      display: none;
+    }
+  }
 
   </style>
   <style type="text/css">
@@ -175,9 +182,6 @@ z-index: -90;
                    <li><a href="#startupreg"><i class="fa fa-plus-circle"></i>StartupFair Registration</a>
                   </li>
                     <li><a href="#workshopreg"><i class="fa fa-plus-circle"></i>Workshop Registration</a>
-                  </li>
-                    <li><a href="/intellecx/"><i class="fa fa-bolt"></i>Intellecx Registration</a>
-                  </li>
 
                   </li>
                                      <li><a href="#payment"><i class="fa fa-inr"></i>Payments <span class="label label-success pull-right">New</span></a>
@@ -189,9 +193,9 @@ z-index: -90;
                   </li>
                
                 </ul>
-               <div style="background-color: red;height: 3px;"></div>
+               <!-- <div style="background-color: red;height: 3px;"></div> -->
 
-                <ul class="nav side-menu" style="margin-top: 16px">
+             <!--    <ul class="nav side-menu" style="margin-top: 16px">
                 <li><h2 style="color: white;text-align: center;font-size:16.5px">Important Links</h2></li>
                 <li>
                           <a href="/" target="_blank">Technex '17 | Home</a>
@@ -211,7 +215,7 @@ z-index: -90;
                         </li>
 
                
-                </ul>
+                </ul> -->
               </div>
             </div>
 
@@ -225,8 +229,17 @@ z-index: -90;
               <div class="nav toggle">
                 <a id="menu_toggle" style="color: black"><i class="fa fa-bars"></i></a>
               </div>
+              <ul class="nav navbar-nav navbar-left imp-links" style="width: 67%;">
+                
+                <li><a href="/events">EVENTS</a></li>
+                <li><a href="/talks">THINK TALKS</a></li>
+                <li><a href="/workshops">WORKSHOPS</a></li>
+                <li><a href="/hospitality">HOSPITALITY</a></li>
 
-              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/"></a></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right" style="width: 25%;">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"  id="chhota_user">
                     <img src={% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %} alt=""><span class=" fa fa-angle-down"></span>
