@@ -406,3 +406,5 @@ class chutiyapa(models.Model):
 
 class Notifications(models.Model):
     token = models.TextField()
+    def __unicode__(self):
+        return self.token
