@@ -13,6 +13,7 @@ year_choices = [
         (3, 'Third'),
         (4, 'Fourth'),
         (5,'Fifth'),
+        (6, 'Passout(Only for Startup Fair)'),
     ]
 
 def get_user_image_folder(instance, filename):
