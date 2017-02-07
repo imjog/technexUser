@@ -14,7 +14,6 @@ gunicorn==19.6.0
 mechanize==0.2.5
 oauthlib==1.1.2
 Pillow==3.3.0
-pkg-resources==0.0.0
 psycopg2==2.6.2
 python-http-client==1.2.3
 python-openid==2.2.5
