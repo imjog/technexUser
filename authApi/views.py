@@ -623,3 +623,4 @@ def notificationToken(request):
     else:
         response['status'] = 0
         return JsonResponse(response)
+
