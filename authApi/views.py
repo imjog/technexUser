@@ -643,3 +643,19 @@ def assignPins():
                     break
     else:
         print "Process Cancelled"
+
+def fixPins():
+    from django.db.models import Count
+    e = TechProfile.objects.values("pin").annotate(Count('id')).order_by().filter(id__count__gt=1)
+    print e.count()
+    for r in e:
+        fogas = TechProfile.objects.filter(pin=r['pin'])
+        pins  = TechProfile.objects.all().values_list('pin')
+        for gogas in fogas[1:len(fogas)]:
+            stringR = get_random_string(3,allowed_chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+            if stringR in pins:
+                pass
+            else:
+                print stringR
+                gogas.pin = stringR
+                gogas.save()
