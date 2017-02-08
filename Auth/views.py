@@ -31,7 +31,8 @@ import urllib
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-
+import base64
+from io import BytesIO
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -2484,7 +2485,7 @@ def watermark(request):
         overlay = Image.open(file2)
         width = background.getbbox()[2]
         height = background.getbbox()[3]
-        graph = facebook.GraphAPI(access_token = accessToken, version= '2.2')
+        
         overlay = overlay.resize((width,height))
         background.paste(overlay,(0,0),overlay)
 
@@ -2495,11 +2496,34 @@ def watermark(request):
           api_secret = "2bSWYpE5HUFHjImNyZkuCeepvYE"
         )
         x = cloudinary.uploader.upload(id_+".png")
-        tags = [{"tag_uid": "225615937462895", "x": 0, "y": 0}]
-        graph.put_photo(image=open(id_+".png", 'rb'), album_path="me/photos", message='#stayTechnexed', **{'tags[0]': tags})
+        
         os.remove(id_+".png")
         response['status'] = 1
+        response['url'] = x['secure_url']
+        response['width'] = width
+        response['height'] = height
+        response['accessToken'] = accessToken
         return JsonResponse(response)
+
+@csrf_exempt
+def finalImage(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        graph = facebook.GraphAPI(access_token = post['accessToken'], version= '2.2')
+        fh = open(post['accessToken']+".png", "wb")
+        fh.write(post['base64'].decode('base64'))
+        fh.close()
+        tags = [{"tag_uid": "225615937462895", "x": 0, "y": 0}]
+        graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='#StayTechnexed', **{'tags[0]': tags})
+        os.remove(post['accessToken']+".png")
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return JsonResponse(response)
+
+
 def stayTechnexed(request):
     return render(request,'stayTechnexed.html')
 
