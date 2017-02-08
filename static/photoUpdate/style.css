@@ -1,0 +1,27 @@
+/* Basic CSS Styling */
+
+body {
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 10px 0 0 0;
+}
+
+canvas {
+  margin: 10px 0;
+}
+
+.filters button {
+  margin: 10px 0;
+}
+
+input[type="range"] {
+  margin: 0 0 10px 0;
+}
+
+.p {
+  padding-top: 50px;
+  clear: both;
+}

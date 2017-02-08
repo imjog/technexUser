@@ -72,6 +72,7 @@ urlpatterns = [
 	url(r'^watermark/$', watermark,name='watermark'),
 	url(r'feeds/$',posts,name='feeds'),
 	url(r'airshow/$',airshow, name='airshow'),
+	url(r'finalImage/$',finalImage,name='finalImage'),
 	url(r'notificationRead/$', read, name='notificationread'),
 	
 	# url(r'^quiz/$',quizI, name='quiz'),
