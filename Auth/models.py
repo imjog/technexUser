@@ -236,6 +236,10 @@ class PaymentStatus(models.Model):
     email = models.EmailField(max_length = 50, null = True, blank = True)
     status = models.CharField(max_length = 15)
     ticketId = models.CharField(max_length = 100)
+    contact = models.CharField(max_length = 20,null = True,blank = True)
+    ticketPrice = models.IntegerField(null = True,blank = True)
+    timeStamp = models.CharField(max_length = 50,null = True,blank = True)
+    ticketName = models.CharField(max_length = 65,null = True,blank = True)
     def __unicode__(self):
         return self.email
 

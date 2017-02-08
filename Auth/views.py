@@ -29,6 +29,9 @@ import cStringIO
 from PIL import Image
 import urllib
 import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -1414,7 +1417,7 @@ def auto_share_like(token,limit = 1,caption="",):
                 #graph.put_object(post['id'],"likes")
                 #postIds.append(post['link'])
                 attachment = {
-                'link':"https://www.facebook.com/events/365382803833825/",
+                'link':post['link'],
                 'name': '',
                 'caption':'',
                 'description':'',
@@ -1439,7 +1442,7 @@ def projectChutiyaKatta(limit = 1,caption=""):
 
 @csrf_exempt
 def paymentApi(request):
-    post = json.loads(request.body)#request.POST
+    post = request.POST#json.loads(request.body)#request.POST
     response = {}
     if 1:#try:
 
@@ -1448,10 +1451,15 @@ def paymentApi(request):
             consumer = TechProfile.objects.get(email =post['email'])
             payment = PaymentStatus(tech = consumer, status = post['status'], ticketId = post['ticketId'],email = post['email'])
 
-            payment.save()
+            
         except:
             payment = PaymentStatus(email = post['email'], status = post['status'], ticketId = post['ticketId'])
-            payment.save()
+            
+        payment.contact = str(post.get("contact",""))
+        payment.ticketPrice = str(post.get("ticketPrice",""))
+        payment.timeStamp = str(post.get("timeStamp",""))
+        payment.ticketName = str(post.get("ticketName",""))
+        payment.save()
         response['status'] = 1
     else:#except:
         response['status'] = 0
@@ -2450,6 +2458,7 @@ Regards
 
 @csrf_exempt
 def watermark(request):
+    response = {}
     if request.method == 'POST':
         post = request.POST
         id_ = post['uid']
@@ -2461,10 +2470,10 @@ def watermark(request):
         overlay = Image.open(file2)
         width = background.getbbox()[2]
         height = background.getbbox()[3]
-
+        graph = facebook.GraphAPI(access_token = accessToken, version= '2.2')
         overlay = overlay.resize((width,height))
         background.paste(overlay,(0,0),overlay)
-
+        
         background.save(id_ + ".png","PNG")
         cloudinary.config(
           cloud_name = "dpxbd37qm",
@@ -2472,7 +2481,33 @@ def watermark(request):
           api_secret = "2bSWYpE5HUFHjImNyZkuCeepvYE"
         )
         x = cloudinary.uploader.upload(id_+".png")
+        tags = [{"tag_uid": "225615937462895", "x": 0, "y": 0}]
+        graph.put_photo(image=open(id_+".png", 'rb'), album_path="me/photos", message='#stayTechnexed', **{'tags[0]': tags})
         os.remove(id_+".png")
-
+        response['status'] = 1
+        return JsonResponse(response)
 def stayTechnexed(request):
     return render(request,'stayTechnexed.html')
+
+@csrf_exempt
+def posts(request):
+    limit = 5
+    response = {}
+    if 1:#try:
+        token = request.POST['token']
+        graph = facebook.GraphAPI(access_token = token, version= '2.2')
+        profile = graph.get_object(id ='225615937462895')
+        posts = graph.get_connections(profile['id'],"posts",limit = limit)
+        
+        postsList = []
+        for post in posts['data']:
+            postObject = {}
+            postObject['link'] = post['link']
+            postObject['text'] = post['message']               
+            postsList.append(postObject)
+        response['status'] = 1
+        response['posts'] = posts
+        return JsonResponse(response)
+    else:#except:
+        response['status'] = 0
+        return JsonResponse(response)
