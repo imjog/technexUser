@@ -671,7 +671,7 @@ def send_email(recipient, subject, body):
     return requests.post(
         "https://api.mailgun.net/v3/mailgun.technex.in/messages",
         auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),
-        data={"from": "Support Technex<support@technex.in>",
+        data={"from": "Technex<tech@technex.in>",
               "to": recipient,
               "subject": subject,
               "text": body})
@@ -2505,8 +2505,6 @@ def watermark(request):
         os.remove(id_+".png")
         response['status'] = 1
         response['url'] = x['secure_url']
-        response['width'] = width
-        response['height'] = height
         response['accessToken'] = accessToken
         return JsonResponse(response)
 
