@@ -670,8 +670,8 @@ def error500(request):
 def send_email(recipient, subject, body):
 
     return requests.post(
-        "https://api.mailgun.net/v3/mailgun2.technex.in/messages",
-        auth=("api", "key-c44b3156a4a09ba7d2e5e6c44df757e8"),
+        "https://api.mailgun.net/v3/mailgun.technex.in/messages",
+        auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),
         data={"from": "Support Technex<support@technex.in>",
               "to": recipient,
               "subject": subject,
@@ -776,37 +776,50 @@ def startupFair(request):
 
 def hospitality(request):
     return render(request, 'hospitality.html', {})
+def airshow(request):
+    return render(request, 'airshow.html',{})
 
-'''
+@csrf_exempt
 def read(request):
     response = {}
     if request.method == 'POST':
-        readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile,status = True)
-        for status in readerStatus:
-            status.status = False
-            status.save()
+        try:
+            readerStatus = ReaderStatus.objects.get(reader = request.user.techprofile, notification__notificationId = post['notificationId'])
+        except:
+            readerStatus = ReaderStatus(reader = request.user.techprofile, notification__notificationId = post['notificationId'])
+            readerStatus.save()
         response['status'] = 1
         return JsonResponse(response)
     else:
         response['status'] = 0
-        response['error'] = 'Invalid Request!!'
         return JsonResponse(response)
 
+@csrf_exempt
 def notificationData(request):
-    readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile)[:5]
-
+    notifications = Notification.objects.all()
+    notificationWrapper = {}
     notificationArray = []
-    for notification in readerStatus:
+    count = 0
+    for notification in notifications:
         notificationObject = {}
         notificationObject['title'] = notification.notification.title
         notificationObject['notificationId'] = notification.notification.notificationId
         notificationObject['description'] = notification.notification.description
-        notificationObject['deadLine'] = notification.notification.time
+        notificationObject['time'] = notification.notification.time
         notificationObject['photo'] = notification.notification.photo
-        notificationObject['status'] = notification.status
+        try:
+            ReaderStatus.objects.get(notification = notification,reader = request.user.techprofile)
+            status = 1
+        except:
+            count = count + 1
+            status = 0
+        notificationObject['status'] = status
         notificationArray.append(notificationObject)
-    return notificationArray
-'''
+    notificationWrapper['unread'] = count
+    notificationWrapper['notifications'] = notificationArray
+    return notificationWrapper
+
+
 @csrf_exempt
 @login_required(login_url='/register')
 def startUpRegistration(request):
@@ -1452,10 +1465,10 @@ def paymentApi(request):
             consumer = TechProfile.objects.get(email =post['email'])
             payment = PaymentStatusa(tech = consumer, status = post['status'], ticketId = post['ticketId'],email = post['email'])
 
-            
+
         except:
             payment = PaymentStatusa(email = post['email'], status = post['status'], ticketId = post['ticketId'])
-            
+
         payment.contact = str(post.get("contact",""))
         payment.ticketPrice = str(post.get("ticketPrice",""))
         payment.timeStamp = str(post.get("timeStamp",""))
@@ -1558,10 +1571,10 @@ def corporateConclave(request):
     print request
     return render(request,'corporateConclave.html')
 
-    
+
 def test(request):
     response = {}
-    try: 
+    try:
         user = request.user
         techprofile = user.techprofile
         response['name'] = techprofile.user.first_name
@@ -1570,7 +1583,7 @@ def test(request):
     except:
         response['name'] = ""
         response['email'] = ""
-        response['phone'] = ""  
+        response['phone'] = ""
 
 
     return render(request,'intellecx.html', {'response': response})
@@ -1803,7 +1816,7 @@ def quizRegister2(request):
                 quizteam.name2 = data.get('name2')
         quizteam.save()
         quizteam.quizTeamId = "INX" + str(1000+quizteam.teamId)
-        
+
         subject = "INTELLECX | FINAL SLOT @10PM TODAY"
         body = '''
 Hello,
@@ -1813,7 +1826,7 @@ The time has come to test your aptitude skills in one of the highly celebrated n
 
 %s
 
-This is the link to the final slot of INTELLECX online round. Don't share the link. Visit this link at the slot timing to get redirected to the test page. 
+This is the link to the final slot of INTELLECX online round. Don't share the link. Visit this link at the slot timing to get redirected to the test page.
 Timing of the final slot : Today, 10:00 - 10:40 pm.
 
 Following are the general rules of the online round :
@@ -1830,7 +1843,7 @@ Regards,
 Team Technex
             '''
         memberEmails = data.get('member2Email',None)
-        key = str(hash("technex"+str(quizteam.teamId)+"livelong" + str(quizteam.member1Email)))  
+        key = str(hash("technex"+str(quizteam.teamId)+"livelong" + str(quizteam.member1Email)))
         quizteam.key = key
         quizteam.save()
         #for user in users:
@@ -1842,8 +1855,8 @@ Team Technex
         quiz_spreadsheetfill(quizteam)
         return render(request,'intellecx.html',{"success":1})
     else:
-        
-        try: 
+
+        try:
             user = request.user
             techprofile = user.techprofile
             response['name'] = techprofile.user.first_name
@@ -1859,7 +1872,7 @@ def quiz_spreadsheetfill(team):
     # members = team.members.all()
     dic = {
     "quizTeamId" : team.quizTeamId
-    
+
     }
 
     dic['member1Name'] = team.name1.encode("utf-8")
@@ -2228,7 +2241,7 @@ def finishQuiz(request,responseKey):
 @csrf_exempt
 def quizPlay(request,quizKey):
     # return HttpResponse("Quiz Postponed for tommorrow due to overload on server, new quiz links will be sent soon. Stay tuned on https://www.facebook.com/events/365382803833825/ for further information.")
-  
+
     response = {}
     if request.method == 'GET':
         if 1:#try#kkfkfk:
@@ -2271,7 +2284,7 @@ def quizPlay(request,quizKey):
                 QuizResponse.save()
                 for Question in Questions:
                         QuizResponse.questions.add(Question)
-            
+
                 #return JsonResponse(response)
                 #return render(request,'startquiz.html',{'response':"Quiz Responses have been submitted by the user"})
                 # return JsonResponse(response)
@@ -2360,7 +2373,7 @@ def shift():
     counter=0;
     for team in teams:
         counter = counter +1
-        quizteama = quizTeam2(quiz = quizd,quizTeamId = 'ABS'+str(1000+counter),member1Email = team.teamLeader.email,member1Phone=team.teamLeader.mobileNumber,name1=team.teamLeader.user.first_name)      
+        quizteama = quizTeam2(quiz = quizd,quizTeamId = 'ABS'+str(1000+counter),member1Email = team.teamLeader.email,member1Phone=team.teamLeader.mobileNumber,name1=team.teamLeader.user.first_name)
         try:
             quizteama.member2Email = team.members.all()[0].email
             quizteama.member2Phone = team.members.all()[0].mobileNumber
@@ -2368,7 +2381,7 @@ def shift():
         except:
             print "###############################"
         quizteama.save()
-        
+
 @csrf_exempt
 @login_required(login_url='/register/')
 def quizRegister(request):
@@ -2474,7 +2487,7 @@ def watermark(request):
         graph = facebook.GraphAPI(access_token = accessToken, version= '2.2')
         overlay = overlay.resize((width,height))
         background.paste(overlay,(0,0),overlay)
-        
+
         background.save(id_ + ".png","PNG")
         cloudinary.config(
           cloud_name = "dpxbd37qm",
@@ -2499,12 +2512,12 @@ def posts(request):
         graph = facebook.GraphAPI(access_token = token, version= '2.2')
         profile = graph.get_object(id ='225615937462895')
         posts = graph.get_connections(profile['id'],"posts",limit = limit)
-        
+
         postsList = []
         for post in posts['data']:
             postObject = {}
             postObject['link'] = post['link']
-            postObject['text'] = post['message']               
+            postObject['text'] = post['message']
             postsList.append(postObject)
         response['status'] = 1
         response['posts'] = posts
@@ -2525,29 +2538,21 @@ def krackatwork():
         eventteams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile))
         for eventteam in eventteams:
             part += str(eventteam.event.eventName.encode("utf-8")) + ","
-        workshopteams = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()     
+        workshopteams = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
         for workshopteam in workshopteams:
             part += str(workshopteam.workshop.title.encode("utf-8")) + ","
         startupteams = StartUpFair.objects.filter(teamLeader = techprofile)
         for startupteam in startupteams:
             part += "startupfair,"
-        if str(techprofile.college.collegeWebsite) != "190" :            
+        if str(techprofile.college.collegeWebsite) != "190" :
             url = sheetUrls["krackatdata"]
             dic = {}
             dic = {
             "name" : techprofile.user.first_name,
             "technexId" : techprofile.technexId,
-            "college" : techprofile.college.collegeName, 
+            "college" : techprofile.college.collegeName,
             "mobileNumber" : techprofile.mobileNumber,
             "events" : part
             }
             print dic
             requests.post(url,data=dic)
-
-
-
-
-
-
-
-            
