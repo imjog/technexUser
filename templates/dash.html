@@ -62,6 +62,17 @@
     {
       display: none;
     }
+    .non-imp
+    {
+      width: 75%;
+    }
+  }
+   @media (min-width: 919px)
+  {
+    .non-imp
+    {
+      width: 25%;
+    }
   }
 
   </style>
@@ -231,7 +242,7 @@ z-index: -90;
               <div class="nav toggle">
                 <a id="menu_toggle" style="color: black"><i class="fa fa-bars"></i></a>
               </div>
-              <ul class="nav navbar-nav navbar-left imp-links" style="width: 67%;">
+              <ul class="nav navbar-nav navbar-left imp-links">
                 
                 <li><a href="/events">EVENTS</a></li>
                 <li><a href="/talks">THINK TALKS</a></li>
@@ -241,7 +252,7 @@ z-index: -90;
                 <li><a href="/"></a></li>
               </ul>
 
-              <ul class="nav navbar-nav navbar-right" style="width: 25%;">
+              <ul class="non-imp nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"  id="chhota_user">
                     <img src={% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %} alt=""><span class=" fa fa-angle-down"></span>
@@ -256,27 +267,46 @@ z-index: -90;
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">1</span>
+                    <span class="badge bg-green notification-count">{{notifications.unread}}</span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                  {% for notification in notifications.notifications %}
                     <li onclick="new PNotify({
-                                  title: 'Regular Success',
-                                  text: 'That thing that you were trying to do worked!',
-                                  type: 'success',
+                                  title: '{{notification.title}}',
+                                  text: '{{notification.description}}',
+                                  type: 'info',
                                   styling: 'bootstrap3'
-                              }); 
-                              console.log($(this).remove());">
+                              });
+                            url = '/notificationRead/'
+                          $.ajax({
+                            type : 'POST',
+                            url : url,
+                            data: {
+                            'notificationId' : '{{notification.notificationId}}',
+                            },
+                            success: function(data)
+                            {
+                              if(data.status == 1)
+                              {
+                                $('.notification-count').html(data.unread);
+                              }
+                            }
+                          })
+
+
+                              ">
                       <a>
-                        <span class="image"><img src="/static/favicon.ico" alt="Profile Image" /></span>
+                        <span class="image"><img src="{{notification.photo}}" alt="Profile Image" /></span>
                         <span>
-                          <span>Team Technex</span>
-                          <span class="time">3 mins ago</span>
+                          <span>{{notification.title}}</span>
+                          <span class="time">{{notification.time}}</span>
                         </span>
                         <span class="message">
-                          Thank you for registering for Technex'17 
+                          {{notification.description}}
                         </span>
                       </a>
                     </li>
+                    {% endfor %}
                   </ul>
                 </li>
               </ul>

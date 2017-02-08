@@ -195,9 +195,9 @@ class TeamMembers(models.Model):
 class Notification(models.Model):
     notificationId = models.AutoField(primary_key = True)
     title = models.CharField(max_length = 20)
-    description = RichTextField()
+    description = models.TextField(blank = True)
     time = models.DateTimeField(auto_now = True)
-    photo = models.TextField(validators=[URLValidator()],blank=True)
+    photo = models.TextField(blank=True)
 
 class ReaderStatus(models.Model):
     reader = models.ForeignKey(TechProfile)
