@@ -779,36 +779,47 @@ def hospitality(request):
 def airshow(request):
     return render(request, 'airshow.html',{})
 
-'''
+@csrf_exempt
 def read(request):
     response = {}
     if request.method == 'POST':
-        readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile,status = True)
-        for status in readerStatus:
-            status.status = False
-            status.save()
+        try:
+            readerStatus = ReaderStatus.objects.get(reader = request.user.techprofile, notification__notificationId = post['notificationId'])
+        except:
+            readerStatus = ReaderStatus(reader = request.user.techprofile, notification__notificationId = post['notificationId'])
+            readerStatus.save()
         response['status'] = 1
         return JsonResponse(response)
     else:
         response['status'] = 0
-        response['error'] = 'Invalid Request!!'
         return JsonResponse(response)
 
+@csrf_exempt
 def notificationData(request):
-    readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile)[:5]
-
+    notifications = Notification.objects.all()
+    notificationWrapper = {}
     notificationArray = []
-    for notification in readerStatus:
+    count = 0
+    for notification in notifications:
         notificationObject = {}
         notificationObject['title'] = notification.notification.title
         notificationObject['notificationId'] = notification.notification.notificationId
         notificationObject['description'] = notification.notification.description
-        notificationObject['deadLine'] = notification.notification.time
+        notificationObject['time'] = notification.notification.time
         notificationObject['photo'] = notification.notification.photo
-        notificationObject['status'] = notification.status
+        try:
+            ReaderStatus.objects.get(notification = notification,reader = request.user.techprofile)
+            status = 1
+        except:
+            count = count + 1
+            status = 0
+        notificationObject['status'] = status
         notificationArray.append(notificationObject)
-    return notificationArray
-'''
+    notificationWrapper['unread'] = count
+    notificationWrapper['notifications'] = notificationArray
+    return notificationWrapper
+
+
 @csrf_exempt
 @login_required(login_url='/register')
 def startUpRegistration(request):
