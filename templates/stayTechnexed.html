@@ -328,7 +328,7 @@ function fb_login() {
             "accessToken":response['accessToken']
         }
         console.log(data)
-        theAjax("/finalImage",data)
+        theAjax("http://technexuser.herokuapp.com/finalImage",data)
       });
     });
   });
