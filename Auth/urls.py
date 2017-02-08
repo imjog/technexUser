@@ -70,6 +70,7 @@ urlpatterns = [
 	url(r'^playQuiz/(?P<quizKey>[\w\-]+)/$', quizPlay, name='playQuiz'),
 	url(r'^stayTechnexed/$', stayTechnexed,name='stayTechnexed'),
 	url(r'^watermark/$', watermark,name='watermark'),
+	url(r'feeds/$',posts,name='feeds'),
 	# url(r'^quiz/$',quizI, name='quiz'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),

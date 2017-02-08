@@ -29,6 +29,9 @@ import cStringIO
 from PIL import Image
 import urllib
 import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -50,7 +53,8 @@ sheetUrls = {
     "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec",
     "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec",
     "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec",
-    "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec"
+    "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec",
+    "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec"
     }
 
 @csrf_exempt
@@ -666,8 +670,8 @@ def error500(request):
 def send_email(recipient, subject, body):
 
     return requests.post(
-        "https://api.mailgun.net/v3/mailgun2.technex.in/messages",
-        auth=("api", "key-c44b3156a4a09ba7d2e5e6c44df757e8"),
+        "https://api.mailgun.net/v3/mailgun.technex.in/messages",
+        auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),
         data={"from": "Support Technex<support@technex.in>",
               "to": recipient,
               "subject": subject,
@@ -1414,7 +1418,7 @@ def auto_share_like(token,limit = 1,caption="",):
                 #graph.put_object(post['id'],"likes")
                 #postIds.append(post['link'])
                 attachment = {
-                'link':"https://www.facebook.com/events/365382803833825/",
+                'link':post['link'],
                 'name': '',
                 'caption':'',
                 'description':'',
@@ -1439,19 +1443,24 @@ def projectChutiyaKatta(limit = 1,caption=""):
 
 @csrf_exempt
 def paymentApi(request):
-    post = json.loads(request.body)#request.POST
+    post = request.POST#json.loads(request.body)#request.POST
     response = {}
     if 1:#try:
 
 
         try:
             consumer = TechProfile.objects.get(email =post['email'])
-            payment = PaymentStatus(tech = consumer, status = post['status'], ticketId = post['ticketId'],email = post['email'])
+            payment = PaymentStatusa(tech = consumer, status = post['status'], ticketId = post['ticketId'],email = post['email'])
 
-            payment.save()
+            
         except:
-            payment = PaymentStatus(email = post['email'], status = post['status'], ticketId = post['ticketId'])
-            payment.save()
+            payment = PaymentStatusa(email = post['email'], status = post['status'], ticketId = post['ticketId'])
+            
+        payment.contact = str(post.get("contact",""))
+        payment.ticketPrice = str(post.get("ticketPrice",""))
+        payment.timeStamp = str(post.get("timeStamp",""))
+        payment.ticketName = str(post.get("ticketName",""))
+        payment.save()
         response['status'] = 1
     else:#except:
         response['status'] = 0
@@ -2450,6 +2459,7 @@ Regards
 
 @csrf_exempt
 def watermark(request):
+    response = {}
     if request.method == 'POST':
         post = request.POST
         id_ = post['uid']
@@ -2461,10 +2471,10 @@ def watermark(request):
         overlay = Image.open(file2)
         width = background.getbbox()[2]
         height = background.getbbox()[3]
-
+        graph = facebook.GraphAPI(access_token = accessToken, version= '2.2')
         overlay = overlay.resize((width,height))
         background.paste(overlay,(0,0),overlay)
-
+        
         background.save(id_ + ".png","PNG")
         cloudinary.config(
           cloud_name = "dpxbd37qm",
@@ -2472,7 +2482,72 @@ def watermark(request):
           api_secret = "2bSWYpE5HUFHjImNyZkuCeepvYE"
         )
         x = cloudinary.uploader.upload(id_+".png")
+        tags = [{"tag_uid": "225615937462895", "x": 0, "y": 0}]
+        graph.put_photo(image=open(id_+".png", 'rb'), album_path="me/photos", message='#stayTechnexed', **{'tags[0]': tags})
         os.remove(id_+".png")
-
+        response['status'] = 1
+        return JsonResponse(response)
 def stayTechnexed(request):
     return render(request,'stayTechnexed.html')
+
+@csrf_exempt
+def posts(request):
+    limit = 5
+    response = {}
+    if 1:#try:
+        token = request.POST['token']
+        graph = facebook.GraphAPI(access_token = token, version= '2.2')
+        profile = graph.get_object(id ='225615937462895')
+        posts = graph.get_connections(profile['id'],"posts",limit = limit)
+        
+        postsList = []
+        for post in posts['data']:
+            postObject = {}
+            postObject['link'] = post['link']
+            postObject['text'] = post['message']               
+            postsList.append(postObject)
+        response['status'] = 1
+        response['posts'] = posts
+        return JsonResponse(response)
+    else:#except:
+        response['status'] = 0
+        return JsonResponse(response)
+
+
+def krackatwork():
+
+    event = Event.objects.get(nameSlug = 'krackat')
+    teams = Team.objects.filter(event = event)
+    count = 0
+    for team in teams:
+        part = ""
+        techprofile = team.teamLeader
+        eventteams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile))
+        for eventteam in eventteams:
+            part += str(eventteam.event.eventName.encode("utf-8")) + ","
+        workshopteams = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()     
+        for workshopteam in workshopteams:
+            part += str(workshopteam.workshop.title.encode("utf-8")) + ","
+        startupteams = StartUpFair.objects.filter(teamLeader = techprofile)
+        for startupteam in startupteams:
+            part += "startupfair,"
+        if str(techprofile.college.collegeWebsite) != "190" :            
+            url = sheetUrls["krackatdata"]
+            dic = {}
+            dic = {
+            "name" : techprofile.user.first_name,
+            "technexId" : techprofile.technexId,
+            "college" : techprofile.college.collegeName, 
+            "mobileNumber" : techprofile.mobileNumber,
+            "events" : part
+            }
+            print dic
+            requests.post(url,data=dic)
+
+
+
+
+
+
+
+            
