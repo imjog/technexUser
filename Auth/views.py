@@ -605,6 +605,8 @@ def event(request, key):
         response['order'] = parentEvent.order
         response['slug'] = parentEvent.nameSlug
         response['sponimage']=parentEvent.sponimage
+        response['assosponimage']=parentEvent.assosponimage
+        response['assosponlink']= parentEvent.assosponlink
         response['sponlink']=parentEvent.sponlink
         print parentEvent.sponimage
         response['events'] = []

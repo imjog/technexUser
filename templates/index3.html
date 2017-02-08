@@ -109,8 +109,12 @@ function navFunction() {
 					</div>
 			</div>
             <div class="event-dis">
-           <a target="_blank"><img style="max-height: 70px; max-width: 70px"/></a>
-            <h2 style="display: none;margin:1px;font-weight:100;letter-spacing:1px;">presents</h2>
+           <a target="_blank" class="titlespon" style="display: none;"><img style="max-height: 70px" class="titlesponimg"/></a>
+            <h2 style="display: none;margin:1px;font-weight:100;letter-spacing:1px;" class="association">in association with</h2>
+            <a target="_blank" class="assospon" style="display: none;"><img style="max-height: 70px" class="assosponimg">
+            </a>
+            <h2 style="display: none;margin: 1px;font-weight: 100;letter-spacing: 1px;" class="presents">presents</h2>
+            
                 <h1></h1>
                 <h3>                </h3>
                 <hr>
@@ -220,18 +224,32 @@ $("nav a").each(function() {
   {
     $(".event-dis h1").html(data.name);
     $(".event-dis h3").html(data.description);
-    $(".event-dis a img").hide();
-    $(".event-dis a").hide();
-    $(".event-dis h2").hide();
   }
   else
   {
-     $(".event-dis a img").attr("src",data.sponimage);
+     $(".titlesponimg").attr("src",data.sponimage);
     $(".event-dis h1").html(data.name);
     $(".event-dis h3").html(data.description);
-    $(".event-dis h2").show();
-    $(".event-dis a").attr("href",data.sponlink);
+    // $(".event-dis h2").show();
+    $(".titlespon").attr("href",data.sponlink);
+    $(".titlespon").css("display","block");
+    $(".presents").css("display","block");
+
   }
+  if(data.assosponimage == "" || data.assosponimage == null)
+  {
+    $(".association").css("display","none");
+    $(".assospon").css("display","none");
+    $(".assosponimg").css("display","none");
+  }
+  else
+  {
+    $(".association").css("display","block");
+    $(".assospon").attr("href", data.assosponlink);
+    $(".assospon").css("display","block");
+    $(".assosponimg").attr("src" , data.assosponimage);
+  }
+
   out="";
   for(i=0;i<data.events.length;i++)
   {

@@ -64,6 +64,8 @@ class ParentEvent(models.Model):
     order = models.SmallIntegerField(default = 0)
     sponimage=models.TextField(blank=True,null=True)
     sponlink=models.TextField(validators=[URLValidator()],blank=True,null = True)
+    assosponimage=models.TextField(blank=True,null=True)
+    assosponlink=models.TextField(validators=[URLValidator()],blank=True,null = True)    
     nameSlug = models.SlugField(null = True)
     def __unicode__(self):
         return self.categoryName
