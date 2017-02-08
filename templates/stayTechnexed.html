@@ -327,6 +327,7 @@ function fb_login() {
             "height":response['height'],
             "accessToken":response['accessToken']
         }
+        console.log(data)
         theAjax("/finalImage",data)
       });
     });
