@@ -53,7 +53,8 @@ sheetUrls = {
     "industrial-automation-plc-scada" : "https://script.google.com/macros/s/AKfycbxRDIbRTg4Y9lSoPnuorqv0Q3GujmdBR-j50vyYuVlg3BMjtog/exec",
     "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec",
     "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec",
-    "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec"
+    "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec",
+    "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec"
     }
 
 @csrf_exempt
@@ -2511,3 +2512,42 @@ def posts(request):
     else:#except:
         response['status'] = 0
         return JsonResponse(response)
+
+
+def krackatwork():
+
+    event = Event.objects.get(nameSlug = 'krackat')
+    teams = Team.objects.filter(event = event)
+    count = 0
+    for team in teams:
+        part = ""
+        techprofile = team.teamLeader
+        eventteams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile))
+        for eventteam in eventteams:
+            part += str(eventteam.event.eventName.encode("utf-8")) + ","
+        workshopteams = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()     
+        for workshopteam in workshopteams:
+            part += str(workshopteam.workshop.title.encode("utf-8")) + ","
+        startupteams = StartUpFair.objects.filter(teamLeader = techprofile)
+        for startupteam in startupteams:
+            part += "startupfair,"
+        if str(techprofile.college.collegeWebsite) != "190" :            
+            url = sheetUrls["krackatdata"]
+            dic = {}
+            dic = {
+            "name" : techprofile.user.first_name,
+            "technexId" : techprofile.technexId,
+            "college" : techprofile.college.collegeName, 
+            "mobileNumber" : techprofile.mobileNumber,
+            "events" : part
+            }
+            print dic
+            requests.post(url,data=dic)
+
+
+
+
+
+
+
+            
