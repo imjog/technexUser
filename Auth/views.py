@@ -2511,3 +2511,42 @@ def posts(request):
     else:#except:
         response['status'] = 0
         return JsonResponse(response)
+
+
+def krackatwork():
+
+    event = Events.objects.get(eventSlug = 'krackat')
+    teams = Team.objects.filter(event = event)
+    count = 0
+    for team in teams:
+        part = ""
+        techprofile = team.teamLeader
+        eventteams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile))
+        for eventteam in eventteams:
+            part += str(eventteam.event.eventName) + ","
+        workshopteams = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()     
+        for workshopteam in workshopteams:
+            part += str(workshopteam.workshop.title) + ","
+        startupteams = StartUpFair.objects.filter(teamLeader = techprofile)
+        for startupteam in startupteams:
+            part += "startupfair,"
+        if str(techprofile.college.collegeWebsite) != "190" :            
+            url = sheetUrls["krackatdata"]
+            dic = {}
+            dic = {
+            "name" : techprofile.user.first_name,
+            "technexId" : techprofile.technexId,
+            "college" : techprofile.collegeName, 
+            "mobileNumber" : techprofile.mobileNumber,
+            "events" : part
+            }
+            print dic
+            requests.post(url,data=dic)
+
+
+
+
+
+
+
+            
