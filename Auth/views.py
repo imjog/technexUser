@@ -1449,11 +1449,11 @@ def paymentApi(request):
 
         try:
             consumer = TechProfile.objects.get(email =post['email'])
-            payment = PaymentStatus(tech = consumer, status = post['status'], ticketId = post['ticketId'],email = post['email'])
+            payment = PaymentStatusa(tech = consumer, status = post['status'], ticketId = post['ticketId'],email = post['email'])
 
             
         except:
-            payment = PaymentStatus(email = post['email'], status = post['status'], ticketId = post['ticketId'])
+            payment = PaymentStatusa(email = post['email'], status = post['status'], ticketId = post['ticketId'])
             
         payment.contact = str(post.get("contact",""))
         payment.ticketPrice = str(post.get("ticketPrice",""))
