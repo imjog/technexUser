@@ -183,7 +183,7 @@ def contextCall(request):
 
         print teamsData
 
-        #response['notificationArray'] = notificationData(request)
+        # response['notificationArray'] = notificationData(request)
         try:
             workshops = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
             workshopsData = []
@@ -248,16 +248,12 @@ def contextCall(request):
                 teamdata['memberUrls'] = teamMemberUrl
                 print teamdata
                 teamsData.append(teamdata)
+
             response['teams'] = teamsData
         except:
             pass
-
-
-
-
-
-
-
+        response['notifications'] =  notificationData(request)
+        print response
     except:
         pass
     return response
@@ -610,6 +606,8 @@ def event(request, key):
         response['order'] = parentEvent.order
         response['slug'] = parentEvent.nameSlug
         response['sponimage']=parentEvent.sponimage
+        response['assosponimage']=parentEvent.assosponimage
+        response['assosponlink']= parentEvent.assosponlink
         response['sponlink']=parentEvent.sponlink
         print parentEvent.sponimage
         response['events'] = []
@@ -784,12 +782,16 @@ def airshow(request):
 def read(request):
     response = {}
     if request.method == 'POST':
+        post = request.POST
         try:
             readerStatus = ReaderStatus.objects.get(reader = request.user.techprofile, notification__notificationId = post['notificationId'])
         except:
-            readerStatus = ReaderStatus(reader = request.user.techprofile, notification__notificationId = post['notificationId'])
+            notificationR = Notification.objects.get(notificationId = post['notificationId'])
+            readerStatus = ReaderStatus(reader = request.user.techprofile, notification = notificationR)
             readerStatus.save()
         response['status'] = 1
+
+        response['unread'] = Notification.objects.all().count() - ReaderStatus.objects.filter(reader = request.user.techprofile).count()  
         return JsonResponse(response)
     else:
         response['status'] = 0
@@ -803,17 +805,20 @@ def notificationData(request):
     count = 0
     for notification in notifications:
         notificationObject = {}
-        notificationObject['title'] = notification.notification.title
-        notificationObject['notificationId'] = notification.notification.notificationId
-        notificationObject['description'] = notification.notification.description
-        notificationObject['time'] = notification.notification.time
-        notificationObject['photo'] = notification.notification.photo
+
+        notificationObject['title'] = notification.title
+        notificationObject['notificationId'] = notification.notificationId
+        notificationObject['description'] = notification.description
+        notificationObject['time'] = notification.time
+        notificationObject['photo'] = notification.photo
         try:
+
             ReaderStatus.objects.get(notification = notification,reader = request.user.techprofile)
             status = 1
         except:
             count = count + 1
             status = 0
+
         notificationObject['status'] = status
         notificationArray.append(notificationObject)
     notificationWrapper['unread'] = count

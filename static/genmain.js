@@ -56,10 +56,6 @@ as:[1,1,1,1]
 ];
 var workdata=[
 {
-  workshop: 'internet-of-things',
-  max: 1
-},
-{
   workshop: 'industrial-automation-plc-scada',
   max: 1
 },
@@ -84,21 +80,9 @@ var workdata=[
   max: 2
 },
 {
-  workshop: 'android-app-development',
-  max: 1
-},
-{
   workshop: 'vision-botics',
   max: 1
 },
-{
-  workshop: 'automobile',
-  max: 1
-},
-{
-  workshop: 'ethical-hacking',
-  max: 1
-}
 ];
 function findWithAttr(array, attr, value) {
 	
