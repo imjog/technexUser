@@ -2537,7 +2537,7 @@ def krackatwork():
             dic = {
             "name" : techprofile.user.first_name,
             "technexId" : techprofile.technexId,
-            "college" : techprofile.collegeName, 
+            "college" : techprofile.college.collegeName, 
             "mobileNumber" : techprofile.mobileNumber,
             "events" : part
             }
