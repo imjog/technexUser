@@ -2524,10 +2524,10 @@ def krackatwork():
         techprofile = team.teamLeader
         eventteams = Team.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile))
         for eventteam in eventteams:
-            part += str(eventteam.event.eventName) + ","
+            part += str(eventteam.event.eventName.encode("utf-8")) + ","
         workshopteams = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()     
         for workshopteam in workshopteams:
-            part += str(workshopteam.workshop.title) + ","
+            part += str(workshopteam.workshop.title.encode("utf-8")) + ","
         startupteams = StartUpFair.objects.filter(teamLeader = techprofile)
         for startupteam in startupteams:
             part += "startupfair,"
