@@ -32,7 +32,7 @@ as:[1,1,1,1,1,1]
 {
 parentEvent: 'riqueza',
 events:['analiticity', 'bulls-floor', 'krackat', 'manthan', 'economists-enigma'],
-max:[2,0,0,4,2],
+max:[2,0,0,4,4],
 as:[1,1,1,1,1]
 },
 {
