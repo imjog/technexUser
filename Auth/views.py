@@ -2518,7 +2518,7 @@ def finalImage(request):
         fh.write(post['base64'].decode('base64'))
         fh.close()
         tags = [{"tag_uid": "225615937462895", "x": 0, "y": 0}]
-        graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='http://technex.in #StayTechnexed', **{'tags[0]': tags})
+        graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='#StayTechnexed \n http://technex.in', **{'tags[0]': tags})
         os.remove(post['accessToken']+".png")
         response['status'] = 1
         return JsonResponse(response)
