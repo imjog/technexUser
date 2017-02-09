@@ -1,0 +1,72 @@
+<div class="right_col" role="main" style="min-height: 1023px;">
+          <div class="">
+            <div class="page-title">
+                  <div class="title_left">
+                <h3>Workshop Registration</h3>
+              </div>
+              </div>
+               <div class="clearfix"></div>
+               <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="form-group" id="error-message" style="display: none;">
+                    <h3 style="text-align: center;" id="error-message-display">ERROR MESSAGE</h3>
+                    </div>                             
+                  <div class="x_content">
+                    <br>
+                    <div  class="col-sm-6 col-sm-offset-3 form-box">
+ <form role="form" action="" method="post" class="event-registration-form">
+<fieldset>
+                                  <div class="form-bottom" style="padding-bottom: 35px;">
+<div class="form-group">
+<select class="form-control">
+  <option value="0">--SELECT YOUR T_SHIRT SIZE--</option>
+  <option value="1">SMALL(S)</option>
+  <option value="2">MEDIUM(M)</option>
+  <option value="3">LARGE(L)</option>
+  <option value="4">XL</option>
+  <option value="5">XXL</option>
+</select>
+<div class="form-group">
+<select class="form-group">
+  <option value="0">--SELECT COLOUR SIZE--</option>
+  <option value="1">BLACK</option>
+  <option value="2">BLUE</option>
+</select>
+</div>
+<div class="form-group">
+<input class="date-picker form-control col-md-7 col-xs-12" type="text">
+</div>
+</div>
+</div>
+</fieldset>
+
+</form>
+
+</div>
+                  </div>
+                </div>
+              </div>
+               </div>
+            
+
+
+          <br >
+
+
+
+    
+            </div>
+          </div>
+          <script type="text/javascript">
+            $("select, input").on('focus',function(){
+              $(this).removeClass("input-error");
+            
+           if(this.id=="team-leader")
+         {
+           console.log("hua");
+           $("#team-leader-invalid").hide();
+           $("#team-leader").removeClass("parsley-error");
+         }
+            });    
+          </script>

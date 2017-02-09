@@ -52,6 +52,7 @@ function fb_login() {
       if (response['status'] == 1)
       {
         alert("Successfully Done!!");
+        $(".col-lg-6").show();
         $(function(){
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
@@ -389,10 +390,10 @@ function fb_login() {
 
 <body>
   <h1>Stay Technexed</h1>
-<div class="col-lg-6">
+<div class="col-lg-6" style="display: none;">
   <canvas id="canvas"></canvas>
 </div>
-<div class="col-lg-6">
+<div class="col-lg-6" style="display: none;">
   <div class="col-lg-6">
     <label for="hue">Hue</label>
     <input id="hue" name="hue" type="range" min="0" max="300" value="0">
@@ -453,7 +454,7 @@ function fb_login() {
 
 
     
-<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login()">REGISTER WITH FB</button>
+<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">REGISTER WITH FB</button>
 <script type="text/javascript">
     
 </script>
