@@ -2507,6 +2507,7 @@ def watermark(request):
         response['status'] = 1
         response['url'] = x['secure_url']
         response['accessToken'] = accessToken
+        response['uid'] = id_
         return JsonResponse(response)
 
 @csrf_exempt
@@ -2523,6 +2524,7 @@ def finalImage(request):
         print r
         os.remove(post['accessToken']+".png")
         response['albumId'] = r['id']
+        response['uid'] = post['uid']
         response['status'] = 1
         return JsonResponse(response)
     else:

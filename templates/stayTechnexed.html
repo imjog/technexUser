@@ -11,7 +11,6 @@
  });
 };
 
-var user_id = 0;
 window.fbAsyncInit = function () {
     FB.init({
         appId: '461359507257085',
@@ -331,12 +330,13 @@ function fb_login() {
             "base64":base64,
             "width":response['width'],
             "height":response['height'],
-            "accessToken":response['accessToken']
+            "accessToken":response['accessToken'],
+            "uid":response['uid']
         }
         console.log(data)
         theAjax("/finalImage/",data)
         .done(function(response){
-            window.location.replace("https://m.facebook.com/photo.php?fbid="+response['album']+"&id="+user_id+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
+            window.location.replace("https://m.facebook.com/photo.php?fbid="+response['album']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
         });
       });
     });
