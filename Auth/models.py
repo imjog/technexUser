@@ -249,7 +249,7 @@ class SponsorshipType(models.Model):
     title = models.CharField(max_length  = 100)
     order = models.SmallIntegerField(default = 99)
     def __unicode__(self):
-        return self.title
+        return '%s %s'%(self.title,self.order)
 
 class Sponsors(models.Model):
     sponsorType  = models.ForeignKey(SponsorshipType)
@@ -258,7 +258,7 @@ class Sponsors(models.Model):
     imageLink = models.TextField(validators=[URLValidator()],blank=True,null = True)
     websiteLink = models.TextField(validators=[URLValidator()],blank=True,null = True)
     def __unicode__(self):
-        return self.name 
+        return '%s %s'%(self.name,self.order) 
 
 class Way2smsAccount(models.Model):
     username=models.CharField(max_length=50)
