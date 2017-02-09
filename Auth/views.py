@@ -2486,7 +2486,7 @@ def watermark(request):
         url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"
         file1 = cStringIO.StringIO(urllib.urlopen(url).read())
         background = Image.open(file1)
-        file2 = cStringIO.StringIO(urllib.urlopen("http://res.cloudinary.com/dpxbd37qm/image/upload/v1486600971/ver_1_pmhcu9.png").read())
+        file2 = cStringIO.StringIO(urllib.urlopen("http://res.cloudinary.com/ishu2502/image/upload/v1486647465/ops_k9lhp7.png").read())
         overlay = Image.open(file2)
         width = background.getbbox()[2]
         height = background.getbbox()[3]
@@ -2583,3 +2583,38 @@ def krackatwork():
             }
             print dic
             requests.post(url,data=dic)
+def paymentdata():
+    rb = open_workbook('payments.xlsx')
+    s = rb.sheet_by_index(0)
+    fail = 0
+    for i in range(1,1399):
+        email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
+        try:
+            tp = TechProfile.objects.get(email = email)
+            # print email
+            pays = sheetpayment(tech = tp)
+            # pays.save()
+            # print pays
+            pays.email = email
+            pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
+            pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1])
+            pays.ticketPrice = int(literal_eval(str(s.cell(i,6)).split(':')[1]))
+            print pays.ticketPrice
+            # print pays.ticketPrice 
+            pays.timeStamp = literal_eval(str(s.cell(i,7))[5:].encode("utf-8")).encode("utf-8")
+            # print pays.timeStamp
+            pays.ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
+            pays.save()
+            print tp.user.first_name
+        except Exception as e:
+            print email
+            print e.message
+            fail = fail + 1
+    print fail            
+
+
+
+
+
+
+
