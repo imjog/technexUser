@@ -336,7 +336,7 @@ function fb_login() {
         console.log(data)
         theAjax("/finalImage/",data)
         .done(function(response){
-            window.location.replace("https://m.facebook.com/photo.php?fbid="+response['album']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
+            window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
         });
       });
     });
