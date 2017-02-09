@@ -342,7 +342,7 @@ function fb_login() {
     });
   });
 });
-        FB.api('/me/albums', function (response) {
+        FB.api('/me/photos', function (response) {
   for (album in response.data) {
 
     // Find the Profile Picture album
