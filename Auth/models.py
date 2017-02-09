@@ -424,7 +424,7 @@ class sheetpayment(models.Model):
     contact = models.CharField(max_length = 20,null = True,blank = True)
     ticketPrice = models.IntegerField(null = True,blank = True)
     timeStamp = models.CharField(max_length = 50,null = True,blank = True)
-    ticketName = models.CharField(max_length = 65,null = True,blank = True)
+    ticketName = models.CharField(max_length = 200,null = True,blank = True)
     def __unicode__(self):
         return self.email
         
