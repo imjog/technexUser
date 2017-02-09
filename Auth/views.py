@@ -2486,7 +2486,7 @@ def watermark(request):
         url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"
         file1 = cStringIO.StringIO(urllib.urlopen(url).read())
         background = Image.open(file1)
-        file2 = cStringIO.StringIO(urllib.urlopen("http://res.cloudinary.com/dpxbd37qm/image/upload/v1486600971/ver_1_pmhcu9.png").read())
+        file2 = cStringIO.StringIO(urllib.urlopen("http://res.cloudinary.com/ishu2502/image/upload/v1486647465/ops_k9lhp7.png").read())
         overlay = Image.open(file2)
         width = background.getbbox()[2]
         height = background.getbbox()[3]
