@@ -67,8 +67,8 @@ function fb_login() {
   img.src = response['url'];
 
   img.onload = function() {
-    canvas.width = img.width;
-    canvas.height = img.height;
+    canvas.width = 500;//img.width;
+    canvas.height = 500;//img.height;
     ctx.drawImage(img, 0, 0, img.width, img.height);
   }
 
@@ -326,8 +326,11 @@ function fb_login() {
       this.render(function() {
         this.save('png');
         var base64Image = this.toBase64();
+        base64 = base64Image.slice(22);
         data = {
-            "base64":base64Image,
+            "base64":base64,
+            "width":response['width'],
+            "height":response['height'],
             "accessToken":response['accessToken']
         }
         console.log(data)
