@@ -63,8 +63,8 @@ function fb_login() {
   img.src = response['url'];
 
   img.onload = function() {
-    canvas.width = 500;//img.width;
-    canvas.height = 500;//img.height;
+    canvas.width = img.width;
+    canvas.height = img.height;
     ctx.drawImage(img, 0, 0, img.width, img.height);
   }
 
@@ -331,6 +331,9 @@ function fb_login() {
         }
         console.log(data)
         theAjax("/finalImage/",data)
+        .done(function(){
+            alert("Done");            
+        });
       });
     });
   });
@@ -339,7 +342,7 @@ function fb_login() {
   for (album in response.data) {
 
     // Find the Profile Picture album
-    if (response.data[album].name == "Profile Pictures") {
+    
 
       // Get a list of all photos in that album.
       FB.api(response.data[album].id + "/photos", function(response) {
@@ -348,7 +351,7 @@ function fb_login() {
         console.log(response.data[0].images[0].source);
 
       });
-    }
+    
   }
 });
       }
@@ -448,6 +451,7 @@ function fb_login() {
     <button id="oldpaperbtn" class="btn btn-warning">Old Paper</button>
     <button id="pleasantbtn" class="btn btn-warning">Pleasant</button>
     <button id="savebtn" class="btn btn-success">Save Image</button>
+    <button id="upload" class="btn btn-upload">Upload</button>
   </nav>
 </div>
 
