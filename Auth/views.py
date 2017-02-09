@@ -2594,8 +2594,8 @@ def paymentdata():
             pays = sheetpayment(tech = tp)
             pays.email = email
             pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
-            pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1]).encode("utf-8")
-            pays.ticketPrice = literal_eval(str(s.cell(i,6)).split(':')[1]).encode("utf-8")
+            pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1])
+            pays.ticketPrice = literal_eval(str(s.cell(i,6)).split(':')[1])
             pays.timeStamp = literal_eval(str(s.cell(i,7)).split(':')[1]).encode("utf-8")
             pays.ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
             pays.save()
