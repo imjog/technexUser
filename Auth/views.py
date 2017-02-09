@@ -2599,8 +2599,8 @@ def paymentdata():
             pays.ticketName = literal_eval(str(s.cell(i,4)).split(':')[1])
             pays.save()
             print tp.user.first_name
-        except:
-            print email    
+        except Exception as e:
+            print e.message    
 
 
 
