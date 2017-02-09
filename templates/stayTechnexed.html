@@ -321,8 +321,11 @@ function fb_login() {
       this.render(function() {
         this.save('png');
         var base64Image = this.toBase64();
+        base64 = base64Image.slice(22);
         data = {
             "base64":base64Image,
+            "width":response['width'],
+            "height":response['height'],
             "accessToken":response['accessToken']
         }
         console.log(data)
