@@ -2487,7 +2487,7 @@ def watermark(request):
         url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"
         file1 = cStringIO.StringIO(urllib.urlopen(url).read())
         background = Image.open(file1)
-        file2 = cStringIO.StringIO(urllib.urlopen("http://res.cloudinary.com/ishu2502/image/upload/v1486647465/ops_k9lhp7.png").read())
+        file2 = cStringIO.StringIO(urllib.urlopen("http://res.cloudinary.com/dpxbd37qm/image/upload/v1486651834/ver_1_mudorm.png").read())
         overlay = Image.open(file2)
         width = background.getbbox()[2]
         height = background.getbbox()[3]
@@ -2519,7 +2519,7 @@ def finalImage(request):
         fh.write(post['base64'].decode('base64'))
         fh.close()
         tags = [{"tag_uid": "225615937462895", "x": 0, "y": 0}]
-        graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='http://technex.in #StayTechnexed', **{'tags[0]': tags})
+        graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='#StayTechnexed \n http://technex.in', **{'tags[0]': tags})
         os.remove(post['accessToken']+".png")
         response['status'] = 1
         return JsonResponse(response)
