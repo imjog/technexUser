@@ -2586,22 +2586,31 @@ def krackatwork():
 def paymentdata():
     rb = open_workbook('payments.xlsx')
     s = rb.sheet_by_index(0)
+    fail = 0
     for i in range(1,1399):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
         try:
             tp = TechProfile.objects.get(email = email)
-            print tp
+            # print email
             pays = sheetpayment(tech = tp)
+            # pays.save()
+            # print pays
             pays.email = email
             pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
             pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1])
-            pays.ticketPrice = literal_eval(str(s.cell(i,6)).split(':')[1])
-            pays.timeStamp = literal_eval(str(s.cell(i,7)).split(':')[1]).encode("utf-8")
+            pays.ticketPrice = int(literal_eval(str(s.cell(i,6)).split(':')[1]))
+            print pays.ticketPrice
+            # print pays.ticketPrice 
+            pays.timeStamp = literal_eval(str(s.cell(i,7))[5:].encode("utf-8")).encode("utf-8")
+            # print pays.timeStamp
             pays.ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
             pays.save()
             print tp.user.first_name
         except Exception as e:
-            print e.message    
+            print email
+            print e.message
+            fail = fail + 1
+    print fail            
 
 
 
