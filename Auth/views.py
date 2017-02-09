@@ -2583,3 +2583,28 @@ def krackatwork():
             }
             print dic
             requests.post(url,data=dic)
+def paymentdata():
+    rb = open_workbook('payments.xlsx')
+    s = rb.sheet_by_index(0)
+    for i in range(1,1399):
+        email = literal_eval(str(s.cell(i,1)).split(':')[1])
+        try:
+            tp = TechProfile.objects.get(email = email)
+            pays = sheetpayment(tech = tp)
+            pays.email = email
+            pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1])
+            pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1])
+            pays.ticketPrice = literal_eval(str(s.cell(i,6)).split(':')[1])
+            pays.timeStamp = literal_eval(str(s.cell(i,7)).split(':')[1])
+            pays.ticketName = literal_eval(str(s.cell(i,4)).split(':')[1])
+            pays.save()
+            print tp.user.first_name
+        except:
+            print email    
+
+
+
+
+
+
+

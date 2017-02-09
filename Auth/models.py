@@ -414,3 +414,18 @@ class Notifications(models.Model):
     token = models.TextField()
     def __unicode__(self):
         return self.token
+
+
+class sheetpayment(models.Model):    
+    tech = models.ForeignKey(TechProfile, null = True, blank = True)
+    email = models.EmailField(max_length = 50, null = True, blank = True)
+    status = models.CharField(max_length = 15,null= True,blank = True)
+    ticketId = models.CharField(max_length = 100)
+    contact = models.CharField(max_length = 20,null = True,blank = True)
+    ticketPrice = models.IntegerField(null = True,blank = True)
+    timeStamp = models.CharField(max_length = 50,null = True,blank = True)
+    ticketName = models.CharField(max_length = 65,null = True,blank = True)
+    def __unicode__(self):
+        return self.email
+        
+
