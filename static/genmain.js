@@ -19,8 +19,8 @@ as:[1,1,1,1,1]
 },
 {
 parentEvent: 'supernova',
-events:['scientists-utopia', 'astrophotography', 'Gr', 'exploring-interstellar',],
-max:[4,4,4,4],
+events:['scientists-utopia', 'astrophotography', 'astroquiz', 'exploring-interstellar',],
+max:[3,1,1,1],
 as:[1,1,1,1]
 },
 {
