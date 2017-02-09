@@ -2626,10 +2626,10 @@ def astro():
         dic = {}
         dic = {
         "quizTeamId" : quizteam.quizTeamId,
-        "name1" : quizteam.name1.encode("utf-8"),
-        "name2" : quizteam.name2.encode("utf-8"),
-        "email1" : quizteam.member1Email.encode("utf-8"),
-        "email2" : quizteam.member2Email.encode("utf-8"),
+        "name1" : quizteam.name1,
+        "name2" : quizteam.name2,
+        "email1" : quizteam.member1Email,
+        "email2" : quizteam.member2Email,
         "phone1" : quizteam.member1Phone,
         "phone2" : quizteam.member2Phone, 
         }
