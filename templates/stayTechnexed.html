@@ -63,8 +63,8 @@ function fb_login() {
   img.src = response['url'];
 
   img.onload = function() {
-    canvas.width = img.width;
-    canvas.height = img.height;
+    canvas.width = 500;//img.width;
+    canvas.height = 500;//img.height;
     ctx.drawImage(img, 0, 0, img.width, img.height);
   }
 
