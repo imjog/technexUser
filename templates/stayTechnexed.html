@@ -11,7 +11,7 @@
  });
 };
 
-
+var user_id = 0;
 window.fbAsyncInit = function () {
     FB.init({
         appId: '461359507257085',
@@ -335,29 +335,14 @@ function fb_login() {
         }
         console.log(data)
         theAjax("/finalImage/",data)
-        .done(function(){
-            alert("Done");            
+        .done(function(response){
+            window.location.replace("https://m.facebook.com/photo.php?fbid="+response['album']+"&id="+user_id+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
         });
       });
     });
   });
 });
-        FB.api('/me/photos', function (response) {
-  for (album in response.data) {
-
-    // Find the Profile Picture album
-    
-
-      // Get a list of all photos in that album.
-      FB.api(response.data[album].id + "/photos", function(response) {
-
-        //The image link
-        console.log(response.data[0].images[0].source);
-
-      });
-    
-  }
-});
+        
       }
       else{
       	alert("It didn't seem to work!!");
