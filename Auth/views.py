@@ -55,7 +55,8 @@ sheetUrls = {
     "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec",
     "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec",
     "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec",
-    "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec"
+    "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec",
+    "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec"
     }
 
 @csrf_exempt
@@ -2611,6 +2612,30 @@ def paymentdata():
             print e.message
             fail = fail + 1
     print fail            
+
+
+
+def astro():
+    quizs = quiz.objects.get(name = "Astro Quiz")
+    url = sheetUrls["astroquizdata"]    
+    quizresponses = quizResponses.objects.filter(quiz = quizs).distinct()
+    for quizresponse in quizresponses:     
+        quizteam = quizresponse.quizTeam
+        dic = {}
+        dic = {
+        "quizTeamId" : quizteam.quizTeamId,
+        "name1" : quizteam.name1.encode("utf-8"),
+        "name2" : quizteam.name2.encode("utf-8"),
+        "email1" : quizteam.member1Email.encode("utf-8"),
+        "email2" : quizteam.member2Email.encode("utf-8"),
+        "phone1" : quizteam.member1Phone,
+        "phone2" : quizteam.member2Phone, 
+        }
+        requests.post(url,data =dic)
+
+
+
+
 
 
 
