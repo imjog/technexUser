@@ -2626,7 +2626,7 @@ def paymentdata(beginIndex,endIndex):
 
             if tpc is 0:
                 dic['status']=0 
-            else 
+            else: 
                 dic['status']=1     
 
             requests.post(urls,data= dic)
