@@ -2507,6 +2507,7 @@ def watermark(request):
         response['status'] = 1
         response['url'] = x['secure_url']
         response['accessToken'] = accessToken
+        response['uid'] = id_
         return JsonResponse(response)
 
 @csrf_exempt
@@ -2518,9 +2519,12 @@ def finalImage(request):
         fh = open(post['accessToken']+".png", "wb")
         fh.write(post['base64'].decode('base64'))
         fh.close()
-        tags = [{"tag_uid": "225615937462895", "x": 0, "y": 0}]
-        graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='#StayTechnexed \n http://technex.in', **{'tags[0]': tags})
+        tags = [{"tag_uid": "225615937462895", "x": 1, "y": 1}]
+        r =graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='Show your love for Technex at http://technex.in/StayTechnexed \n #StayTechnexed', **{'tags[0]': tags})
+        print r
         os.remove(post['accessToken']+".png")
+        response['albumId'] = r['id']
+        response['uid'] = post['uid']
         response['status'] = 1
         return JsonResponse(response)
     else:
@@ -2584,11 +2588,11 @@ def krackatwork():
             }
             print dic
             requests.post(url,data=dic)
-def paymentdata():
+def paymentdata(beginIndex,endIndex):
     rb = open_workbook('payments.xlsx')
     s = rb.sheet_by_index(0)
     fail = 0
-    for i in range(1,1399):
+    for i in range(beginIndex,endIndex):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
         try:
             tp = TechProfile.objects.get(email = email)
@@ -2665,8 +2669,6 @@ def tshirt(request):
         response['status'] = 0
         response['message'] = "Some error occured"
         return JsonResponse(response)        
-
-
 
 
 

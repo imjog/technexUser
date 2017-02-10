@@ -11,7 +11,6 @@
  });
 };
 
-
 window.fbAsyncInit = function () {
     FB.init({
         appId: '461359507257085',
@@ -55,8 +54,9 @@ function fb_login() {
       {
         // alert("Successfully Done!!");
         $(".col-lg-6").show();
-        $("#btn-next-page-fb").html("SUCCESSFULLY DONE");
+        $("#btn-next-page-fb").html("Your Profile Photo Recieved !");
         $("#btn-next-page-fb").prop("disabled",true);
+        $("#loadImage").html("Please wait for the image to load.");
         $(function(){
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
@@ -324,6 +324,7 @@ function fb_login() {
   $save.on('click', function(e) {
     Caman('#canvas', img, function() {
       this.render(function() {
+        
         this.save('png');
         var base64Image = this.toBase64();
         base64 = base64Image.slice(22);
@@ -331,33 +332,27 @@ function fb_login() {
             "base64":base64,
             "width":response['width'],
             "height":response['height'],
-            "accessToken":response['accessToken']
+            "accessToken":response['accessToken'],
+            "uid":response['uid']
         }
         console.log(data)
+        $("#loadImage").html("");
+        $("#savebtn").html("Please Wait..")
+        $("#savebtn").attr('disabled', true);
         theAjax("/finalImage/",data)
-        .done(function(){
-            alert("Done");            
+        .done(function(response){
+            window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
+        })
+        .fail(function(){
+            $("#savebtn").html("Save and Upload");
+            $("#savebtn").attr('disabled', false);
+            alert("please try again !!(submission failed due to high network traffic)");
         });
       });
     });
   });
 });
-        FB.api('/me/photos', function (response) {
-  for (album in response.data) {
-
-    // Find the Profile Picture album
-    
-
-      // Get a list of all photos in that album.
-      FB.api(response.data[album].id + "/photos", function(response) {
-
-        //The image link
-        console.log(response.data[0].images[0].source);
-
-      });
-    
-  }
-});
+        
       }
       else{
       	alert("It didn't seem to work!!");
@@ -387,7 +382,7 @@ function fb_login() {
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>#StayTechnexed ;)</title>
+  <title>#StayTechnexed Technex'17</title>
   
       <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
@@ -405,6 +400,7 @@ function fb_login() {
 
 <body>
   <h1>#StayTechnexed</h1>
+  <p id="loadImage"></p>
 <div class="col-lg-6" style="display: none;">
   <canvas id="canvas" style="height: 500px;width: 500px;"></canvas>
 </div>
@@ -468,9 +464,8 @@ function fb_login() {
 </div>
 
 
-
     
-<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">REGISTER WITH FB</button>
+<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">Get Technexed Profile Pic</button>
 <script type="text/javascript">
     
 </script>
