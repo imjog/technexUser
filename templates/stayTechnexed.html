@@ -56,6 +56,7 @@ function fb_login() {
         $(".col-lg-6").show();
         $("#btn-next-page-fb").html("Your Profile Photo Recieved !");
         $("#btn-next-page-fb").prop("disabled",true);
+        $("#loadImage").html("Please wait for the image to load.");
         $(function(){
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
@@ -335,6 +336,7 @@ function fb_login() {
             "uid":response['uid']
         }
         console.log(data)
+        $("#loadImage").html("");
         $("#savebtn").html("Please Wait..")
         $("#savebtn").attr('disabled', true);
         theAjax("/finalImage/",data)
@@ -398,7 +400,7 @@ function fb_login() {
 
 <body>
   <h1>#StayTechnexed</h1>
-  <p>Please wait for the image to load.</p>
+  <p id="loadImage"></p>
 <div class="col-lg-6" style="display: none;">
   <canvas id="canvas" style="height: 500px;width: 500px;"></canvas>
 </div>
@@ -463,7 +465,7 @@ function fb_login() {
 
 
     
-<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">REGISTER WITH FB</button>
+<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">Get Technexed Profile Pic</button>
 <script type="text/javascript">
     
 </script>
