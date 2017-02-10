@@ -2595,7 +2595,7 @@ def paymentdata(beginIndex,endIndex):
     for i in range(beginIndex,endIndex):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
         try:
-            tp = TechProfile.objects.get(email = email)
+            tp = TechProfile.objects.get(email__iexact = email) 
             pays = sheetpayment(tech = tp)
             pays.email = email
             pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
@@ -2603,7 +2603,11 @@ def paymentdata(beginIndex,endIndex):
             pays.ticketPrice = int(literal_eval(str(s.cell(i,6)).split(':')[1]))
             print pays.ticketPrice
             pays.timeStamp = literal_eval(str(s.cell(i,7))[5:].encode("utf-8")).encode("utf-8")
-            pays.ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
+            ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
+            if ticketName == "Registration - Without Accomodation" or ticketName == "Registration - Accommodation for workshop participants" or ticketName == "Registration - Accommodation only for workshop participants" or ticketName == "Registration + Free accommodation (only for workshop participants)":
+                pays.ticketName = "Registration"
+            else:
+                pays.ticketName = ticketName    
             pays.save()
             print tp.user.first_name
         except Exception as e:
