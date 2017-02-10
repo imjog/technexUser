@@ -17,6 +17,9 @@
     <link href="/static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <link href="/static/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <link href="/static/build/css/custom.min.css" rel="stylesheet">
+    <link href="/static/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="/static/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/vendors/select2/dist/css/select2.min.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
@@ -54,11 +57,22 @@
    margin-left: -10px;
    width: 80%;
   }
-  @media (max-width: 1110px)
+  @media (max-width: 919px)
   {
     .imp-links
     {
       display: none;
+    }
+    .non-imp
+    {
+      width: 75%;
+    }
+  }
+   @media (min-width: 919px)
+  {
+    .non-imp
+    {
+      width: 25%;
     }
   }
 
@@ -229,7 +243,7 @@ z-index: -90;
               <div class="nav toggle">
                 <a id="menu_toggle" style="color: black"><i class="fa fa-bars"></i></a>
               </div>
-              <ul class="nav navbar-nav navbar-left imp-links" style="width: 67%;">
+              <ul class="nav navbar-nav navbar-left imp-links">
                 
                 <li><a href="/events">EVENTS</a></li>
                 <li><a href="/talks">THINK TALKS</a></li>
@@ -239,7 +253,7 @@ z-index: -90;
                 <li><a href="/"></a></li>
               </ul>
 
-              <ul class="nav navbar-nav navbar-right" style="width: 25%;">
+              <ul class="non-imp nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"  id="chhota_user">
                     <img src={% if techProfile.fb %}"{{techProfile.fb.profileImage}}"{% else %} "/static/profile.png"{% endif %} alt=""><span class=" fa fa-angle-down"></span>
@@ -250,35 +264,52 @@ z-index: -90;
                     <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
-<!-- 
+
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">1</span>
+                    <span class="badge bg-green notification-count">{{notifications.unread}}</span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
+                  {% for notification in notifications.notifications %}
+                    <li onclick="new PNotify({
+                                  title: '{{notification.title}}',
+                                  text: '{{notification.description}}',
+                                  type: 'info',
+                                  styling: 'bootstrap3'
+                              });
+                            url = '/notificationRead/'
+                          $.ajax({
+                            type : 'POST',
+                            url : url,
+                            data: {
+                            'notificationId' : '{{notification.notificationId}}',
+                            },
+                            success: function(data)
+                            {
+                              if(data.status == 1)
+                              {
+                                $('.notification-count').html(data.unread);
+                              }
+                            }
+                          })
+
+
+                              ">
                       <a>
-                        <span class="image"><img src="/static/favicon.ico" alt="Profile Image" /></span>
+                        <span class="image"><img src="{{notification.photo}}" alt="Profile Image" /></span>
                         <span>
-                          <span>Team Technex</span>
-                          <span class="time">3 mins ago</span>
+                          <span>{{notification.title}}</span>
+                          <span class="time">{{notification.time}}</span>
                         </span>
                         <span class="message">
-                          Thank you for registering for Technex'17 
+                          {{notification.description}}
                         </span>
                       </a>
-                    </li> -->
-                    <!-- <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li> -->
-                 <!--  </ul> -->
-                <!-- </li> -->
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </li>
               </ul>
             </nav>
           </div>
@@ -299,6 +330,9 @@ z-index: -90;
                           <h4>For any technical queries, Contact:</h4>
                           <p><i class="glyphicon glyphicon-phone"></i> +91-9935504188</p>
                           <p><i class="glyphicon glyphicon-phone"></i> +91-7270975614</p> 
+                          <h4>For any non-technical queries, Contact:</h4>
+                          <p><i class="glyphicon glyphicon-phone"></i> +91-9198517176</p>
+                          <p><i class="glyphicon glyphicon-phone"></i> +91-7565816969</p>
                           <p><i class="glyphicon glyphicon-envelope"></i> 
                            tech@technex.in</p>
                         </div>
@@ -331,6 +365,10 @@ z-index: -90;
 
     <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/static/vendors/nprogress/nprogress.js"></script>
+    <script src="/static/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="/static/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="/static/vendors/select2/dist/js/select2.full.min.js"></script>
+
    <script src="/static/build/js/custom.min.js"></script> 
 <script type="text/javascript">
 app.service("profileData", function(){
@@ -354,6 +392,12 @@ app.service("profileData", function(){
            teamId : "{{workshop.teamId}}",
       },
            {% endfor %}
+        ];
+        var events = [
+        {% for team in teams %}
+          "{{team.event}}",
+          {% endfor %}
+
         ];
         var teamsData = [
         {% for team in teams %}
@@ -380,6 +424,9 @@ app.service("profileData", function(){
         this.getWorkshopData = function(){
               return workshopData
         };
+        this.getEventData = function(){
+          return events;
+        }
         //updating person
         this.updateInfo = function(personIndex, obj){
             staffArray.splice(personIndex, 1, obj)

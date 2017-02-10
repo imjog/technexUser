@@ -31,7 +31,8 @@ import urllib
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-
+import base64
+from io import BytesIO
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -54,7 +55,9 @@ sheetUrls = {
     "startup-fair" : "https://script.google.com/macros/s/AKfycbxygKcvs-AABLw45APySehart7e4H4a34gzAxKbb5lBV4BUEqs/exec",
     "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec",
     "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec",
-    "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec"
+    "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec",
+    "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec",
+    "payments" : "https://script.google.com/macros/s/AKfycbzyki6cw6DkVBwpVW63pZ32X2C8K2ajaf90f4e4zB8SHrNVbloh/exec"
     }
 
 @csrf_exempt
@@ -182,7 +185,7 @@ def contextCall(request):
 
         print teamsData
 
-        #response['notificationArray'] = notificationData(request)
+        # response['notificationArray'] = notificationData(request)
         try:
             workshops = WorkshopTeam.objects.filter(Q(members = techprofile) | Q(teamLeader = techprofile)).distinct()
             workshopsData = []
@@ -247,16 +250,12 @@ def contextCall(request):
                 teamdata['memberUrls'] = teamMemberUrl
                 print teamdata
                 teamsData.append(teamdata)
+
             response['teams'] = teamsData
         except:
             pass
-
-
-
-
-
-
-
+        response['notifications'] =  notificationData(request)
+        print response
     except:
         pass
     return response
@@ -609,6 +608,8 @@ def event(request, key):
         response['order'] = parentEvent.order
         response['slug'] = parentEvent.nameSlug
         response['sponimage']=parentEvent.sponimage
+        response['assosponimage']=parentEvent.assosponimage
+        response['assosponlink']= parentEvent.assosponlink
         response['sponlink']=parentEvent.sponlink
         print parentEvent.sponimage
         response['events'] = []
@@ -672,7 +673,7 @@ def send_email(recipient, subject, body):
     return requests.post(
         "https://api.mailgun.net/v3/mailgun.technex.in/messages",
         auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),
-        data={"from": "Support Technex<support@technex.in>",
+        data={"from": "Technex<tech@technex.in>",
               "to": recipient,
               "subject": subject,
               "text": body})
@@ -779,36 +780,54 @@ def hospitality(request):
 def airshow(request):
     return render(request, 'airshow.html',{})
 
-'''
+@csrf_exempt
 def read(request):
     response = {}
     if request.method == 'POST':
-        readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile,status = True)
-        for status in readerStatus:
-            status.status = False
-            status.save()
+        post = request.POST
+        try:
+            readerStatus = ReaderStatus.objects.get(reader = request.user.techprofile, notification__notificationId = post['notificationId'])
+        except:
+            notificationR = Notification.objects.get(notificationId = post['notificationId'])
+            readerStatus = ReaderStatus(reader = request.user.techprofile, notification = notificationR)
+            readerStatus.save()
         response['status'] = 1
+
+        response['unread'] = Notification.objects.all().count() - ReaderStatus.objects.filter(reader = request.user.techprofile).count()  
         return JsonResponse(response)
     else:
         response['status'] = 0
-        response['error'] = 'Invalid Request!!'
         return JsonResponse(response)
 
+@csrf_exempt
 def notificationData(request):
-    readerStatus = ReaderStatus.objects.filter(reader = request.user.techprofile)[:5]
-
+    notifications = Notification.objects.all()
+    notificationWrapper = {}
     notificationArray = []
-    for notification in readerStatus:
+    count = 0
+    for notification in notifications:
         notificationObject = {}
-        notificationObject['title'] = notification.notification.title
-        notificationObject['notificationId'] = notification.notification.notificationId
-        notificationObject['description'] = notification.notification.description
-        notificationObject['deadLine'] = notification.notification.time
-        notificationObject['photo'] = notification.notification.photo
-        notificationObject['status'] = notification.status
+
+        notificationObject['title'] = notification.title
+        notificationObject['notificationId'] = notification.notificationId
+        notificationObject['description'] = notification.description
+        notificationObject['time'] = notification.time
+        notificationObject['photo'] = notification.photo
+        try:
+
+            ReaderStatus.objects.get(notification = notification,reader = request.user.techprofile)
+            status = 1
+        except:
+            count = count + 1
+            status = 0
+
+        notificationObject['status'] = status
         notificationArray.append(notificationObject)
-    return notificationArray
-'''
+    notificationWrapper['unread'] = count
+    notificationWrapper['notifications'] = notificationArray
+    return notificationWrapper
+
+
 @csrf_exempt
 @login_required(login_url='/register')
 def startUpRegistration(request):
@@ -2469,11 +2488,11 @@ def watermark(request):
         url = "http://graph.facebook.com/" + id_ + "/picture?width=9999&height=9999"
         file1 = cStringIO.StringIO(urllib.urlopen(url).read())
         background = Image.open(file1)
-        file2 = cStringIO.StringIO(urllib.urlopen("http://i.imgur.com/LYKTAY5.png").read())
+        file2 = cStringIO.StringIO(urllib.urlopen("http://res.cloudinary.com/dpxbd37qm/image/upload/v1486651834/ver_1_mudorm.png").read())
         overlay = Image.open(file2)
         width = background.getbbox()[2]
         height = background.getbbox()[3]
-        graph = facebook.GraphAPI(access_token = accessToken, version= '2.2')
+        
         overlay = overlay.resize((width,height))
         background.paste(overlay,(0,0),overlay)
 
@@ -2484,11 +2503,36 @@ def watermark(request):
           api_secret = "2bSWYpE5HUFHjImNyZkuCeepvYE"
         )
         x = cloudinary.uploader.upload(id_+".png")
-        tags = [{"tag_uid": "225615937462895", "x": 0, "y": 0}]
-        graph.put_photo(image=open(id_+".png", 'rb'), album_path="me/photos", message='#stayTechnexed', **{'tags[0]': tags})
+        
         os.remove(id_+".png")
         response['status'] = 1
+        response['url'] = x['secure_url']
+        response['accessToken'] = accessToken
+        response['uid'] = id_
         return JsonResponse(response)
+
+@csrf_exempt
+def finalImage(request):
+    response = {}
+    if request.method == 'POST':
+        post = request.POST
+        graph = facebook.GraphAPI(access_token = post['accessToken'], version= '2.2')
+        fh = open(post['accessToken']+".png", "wb")
+        fh.write(post['base64'].decode('base64'))
+        fh.close()
+        tags = [{"tag_uid": "225615937462895", "x": 1, "y": 1}]
+        r =graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='Show your love for Technex at http://technex.in/StayTechnexed \n #StayTechnexed', **{'tags[0]': tags})
+        print r
+        os.remove(post['accessToken']+".png")
+        response['albumId'] = r['id']
+        response['uid'] = post['uid']
+        response['status'] = 1
+        return JsonResponse(response)
+    else:
+        response['status'] = 0
+        return JsonResponse(response)
+
+
 def stayTechnexed(request):
     return render(request,'stayTechnexed.html')
 
@@ -2545,3 +2589,99 @@ def krackatwork():
             }
             print dic
             requests.post(url,data=dic)
+def paymentdata(beginIndex,endIndex):
+    rb = open_workbook('payments.xlsx')
+    s = rb.sheet_by_index(0)
+    urls = sheetUrls["payments"]
+    fail = 0
+    for i in range(beginIndex,endIndex):
+        email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
+        try:
+            tp = TechProfile.objects.get(email__iexact = email) 
+            pays = sheetpayment(tech = tp)
+            pays.email = email
+            pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
+            pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1])
+            pays.ticketPrice = int(literal_eval(str(s.cell(i,6)).split(':')[1]))
+            print pays.ticketPrice
+            pays.timeStamp = literal_eval(str(s.cell(i,7))[5:].encode("utf-8")).encode("utf-8")
+            ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
+            if ticketName == "Registration - Without Accomodation" or ticketName == "Registration - Accommodation for workshop participants" or ticketName == "Registration - Accommodation only for workshop participants" or ticketName == "Registration + Free accommodation (only for workshop participants)":
+                pays.ticketName = "Registration"
+            else:
+                pays.ticketName = ticketName    
+            pays.save()
+            print tp.user.first_name
+        except Exception as e:
+            print email
+            dic = {}
+            dic = {
+            'email' : email
+            }
+            requests.post(urls,data= dic)
+            print e.message
+            fail = fail + 1
+    print fail            
+
+
+
+def astro():
+    quizs = quiz.objects.get(name = "Astro Quiz")
+    url = sheetUrls["astroquizdata"]    
+    quizresponses = quizResponses.objects.filter(quiz = quizs).distinct()
+    for quizresponse in quizresponses:     
+        quizteam = quizresponse.quizTeam
+        dic = {}
+        dic = {
+        "quizTeamId" : quizteam.quizTeamId,
+        "name1" : quizteam.name1,
+        "name2" : quizteam.name2,
+        "email1" : quizteam.member1Email,
+        "email2" : quizteam.member2Email,
+        "phone1" : quizteam.member1Phone,
+        "phone2" : quizteam.member2Phone, 
+        }
+        requests.post(url,data =dic)
+
+@csrf_exempt
+@login_required(login_url = '/register/')
+def tshirt(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user = request.user
+        tp = user.techprofile
+        if tp.tshirtdata:
+            response['status'] =0
+            response['message'] = "You have already submitted the data for T-shirt"
+            return JsonResponse(response)
+        else:
+            tp.tshirtsize= data['size']
+            tp.color = data['color']
+            tp.gender = data['gender']
+            tp.arrivaldate = data['date'].split('-')[2] 
+            tp.tshirtdata = True
+            tp.save()   
+            suggestion = suggestions(tech = tp, suggestion = data['suggestions'])
+            for event in data['events']:
+                even = Event.objects.get(eventName = event)
+                tp.confirmpart.add(even) 
+            suggestion.save()
+            tp.save()
+
+            response['status'] = 1
+            return JsonResponse(response)
+    else:
+        response['status'] = 0
+        response['message'] = "Some error occured"
+        return JsonResponse(response)        
+
+
+
+
+
+
+
+
+
+

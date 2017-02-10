@@ -19,8 +19,8 @@ as:[1,1,1,1,1]
 },
 {
 parentEvent: 'supernova',
-events:['scientists-utopia', 'astrophotography', 'Gr', 'exploring-interstellar',],
-max:[4,4,4,4],
+events:['scientists-utopia', 'astrophotography', 'astroquiz', 'exploring-interstellar',],
+max:[3,1,1,1],
 as:[1,1,1,1]
 },
 {
@@ -56,14 +56,6 @@ as:[1,1,1,1]
 ];
 var workdata=[
 {
-  workshop: 'internet-of-things',
-  max: 1
-},
-{
-  workshop: 'industrial-automation-plc-scada',
-  max: 1
-},
-{
   workshop: 'data-mining',
   max: 1
 },
@@ -79,26 +71,6 @@ var workdata=[
   workshop: 'swarm-robotics',
   max: 5
 },
-{
-  workshop: 'bridge-design',
-  max: 2
-},
-{
-  workshop: 'android-app-development',
-  max: 1
-},
-{
-  workshop: 'vision-botics',
-  max: 1
-},
-{
-  workshop: 'automobile',
-  max: 1
-},
-{
-  workshop: 'ethical-hacking',
-  max: 1
-}
 ];
 function findWithAttr(array, attr, value) {
 	
@@ -154,9 +126,9 @@ app.config(function ($routeProvider) {
              .when("/payment/",{
               templateUrl: '/static/payments.html', 
              })
-              .when("/intellecx/",{
-              templateUrl: '/static/quizreg.html',
-              controller: 'quiz-cont', 
+              .when("/tshirtinfo/",{
+              templateUrl: '/static/tshirtinfo.html',
+              controller: 'shirtdata', 
              })
              
             
@@ -1026,6 +998,68 @@ app.controller('quiz-cont', ['$scope', '$window', '$http' , function($scope, $wi
 
 
 }]);
+
+app.controller("shirtdata" , function($scope, profileData, $http){
+  $scope.events = profileData.getEventData();
+  console.log($scope.events);
+  $scope.abcd= "";
+
+  $scope.submit = function()
+  {
+    var x= true;
+    if($("#size").val()=="NONE")
+    {
+      $("#size").addClass("input-error");
+      x = false;
+    }
+    if($("#color").val()=="NONE")
+    {
+      $("#color").addClass("input-error");
+      x = false;
+    }
+    if($("#gender").val()=="NONE")
+    {
+      $("#gender").addClass("input-error");
+      x = false;
+    }
+    if(x)
+    {
+       $(".team-reg-submit").html("Submitting. Please Wait!");
+      data = {
+        'size' : $("#size").val(),
+        'color' : $("#color").val(),
+        'gender' : $("#gender").val(),
+        'events' : $("#events").val(),
+        'date' : $("#date").val(),
+        'suggestions' : $("#suggestions").val()
+ }
+ $http({
+  method : 'POST',
+  url : '/tshirtinfo/',
+  data : data
+ }).success(function(data){
+  if(data.status == 0)
+    {
+      $("#error-message-display").html(data.message);
+      $("#error-message").show();
+      $(".team-reg-submit").html("Submit");
+
+    }
+    if(data.status === 1)
+    {
+
+      window.location.assign("#profile");
+      location.reload(true);
+
+    }
+ });
+    }
+
+
+
+  };
+
+});
 
 
 
