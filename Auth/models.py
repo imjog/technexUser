@@ -35,6 +35,38 @@ class FbConnect(models.Model):
     profileImage = models.TextField(validators=[URLValidator()],blank=True,null = True)
     def __unicode__(self):
         return self.uid
+
+        
+class ParentEvent(models.Model):
+    parentEventId = models.AutoField(primary_key = True)
+    categoryName = models.CharField(max_length = 50)
+    description = RichTextField(null = True,blank = True)
+    order = models.SmallIntegerField(default = 0)
+    sponimage=models.TextField(blank=True,null=True)
+    sponlink=models.TextField(validators=[URLValidator()],blank=True,null = True)
+    assosponimage=models.TextField(blank=True,null=True)
+    assosponlink=models.TextField(validators=[URLValidator()],blank=True,null = True)    
+    nameSlug = models.SlugField(null = True)
+    def __unicode__(self):
+        return self.categoryName
+
+    
+class Event(models.Model):
+    eventId = models.AutoField(primary_key = True)
+    eventOrder = models.SmallIntegerField(default = 0)
+    eventName = models.CharField(max_length = 50)
+    parentEvent = models.ForeignKey(ParentEvent)
+    description = RichTextField(null = True,blank = True)
+    deadLine = models.DateTimeField(null = True,blank = True)
+    prizeMoney = models.IntegerField(null=True, blank=True)
+    maxMembers = models.SmallIntegerField(null=True,blank=True)
+    nameSlug = models.SlugField(null = True)
+    abstract = models.SmallIntegerField(default = 0)
+    image = models.TextField(validators=[URLValidator()], null = True, blank = True)
+    def __unicode__(self):
+        return self.eventName
+        
+
 class TechProfile(models.Model):
     class Meta:
         permissions = (
@@ -54,36 +86,16 @@ class TechProfile(models.Model):
     apploginStatus = models.BooleanField(default = False)
     #profile_photo = models.TextField(validators=[URLValidator()],blank=True)
     notificationToken = models.TextField(null = True,blank = True)
+    tshirtdata = models.BooleanField(default = False)
+    tshirtsize = models.CharField(max_length = 4, null = True , blank =True)
+    color = models.CharField(max_length = 10 , null =True , blank = True)
+    gender = models.CharField(max_length = 10, null = True , blank= True)
+    arrivaldate = models.CharField(max_length = 15 , null =True , blank =True)
+    confirmpart = models.ManyToManyField(Event , null = True ,blank =True)
     def __unicode__(self):
         return "%s -%s" %(self.user.first_name, self.college)
 
-class ParentEvent(models.Model):
-    parentEventId = models.AutoField(primary_key = True)
-    categoryName = models.CharField(max_length = 50)
-    description = RichTextField(null = True,blank = True)
-    order = models.SmallIntegerField(default = 0)
-    sponimage=models.TextField(blank=True,null=True)
-    sponlink=models.TextField(validators=[URLValidator()],blank=True,null = True)
-    assosponimage=models.TextField(blank=True,null=True)
-    assosponlink=models.TextField(validators=[URLValidator()],blank=True,null = True)    
-    nameSlug = models.SlugField(null = True)
-    def __unicode__(self):
-        return self.categoryName
-    
-class Event(models.Model):
-    eventId = models.AutoField(primary_key = True)
-    eventOrder = models.SmallIntegerField(default = 0)
-    eventName = models.CharField(max_length = 50)
-    parentEvent = models.ForeignKey(ParentEvent)
-    description = RichTextField(null = True,blank = True)
-    deadLine = models.DateTimeField(null = True,blank = True)
-    prizeMoney = models.IntegerField(null=True, blank=True)
-    maxMembers = models.SmallIntegerField(null=True,blank=True)
-    nameSlug = models.SlugField(null = True)
-    abstract = models.SmallIntegerField(default = 0)
-    image = models.TextField(validators=[URLValidator()], null = True, blank = True)
-    def __unicode__(self):
-        return self.eventName
+
 
 
 class Team(models.Model):
@@ -428,4 +440,10 @@ class sheetpayment(models.Model):
     def __unicode__(self):
         return self.email
         
+
+class suggestions(models.Model):
+    tech = models.ForeignKey(TechProfile , null = True , blank =True)
+    suggestion = models.TextField(blank = True)
+    def __unicode__(self):
+        return self.tech.user.first_name
 

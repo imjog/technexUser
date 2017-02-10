@@ -1,3 +1,16 @@
+<style type="text/css">
+              input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+  }
+  input[type="date"]:focus:before,
+  input[type="date"]:valid:before {
+    content: "";
+  }
+         
+</style>
+
 <div class="right_col" role="main" style="min-height: 1023px;">
           <div class="">
             <div class="page-title">
@@ -19,26 +32,48 @@
 <fieldset>
                                   <div class="form-bottom" style="padding-bottom: 35px;">
 <div class="form-group">
-<select class="form-control">
-  <option value="0">--SELECT YOUR T_SHIRT SIZE--</option>
-  <option value="1">SMALL(S)</option>
-  <option value="2">MEDIUM(M)</option>
-  <option value="3">LARGE(L)</option>
-  <option value="4">XL</option>
-  <option value="5">XXL</option>
-</select>
-<div class="form-group">
-<select class="form-group">
-  <option value="0">--SELECT COLOUR SIZE--</option>
-  <option value="1">BLACK</option>
-  <option value="2">BLUE</option>
+<select class="form-control" id="size">
+  <option value="NONE">--SELECT YOUR T-SHIRT SIZE--</option>
+  <option value="S">SMALL(S)</option>
+  <option value="M">MEDIUM(M)</option>
+  <option value="L">LARGE(L)</option>
+  <option value="XL">XL</option>
+  <option value="XXL">XXL</option>
 </select>
 </div>
 <div class="form-group">
-<input class="date-picker form-control col-md-7 col-xs-12" type="text">
+<select class="form-control" id="color">
+  <option value="NONE">--SELECT COLOUR OF T-SHIRT--</option>
+  <option value="BLACK">BLACK</option>
+  <option value="BLUE">BLUE</option>
+</select>
 </div>
+<div class="form-group">
+<select class="select2_multiple form-control" id="events" multiple="multiple">
+<option ng-repeat="x in events track by $index" value="{{x}}">{{x}}</option>
+                          </select> 
 </div>
+<div class="form-group">
+<input type="date" class="form-control" placeholder="Select your date of arrival" id="date">
 </div>
+<div class="form-group">
+<select class="form-control" id="gender">
+ <option value="NONE">--SELECT YOUR GENDER--</option>
+  <option value="MALE">MALE</option>
+  <option value="FEMALE">FEMALE</option>
+</select>
+</div>
+<div class="form-group">
+<!-- <input type="textbox"  rows="2" class="form-control"> -->
+<textarea rows="2" class="form-control" placeholder="Any Suggestions" id="suggestions"></textarea>
+</div>
+ <div class="form-group">
+                       
+                          <button type="button" class="btn btn-success pull-right team-reg-submit" ng-click="submit()">Submit</button>
+                                             </div>
+
+</div>
+
 </fieldset>
 
 </form>
@@ -48,16 +83,14 @@
                 </div>
               </div>
                </div>
-            
-
-
-          <br >
+<br>
 
 
 
     
             </div>
           </div>
+          
           <script type="text/javascript">
             $("select, input").on('focus',function(){
               $(this).removeClass("input-error");
@@ -68,5 +101,20 @@
            $("#team-leader-invalid").hide();
            $("#team-leader").removeClass("parsley-error");
          }
-            });    
-          </script>
+            });
+     </script>    
+                <script>
+      $(document).ready(function() {
+        $(".select2_single").select2({
+          placeholder: "Select a state",
+          allowClear: true
+        });
+        $(".select2_group").select2({});
+        $(".select2_multiple").select2({
+          maximumSelectionLength: 15,
+          placeholder: "Select the events in which your participation is confirmed (AT MAXIMUM 15)",
+          allowClear: true
+        });
+      });
+    </script>
+          

@@ -2633,6 +2633,40 @@ def astro():
         }
         requests.post(url,data =dic)
 
+@csrf_exempt
+@login_required(login_url = '/register/')
+def tshirt(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user = request.user
+        tp = user.techprofile
+        if tp.tshirtdata:
+            response['status'] =0
+            response['message'] = "You have already submitted the data for T-shirt"
+            return JsonResponse(response)
+        else:
+            tp.tshirtsize= data['size']
+            tp.color = data['color']
+            tp.gender = data['gender']
+            tp.arrivaldate = data['date'].split('-')[2] 
+            tp.tshirtdata = True
+            tp.save()   
+            suggestion = suggestions(tech = tp, suggestion = data['suggestions'])
+            for event in data['events']:
+                even = Event.objects.get(eventName = event)
+                tp.confirmpart.add(even) 
+            suggestion.save()
+            tp.save()
+
+            response['status'] = 1
+            return JsonResponse(response)
+    else:
+        response['status'] = 0
+        response['message'] = "Some error occured"
+        return JsonResponse(response)        
+
+
 
 
 
