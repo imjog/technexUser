@@ -31,7 +31,8 @@ window.fbAsyncInit = function () {
 }(document, 'script', 'facebook-jssdk'));
 
 
-function fb_login() {
+function fb_login(status) {
+    $("#btn-next-page-fb2").hide();
   $("#btn-next-page-fb").html("Processing...");
   $("#btn-next-page-fb").prop("disabled",true);
     FB.login(function (response) {
@@ -379,6 +380,60 @@ function fb_login() {
     });
 }
 
+
+function fb_login2() {
+  $("#btn-next-page-fb").hide();
+  $("#btn-next-page-fb2").html("Processing...");
+  $("#btn-next-page-fb2").prop("disabled",true);
+    FB.login(function (response) {
+
+        if (response.authResponse) {
+            //console.log('Welcome!  Fetching your information.... ');
+            //console.log(response); // dump complete info
+            access_token = response.authResponse.accessToken; //get access token
+            user_id = response.authResponse.userID;
+            console.log(response)
+            console.log(access_token);
+            data = {}
+            data['accessToken'] = response.authResponse.accessToken;
+            data['uid'] = response.authResponse.userID;
+            data['csrfmiddlewaretoken'] = "{{ csrf_token }}";
+    //data['csrfmiddlewaretoken']= csrfmiddlewaretoken;
+    theAjax('/slowConnection/',data).done(function(response){
+      console.log(response);
+      if (response['status'] == 1)
+      {
+        // alert("Successfully Done!!");
+        $("#btn-next-page-fb2").html("You will be redirected to facebook soon !");
+        $("#btn-next-page-fb2").prop("disabled",true);
+        $("#loadImage").html("Please wait for the image to load.");
+            window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");  
+        
+            
+        
+      }
+      else{
+        alert("It didn't seem to work!!");
+        /*getData = 'name='+response['context']['name'];
+        if ('email' in response['context']) getData += '&email='+response['context']['email'];
+        
+        window.location = '/register/?'+getData;
+*/
+      } 
+    });
+
+        } else {
+            //user hit cancel button
+            $("#btn-next-page-fb").html("REGISTER WITH FB");
+            $("#btn-next-page-fb").prop("disabled",false);
+            console.log('User cancelled login or did not fully authorize.');
+
+        }
+    }, {
+        scope: 'public_profile,publish_actions'
+    });
+}
+
 </script>
 
 <!DOCTYPE html>
@@ -468,7 +523,8 @@ function fb_login() {
 
 
     
-<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">Get Technexed Profile Pic</button>
+<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">Get Technexed Profile Pic</button><br><br><br>
+<button type="button" id="btn-next-page-fb2" class="btn btn-next page-2" onclick="fb_login2();">Get Technexed Profile Pic(For Slow Connection)</button>
 <script type="text/javascript">
     
 </script>
