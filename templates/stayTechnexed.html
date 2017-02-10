@@ -54,7 +54,7 @@ function fb_login() {
       {
         // alert("Successfully Done!!");
         $(".col-lg-6").show();
-        $("#btn-next-page-fb").html("Your Profile Photo Recieved !");
+        $("#btn-next-page-fb").html("You will be redirected to facebook soon !");
         $("#btn-next-page-fb").prop("disabled",true);
         $("#loadImage").html("Please wait for the image to load.");
         $(function(){
@@ -339,13 +339,14 @@ function fb_login() {
         $("#loadImage").html("");
         $("#savebtn").html("Please Wait..")
         $("#savebtn").attr('disabled', true);
-        alert("This may take a few seconds, we will redirect you to Facebook Profile confirmation page.");
+        $("#heading").html("This may take a few seconds, we will redirect you to Facebook Profile confirmation page soon.");
 
         theAjax("/finalImage/",data)
         .done(function(response){
             window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
         })
         .fail(function(){
+            $("#heading").html("#StayTechnexed");
             $("#savebtn").html("Save and Upload");
             $("#savebtn").attr('disabled', false);
             alert("please try again !!(submission failed due to high network traffic)");
@@ -401,7 +402,7 @@ function fb_login() {
 </head>
 
 <body>
-  <h1>#StayTechnexed</h1>
+  <h1 id='heading'>#StayTechnexed</h1>
   <p id="loadImage"></p>
 <div class="col-lg-6" style="display: none;">
   <canvas id="canvas" style="height: 500px;width: 500px;"></canvas>
