@@ -323,7 +323,7 @@ function fb_login() {
   $save.on('click', function(e) {
     Caman('#canvas', img, function() {
       this.render(function() {
-        $("#fbLoader").css("display","block");
+        
         this.save('png');
         var base64Image = this.toBase64();
         base64 = base64Image.slice(22);
@@ -335,13 +335,15 @@ function fb_login() {
             "uid":response['uid']
         }
         console.log(data)
-
+        $("#savebtn").html("Please Wait..")
+        $("#savebtn").attr('disabled', 'true');
         theAjax("/finalImage/",data)
         .done(function(response){
             window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
         })
         .fail(function(){
-            $("#fbLoader").css("display","none");
+            $("savebtn").html("Save and Upload");
+            $("#savebtn").attr('disabled', 'false');
             alert("please try again !!(submission failed due to high network traffic)");
         });
       });
@@ -378,7 +380,7 @@ function fb_login() {
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>#StayTechnexed ;)</title>
+  <title>#StayTechnexed Technex'17</title>
   
       <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
@@ -396,6 +398,7 @@ function fb_login() {
 
 <body>
   <h1>#StayTechnexed</h1>
+  <p>Please wait for the image to load.</p>
 <div class="col-lg-6" style="display: none;">
   <canvas id="canvas" style="height: 500px;width: 500px;"></canvas>
 </div>
@@ -458,7 +461,6 @@ function fb_login() {
   </nav>
 </div>
 
-<img src='/static/Facebookloading.gif' id='fbLoader' style="display: none" />
 
     
 <button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">REGISTER WITH FB</button>
