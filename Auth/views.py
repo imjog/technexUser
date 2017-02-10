@@ -2615,9 +2615,20 @@ def paymentdata(beginIndex,endIndex):
         except Exception as e:
             print email
             dic = {}
+            tpc = TechProfile.objects.filter(mobileNumber = str(literal_eval(str(s.cell(i,2)).split(':')[1])).split('.')[0]).count()
+            
             dic = {
-            'email' : email
+            'email' : email,
+            'phone' : str(literal_eval(str(s.cell(i,2)).split(':')[1])).split('.')[0],
+            'name' :  literal_eval(str(s.cell(i,0)).split(':')[1]).encode("utf-8"),
+            'ticketname' : ticketName,     
             }
+
+            if tpc is 0:
+                dic['status']=0 
+            else 
+                dic['status']=1     
+
             requests.post(urls,data= dic)
             print e.message
             fail = fail + 1
