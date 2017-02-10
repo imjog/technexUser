@@ -404,14 +404,12 @@ function fb_login2() {
       if (response['status'] == 1)
       {
         // alert("Successfully Done!!");
-        $(".col-lg-6").show();
         $("#btn-next-page-fb2").html("You will be redirected to facebook soon !");
         $("#btn-next-page-fb2").prop("disabled",true);
         $("#loadImage").html("Please wait for the image to load.");
             window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");  
         
-            alert("please try again !!(submission failed due to high network traffic)");
-        
+            
         
       }
       else{
@@ -525,7 +523,7 @@ function fb_login2() {
 
 
     
-<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">Get Technexed Profile Pic</button>
+<button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">Get Technexed Profile Pic</button><br>
 <button type="button" id="btn-next-page-fb2" class="btn btn-next page-2" onclick="fb_login2();">Get Technexed Profile Pic(For Slow Connection)</button>
 <script type="text/javascript">
     
