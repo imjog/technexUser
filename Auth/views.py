@@ -793,7 +793,7 @@ def read(request):
             readerStatus.save()
         response['status'] = 1
 
-        response['unread'] = Notification.objects.all().count() - ReaderStatus.objects.filter(reader = request.user.techprofile).count()  
+        response['unread'] = Notification.objects.all().count() - ReaderStatus.objects.filter(reader = request.user.techprofile).count()
         return JsonResponse(response)
     else:
         response['status'] = 0
@@ -1578,6 +1578,9 @@ def worshopdataFill():
 def corporateConclave(request):
     print request
     return render(request,'corporateConclave.html')
+
+def kaleidoscope(request):
+    return render(request,'kaleidoscope.html')
 
 
 def test(request):
@@ -2492,7 +2495,7 @@ def watermark(request):
         overlay = Image.open(file2)
         width = background.getbbox()[2]
         height = background.getbbox()[3]
-        
+
         overlay = overlay.resize((width,height))
         background.paste(overlay,(0,0),overlay)
 
@@ -2503,7 +2506,7 @@ def watermark(request):
           api_secret = "2bSWYpE5HUFHjImNyZkuCeepvYE"
         )
         x = cloudinary.uploader.upload(id_+".png")
-        
+
         os.remove(id_+".png")
         response['status'] = 1
         response['url'] = x['secure_url']
@@ -2597,7 +2600,7 @@ def paymentdata(beginIndex,endIndex):
     for i in range(beginIndex,endIndex):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
         try:
-            tp = TechProfile.objects.get(email__iexact = email) 
+            tp = TechProfile.objects.get(email__iexact = email)
             pays = sheetpayment(tech = tp)
             pays.email = email
             pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
@@ -2609,38 +2612,38 @@ def paymentdata(beginIndex,endIndex):
             if ticketName == "Registration - Without Accomodation" or ticketName == "Registration - Accommodation for workshop participants" or ticketName == "Registration - Accommodation only for workshop participants" or ticketName == "Registration + Free accommodation (only for workshop participants)":
                 pays.ticketName = "Registration"
             else:
-                pays.ticketName = ticketName    
+                pays.ticketName = ticketName
             pays.save()
             print tp.user.first_name
         except Exception as e:
             print email
             dic = {}
             tpc = TechProfile.objects.filter(mobileNumber = str(literal_eval(str(s.cell(i,2)).split(':')[1])).split('.')[0]).count()
-            
+
             dic = {
             'email' : email,
             'phone' : str(literal_eval(str(s.cell(i,2)).split(':')[1])).split('.')[0],
             'name' :  literal_eval(str(s.cell(i,0)).split(':')[1]).encode("utf-8"),
-            'ticketname' : ticketName,     
+            'ticketname' : ticketName,
             }
 
             if tpc is 0:
-                dic['status']=0 
-            else: 
-                dic['status']=1     
+                dic['status']=0
+            else:
+                dic['status']=1
 
             requests.post(urls,data= dic)
             print e.message
             fail = fail + 1
-    print fail            
+    print fail
 
 
 
 def astro():
     quizs = quiz.objects.get(name = "Astro Quiz")
-    url = sheetUrls["astroquizdata"]    
+    url = sheetUrls["astroquizdata"]
     quizresponses = quizResponses.objects.filter(quiz = quizs).distinct()
-    for quizresponse in quizresponses:     
+    for quizresponse in quizresponses:
         quizteam = quizresponse.quizTeam
         dic = {}
         dic = {
@@ -2650,7 +2653,7 @@ def astro():
         "email1" : quizteam.member1Email,
         "email2" : quizteam.member2Email,
         "phone1" : quizteam.member1Phone,
-        "phone2" : quizteam.member2Phone, 
+        "phone2" : quizteam.member2Phone,
         }
         requests.post(url,data =dic)
 
@@ -2670,13 +2673,13 @@ def tshirt(request):
             tp.tshirtsize= data['size']
             tp.color = data['color']
             tp.gender = data['gender']
-            tp.arrivaldate = data['date'].split('-')[2] 
+            tp.arrivaldate = data['date'].split('-')[2]
             tp.tshirtdata = True
-            tp.save()   
+            tp.save()
             suggestion = suggestions(tech = tp, suggestion = data['suggestions'])
             for event in data['events']:
                 even = Event.objects.get(eventName = event)
-                tp.confirmpart.add(even) 
+                tp.confirmpart.add(even)
             suggestion.save()
             tp.save()
 
@@ -2685,14 +2688,4 @@ def tshirt(request):
     else:
         response['status'] = 0
         response['message'] = "Some error occured"
-        return JsonResponse(response)        
-
-
-
-
-
-
-
-
-
-
+        return JsonResponse(response)

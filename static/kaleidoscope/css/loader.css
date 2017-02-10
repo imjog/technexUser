@@ -1,0 +1,47 @@
+body{
+	overflow: hidden;
+	z-index: -1;
+/* 	background-image : url(	"http://cdn.makeagif.com/media/1-01-2016/LWldXE.gif"); */
+	background-size: 100% 100%;
+	margin: 0px;
+}
+#target{
+	overflow: hidden;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+}
+.bar{
+	z-index: -1;
+	background-color: #0077ff;
+	height: 100vh;
+	border-radius: 1vw;
+	width: 1vw;
+	position: absolute;
+	top: -75vh;
+}
+#page{
+	height: 100vh;
+	width: 100vw;
+	display: -webkit-flex;
+  display: flex;
+	text-align: center;
+}
+section{
+	overflow: hidden;
+	-webkit-align-self: center;
+  align-self: center;
+}
+h1{
+	z-index: 2;
+	width: 100vw;
+	text-align: center;
+	font-family: 'Montez'; 
+	color: #000;
+	font-size: 20vh;
+	text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+#displayText{
+	-webkit-transition: color 5s; /* Safari */
+	transition: color 5s;
+}
