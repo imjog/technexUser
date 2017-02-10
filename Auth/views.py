@@ -2596,18 +2596,13 @@ def paymentdata(beginIndex,endIndex):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
         try:
             tp = TechProfile.objects.get(email = email)
-            # print email
             pays = sheetpayment(tech = tp)
-            # pays.save()
-            # print pays
             pays.email = email
             pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
             pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1])
             pays.ticketPrice = int(literal_eval(str(s.cell(i,6)).split(':')[1]))
             print pays.ticketPrice
-            # print pays.ticketPrice 
             pays.timeStamp = literal_eval(str(s.cell(i,7))[5:].encode("utf-8")).encode("utf-8")
-            # print pays.timeStamp
             pays.ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
             pays.save()
             print tp.user.first_name
