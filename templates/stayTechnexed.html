@@ -323,7 +323,7 @@ function fb_login() {
   $save.on('click', function(e) {
     Caman('#canvas', img, function() {
       this.render(function() {
-        $("fbLoader").css("display","block");
+        $("#fbLoader").css("display","block");
         this.save('png');
         var base64Image = this.toBase64();
         base64 = base64Image.slice(22);
@@ -341,7 +341,7 @@ function fb_login() {
             window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
         })
         .fail(function(){
-            $("fbLoader").css("display","block");
+            $("#fbLoader").css("display","none");
             alert("please try again !!(submission failed due to high network traffic)");
         });
       });
