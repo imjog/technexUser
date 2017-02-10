@@ -56,7 +56,8 @@ sheetUrls = {
     "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec",
     "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec",
     "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec",
-    "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec"
+    "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec",
+    "payments" : "https://script.google.com/macros/s/AKfycbzyki6cw6DkVBwpVW63pZ32X2C8K2ajaf90f4e4zB8SHrNVbloh/exec"
     }
 
 @csrf_exempt
@@ -2591,28 +2592,44 @@ def krackatwork():
 def paymentdata(beginIndex,endIndex):
     rb = open_workbook('payments.xlsx')
     s = rb.sheet_by_index(0)
+    urls = sheetUrls["payments"]
     fail = 0
     for i in range(beginIndex,endIndex):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
         try:
-            tp = TechProfile.objects.get(email = email)
-            # print email
+            tp = TechProfile.objects.get(email__iexact = email) 
             pays = sheetpayment(tech = tp)
-            # pays.save()
-            # print pays
             pays.email = email
             pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
             pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1])
             pays.ticketPrice = int(literal_eval(str(s.cell(i,6)).split(':')[1]))
             print pays.ticketPrice
-            # print pays.ticketPrice 
             pays.timeStamp = literal_eval(str(s.cell(i,7))[5:].encode("utf-8")).encode("utf-8")
-            # print pays.timeStamp
-            pays.ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
+            ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
+            if ticketName == "Registration - Without Accomodation" or ticketName == "Registration - Accommodation for workshop participants" or ticketName == "Registration - Accommodation only for workshop participants" or ticketName == "Registration + Free accommodation (only for workshop participants)":
+                pays.ticketName = "Registration"
+            else:
+                pays.ticketName = ticketName    
             pays.save()
             print tp.user.first_name
         except Exception as e:
             print email
+            dic = {}
+            tpc = TechProfile.objects.filter(mobileNumber = str(literal_eval(str(s.cell(i,2)).split(':')[1])).split('.')[0]).count()
+            
+            dic = {
+            'email' : email,
+            'phone' : str(literal_eval(str(s.cell(i,2)).split(':')[1])).split('.')[0],
+            'name' :  literal_eval(str(s.cell(i,0)).split(':')[1]).encode("utf-8"),
+            'ticketname' : ticketName,     
+            }
+
+            if tpc is 0:
+                dic['status']=0 
+            else: 
+                dic['status']=1     
+
+            requests.post(urls,data= dic)
             print e.message
             fail = fail + 1
     print fail            
@@ -2636,6 +2653,40 @@ def astro():
         "phone2" : quizteam.member2Phone, 
         }
         requests.post(url,data =dic)
+
+@csrf_exempt
+@login_required(login_url = '/register/')
+def tshirt(request):
+    response = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user = request.user
+        tp = user.techprofile
+        if tp.tshirtdata:
+            response['status'] =0
+            response['message'] = "You have already submitted the data for T-shirt"
+            return JsonResponse(response)
+        else:
+            tp.tshirtsize= data['size']
+            tp.color = data['color']
+            tp.gender = data['gender']
+            tp.arrivaldate = data['date'].split('-')[2] 
+            tp.tshirtdata = True
+            tp.save()   
+            suggestion = suggestions(tech = tp, suggestion = data['suggestions'])
+            for event in data['events']:
+                even = Event.objects.get(eventName = event)
+                tp.confirmpart.add(even) 
+            suggestion.save()
+            tp.save()
+
+            response['status'] = 1
+            return JsonResponse(response)
+    else:
+        response['status'] = 0
+        response['message'] = "Some error occured"
+        return JsonResponse(response)        
+
 
 
 

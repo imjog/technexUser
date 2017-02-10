@@ -19,6 +19,7 @@
     <link href="/static/build/css/custom.min.css" rel="stylesheet">
     <link href="/static/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
     <link href="/static/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/vendors/select2/dist/css/select2.min.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
@@ -366,6 +367,7 @@ z-index: -90;
     <script src="/static/vendors/nprogress/nprogress.js"></script>
     <script src="/static/vendors/pnotify/dist/pnotify.js"></script>
     <script src="/static/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="/static/vendors/select2/dist/js/select2.full.min.js"></script>
 
    <script src="/static/build/js/custom.min.js"></script> 
 <script type="text/javascript">
@@ -390,6 +392,12 @@ app.service("profileData", function(){
            teamId : "{{workshop.teamId}}",
       },
            {% endfor %}
+        ];
+        var events = [
+        {% for team in teams %}
+          "{{team.event}}",
+          {% endfor %}
+
         ];
         var teamsData = [
         {% for team in teams %}
@@ -416,6 +424,9 @@ app.service("profileData", function(){
         this.getWorkshopData = function(){
               return workshopData
         };
+        this.getEventData = function(){
+          return events;
+        }
         //updating person
         this.updateInfo = function(personIndex, obj){
             staffArray.splice(personIndex, 1, obj)

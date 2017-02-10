@@ -74,7 +74,7 @@ urlpatterns = [
 	url(r'airshow/$',airshow, name='airshow'),
 	url(r'finalImage/$',finalImage,name='finalImage'),
 	url(r'notificationRead/$', read, name='notificationread'),
-	
+	url(r'tshirtinfo/$', tshirt , name = 'tshirtinfo'),
 	# url(r'^quiz/$',quizI, name='quiz'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),
