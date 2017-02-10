@@ -2588,11 +2588,11 @@ def krackatwork():
             }
             print dic
             requests.post(url,data=dic)
-def paymentdata():
+def paymentdata(beginIndex,endIndex):
     rb = open_workbook('payments.xlsx')
     s = rb.sheet_by_index(0)
     fail = 0
-    for i in range(1,1399):
+    for i in range(beginIndex,endIndex):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
         try:
             tp = TechProfile.objects.get(email = email)
@@ -2639,11 +2639,6 @@ def astro():
 
 
 
-
-def intellecx():
-    Quiz = quiz.objects.get(quizId = 1)
-    responses = quizResponses.objects.filter(quiz = Quiz)
-    
 
 
 
