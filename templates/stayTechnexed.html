@@ -323,6 +323,7 @@ function fb_login() {
   $save.on('click', function(e) {
     Caman('#canvas', img, function() {
       this.render(function() {
+        $("fbLoader").css("display","block");
         this.save('png');
         var base64Image = this.toBase64();
         base64 = base64Image.slice(22);
@@ -334,9 +335,14 @@ function fb_login() {
             "uid":response['uid']
         }
         console.log(data)
+
         theAjax("/finalImage/",data)
         .done(function(response){
             window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
+        })
+        .fail(function(){
+            $("fbLoader").css("display","block");
+            alert("please try again !!(submission failed due to high network traffic)");
         });
       });
     });
@@ -452,7 +458,7 @@ function fb_login() {
   </nav>
 </div>
 
-
+<img src='/static/Facebookloading.gif' id='fbLoader' style="display: none" />
 
     
 <button type="button" id="btn-next-page-fb" class="btn btn-next page-2" onclick="fb_login();">REGISTER WITH FB</button>
