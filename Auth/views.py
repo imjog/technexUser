@@ -56,7 +56,8 @@ sheetUrls = {
     "quiz-registartion" : "https://script.google.com/macros/s/AKfycbz7irBHUHPRt7E3RE9yhGUgnRN3Cy8XKZ4ux0tbjmd6J2_vuAhN/exec",
     "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec",
     "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec",
-    "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec"
+    "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec",
+    "payments" : "https://script.google.com/macros/s/AKfycbzyki6cw6DkVBwpVW63pZ32X2C8K2ajaf90f4e4zB8SHrNVbloh/exec"
     }
 
 @csrf_exempt
@@ -2591,6 +2592,7 @@ def krackatwork():
 def paymentdata(beginIndex,endIndex):
     rb = open_workbook('payments.xlsx')
     s = rb.sheet_by_index(0)
+    urls = sheetUrls["payments"]
     fail = 0
     for i in range(beginIndex,endIndex):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
@@ -2612,6 +2614,11 @@ def paymentdata(beginIndex,endIndex):
             print tp.user.first_name
         except Exception as e:
             print email
+            dic = {}
+            dic = {
+            'email' : email
+            }
+            requests.post(urls,data= dic)
             print e.message
             fail = fail + 1
     print fail            
