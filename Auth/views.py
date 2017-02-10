@@ -2640,7 +2640,10 @@ def astro():
 
 
 
-
+def intellecx():
+    Quiz = quiz.objects.get(quizId = 1)
+    responses = quizResponses.objects.filter(quiz = Quiz)
+    
 
 
 

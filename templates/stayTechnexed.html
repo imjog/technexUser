@@ -336,14 +336,14 @@ function fb_login() {
         }
         console.log(data)
         $("#savebtn").html("Please Wait..")
-        $("#savebtn").attr('disabled', 'true');
+        $("#savebtn").attr('disabled', true);
         theAjax("/finalImage/",data)
         .done(function(response){
             window.location.replace("https://m.facebook.com/photo.php?fbid="+response['albumId']+"&id="+response['uid']+"&prof&ls=your_photo_permalink&ref_component=mbasic_photo_permalink&ref_page=%2Fwap%2Fphoto.php");            
         })
         .fail(function(){
-            $("savebtn").html("Save and Upload");
-            $("#savebtn").attr('disabled', 'false');
+            $("#savebtn").html("Save and Upload");
+            $("#savebtn").attr('disabled', false);
             alert("please try again !!(submission failed due to high network traffic)");
         });
       });
