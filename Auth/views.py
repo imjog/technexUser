@@ -302,7 +302,7 @@ def register(request):
         email = data.get('email',None)
         print 'code base 0'
         try:
-            techProfile = TechProfile.objects.get(email = email)
+            techProfile = TechProfile.objects.get(email__iexact = email)
             #user = User.objects.get(email = email)
             #messages.warning(request,"Email Already Registered !")
             return HttpResponse("Email Already Registered!") #redirect('/register')
