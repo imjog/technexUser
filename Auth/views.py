@@ -33,6 +33,7 @@ import cloudinary.uploader
 import cloudinary.api
 import base64
 from io import BytesIO
+from genderize import Genderize
 #from Auth.forms import *
 # Create your views here.
 citrixpe= static('citrix.png')
@@ -2818,7 +2819,9 @@ def intellecxResult():
 
         print score    
         print dic 
-        requests.post(url, data = dic)        
+        requests.post(url, data = dic)       
+
+         
 
             
 
