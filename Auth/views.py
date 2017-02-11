@@ -2753,7 +2753,7 @@ Congratulations on being eligible for Technex T-shirt!
 We need some details regarding you to prepare for your gift.
 Please fill the form on your dashboard at www.technex.in/dashboard
 Kindly fill the form before 11:59 pm on 10 Feb.
-
+Claim your tshirts at http://www.technex.in/dashboard/#/tshirtinfo/ !
 For any queries contact:
 Yash Sharma +917565816969
     '''
