@@ -32,4 +32,3 @@ user-agents==0.3.2
 whitenoise==3.2
 xlrd==1.0.0
 xlwt==1.2.0
-genderize
