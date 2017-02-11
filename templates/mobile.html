@@ -142,26 +142,6 @@
             transform: translateX(-100vh);
           }
         }
-
-        .hovertxt{
-          visibility: hidden;
-          opacity: 0;
-        }
-        .hovli:hover .hovertxt{
-            visibility: visible;
-            opacity: 1;
-            border: 1px solid white;
-            margin-top: -40%;
-            text-align: center;
-            padding: 6%;
-            color: black;
-            border-radius: 3%;
-            background: white;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            width: 110%;
-            transition: 0.3s;
-        }
     </style>
 
   </head>
@@ -184,7 +164,6 @@
           <span class="color3">.....</span>
         </h1>
       </div>
-
     </div>
 
     <div id="nav_wrapper" style="background:black;">
@@ -199,11 +178,12 @@
   <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
   <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
   <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li>
-  <li class="topnav-li"><a href="#">SHOWS</a></li>
+  <li class="topnav-li"><a href="/kaleidoscope">KALEIDOSCOPE</a></li>
   <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
   <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
-  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
-  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
+  <!-- <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li> -->
+  <li class="topnav-li"><a href="/hospitality">HOSPITALITY</a></li>
+  <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;">{% if user.is_authenticated %}
   DASHBOARD
   {% else %}
   REGISTER / LOGIN
@@ -213,8 +193,6 @@
 </ul></div>
 <!----------/NAVBAR-------->
     </div>
-
-
     <section style="overflow: display;">
       <div id='stars' class="stars"></div>
       <div id='stars2' class="stars"></div>
@@ -252,22 +230,30 @@
       </svg>
                  <div class="dates">TOWARDS SUSTAINABILITY | 24-26 FEBRUARY</div>
 
-        <div class="prize-tech"><img src="/static/mobile/trophy.png"><p>PRIZES WORTH<br> INR 2 MILLION</p></div>
+        <!-- <div class="prize-tech"><img src="mobile/trophy.png"><p>PRIZES WORTH<br> INR 2 MILLION</p></div> -->
         <div class="samsungLogo">
-          <h3 style="">IN ASSOCIATION WITH</h3>
-          <img src="/static/samsungLogo.png" alt="samsungLogo">
+          <img src="/static/bottomlogo.png" alt="bottom logos">
         </div>
-        <!-- <div class="inteleximg">
-          <a href="/intellecx"><img src="/static/intellecx/img/intellecxnew.png"></a>
-        </div> -->
+        <div id="social-icons" class="left">
+  <a href="https://www.facebook.com/Technex" title="Facebook"><img src="/static/assets/images/fb.png"></a>
+  <a href="https://www.instagram.com/technexiitbhu" title="Instagram"><img src="/static/assets/images/insta.png"></a>
+  <a href="https://www.youtube.com/user/technexiitbhu" title="Youtube"><img src="/static/assets/images/youtube.png"></a>
+  <a href="https://www.twitter.com/technexiitbhu" title="Twitter"><img src="/static/assets/images/twitter.png"></a>
+</div>
+<!-- KELAIDOSCOPE IMAGES -->
+<div class="gifs">
+  <a href=""><img src="/static/kaleidoscope/tvf_eic.gif" style="float:left;display:none;"></a>
+  <a href=""><img src="/static/kaleidoscope/tvf_eic.gif" style="float:right"></a>
+</div>
+<!-- /KELAIDOSCOPE IMAGES -->
         <!-- footer -->
-        <div style="display:none;">
+        <div style="display:block;">
         <footer class="techfooter">
           <ul>
             <a href="/corporate-conclave"><li>Corporate Conclave</li></a>
-            <a href="/hospitality" class="hovli"><li>Hospitality & Payments</li><p class="hovertxt">payment offer valid till 8 Feb</p></a>
+            <a href="/hospitality"><li>Payments</li></a>
             <a href="/exhibitions"><li>Exhibitions</li></a>
-            <a class="hovli"><li>Airshow</li><p class="hovertxt">Will Launch Soon!</p></a>
+            <a href="/airshow"><li>Airshow</li></a>
           </ul>
         </footer>
       </div>
@@ -280,7 +266,7 @@
           <a href=""><li>Airshow</li></a>
         </ul>
       </div>
-      <!-- /mobile footer -->
+      <!-- mobile footer -->
         <!-- /footer -->
     </section>
 

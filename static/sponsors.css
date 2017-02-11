@@ -11,37 +11,52 @@ body
     background-size: 20px 20px;
     background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px, linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px, linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px, linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px, linear-gradient(90deg, #1b1b1b 10px, transparent 10px), linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
     background-color: #131313;
-    background-size: 20px 20px;   
+    background-size: 20px 20px;
 }
-@font-face {
+/*@font-face {
    font-family: codebold;
    src: url(/static/fonts/code_BOLD.otf) format("opentype");
   }
   @font-face {
    font-family: open-sans;
    src: url(/static/fonts/OpenSans-Regular.ttf) format("opentype");
-  }
-  
+  }*/
+
 .main-heading
 {
 	width: 100%;
-	
+
 }
 h1
 {
-    font-family: codebold;
+    font-family: sans-serif;
     font-size: 55px;
 }
 h2
 {
-    font-family: open-sans;
+    font-family:sans-serif;
 }
 .heading
 {
 	display: table;
 	margin: 0 auto;
-	/*background: black;*/
 	color: white;
+	text-align: center;
+}
+.heading h1{
+			font-size: 150%;
+	    text-transform: uppercase;
+	    letter-spacing: 2px;
+}
+@media screen and (min-width:768px){
+	.heading{
+		display: table;
+		margin: 0 auto;
+		color: white;
+	}
+	.heading h1{
+font-size: 200%;
+	}
 }
 .sec-heading
 {
@@ -70,9 +85,16 @@ h2
 {
 	    max-height: 80px;
     max-width: 230px;
+		margin-left: 25%;
 }
 @media only screen and (min-width: 601px)
 {
+	.spon-img
+	{
+		    max-height: 80px;
+	    max-width: 230px;
+			margin-left: 0%;
+	}
 .container {
     width: 85%;
 }
@@ -125,6 +147,7 @@ h2
 .jnavbar {
     z-index: 2000000;
     position: relative;
+		font-family: sans-serif;
 }
 
 @media (min-width: 1386px)
@@ -161,131 +184,107 @@ ul.topnav {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-@media (min-width: 1386px)
-ul.topnav li a {
-    color: rgba(255,255,255,.8);
+/*----------------------------NAVBAR--------------------------*/
+@media screen and (min-width:1386px){
+  .jnavbar{
+      margin: 0 auto;
+      display: table;
+  }
 }
-@media (min-width: 1386px)
-ul.topnav li a {
-    color: rgba(255,255,255,.8);
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  overflow: hidden;
+  background-color: black;
 }
-@media (min-width: 1320px)
+
+ul.topnav li {float: left;}
+
 ul.topnav li a {
-    font-size: 16px;
-}
-@media (max-width: 1320px)
-ul.topnav li a {
-    font-size: 16px;
-}
-ul.topnav li {
-    float: left;
-}
-ul.topnav li a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 9px;
-    text-decoration: none;
-    transition: 0.3s;
-    /*font-size: 10px;*/
-    letter-spacing: 1px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 8px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 16px;
+ letter-spacing: 1px;
     border-right: 1px solid rgba(255,255,255,.3);
 }
-
-ul.topnav li a {
-    display: inline-block;
+@media (min-width:1386px){
+    ul.topnav li a{
+        color: rgba(255,255,255,.8);
+    }
+ul.topnav li a:hover {
+/*    background-color:white; color: black;*/
+    border-top: 1px solid white;
+    border-bottom:1px solid white;
     color: white;
-    text-align: center;
-    padding: 14px 9px;
-    text-decoration: none;
-    transition: 0.3s;
-    /*font-size: 10px;*/
-    letter-spacing: 1px;
-    border-right: 1px solid rgba(255,255,255,.3);
 }
-a {
-    outline: none;
-    color: white;
-    text-decoration: none;
-}
-a {
-    outline: none;
-    color: white;
-    text-decoration: none;
-}
-*, *:after, *:before {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-*, *:after, *:before {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    ul.topnav{
+        display: inline-block;
+    }
 }
 
-ul.topnav li.icon {
-    display: none;
-}
+ul.topnav li.icon {display: none;}
 
-
-ul.topnav li {
-    float: left;
-}
-@media screen and (max-width: 768px)
-{
-.desktopLogo {
-    display: none;
-}
-.mobLogo {
-    display: block;
-}
-}
-@media screen and (min-width: 768px)
-{
-.desktopLogo {
-    display: block;
-}
-.mobLogo {
-    display: none;
-}
-}
-
-
-@media screen and (max-width: 1386px)
-{
-
-ul.topnav li:not(:first-child) {
-    display: none;
-}
- ul.topnav li:nth-child(10) {
-    display: block;
-    float: right;
-}
-ul.topnav li a {
-    border: 1px solid white;
-    margin-right: 2px;
-    font-size: 15px;
-    padding: 14px 14px;
-}
-ul.topnav li.icon {
+@media screen and (max-width:1386px) {
+  ul.topnav li:not(:first-child){display: none;}
+    ul.topnav li:nth-child(10){display: block; float: right;}
+  ul.topnav li.icon {
     float: right;
     display: inline-block;
+  }
+    ul.topnav li a{border:1px solid white;margin-right: 8px;}
 }
-ul.topnav.responsive {
-    position: relative;
-}
-ul.topnav.responsive li {
+
+@media screen and (max-width:1386px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
     float: none;
     display: inline;
-}
-ul.topnav.responsive li a {
+  }
+  ul.topnav.responsive li a {
     display: block;
     text-align: center;
-    border: 1px solid rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.2);
+  }
 }
-ul.topnav li a {
-    border: 1px solid white;
-    margin-right: 2px;
-    font-size: 15px;
-    padding: 14px 14px;
+
+@media (min-width:1024px) and (max-width:1399px){
+    ul.topnav li a{
+        padding: 14px 8px;
+    }
 }
+@media (max-width:320px){
+    ul.topnav li a{
+      font-size: 14px;
+      margin-right: 6px;
+    }
 }
+
+.desktopLogo{
+  display: none;
+}
+.mobLogo{
+  display: block;
+  margin-top: 2%;
+}
+@media screen and (min-width:768px){
+  .desktopLogo{
+    display: block;
+  }
+  .mobLogo{
+    display: none;
+  }
+}
+/*-------------------/NAVBAR-------------------*/

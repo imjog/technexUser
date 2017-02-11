@@ -148,8 +148,8 @@ html, body, .container, .main { height: 100%;background: black;}
 }
 
 .cbp-contentslider h3 {
-		font-size: 2em;
-    height: 2em;
+		font-size: 1.5em;
+    height: 4em;
     line-height: 1.7;
     font-weight: 300;
     margin: 0 0 0.3em;
@@ -157,11 +157,26 @@ html, body, .container, .main { height: 100%;background: black;}
     color: white;
     text-transform: uppercase;
     text-align: right;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     padding: 0 0.2em 0 0;
     border-bottom: 4px solid white;
 }
-
+@media screen and (min-width:768px){
+	.cbp-contentslider h3 {
+			font-size: 1.5em;
+	    height: 2em;
+	    line-height: 1.7;
+	    font-weight: 300;
+	    margin: 0 0 0.3em;
+	    position: relative;
+	    color: white;
+	    text-transform: uppercase;
+	    text-align: right;
+	    letter-spacing: 0.1em;
+	    padding: 0 0.2em 0 0;
+	    border-bottom: 4px solid white;
+	}
+}
 .cbp-contentslider h3[class^="icon-"]:before,
 .cbp-contentslider h3[class*=" icon-"]:before {
 	top: 0;
@@ -171,6 +186,7 @@ html, body, .container, .main { height: 100%;background: black;}
 	height: 1.2em;
 	margin: 0;
 	color: white;
+	display: none;
 }
 
 .cbp-contentslider li > div {
@@ -230,13 +246,14 @@ html, body, .container, .main { height: 100%;background: black;}
 
 	.cbp-contentslider nav a span {
 		display: block;
+		font-size: 75%;
 	}
 }
 
 @media screen and (max-width: 43em) {
 
 	.cbp-contentslider h3 {
-		font-size: 2em;
+		font-size: .9em;
 	}
 
 	.cbp-contentslider .cbp-content {
@@ -393,13 +410,29 @@ ul.topnav li.icon {display: none;}
 .van{
 		display: none;
 }
+
+.vantime{
+		padding-top: 25%;
+    font-size: 200%;
+    color: wheat;
+    text-align: center;
+}
+.iconair{
+	display: none;
+}
+.van1{
+	display: none;
+}
 @media screen and (min-width:768px) {
-	.van{
-		display: initial;
-		color: #f5deb3;
-			text-align: center;
-	    font-size: 45%;
-	    letter-spacing: 2px;
-	    margin-right: 2%;
-	}
+.vantime{
+
+}
+.van1{
+	display: block;
+}
+.iconair{
+	display: block;
+	float: left;
+	width: 5%;
+}
 }
