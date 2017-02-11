@@ -2832,3 +2832,26 @@ def intellecxResult():
             
 
 
+def workshopWale():
+    payments = sheetpayment.objects.all()
+    thullu = []
+    for payment in payments:
+        if payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation':
+            otherPaymentCount = payment.objects.filter(email = payment.email).count()
+            if otherPaymentCount < 2:
+                thullu.append(payment)
+
+    for thula in thullu:
+        sheetWorkshopWale(thula)
+
+def sheetWorkshopWale(payment):
+    dic = {
+    'ticketName' : payment.ticketName,
+    'email' : payment.email,
+    'contact' : payment.contact,
+    'ticketPrice' : payment.ticketPrice,
+    'timeStamp': payment.timeStamp
+    }
+
+    url = 'https://script.google.com/macros/s/AKfycbxGZICcHWbLMgeQ7UqMosjALpXOPAgASeY9Cca3kL-bfoAFfz87/exec'
+    requests.post(url,data=dic)
