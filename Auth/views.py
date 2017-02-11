@@ -2521,7 +2521,7 @@ def finalImage(request):
         fh.write(post['base64'].decode('base64'))
         fh.close()
         tags = [{"tag_uid": "225615937462895", "x": 1, "y": 1}]
-        r =graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='Show your love for Technex at http://technex.in/StayTechnexed \n #StayTechnexed', **{'tags[0]': tags})
+        r =graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='', **{'tags[0]': tags})
         print r
         os.remove(post['accessToken']+".png")
         response['albumId'] = r['id']
@@ -2558,7 +2558,7 @@ def slowConnection(request):
         x = cloudinary.uploader.upload(id_+".png")
         graph = facebook.GraphAPI(access_token = post['accessToken'], version= '2.2')
         tags = [{"tag_uid": "225615937462895", "x": 1, "y": 1}]
-        r =graph.put_photo(image=open(id_+".png",'rb'), album_path="me/photos", message='Show your love for Technex at http://technex.in/StayTechnexed \n #StayTechnexed', **{'tags[0]': tags})
+        r =graph.put_photo(image=open(id_+".png",'rb'), album_path="me/photos", message='', **{'tags[0]': tags})
         response['status'] = 1
         response['albumId'] = r['id']
         response['uid'] = id_
