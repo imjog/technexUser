@@ -2755,7 +2755,7 @@ def tshirtList():
                 print "reached"
             elif payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things' or payment.ticketName == 'Swarm Robotics' or payment.ticketName =='Vision Botics (Sixth Sense Technology)' or payment.ticketName =='Automobile':
                 g = sheetpayment.objects.filter(email = payment.email).values_list('ticketName')
-                if 'Registration' in g:
+                if (u'Registration',) in g:
                     sheetWale.append(payment)
                     print "adding"
     for sheetWala in sheetWale:
