@@ -2813,6 +2813,8 @@ def intellecxResult():
             dic['email2'] = 0
             dic['phone2'] = 0
             dic['college2'] = 0
+
+        print score    
         # print dic 
         # requests.post(url, data = dic)        
 
