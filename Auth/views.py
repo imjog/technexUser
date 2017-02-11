@@ -2782,8 +2782,8 @@ def intellecxResult():
     for quizresponse in quizresponses:
         score = 0
         responses = chutiyapa.objects.filter(quiz = quizresponse)
-        print response
         for response in responses:
+            print response
             print str(response.fieldChutiyap)
             print str(response.question.integerAnswer)
             if str(response.fieldChutiyap) == str(response.question.integerAnswer):
@@ -2815,6 +2815,8 @@ def intellecxResult():
             dic['email2'] = 0
             dic['phone2'] = 0
             dic['college2'] = 0
+
+        print score    
         # print dic 
         # requests.post(url, data = dic)        
 
