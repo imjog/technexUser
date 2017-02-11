@@ -2748,13 +2748,14 @@ def tshirtList():
 
     for payment in payments:
         time = datetime.datetime.strptime(payment.timeStamp,'%a %b %d %X IST %Y')
-        if basetime > time or payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation':
-            sheetWale.append(payment)
-            continue
-        if basetime > time or payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things':
-            g = sheetpayment.objects.filter(email = payment.email).values_list('ticketName')
-            if 'Registration' in g:
+        if basetime > time:
+            if payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation':
                 sheetWale.append(payment)
+                continue
+            if payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things' or payment.ticketName == 'Swarm Robotics' or payment.ticketName =='Vision Botics (Sixth Sense Technology)' or payment.ticketName =='Automobile':
+                g = sheetpayment.objects.filter(email = payment.email).values_list('ticketName')
+                if 'Registration' in g:
+                    sheetWale.append(payment)
     for sheetWala in sheetWale:
         shirt(sheetWala)
 
