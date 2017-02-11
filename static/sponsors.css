@@ -41,6 +41,7 @@ h2
 	display: table;
 	margin: 0 auto;
 	color: white;
+	text-align: center;
 }
 .heading h1{
 			font-size: 150%;
@@ -84,9 +85,16 @@ font-size: 200%;
 {
 	    max-height: 80px;
     max-width: 230px;
+		margin-left: 25%;
 }
 @media only screen and (min-width: 601px)
 {
+	.spon-img
+	{
+		    max-height: 80px;
+	    max-width: 230px;
+			margin-left: 0%;
+	}
 .container {
     width: 85%;
 }
