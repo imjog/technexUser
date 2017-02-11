@@ -2749,8 +2749,8 @@ def intellecxResult():
     for quizresponse in quizresponses:
         score = 0
         responses = chutiyapa.objects.filter(quiz = quizresponse)
-        print response
         for response in responses:
+            print response
             print str(response.fieldChutiyap)
             print str(response.question.integerAnswer)
             if str(response.fieldChutiyap) == str(response.question.integerAnswer):
