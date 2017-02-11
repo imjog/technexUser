@@ -2657,7 +2657,7 @@ def paymentdata(beginIndex,endIndex):
             'email' : email,
             'phone' : str(literal_eval(str(s.cell(i,2)).split(':')[1])).split('.')[0],
             'name' :  literal_eval(str(s.cell(i,0)).split(':')[1]).encode("utf-8"),
-            'ticketname' : ticketName,
+            'ticketname' : literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8"),
             }
 
             if tpc is 0:
