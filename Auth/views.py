@@ -57,7 +57,8 @@ sheetUrls = {
     "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec",
     "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec",
     "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec",
-    "payments" : "https://script.google.com/macros/s/AKfycbzyki6cw6DkVBwpVW63pZ32X2C8K2ajaf90f4e4zB8SHrNVbloh/exec"
+    "payments" : "https://script.google.com/macros/s/AKfycbzyki6cw6DkVBwpVW63pZ32X2C8K2ajaf90f4e4zB8SHrNVbloh/exec",
+    "intellecxresult" : "https://script.google.com/macros/s/AKfycbysKSJ7spHDO5YMCVu82sDftLjhDTjom3r55b5tl3723_Slwsk/exec"
     }
 
 @csrf_exempt
@@ -2524,7 +2525,7 @@ def finalImage(request):
         fh.write(post['base64'].decode('base64'))
         fh.close()
         tags = [{"tag_uid": "225615937462895", "x": 1, "y": 1}]
-        r =graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='Show your love for Technex at http://technex.in/StayTechnexed \n #StayTechnexed', **{'tags[0]': tags})
+        r =graph.put_photo(image=open(post['accessToken']+".png",'rb'), album_path="me/photos", message='', **{'tags[0]': tags})
         print r
         os.remove(post['accessToken']+".png")
         response['albumId'] = r['id']
@@ -2561,7 +2562,7 @@ def slowConnection(request):
         x = cloudinary.uploader.upload(id_+".png")
         graph = facebook.GraphAPI(access_token = post['accessToken'], version= '2.2')
         tags = [{"tag_uid": "225615937462895", "x": 1, "y": 1}]
-        r =graph.put_photo(image=open(id_+".png",'rb'), album_path="me/photos", message='Show your love for Technex at http://technex.in/StayTechnexed \n #StayTechnexed', **{'tags[0]': tags})
+        r =graph.put_photo(image=open(id_+".png",'rb'), album_path="me/photos", message='', **{'tags[0]': tags})
         response['status'] = 1
         response['albumId'] = r['id']
         response['uid'] = id_
@@ -2657,7 +2658,7 @@ def paymentdata(beginIndex,endIndex):
             'email' : email,
             'phone' : str(literal_eval(str(s.cell(i,2)).split(':')[1])).split('.')[0],
             'name' :  literal_eval(str(s.cell(i,0)).split(':')[1]).encode("utf-8"),
-            'ticketname' : ticketName,
+            'ticketname' : literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8"),
             }
 
             if tpc is 0:
@@ -2739,3 +2740,95 @@ def fixEmail():
                     faltu.delete()
                 else:
                     print str(faltu.email)+"Not Deleted \n"
+
+def tshirtList():
+    payments = sheetpayment.objects.all().order_by("id")
+    basetime = datetime.datetime.strptime('Mon Feb 9 01:00:00 IST 2017','%a %b %d %X IST %Y')
+    sheetWale = []
+    subject = "[Urgent] Technex T-shirt"
+    body = '''
+Greetings From Technex !
+
+Kindly fill the form before 11:59 pm on 12 Feb.
+Also if you have not registered on Technex website. Please register using this email address.
+Claim your tshirts at http://www.technex.in/dashboard/#/tshirtinfo/ !
+For any queries contact:
+Yash Sharma +917565816969
+    '''
+    for payment in payments:
+        time = datetime.datetime.strptime(payment.timeStamp,'%a %b %d %X IST %Y')
+        if basetime > time:
+            print "reached"
+            if payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation':
+                send_email(payment.email,subject,body)
+                print payment.id
+            elif payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things' or payment.ticketName == 'Swarm Robotics' or payment.ticketName =='Vision Botics (Sixth Sense Technology)' or payment.ticketName =='Automobile':
+                g = sheetpayment.objects.filter(email = payment.email).values_list('ticketName')
+                if (u'Registration',) in g:
+                    send_email(payment.email,subject,body)
+                    print payment.id
+    for sheetWala in sheetWale:
+        shirt(sheetWala)
+
+
+
+def shirt(payment):
+    dic = {
+    'ticketName' : payment.ticketName,
+    'email' : payment.email,
+    'contact' : payment.contact,
+    'ticketPrice' : payment.ticketPrice,
+    'timeStamp': payment.timeStamp
+    }
+
+    url = 'https://script.google.com/macros/s/AKfycbwXMM3Hd9oqbP6uAIopw_uqDxrwphl6RletLMcgIU6U4W4gB8oZ/exec'
+    requests.post(url,data=dic)
+
+def intellecxResult():
+    quizs = quiz.objects.get(name = "Abcd")
+    url = sheetUrls["intellecxresult"]
+    quizresponses = quizResponses.objects.filter(quiz = quizs)
+    for quizresponse in quizresponses:
+        score = 0
+        responses = chutiyapa.objects.filter(quiz = quizresponse)
+        for response in responses:
+            print response
+            print str(response.fieldChutiyap)
+            print str(response.question.integerAnswer)
+            if str(response.fieldChutiyap) == str(response.question.integerAnswer):
+                score = score+1
+        team = quizresponse.quizTeam
+        dic = {
+        'teamId' : team.quizTeamId,
+        'name1'  : team.name1.encode("utf-8"),
+        'email1' : team.member1Email.encode("utf-8"), 
+        'phone1' : team.member1Phone.encode("utf-8"),
+        'score' : score,
+        }
+        try: 
+            tp = TechProfile.objects.get(email__iexact = team.member1Email)
+            dic['college1'] = tp.college.collegeName
+        except:
+            dic['college1'] = 0
+        try:
+            dic['name2'] = team.name2.encode("utf-8")
+            dic['email2'] = team.member2Email.encode("utf-8")
+            dic['phone2']  =  team.member2Phone.encode("utf-8")      
+            try:
+                tp = TechProfile.objects.get(email__iexact = team.member2Email)
+                dic['college2'] = tp.college.collegeName
+            except:
+                dic['college2'] = 0
+        except:
+            dic['name2'] = 0
+            dic['email2'] = 0
+            dic['phone2'] = 0
+            dic['college2'] = 0
+
+        print score    
+        print dic 
+        requests.post(url, data = dic)        
+
+            
+
+
