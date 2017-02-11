@@ -2739,3 +2739,28 @@ def fixEmail():
                     faltu.delete()
                 else:
                     print str(faltu.email)+"Not Deleted \n"
+
+def tshirtList():
+    payments = sheetpayment.objects.all()
+    basetime = datetime.datetime.strptime('Mon Feb 9 01:00:00 IST 2017','%a %b %d %X IST %Y')
+    sheetWale = []
+    for payment in payments:
+        time = datetime.datetime.strptime(payment.timeStamp,'%a %b %d %X IST %Y')
+        if basetime > time:
+            sheetWale.append(payment)
+    for sheetWala in sheetWale:
+        shirt(sheetWala)
+
+
+
+def shirt(payment):
+    dic = {
+    'ticketName' : payment.ticketName,
+    'email' : payment.email,
+    'contact' : payment.contact,
+    'ticketPrice' : payment.ticketPrice,
+    'timeStamp': payment.timeStamp
+    }
+
+    url = 'https://script.google.com/macros/s/AKfycbwXMM3Hd9oqbP6uAIopw_uqDxrwphl6RletLMcgIU6U4W4gB8oZ/exec'
+    requests.post(url,data=dic)
