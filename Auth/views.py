@@ -2742,22 +2742,33 @@ def fixEmail():
                     print str(faltu.email)+"Not Deleted \n"
 
 def tshirtList():
-    payments = sheetpayment.objects.all()
+    payments = sheetpayment.objects.all().order_by("id")
     basetime = datetime.datetime.strptime('Mon Feb 9 01:00:00 IST 2017','%a %b %d %X IST %Y')
     sheetWale = []
+    subject = "[Urgent] Technex T-shirt"
+    body = '''
+Greetings From Technex !
 
+Congratulations on being eligible for Technex T-shirt!
+We need some details regarding you to prepare for your gift.
+Please fill the form on your dashboard at www.technex.in/dashboard
+Kindly fill the form before 11:59 pm on 10 Feb.
+Claim your tshirts at http://www.technex.in/dashboard/#/tshirtinfo/ !
+For any queries contact:
+Yash Sharma +917565816969
+    '''
     for payment in payments:
         time = datetime.datetime.strptime(payment.timeStamp,'%a %b %d %X IST %Y')
         if basetime > time:
             print "reached"
             if payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation':
-                sheetWale.append(payment)
-                print "reached"
+                send_email(payment.email,subject,body)
+                print payment.id
             elif payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things' or payment.ticketName == 'Swarm Robotics' or payment.ticketName =='Vision Botics (Sixth Sense Technology)' or payment.ticketName =='Automobile':
                 g = sheetpayment.objects.filter(email = payment.email).values_list('ticketName')
                 if (u'Registration',) in g:
-                    sheetWale.append(payment)
-                    print "adding"
+                    send_email(payment.email,subject,body)
+                    print payment.id
     for sheetWala in sheetWale:
         shirt(sheetWala)
 
