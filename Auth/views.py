@@ -57,7 +57,8 @@ sheetUrls = {
     "dhokebaaj" : "https://script.google.com/macros/s/AKfycbwcAYUhZMqjz2qudkp6m523HOaSdWMY1pzijYHMOP5ccdL0_TkJ/exec",
     "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec",
     "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec",
-    "payments" : "https://script.google.com/macros/s/AKfycbzyki6cw6DkVBwpVW63pZ32X2C8K2ajaf90f4e4zB8SHrNVbloh/exec"
+    "payments" : "https://script.google.com/macros/s/AKfycbzyki6cw6DkVBwpVW63pZ32X2C8K2ajaf90f4e4zB8SHrNVbloh/exec",
+    "intellecxresult" : "https://script.google.com/macros/s/AKfycbysKSJ7spHDO5YMCVu82sDftLjhDTjom3r55b5tl3723_Slwsk/exec"
     }
 
 @csrf_exempt
@@ -2739,3 +2740,49 @@ def fixEmail():
                     faltu.delete()
                 else:
                     print str(faltu.email)+"Not Deleted \n"
+
+
+def intellecxResult():
+    quizs = quiz.objects.get(name = "Abcd")
+    url = sheetUrls["intellecxresult"]
+    quizresponses = quizResponses.objects.filter(quiz = quizs)
+    for quizresponse in quizresponses:
+        score = 0
+        responses = chutiyapa.objects.filter(quiz = quizresponse)
+        for response in responses:
+            if str(response.fieldChutiyap) == str(response.question.integerAnswer):
+                score = score+1
+        team = quizresponse.quizTeam
+        dic = {
+        'teamId' : team.quizTeamId,
+        'name1'  : team.name1.encode("utf-8"),
+        'email1' : team.member1Email.encode("utf-8"), 
+        'phone1' : team.member1Phone.encode("utf-8"),
+        'score' : score,
+        }
+        try: 
+            tp = TechProfile.objects.get(email__iexact = team.member1Email)
+            dic['college1'] = tp.college.collegeName
+        except:
+            dic['college1'] = 0
+        try:
+            dic['name2'] = team.name2.encode("utf-8")
+            dic['email2'] = team.member2Email.encode("utf-8")
+            dic['phone2']  =  team.member2Phone.encode("utf-8")      
+            try:
+                tp = TechProfile.objects.get(email__iexact = team.member2Email)
+                dic['college2'] = tp.college.collegeName
+            except:
+                dic['college2'] = 0
+        except:
+            dic['name2'] = 0
+            dic['email2'] = 0
+            dic['phone2'] = 0
+            dic['college2'] = 0
+        print dic 
+        requests.post(url, data = dic)        
+
+            
+
+
+
