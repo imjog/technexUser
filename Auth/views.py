@@ -2837,7 +2837,7 @@ def workshopWale():
     thullu = []
     for payment in payments:
         if payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation':
-            otherPaymentCount = payment.objects.filter(email = payment.email).count()
+            otherPaymentCount = sheetpayment.objects.filter(email = payment.email).count()
             if otherPaymentCount < 2:
                 thullu.append(payment)
 
