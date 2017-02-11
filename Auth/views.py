@@ -2817,8 +2817,8 @@ def intellecxResult():
             dic['college2'] = 0
 
         print score    
-        # print dic 
-        # requests.post(url, data = dic)        
+        print dic 
+        requests.post(url, data = dic)        
 
             
 
