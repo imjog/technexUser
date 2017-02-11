@@ -2741,6 +2741,37 @@ def fixEmail():
                 else:
                     print str(faltu.email)+"Not Deleted \n"
 
+def tshirtList():
+    payments = sheetpayment.objects.all()
+    basetime = datetime.datetime.strptime('Mon Feb 9 01:00:00 IST 2017','%a %b %d %X IST %Y')
+    sheetWale = []
+
+    for payment in payments:
+        time = datetime.datetime.strptime(payment.timeStamp,'%a %b %d %X IST %Y')
+        if basetime > time:
+            if payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation':
+                sheetWale.append(payment)
+                continue
+            if payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things' or payment.ticketName == 'Swarm Robotics' or payment.ticketName =='Vision Botics (Sixth Sense Technology)' or payment.ticketName =='Automobile':
+                g = sheetpayment.objects.filter(email = payment.email).values_list('ticketName')
+                if 'Registration' in g:
+                    sheetWale.append(payment)
+    for sheetWala in sheetWale:
+        shirt(sheetWala)
+
+
+
+def shirt(payment):
+    dic = {
+    'ticketName' : payment.ticketName,
+    'email' : payment.email,
+    'contact' : payment.contact,
+    'ticketPrice' : payment.ticketPrice,
+    'timeStamp': payment.timeStamp
+    }
+
+    url = 'https://script.google.com/macros/s/AKfycbwXMM3Hd9oqbP6uAIopw_uqDxrwphl6RletLMcgIU6U4W4gB8oZ/exec'
+    requests.post(url,data=dic)
 
 def intellecxResult():
     quizs = quiz.objects.get(name = "Abcd")
@@ -2786,6 +2817,5 @@ def intellecxResult():
         # requests.post(url, data = dic)        
 
             
-
 
 
