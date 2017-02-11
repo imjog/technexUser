@@ -183,15 +183,15 @@ function navFunction() {
 <!----------NAVBAR-------->
 <div class="jnavbar">
 		<ul class="topnav" id="myTopnav">
-  <li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;"><img src="/static/images/logo-technex-nav.png" height="40px" style="padding-left:8px;padding-right:8px;"></a></li>
-  <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
-  <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
-  <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
-  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li>
-  <li class="topnav-li"><a href="#">SHOWS</a></li>
-  <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
-  <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
-  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+      <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+      <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
+      <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+      <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li>
+      <li class="topnav-li"><a href="/kaleidoscope">KALEIDOSCOPE</a></li>
+      <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
+      <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+      <!-- <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li> -->
+      <li class="topnav-li"><a href="/hospitality">HOSPITALITY</a></li>
   <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
   DASHBOARD
   {% else %}
@@ -609,7 +609,7 @@ function navFunction() {
   <script src="/static/app.js"></script>
   <script src="/static/jquery1.12.4.js"></script>
   <script src="/static/bootstrap.js"></script>
-  
+
   <script type="text/javascript">
     $(document).ready(function(){
       $("#css3d-container .navigation").hide();

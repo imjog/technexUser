@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Think Talks | Technex '17</title>	
+	<title>Think Talks | Technex '17</title>
 	<meta name="description" content="Witness the stellar guest lecture series comprising gaints from different domains.">
     <meta name="keywords" content="lectures, talks, guest lectures, think talks, nasa lecture, ceo lectures, vinod dham, guest, technex, technex17, technex 17, technex iit, technex bhu, techfest bhu, iitbhu, Indian Institute of technology, iit, bhu, iit festival, iit bhu technical festival, university, india, bhu, 2017, 2k17, 17, varanasi, big, best, biggest, awesome, large, largest">
 	<link href='http://fonts.googleapis.com/css?family=Vollkorn|Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
 <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
 <meta name="theme-color" content="#000000">
 	<script src="/static/js/guest_js/modernizr.js"></script> <!-- Modernizr -->
-	
+
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -44,19 +44,21 @@ function navFunction() {
 <!----------/NAVBAR-------->
 </head>
 <body>
-	
+
     <!----------NAVBAR-------->
 <div class="jnavbar">
 		<ul class="topnav" id="myTopnav">
   <li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;"><img src="/static/images/logo-technex-nav.png" height="40px" class="desktopLogo" style="padding-left:8px;padding-right:8px;">
 <img src="/static/images/technexLogoMobile.png" height="40px" class="mobLogo" style="padding-left:8px;padding-right:8px;"></a></li>
-  <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
-  <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
-  <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
-  <li class="topnav-li"><a href="/sponsors">SPONSORS</a></li> <li class="topnav-li"><a href="#">SHOWS</a></li>
-  <li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
-  <li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
-  <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li>
+<li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
+<li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
+<li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
+<li class="topnav-li"><a href="/sponsors">SPONSORS</a></li>
+<li class="topnav-li"><a href="/kaleidoscope">KALEIDOSCOPE</a></li>
+<li class="topnav-li"><a href="/startupfair">STARTUP FAIR</a></li>
+<li class="topnav-li"><a href="/contacts">CONTACTS</a></li>
+<!-- <li class="topnav-li"><a href="http://ca.technex.in">CAMPUS AMBASSADOR</a></li> -->
+<li class="topnav-li"><a href="/hospitality">HOSPITALITY</a></li>
   <li class="topnav-li" id="reg"><a href="/register" style="font-weight:600;background:#0084ff;"> {% if user.is_authenticated %}
   DASHBOARD
   {% else %}
@@ -78,7 +80,7 @@ function navFunction() {
 			</li>
 		{% for lecture in lectures.lectures %}
 			<li class="cd-item">
-				<a>   
+				<a>
 					<div><img src="{{lecture.photo}}" class="guestimg">
 						<h2>{{ lecture.lecturerName }}</h2>
 						<p>{{ lecture.designation }}</p>
@@ -94,45 +96,45 @@ function navFunction() {
           </div>
         </a>
       </li> -->
-		
+
 		</ul> <!-- .cd-gallery -->
 	</main> <!-- .cd-main -->
 
 	<div class="cd-folding-panel">
-		
+
 		<div class="fold-left"></div> <!-- this is the left fold -->
-		
+
 		<div class="fold-right"></div> <!-- this is the right fold -->
-		
+
 		<div class="cd-fold-content" style="color:black" id="guest-content">
 		</div>
-        
+
 		<a class="cd-close" href="#0"></a>
 	</div><!-- .cd-folding-panel -->
 <script src="/static/js/guest_js/jquery-2.1.1.js"></script>
 <script type="text/javascript">
     var data={{ lectures|safe }};
-    
+
     $('.cd-gallery li').on('click', function() {
         var k=$(this).index();
         console.log(k);
         out="";
         if (k == 0)
         {
-        	out += '<h2 style="color:black">'+'THINK TALKS<br>'+"</h2><p></p><p style='text-align:justify;'>Technex has always been known for its stellar guest lecture series - 'Think Talks' - which have been becoming increasingly attractive over the years. Technex'16 witnessed personalities hailing from varied domains coming together to share their knowledge and experience with students from around the nation. <br><br>India's leading high energy physicist - Mr Atul Gurtu, planetary geologist - Mrs Rosaly Lopes and swarm robotics researcher - Mr Gianni Di Caro presented revolutionary ideas and advancements from their respective areas of research. Mr Prabhu Chawla, one of India's finest political journalists, spoke about the development of the country's scenario over the years he's been into the profession. DRDO Target Specialist Mr Milan Kumar Pal shared amusing knowledge about the innovation that goes into the functioning of an elite state defence organization. Coming from the management world, Mrs Vinita Bali (MD, Britannia Industries Ltd) and Mr Santosh Desai (CEO, Future Brands) won the audience with intriguing talks about the dynamics and working of the Indian industry and market. All the lectures saw throngs of excited students coming to enrich themselves. Technex'17 promises to stand up to the expectations of the participants and present even more interesting and thought provoking talks by some remarkable personalities of the techno-management world.</p>"; 
+        	out += '<h2 style="color:black">'+'THINK TALKS<br>'+"</h2><p></p><p style='text-align:justify;'>Technex has always been known for its stellar guest lecture series - 'Think Talks' - which have been becoming increasingly attractive over the years. Technex'16 witnessed personalities hailing from varied domains coming together to share their knowledge and experience with students from around the nation. <br><br>India's leading high energy physicist - Mr Atul Gurtu, planetary geologist - Mrs Rosaly Lopes and swarm robotics researcher - Mr Gianni Di Caro presented revolutionary ideas and advancements from their respective areas of research. Mr Prabhu Chawla, one of India's finest political journalists, spoke about the development of the country's scenario over the years he's been into the profession. DRDO Target Specialist Mr Milan Kumar Pal shared amusing knowledge about the innovation that goes into the functioning of an elite state defence organization. Coming from the management world, Mrs Vinita Bali (MD, Britannia Industries Ltd) and Mr Santosh Desai (CEO, Future Brands) won the audience with intriguing talks about the dynamics and working of the Indian industry and market. All the lectures saw throngs of excited students coming to enrich themselves. Technex'17 promises to stand up to the expectations of the participants and present even more interesting and thought provoking talks by some remarkable personalities of the techno-management world.</p>";
         }
         else
         {
         	k = k - 1;
         	out+='<img src='+data.lectures[k].photo+' class="talkimg">'+'<h2 style="color:black">'+data.lectures[k].lecturerName+"</h2><p>"+data.lectures[k].designation+"</p><em style='text-align:justify;'>"+data.lectures[k].lecturerBio+"</em>";
         }
-        
+
         document.getElementById('guest-content').innerHTML=out;
-        
+
 });
 </script>
-    
-  
+
+
 <script src="/static/js/guest_js/main.js"></script> <!-- Resource jQuery -->
 </body>
 </html>

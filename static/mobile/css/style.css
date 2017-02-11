@@ -27,8 +27,8 @@ svg {
 @media screen and (min-width: 768px) {
   svg {
     width: 100%;
-    font-size: 16rem;
-    margin-top: -18%;
+    font-size: 12rem;
+    margin-top: -21%;
   }
 }
 
@@ -89,7 +89,7 @@ section{
 }
 @media screen and (min-width:768px){
   .dates{
-    font-size: 185%;
+    font-size: 160%;
     letter-spacing: 2px;
   }
 }
@@ -206,13 +206,13 @@ ul.topnav li.icon {display: none;}
 }
 @media screen and (min-width:768px){
     .logo-img{
-      width: 75%;
-      margin-bottom: 0;
-      margin-left: 12.5%;
+      width: 55%;
+    margin-bottom: 0;
+    margin-left: 22.5%;
     }
 }
 .main-logo{
-  margin-top: 2%;
+  margin-top: 5%;
 }
 .text-technex{
   margin-top: : 0;
@@ -223,7 +223,7 @@ ul.topnav li.icon {display: none;}
   }
 }
 .samsungLogo{
-  margin-top:-70%;
+  margin-top:0%;
 }
 .samsungLogo h3{
         text-align: center;
@@ -233,20 +233,21 @@ ul.topnav li.icon {display: none;}
         margin-bottom: 1px;
 }
 .samsungLogo img{
-  margin-left: 33%;
-  height: 35px;
+    margin-left: 17%;
+    height: 40px;
 }
 
 @media screen and (min-width:768px) {
   .samsungLogo{
-    margin-top: -20%;
+    margin-top: 0%;
   }
   .samsungLogo h3{
       font-size: 16px;
   }
   .samsungLogo img{
-      margin-left: 36%;
-      height: 90px;
+    margin-left: 29%;
+    height: 100px;
+    margin-top: 1%;
     }
 }
 @media screen and (min-width:1600px){
@@ -315,10 +316,11 @@ ul.topnav li.icon {display: none;}
 .techfooter ul a {
     text-decoration: none;
     padding: 1%;
-    font-size: 80%;
+    font-size: 70%;
     font-family: sans-serif;
     margin: 0 auto;
     color: rgba(255,255,255,.6);
+    text-transform: uppercase;
 }
 @media screen and (min-width:768px){
   .techfooter ul a {
@@ -328,6 +330,8 @@ ul.topnav li.icon {display: none;}
       font-family: sans-serif;
       margin: 0 auto;
       color: rgba(255,255,255,.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
   }
 }
 .techfooter ul a:hover{
@@ -360,4 +364,58 @@ ul.topnav li.icon {display: none;}
       color: white;
       border: 1px solid white;
       box-shadow: inset 0 0 8px;
+}
+@media screen and (max-width:768px){
+  #social-icons{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        /* margin-top: 20%; */
+        z-index: 20000000;
+        bottom: 8%;
+        left: 12%;
+        position: fixed;
+  }
+}
+
+#social-icons a{
+  padding: 0% 0% 0% 0%;
+}
+
+#social-icons a img{
+  width: 40%;
+}
+@media screen and (min-width:768px){
+  #social-icons a img{
+    width: 60%;
+  }
+  #social-icons{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 5%;
+  }
+}
+#social-icons a img:hover {
+    border-bottom: 4px solid blue;
+    border-radius: 13%;
+    transition: 0.3s;
+    padding-bottom: 5%;
+}
+
+.gifs a img{
+  margin: 8%;
+  margin-right: 29%;
+  width: 40%;
+  border-radius: 0%;
+  border: 1px solid white;
+}
+@media screen and (min-width:768px){
+  .gifs a img{
+    margin: 5%;
+    margin-top: -14%;
+    width: 18%;
+    border-radius: 0%;
+    border: 1px solid white;
+  }
 }
