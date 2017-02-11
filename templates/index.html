@@ -11,7 +11,6 @@
     <meta property="og:url" content="http://www.technex.in">
     <meta property="og:description" content="Annual techno-management festival of IIT (BHU), Varanasi">
     <meta property="og:image" content="http://www.technex.in/static/css/images/img-fb.png">
-
 <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/static/favicon/favicon-16x16.png" sizes="16x16">
@@ -183,6 +182,10 @@ function navFunction() {
 <!----------NAVBAR-------->
 <div class="jnavbar">
 		<ul class="topnav" id="myTopnav">
+      <li class="topnav-li"><a href="/" style="padding:0px 0px;border:none;">
+      <img src="/static/images/logo-technex-nav.png" height="40px" class="desktopLogo" style="padding-left:8px;padding-right:8px;">
+      <img src="/static/images/technexLogoMobile.png" height="40px" class="mobLogo" style="padding-left:8px;padding-right:8px;">
+      </a></li>
       <li class="topnav-li"><a class="active" href="/events">EVENTS</a></li>
       <li class="topnav-li"><a href="/workshops">WORKSHOPS</a></li>
       <li class="topnav-li"><a href="/talks">THINK TALKS</a></li>
@@ -198,7 +201,7 @@ function navFunction() {
   REGISTER / LOGIN
   {% endif %}</a></li>
   <li class="icon">
-    <a href="javascript:void(0);" style="font-size:15px;padding:14px;" onclick="navFunction()">☰</a>
+    <a href="javascript:void(0);" style="font-size:15px;padding:14px;" onclick="navFunction()">MENU ☰</a>
   </li>
 </ul></div>
 <!----------/NAVBAR-------->
@@ -245,11 +248,17 @@ function navFunction() {
             </g>
            <div class="technex-dates" style="display: table;text-align: center;margin: 0 auto;MARGIN-TOP: -7%;">TOWARDS SUSTAINABILITY&nbsp;&nbsp; | &nbsp;&nbsp;24 - 26 FEBRUARY</div>
                  <div class="samsungLogo">
-                   <h3 style="text-align: center;color: wheat;font-size:20px;">IN ASSOCIATION WITH</h3>
-                   <img src="/static/samsungLogo.png" alt="samsungLogo">
+                   <img src="/static/bottomlogo.png" alt="bottom logos">
                  </div>
-             <div class="countdown" style="
-    display: table;
+                 <!-- KELAIDOSCOPE IMAGES -->
+                 <div class="gifs">
+                   <a href=""><img src="/static/kaleidoscope/tvf_eic.gif" style="float:left;display:none;"></a>
+                   <a href=""><img src="/static/kaleidoscope/tvf_eic.gif" style="float:right"></a>
+                 </div>
+                 <!-- /KELAIDOSCOPE IMAGES -->
+      <!-- countdown -->
+    <div class="countdown" style="
+    display: none;
     margin: 0 auto;
     /* align-items: center; */
     transform: scale(1.5);
@@ -279,6 +288,7 @@ function navFunction() {
         </div>
     </div>
 </div>
+<!-- /countdown -->
           </svg>
 
           </div>
@@ -361,12 +371,13 @@ function navFunction() {
       <div class="navigation navigation-initial">
         <button class="button-next mobile-hidden">NEXT</button>
       </div>
-      <div id="social-icons" class="left">
+      <div id="social-icons" class="left left1">
   <a href="https://www.facebook.com/Technex" title="Facebook"><img src="/static/assets/images/fb.png"></a>
   <a href="https://www.instagram.com/technexiitbhu" title="Instagram"><img src="/static/assets/images/insta.png"></a>
-  <a href="https://www.youtube.com/user/technexiitbhu" title="Youtube"><img src="/static/assets/images/youtube.png"></a>
-  <a href="https://www.twitter.com/technexiitbhu" title="Twitter"><img src="/static/assets/images/twitter.png"></a>
- <!--  <a href="http://cy.linkedin.com/in/andreaseracleous/" title="LinkedIn"><i class="fa fa-linkedin"></i></a> -->
+</div>
+<div id="social-icons" class="right right1">
+<a href="https://www.youtube.com/user/technexiitbhu" title="Youtube"><img src="/static/assets/images/youtube.png"></a>
+<a href="https://www.twitter.com/technexiitbhu" title="Twitter"><img src="/static/assets/images/twitter.png"></a>
 </div>
     </section>
 
@@ -583,13 +594,13 @@ function navFunction() {
 
     </section>
     <!-- footer -->
-    <div style="display:none;">
+    <div style="display:block;">
     <footer class="techfooter">
       <ul>
         <a href="/corporate-conclave"><li>Corporate Conclave</li></a>
-        <a href="/hospitality" class="hovli"><li>Hospitality & Payments</li><p class="hovertxt">payment offer valid till 8 Feb</p></a>
+        <a href="/hospitality"><li>Payments</li></a>
         <a href="/exhibitions"><li>Exhibitions</li></a>
-        <a class="hovli"><li>Airshow</li><p class="hovertxt">Will Launch Soon!</p></a>
+        <a href="/airshow"><li>Airshow</li></a>
       </ul>
     </footer>
   </div>

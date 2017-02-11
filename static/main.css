@@ -39,6 +39,16 @@ summary {
     letter-spacing: 2px;
     font-weight: 500;
 }
+@media screen and (min-width:850px) and (max-width:1020px){
+  .technex-dates{
+    font-size: 20px;
+  }
+}
+@media screen and (min-width:1024px) and (max-width:1200px){
+  .technex-dates{
+    font-size: 24px;
+  }
+}
 @media (min-width:1400px){
     .technex-dates{
         margin-right: 22%;
@@ -2162,47 +2172,21 @@ ul.topnav li.icon {display: none;}
         padding: 14px 8px;
     }
 }
-/*
-
-.topnav-li:after {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: red;
+.desktopLogo{
+  display: none;
 }
-.topnav-li:before {
-  position: absolute;
-  -webkit-transition: 1s;
-  transition: 1s;
-  content: '';
-  width: 0;
-  left: 50%;
-  top: 0;
-  height: 3px;
-  background: yellow;
+.mobLogo{
+  display: block;
+  margin-top: 2%;
 }
-.topnav-li:after {
-  right: 0;
-  left: auto;
+@media screen and (min-width:768px){
+  .desktopLogo{
+    display: block;
+  }
+  .mobLogo{
+    display: none;
+  }
 }
-.topnav-li:before {
-  left: 0;
-}
-.topnav-li:hover:after {
-  width: 100%;
-  left: 0;
-}
-.topnav-li:hover:before {
-  width: 100%;
-  right: 0;
-    left: auto;
-}
-*/
 /*-------------------/NAVBAR-------------------*/
 a:hover{
     border: none;
@@ -2210,13 +2194,61 @@ a:hover{
 
 /* SAMSUNG LOGO */
 .samsungLogo{
-display: table;
-margin: 0 auto;
+  margin-top:0%;
 }
 .samsungLogo h3{
-  text-align: center;
-    color: wheat;
+        text-align: center;
+        color: #f5deb3;
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin-bottom: 1px;
 }
+.samsungLogo img{
+    /*margin-left: 17%;*/
+    height: 40px;
+}
+
+@media screen and (min-width:768px) {
+  .samsungLogo{
+    margin-top: 0%;
+    display: flex;
+    justify-content: center;
+  }
+  .samsungLogo h3{
+      font-size: 16px;
+  }
+  .samsungLogo img{
+    /*margin-left: 29%;*/
+    height: 12%;
+    margin-top: 1%;
+    }
+}
+@media screen and (width:1280px){
+  .samsungLogo img{
+    /*margin-left: 26%;*/
+  }
+}
+@media screen and (min-width:1600px){
+  .samsungLogo h3{
+      font-size: 16px;
+      margin-top:4%;
+  }
+  /*.samsungLogo img{
+      margin-left: 40%;
+      height: 90px;
+    }*/
+}
+@media screen and (min-width:1920px){
+  .samsungLogo h3{
+      font-size: 16px;
+      margin-top:4%;
+  }
+  /*.samsungLogo img{
+      margin-left: 40%;
+      height: 90px;
+    }*/
+}
+
 
 
 
@@ -2232,8 +2264,8 @@ body {
 #social-icons {
   position: fixed;
   top: 13%;
-  margin-left: 10px;
-
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 #social-icon.left {
@@ -2250,6 +2282,7 @@ body {
   text-decoration: none;
   width: 50px;
   height: inherit;
+  padding-top: 30%;
   /*height: 50px;*/
 }
 #social-icons a img
@@ -2257,7 +2290,6 @@ body {
     max-height: 50px;
     max-width: 50px;
 }
-
 #social-icons .fa {
   display: block;
   font-size: 35px;
@@ -2333,14 +2365,45 @@ body {
   margin: 0;
 }
 .techfooter ul a {
+    text-decoration: none;
     padding: 1%;
-    font-size: 120%;
+    font-size: 70%;
     font-family: sans-serif;
     margin: 0 auto;
     color: rgba(255,255,255,.6);
+    text-transform: uppercase;
+}
+@media screen and (min-width:768px){
+  .techfooter ul a {
+      text-decoration: none;
+      padding: 1%;
+      font-size: 120%;
+      font-family: sans-serif;
+      margin: 0 auto;
+      color: rgba(255,255,255,.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+  }
 }
 .techfooter ul a:hover{
+  text-decoration: none;
   color: white;
   transition: 0.3s;
 }
 /* ---------/footer ----------*/
+.gifs a img{
+  margin: 8%;
+  margin-right: 29%;
+  width: 40%;
+  border-radius: 0%;
+  border: 1px solid white;
+}
+@media screen and (min-width:768px){
+  .gifs a img{
+    margin: 2%;
+    margin-top: -7%;
+    width: 17%;
+    border-radius: 0%;
+    border: 1px solid white;
+  }
+}
