@@ -2749,10 +2749,8 @@ def tshirtList():
     body = '''
 Greetings From Technex !
 
-Congratulations on being eligible for Technex T-shirt!
-We need some details regarding you to prepare for your gift.
-Please fill the form on your dashboard at www.technex.in/dashboard
-Kindly fill the form before 11:59 pm on 10 Feb.
+Kindly fill the form before 11:59 pm on 12 Feb.
+Also if you have not registered on Technex website. Please register using this email address.
 Claim your tshirts at http://www.technex.in/dashboard/#/tshirtinfo/ !
 For any queries contact:
 Yash Sharma +917565816969
@@ -2834,3 +2832,26 @@ def intellecxResult():
             
 
 
+def workshopWale():
+    payments = sheetpayment.objects.all()
+    thullu = []
+    for payment in payments:
+        if payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things' or payment.ticketName == 'Swarm Robotics' or payment.ticketName =='Vision Botics (Sixth Sense Technology)' or payment.ticketName =='Automobile':
+            otherPaymentCount = sheetpayment.objects.filter(email = payment.email).count()
+            if otherPaymentCount < 2:
+                thullu.append(payment)
+
+    for thula in thullu:
+        sheetWorkshopWale(thula)
+
+def sheetWorkshopWale(payment):
+    dic = {
+    'ticketName' : payment.ticketName,
+    'email' : payment.email,
+    'contact' : payment.contact,
+    'ticketPrice' : payment.ticketPrice,
+    'timeStamp': payment.timeStamp
+    }
+
+    url = 'https://script.google.com/macros/s/AKfycbxGZICcHWbLMgeQ7UqMosjALpXOPAgASeY9Cca3kL-bfoAFfz87/exec'
+    requests.post(url,data=dic)

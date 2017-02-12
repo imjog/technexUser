@@ -26,7 +26,7 @@ as:[1,1,1,1]
 {
 parentEvent: 'creatrix',
 events:['minimize', 'iso', 'collage', 'avant-garde', 'animaze', '2d'],
-max:[4,4,4,4,4,4],
+max:[4,4,4,4,4,1],
 as:[1,1,1,1,1,1]
 },
 {
