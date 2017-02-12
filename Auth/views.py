@@ -2832,3 +2832,30 @@ def intellecxResult():
             
 
 
+def workshopWale():
+    payments = sheetpayment.objects.all()
+    thullu = []
+    for payment in payments:
+        if payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things' or payment.ticketName == 'Swarm Robotics' or payment.ticketName =='Vision Botics (Sixth Sense Technology)' or payment.ticketName =='Automobile':
+            otherPaymentCount = sheetpayment.objects.filter(email = payment.email).count()
+            if otherPaymentCount < 2:
+                thullu.append(payment)
+
+    for thula in thullu:
+        sheetWorkshopWale(thula)
+
+def sheetWorkshopWale(payment):
+    dic = {
+    'ticketName' : payment.ticketName,
+    'email' : payment.email,
+    'contact' : payment.contact,
+    'ticketPrice' : payment.ticketPrice,
+    'timeStamp': payment.timeStamp
+    }
+
+    url = 'https://script.google.com/macros/s/AKfycbxGZICcHWbLMgeQ7UqMosjALpXOPAgASeY9Cca3kL-bfoAFfz87/exec'
+    requests.post(url,data=dic)
+
+
+def coreteam(request):
+    return HttpResponseRedirect('https://docs.google.com/forms/d/e/1FAIpQLSdrnLbzzwmcUcFKdIj7rb8ablEnjJRbs_0Po1PD4V8axizmSA/viewform')    
