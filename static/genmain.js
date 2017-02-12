@@ -53,10 +53,12 @@ events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
 max:[5,4,4,4],
 as:[1,1,1,1]
 },
+{
 parentEvent: 'game-dungeon',
 events: ['nfs' , 'cs-go' , 'fifa'],
 max:[0,4,0],
-as:[1,1,1,1]
+as:[1,1,1]
+}
 ];
 var workdata=[
 {
