@@ -2855,3 +2855,7 @@ def sheetWorkshopWale(payment):
 
     url = 'https://script.google.com/macros/s/AKfycbxGZICcHWbLMgeQ7UqMosjALpXOPAgASeY9Cca3kL-bfoAFfz87/exec'
     requests.post(url,data=dic)
+
+
+def coreteam(request):
+    return HttpResponseRedirect('https://docs.google.com/forms/d/e/1FAIpQLSdrnLbzzwmcUcFKdIj7rb8ablEnjJRbs_0Po1PD4V8axizmSA/viewform')    
