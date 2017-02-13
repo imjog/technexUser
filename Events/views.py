@@ -34,7 +34,7 @@ sheetUrls = {
 
 	"2d":"https://script.google.com/macros/s/AKfycbwf1qvqJwVLgRNnD_JhZROI2r2AIrlOrTlxRAzAWRccS5pQerY/exec",
 	"animaze":"https://script.google.com/macros/s/AKfycbxS-q0nnu3BfadEq-QWU_KuR8v2FMk5Ji40Y3gBDHGmZ_E9n_s/exec",
-	"avant-garde":"https://script.google.com/macros/s/AKfycbzbMnYK0LUapV-62CKM3GrA61z8nEmPzJDnhbtUY2cXgQGX5vU/exec",
+	"avant-garde":"https://script.google.com/membersacros/s/AKfycbzbMnYK0LUapV-62CKM3GrA61z8nEmPzJDnhbtUY2cXgQGX5vU/exec",
 	"iso":"https://script.google.com/macros/s/AKfycbxM9pEcYkjnFKMVWoRCAy_HayzgLuxaXDDD-ccGGkCi_Qgz2xw/exec",
 	"collage":"https://script.google.com/macros/s/AKfycbx-ElC8fhlP5h2lZucFVF01BzdMaPMW6GrsHfotZGYg-SOs_4Gj/exec",
 	"minimize":"https://script.google.com/macros/s/AKfycbwYTV5c6Yw5MRy1OxII-U6A78YsWz_iNqFqIzlS_eb6NJ408tY/exec",
