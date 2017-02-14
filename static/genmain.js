@@ -77,6 +77,14 @@ var workdata=[
   workshop: 'swarm-robotics',
   max: 5
 },
+{
+ workshop: 'android-app-development',
+ max : 1  
+},
+{
+  workshop: 'ethical-hacking',
+  max: 1
+}
 ];
 function findWithAttr(array, attr, value) {
 	
