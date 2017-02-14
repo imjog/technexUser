@@ -58,7 +58,8 @@ sheetUrls = {
     "krackatdata" : "https://script.google.com/macros/s/AKfycbzP0aInZDkeoa2JWF4eWfLzuilGmJ2hWdFYWlmbyuaio3FuB2pH/exec",
     "astroquizdata" : "https://script.google.com/macros/s/AKfycbyYzMh3r2jyG-pMI1eSeTljE6EDXmAcOqHGpfBaehV6EcfMBpzn/exec",
     "payments" : "https://script.google.com/macros/s/AKfycbzyki6cw6DkVBwpVW63pZ32X2C8K2ajaf90f4e4zB8SHrNVbloh/exec",
-    "intellecxresult" : "https://script.google.com/macros/s/AKfycbysKSJ7spHDO5YMCVu82sDftLjhDTjom3r55b5tl3723_Slwsk/exec"
+    "intellecxresult" : "https://script.google.com/macros/s/AKfycbysKSJ7spHDO5YMCVu82sDftLjhDTjom3r55b5tl3723_Slwsk/exec",
+    "tshirt" : "https://script.google.com/macros/s/AKfycbydgOTlQjdiBzHd_10hh_zGZ372uaeNGtFIFNdw3Cbl6gKIf-8/exec"
     }
 
 @csrf_exempt
@@ -2859,3 +2860,24 @@ def sheetWorkshopWale(payment):
 
 def coreteam(request):
     return HttpResponseRedirect('https://docs.google.com/forms/d/e/1FAIpQLSdrnLbzzwmcUcFKdIj7rb8ablEnjJRbs_0Po1PD4V8axizmSA/viewform')    
+
+
+
+def tshirtdatafill():
+    tp = TechProfile.objects.filter(tshirtdata = True)
+    url = sheetUrls["tshirt"]
+    print tp.count()
+    for t in tp:
+        dic = {
+        'name' : t.user.first_name.encode("utf-8"),
+        'college' : t.college.collegeName,
+        'email' : t.email.encode("utf-8"),
+        'phone' : t.mobileNumber,
+        'size' : t.tshirtsize.encode("utf-8"),
+        'color' : t.color.encode("utf-8"),
+        'date' : t.arrivaldate.encode("utf-8"),
+        'gender' : t.gender.encode("utf-8")
+        }   
+        print dic
+        requests.post(url, data=dic)
+

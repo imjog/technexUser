@@ -53,10 +53,12 @@ events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
 max:[5,4,4,4],
 as:[1,1,1,1]
 },
+{
 parentEvent: 'game-dungeon',
 events: ['nfs' , 'cs-go' , 'fifa'],
 max:[0,4,0],
-as:[1,1,1,1]
+as:[1,1,1]
+}
 ];
 var workdata=[
 {
@@ -129,10 +131,6 @@ app.config(function ($routeProvider) {
               })
              .when("/payment/",{
               templateUrl: '/static/payments.html', 
-             })
-              .when("/tshirtinfo/",{
-              templateUrl: '/static/tshirtinfo.html',
-              controller: 'shirtdata', 
              })
              
             
