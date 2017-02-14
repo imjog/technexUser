@@ -77,6 +77,9 @@ urlpatterns = [
 	url(r'tshirtinfo/$', tshirt , name = 'tshirtinfo'),
 	url(r'kaleidoscope/$', kaleidoscope, name="kaleidoscope"),
 	url(r'slowConnection/$',slowConnection,name='slowConnection'),
+	url(r'coreteam/$',coreteam,name='coreteams'),
+	url(r'app/$',applink,name='applink'),
+
 	# url(r'^quiz/$',quizI, name='quiz'),
 	#url(r'^genetella/',genetella, name='Mission Dashboard'),
 	#url(r'^fb/$',demofb_id,name='demofb_id'),

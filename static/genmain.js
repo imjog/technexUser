@@ -52,6 +52,12 @@ parentEvent: 'robonex',
 events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
 max:[5,4,4,4],
 as:[1,1,1,1]
+},
+{
+parentEvent: 'game-dungeon',
+events: ['nfs' , 'cs-go' , 'fifa'],
+max:[0,4,0],
+as:[1,1,1]
 }
 ];
 var workdata=[
@@ -71,6 +77,14 @@ var workdata=[
   workshop: 'swarm-robotics',
   max: 5
 },
+{
+ workshop: 'android-app-development',
+ max : 1  
+},
+{
+  workshop: 'ethical-hacking',
+  max: 1
+}
 ];
 function findWithAttr(array, attr, value) {
 	
@@ -125,10 +139,6 @@ app.config(function ($routeProvider) {
               })
              .when("/payment/",{
               templateUrl: '/static/payments.html', 
-             })
-              .when("/tshirtinfo/",{
-              templateUrl: '/static/tshirtinfo.html',
-              controller: 'shirtdata', 
              })
              
             
