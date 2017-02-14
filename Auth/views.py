@@ -2861,6 +2861,8 @@ def sheetWorkshopWale(payment):
 def coreteam(request):
     return HttpResponseRedirect('https://docs.google.com/forms/d/e/1FAIpQLSdrnLbzzwmcUcFKdIj7rb8ablEnjJRbs_0Po1PD4V8axizmSA/viewform')    
 
+def applink(request):
+    return HttpResponseRedirect('https://play.google.com/store/apps/details?id=org.piratejester.technex17')
 
 
 def tshirtdatafill():
