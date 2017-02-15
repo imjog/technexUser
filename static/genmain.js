@@ -62,27 +62,7 @@ as:[1,1,1]
 ];
 var workdata=[
 {
-  workshop: 'data-mining',
-  max: 1
-},
-{
-  workshop: 'digital-marketing',
-  max: 1
-},
-{
   workshop: '3-d-printing',
-  max: 1
-},
-{
-  workshop: 'swarm-robotics',
-  max: 5
-},
-{
- workshop: 'android-app-development',
- max : 1  
-},
-{
-  workshop: 'ethical-hacking',
   max: 1
 }
 ];
