@@ -279,7 +279,7 @@ def forgotPassword(request):
         key = 'Technex'+email+"caportal"
         key = str(hash(key))
         try:
-            user = User.objects.get(email = email)
+            user = TechProfile.objects.get(email = email).user
 
         except:
             response['status'] = 0 # invalid email 

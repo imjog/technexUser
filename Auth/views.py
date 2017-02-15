@@ -673,8 +673,8 @@ def error500(request):
 def send_email(recipient, subject, body):
 
     return requests.post(
-        "https://api.mailgun.net/v3/mailgun3.technex.in/messages",
-        auth=("api", "key-692af0f22af8ad9d8e39ac8ff152260e"),
+        "https://api.mailgun.net/v3/mg.technex.in/messages",
+        auth=("api", "key-cf7f06e72c36031b0097128c90ee896a"),
         data={"from": "Technex<tech@technex.in>",
               "to": recipient,
               "subject": subject,
