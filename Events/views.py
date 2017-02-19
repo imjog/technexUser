@@ -57,6 +57,7 @@ sheetUrls = {
 	"goldbergs-alley": "https://script.google.com/macros/s/AKfycbyFAD8X7_ePW5ficdgcWPZ_obpxuly-5UAX26W9lj5VCJMTxZw/exec",
 	"bridgeit": "https://script.google.com/macros/s/AKfycby99ACnseBDFL7y2cmarSNrhIvzcHllw4SfHr4ovh0iHoBId-M/exec",
 	"hydracs": "https://script.google.com/macros/s/AKfycbz8bZZxxjZVIqS9virOgox90WmLjvGz0RK3m8cr9fv9q6BbpbY/exec",
+	"cs-go" : "https://script.google.com/macros/s/AKfycbz2rizF0A3Ok97_nMSTnUA9oekEG4fNUrpIOb0ovNS6TgNDr6Dz/exec",
 
 
 }
