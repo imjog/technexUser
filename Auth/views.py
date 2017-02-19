@@ -681,7 +681,7 @@ def send_email(recipient, subject, body):
               "text": body})
 
 def send_email2(r,s,b):
-    return requests.post("https://api.mailgun.net/v3/mailgun2.technex.in/messages",auth=("api", "key-44ee4c32228391fef7704e1fc9194690"),data={"from":"Technex 2017 IIT(BHU) Varanasi India <technex@iitbhu.ac.in>","to":r,"subject":s,"text":b})
+    return requests.post("https://api.mailgun.net/v3/mg32.technex.in/messages",auth=("api", "key-817973280a90a2a4c81a917cfe9a8503"),data={"from":"Technex 2017 IIT(BHU) Varanasi India <technex@iitbhu.ac.in>","to":r,"subject":s,"text":b})
 
 @csrf_exempt
 def botApi(request):
