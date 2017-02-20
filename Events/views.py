@@ -58,6 +58,14 @@ sheetUrls = {
 	"bridgeit": "https://script.google.com/macros/s/AKfycby99ACnseBDFL7y2cmarSNrhIvzcHllw4SfHr4ovh0iHoBId-M/exec",
 	"hydracs": "https://script.google.com/macros/s/AKfycbz8bZZxxjZVIqS9virOgox90WmLjvGz0RK3m8cr9fv9q6BbpbY/exec",
 	"cs-go" : "https://script.google.com/macros/s/AKfycbz2rizF0A3Ok97_nMSTnUA9oekEG4fNUrpIOb0ovNS6TgNDr6Dz/exec",
+	"classroom-furniture" : "https://script.google.com/macros/s/AKfycbyD1yAphlQUv1qVFlsj325iQvhvvJUkwMTs4pR79hkCG-JcTZDH/exec",
+	"classroom-cooling" : "https://script.google.com/macros/s/AKfycbx2y0dAhHHaH97HWYmdQuVUyYYgYF8MhKXCQqbWgVWS2-p_lGc/exec",
+	"classroom-sound-absorber" : "https://script.google.com/macros/s/AKfycbxFS5uSJPrrVZPTVNSsiuGvFPdjlcVFCZQkv1Ht9cHmFxokK2zi/exec",
+	"hostel-room-furniture": "https://script.google.com/macros/s/AKfycbwImpuQnhpOsHN98KqYCDQj0HGD3z_TpTjEKU_90v_6t7E03Gw/exec",
+	"mess-furniture": "https://script.google.com/macros/s/AKfycbx25ucmWGPX4LGcwSDhTcobu8EX9ZsWqokB0kq-D8qVgRlRvtpO/exec",
+
+
+
 
 
 }
