@@ -173,7 +173,7 @@ Regards
 				team.members.add(user)
 			send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			message=" Team Registration successful for team name "+ str(team.teamName) + " . Visit www.fb.com/technex for updates. \nRegards\nTeam Technex"
-			send_sms_single(message,str(teamLeader.mobileNumber))
+			# send_sms_single(message,str(teamLeader.mobileNumber))
 			for user in users:
 				send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			response['status'] = 1
