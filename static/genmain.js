@@ -58,6 +58,12 @@ parentEvent: 'game-dungeon',
 events: ['nfs' , 'cs-go' , 'fifa'],
 max:[0,4,0],
 as:[1,1,1]
+},
+{
+  parentEvent: 'dih-design-contest',
+  events: ['classroom-furniture','classroom-cooling','classroom-sound-absorber','hostel-room-furniture' ,'mess-furniture'],
+  max:[1,1,1,1,1],
+  as:[1,1,1,1]
 }
 ];
 var workdata=[
