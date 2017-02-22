@@ -215,7 +215,7 @@ Slider
     font-size: 1.6rem;
   }
   .cd-slider h2 {
-    font-size: 3.5rem;
+    font-size: 3.0rem;
     margin-bottom: 0;
   }
   .cd-slider h2, .cd-slider p {
@@ -466,6 +466,7 @@ ul.topnav li.icon {display: none;}
 /*-------------------/NAVBAR-------------------*/
 .headingcorp{
   /*box-shadow: inset 0 0 12px;*/
+  display: none;
     padding: 3%;
     position: fixed;
     z-index: 10000;
@@ -497,4 +498,15 @@ background-size: 64px 128px;
     letter-spacing: 2px;
     /*background: rgba(0,0,0,.1);*/
   }
+}
+.slot{
+    text-align: center;
+    z-index: 200000;
+    position: absolute;
+    width: 100%;
+    background: rgba(0,0,0,.6);
+    color: white;
+    left: 0;
+    top: 0;
+    padding: 2%;
 }
