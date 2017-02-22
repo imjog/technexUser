@@ -1456,7 +1456,7 @@ ul.topnav li.icon {display: none;}
 	z-index: 2000000;
 	position: absolute;
 	color: white;
-	background: rgba(0,0,0,.7);
+	background: rgba(0,0,0,.8);
 	left: 0;
 	top: 0;
 	bottom: 0;
@@ -1521,7 +1521,7 @@ table tr td{
 		z-index: 2000000;
 		position: absolute;
 		color: white;
-		background: rgba(0,0,0,.7);
+		background: rgba(0,0,0,.8);
 		left: 0;
 		top: 0;
 		bottom: 0;

@@ -201,6 +201,7 @@ Slider
     /* vertically align its content */
     display: table;
     padding: 0 40px;
+    overflow: scroll;
   }
   .cd-slider .content > div {
     /* vertically align <div> inside div.content */
@@ -225,6 +226,7 @@ Slider
 @media only screen and (min-width: 1170px) {
   .cd-slider .content {
     padding: 0 90px;
+    overflow: scroll;
   }
   .cd-slider h2 {
     font-weight: 300;
@@ -509,4 +511,29 @@ background-size: 64px 128px;
     left: 0;
     top: 0;
     padding: 2%;
+}
+
+#benifit{
+    background: rgba(0,0,0,.6);
+    color: white;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    padding: 2%;
+    line-height: 120%;
+    font-weight: 100;
+    display: block;
+}
+@media screen and (max-width:768px) {
+  #benifit {
+    background: rgba(0,0,0,.6);
+    color: white;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    padding: 5%;
+    line-height: 120%;
+    font-weight: 100;
+    margin-top: 9%;
+    font-size: 65%;
+    display: block;
+}
 }
