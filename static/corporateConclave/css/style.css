@@ -513,7 +513,7 @@ background-size: 64px 128px;
     padding: 2%;
 }
 
-#benifit{
+.benifits{
     background: rgba(0,0,0,.6);
     color: white;
     font-family: sans-serif;
@@ -524,7 +524,7 @@ background-size: 64px 128px;
     display: block;
 }
 @media screen and (max-width:768px) {
-  #benifit {
+  .benifits {
     background: rgba(0,0,0,.6);
     color: white;
     font-family: sans-serif;
