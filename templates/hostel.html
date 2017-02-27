@@ -1,0 +1,14 @@
+Current Hostels:
+{% for currentHostel in currentHostels %}
+<br>
+{{currentHostel.hostel.name}}  {{currentHostel.hostel.capacity}}  {{currentHostel.hostel.genderType}} {{currentHostel.bufferSize}}
+<br> 
+{% endfor %}
+<form method="post">
+<select name='name'>
+{% for hostel in hostels %}
+<option value="{{hostel.name}}">{{hostel.name}}(capacity = {{hostel.currentCapacity}} + {{hostel.bufferSize}})({{hostel.capacity}})
+{% endfor %}
+</select>
+<input type='submit' value='Change Current Hostel' />
+</form>

@@ -1634,8 +1634,8 @@ def send_sms(username,passwd,message,number):
 def send_sms_single(message,number):
     ups=Way2smsAccount_Premium.objects.all()
     for up in ups:
-        if up.messages_left!=0:
-            break
+        if up.messages_left==0:
+            continue
         send_sms(up.username,up.password,message,number)
         up.messages_left-=1
         up.save()
@@ -2628,9 +2628,11 @@ def krackatwork():
             print dic
             requests.post(url,data=dic)
 def paymentdata(beginIndex,endIndex):
-    rb = open_workbook('payments.xlsx')
+    rb = open_workbook('paymentMS.xlsx')
     s = rb.sheet_by_index(0)
     urls = sheetUrls["payments"]
+    wb = Workbook()
+    Sheet1 = wb.add_sheet('Sheet1')
     fail = 0
     for i in range(beginIndex,endIndex):
         email = literal_eval(str(s.cell(i,1)).split(':')[1]).encode("utf-8")
@@ -2641,15 +2643,15 @@ def paymentdata(beginIndex,endIndex):
             pays.ticketId = literal_eval(str(s.cell(i,5)).split(':')[1]).encode("utf-8")
             pays.contact = literal_eval(str(s.cell(i,2)).split(':')[1])
             pays.ticketPrice = int(literal_eval(str(s.cell(i,6)).split(':')[1]))
-            print pays.ticketPrice
+            # print pays.ticketPrice
             pays.timeStamp = literal_eval(str(s.cell(i,7))[5:].encode("utf-8")).encode("utf-8")
             ticketName = literal_eval(str(s.cell(i,4)).split(':')[1]).encode("utf-8")
             if ticketName == "Registration - Without Accomodation" or ticketName == "Registration - Accommodation for workshop participants" or ticketName == "Registration - Accommodation only for workshop participants" or ticketName == "Registration + Free accommodation (only for workshop participants)":
                 pays.ticketName = "Registration"
             else:
                 pays.ticketName = ticketName
-            pays.save()
-            print tp.user.first_name
+            # pays.save()
+            # print tp.user.first_name
         except Exception as e:
             print email
             dic = {}
@@ -2667,9 +2669,17 @@ def paymentdata(beginIndex,endIndex):
             else:
                 dic['status']=1
 
-            requests.post(urls,data= dic)
+            # requests.post(urls,data= dic)
+
+            Sheet1.write(fail,0,dic['name'])
+            Sheet1.write(fail,1,dic['email'])
+            Sheet1.write(fail,2,dic['phone'])
+            Sheet1.write(fail,3,dic['ticketname'])
+            Sheet1.write(fail,4,dic['status'])
+            print dic
             print e.message
             fail = fail + 1
+    wb.save('paymentprob.xlsx');
     print fail
 
 
@@ -2882,4 +2892,141 @@ def tshirtdatafill():
         }   
         print dic
         requests.post(url, data=dic)
+
+def accom():
+    payments = sheetpayment.objects.all().order_by("id")
+    basetime = datetime.datetime.strptime('Mon Feb 9 01:00:00 IST 2017','%a %b %d %X IST %Y')
+    counter = 0
+    for payment in payments:
+        time = datetime.datetime.strptime(payment.timeStamp,'%a %b %d %X IST %Y')
+        if payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation' or payment.ticketName == 'Startup Fair - Free Accomodation' or payment.ticketName == 'Startup Fair- Free Accomodation' or payment.ticketPrice == 1300 or payment.ticketName == 'Intellecx final round with accommodation' or payment.ticketName == 'Krackat Final Round with accommodation' or payment.ticketName == 'Krackat/Intellecx Final Round with accommodation':
+            counter = counter + 1
+        elif basetime > time:
+            if payment.ticketName == 'Innovians Technologies (Final Round) With Accomodation' or payment.ticketName == 'Innovians Technologies (Final Round)' or payment.ticketName == 'Registration - With Accomodation' or payment.ticketName == 'Startup Fair - Free Accomodation':
+                counter = counter + 1#send_email(payment.email,subject,body)
+                
+            elif payment.ticketName == '3D Printing' or payment.ticketName == 'Android App Development' or payment.ticketName == 'Bridge Design' or payment.ticketName == 'Data Mining' or payment.ticketName == 'Digital Marketing' or payment.ticketName == 'Ethical Hacking' or payment.ticketName == 'Industrial Automation - PLC & SCADA' or payment.ticketName == 'Internet of Things' or payment.ticketName == 'Swarm Robotics' or payment.ticketName =='Vision Botics (Sixth Sense Technology)' or payment.ticketName =='Automobile':
+                g = sheetpayment.objects.filter(email = payment.email).values_list('ticketName')
+                #if (u'Registration',) in g:
+                counter = counter + 1
+                    #send_email(payment.email,subject,body)
+                    
+    print counter
+
+'''
+def transaction():
+    payments = sheetpayment.objects.all()
+    for payment in payments:
+'''                       
+ 
+def workshopTransaction():
+    workshops = Facility.objects.filter(facilityType = 'workshop')
+    desk = DeskTeam.objects.get(user__username = 'Convener')
+    count = 0
+    for workshop in workshops:
+        sheetpayments = sheetpayment.objects.filter(ticketName = workshop.name)
+        for payment in sheetpayments:
+            transaction = Transaction(creditor = payment.tech,amount = payment.ticketPrice,timeStamp = payment.timeStamp,facility = workshop,reciever = desk)
+            transaction.save()
+            count = count +1
+    print count
+# def eventsheet(request):
+#     post = request.POST
+#     event = post['event']
+#     sheetName = str(event) + ".xlsx"
+#     wb = Workbook()
+#     Sheet1 = wb.add_sheet('Sheet1')
+#     ops = OffLineProfile.objects.all()
+#     e = Event.objects.get(nameSlug = event)
+#     for op in os:
+#         tp = op.techProfile
+#         try:
+#             t = Team.objects.get(Q(teamLeader = tp) | Q(members = tp) , event = e)
+
+
+
+def eventsheetfilling():
+    events = Event.objects.all()
+    for event in events:
+        w = Workbook()
+        m = 0
+        Sheet1 = w.add_sheet('Sheet1')
+        teams = Team.objects.filter(event = event)
+        for team in teams:
+            try:
+                
+                x = team.teamLeader
+                tl = OffLineProfile.objects.get(techProfile = x)
+                Sheet1.write(m,1,str(x.email))
+                Sheet1.write(m,2,str(x.mobileNumber))
+                m = m+1
+                Sheet1.write(m,0,str(team.technexTeamId))
+                ops = team.members.all()
+                # ops = OffLineProfile.objects.filter(Q(techProfile = y))
+                for op in ops:
+                    try:
+                        opg = OffLineProfile.objects.get(techProfile = op)
+                        Sheet1.write(m,1,str(opg.techProfile.email))
+                        Sheet1.write(m,2,str(opg.techProfile.mobileNumber))
+                        m = m+1
+                    except:
+                        pass
+
+            except:    
+                ops = team.members.all()
+                # ops = OffLineProfile.objects.filter(Q(techProfile = y))
+                for op in ops:
+                    try:
+                        Sheet1.write(m,0,str(team.technexTeamId))
+                        opg = OffLineProfile.objects.get(techProfile = op)
+                        Sheet1.write(m,1,str(opg.techProfile.email))
+                        Sheet1.write(m,2,str(opg.techProfile.mobileNumber))
+                        m = m+1
+                    except:
+                        pass
+            x = event.eventName+".xls"
+            w.save(x)
+
+def offlinepaymentdata():
+    wb = Workbook()
+    trans = Transaction.objects.all()
+    Sheet1 = wb.add_sheet('sheet1')
+    x = 0
+    for tran in trans:
+        Sheet1.write(x,0,tran.creditor.user.first_name)
+        Sheet1.write(x,1,tran.creditor.email)
+        Sheet1.write(x,2,tran.amount)
+        Sheet1.write(x,3,str(tran.timeStamp))
+        Sheet1.write(x,4,tran.facility.name)
+        Sheet1.write(x,5,tran.reciever.user.username)
+
+        x = x+1
+    wb.save("alltransactions.xls")    
+
+
+def hosteldata():
+    hostels = Hostel.objects.all()
+    for hostel in hostels:
+        wb = Workbook()
+        ops = OffLineProfile.objects.filter(hostel = hostel)
+        Sheet1 = wb.add_sheet('sheet1')
+        x = 0
+        for op in ops:
+            Sheet1.write(x,0,op.techProfile.user.first_name)
+            Sheet1.write(x,1,op.techProfile.email)
+            Sheet1.write(x,2,op.techProfile.mobileNumber)
+            try:
+                z = op.techProfile
+                id = IdCard.objects.get(techProfile = z)
+                Sheet1.write(x,3,id.pin)
+            except:
+                Sheet1.write(x,3,"ID CARD NOT ALLOTED") 
+            x = x+1   
+        y = str(hostel.name) + ".xls"        
+        wb.save(y)
+                   
+
+
+
+
 

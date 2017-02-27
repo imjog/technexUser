@@ -40,13 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
     'Auth',
     'ckeditor',
     'authApi',
     'django_mobile',
     'Events',
-]
+    'reg',
+    'payment',
+    ]
 
 MIDDLEWARE_CLASSES = [
     #'django.middleware.cache.UpdateCacheMiddleware',
@@ -58,7 +59,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
@@ -92,12 +92,15 @@ WSGI_APPLICATION = 'technexUser.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME':'hospi',
+        'USER':'postgres',
+        'PASSWORD' :'caportal1',
+        'HOST':'localhost',
+        'PORT':'',
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -138,9 +141,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_HOST = 'https://d1guaaup0pib3t.cloudfront.net' if not DEBUG else ''
-STATIC_URL = STATIC_HOST + '/static/'
-
+#STATIC_HOST = 'https://d1guaaup0pib3t.cloudfront.net' if not DEBUG else ''
+#STATIC_URL = STATIC_HOST + '/static/'
+'''
 if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -149,26 +152,33 @@ if DEBUG:
     )
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+'''
+   
+STATIC_URL ='/static/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+#STATIC_HOST = 'https://d1guaaup0pib3t.cloudfront.net' if not DEBUG else ''
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-    
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 # Extra places for collectstatic to find static files.
+
 '''STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]'''
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+#db_from_env = dj_database_url.config(conn_max_age=500)
+#DATABASES['default'].update(db_from_env)
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+#CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = (
-    'technex.in'
-)
+#CORS_ORIGIN_WHITELIST = (
+ #   'technex.in'
+#)
 #CACHE_CONTROL_MAX_AGE = 604800

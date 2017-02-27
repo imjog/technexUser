@@ -1,0 +1,9 @@
+	{% for transactionDesk in transactionData %}
+	<table>
+	<legend>{{transactionDesk.reciever}} Total: {{transactionDesk.count}}</legend>
+	<tr><td>Creditor</td><td>Facility</td><td>Amount</td><td>TimeStamp</td></tr>
+	{% for transaction in transactionDesk.data %}
+	<tr><td>{{transaction.creditor}}</td><td>{{transaction.facility}}({{transaction.facilityPrice}})</td><td>{{transaction.amount}}</td><td>{{transaction.timeStamp}}</td></tr>
+	{% endfor %}
+	</table>		
+	{% endfor %}

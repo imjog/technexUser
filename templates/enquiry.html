@@ -1,0 +1,27 @@
+
+<form method='post'>
+{% csrf_token %}
+<input type='text' placeholder="Technex Id or Email" name='identifier' />
+<input type='submit' value='Get Details' />
+</form>
+{% if errors %}
+{{errors}}
+<br>
+{% endif %}
+
+{% if transactions %}
+<table border='1|0' style="padding:2%;margin:4%;">
+
+<tr><td>Email  </td><td>Facility  </td><td>Amount  </td><td>Reciever  </td><td>Time Of Payment</td></tr>
+<tbody>
+{% for transaction in transactions %}
+
+<tr><td>{{transaction.creditor.email}}</td><td>{{transaction.facility.name}}({{transaction.facility.maxPrice}})</td><td>{{transaction.amount}}</td><td>{{transaction.reciever.user.username}}</td>
+<td>
+	{{transaction.timeStamp}}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}

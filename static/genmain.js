@@ -26,7 +26,7 @@ as:[1,1,1,1]
 {
 parentEvent: 'creatrix',
 events:['minimize', 'iso', 'collage', 'avant-garde', 'animaze', '2d'],
-max:[4,4,4,4,4,1],
+max:[4,4,4,4,4,4],
 as:[1,1,1,1,1,1]
 },
 {
@@ -52,19 +52,25 @@ parentEvent: 'robonex',
 events:['robowars', 'pixelate', 'hurdlemania', 'mazeXplorer'],
 max:[5,4,4,4],
 as:[1,1,1,1]
-},
-{
-parentEvent: 'game-dungeon',
-events: ['nfs' , 'cs-go' , 'fifa'],
-max:[0,4,0],
-as:[1,1,1]
 }
 ];
 var workdata=[
 {
+  workshop: 'data-mining',
+  max: 1
+},
+{
+  workshop: 'digital-marketing',
+  max: 1
+},
+{
   workshop: '3-d-printing',
   max: 1
-}
+},
+{
+  workshop: 'swarm-robotics',
+  max: 5
+},
 ];
 function findWithAttr(array, attr, value) {
 	
@@ -119,6 +125,10 @@ app.config(function ($routeProvider) {
               })
              .when("/payment/",{
               templateUrl: '/static/payments.html', 
+             })
+              .when("/tshirtinfo/",{
+              templateUrl: '/static/tshirtinfo.html',
+              controller: 'shirtdata', 
              })
              
             

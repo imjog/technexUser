@@ -1,0 +1,1162 @@
+
+<!-- {% load staticfiles %} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="theme-color" content="#000000" />
+<title>Hospitality Portal | Technex '17</title>
+
+<link rel="stylesheet" href="{% static "css/jquery-ui.css" %}" type="text/css" media="all" />
+<!-- <script src="{% static "jquery.min.js"%}"></script> -->
+<!-- <script src="{% static "js/1.12.0jquery-ui.min.js" %}"></script> -->
+<!-- <link rel="stylesheet" href="/static/css/jquery-ui.css" type="text/css" media="all" /> -->
+<script src="/static/jquery.min.js"></script>
+<script src="/static/js/1.12.0jquery-ui.min.js"></script>
+<link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="/static/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="/static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <link href="/static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="/static/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="/static/build/css/custom.min.css" rel="stylesheet">
+    <link href="/static/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="/static/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+
+</head>
+<body class="nav-md">
+<div id='title'></div>
+<div class="container body">
+<div class="main_container">
+  <div class="top_nav" style="margin-left: 0px;">
+          <div class="nav_menu">
+            <nav>
+              <!-- <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div> -->
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="/static/profile.png" alt="">{{user.name}}
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="/logout/"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+
+ 
+              </ul>
+            </nav>
+          </div>
+        </div>
+<div class="right_col" role="main" style="margin-left: 0px;">
+          <div class="">
+          <div class="page-title">
+              <div class="title_left">
+                <h3 id='response'></h3>
+              </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." id="email">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                 <!--  <a href="/logout"><i class="fa fa-sign-out"></i></a> -->
+                </div>
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+<!-- <input type="text" id='email' /> -->
+<!-- <div class="row">
+<div class="col-md-12">
+<div class="x_panel">
+<div class="x_title">
+<h2>USER STATUS</h2>
+<ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+         <div class="x_content">
+         <br/>
+         <div id="wizard" class="form_wizard wizard_horizontal">
+         <ul class="wizard_steps anchor">
+         <li>
+           <a href="#">
+           <span id="offline-register" style="background-color: red;" class="step_no">1</span>
+           <span class="step_descr">Offline Profile Register<br></span>
+
+           </a>
+         </li>
+          <li>
+           <a href="#">
+           <span id="security-fee-status" style="background-color: red;" class="step_no">2</span>
+           <span class="step_descr"> Security fee Paid<br></span>
+
+           </a>
+         </li>
+          <li>
+           <a href="#">
+           <span id="tshirt-status" style="background-color: red;" class="step_no">3</span>
+           <span class="step_descr">Tshirt Status<br></span>
+
+           </a>
+         </li>
+          <li>
+           <a href="#">
+           <span id="pin-generation" style="background-color: red;" class="step_no">4</span>
+           <span class="step_descr">Pin generation<br></span>
+
+           </a>
+         </li>
+         </ul>
+         </div>
+         </div>
+</div>
+</div>
+</div>
+ -->
+<div class="row">
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+                  <div class="x_title">
+                    <h2>REGISTER PARTICIPANT OFFLINE</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+         <div class="x_content">
+
+                    <br />
+           <form class="form-horizontal form-label-left" id='techProfile' >
+               <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">NAME</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="Name" id='name'/>
+                        </div>
+                      </div>       
+                   <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">COLLEGE</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="College" id='college'/>
+                        </div>
+                      </div>
+                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">YEAR</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select id='year' class="form-control">
+			<option value = 1>1</option>
+			<option value = 2>2</option>
+			<option value = 3>3</option>
+			<option value = 4>4</option>
+			<option value = 5>5</option>
+		</select>
+                        </div>
+                      </div>
+                          <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">MOBILE</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="number" class="form-control" placeholder="Mobile Number" id='mobileNumber'/>
+                        </div>
+                      </div>  
+
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">CITY</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="city" id='city'/>
+                        </div>
+                      </div>  
+
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">GENDER</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                      
+                        M:
+                        <input type="radio" class="flat" name="gender" id="genderM" value=1 checked="" required /> F:
+                        <input type="radio" class="flat" name="gender" id="genderF" value=0 />
+                        </div>
+                      
+                      <!--   <label class="control-label col-md-3 col-sm-3 col-xs-12">GENDER</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select id='gender' class="form-control">
+		<option value=1>Male</option>
+			<option value=0>Female</option>
+		</select>
+                        </div> -->
+                      </div>
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Security Fee Paid</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                         <input type='checkbox' name='security' value=1 checked="true" class="" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Hospitality Kit Given:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                         <input type='checkbox' name='hospiKit' value=1 class="" checked="checked" />
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        		<input type='button' class="btn btn-success" id='registration' value='Register Info' />
+
+                        </div>
+                      </div>
+
+                    
+
+
+
+
+                          
+
+
+           </form>
+          </div>                    
+
+</div>
+</div>
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+                  <div class="x_title">
+                    <h2>ALLOT/CHANGE HOSTEL</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+         <div class="x_content">
+                    <br />
+                    <strong>Hostel Alloted:<span id='hostelName'></span></strong>
+                               <form class="form-horizontal form-label-left" id='ignore-again-again-again'>
+ <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">HOSTEL</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select name='hostelChange' class="form-control">
+{% for hostel in hostels %}
+<option value="{{hostel.name}}">{{hostel.name}}(capacity = {{hostel.currentCapacity}} + {{hostel.bufferSize}})({{hostel.capacity}})</option>
+{% endfor %}
+</select>
+
+                          </div>
+                        </div>
+
+                         <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <input type='button' class="btn btn-primary" id='hostelChangeButton' value='Allot Hostel' /> 
+
+
+                        </div>
+                        <div class="form-group" id='hostelResponse'>
+                        </div>
+                      </div>    
+
+
+</form>
+                      </div>
+
+
+          </div>                    
+
+</div>
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+                  <div class="x_title">
+                    <h2>OTP/UNIQUE ID NUMBER</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+         <div class="x_content">
+                    <br />
+                               <form class="form-horizontal form-label-left" id='ignore-again-again'>
+
+               <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <button type="button" class="btn btn-primary" id="generatePin">Generate PIN</button>
+
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <h1>OR</h1>
+
+                        </div>
+                      </div>
+
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">ID CARD NUMBER</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <input type="text" id="submit-pin" class="form-control">
+                        </div>
+                      </div>    
+
+                   <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <button type="button" class="btn btn-primary" id="submit-pin-btn">Submit ID</button>
+
+                        </div>
+                      </div>    
+
+
+
+</form>
+                      </div>
+
+
+          </div>                    
+
+</div>
+
+</div>
+<div class="row">
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+                  <div class="x_title">
+                    <h2>PAY HERE </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+         <div class="x_content">
+                    <br />
+                               <form class="form-horizontal form-label-left" id='ignore' >
+
+           <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <button type="button" class="btn btn-primary" id="security">SECURITY FEE DEPOSIT(200)</button>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <button type="button" class="btn btn-primary" id="registration-only">REGISTRATION ONLY(800)</button>
+                      </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <button type="button" class="btn btn-primary" id="upgrade-to-accod">UPGRATE TO ACCOMODATION(500)</button>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <button type="button" class="btn btn-primary" id="accomodation-registration">ACCOMODATION + REGISTRATION(1300)</button>  
+                         </div>
+                        </div>
+                        <div class="ln_solid"></div>
+
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">FACILITY</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select name='facilityName' id="facility" class="form-control">
+            {% for facility in facilities %}
+        <option value="{{facility.maxPrice}}">{{facility.name}}</option>
+        {% endfor %}
+          </select>
+                          </div>
+                        </div>
+
+
+
+
+<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">AMOUNT</label>
+
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+<input type="number" id="amount" name="amount" class="form-control">
+</div>
+</div>
+<div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+<input type='button' id='payment' class="btn btn-primary" value='Pay !!' />
+</div>
+</div>
+</form>
+                      </div>
+
+
+          </div>                    
+
+</div>
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+                  <div class="x_title">
+                    <h2>PAYMENT DETAILS AND T-SHIRT DATA </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+         <div class="x_content">
+                    <br />
+                               <form class="form-horizontal form-label-left" id='ignore-again'>
+<div class="form-group" id="paymentHistory">
+           </div>
+               <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div id="tshirtdata">
+                        </div>
+                        <!-- <button type="button" class="btn btn-pr
+                        imary" disabled="true">Tshirt given</button> -->
+
+                        </div>
+                      </div>
+               <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <div id="tshirtdata">
+                        </div>
+                        <button type="button" class="btn btn-primary" disabled="true" id="tshirtdata-btn">Tshirt given</button>
+
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <div id="final-submit">
+                        </div>
+                        <a class="btn btn-success" href="/main" id="final-sub">Final Submission</a>
+
+                        </div>
+                      </div>
+
+
+
+</form>
+                      </div>
+
+
+          </div>                    
+
+</div>
+
+
+
+</div>
+</div>
+</div>
+<!-- <div id="section1" class="col-md-6 col-xs-12">
+<div class="x-panel">
+<div class="x-title">
+<h2>PART 1</h2>
+<div class="clearfix">
+</div>
+</div>
+<div class="x-content">
+	<form id='techProfile' class="form-horizontal form-label-left"> -->
+<!-- 	<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                     <div class="col-md-6 col-sm-6 col-xs-12">   
+		<input class="form-control col-md-7 col-xs-12" type='text' id='name' placeholder="Name" />
+		</div>
+		</div> -->
+		<!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+		<div class="col-md-6 col-sm-6 col-xs-12">   
+		<input id='college' type='text' placeholder="College" class="form-control col-md-7 col-xs-12" />
+		</div></div> -->
+	<!-- 	<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+		<div class="col-md-6 col-sm-6 col-xs-12">   
+		<select id='year' class="form-control col-md-7 col-xs-12">
+			<option value = 1>1</option>
+			<option value = 2>2</option>
+			<option value = 3>3</option>
+			<option value = 4>4</option>
+			<option value = 5>5</option>
+		</select>
+		</div>
+		</div> -->
+	<!-- 	<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+		<div class="col-md-6 col-sm-6 col-xs-12">   
+		<input class="form-control col-md-7 col-xs-12" id='mobileNumber' type='number' placeholder="mobile" />
+		</div>
+		</div> -->
+		<!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+<div class="col-md-6 col-sm-6 col-xs-12">   
+		<input id='city' type='text' class="form-control col-md-7 col-xs-12" placeholder="city" />
+		</div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+		Gender:
+		<div class="col-md-6 col-sm-6 col-xs-12">   
+		<select id='gender' class="form-control col-md-7 col-xs-12">
+			<option value=1>Male</option>
+			<option value=0>Female</option>
+			
+		</select>
+		</div>
+		</div> -->
+		<!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+		<div class="col-md-6 col-sm-6 col-xs-12">   
+		<input type='checkbox' name='security' value=1 checked="true" class="" />Security Fee Paid</div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+		<div class="col-md-6 col-sm-6 col-xs-12">   
+		<input type='checkbox' name='accom' value=1 class="" />Accommodation </div>
+		</div> -->
+		<!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+		<div class="col-md-6 col-sm-6 col-xs-12">   
+		<select name='hostel' disabled="true" class="form-control col-md-7 col-xs-12">
+{% for hostel in hostels %}
+<option value="{{hostel.name}}">{{hostel.name}}(capacity = {{hostel.currentCapacity}} + {{hostel.bufferSize}})({{hostel.capacity}})</option>
+{% endfor %}
+</select>
+</div>
+</div> -->
+<!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+<div class="col-md-6 col-sm-6 col-xs-12">   
+		<input type='button' class="btn btn-success" id='registration' value='Register Info' />
+		</div>
+		</div> -->
+<!-- 	</form>
+	</div>
+	</div>
+	</div> -->
+
+<!-- <div id="section5" class="col-md-6 col-xs-12">
+
+Hostel Alloted:<span id='hostelName'></span>
+<br><br>
+<select name='hostelChange'>
+{% for hostel in hostels %}
+<option value="{{hostel.name}}">{{hostel.name}}(capacity = {{hostel.currentCapacity}} + {{hostel.bufferSize}})({{hostel.capacity}})</option>
+{% endfor %}
+</select>
+
+<input type='button' id='hostelChangeButton' value='Allot Hostel' /> 
+<div id='hostelResponse'></div>
+</div> -->
+
+<!-- <div id="section2" class="col-md-6 col-xs-12"> -->
+
+<!-- <input type="checkbox" class="paymentscheck" id="security" value="200">Security Fee Paid(200)<br>
+<input type="checkbox" class="paymentscheck" id="registration" value="800">Registration Fee(800)<br>
+<input type="checkbox" class="paymentscheck" id="update" value="500">Update Accod(500)<br>
+<input type="checkbox" class="paymentscheck" id="security" value="1300">Registration+Accod(1300)<br>
+<input type="checkbox" class="paymentscheck" id="refund" value="-200">Refund Security Money<br>
+<select id="extrapayment">
+	<option value="0">jhdswjhsd</option>
+	<option value="900">dkkdsjjksd</option>
+</select>
+<button type="button">Pay final Amount of Rs<strong id="total">0000</strong></button> -->
+<!-- <button type="button" id="security">SECURITY FEE DEPOSIT(200)</button><br>
+<button type="button" id="registration-only">REGISTRATION ONLY(800)</button><br>
+<button type="button" id="accomodation-registration">ACCOMODATION + REGISTRATION(1300)</button><br>
+<button type="button" id="upgrade-to-accod">UPGRATE TO ACCOMODATION(500)</button><br> -->
+<!-- <select name='facilityName' id="facility">
+	{% for facility in facilities %}
+	<option value="{{facility.maxPrice}}">{{facility.name}}</option>
+{% endfor %}
+</select>
+<input type="number" id="amount" name="amount">
+
+<input type='button' id='payment' value='Pay !!' /><br> -->
+<!-- <button type="button" id="other-payment">OTHER</button>
+<div id="otherpayment" style="display: none;">
+<input type="text" placeholder="payment description" id="otherpay-desc">
+<input type="number" id="otherpay-amt">
+</div> -->
+<!-- </div> -->
+
+
+<!-- <div id="section3" class="col-md-6 col-xs-12">
+	<div id='paymentHistory'>
+
+	</div>
+<button type="button">Tshirt given</button>
+</div> -->
+
+<!-- <div id="section4" class="col-md-6 col-xs-12">
+<button type="button">Generate OTP</button>
+<h1>OR</h1>
+<input type="text" id="submit"><button>Submit id number</button>
+</div> -->
+
+
+
+<!--
+<form id='offLine'>
+Gender:
+	<select id='gender'>
+			
+			<option value=1>Male</option>
+			<option value=0>Female</option>
+
+		</select>
+		<input type='checkbox' name='security' value=1 checked="true" />Security Fee Paid<br>
+		<input type='checkbox' name='accom' value=1 />Accommodation <br>
+		<input type="button" value='Register' />
+</form>
+-->
+<!-- </div>
+</div>
+</div>
+</div> -->
+<script type="text/javascript">
+
+function theAjax(uri,data){
+ return $.ajax({
+    type:"POST",
+    dataType:"json",
+    url: uri,
+    data : data
+ });
+};
+
+
+	$(function(){
+   var availableTags = [
+        {% for email in emails %}
+            "{{email.0}}",
+        {%endfor%}
+      ];
+
+ $("#email").autocomplete({
+        source: availableTags
+      });
+    });
+    // over write the default autocomplete function to match the option starting with term
+    $.ui.autocomplete.filter = function (array, term) {
+      var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
+      return $.grep(array, function (value) {
+        return matcher.test(value.label || value.value || value);
+      });
+    };
+
+function resetForm()
+{
+	$("#name").val("").attr("disabled",false);
+	
+	$("#college").val("").attr("disabled",false);
+	$("#city").val("").attr('disabled', false);
+	$("#mobileNumber").val("").attr('disabled', false);
+	$("#year").val(1).attr('disabled', false);
+	$("input[name=security]").attr('checked', true);
+	$("input[name=accom]").attr('checked', false);
+	$("select[name=hostel]").attr('disabled', true);
+	$("#registration").attr('disabled', false);
+  if($("input[name='hospiKit']").prop('checked'))
+    {
+      $("input[name='hospiKit']").trigger('click');
+    };
+}
+$(document).ready(function() {
+	// $("#techProfile").hide();
+	//$("#offLine").hide();
+   $("#tshirtdata-btn").on('click',function(event) {
+      data = {
+        'identifier':$("#email").val()
+      }
+      theAjax('/giveTshirt/',data)
+      .done(function(response){
+        if(response['status'] == 1)
+        {
+
+          new PNotify({
+                                  title: 'Successfull',
+                                  text: 'Tshirt Successfully Given !!\n#StayTechnexed',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });
+        }
+        else
+        {
+          new PNotify({
+                                  title: 'Error',
+                                  text: 'Invalid Email !!\n#StayTechnexed',
+                                  type: 'error',
+                                  styling: 'bootstrap3'
+                              });
+
+        }
+      });  
+   });
+   $("#generatePin").on('click',function(){
+    data = {
+      "identifier" : $("#email").val(),
+    };
+    console.log(data);
+    theAjax('/createID/',data)
+    .done(function(response){
+      if(response['status'] == 1)
+      {
+        $("#submit-pin").val(response['pin']);
+        $("#submit-pin-btn").prop('disabled','true');
+      }
+      else
+      {
+        new PNotify({
+                                  title: 'Error Occurred',
+                                  text: 'Pin not generated.Please try Again. \n#StayTechnexed',
+                                  type: 'error',
+                                  styling: 'bootstrap3'
+                              });
+
+      }
+    })
+    .fail(function(){
+        new PNotify({
+                                  title: 'Error Occurred',
+                                  text: 'Pin not generated.Please try Again. \n#StayTechnexed',
+                                  type: 'error',
+                                  styling: 'bootstrap3'
+                              });
+
+
+    })
+
+   });
+   $("#submit-pin-btn").on('click',function(){
+    data = {
+      'identifier' : $("#email").val(),
+      'pin': $("#submit-pin").val(),
+    };
+    console.log(data);
+    theAjax('/submitID/',data)
+    .done(function(response){
+      console.log(response);
+      if(response['status'] == 1)
+      {
+          new PNotify({
+                                  title: 'Successfull',
+                                  text: 'IDCard number saved successfully\n#StayTechnexed',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });
+
+      }
+      else
+      {
+        new PNotify({
+                                  title: 'Failed',
+                                  text: 'IDCard number not saved. Pin already saved.\n#StayTechnexed',
+                                  type: 'error',
+                                  styling: 'bootstrap3'
+                              });
+      }
+    })
+   })
+	$("#hostelChangeButton").click(function(event) {
+		data = {
+			"email":$("#email").val(),
+			"hostelName":$("select[name=hostelChange]").val()
+		};
+		console.log(data);
+		theAjax('/hostelChange/',data)
+		.done(function(response){
+			if(response['status'] == 1)
+			{
+			$("#hostelResponse").html("Hostel CHanged SuccessFully!!");
+			$("#hostelName").html(response['hostelName']);
+			$("#email").trigger('click');
+		}
+		else if(response['status'] == 2)
+		{
+			$("#hostelResponse").html("No transactions for the User!!(Hostel Cannot be alloted for users with 0 transaction)");
+
+		}
+		else{
+			$("#hostelResponse").html("Hostel Already Filled!!(Select Other Hostel)");
+
+		}
+		});
+	});
+	$(".paymentscheck").on("click",function(){
+			var x = $(".paymentscheck");
+			var total=0;
+			for(var i=0;i<x.length;i++)
+			{
+				if(x[i].checked==true)
+				{
+					total+= parseInt(x[i].value)
+				}
+			}
+			// total+=$()
+			total += parseInt($("#extrapayment").val());
+			$("#total").html(total);
+		})
+	$("#extrapayment").on("click",function(){
+			var x = $(".paymentscheck");
+			var total=0;
+			for(var i=0;i<x.length;i++)
+			{
+				if(x[i].checked==true)
+				{
+					total+= parseInt(x[i].value)
+				}
+			}
+			// total+=$()
+			total += parseInt($("#extrapayment").val());
+			$("#total").html(total);
+		})
+	$("#email").on('keyup click blur',function(event)
+	{
+		data = {"email":$(this).val()}
+		theAjax("/details/",data)
+		.done(function(response){
+			console.log(response)
+			if(response['status'] == 0)
+			{
+				$("#response").html("Register The TechProfile");
+				$("#techProfile").show();
+				$("#paymentHistory").html(" ");
+				resetForm();
+				//$("#offLine").hide();
+			}
+
+			else if(response['status'] == 2)
+			{
+				 var x=1;
+
+				$("#response").html("Already REgistered!!");
+				html = '<table class="table"><thead><tr><th>#</th><th>Amount</th><th>Time</th><th>Facility</th></tr></thead><tbody>';
+				response['paymentData'].forEach( function(element, index) {
+					html +=  "<tr><th scope='row'>"+(index+1)+"</th><td>"+element['fields']['amount']+"</td>";
+					html += "<td>"+element['fields']['timeStamp']+"</td>";
+					html += "<td>"+element['fields']['facility']+"</td></tr>";
+
+				});
+				html += "</tbody></table>Total Transactions: " + response['total']+"<br>";
+				$("#paymentHistory").html(html);
+         $("#response").html("Select Gender, TechProfile REgistered!!")
+        //$("#offLine").show();
+        $("#techProfile").show();
+        html = '<h4>TSHIRT STATUS :'
+        if(response['tshirtdata'] == 1)
+        {
+          html+= " YES </h4>"
+          $("#tshirt-status").css('background-color','red');
+          $("#tshirtdata-btn").removeAttr('disabled');
+        }
+        if(response['tshirtdata'] == 0) 
+        {
+          html+= " NO </h4>"
+          $("#tshirt-status").css('background-color','green');
+          $("#tshirtdata-btn").attr('disabled','disabled');
+        }
+        console.log(response['tshitsize'])
+        html += '<h4>SIZE : '+ response['tshirtsize'] + '</h4><h4>COLOR : ' + response['color'] + '</h4>'
+        $("#tshirtdata").html(html)
+        if (response['tshirtGiven'] == 1)
+        {
+          $("#tshirt-status").css('background-color','green');
+          $("#tshirtdata-btn").attr("disabled",true);
+        }
+        else
+        {
+          // $("#tshirt-status").css('background-color','red');
+          $("#tshirtdata-btn").attr("disabled",false);
+        }
+				//$("#offLine").show();
+				$("#techProfile").show();
+				$("#name").val(response['data']['name']).attr('disabled', true);
+				$("#college").val(response['data']['college']).attr('disabled', true);
+				$("#mobileNumber").val(response['data']['mobileNumber']).attr('disabled', true);
+				$("#year").val(response['data']['year']).attr('disabled', true);
+				$("#city").val(response['data']['city']).attr('disabled', true);
+				$("#registration").attr('disabled', true);
+				$("#hostelName").html(response['hostel'])
+        if (response['accommodation'] == 1)
+        {
+          $("#title").html("Accommodation");
+        }
+        else
+        {
+          $("#title").html("No Accommodation");
+        }
+        if(response['hospiKit'] == 1)
+        {
+          if(!$("input[name='hospiKit']").prop('checked'))
+            $("input[name='hospiKit']").trigger('click');
+    
+        }
+        else
+        {
+          $("input[name='hospiKit']").attr('checked', false);
+        }
+				//$("#techProfile").hide();
+				//$("#offLine").hide();
+			}
+			else
+			{
+				//$("#paymentHistory").html(" ");
+        $("#registration").attr("disabled", false);
+				html = '<table class="table"><thead><tr><th>#</th><th>Amount</th><th>Time</th><th>Facility</th></tr></thead><tbody>';
+        response['paymentData'].forEach( function(element, index) {
+          html +=  "<tr><th scope='row'>"+(index+1)+"</th><td>"+element['fields']['amount']+"</td>";
+          html += "<td>"+element['fields']['timeStamp']+"</td>";
+          html += "<td>"+element['fields']['facility']+"</td></tr>";
+
+        });
+        html += "</tbody></table>Total Transactions: " + response['total']+"<br>";
+        $("#paymentHistory").html(html);
+
+        $("#response").html("Select Gender, TechProfile REgistered!!")
+				//$("#offLine").show();
+				$("#techProfile").show();
+        html = '<h4>TSHIRT STATUS :'
+        if(response['tshirtdata'] == 1)
+        {
+          html+= " YES </h4>"
+          $("#tshirtdata-btn").removeAttr('disabled')
+        }
+        if(response['tshirtdata'] == 0) 
+        {
+          html+= " NO </h4>"
+            $("#tshirt-status").css('background-color','green');
+
+          $("#tshirtdata-btn").attr('disabled','true');
+        }
+        console.log(response['tshitsize'])
+        html += '<h4>SIZE : '+ response['tshirtsize'] + '</h4><h4>COLOR : ' + response['color'] + '</h4>'
+        $("#tshirtdata").html(html)
+				$("#name").val(response['data']['name']).attr('disabled', true);
+				$("#college").val(response['data']['college']).attr('disabled', true);
+				$("#mobileNumber").val(response['data']['mobileNumber']).attr('disabled', true);
+				$("#year").val(response['data']['year']).attr('disabled', true);
+				$("#city").val(response['data']['city']).attr('disabled', true);
+        if (response['accommodation'] == 1)
+        {
+          $("#title").html("Accommodation");
+        }
+        else
+        {
+          $("#title").html("No Accommodation");
+        }
+			$("input[name='hospiKit']").attr('checked', false);	
+			}
+
+		});
+	});
+
+	$("#payment").on("click",function(){
+		data = {
+			"facilityName": $("#facility option:selected").text(),
+			"identifier" : $("#email").val(),
+			"amount" : $("#amount").val(),
+		}
+		theAjax("/payment/",data)
+		.done(function(response){
+      if($("input[name='amount']").val()==200)
+      {
+          $("#security-fee-status").css('background-color','green');
+
+      }
+			console.log(response);
+					new PNotify({
+                                  title: 'Payment Successfull',
+                                  text: 'Payment of Rs'+ $("#amount").val() + 'successfull for' + $("#facility option:selected").text() +'\n#StayTechnexed',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });
+			$("#email").trigger('click');
+		})
+		.fail(function(){
+			new PNotify({
+                                  title: 'Payment Failed',
+                                  text: 'Payment Failed.Please try Again. \n#StayTechnexed',
+                                  type: 'error',
+                                  styling: 'bootstrap3'
+                              });
+		})
+	});
+
+	$("#facility").on("click" , function(){
+		// $("#amount").attr("value",);
+		$("#amount").val(parseInt($('#facility option:selected').val()))
+	})
+
+	$("input[name=accom]").change(function(event) {
+		if($(this).prop("checked"))
+			$("select[name=hostel]").attr('disabled', false);
+		else
+			$("select[name=hostel]").attr('disabled', true);
+	});
+	$("#security").click(function(event) {
+		x = $("#facility option");
+		for(var i=0;i<x.length;i++)
+		{
+			if(x[i].text == "Security")
+			{
+				$(x[i]).prop("selected","true");
+		$("input[name='amount']").val(200);
+
+		$("#payment").trigger("click");
+    break;
+			}
+		}
+	});
+$("#registration-only").click(function(event) {
+		x = $("#facility option");
+		for(var i=0;i<x.length;i++)
+		{
+			if(x[i].text == "Registration")
+			{
+      $(x[i]).prop("selected","true");
+		$("input[name='amount']").val(800);
+		$("#payment").trigger("click");
+    break;
+			}
+		}
+	});
+$("#upgrade-to-accod").click(function(event) {
+		x = $("#facility option");
+		for(var i=0;i<x.length;i++)
+		{
+			if(x[i].text == "Accommodation")
+			{
+				$(x[i]).prop("selected","true");
+		$("input[name='amount']").val(500);
+		$("#payment").trigger("click");
+    break;
+			}
+		}
+	});
+$("#accomodation-registration").click(function(event) {
+		x = $("#facility option");
+		for(var i=0;i<x.length;i++)
+		{
+			if(x[i].text == "Accommodation + Registration")
+			{
+				$(x[i]).prop("selected","true");
+		$("input[name='amount']").val(1300);
+		$("#payment").trigger("click");
+    break;
+			}
+		}
+	});
+
+	$("#registration").click(function(event) {
+		data = {
+			
+	"name":$("#name").val(),
+	"college":$("#college").val(),
+	"mobileNumber":$("#mobileNumber").val(),
+	"email":$("#email").val(),
+	"gender":$("input[name=gender]:checked" , techProfile).val(),
+	"year":$("#year").val(),
+	"hostel":$("select[name=hostel]").val()
+
+		}
+		if($("input[name=security").prop("checked"))
+		{
+			data['security'] = 1;
+		}
+		else
+		{
+			data['security'] = 0;
+		}
+		if($("input[name=accom]").prop("checked"))
+		{
+			data['accom'] = 1;
+		}
+		else
+		{
+			data['accom'] = 0;
+		}
+    if($("input[name='hospiKit']").prop("checked"))
+    {
+      data['hospiKit'] = 1;
+    }
+    else
+    {
+      data['hospiKit'] = 0;
+    }
+		theAjax("/register/",data)
+		.done(function(response){
+			if(response['status'] == 1)
+			{
+
+				//$("#email").val("");
+        if($("input[name=security").prop("checked"))
+        {
+           $("#security-fee-status").css('background-color','green');
+        }
+				html = ""
+				response['paymentData'].forEach( function(element, index) {
+					html +=  "Amount:  "+element['fields']['amount']+"      ";
+					html += "Time:  "+element['fields']['timeStamp']+"       ";
+					html += "Facility: "+element['fields']['facility']+"<br>";
+				});
+				$("#paymentHistory").html(html);
+        $("#offline-register").css('background-color','green');
+				$("#email").trigger('click');
+        // if(data['security'] == 1)
+        // {
+        //   $("#security-fee-status").css('background-color','green');
+
+        // }
+
+				//resetForm();
+				//$("#techProfile").hide();
+			}
+			else if(response['status'] == 0){
+				$("#response").html("The Selected hostel is full !!!");
+			}
+			else
+			{
+				$("#response").html("Already REgistered");
+			}
+		})
+		.fail(function(){
+			$("#response").html("Please Assign Current Hostel!!!");
+		})
+	});
+	$("#email").trigger('click');
+
+
+
+});
+
+
+</script>
+<script type="text/javascript">
+	
+
+	// $("#acomPay").click(function(event) {
+	// 	if($("input[name=identifier]").val())
+	// 	{
+	// 	$("select[name='facilityName']").val("Accommodation");
+	// 	$("input[name='amount']").val(1300);
+	// 	$("#payment").trigger("click");
+	// 	}
+	// });
+</script>
+ <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/vendors/nprogress/nprogress.js"></script>
+    <script src="/static/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="/static/vendors/iCheck/icheck.min.js"></script>
+    <script src="/static/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="/static/vendors/select2/dist/js/select2.full.min.js"></script>
+
+   <script src="/static/build/js/custom.min.js"></script> 
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hospitality Portal</title>
+</head>
+<script src="{% static "jquery.min.js"%}"></script>
+<script src="{% static "js/1.12.0jquery-ui.min.js" %}"></script>
+
+<body>
+<input type="text" id='email' />
+<hr>
+<hr>
+<div id="section1">
+<form id='techProfile'>
+		<input type='text' id='name' placeholder="Name" /><br>
+		<input id='college' type='text' placeholder="College" /><br>
+		<select id='year'>
+			<option value = 1>1</option>
+			<option value = 2>2</option>
+			<option value = 3>3</option>
+			<option value = 4>4</option>
+			<option value = 5>5</option>
+		</select>
+		<br>
+		<input id='mobileNumber' type='text' placeholder="mobile" /><br>
+		<input id='city' type='text' placeholder="city" /><br>
+		Gender:
+		<select id='gender'>
+			<option value=1>Male</option>
+			<option value=0>Female</option>
+			
+		</select><br>
+		<select name='hostel' disabled="true">
+{% for hostel in hostels %}
+<option value="{{hostel.name}}">{{hostel.name}}(capacity = {{hostel.currentCapacity}} + {{hostel.bufferSize}})({{hostel.capacity}})
+{% endfor %}
+</select>
+		<input type='button' id='registration' value='Register Info' />
+		<br>
+	</form>
+</div>
+<hr>
+<hr>
+<div id="section2">
+
+<input type="checkbox" class="paymentscheck" id="security" value="200">Security Fee Paid(200)<br>
+<input type="checkbox" class="paymentscheck" id="registration" value="800">Registration Fee(800)<br>
+<input type="checkbox" class="paymentscheck" id="update" value="500">Update Accod(500)<br>
+<input type="checkbox" class="paymentscheck" id="security" value="1300">Registration+Accod(1300)<br>
+<select id="extrapayment">
+	<option value="0">jhdswjhsd</option>
+	<option value="900">dkkdsjjksd</option>
+</select>
+<button type="button">Pay final Amount of Rs<strong id="total">0000</strong></button>
+</div>
+<hr>
+<hr>
+
+<div id="section3">
+<h1>Payment Histories</h1>
+<button type="button">Tshirt given</button>
+</div>
+<hr>
+<hr>
+
+<div id="section4">
+<button type="button">Generate OTP</button>
+<h1>OR</h1>
+<input type="text" id="submit"><button>Submit id number</button>
+</div>
+<hr>
+<hr>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".paymentscheck").on("click",function(){
+			var x = $(".paymentscheck");
+			var total=0;
+			for(var i=0;i<x.length;i++)
+			{
+				if(x[i].checked==true)
+				{
+					total+= parseInt(x[i].value)
+				}
+			}
+			// total+=$()
+			$("#total").html(total);
+		})
+	});
+</script>
+
+</body>
+
+</html>

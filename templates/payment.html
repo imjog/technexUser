@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<form method='post'>
+{% csrf_token %}
+<input type='text' name='identifier' placeholder="Email or Technex Id" /><br>
+<input type='number' name='amount' placeholder="Amount to be Paid" /><br>
+<select name='facilityName'>
+	{% for facility in facilities %}
+	<option value="{{facility.name}}">{{facility.name}} ({{facility.maxPrice}})</option>
+{% endfor %}
+</select>
+
+<input type='submit' id='payment' value='Pay !!' /><br>
+<input type='button' id='secPay' value='Full Security Deposit' />
+<input type='button' id='acomPay' value='Full Accommodation Deposit' />
+</form>
+{% if errors %}
+{{errors}}
+{% endif %}
+<br><br>
+{% if transaction %}
+{{transaction.creditor}}  <br>
+Amount Paid: {{transaction.amount}} for {{transaction.facility}}
+<br><br>
+Recieved by {{transaction.reciever}}
+{% endif %}
+<script src="{% static "jquery.min.js"%}"></script>
+<script type="text/javascript">
+	$("#secPay").click(function(event) {
+		if($("input[name=identifier]").val())
+		{
+		$("select[name='facilityName']").val("Registration");
+		$("input[name='amount']").val(800);
+		$("#payment").trigger("click");
+		}
+	});
+
+	$("#acomPay").click(function(event) {
+		if($("input[name=identifier]").val())
+		{
+		$("select[name='facilityName']").val("Accommodation");
+		$("input[name='amount']").val(1300);
+		$("#payment").trigger("click");
+		}
+	});
+</script>

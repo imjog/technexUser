@@ -1,102 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>LOGIN | HOSPITALITY PORTAL | TECHNEX '17</title>
+   <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/static/vendors/animate.css/animate.min.css" rel="stylesheet">
+      <link href="/static/build/css/custom.min.css" rel="stylesheet">
+  </head>
 
-<html>
-<head>
-<title>
-Login
-</title>
-</head>
-<body>
-{% if messages %}
-                          {% for msg in messages %}
-                              {{msg.message}}
-                            {% endfor %}
-                          {% endif %}
-<form method='post'>
+<body class="login">
+<div>
+  <div class="login_wrapper">
+  <section class="login_content">
+  <form method='post'>
+  {% csrf_token %}
+  <h1>Team Login</h1>
+  <div>
+  <input type='text' name='username' placeholder="Username" required="true"  class="form-control" />
+  </div>
+   <div>
+  <input type="password" name='password' class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+              <input type='submit' value='Login' class="btn btn-primary pull-right" />
+              </div>
+              <div class="clearfix"></div>
+               <div class="separator">
+                <div class="clearfix"></div>
+                <br />
 
-<input type='text' name='email'></input>
-<input type='password' name='password'></input>
-<input type='submit' value='login' />
-<br><br><br>
-</form>
-<form method='post'>
-{%csrf_token%}
-Type your email: <input type='text' name='email' />
-<button type='submit'>send request</button>
-</form>
-<button onclick="fb_login()">
-          Facebook Connect
-        </button>
-        <script type="text/javascript" src="/static/js/jquery.js"></script>
+                <div>
+                  <h1>Technex '17</h1>
+                </div>
+              </div>
+              </form>
+  </section>
+  </div>
+  </div>
+{% if errors %}
+{{errors}}
+{% endif %}
+
+{% if transactions %}
+<table>
+<legend>{{request.user.username}}</legend>
+<tr><td>Email</td><td>Name</td><td>Amount</td><td>Facility</td></tr>
+
+{% for transaction in transactions %}
+<tr>
+<td>{{transaction.creditor.email}}</td><td>  {{transaction.creditor.user.first_name}}</td>
+<td> {{transaction.amount}}</td>{{transaction.facility.name}}({{transaction.facility.maxPrice}})
+{% endfor %}
+</table>
+{% endif %}
+<script src="{% static "jquery.min.js"%}"></script>
 <script type="text/javascript">
-
-var csrfmiddlewaretoken = '{{ csrf_token }}'
-
-	function theAjax(uri,data){
- return $.ajax({
-    type:"POST",
-    dataType:"json",
-    url: uri,
-    data : data
- });
-}
-
-
-window.fbAsyncInit = function () {
-    FB.init({
-        appId: '461359507257085',
-        cookie: false,  // enable cookies to allow the server to access
-        // the session
-        xfbml: true,  // parse social plugins on this page
-        version: 'v2.0' // use version 2.0
-    });
-};
-
-// Load the SDK asynchronously
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-
-function fb_login() {
-    FB.login(function (response) {
-
-        if (response.authResponse) {
-            //console.log('Welcome!  Fetching your information.... ');
-            //console.log(response); // dump complete info
-            access_token = response.authResponse.accessToken; //get access token
-            user_id = response.authResponse.userID;
-            console.log(response)
-            console.log(access_token);
-            data = {}
-            data['accessToken'] = response.authResponse.accessToken;
-    data['uid'] = response.authResponse.userID;
-    data['csrfmiddlewaretoken']= csrfmiddlewaretoken;
-    theAjax('/fbConnect/',data).done(function(response){
-      console.log(response);
-      if (response['status'] == 1)
-      	window.location = '/dashboard'
-      else{
-      	getData = 'name='+response['context']['name'];
-      	if ('email' in response['context']) getData += '&email='+response['context']['email'];
-      	
-      	window.location = '/register/?'+getData;
-
-      } 
-    });
-
-        } else {
-            //user hit cancel button
-            console.log('User cancelled login or did not fully authorize.');
-
-        }
-    }, {
-        scope: 'public_profile'
-    });
-}
+	$(document).ready(function($) {
+		$("input[name='username']").focus();	
+	});
+	
 </script>
 </body>
-</html>
