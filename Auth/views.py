@@ -3024,7 +3024,24 @@ def hosteldata():
             x = x+1   
         y = str(hostel.name) + ".xls"        
         wb.save(y)
+
+
+def offlinedata():
+    wb = Workbook()
+    ops = OffLineProfile.objects.all()
+    Sheet1 = wb.add_sheet('Sheet1')
+    x = 0
+    for op in ops:
+        Sheet1.write(x,0,op.techProfile.user.first_name)
+        Sheet1.write(x,1,op.techProfile.email)
+        Sheet1.write(x,2,op.techProfile.mobileNumber)
+        Sheet1.write(x,3,op.techProfile.college.collegeName)
+        Sheet1.write(x,4,op.techProfile.college.collegeWebsite)
+        x = x+1 
+    wb.save('allexternal.xls')
                    
+def hello(request):
+    return HttpResponse("Hello World !!")
 
 
 

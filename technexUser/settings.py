@@ -158,15 +158,15 @@ STATIC_URL ='/static/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 #STATIC_HOST = 'https://d1guaaup0pib3t.cloudfront.net' if not DEBUG else ''
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 # Extra places for collectstatic to find static files.
 
-'''STATICFILES_DIRS = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-]'''
+]
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #db_from_env = dj_database_url.config(conn_max_age=500)
