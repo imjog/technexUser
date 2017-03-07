@@ -4,6 +4,20 @@ Event,hospitality and registration management website for the Techno-Management 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+The dashboard provides total management of 
+
+## Technology Stack
+
+mainly:
+
+Django 1.9
+Angular 1 for one page dashboard
+Jquery
+Bootstrap
+Dropbox Api for saving abstracts
+Facebook Api for Auth, profile change, auto share,comment,like etc
+PIL for picture overlay
+cloudinary Api for saving profile pics.
 
 ### Prerequisites
 
