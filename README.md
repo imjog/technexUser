@@ -1,4 +1,32 @@
 # TECHNEX
+Event,hospitality and registration management website for the Techno-Management Fest organized by Indian Institute of Technology (BHU) Varanasi.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+Python 2.7, postgresql 9 or above, virtualenv(preferably virtualenv wrapper too, though not neccessarily)
+
+### Installing
+
+create an environment via virtualenv(or preferably using virtualenvwrapper which easier to manage !)
+
+git clone https://github.com/In-vincible/technexUser.git
+
+cd technexuser
+
+pip install -r requirements.txt
+
+### Running website
+
+Facebook auth may not work on local server, and sheets link have to be changed.
+
+
+
+
+
 
 # Api Documentation
 ## Registration Api
