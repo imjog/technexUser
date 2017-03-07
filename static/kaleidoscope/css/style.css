@@ -128,6 +128,8 @@ body{
 }
 .tf_thumbs img{
 	display:block;
+	height: 180px;
+  width: 250px;
 }
 .tf_loading{
 	position:fixed;

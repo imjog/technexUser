@@ -1606,7 +1606,7 @@ def test(request):
 def send_sms(username,passwd,message,number):
     url = 'http://site24.way2sms.com/Login1.action?'
     data = 'username='+username+'&password='+passwd+'&Submit=Sign+in'
-
+    print url
     #For Cookies:
     cj = cookielib.CookieJar()
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
@@ -1636,7 +1636,8 @@ def send_sms_single(message,number):
     for up in ups:
         if up.messages_left==0:
             continue
-        send_sms(up.username,up.password,message,number)
+
+		send_sms(up.username,up.password,message,number)
         up.messages_left-=1
         up.save()
     return 1

@@ -181,7 +181,7 @@ a:focus {
 }
 @media screen and (max-width:768px){
 	.landing-header__title{
-	margin: -18% 0 0;
+	margin: -52% 0 0;
 }
 }
 @media screen and (min-width:768px){
@@ -1304,7 +1304,7 @@ ul.topnav li.icon {display: none;}
     text-align: center;
     font-family: sans-serif;
     font-size: 100%;
-    top: 67%;
+    top: 55%;
     left: 30%;
     position: absolute;
     line-height: 120%;
@@ -1381,7 +1381,7 @@ ul.topnav li.icon {display: none;}
   font-size: 110%;
 }
 .registerButton{
-	top: 53%;
+	top: 44%;
 	left: 30%;
 	position: absolute;
 	font-family: sans-serif;
@@ -1418,4 +1418,164 @@ ul.topnav li.icon {display: none;}
 {
 	 max-width: 137px;
 	max-height: 66px;
+}
+
+.intern_opportunity{
+	text-align: center;
+    font-family: sans-serif;
+    font-size: 70%;
+    top: 70%;
+    left: 30%;
+    position: absolute;
+    line-height: 110%;
+    /* letter-spacing: 2px; */
+    cursor: pointer;
+    border: 1px solid;
+    padding: 2%;
+}
+.intern_opportunity:hover{
+	color: wheat;
+	transition: 0.3s;
+}
+@media screen and (min-width:768px){
+	.intern_opportunity{
+		text-align: center;
+		font-family: sans-serif;
+		font-size: 158%;
+		top: 82%;
+		left: 3%;
+		position: absolute;
+		line-height: 120%;
+		letter-spacing: 2px;
+		padding: 0;
+		border: 0;
+	}
+}
+.internPop{
+	display: none;
+	z-index: 2000000;
+	position: absolute;
+	color: white;
+	background: rgba(0,0,0,.8);
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	overflow: scroll;
+	font-family: sans-serif;
+}
+.internPop h1{
+			margin: 3%;
+			font-size: 115%;
+	    padding: 1%;
+	    text-align: center;
+	    text-transform: uppercase;
+}
+.internPop p{
+	line-height: 120%;
+	padding: 0 10%;
+}
+.internPop button{
+	text-align: center;
+	margin: 1% 40%;
+	padding: 1%;
+	border: 2px solid white;
+	letter-spacing: 1px;
+}
+#closePop{
+	padding: 3%;
+	cursor: pointer;
+	color: white;
+	float: right;
+	letter-spacing: 1px;
+}
+#closePop:hover{
+	color: wheat;
+}
+table{
+		display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    width: 90%;
+    margin-left: 5%;
+}
+table tr{
+
+}
+table tr th{
+			border: 1px solid white;
+			padding: 2%;
+	    text-align: center;
+	    letter-spacing: 1px;
+	    text-transform: uppercase;
+	    font-weight: 600;
+}
+table tr td{
+	padding: 1%;
+	text-align: center;
+	border: 1px solid white;
+}
+@media screen and (min-width:768px){
+	.internPop{
+		display: none;
+		z-index: 2000000;
+		position: absolute;
+		color: white;
+		background: rgba(0,0,0,.8);
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		overflow: scroll;
+		font-family: sans-serif;
+	}
+	.internPop h1{
+		margin: 0;
+				font-size: 150%;
+		    padding: 1%;
+		    text-align: center;
+		    text-transform: uppercase;
+	}
+	.internPop p{
+		line-height: 120%;
+		padding: 0 10%;
+	}
+	.internPop button{
+		text-align: center;
+		margin: 1% 40%;
+		padding: 1%;
+		border: 2px solid white;
+		letter-spacing: 1px;
+	}
+	#closePop{
+		padding: 3%;
+		cursor: pointer;
+		color: white;
+		float: right;
+		letter-spacing: 1px;
+	}
+	#closePop:hover{
+		color: wheat;
+	}
+	table{
+		display: flex;
+		justify-content: center;
+		margin-top: 2%;
+	}
+	table tr{
+
+	}
+	table tr th{
+				border: 1px solid white;
+				padding: 2%;
+		    text-align: center;
+		    letter-spacing: 1px;
+		    text-transform: uppercase;
+		    font-weight: 600;
+	}
+	table tr td{
+		padding: 1%;
+		text-align: center;
+		border: 1px solid white;
+	}
 }

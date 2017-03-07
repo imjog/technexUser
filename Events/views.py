@@ -57,6 +57,15 @@ sheetUrls = {
 	"goldbergs-alley": "https://script.google.com/macros/s/AKfycbyFAD8X7_ePW5ficdgcWPZ_obpxuly-5UAX26W9lj5VCJMTxZw/exec",
 	"bridgeit": "https://script.google.com/macros/s/AKfycby99ACnseBDFL7y2cmarSNrhIvzcHllw4SfHr4ovh0iHoBId-M/exec",
 	"hydracs": "https://script.google.com/macros/s/AKfycbz8bZZxxjZVIqS9virOgox90WmLjvGz0RK3m8cr9fv9q6BbpbY/exec",
+	"cs-go" : "https://script.google.com/macros/s/AKfycbz2rizF0A3Ok97_nMSTnUA9oekEG4fNUrpIOb0ovNS6TgNDr6Dz/exec",
+	"classroom-furniture" : "https://script.google.com/macros/s/AKfycbyD1yAphlQUv1qVFlsj325iQvhvvJUkwMTs4pR79hkCG-JcTZDH/exec",
+	"classroom-cooling" : "https://script.google.com/macros/s/AKfycbx2y0dAhHHaH97HWYmdQuVUyYYgYF8MhKXCQqbWgVWS2-p_lGc/exec",
+	"classroom-sound-absorber" : "https://script.google.com/macros/s/AKfycbxFS5uSJPrrVZPTVNSsiuGvFPdjlcVFCZQkv1Ht9cHmFxokK2zi/exec",
+	"hostel-room-furniture": "https://script.google.com/macros/s/AKfycbwImpuQnhpOsHN98KqYCDQj0HGD3z_TpTjEKU_90v_6t7E03Gw/exec",
+	"mess-furniture": "https://script.google.com/macros/s/AKfycbx25ucmWGPX4LGcwSDhTcobu8EX9ZsWqokB0kq-D8qVgRlRvtpO/exec",
+
+
+
 
 
 }
@@ -164,7 +173,7 @@ Regards
 				team.members.add(user)
 			send_email(teamLeader.email,subject,body%(teamLeader.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			message=" Team Registration successful for team name "+ str(team.teamName) + " . Visit www.fb.com/technex for updates. \nRegards\nTeam Technex"
-			send_sms_single(message,str(teamLeader.mobileNumber))
+			# send_sms_single(message,str(teamLeader.mobileNumber))
 			for user in users:
 				send_email(user.email,subject,body%(user.user.first_name,event.eventName.capitalize(),team.teamName,teamLeader.email,memberEmails))
 			response['status'] = 1

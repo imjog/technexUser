@@ -15,7 +15,6 @@
 <link rel="shortcut icon" href="/static/favicon/favicon.ico">
 <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
 <meta name="theme-color" content="#000000">
-		<link href="https://fonts.googleapis.com/css?family=Vidaloka" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/static/workshop/css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="/static/workshop/css/style1.css" />
 		<link rel="stylesheet" href="/static/workshop/css/reset.css"> <!-- CSS reset -->
@@ -271,6 +270,129 @@ function navFunction() {
 						<div class="registerButton" id="registerbtn"><a href="/dashboard/#/workshopreg">REGISTER</a></div>
             <div class="contactDetail" id="cDetail"><span style="font-weight:600;">CONTACT:</span><br>Raushan Kumar<br>+91-919-851-7176</div>
             <div class="viewWorkshop" id="vWork">View workshops</div>
+						<div class="intern_opportunity" id="intern" onclick="internship()"><span style="font-weight:600;">Internship Opportunity</span><br>at<br>EISystems</div>
+						<script>
+						function internship(){
+						document.getElementById("internPop").style.display = "block";
+						}
+						function closePops(){
+							if(document.getElementById("internPop").style.display == "block"){
+									document.getElementById("internPop").style.display = "none";
+
+							}
+						}
+						</script>
+						<div class="internPop" id="internPop">
+							<div id="closePop" onclick="closePops()">CLOSE</div>
+							<h1 style="margin-top:3%;">About SITP 2017</h1>
+							<p>This year EISystems in association with Technex IIT  (BHU) Varanasi is associating together to organise one of India’s biggest Summer Internship & Training Program on various topics across India in cities near you, the program will be as per industry and academic standards and the primary focus of the program will be to acquaint participant with practical exposure apart from fundamentals of theory.</p>
+							<a href="https://docs.google.com/forms/d/e/1FAIpQLScCPIPh4unbw9qeKilyyVi4rGpnqICCE2C0hGXrVHKClmg9Pw/viewform" target="_blank"><button>REGISTER</button></a>
+							<h1>Why SITP 2017 only?</h1>
+							<p>1. Enormous number of centers across India and growing.<br>
+								2. Printed Work Books with no additional charges.<br>
+								3. Course curriculum designed by a panel of experts from IITs and reputed MNCs in industry.<br>
+								4. Fulfils Industrial Training requirement of engineering undergraduates in 3rd & 4th year of B.Tech/B.E. degree.<br>
+								5. Accommodation facility for participants coming from far away locales.</p>
+								<h1>Certification & Post Training Deliverables</h1>
+								<p>1. Certification from Technex IIT (BHU) Varanasi.<br>
+										2. Study Material in Printed Booklet & Workbook form.<br>
+										3. Letter of Recommendation from Eisystems Services & Technex IIT (BHU) Varanasi<br>
+										4. Job & Entrepreneurship Development Assistance after internship.<br>
+										5. Kits & Project Assistance as per requirement</p>
+										<h1>Courses</h1>
+										<table>
+											<tr>
+												<th>S.N.</th>
+												<th>Course Name</th>
+												<th>Duration</th>
+
+											</tr>
+											<tr>
+												<td>1.</td>
+												<td>Java & Android Application Development</td>
+												<td>15 Days / 30 Days</td>
+
+											</tr>
+											<tr>
+												<td>2.</td>
+												<td>Embedded Systems & Internet of Things</td>
+												<td>15 Days / 30 Days</td>
+
+											</tr>
+											<tr>
+												<td>3.</td>
+												<td>Embedded Systems & Robotics</td>
+												<td>15 Days / 30 Days</td>
+
+											</tr>
+											<tr>
+												<td>4.</td>
+												<td>Automobile Mechanics & Car Development</td>
+												<td>15 Days / 30 Days</td>
+
+											</tr>
+											<tr>
+												<td>5.</td>
+												<td>Digital Marketing & Entrepreneurship</td>
+												<td>15 Days / 30 Days</td>
+
+											</tr>
+										</table>
+										<h1 style="margin-top:2%;">Centers & Cities</h1>
+										<p style="text-align:center;margin-bottom:2%;">The program under this program will be conducted in following cities</p>
+										<table style="margin-bottom:3%;">
+											<tr>
+												<th>Code</th>
+												<th>City Name</th>
+												<th>Zonal Area</th>
+											</tr>
+											<tr>
+												<td>1</td>
+												<td>New Delhi / National Capital Region</td>
+												<td>North India</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>Lucknow</td>
+												<td>North India</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>Varanasi</td>
+												<td>North India</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>Patna</td>
+												<td>East India</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>Jaipur</td>
+												<td>West India</td>
+											</tr>
+											<tr>
+												<td>6</td>
+												<td>Mumbai</td>
+												<td>West India</td>
+											</tr>
+											<tr>
+												<td>7</td>
+												<td>Bengaluru</td>
+												<td>South India</td>
+											</tr>
+											<tr>
+												<td>8</td>
+												<td>Chennai</td>
+												<td>South India</td>
+											</tr>
+											<tr>
+												<td>9</td>
+												<td>Bhopal</td>
+												<td>Central India</td>
+											</tr>
+										</table>
+						</div>
 			<!-- Trigger button for layout change -->
 			<button class="button button--trigger" aria-label="View more">
 				<svg class="icon1 icon--grid icon--shown"><use xlink:href="#icon-grid"></use></svg>

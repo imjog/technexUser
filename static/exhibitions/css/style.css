@@ -51,11 +51,19 @@
 	color: #b5b5b5;
 }
 .ei-title h3{
-	font-size: 70px;
-	line-height: 70px;
+	font-size: 200%;
+	line-height: 150%;
 	font-family: sans-serif;
 	text-transform: uppercase;
 	color: black;
+	letter-spacing: 1px;
+}
+.ei-title h3:nth-child(2){
+		color: wheat;
+    font-size: 130%;
+    padding: 5%;
+    padding-left: 15%;
+    padding-right: 0;
 }
 @media screen and (min-width:768px){
 	.ei-title h3{
@@ -142,7 +150,7 @@
 		top: auto;
 		bottom: 10px;
 		background: #fff;
-		background: rgba(255,255,255,0.9);
+		background: rgba(0,0,0,0.1);
 		padding: 5px 0;
 	}
 	.ei-title h2, .ei-title h3{
@@ -155,6 +163,14 @@
 	.ei-title h3{
 		font-size: 30px;
 		line-height: 40px;
+		color: white;
+	}
+	.ei-title h3:nth-child(2){
+		color: wheat;
+		font-size: 85%;
+		padding: 5%;
+		text-align: center;
+		line-height: 120%;
 	}
 }
 
@@ -396,3 +412,6 @@ display: inline-flex;
   transition: 0.3s;
 }
 /* ---------/footer ----------*/
+.title_description {
+	font-size: 20px;
+}
