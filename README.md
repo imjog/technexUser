@@ -10,14 +10,15 @@ The dashboard provides total management of
 
 mainly:
 
-Django 1.9
-Angular 1 for one page dashboard
-Jquery
-Bootstrap
-Dropbox Api for saving abstracts
-Facebook Api for Auth, profile change, auto share,comment,like etc
-PIL for picture overlay
-cloudinary Api for saving profile pics.
+Django 1.9<br>
+Angular 1 <br>
+Jquery<br>
+Bootstrap<br>
+Dropbox Api for saving abstracts<br>
+Facebook Api for Auth, profile change, auto share,comment,like etc<br>
+PIL for picture overlay<br>
+cloudinary Api for saving profile pics.<br>
+
 
 ### Prerequisites
 
@@ -43,44 +44,6 @@ Facebook auth may not work on local server, and sheets link have to be changed.
 
 
 # Api Documentation
-## Registration Api
-<br> <br>
-Url: http://technexuser.herokuapp.com/api/register
-<br>
-Method: POST
-<br>
-Json object Expected : 			//(all fields required)<br>
-								{<br>
-									"email" : emailOfUser,<br>
-									"name" : firstName,<br>
-									"password" : password,<br>
-									"college" : collegeName,<br>
-									"year" : year(1,2,3,4,5)<br>
-									"mobileNumber" : mobileNumber<br>
-								 }<br><br>
-
-Json Response for Successful registration:<br>
-								{<br>
-								 	"status" : 1<br>
-									"email" : emailOfUser,<br>
-									"name" : firstName,<br>
-									"college" : collegeName,<br>
-									"year" : year(1,2,3,4,5)<br>
-									"mobileNumber" : mobileNumber<br>
-								}<br><br>
-
-
-						
-Json Response for Invalid Request(requests other than post):<br>
-								{<br>
-									
-									"status" : 0
-								}
-Json Response if user already registered:<br>
-					{<br>
-					 	"status":2
-					}
-<br><br>
 
 ## Login Api
 <br><br>
