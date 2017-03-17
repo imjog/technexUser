@@ -1528,7 +1528,7 @@ ul.topnav li.icon {display: none;}
     float: right;
     display: inline-block;
   }
-    ul.topnav li a{border:1px solid white;margin-right: 2px;font-size: 15px;padding: 14px 14px;}
+    ul.topnav li a{border:1px solid white;margin-right: 5px;font-size: 15px;padding: 16px 18px;}
 }
 
 @media screen and (max-width:1386px) {
@@ -1551,7 +1551,7 @@ ul.topnav li.icon {display: none;}
 
 @media (min-width:1024px) and (max-width:1399px){
     ul.topnav li a{
-        padding: 14px 8px;
+        /*padding: 14px 8px;*/
     }
 }
 
