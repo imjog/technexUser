@@ -241,6 +241,7 @@
         document.getElementById('vWork').classList.toggle('hide');
 				document.getElementById('registerbtn').classList.toggle('hide');
 				document.getElementById('intern').classList.toggle('hide');
+				document.getElementById('workshops').classList.toggle('hide');
 
 //		if( isOpen ) { // close it.
 			// Stop the bubbles canvas animation.
