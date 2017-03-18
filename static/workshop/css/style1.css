@@ -1419,6 +1419,16 @@ ul.topnav li.icon {display: none;}
 	 max-width: 137px;
 	max-height: 66px;
 }
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
 
 .intern_opportunity{
 	text-align: center;
@@ -1432,9 +1442,12 @@ ul.topnav li.icon {display: none;}
     cursor: pointer;
     border: 1px solid;
     padding: 2%;
+		visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
 }
 .intern_opportunity:hover{
-	color: wheat;
+	color:#0084FF;
 	transition: 0.3s;
 }
 @media screen and (min-width:768px){
@@ -1449,6 +1462,9 @@ ul.topnav li.icon {display: none;}
 		letter-spacing: 2px;
 		padding: 0;
 		border: 0;
+		visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
 	}
 }
 .internPop{
@@ -1463,6 +1479,9 @@ ul.topnav li.icon {display: none;}
 	right: 0;
 	overflow: scroll;
 	font-family: sans-serif;
+	visibility: visible;
+	-webkit-animation: fadeIn 1s;
+	animation: fadeIn 1s;
 }
 .internPop h1{
 			margin: 3%;
