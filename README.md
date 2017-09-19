@@ -1,4 +1,4 @@
-# TECHNEX
+# TECHNEX DOCUMENTATIONS
 Event,hospitality and registration management website for the Techno-Management Fest organized by Indian Institute of Technology (BHU) Varanasi.
 
 ## Getting Started
