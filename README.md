@@ -27,11 +27,11 @@ Python 2.7, postgresql 9 or above, virtualenv(preferably virtualenv wrapper too,
 
 create an environment via virtualenv(or preferably using virtualenvwrapper which easier to manage !)
 ```bash
-git clone https://github.com/In-vincible/technexUser.git
+$ git clone https://github.com/In-vincible/technexUser.git
 
-cd technexuser
+$ cd technexuser
 
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ### Running website
