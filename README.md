@@ -59,7 +59,7 @@ Json object Expected:<br>
 "password" : password
 }
 ```
-								<br><br>
+
 
 Json Response for successful Login: <br>
 								{<br>
