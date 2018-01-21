@@ -10,14 +10,14 @@ The dashboard provides total management of:
 
 Mainly:
 
-Django 1.9<br>
-Angular 1 <br>
-Jquery<br>
-Bootstrap<br>
-Dropbox Api for saving abstracts<br>
-Facebook Api for Auth, profile change, auto share,comment,like etc<br>
-PIL for picture overlay<br>
-cloudinary Api for saving profile pics.<br>
+`Django 1.9`<br>
+`Angular 1` <br>
+`Jquery`<br>
+`Bootstrap`<br>
+`Dropbox Api for saving abstracts`<br>
+`Facebook Api for Auth, profile change, auto share,comment,like etc`<br>
+`PIL for picture overlay`<br>
+`cloudinary Api for saving profile pics`.<br>
 
 
 ### Prerequisites
