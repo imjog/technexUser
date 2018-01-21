@@ -55,9 +55,9 @@ Method: POST
 Json object Expected:<br>			
 ```json
 {
-									"email" : email,
-									"password" : password
-								}
+"email" : email,
+"password" : password
+}
 ```
 								<br><br>
 
