@@ -53,10 +53,12 @@ Url: http://technexuser.herokuapp.com/api/login
 Method: POST
 <br>
 Json object Expected:<br>			
-```json{<br>
+```json
+{
 									"email" : email,
 									"password" : password
-								}```
+								}
+```
 								<br><br>
 
 Json Response for successful Login: <br>
